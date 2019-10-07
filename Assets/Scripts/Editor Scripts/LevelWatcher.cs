@@ -7,10 +7,13 @@ using UnityEngine;
 /// </summary>
 public class LevelWatcher : MonoBehaviour
 {
-    /// <summary>
-    /// Defines the blocks
-    /// </summary>
-    private List<Block> blocks;
+    public static readonly int OK = 0;
+    public static readonly int OCCUPIED_SPACE = 1;
+    public int maxBlocksX=10;
+    public int maxBlocksY=4;
+    public int maxBlocksZ=10;
+    private CubeArray cubes;
+
 
     // Start is called before the first frame update
     /// <summary>
@@ -18,7 +21,7 @@ public class LevelWatcher : MonoBehaviour
     /// </summary>
     internal void Start()
     {
-        this.blocks = new List<Block>();
+        this.cubes = new CubeArray(maxBlocksX, maxBlocksY, maxBlocksZ);
     }
 
     // Update is called once per frame
@@ -29,15 +32,42 @@ public class LevelWatcher : MonoBehaviour
     {
     }
 
-    /// <summary>
-    /// The addBlock
-    /// </summary>
-    /// <param name="position">The position<see cref="Vector3"/></param>
-    /// <param name="type">The type<see cref="string"/></param>
-    public void addBlock(Vector3 position, string type)
+    public int Lowest(int x, int z)
     {
-        blocks.Add(new Block(position, type));
-        Debug.Log(position + " " + type + "\n");
+ 
+        return cubes.Lowest(x,z);
+    }
+    public bool isOccupied(int x, int y, int z)
+    {
+        Block tmp = cubes.get(x, y, z);
+
+        if (tmp == null)
+        {
+           
+            return false;
+        }
+        else
+        {
+         //   Debug.Log("OCUPPIED");
+            return true;
+        }
+    }
+    public int AddBlock(int x,int y, int z, Block block)
+    {
+        Block tmp = cubes.get(x, y, z);
+        Debug.Log(x + " " + y + " " + z);
+        if (tmp == null)
+        {
+            Debug.Log("OK");
+            cubes.set(x, y, z, block);
+            return OK;
+        }
+        else
+        {
+            Debug.Log("OCUPPIED");
+            return OCCUPIED_SPACE;
+        }
+        
     }
 
     /// <summary>
@@ -45,20 +75,11 @@ public class LevelWatcher : MonoBehaviour
     /// </summary>
     /// <param name="position">The position<see cref="Vector3"/></param>
     /// <param name="type">The type<see cref="string"/></param>
-    public void deleteBlock(Vector3 position, string type)
+    public void deleteBlock(int x, int y, int z)
     {
+        cubes.set(x, y, z, null);
     }
 
-    /// <summary>
-    /// The printBlocks
-    /// </summary>
-    public void printBlocks()
-    {
-        foreach (Block b in blocks)
-        {
-            Debug.Log(b.Position + " " + b.Type + "\n");
-        }
-    }
 
 
 }

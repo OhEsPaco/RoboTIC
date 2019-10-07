@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.63034844, g: 0.5666429, b: 0.49011457, a: 1}
+  m_IndirectSpecularColor: {r: 0.63040733, g: 0.56664926, b: 0.49017835, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -885,7 +885,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 1515305724}
-  lwatcher: {fileID: 1311677254}
   type: solid
 --- !u!65 &195924058
 BoxCollider:
@@ -1663,7 +1662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &375291903
 Transform:
   m_ObjectHideFlags: 0
@@ -2424,7 +2423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 1926702782}
-  lwatcher: {fileID: 1311677254}
   type: lava
 --- !u!65 &592422001
 BoxCollider:
@@ -3934,7 +3932,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 367859138}
-  lwatcher: {fileID: 1311677254}
   type: spikes
 --- !u!65 &1170203237
 BoxCollider:
@@ -4169,6 +4166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b92a5c28fe9a54a91d0bf3c24dc868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxBlocksX: 10
+  maxBlocksY: 45
+  maxBlocksZ: 10
 --- !u!4 &1311677255
 Transform:
   m_ObjectHideFlags: 0
@@ -4542,7 +4542,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 215353556}
-  lwatcher: {fileID: 1311677254}
   type: lift
 --- !u!65 &1441286077
 BoxCollider:
@@ -6151,7 +6150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 796603565}
-  lwatcher: {fileID: 1311677254}
   type: ice
 --- !u!65 &2027388988
 BoxCollider:
@@ -6229,7 +6227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 2125708846}
-  lwatcher: {fileID: 1311677254}
   type: water
 --- !u!65 &2077324895
 BoxCollider:
@@ -6773,7 +6770,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2.0173779}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0.00000023841858, z: 1.0086889}
 --- !u!114 &468185499749466466
 MonoBehaviour:

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Defines the <see cref="CreateNewBlock" />
@@ -53,13 +51,11 @@ public class CreateNewBlock : MonoBehaviour
     /// </summary>
     internal void OnMouseDrag()
     {
-            if (spawnedBlock != null){
-                Vector3 mousePos = GetMouseWorldPos() + mOffset;
-             
-                spawnedBlock.transform.position = new Vector3(mousePos.x,
-                                     1,
-                                     mousePos.z);
-            }
+        if (spawnedBlock != null)
+        {
+            Vector3 mousePos = GetMouseWorldPos() + mOffset;
+            spawnedBlock.GetComponent<NewBlock>().UpdatePos(mousePos.x, mousePos.z);
+        }
     }
 
     /// <summary>
@@ -76,18 +72,17 @@ public class CreateNewBlock : MonoBehaviour
     /// </summary>
     internal void OnMouseDown()
     {
+        if (spawnedBlock == null)
+        {
+            spawnedBlock = Instantiate(blockToSpawn, new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z), blockToSpawn.transform.rotation);
+            spawnedBlock.SetActive(true);
+        }
 
-            if (spawnedBlock == null)
-            {
-                spawnedBlock=Instantiate(blockToSpawn,new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), blockToSpawn.transform.rotation);
-                spawnedBlock.SetActive(true);
-            }
-
-            if (spawnedBlock != null)
-            {
-                mZCoord = Camera.main.WorldToScreenPoint(spawnedBlock.transform.position).z;
-                mOffset = spawnedBlock.transform.position - GetMouseWorldPos();
-            }
+        if (spawnedBlock != null)
+        {
+            mZCoord = Camera.main.WorldToScreenPoint(spawnedBlock.transform.position).z;
+            mOffset = spawnedBlock.transform.position - GetMouseWorldPos();
+        }
     }
 
     /// <summary>

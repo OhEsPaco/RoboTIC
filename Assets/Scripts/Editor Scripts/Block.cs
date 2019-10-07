@@ -5,25 +5,14 @@ using UnityEngine;
 public class Block
 {
 
-        private Vector3 position;
-        public Vector3 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
 
 
-        private string type;
-        public string Type
-        {
-            get { return type; }
-            set { type = value; }
-        }
+    public string Type { get; set; }
 
-        public Block(Vector3 position, string type)
+    public Block(string type)
         {
-            this.position = position;
-            this.type = type;
+           
+            this.Type = type;
         }
 
 
