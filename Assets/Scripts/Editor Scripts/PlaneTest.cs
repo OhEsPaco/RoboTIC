@@ -18,13 +18,47 @@ public class PlaneTest : MonoBehaviour
     private float lengthX;
     private float lengthZ;
     private AABB2D aabb;
+    public float LengthX
+    {
+        get { return lengthX; }
+        set { lengthX = value; }
+    }
+    public float LengthZ
+    {
+        get { return lengthZ; }
+        set { lengthZ = value; }
+    }
+    public float X
+    {
+        get { return x; }
+        set { x = value; }
+    }
+
+    public float Z
+    {
+        get { return z; }
+        set { z = value; }
+    }
+
+
+    public AABB2D Aabb
+    {
+        get { return aabb; }
+        set { aabb = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         createPlane();
-        Vector2[]points=calculatePlanePoints(plane, lengthX, lengthZ);
-        this.aabb = createAABB2DPlane(points[0], points[1]);
+        float[] lengths = calculateMeshLength(plane);
+        float offset = 1.1f;
+
+        Vector2 minPoint = new Vector2(plane.transform.position.x - (lengths[0] / 2f), plane.transform.position.z - (lengths[1] / 2f)-offset);
+        Vector2 maxPoint = new Vector2(plane.transform.position.x + (lengths[0] / 2f), plane.transform.position.z + (lengths[1] / 2f));
+
+        Debug.Log(minPoint.x + " " + minPoint.y);
+        this.aabb = createAABB2DPlane(minPoint, maxPoint);
     }
 
     //Vector3 objectSize = Vector3.Scale(transform.localScale, GetComponent().mesh.bounds.size);
@@ -65,8 +99,8 @@ public class PlaneTest : MonoBehaviour
     private Vector2[] calculatePlanePoints(GameObject plane,float fullLenghtX, float fullLenghtZ)
     {
         Vector2[] points = new Vector2[4];
-        float lenghtX = fullLenghtX / 2f;
-        float lenghtZ = fullLenghtZ / 2f;
+        float lengthX = fullLenghtX / 2f;
+        float lengthZ = fullLenghtZ / 2f;
         Vector3 position = plane.transform.position;
 
         points[0] = new Vector2(position.x - lengthX, position.z - lengthZ);

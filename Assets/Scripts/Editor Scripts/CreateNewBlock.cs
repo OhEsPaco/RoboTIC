@@ -56,9 +56,9 @@ public class CreateNewBlock : MonoBehaviour
             if (spawnedBlock != null){
                 Vector3 mousePos = GetMouseWorldPos() + mOffset;
              
-                spawnedBlock.transform.position = new Vector3(Mathf.Round(mousePos.x),
+                spawnedBlock.transform.position = new Vector3(mousePos.x,
                                      1,
-                                     Mathf.Round(mousePos.z));
+                                     mousePos.z);
             }
     }
 

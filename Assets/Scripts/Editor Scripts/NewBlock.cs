@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Defines the <see cref="NewBlock" />
@@ -33,74 +34,34 @@ public class NewBlock : MonoBehaviour
     public void addBlock()
     {
 
-        bool insidePlane = true;
-        // Bit shift the index of the layer to get a bit mask
-        int layerMask = 1 << 10;
+        bool insidePlane = false;
+        GameObject plane = GameObject.Find("Table Generator");
+        AABB2D aabbplane = plane.GetComponent<PlaneTest>().Aabb;
 
-        // This would cast rays only against colliders in layer 8.
-        // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
-        layerMask = ~layerMask;
+        float[] lengths = calculateMeshLength(cube);
 
-        RaycastHit hit;
+        Vector3 planeMin = new Vector3(plane.GetComponent<PlaneTest>().X - (plane.GetComponent<PlaneTest>().LengthX), 0, plane.GetComponent<PlaneTest>().Z - (plane.GetComponent<PlaneTest>().LengthZ));
 
-        Vector3 posRay = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z + 1);
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(posRay, transform.TransformDirection(Vector3.down), out hit, 5f))
+        transform.position = calculateGridPoint(transform.position, planeMin, 2);
+
+        Vector2 minPoint = new Vector2(transform.position.x - (lengths[0] / 2f), transform.position.z - (lengths[1] / 2f));
+        Vector2 maxPoint = new Vector2(transform.position.x + (lengths[0] / 2f), transform.position.z + (lengths[1] / 2f));
+
+        AABB2D aabb = createAABB2DPlane(minPoint, maxPoint);
+
+        
+
+        if (aabbplane.isCompletelyInside(aabb))
         {
-            Debug.DrawRay(posRay, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
-            
-        }
-        else
-        {
-            Debug.DrawRay(posRay, transform.TransformDirection(Vector3.down) * 1000, Color.white);
-            insidePlane = false;
-
+            insidePlane = true;
         }
 
 
-        posRay = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z - 1);
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(posRay, transform.TransformDirection(Vector3.down), out hit, 5f))
-        {
-            Debug.DrawRay(posRay, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
-          
-        }
-        else
-        {
-            Debug.DrawRay(posRay, transform.TransformDirection(Vector3.down) * 1000, Color.white);
-            insidePlane = false;
-        }
-
-
-        posRay = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z + 1);
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(posRay, transform.TransformDirection(Vector3.down), out hit, 5f))
-        {
-            Debug.DrawRay(posRay, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
-           
-        }
-        else
-        {
-            Debug.DrawRay(posRay, transform.TransformDirection(Vector3.down) * 1000, Color.white);
-            insidePlane = false;
-        }
-
-
-        posRay = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z - 1);
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(posRay, transform.TransformDirection(Vector3.down), out hit, 5f))
-        {
-            Debug.DrawRay(posRay, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
-            
-        }
-        else
-        {
-            Debug.DrawRay(posRay, transform.TransformDirection(Vector3.down) * 1000, Color.white);
-            insidePlane = false;
-        }
 
         if (insidePlane)
         {
+
+             
             //The block is inside the plane
             lwatcher.addBlock(transform.position, type);
         }
@@ -127,6 +88,8 @@ public class NewBlock : MonoBehaviour
     void OnMouseOver()
     {
         if(Input.GetMouseButtonDown(1)){
+
+            GetComponent<Rigidbody>().detectCollisions = false;
             destroyThis();
         }
     }
@@ -137,4 +100,51 @@ public class NewBlock : MonoBehaviour
         yield return new WaitForSecondsRealtime(seconds);
         Destroy(gameObject);
     }
+
+    private float[] calculateMeshLength(GameObject objectToBeMeasured)
+    {
+        Vector3 objectSize = Vector3.Scale(objectToBeMeasured.transform.localScale, objectToBeMeasured.GetComponent<MeshFilter>().mesh.bounds.size);
+        float[] size = new float[2];
+        size[0] = objectSize.x;
+        size[1] = objectSize.z;
+        return size;
+    }
+
+    private AABB2D createAABB2DPlane(Vector2 min, Vector2 max)
+    {
+
+        AABB2D aabb = new AABB2D(min.x, min.y, max.x, max.y);
+        return aabb;
+    }
+
+    //0 min point
+    //1 max point
+    private Vector2[] calculatePlanePoints(GameObject plane, float fullLenghtX, float fullLenghtZ)
+    {
+        Vector2[] points = new Vector2[4];
+       
+        Vector3 position = plane.transform.position;
+
+        float lenghtX = fullLenghtX / 2f;
+        float lenghtZ = fullLenghtZ / 2f;
+
+        
+        points[0] = new Vector2(position.x - lenghtX, position.z - lenghtZ);
+        points[1] = new Vector2(position.x + lenghtX, position.z + lenghtZ);
+        points[2] = new Vector2(position.x - lenghtX, position.z + lenghtZ);
+        points[3] = new Vector2(position.x + lenghtX, position.z - lenghtZ);
+
+        return points;
+    }
+
+    private Vector3 calculateGridPoint(Vector3 position, Vector3 planeMinPos, float blockLength)
+    {
+        int xfactor = (int)Math.Abs(((position.x-planeMinPos.x) / blockLength));
+        int zfactor = (int)Math.Abs(((position.z - planeMinPos.z) / blockLength));
+        Debug.Log(xfactor);
+
+        Vector3 newPos = new Vector3((planeMinPos.x + (blockLength / 2f) + xfactor * blockLength),position.y, (planeMinPos.z + (blockLength / 2f) + zfactor * blockLength));
+        return newPos;
+    }
+  
 }
