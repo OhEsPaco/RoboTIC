@@ -28,16 +28,19 @@ public class CommonMath
 
     public static int GetYfactor(Vector3 position, Vector3 planeMinPos, float blockLength)
     {
-        return (int)Math.Abs(((position.y - planeMinPos.y) / blockLength));
+        return (int)((position.y - planeMinPos.y) / blockLength);
     }
 
     public static int GetXfactor(Vector3 position, Vector3 planeMinPos, float blockLength)
     {
-        return (int)Math.Abs(((position.x - planeMinPos.x) / blockLength));
+        Debug.Log((position.x - planeMinPos.x) / blockLength);
+        return (int)((position.x - planeMinPos.x) / blockLength);
     }
 
     public static int GetZfactor(Vector3 position, Vector3 planeMinPos, float blockLength)
     {
-        return (int)Math.Abs(((position.z - planeMinPos.z) / blockLength));
+        return (int)((position.z - planeMinPos.z) / blockLength);
     }
+
+
 }

@@ -20,6 +20,13 @@ public class CubeArray
         return y;
     }
 
+    public CubeArray(Block[,,] voxels)
+    {
+        this.voxels = voxels;
+        width = voxels.GetLength(0);
+        height = voxels.GetLength(1);
+        depth = voxels.GetLength(2);
+    }
 
     public CubeArray(int width, int height, int depth)
     {

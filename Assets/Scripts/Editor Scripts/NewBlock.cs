@@ -37,11 +37,10 @@ public class NewBlock : MonoBehaviour
 
             int zFactor = CommonMath.GetZfactor(transform.position, planeMin, 2);
 
-            transform.position = CommonMath.CalculateGridPoint(new Vector3(newX, 0, newZ), planeMin, 2);
+            float newY = plane.GetComponent<PlaneTest>().y + (lwatcher.Lowest(xFactor, zFactor) * 2) + 1;
+            transform.position = CommonMath.CalculateGridPoint(new Vector3(newX, newY, newZ), planeMin, 2);
 
-            transform.position = new Vector3(transform.position.x, plane.GetComponent<PlaneTest>().y + (lwatcher.Lowest(xFactor, zFactor) * 2) + 1, transform.position.z);
-
-            //}
+         
         }
     }
 
@@ -57,12 +56,12 @@ public class NewBlock : MonoBehaviour
         GameObject plane = GameObject.Find("Table Generator");
 
         Vector3 planeMin = new Vector3(plane.GetComponent<PlaneTest>().x - (plane.GetComponent<PlaneTest>().LengthX / 2f), plane.GetComponent<PlaneTest>().y, plane.GetComponent<PlaneTest>().z - (plane.GetComponent<PlaneTest>().LengthZ / 2f));
-
+        
         int xFactor = CommonMath.GetXfactor(transform.position, planeMin, 2);
         int yFactor = CommonMath.GetYfactor(transform.position, planeMin, 2);
         int zFactor = CommonMath.GetZfactor(transform.position, planeMin, 2);
-
-        if (xFactor >= lwatcher.maxBlocksX || xFactor < 0 || zFactor >= lwatcher.maxBlocksZ || zFactor < 0 || yFactor >= lwatcher.maxBlocksY || yFactor < 0)
+        Debug.Log(xFactor + " " + zFactor);
+        if (xFactor > lwatcher.maxBlocksX || xFactor < 0 || zFactor > lwatcher.maxBlocksZ || zFactor < 0 || yFactor > lwatcher.maxBlocksY || yFactor < 0)
         {
             //Unable to place the block
             destroyThis();

@@ -5,15 +5,15 @@ using UnityEngine;
 /// <summary>
 /// Defines the <see cref="LevelWatcher" />
 /// </summary>
+
 public class LevelWatcher : MonoBehaviour
 {
     public static readonly int OK = 0;
     public static readonly int OCCUPIED_SPACE = 1;
-    public int maxBlocksX=10;
-    public int maxBlocksY=4;
-    public int maxBlocksZ=10;
+    public int maxBlocksX = 10;
+    public int maxBlocksY = 4;
+    public int maxBlocksZ = 10;
     private CubeArray cubes;
-
 
     // Start is called before the first frame update
     /// <summary>
@@ -34,8 +34,7 @@ public class LevelWatcher : MonoBehaviour
 
     public int Lowest(int x, int z)
     {
- 
-        return cubes.Lowest(x,z);
+        return cubes.Lowest(x, z);
     }
     public bool isOccupied(int x, int y, int z)
     {
@@ -43,16 +42,15 @@ public class LevelWatcher : MonoBehaviour
 
         if (tmp == null)
         {
-           
             return false;
         }
         else
         {
-         //   Debug.Log("OCUPPIED");
+            //   Debug.Log("OCUPPIED");
             return true;
         }
     }
-    public int AddBlock(int x,int y, int z, Block block)
+    public int AddBlock(int x, int y, int z, Block block)
     {
         Block tmp = cubes.get(x, y, z);
         Debug.Log(x + " " + y + " " + z);
@@ -67,7 +65,6 @@ public class LevelWatcher : MonoBehaviour
             Debug.Log("OCUPPIED");
             return OCCUPIED_SPACE;
         }
-        
     }
 
     /// <summary>
@@ -79,7 +76,4 @@ public class LevelWatcher : MonoBehaviour
     {
         cubes.set(x, y, z, null);
     }
-
-
-
 }
