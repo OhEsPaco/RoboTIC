@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-[System.Serializable]
+﻿[System.Serializable]
 public class Block
 {
     public string Type { get; set; }

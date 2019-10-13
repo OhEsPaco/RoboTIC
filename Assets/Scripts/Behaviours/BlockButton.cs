@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Defines the <see cref="CreateNewBlock" />
-/// </summary>
-public class CreateNewBlock : MonoBehaviour
+public class BlockButton : MonoBehaviour
 {
     /// <summary>
     /// Defines the mOffset
@@ -19,23 +16,26 @@ public class CreateNewBlock : MonoBehaviour
     /// Defines the origY
     /// </summary>
     private float origY;
-
+    public string type;
     /// <summary>
     /// Defines the blockToSpawn
     /// </summary>
     public GameObject blockToSpawn;
-
+    private PlaygroundGrid grid;
     /// <summary>
     /// Defines the spawnedBlock
     /// </summary>
     private GameObject spawnedBlock;
+
 
     /// <summary>
     /// The Start
     /// </summary>
     internal void Start()
     {
+
         origY = gameObject.transform.position.y;
+        grid = PlaygroundGrid.instance;
     }
 
     // Update is called once per frame
@@ -54,7 +54,9 @@ public class CreateNewBlock : MonoBehaviour
         if (spawnedBlock != null)
         {
             Vector3 mousePos = GetMouseWorldPos() + mOffset;
-            spawnedBlock.GetComponent<NewBlock>().UpdatePos(mousePos.x, mousePos.z);
+
+            spawnedBlock.transform.position = grid.SnapToGrid(mousePos);
+            //spawnedBlock.GetComponent<NewBlock>().UpdatePos(mousePos.x, mousePos.z);
         }
     }
 
@@ -63,8 +65,13 @@ public class CreateNewBlock : MonoBehaviour
     /// </summary>
     internal void OnMouseUp()
     {
-        spawnedBlock.GetComponent<NewBlock>().addBlock();
-        spawnedBlock = null;
+        //spawnedBlock.GetComponent<NewBlock>().addBlock();
+        Block b = grid.AddBlock(spawnedBlock, type);
+        if (b == null)
+        {
+            Destroy(spawnedBlock);
+        }
+            spawnedBlock = null;
     }
 
     /// <summary>
