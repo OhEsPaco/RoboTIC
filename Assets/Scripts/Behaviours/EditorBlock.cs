@@ -1,8 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class EditorBlock : MonoBehaviour
 {
-    private Vector3 mOffset;
+    public BlockExploder exploder;
+    private LevelWatcher lwatcher;
+    private int x;
+    private int y;
+    private int z;
+
 
     /// <summary>
     /// Defines the mZCoord
@@ -12,8 +19,7 @@ public class EditorBlock : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        mZCoord = Camera.main.WorldToScreenPoint(transform.position).z;
-        mOffset = transform.position - GetMouseWorldPos();
+        lwatcher = LevelWatcher.instance;
     }
 
     // Update is called once per frame
@@ -23,8 +29,7 @@ public class EditorBlock : MonoBehaviour
 
     internal void OnMouseDrag()
     {
-        Vector3 mousePos = GetMouseWorldPos() + mOffset;
-        transform.position = mousePos;
+        
     }
 
     internal void OnMouseUp()
@@ -35,11 +40,36 @@ public class EditorBlock : MonoBehaviour
     {
         
     }
-
-    private Vector3 GetMouseWorldPos()
+    public void setPos(int x,int y, int z)
     {
-        Vector3 mousePoint = Input.mousePosition;
-        mousePoint.z = mZCoord;
-        return Camera.main.ScreenToWorldPoint(mousePoint);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+
+    }
+
+
+    internal void OnMouseOver()
+    {
+        if(Input.GetMouseButtonDown(1)){
+            
+            lwatcher.DeleteBlock(x, y, z);
+            DestroyBlock();
+        }
+    }
+
+    public void DestroyBlock()
+    {
+        float seconds = exploder.particleDuration + 0.1f;
+        transform.localScale = new Vector3(0, 0, 0);
+        exploder.explode();
+        StartCoroutine(DestroyAfterSeconds(seconds));
+    }
+
+    private IEnumerator DestroyAfterSeconds(float seconds)
+    {
+
+        yield return new WaitForSecondsRealtime(seconds);
+        Destroy(this);
     }
 }

@@ -220,6 +220,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 156038804}
+  - component: {fileID: 156038806}
+  - component: {fileID: 156038805}
   m_Layer: 0
   m_Name: Water Block
   m_TagString: Untagged
@@ -242,6 +244,39 @@ Transform:
   m_Father: {fileID: 1699048419}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &156038805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156038803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb46d4eeee30dc4d98e8896084f1361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exploder: {fileID: 156038806}
+--- !u!114 &156038806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156038803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9bef0b39723ba489d54623a17446ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 5
+  particleDuration: 1
+  explosionForce: 1000
+  explosionRadius: 40
+  explosionUpward: 20
+  mass: 0.1
+  particleMaterial: {fileID: 2100000, guid: 7fc889d6fc77326449f7d53270839dd3, type: 2}
 --- !u!1 &192000388
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +364,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 293377104}
+  - component: {fileID: 293377106}
+  - component: {fileID: 293377105}
   m_Layer: 0
   m_Name: Spikes Block
   m_TagString: Untagged
@@ -351,6 +388,39 @@ Transform:
   m_Father: {fileID: 1699048419}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &293377105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293377103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb46d4eeee30dc4d98e8896084f1361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exploder: {fileID: 293377106}
+--- !u!114 &293377106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293377103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9bef0b39723ba489d54623a17446ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 5
+  particleDuration: 1
+  explosionForce: 1000
+  explosionRadius: 40
+  explosionUpward: 20
+  mass: 0.1
+  particleMaterial: {fileID: 2100000, guid: ef0f9037bd1b975468e55b9e3c711935, type: 2}
 --- !u!1 &319531495
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +623,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 605308519}
+  - component: {fileID: 605308521}
+  - component: {fileID: 605308520}
   m_Layer: 0
   m_Name: Lava Block
   m_TagString: Untagged
@@ -575,6 +647,39 @@ Transform:
   m_Father: {fileID: 1699048419}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &605308520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605308518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb46d4eeee30dc4d98e8896084f1361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exploder: {fileID: 605308521}
+--- !u!114 &605308521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605308518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9bef0b39723ba489d54623a17446ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 5
+  particleDuration: 1
+  explosionForce: 1000
+  explosionRadius: 40
+  explosionUpward: 20
+  mass: 0.1
+  particleMaterial: {fileID: 2100000, guid: ff121421bcb044f459074dcb7cc8d93b, type: 2}
 --- !u!1 &670939908
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +784,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717162503}
+  - component: {fileID: 717162505}
+  - component: {fileID: 717162504}
   m_Layer: 0
   m_Name: Lift Block
   m_TagString: Untagged
@@ -701,6 +808,39 @@ Transform:
   m_Father: {fileID: 1699048419}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717162504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717162502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb46d4eeee30dc4d98e8896084f1361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exploder: {fileID: 717162505}
+--- !u!114 &717162505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717162502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9bef0b39723ba489d54623a17446ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 5
+  particleDuration: 1
+  explosionForce: 1000
+  explosionRadius: 40
+  explosionUpward: 20
+  mass: 0.1
+  particleMaterial: {fileID: 2100000, guid: ef0f9037bd1b975468e55b9e3c711935, type: 2}
 --- !u!1 &722081454
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +1116,8 @@ GameObject:
   m_Component:
   - component: {fileID: 794123601}
   - component: {fileID: 794123602}
+  - component: {fileID: 794123604}
+  - component: {fileID: 794123603}
   m_Layer: 0
   m_Name: Ice Block
   m_TagString: Untagged
@@ -1011,6 +1153,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 1}
+--- !u!114 &794123603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794123600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb46d4eeee30dc4d98e8896084f1361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exploder: {fileID: 794123604}
+--- !u!114 &794123604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794123600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9bef0b39723ba489d54623a17446ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 5
+  particleDuration: 1
+  explosionForce: 1000
+  explosionRadius: 40
+  explosionUpward: 20
+  mass: 0.1
+  particleMaterial: {fileID: 2100000, guid: 7edb334a53968454d87358539dbb01e2, type: 2}
 --- !u!1 &1266635409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,7 +1497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650342675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1699048419}
@@ -1417,6 +1592,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1797498925}
+  - component: {fileID: 1797498927}
+  - component: {fileID: 1797498926}
   m_Layer: 0
   m_Name: Solid Block
   m_TagString: Untagged
@@ -1439,6 +1616,39 @@ Transform:
   m_Father: {fileID: 1699048419}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1797498926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797498924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb46d4eeee30dc4d98e8896084f1361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exploder: {fileID: 1797498927}
+--- !u!114 &1797498927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797498924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9bef0b39723ba489d54623a17446ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 5
+  particleDuration: 1
+  explosionForce: 1000
+  explosionRadius: 40
+  explosionUpward: 20
+  mass: 0.1
+  particleMaterial: {fileID: 2100000, guid: ef0f9037bd1b975468e55b9e3c711935, type: 2}
 --- !u!1 &1901852321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,7 +1799,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2926907863070293595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2926907863572642213}
@@ -1605,6 +1815,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2926907863070293592}
+  - component: {fileID: 2926907863070293596}
+  - component: {fileID: 2926907863070293597}
   m_Layer: 0
   m_Name: Lava Block
   m_TagString: Untagged
@@ -1612,6 +1824,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2926907863070293596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926907863070293595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfadd7b6e9f12eb4caab1e300c7fbcd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: lava_block
+  blockToSpawn: {fileID: 605308518}
+--- !u!65 &2926907863070293597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926907863070293595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2926907863572642212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,7 +1878,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2926907863572642212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2926907863070293592}
@@ -1715,6 +1954,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2965302920856392819}
+  - component: {fileID: 2965302920856392817}
+  - component: {fileID: 2965302920856392818}
   m_Layer: 0
   m_Name: Solid Block
   m_TagString: Untagged
@@ -1722,6 +1963,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2965302920856392817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965302920856392816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfadd7b6e9f12eb4caab1e300c7fbcd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: solid_block
+  blockToSpawn: {fileID: 1797498924}
+--- !u!65 &2965302920856392818
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965302920856392816}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2965302920856392819
 Transform:
   m_ObjectHideFlags: 0
@@ -1730,7 +1998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2965302920856392816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2965302922090536506}
@@ -1791,7 +2059,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2965302922090536507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2965302920856392819}
@@ -1824,6 +2092,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3049950414706418479}
+  - component: {fileID: 3049950414706418477}
+  - component: {fileID: 3049950414706418478}
   m_Layer: 0
   m_Name: Lift Block
   m_TagString: Untagged
@@ -1831,6 +2101,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3049950414706418477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3049950414706418476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfadd7b6e9f12eb4caab1e300c7fbcd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: lift_block
+  blockToSpawn: {fileID: 717162502}
+--- !u!65 &3049950414706418478
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3049950414706418476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &3049950414706418479
 Transform:
   m_ObjectHideFlags: 0
@@ -1839,7 +2136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3049950414706418476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3049950414856483450}
@@ -1900,7 +2197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3049950414856483451}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1, z: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3049950416053200045}
@@ -2028,6 +2325,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3692486497956181023}
+  - component: {fileID: 3692486497956181024}
+  - component: {fileID: 3692486497956181025}
   m_Layer: 0
   m_Name: Spikes Block
   m_TagString: Untagged
@@ -2043,13 +2342,40 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3692486497956181022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3692486498120119802}
   m_Father: {fileID: 441113692}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3692486497956181024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692486497956181022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfadd7b6e9f12eb4caab1e300c7fbcd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: spikes_block
+  blockToSpawn: {fileID: 293377103}
+--- !u!65 &3692486497956181025
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692486497956181022}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3692486498120119797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,7 +2426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3692486498120119797}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1, z: 1}
+  m_LocalPosition: {x: 0, y: -1, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3692486499329855757}
@@ -2467,7 +2793,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7545064322823096668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7545064323849081315}
@@ -2543,6 +2869,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7545064323849081315}
+  - component: {fileID: 7545064323849081316}
+  - component: {fileID: 7545064323849081317}
   m_Layer: 0
   m_Name: Water Block
   m_TagString: Untagged
@@ -2558,10 +2886,37 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7545064323849081314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7545064322823096669}
   m_Father: {fileID: 441113692}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7545064323849081316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545064323849081314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfadd7b6e9f12eb4caab1e300c7fbcd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: water_block
+  blockToSpawn: {fileID: 156038803}
+--- !u!65 &7545064323849081317
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545064323849081314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Defines the <see cref="Explode" />
 /// </summary>
-public class Explode : MonoBehaviour
+public class BlockExploder : MonoBehaviour
 {
     /// <summary>
     /// Defines the cubeSize
@@ -45,7 +45,7 @@ public class Explode : MonoBehaviour
     /// <summary>
     /// Defines the particleMaterial
     /// </summary>
-    private Material particleMaterial;
+    public Material particleMaterial;
 
     /// <summary>
     /// Defines the pieces
@@ -57,9 +57,10 @@ public class Explode : MonoBehaviour
     /// </summary>
     internal void Start()
     {
-        particleMaterial = GetComponent<Renderer>().material;
+    
         pieces = new List<GameObject>();
     }
+
 
     /// <summary>
     /// The explode
@@ -100,7 +101,7 @@ public class Explode : MonoBehaviour
 
         //make object disappear
 
-        gameObject.transform.localScale = new Vector3(0, 0, 0);
+       // gameObject.transform.localScale = new Vector3(0, 0, 0);
         StartCoroutine(DestroyParticles(pieces, particleDuration));
     }
 
@@ -110,7 +111,7 @@ public class Explode : MonoBehaviour
     /// <param name="x">The x<see cref="int"/></param>
     /// <param name="y">The y<see cref="int"/></param>
     /// <param name="z">The z<see cref="int"/></param>
-    internal void createPiece(int x, int y, int z)
+    private void createPiece(int x, int y, int z)
     {
 
         //create piece
@@ -120,7 +121,7 @@ public class Explode : MonoBehaviour
         pieces.Add(piece);
         piece.GetComponent<Renderer>().material = particleMaterial;
         //set piece position and scale
-        Vector3 cubesPivot=new Vector3(0,1,0);
+        Vector3 cubesPivot = new Vector3(0, 1, 0);
         piece.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
         piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
 
@@ -136,7 +137,7 @@ public class Explode : MonoBehaviour
     /// <param name="particles">The particles<see cref="List{GameObject}"/></param>
     /// <param name="seconds">The seconds<see cref="float"/></param>
     /// <returns>The <see cref="IEnumerator"/></returns>
-    internal IEnumerator DestroyParticles(List<GameObject> particles, float seconds)
+    private IEnumerator DestroyParticles(List<GameObject> particles, float seconds)
     {
 
         yield return new WaitForSecondsRealtime(seconds);

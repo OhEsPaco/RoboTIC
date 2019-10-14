@@ -109,7 +109,7 @@ public class PlaygroundGrid : MonoBehaviour
         int zfactor = (int)((position.z - planeMin.z) / blockSize);
 
         float newX = (planeMin.x + (blockSize / 2f) + xfactor * blockSize);
-        float newZ = (planeMin.z + (blockSize / 2f) + zfactor * blockSize)- (blockSize/2f);
+        float newZ = (planeMin.z + (blockSize / 2f) + zfactor * blockSize);
         float newY = planeMin.y + (lwatcher.Lowest(xfactor, zfactor) * blockSize) + (blockSize / 2f);
 
 
@@ -117,7 +117,7 @@ public class PlaygroundGrid : MonoBehaviour
         return newPos;
     }
 
-    public Block AddBlock(GameObject spawnedBlock, string type)
+    public int[] AddBlock(GameObject spawnedBlock, string type)
     {
         spawnedBlock.transform.position = SnapToGrid(spawnedBlock.transform.position);
         Vector3 position = spawnedBlock.transform.position;
@@ -134,7 +134,8 @@ public class PlaygroundGrid : MonoBehaviour
         Block b = new Block(type);
         if(lwatcher.AddBlock(xfactor, yfactor, zfactor, b) == LevelWatcher.OK)
         {
-            return b;
+            int[] blockIndex = { xfactor, yfactor, zfactor };
+            return blockIndex;
         }
 
         return null;

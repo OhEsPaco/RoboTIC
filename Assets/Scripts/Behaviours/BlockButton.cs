@@ -66,10 +66,15 @@ public class BlockButton : MonoBehaviour
     internal void OnMouseUp()
     {
         //spawnedBlock.GetComponent<NewBlock>().addBlock();
-        Block b = grid.AddBlock(spawnedBlock, type);
-        if (b == null)
+        int[] pos = grid.AddBlock(spawnedBlock, type);
+        if (pos == null)
         {
-            Destroy(spawnedBlock);
+            spawnedBlock.GetComponent<EditorBlock>().DestroyBlock();
+            // Destroy(spawnedBlock);
+        }
+        else
+        {
+            spawnedBlock.GetComponent<EditorBlock>().setPos(pos[0], pos[1], pos[2]);
         }
             spawnedBlock = null;
     }
