@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f666da307a0f96242a797f92a736021a
+guid: ad91bb43bb7958749b921a82d4c5c323
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -28,7 +28,8 @@ ModelImporter:
     100044: RepeatsX7
     100046: RepeatsX8
     100048: RepeatsX9
-    100050: //RootNode
+    100050: RepeatsXTemplate
+    100052: //RootNode
     400000: ConditionIsWalkable
     400002: Connector_CurveIn
     400004: Connector_CurveOut
@@ -54,7 +55,8 @@ ModelImporter:
     400044: RepeatsX7
     400046: RepeatsX8
     400048: RepeatsX9
-    400050: //RootNode
+    400050: RepeatsXTemplate
+    400052: //RootNode
     2100000: ConditionMaterial
     2100002: RoadMaterial
     2100004: No Name
@@ -83,6 +85,7 @@ ModelImporter:
     2300044: RepeatsX7
     2300046: RepeatsX8
     2300048: RepeatsX9
+    2300050: RepeatsXTemplate
     3300000: ConditionIsWalkable
     3300002: Connector_CurveIn
     3300004: Connector_CurveOut
@@ -108,6 +111,7 @@ ModelImporter:
     3300044: RepeatsX7
     3300046: RepeatsX8
     3300048: RepeatsX9
+    3300050: RepeatsXTemplate
     4300000: ConditionIsWalkable
     4300002: Connector_CurveIn
     4300004: Connector_CurveOut
@@ -133,22 +137,8 @@ ModelImporter:
     4300044: RepeatsX9
     4300046: RepeatsX0
     4300048: Node_LoopOut
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ConditionMaterial
-    second: {fileID: 2100000, guid: 2cb2b65c84b83bf4780b72a63ec9a11e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: e5bda0d8a67ffb843b69940cb7a55d93, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: RoadMaterial
-    second: {fileID: 2100000, guid: d4ec9e9180532bb4fb26560938719a8f, type: 2}
+    4300050: RepeatsXTemplate
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

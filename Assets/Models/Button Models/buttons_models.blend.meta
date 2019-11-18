@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 71bdb2e1d9509ff438cc568f3e78c86e
+guid: f72fd92ec7b85a64da6bd1b9a2e461bc
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -86,12 +86,7 @@ ModelImporter:
     4300026: TurnLeftsAvailable
     4300028: Button_TurnRight
     4300030: TurnRightsAvailable
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ButtonMaterial
-    second: {fileID: 2100000, guid: 861d0a08d200a274395f20384c59843c, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
