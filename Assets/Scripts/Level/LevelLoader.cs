@@ -27,8 +27,16 @@ public class LevelLoader : MonoBehaviour
                     block.transform.position = posNew;
                 }
             }
-        } 
-     
+        }
+
+        GameObject mainCharacter = objectFactory.GetMainCharacterInstance();
+        Vector3 posNewChar = new Vector3(data.playerStart[0] * blockLength, data.playerStart[1]* blockLength, data.playerStart[2] * blockLength);
+        mainCharacter.transform.Rotate(0, 90f * data.playerOrientation, 0);
+        mainCharacter.transform.position = posNewChar;
+
+        GameObject flag = objectFactory.GetFlagInstance();
+        Vector3 posFlag = new Vector3(data.goal[0] * blockLength, data.goal[1] * blockLength, data.goal[2] * blockLength);
+        flag.transform.position = posFlag;
     }
 
     public LevelData LoadData(string jsonPath)

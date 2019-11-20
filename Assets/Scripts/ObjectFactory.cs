@@ -14,7 +14,8 @@ public class ObjectFactory : MonoBehaviour
     public GameObject IceBlock;
 
     public GameObject PlankItem;
-
+    public GameObject MainCharacter;
+    public GameObject Flag;
 
     public GameObject GetGameObjectInstance(int id)
     {
@@ -59,6 +60,21 @@ public class ObjectFactory : MonoBehaviour
 
         }
     }
+
+    public GameObject GetMainCharacterInstance()
+    {
+        
+        return Instantiate(MainCharacter, new Vector3(0, 0, 0), Quaternion.identity);
+
+    }
+
+    public GameObject GetFlagInstance()
+    {
+
+        return Instantiate(Flag, new Vector3(0, 0, 0), Quaternion.identity);
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {

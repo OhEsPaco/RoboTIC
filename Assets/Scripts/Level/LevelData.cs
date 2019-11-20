@@ -6,6 +6,7 @@ public class LevelData
     public string levelName;
     public List<int> levelSize;
     public List<int> playerStart;
+    public int playerOrientation;
     public List<int> goal;
     public AvailableInstructions availableInstructions;
     public List<int> mapAndItems;
