@@ -8,6 +8,8 @@ public class LevelLoader : MonoBehaviour
     public string levelPath = "Assets/StoryLevels/test.json";
     public GameObject LevelObjects;
     public GameObject LevelButtons;
+    public GameObject MapContainer;
+    public Vector3 mapScale;
     public float blockLength = 1f;
     public Vector3 startPos = new Vector3(0, 0, 0);
     private bool dirty = true;
@@ -27,6 +29,7 @@ public class LevelLoader : MonoBehaviour
                     GameObject block = objectFactory.GetGameObjectInstance(blockToSpawn);
                     Vector3 posNew = new Vector3(x * blockLength, y * blockLength, z * blockLength);
                     block.transform.position = posNew;
+                    block.transform.parent = MapContainer.transform;
                 }
             }
         }
@@ -35,10 +38,14 @@ public class LevelLoader : MonoBehaviour
         Vector3 posNewChar = new Vector3(data.playerStart[0] * blockLength, data.playerStart[1]* blockLength, data.playerStart[2] * blockLength);
         mainCharacter.transform.Rotate(0, 90f * data.playerOrientation, 0);
         mainCharacter.transform.position = posNewChar;
+        mainCharacter.transform.parent = MapContainer.transform;
 
         GameObject flag = objectFactory.GetFlagInstance();
         Vector3 posFlag = new Vector3(data.goal[0] * blockLength, data.goal[1] * blockLength, data.goal[2] * blockLength);
         flag.transform.position = posFlag;
+        flag.transform.parent = MapContainer.transform;
+
+        MapContainer.transform.localScale = mapScale;
 
         LevelButtons lButtonsScript = LevelButtons.GetComponent<LevelButtons>();
         lButtonsScript.setNumber(ButtonConstants.Action, data.availableInstructions.action);
