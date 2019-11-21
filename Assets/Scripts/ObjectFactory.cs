@@ -20,7 +20,7 @@ public class ObjectFactory : MonoBehaviour
     public GameObject GetGameObjectInstance(int id)
     {
         GameObject reference = MegaSwitch(id);
-        return Instantiate(reference, new Vector3(0, 0, 0), Quaternion.identity);
+        return InstantiateObject(reference);
 
     }
     private GameObject MegaSwitch(int id)
@@ -61,17 +61,21 @@ public class ObjectFactory : MonoBehaviour
         }
     }
 
+    private GameObject InstantiateObject(GameObject reference)
+    {
+        return Instantiate(reference, reference.transform.position, reference.transform.rotation);
+    }
     public GameObject GetMainCharacterInstance()
     {
         
-        return Instantiate(MainCharacter, new Vector3(0, 0, 0), Quaternion.identity);
+        return InstantiateObject(MainCharacter);
 
     }
 
     public GameObject GetFlagInstance()
     {
 
-        return Instantiate(Flag, new Vector3(0, 0, 0), Quaternion.identity);
+        return InstantiateObject(Flag);
 
     }
 

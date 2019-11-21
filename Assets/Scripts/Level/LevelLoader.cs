@@ -7,10 +7,12 @@ public class LevelLoader : MonoBehaviour
 
     public string levelPath = "Assets/StoryLevels/test.json";
     public GameObject LevelObjects;
+    public GameObject LevelButtons;
     public float blockLength = 1f;
     public Vector3 startPos = new Vector3(0, 0, 0);
-    // Start is called before the first frame update
-    void Start()
+    private bool dirty = true;
+    
+    void Load()
     {
         LevelData data = LoadData(levelPath);
         ObjectFactory objectFactory = LevelObjects.GetComponent<ObjectFactory>();
@@ -37,6 +39,16 @@ public class LevelLoader : MonoBehaviour
         GameObject flag = objectFactory.GetFlagInstance();
         Vector3 posFlag = new Vector3(data.goal[0] * blockLength, data.goal[1] * blockLength, data.goal[2] * blockLength);
         flag.transform.position = posFlag;
+
+        LevelButtons lButtonsScript = LevelButtons.GetComponent<LevelButtons>();
+        lButtonsScript.setNumber(ButtonConstants.Action, data.availableInstructions.action);
+        lButtonsScript.setNumber(ButtonConstants.Condition, data.availableInstructions.condition);
+        lButtonsScript.setNumber(ButtonConstants.Jump, data.availableInstructions.jump);
+        lButtonsScript.setNumber(ButtonConstants.Loop, data.availableInstructions.loop);
+        lButtonsScript.setNumber(ButtonConstants.Move, data.availableInstructions.move);
+        lButtonsScript.setNumber(ButtonConstants.TurnLeft, data.availableInstructions.turnLeft);
+        lButtonsScript.setNumber(ButtonConstants.TurnRight, data.availableInstructions.turnRight);
+
     }
 
     public LevelData LoadData(string jsonPath)
@@ -60,7 +72,11 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (dirty)
+        {
+            Load();
+            dirty = false;
+        }
     }
     string ReadString(string path)
     { 
