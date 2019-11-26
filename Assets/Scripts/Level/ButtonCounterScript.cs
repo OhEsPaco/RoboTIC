@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonScript : MonoBehaviour
+public class ButtonCounterScript : MonoBehaviour
 {
     private GameObject counterObject;
     private Counter counterScript;

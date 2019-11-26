@@ -20,26 +20,26 @@ public class LevelButtons : MonoBehaviour
         switch (button)
         {
             case ButtonConstants.Action:
-                return Action.GetComponent<ButtonScript>().SetNumber(number);
+                return Action.GetComponent<ButtonCounterScript>().SetNumber(number);
                 break;
 
             case ButtonConstants.Condition:
-                return Condition.GetComponent<ButtonScript>().SetNumber(number);
+                return Condition.GetComponent<ButtonCounterScript>().SetNumber(number);
                 break;
             case ButtonConstants.Jump:
-                return Jump.GetComponent<ButtonScript>().SetNumber(number);
+                return Jump.GetComponent<ButtonCounterScript>().SetNumber(number);
                 break;
             case ButtonConstants.Loop:
-                return Loop.GetComponent<ButtonScript>().SetNumber(number);
+                return Loop.GetComponent<ButtonCounterScript>().SetNumber(number);
                 break;
             case ButtonConstants.Move:
-                return Move.GetComponent<ButtonScript>().SetNumber(number);
+                return Move.GetComponent<ButtonCounterScript>().SetNumber(number);
                 break;
             case ButtonConstants.TurnLeft:
-                return TurnLeft.GetComponent<ButtonScript>().SetNumber(number);
+                return TurnLeft.GetComponent<ButtonCounterScript>().SetNumber(number);
                 break;
             case ButtonConstants.TurnRight:
-                return TurnRight.GetComponent<ButtonScript>().SetNumber(number);
+                return TurnRight.GetComponent<ButtonCounterScript>().SetNumber(number);
                 break;
             default:
                 return 0;

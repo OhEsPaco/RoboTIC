@@ -60,6 +60,7 @@ ModelImporter:
     2100000: ConditionMaterial
     2100002: RoadMaterial
     2100004: No Name
+    2100006: Red
     2300000: ConditionIsWalkable
     2300002: Connector_CurveIn
     2300004: Connector_CurveOut
