@@ -40,7 +40,7 @@ public class CardPicker : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         dir = 1;
         currentDistance = 0;

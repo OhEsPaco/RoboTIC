@@ -50,7 +50,7 @@ public class LevelButtons : MonoBehaviour
         }
     }
  
-    void Start()
+    void Awake()
     {
         manager = LevelManager.instance;
         manager.LevelButtons = this;

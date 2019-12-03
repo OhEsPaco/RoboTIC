@@ -9,7 +9,7 @@ public class MapRenderer : MonoBehaviour
     private LevelManager manager;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         manager = LevelManager.instance;
         manager.MapRenderer = this;

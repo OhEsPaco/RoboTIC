@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelRoads : MonoBehaviour
 {
     private LevelManager manager;
-    void Start()
+    void Awake()
     {
         manager = LevelManager.instance;
         manager.LevelRoads = this;

@@ -10,7 +10,7 @@ public class Counter : MonoBehaviour
     private GameObject[] numbers;
     private int actualNumber;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         numbersParent = transform.Find("Numbers").gameObject;
         numbers = new GameObject[maxNumber + 1];

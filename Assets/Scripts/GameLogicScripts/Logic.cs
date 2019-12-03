@@ -5,35 +5,39 @@ using UnityEngine;
 public class Logic : MonoBehaviour
 {
     private LevelManager manager;
-    private bool dirty;
     private LevelData levelData;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
+    {
+      
+        levelData = manager.JSonLoader.LoadData(GetLevelPath());
+        Debug.Log(levelData.levelName);
+        LoadVisual();
+    }
+    void Awake()
     {
         manager = LevelManager.instance;
         manager.Logic = this;
-        dirty = true;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (dirty)
-        {
+    }
 
-            dirty = false;
-            levelData = manager.JSonLoader.LoadData(GetLevelPath());
-            Debug.Log(levelData.levelName);
-
+   private void LoadVisual()
+    {
             manager.MapRenderer.RenderMapAndItems(levelData);
             manager.MapRenderer.RenderScenery(levelData);
             manager.MapRenderer.RenderMainCharacter(levelData);
 
             SetAvailableInstructions(levelData);
-           
-        }
+
+        
     }
+
     private void SetAvailableInstructions(LevelData data)
     {
         LevelButtons lButtonsScript = manager.LevelButtons;

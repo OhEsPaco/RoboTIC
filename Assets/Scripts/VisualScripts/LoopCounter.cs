@@ -15,7 +15,7 @@ public class LoopCounter : MonoBehaviour
     public bool TouchLocked { get => touchLocked; set => touchLocked = value; }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         TouchLocked = false;
         numbersParent = transform.Find("Numbers").gameObject;
