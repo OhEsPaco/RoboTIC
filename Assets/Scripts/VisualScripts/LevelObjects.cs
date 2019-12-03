@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectFactory : MonoBehaviour
+public class LevelObjects : MonoBehaviour
 {
-    
+    private LevelManager manager;
     public GameObject NoBlock;
     public GameObject WaterBlock;
     public GameObject LavaBlock;
@@ -82,7 +82,9 @@ public class ObjectFactory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        manager = LevelManager.instance;
+        manager.LevelObjects=this;
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame

@@ -15,6 +15,9 @@ public class LevelButtons : MonoBehaviour
     public GameObject Play;
     public GameObject Restart;
 
+    private LevelManager manager;
+
+
     public int setNumber(int button, int number)
     {
         switch (button)
@@ -46,10 +49,11 @@ public class LevelButtons : MonoBehaviour
 
         }
     }
-    // Start is called before the first frame update
+ 
     void Start()
     {
-        
+        manager = LevelManager.instance;
+        manager.LevelButtons = this;
     }
 
     // Update is called once per frame
