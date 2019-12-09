@@ -9,7 +9,7 @@ public class JSonLoader : MonoBehaviour
     void Awake()
     {
         manager = LevelManager.instance;
-        manager.JSonLoader = this;
+        
        
     }
 

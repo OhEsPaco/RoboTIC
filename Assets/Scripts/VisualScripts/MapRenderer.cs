@@ -9,11 +9,13 @@ public class MapRenderer : MonoBehaviour
     private LevelManager manager;
     private GameObject mainCharacter;
 
+    public GameObject MainCharacter { get => mainCharacter; }
+
     // Start is called before the first frame update
     void Awake()
     {
         manager = LevelManager.instance;
-        manager.MapRenderer = this;
+        
     }
 
     // Update is called once per frame
@@ -49,13 +51,14 @@ public class MapRenderer : MonoBehaviour
         flag.transform.parent = gameObject.transform;
     }
 
-    public void RenderMainCharacter(LevelData data)
+    public GameObject RenderMainCharacter(LevelData data)
     {
         mainCharacter = manager.LevelObjects.GetMainCharacterInstance();
         Vector3 posNewChar = new Vector3(data.playerStart[0] * blockLength, data.playerStart[1] * blockLength, data.playerStart[2] * blockLength);
         mainCharacter.transform.Rotate(0, 90f * data.playerOrientation, 0);
         mainCharacter.transform.position = posNewChar;
         mainCharacter.transform.parent = gameObject.transform;
+        return mainCharacter;
     }
 
     public GameObject GetMainCharacter()

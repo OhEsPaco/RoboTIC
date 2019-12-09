@@ -9,4 +9,7 @@
     public const int Restart = 6;
     public const int TurnLeft = 7;
     public const int TurnRight = 8;
+
+    public static string[] ButtonNames = { "Action","Condition","Jump","Loop","Move","Play","Restart",
+    "Turn Left","Turn Right"};
 }

@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class LevelButtons : MonoBehaviour
 {
-    public GameObject Action;
-    public GameObject Condition;
-    public GameObject Jump;
-    public GameObject Loop;
-    public GameObject Move;
-    public GameObject TurnLeft;
-    public GameObject TurnRight;
+    public ButtonCounterScript Action;
+    public ButtonCounterScript Condition;
+    public ButtonCounterScript Jump;
+    public ButtonCounterScript Loop;
+    public ButtonCounterScript Move;
+    public ButtonCounterScript TurnLeft;
+    public ButtonCounterScript TurnRight;
 
-    public GameObject Play;
-    public GameObject Restart;
 
     private LevelManager manager;
 
@@ -23,26 +21,26 @@ public class LevelButtons : MonoBehaviour
         switch (button)
         {
             case ButtonConstants.Action:
-                return Action.GetComponent<ButtonCounterScript>().SetNumber(number);
+                return Action.SetNumber(number);
                 break;
 
             case ButtonConstants.Condition:
-                return Condition.GetComponent<ButtonCounterScript>().SetNumber(number);
+                return Condition.SetNumber(number);
                 break;
             case ButtonConstants.Jump:
-                return Jump.GetComponent<ButtonCounterScript>().SetNumber(number);
+                return Jump.SetNumber(number);
                 break;
             case ButtonConstants.Loop:
-                return Loop.GetComponent<ButtonCounterScript>().SetNumber(number);
+                return Loop.SetNumber(number);
                 break;
             case ButtonConstants.Move:
-                return Move.GetComponent<ButtonCounterScript>().SetNumber(number);
+                return Move.SetNumber(number);
                 break;
             case ButtonConstants.TurnLeft:
-                return TurnLeft.GetComponent<ButtonCounterScript>().SetNumber(number);
+                return TurnLeft.SetNumber(number);
                 break;
             case ButtonConstants.TurnRight:
-                return TurnRight.GetComponent<ButtonCounterScript>().SetNumber(number);
+                return TurnRight.SetNumber(number);
                 break;
             default:
                 return 0;
@@ -53,7 +51,7 @@ public class LevelButtons : MonoBehaviour
     void Awake()
     {
         manager = LevelManager.instance;
-        manager.LevelButtons = this;
+      
     }
 
     // Update is called once per frame

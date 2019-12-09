@@ -83,7 +83,7 @@ public class LevelObjects : MonoBehaviour
     void Awake()
     {
         manager = LevelManager.instance;
-        manager.LevelObjects=this;
+        
         gameObject.SetActive(false);
     }
 

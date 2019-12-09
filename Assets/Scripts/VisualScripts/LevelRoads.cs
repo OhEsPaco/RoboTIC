@@ -8,7 +8,7 @@ public class LevelRoads : MonoBehaviour
     void Awake()
     {
         manager = LevelManager.instance;
-        manager.LevelRoads = this;
+        
         gameObject.SetActive(false);
     }
 

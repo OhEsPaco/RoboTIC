@@ -6,16 +6,16 @@ public class LevelManager : MonoBehaviour
 {
 
     //VISUAL
-    private LevelObjects levelObjects;
-    private MapRenderer mapRenderer;
-    private LevelButtons levelButtons;
-    private LevelRoads levelRoads;
-
+    public LevelObjects LevelObjects;
+    public MapRenderer MapRenderer;
+    public LevelButtons LevelButtons;
+    public LevelRoads LevelRoads;
+    public ActionRenderer ActionRenderer;
     //LOGIC
-    private Logic logic;
+    public Logic Logic;
 
     //PERSISTENCE
-    private JSonLoader jSonLoader;
+    public JSonLoader JSonLoader;
 
     static LevelManager levelManager;
 
@@ -38,10 +38,5 @@ public class LevelManager : MonoBehaviour
     }
 
  
-    public MapRenderer MapRenderer { get => mapRenderer; set => mapRenderer = value; }
-    public JSonLoader JSonLoader { get => jSonLoader; set => jSonLoader = value; }
-    public Logic Logic { get => logic; set => logic = value; }
-    public LevelButtons LevelButtons { get => levelButtons; set => levelButtons = value; }
-    public LevelRoads LevelRoads { get => levelRoads; set => levelRoads = value; }
-    public LevelObjects LevelObjects { get => levelObjects; set => levelObjects = value; }
+ 
 }
