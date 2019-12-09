@@ -7,6 +7,7 @@ public class MapRenderer : MonoBehaviour
     public float blockLength = 1f;
 
     private LevelManager manager;
+    private GameObject mainCharacter;
 
     // Start is called before the first frame update
     void Awake()
@@ -50,13 +51,17 @@ public class MapRenderer : MonoBehaviour
 
     public void RenderMainCharacter(LevelData data)
     {
-        GameObject mainCharacter = manager.LevelObjects.GetMainCharacterInstance();
+        mainCharacter = manager.LevelObjects.GetMainCharacterInstance();
         Vector3 posNewChar = new Vector3(data.playerStart[0] * blockLength, data.playerStart[1] * blockLength, data.playerStart[2] * blockLength);
         mainCharacter.transform.Rotate(0, 90f * data.playerOrientation, 0);
         mainCharacter.transform.position = posNewChar;
         mainCharacter.transform.parent = gameObject.transform;
     }
 
+    public GameObject GetMainCharacter()
+    {
+        return mainCharacter;
+    }
     private int get(LevelData data, int x, int y, int z)
     {
         if (x < 0 || x >= data.levelSize[0]) return ObjectConstants.NoBlock;

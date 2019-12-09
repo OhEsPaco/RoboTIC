@@ -53,4 +53,14 @@ public class Logic : MonoBehaviour
     {
         return "Assets/StoryLevels/test.json";
     }
+
+    public void ButtonInput(int buttonIndex)
+    {
+        Debug.Log("Pressed: " + buttonIndex);
+    }
+
+    public void NotifyEndOfAction()
+    {
+
+    }
 }
