@@ -39,14 +39,17 @@ public class ActionRenderer : MonoBehaviour
     IEnumerator TurnCoroutine(float speed, GameObject player,float degrees,bool left)
     {
         int sign = left?-1:1;
-        
-        for (float currentDegrees = 0f; currentDegrees <= degrees; currentDegrees += speed * Time.deltaTime)
+        float currentDegrees = 0f;
+        for (; currentDegrees <= degrees; currentDegrees += speed * Time.deltaTime)
         {
 
             float step = sign*(speed * Time.deltaTime);
             player.transform.Rotate(0, step, 0);
             yield return null;
         }
+
+        //error correction
+        player.transform.Rotate(0, sign*(degrees- currentDegrees), 0);
         NotifyEndOfAction();
 
 
@@ -95,13 +98,15 @@ public class ActionRenderer : MonoBehaviour
     IEnumerator MoveCoroutine(float speed,GameObject player, Vector3 target,float distance)
     {
         
-        for(float currentDistance=0f;currentDistance<=distance;currentDistance+= speed * Time.deltaTime)
+        for (float currentDistance=0f;currentDistance<=distance;currentDistance+= speed * Time.deltaTime)
         {
             
             float step = speed * Time.deltaTime;
             player.transform.position = Vector3.MoveTowards(player.transform.position, target, step);
             yield return null;
         }
+        //error correction
+        player.transform.position = new Vector3(target.x, target.y, target.z);
         NotifyEndOfAction();
 
 
