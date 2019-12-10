@@ -6,6 +6,7 @@ public class Logic : MonoBehaviour
 {
     private LevelManager manager;
     private LevelData levelData;
+    private GameObject mainCharacter;
     public LevelData LevelData { get => levelData; }
 
     private bool isActionRenderingDone = true;
@@ -36,7 +37,7 @@ public class Logic : MonoBehaviour
     {
             manager.MapRenderer.RenderMapAndItems(levelData);
             manager.MapRenderer.RenderScenery(levelData);
-            manager.MapRenderer.RenderMainCharacter(levelData);
+        mainCharacter = manager.MapRenderer.RenderMainCharacter(levelData);
 
             SetAvailableInstructions(levelData);
 
@@ -69,45 +70,48 @@ public class Logic : MonoBehaviour
             if (isActionRenderingDone)
             {
                 Debug.Log("Pressed " + ButtonConstants.ButtonNames[buttonIndex] + " button.");
+                isActionRenderingDone = false;
                 switch (buttonIndex)
                 {
                     case ButtonConstants.Action:
-                        isActionRenderingDone = false;
+                       
                         DoAction();
                         break;
                     case ButtonConstants.Condition:
-                        isActionRenderingDone = false;
+                        
                         DoCondition();
                         break;
                     case ButtonConstants.Jump:
-                        isActionRenderingDone = false;
+                      
                         DoJump();
                         break;
                     case ButtonConstants.Loop:
-                        isActionRenderingDone = false;
+                       
                         DoLoop();
                         break;
                     case ButtonConstants.Move:
-                        isActionRenderingDone = false;
+                      
                         DoMove();
                         break;
                     case ButtonConstants.Play:
-                        isActionRenderingDone = false;
+                        
                         DoPlay();
                         break;
                     case ButtonConstants.Restart:
-                        isActionRenderingDone = false;
+                      
                         DoRestart();
                         break;
                     case ButtonConstants.TurnLeft:
-                        isActionRenderingDone = false;
+                       
                         DoTurnLeft();
                         break;
                     case ButtonConstants.TurnRight:
-                        isActionRenderingDone = false;
+                        
                         DoTurnRight();
                         break;
-
+                     default:
+                        isActionRenderingDone = true;
+                        break;
                 }
             }
             else
@@ -147,7 +151,7 @@ public class Logic : MonoBehaviour
 
     private void DoMove()
     {
-        manager.ActionRenderer.DoMove();
+        manager.ActionRenderer.DoMove(levelData.playerOrientation,mainCharacter);
     }
 
     private void DoPlay()
@@ -162,10 +166,21 @@ public class Logic : MonoBehaviour
     private void DoTurnLeft()
     {
 
+        levelData.playerOrientation--;
+        if (levelData.playerOrientation < 0)
+        {
+            levelData.playerOrientation = 3;
+        }
+        manager.ActionRenderer.DoTurnLeft(mainCharacter);
     }
     private void DoTurnRight()
     {
-        
+        levelData.playerOrientation++;
+        if (levelData.playerOrientation > 3)
+        {
+            levelData.playerOrientation = 0;
+        }
+        manager.ActionRenderer.DoTurnRight(mainCharacter);
     }
     #endregion
 
