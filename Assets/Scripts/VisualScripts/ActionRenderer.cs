@@ -26,13 +26,28 @@ public class ActionRenderer : MonoBehaviour
 
     public void DoMove()
     {
-        StartCoroutine(MoveCoroutine(1f, manager.MapRenderer.MainCharacter.transform.position, new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z)));
+       
+        Vector3 target = new Vector3(manager.MapRenderer.MainCharacter.transform.position.x, manager.MapRenderer.MainCharacter.transform.position.y, manager.MapRenderer.MainCharacter.transform.position.z+1f);
+        StartCoroutine(MoveCoroutine(1f, manager.MapRenderer.MainCharacter, target,1f));
     }
 
-    IEnumerator MoveCoroutine(float speed,Vector3 position, Vector3 target)
+    private void NotifyEndOfAction()
     {
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(position, target, step);
-        yield return null;
+        manager.Logic.NotifyEndOfAction();
+    }
+    IEnumerator MoveCoroutine(float speed,GameObject position, Vector3 target,float d)
+    {
+        
+        for(float distance=0f;distance<=d;distance+= speed * Time.deltaTime)
+        {
+            
+            float step = speed * Time.deltaTime;
+            position.transform.position = Vector3.MoveTowards(position.transform.position, target, step);
+            //manager.MapRenderer.MainCharacter.transform.position = Vector3.Lerp(position, target, step);
+            yield return null;
+        }
+        NotifyEndOfAction();
+
+
     }
 }

@@ -8,6 +8,7 @@ public class Logic : MonoBehaviour
     private LevelData levelData;
     public LevelData LevelData { get => levelData; }
 
+    private bool isActionRenderingDone = true;
 
     // Start is called before the first frame update
     private void Start()
@@ -65,38 +66,55 @@ public class Logic : MonoBehaviour
         }
         else
         {
-            Debug.Log("Pressed " + ButtonConstants.ButtonNames[buttonIndex] + " button.");
-            switch (buttonIndex)
+            if (isActionRenderingDone)
             {
-                case ButtonConstants.Action:
-                    DoAction();
-                    break;
-                case ButtonConstants.Condition:
-                    DoCondition();
-                    break;
-                case ButtonConstants.Jump:
-                    DoJump();
-                    break;
-                case ButtonConstants.Loop:
-                    DoLoop();
-                    break;
-                case ButtonConstants.Move:
-                    DoMove();
-                    break;
-                case ButtonConstants.Play:
-                    DoPlay();
-                    break;
-                case ButtonConstants.Restart:
-                    DoRestart();
-                    break;
-                case ButtonConstants.TurnLeft:
-                    DoTurnLeft();
-                    break;
-                case ButtonConstants.TurnRight:
-                    DoTurnRight();
-                    break;
+                Debug.Log("Pressed " + ButtonConstants.ButtonNames[buttonIndex] + " button.");
+                switch (buttonIndex)
+                {
+                    case ButtonConstants.Action:
+                        isActionRenderingDone = false;
+                        DoAction();
+                        break;
+                    case ButtonConstants.Condition:
+                        isActionRenderingDone = false;
+                        DoCondition();
+                        break;
+                    case ButtonConstants.Jump:
+                        isActionRenderingDone = false;
+                        DoJump();
+                        break;
+                    case ButtonConstants.Loop:
+                        isActionRenderingDone = false;
+                        DoLoop();
+                        break;
+                    case ButtonConstants.Move:
+                        isActionRenderingDone = false;
+                        DoMove();
+                        break;
+                    case ButtonConstants.Play:
+                        isActionRenderingDone = false;
+                        DoPlay();
+                        break;
+                    case ButtonConstants.Restart:
+                        isActionRenderingDone = false;
+                        DoRestart();
+                        break;
+                    case ButtonConstants.TurnLeft:
+                        isActionRenderingDone = false;
+                        DoTurnLeft();
+                        break;
+                    case ButtonConstants.TurnRight:
+                        isActionRenderingDone = false;
+                        DoTurnRight();
+                        break;
 
+                }
             }
+            else
+            {
+                Debug.Log("You can't do that now. Something is moving.");
+            }
+          
         }
        
 
@@ -104,7 +122,8 @@ public class Logic : MonoBehaviour
 
     public void NotifyEndOfAction()
     {
-
+        Debug.Log("End Coroutine");
+        isActionRenderingDone = true;
     }
 
     private void DoAction()
