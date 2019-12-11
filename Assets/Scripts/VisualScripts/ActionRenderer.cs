@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,77 @@ public class ActionRenderer : MonoBehaviour
         
     }
 
+    public void DoJump(GameObject player, List<int> currentBlock, List<int> intendedBlock, int playerOrientation)
+    {
+        Vector3 target = new Vector3(player.transform.position.x + (intendedBlock[0] - currentBlock[0]) * manager.MapRenderer.blockLength,
+            player.transform.position.y + (intendedBlock[1] - currentBlock[1]) * manager.MapRenderer.blockLength,
+            player.transform.position.z + (intendedBlock[2] - currentBlock[2]) * manager.MapRenderer.blockLength);
+        bool isX = true;
+        //0 - z+
+        //1 - x+
+        //2 - z-
+        //3 - x-
+        switch (playerOrientation)
+        {
+            case 0:
+               
+                isX = false;
+                break;
+            case 1:
+                
+                isX = true;
+                break;
+            case 2:
+               
+                isX = false;
+                break;
+            case 3:
+                
+                isX = true;
+                break;
+            default:
+                Debug.LogError("Unknown orientation");
+                NotifyEndOfAction();
+                return;
+        }
+
+
+        StartCoroutine(JumpCoroutine(player, target, actionSpeed,isX,0.5f));
+    }
+
+    IEnumerator JumpCoroutine(GameObject player, Vector3 target,float speed,bool isX,float arcHeight)
+    {
+
+
+        // Compute the next position, with arc added in
+        float x0 = isX?player.transform.position.x: player.transform.position.z;
+        float x1 = isX?target.x:target.z;
+        float dist = x1 - x0;
+
+        float totalDist = Mathf.Abs(dist);
+
+        for(float currentDist = 0; currentDist < totalDist;)
+        {
+            float step = speed * Time.deltaTime;
+            currentDist += step;
+
+            float nextX = Mathf.MoveTowards(isX?player.transform.position.x:player.transform.position.z, x1, step);
+            float baseY = Mathf.Lerp(player.transform.position.y, target.y, (nextX - x0) / dist);
+            float arc = arcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
+           
+
+            player.transform.position = new Vector3(isX ? nextX: player.transform.position.x, baseY + arc, isX?player.transform.position.z:nextX) ;
+            yield return null;
+
+        }
+
+        //error correction
+        player.transform.position = new Vector3(target.x, target.y, target.z);
+        NotifyEndOfAction();
+
+
+    }
+
 
     public void DoTurnRight(GameObject player)
     {
@@ -40,7 +112,7 @@ public class ActionRenderer : MonoBehaviour
     {
         int sign = left?-1:1;
         float currentDegrees = 0f;
-        for (; currentDegrees <= degrees; currentDegrees += speed * Time.deltaTime)
+        for (; currentDegrees < degrees; currentDegrees += speed * Time.deltaTime)
         {
 
             float step = sign*(speed * Time.deltaTime);
@@ -55,37 +127,11 @@ public class ActionRenderer : MonoBehaviour
 
     }
 
-    public void DoMove(int playerOrientation, GameObject player)
+    public void DoMove(GameObject player,List<int>currentBlock, List<int>intendedBlock)
     {
-        Vector3 target=new Vector3(0,0,0);
-        //0 - z+
-        //1 - x+
-        //2 - z-
-        //3 - x-
-        //90f * data.playerOrientation
-        switch (playerOrientation)
-        {
-            case 0:
-                 target = new Vector3(player.transform.position.x, player.transform.transform.position.y, player.transform.transform.position.z+ manager.MapRenderer.blockLength);
-                
-                break;
-            case 1:
-                 target = new Vector3(player.transform.position.x+ manager.MapRenderer.blockLength, player.transform.transform.position.y, player.transform.transform.position.z);
-                
-                break;
-            case 2:
-                 target = new Vector3(player.transform.position.x, player.transform.transform.position.y, player.transform.transform.position.z- manager.MapRenderer.blockLength);
-               
-                break;
-            case 3:
-                 target = new Vector3(player.transform.position.x- manager.MapRenderer.blockLength, player.transform.transform.position.y, player.transform.transform.position.z);
-               
-                break;
-            default:
-                Debug.LogError("Unknown orientation");
-                NotifyEndOfAction();
-                return;
-        }
+        Vector3 target = new Vector3(player.transform.position.x + (intendedBlock[0] - currentBlock[0]) * manager.MapRenderer.blockLength,
+            player.transform.position.y + (intendedBlock[1] - currentBlock[1]) * manager.MapRenderer.blockLength,
+            player.transform.position.z + (intendedBlock[2] - currentBlock[2]) * manager.MapRenderer.blockLength);
 
         StartCoroutine(MoveCoroutine(actionSpeed, player, target, manager.MapRenderer.blockLength));
     }
@@ -98,7 +144,7 @@ public class ActionRenderer : MonoBehaviour
     IEnumerator MoveCoroutine(float speed,GameObject player, Vector3 target,float distance)
     {
         
-        for (float currentDistance=0f;currentDistance<=distance;currentDistance+= speed * Time.deltaTime)
+        for (float currentDistance=0f;currentDistance<distance;currentDistance+= speed * Time.deltaTime)
         {
             
             float step = speed * Time.deltaTime;
@@ -111,4 +157,6 @@ public class ActionRenderer : MonoBehaviour
 
 
     }
+
+  
 }

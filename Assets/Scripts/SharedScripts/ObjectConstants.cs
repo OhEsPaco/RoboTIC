@@ -9,6 +9,10 @@
     public const int SpikesBlock = 5;
     public const int IceBlock = 6;
 
+    public const int LiftBlockActivated = 7;
+    public const int SpikesBlockActivated = 8;
+
+
     //Items 25-inf
     public const int PlankItem = 25;
 }

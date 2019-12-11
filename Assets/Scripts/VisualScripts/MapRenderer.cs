@@ -24,15 +24,15 @@ public class MapRenderer : MonoBehaviour
         
     }
 
-    public void RenderMapAndItems(LevelData data)
+    public void RenderMapAndItems(List<int> mapAndItems, List<int>levelSize)
     {
-        for (int x = 0; x < data.levelSize[0]; x++)
+        for (int x = 0; x <levelSize[0]; x++)
         {
-            for (int y = 0; y < data.levelSize[1]; y++)
+            for (int y = 0; y < levelSize[1]; y++)
             {
-                for (int z = 0; z < data.levelSize[2]; z++)
+                for (int z = 0; z <levelSize[2]; z++)
                 {
-                    int blockToSpawn = get(data, x, y, z);
+                    int blockToSpawn = Get(mapAndItems,levelSize, x, y, z);
                   
                     GameObject block = manager.LevelObjects.GetGameObjectInstance(blockToSpawn);
                     Vector3 posNew = new Vector3(x * blockLength, y * blockLength, z * blockLength);
@@ -43,19 +43,19 @@ public class MapRenderer : MonoBehaviour
         }
     }
 
-    public void RenderScenery(LevelData data)
+    public void RenderScenery(List<int>goal)
     {
         GameObject flag = manager.LevelObjects.GetFlagInstance();
-        Vector3 posFlag = new Vector3(data.goal[0] * blockLength, data.goal[1] * blockLength, data.goal[2] * blockLength);
+        Vector3 posFlag = new Vector3(goal[0] * blockLength, goal[1] * blockLength, goal[2] * blockLength);
         flag.transform.position = posFlag;
         flag.transform.parent = gameObject.transform;
     }
 
-    public GameObject RenderMainCharacter(LevelData data)
+    public GameObject RenderMainCharacter(List<int>playerStart,int playerOrientation)
     {
         mainCharacter = manager.LevelObjects.GetMainCharacterInstance();
-        Vector3 posNewChar = new Vector3(data.playerStart[0] * blockLength, data.playerStart[1] * blockLength, data.playerStart[2] * blockLength);
-        mainCharacter.transform.Rotate(0, 90f * data.playerOrientation, 0);
+        Vector3 posNewChar = new Vector3(playerStart[0] * blockLength,playerStart[1] * blockLength,playerStart[2] * blockLength);
+        mainCharacter.transform.Rotate(0, 90f *playerOrientation, 0);
         mainCharacter.transform.position = posNewChar;
         mainCharacter.transform.parent = gameObject.transform;
         return mainCharacter;
@@ -65,12 +65,12 @@ public class MapRenderer : MonoBehaviour
     {
         return mainCharacter;
     }
-    private int get(LevelData data, int x, int y, int z)
+    private int Get(List<int> mapAndItems, List<int> levelSize, int x, int y, int z)
     {
-        if (x < 0 || x >= data.levelSize[0]) return ObjectConstants.NoBlock;
-        if (y < 0 || y >= data.levelSize[1]) return ObjectConstants.NoBlock;
-        if (z < 0 || z >= data.levelSize[2]) return ObjectConstants.NoBlock;
-        return data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
+        if (x < 0 || x >= levelSize[0]) return ObjectConstants.NoBlock;
+        if (y < 0 || y >= levelSize[1]) return ObjectConstants.NoBlock;
+        if (z < 0 || z >= levelSize[2]) return ObjectConstants.NoBlock;
+        return mapAndItems[x + z * levelSize[0] + y * (levelSize[0] *levelSize[2])];
 
     }
 }
