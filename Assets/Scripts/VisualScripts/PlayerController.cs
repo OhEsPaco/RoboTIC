@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void NotifyEndOfAction()
     {
-        manager.Logic.NotifyEndOfAction();
+        
     }
 
 

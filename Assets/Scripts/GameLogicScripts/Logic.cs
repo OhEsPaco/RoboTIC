@@ -10,7 +10,6 @@ public class Logic : MonoBehaviour
     
     public LevelData LevelData { get => levelData; }
     public int maxFallHeight=1;
-    private bool isActionRenderingDone = true;
 
     // Start is called before the first frame update
     private void Start()
@@ -70,10 +69,9 @@ public class Logic : MonoBehaviour
         }
         else
         {
-            if (isActionRenderingDone)
-            {
+     
                 Debug.Log("Pressed " + ButtonConstants.ButtonNames[buttonIndex] + " button.");
-                isActionRenderingDone = false;
+                //isActionRenderingDone = false;
                 switch (buttonIndex)
                 {
                     case ButtonConstants.Action:
@@ -112,27 +110,15 @@ public class Logic : MonoBehaviour
                         
                         DoTurnRight();
                         break;
-                     default:
-                        isActionRenderingDone = true;
-                        break;
+          
                 }
-            }
-            else
-            {
-                Debug.Log("You can't do that now. Something is moving.");
-            }
+          
           
         }
        
 
     }
 
-    public void NotifyEndOfAction()
-    {
-        Debug.Log("End Coroutine");
-
-        isActionRenderingDone = true;
-    }
 
     private void DoAction()
     {
@@ -229,7 +215,7 @@ public class Logic : MonoBehaviour
             {
                 //Collision
                 Debug.Log("You are colliding against a block");
-                NotifyEndOfAction();
+            
 
             }
 

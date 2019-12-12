@@ -6778,6 +6778,7 @@ GameObject:
   - component: {fileID: 1077621229}
   - component: {fileID: 1077621231}
   - component: {fileID: 1077621230}
+  - component: {fileID: 1077621232}
   m_Layer: 0
   m_Name: PlanksMesh
   m_TagString: Untagged
@@ -6844,6 +6845,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077621228}
   m_Mesh: {fileID: 4300000, guid: 5e4c1e2e696b550468e2bc17825f8271, type: 3}
+--- !u!114 &1077621232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077621228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53bb157c34ad3d3409f547455426dc80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.2
+  speed: 0.3
 --- !u!1 &1080449225
 GameObject:
   m_ObjectHideFlags: 0
@@ -7144,6 +7159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1097019661}
   - component: {fileID: 1097019662}
+  - component: {fileID: 1097019663}
   m_Layer: 0
   m_Name: Main Character Mesh
   m_TagString: Untagged
@@ -7186,6 +7202,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1097019663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097019660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53bb157c34ad3d3409f547455426dc80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.2
+  speed: 0.1
 --- !u!1 &1099172821
 GameObject:
   m_ObjectHideFlags: 0
@@ -8756,6 +8786,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionSpeed: 2
   rotationSpeedMultiplier: 100
+  initialActionCapacity: 20
+  arcHeight: 1
+  angle: 1
 --- !u!1 &1377229235
 GameObject:
   m_ObjectHideFlags: 0
@@ -8909,7 +8942,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1420041283}
-  - component: {fileID: 1420041282}
   m_Layer: 0
   m_Name: Planks
   m_TagString: Untagged
@@ -8917,20 +8949,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1420041282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420041281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53bb157c34ad3d3409f547455426dc80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0.2
-  speed: 0.3
 --- !u!4 &1420041283
 Transform:
   m_ObjectHideFlags: 0
@@ -9066,6 +9084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39210c6c3ce5c174ca558293f065d4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxFallHeight: 1
 --- !u!1 &1485425358
 GameObject:
   m_ObjectHideFlags: 0
@@ -11093,7 +11112,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838300347}
-  - component: {fileID: 1838300346}
   - component: {fileID: 1838300348}
   m_Layer: 0
   m_Name: Main Character
@@ -11102,20 +11120,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1838300346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838300345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53bb157c34ad3d3409f547455426dc80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0.2
-  speed: 0.1
 --- !u!4 &1838300347
 Transform:
   m_ObjectHideFlags: 0
@@ -11124,7 +11128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838300345}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1097019661}
@@ -12317,7 +12321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141643521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.06, y: -21.1, z: 3.86}
+  m_LocalPosition: {x: -19.06, y: -9.05, z: 3.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 559417951}
