@@ -1,19 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Defines the <see cref="JSonLoader" />
+/// </summary>
 public class JSonLoader : MonoBehaviour
 {
+    /// <summary>
+    /// Defines the manager
+    /// </summary>
     private LevelManager manager;
+
     // Start is called before the first frame update
-    void Awake()
+    /// <summary>
+    /// The Awake
+    /// </summary>
+    private void Awake()
     {
         manager = LevelManager.instance;
-        
-       
     }
 
-    private string ReadString(string path)
+    /// <summary>
+    /// The ReadString
+    /// </summary>
+    /// <param name="path">The path<see cref="string"/></param>
+    /// <returns>The <see cref="string"/></returns>
+    private string ReadFileAsString(string path)
     {
         System.IO.StreamReader reader = new System.IO.StreamReader(path);
         string output = reader.ReadToEnd();
@@ -21,12 +32,16 @@ public class JSonLoader : MonoBehaviour
         return output;
     }
 
-    public LevelData LoadData(string jsonPath)
+    /// <summary>
+    /// The LoadData
+    /// </summary>
+    /// <param name="jsonPath">The jsonPath<see cref="string"/></param>
+    /// <returns>The <see cref="LevelData"/></returns>
+    public LevelData LoadLevelData(string jsonPath)
     {
         LevelData levelData = new LevelData();
-        string readedString = ReadString(jsonPath);
+        string readedString = ReadFileAsString(jsonPath);
         JsonUtility.FromJsonOverwrite(readedString, levelData);
         return levelData;
-
     }
 }

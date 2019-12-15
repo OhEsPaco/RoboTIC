@@ -17,7 +17,7 @@ public class ButtonCounterScript : MonoBehaviour
 
     public int SetNumber(int number)
     {
-        return counterScript.setNumber(number);
+        return counterScript.SetNumber(number);
     }
     // Update is called once per frame
     void Update()

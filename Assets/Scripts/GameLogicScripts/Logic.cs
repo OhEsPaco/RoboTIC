@@ -1,140 +1,192 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Defines the <see cref="Logic" />
+/// </summary>
 public class Logic : MonoBehaviour
 {
-    private LevelManager manager;
-    private LevelData levelData;
-    private GameObject mainCharacter;
-    
-    public LevelData LevelData { get => levelData; }
-    public int maxFallHeight=1;
+    /// <summary>
+    /// Defines the manager
+    /// </summary>
+    private LevelManager levelManagerReference;
+
+    /// <summary>
+    /// Defines the levelData
+    /// </summary>
+    private LevelData currentLevelData;
+
+    /// <summary>
+    /// Defines the mainCharacter
+    /// </summary>
+    private GameObject mainCharacterGameObject;
+
+    /// <summary>
+    /// Defines the buttonInputList
+    /// </summary>
+    private List<int> buttonInputBuffer;
+
+    /// <summary>
+    /// Defines the initialInputCapacity
+    /// </summary>
+    public int initialCapacityOfTheInputBuffer = 20;
+
+    /// <summary>
+    /// Gets the LevelData
+    /// </summary>
+    public LevelData CurrentLevelData { get => currentLevelData; }
+
+    /// <summary>
+    /// Defines the maxFallHeightOfCharactersInBlocks
+    /// </summary>
+    public int maxFallHeightOfCharactersInBlocks = 1;
 
     // Start is called before the first frame update
-    private void Start()
+    /// <summary>
+    /// The Start
+    /// </summary>
+    internal void Start()
     {
-      
-        levelData = manager.JSonLoader.LoadData(GetLevelPath());
 
-
-        Debug.Log(levelData.levelName);
+        
+        buttonInputBuffer = new List<int>(initialCapacityOfTheInputBuffer);
+        LoadLevelData();
         LoadVisual();
+        Debug.Log(currentLevelData.levelName);
+        
     }
-    void Awake()
+
+    /// <summary>
+    /// The Awake
+    /// </summary>
+    internal void Awake()
     {
-        manager = LevelManager.instance;
-      
-       
+        levelManagerReference = LevelManager.instance;
     }
 
     // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// The Update
+    /// </summary>
+    internal void Update()
     {
-        
+        ExecuteNextAvailableInput();
     }
 
-    #region graphics
+    /// <summary>
+    /// The LoadVisual
+    /// </summary>
     private void LoadVisual()
     {
-        manager.MapRenderer.RenderMapAndItems(levelData.mapAndItems, levelData.levelSize);
-            manager.MapRenderer.RenderScenery(levelData.goal);
-        mainCharacter = manager.MapRenderer.RenderMainCharacter(levelData.playerPos,levelData.playerOrientation);
-
-            SetAvailableInstructions(levelData);
-
-        
+        levelManagerReference.MapRenderer.RenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
+        levelManagerReference.MapRenderer.RenderScenery(currentLevelData.goal);
+        mainCharacterGameObject = levelManagerReference.MapRenderer.RenderMainCharacter(currentLevelData.playerPos, currentLevelData.playerOrientation);
+        levelManagerReference.LevelButtons.SetNumberOfAvailableInstructions(currentLevelData);
     }
 
-    private void SetAvailableInstructions(LevelData data)
+    private void LoadLevelData()
     {
-        LevelButtons lButtonsScript = manager.LevelButtons;
-        lButtonsScript.setNumber(ButtonConstants.Action, data.availableInstructions.action);
-        lButtonsScript.setNumber(ButtonConstants.Condition, data.availableInstructions.condition);
-        lButtonsScript.setNumber(ButtonConstants.Jump, data.availableInstructions.jump);
-        lButtonsScript.setNumber(ButtonConstants.Loop, data.availableInstructions.loop);
-        lButtonsScript.setNumber(ButtonConstants.Move, data.availableInstructions.move);
-        lButtonsScript.setNumber(ButtonConstants.TurnLeft, data.availableInstructions.turnLeft);
-        lButtonsScript.setNumber(ButtonConstants.TurnRight, data.availableInstructions.turnRight);
+        currentLevelData = levelManagerReference.JSonLoader.LoadLevelData(GetLevelPath());
     }
-    #endregion
 
-    #region buttons
-    public void ButtonInput(int buttonIndex)
+
+
+
+    /// <summary>
+    /// The ExecuteNextInput
+    /// </summary>
+    private void ExecuteNextAvailableInput()
     {
+        if (buttonInputBuffer.Count > 0)
+        {
+            int buttonPressed = buttonInputBuffer[0];
+            buttonInputBuffer.RemoveAt(0);
+            if (buttonPressed < 0 || buttonPressed >= ButtonConstants.ButtonNames.Length)
+            {
+                Debug.Log("Invalid button");
+            }
+            else
+            {
 
-        if(buttonIndex<0||buttonIndex>= ButtonConstants.ButtonNames.Length)
-        {
-            Debug.Log("Invalid button");
-        }
-        else
-        {
-     
-                Debug.Log("Pressed " + ButtonConstants.ButtonNames[buttonIndex] + " button.");
-                //isActionRenderingDone = false;
-                switch (buttonIndex)
+                Debug.Log("Pressed " + ButtonConstants.ButtonNames[buttonPressed] + " button.");
+                
+                switch (buttonPressed)
                 {
                     case ButtonConstants.Action:
-                       
+
                         DoAction();
                         break;
                     case ButtonConstants.Condition:
-                        
+
                         DoCondition();
                         break;
                     case ButtonConstants.Jump:
-                      
+
                         DoJump();
                         break;
                     case ButtonConstants.Loop:
-                       
+
                         DoLoop();
                         break;
                     case ButtonConstants.Move:
-                      
+
                         DoMove();
                         break;
                     case ButtonConstants.Play:
-                        
+
                         DoPlay();
                         break;
                     case ButtonConstants.Restart:
-                      
+
                         DoRestart();
                         break;
                     case ButtonConstants.TurnLeft:
-                       
+
                         DoTurnLeft();
                         break;
                     case ButtonConstants.TurnRight:
-                        
+
                         DoTurnRight();
                         break;
-          
-                }
-          
-          
-        }
-       
 
+                }
+
+
+            }
+        }
     }
 
+    /// <summary>
+    /// The ButtonInput
+    /// </summary>
+    /// <param name="buttonIndex">The buttonIndex<see cref="int"/></param>
+    public void AddInputFromButton(int buttonIndex)
+    {
+        buttonInputBuffer.Add(buttonIndex);
+    }
 
+    /// <summary>
+    /// The DoAction
+    /// </summary>
     private void DoAction()
     {
-
     }
 
+    /// <summary>
+    /// The DoCondition
+    /// </summary>
     private void DoCondition()
     {
-
     }
 
+    /// <summary>
+    /// The DoJump
+    /// </summary>
     private void DoJump()
     {
 
         //blockC
-        List<int> intendedBlock = BlockToMove(levelData.playerOrientation, levelData.playerPos[0], levelData.playerPos[1]+1, levelData.playerPos[2]);
+        List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2]);
         //Bloque de enfrente y arriba
 
         //blockA blockB 3
@@ -142,68 +194,71 @@ public class Logic : MonoBehaviour
         //       blockD 1
         //       blockE 0  
         int fallDamage = 0;
-        bool isTopEmpty=IsEmptyBlock(levelData.playerPos[0], levelData.playerPos[1]+1, levelData.playerPos[2], levelData);
+        bool isTopEmpty = IsEmptyBlock(currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2], currentLevelData);
 
-        if (WalkableBlock(intendedBlock[0],intendedBlock[1]-1,intendedBlock[2],levelData)&&IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], levelData)
+        if (WalkableBlock(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData) && IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData)
             && isTopEmpty)
         {
-            manager.ActionRenderer.DoJump(mainCharacter, levelData.playerPos, intendedBlock, levelData.playerOrientation);
-            levelData.playerPos = intendedBlock;
+            levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock, currentLevelData.playerOrientation);
+            currentLevelData.playerPos = intendedBlock;
         }
         else
         {
             bool found = false;
-            for(int y=isTopEmpty?levelData.playerPos[1]: levelData.playerPos[1] - 1; y >= 0; y--)
+            for (int y = isTopEmpty ? currentLevelData.playerPos[1] : currentLevelData.playerPos[1] - 1; y >= 0; y--)
             {
-                if(IsEmptyBlock(intendedBlock[0],y,intendedBlock[2],levelData)&&WalkableBlock(intendedBlock[0], y-1, intendedBlock[2], levelData))
+                if (IsEmptyBlock(intendedBlock[0], y, intendedBlock[2], currentLevelData) && WalkableBlock(intendedBlock[0], y - 1, intendedBlock[2], currentLevelData))
                 {
                     found = true;
                     intendedBlock[1] = y;
-                    fallDamage = levelData.playerPos[1] - y;
-                    manager.ActionRenderer.DoJump(mainCharacter, levelData.playerPos, intendedBlock, levelData.playerOrientation);
-                    levelData.playerPos = intendedBlock;
-                    
+                    fallDamage = currentLevelData.playerPos[1] - y;
+                    levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock, currentLevelData.playerOrientation);
+                    currentLevelData.playerPos = intendedBlock;
+
                     break;
                 }
             }
             if (!found)
             {
                 intendedBlock[1] = -1;
-                manager.ActionRenderer.DoJump(mainCharacter, levelData.playerPos, intendedBlock, levelData.playerOrientation);
+                levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock, currentLevelData.playerOrientation);
                 YouLose();
             }
-            
+
         }
 
 
-        if (fallDamage > maxFallHeight)
+        if (fallDamage > maxFallHeightOfCharactersInBlocks)
         {
             YouLose();
         }
-
-
-       
     }
+
+    /// <summary>
+    /// The DoLoop
+    /// </summary>
     private void DoLoop()
     {
-
     }
 
+    /// <summary>
+    /// The DoMove
+    /// </summary>
     private void DoMove()
     {
 
-        List<int> intendedBlock = BlockToMove(levelData.playerOrientation, levelData.playerPos[0], levelData.playerPos[1], levelData.playerPos[2]);
+        List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
 
-        if (IsInsideMap(intendedBlock, levelData))
+        if (IsPositionInsideMap(intendedBlock, currentLevelData))
         {
-            if (IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], levelData))
+            if (IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData))
             {
                 //Miramos el bloque de debajo
-                if (WalkableBlock(intendedBlock[0], intendedBlock[1]-1, intendedBlock[2], levelData))
+                if (WalkableBlock(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData))
                 {
-                    manager.ActionRenderer.DoMove(mainCharacter, levelData.playerPos, intendedBlock);
-                    levelData.playerPos = intendedBlock;
-  
+                    levelManagerReference.ActionRenderer.DoMove(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock);
+                    currentLevelData.playerPos = intendedBlock;
+
                 }
                 else
                 {
@@ -215,8 +270,7 @@ public class Logic : MonoBehaviour
             {
                 //Collision
                 Debug.Log("You are colliding against a block");
-            
-
+ 
             }
 
         }
@@ -224,13 +278,19 @@ public class Logic : MonoBehaviour
         {
             DoJump();
         }
-
-       
     }
 
+    /// <summary>
+    /// The IsEmptyBlock
+    /// </summary>
+    /// <param name="x">The x<see cref="int"/></param>
+    /// <param name="y">The y<see cref="int"/></param>
+    /// <param name="z">The z<see cref="int"/></param>
+    /// <param name="data">The data<see cref="CurrentLevelData"/></param>
+    /// <returns>The <see cref="bool"/></returns>
     private bool IsEmptyBlock(int x, int y, int z, LevelData data)
     {
-        int blockIndex = Get(data, x, y, z);
+        int blockIndex = GetBlockType(data, x, y, z);
         if (blockIndex == ObjectConstants.NoBlock)
         {
             return true;
@@ -238,54 +298,86 @@ public class Logic : MonoBehaviour
         return false;
     }
 
-    private bool WalkableBlock(int x, int y, int z,LevelData data)
+    /// <summary>
+    /// The WalkableBlock
+    /// </summary>
+    /// <param name="x">The x<see cref="int"/></param>
+    /// <param name="y">The y<see cref="int"/></param>
+    /// <param name="z">The z<see cref="int"/></param>
+    /// <param name="data">The data<see cref="CurrentLevelData"/></param>
+    /// <returns>The <see cref="bool"/></returns>
+    private bool WalkableBlock(int x, int y, int z, LevelData data)
     {
-        int blockIndex = Get(data, x, y, z);
+        int blockIndex = GetBlockType(data, x, y, z);
 
         switch (blockIndex)
         {
             case ObjectConstants.SolidBlock:
                 return true;
-               
+
             case ObjectConstants.IceBlock:
                 return true;
-                
-                
+
+
             case ObjectConstants.LiftBlockActivated:
                 return true;
-                
+
             case ObjectConstants.SpikesBlockActivated:
                 return true;
-              
-            
+
+
             default:
                 return false;
         }
     }
 
+    /// <summary>
+    /// The YouLose
+    /// </summary>
     private void YouLose()
     {
         Debug.Log("You lose :(");
-       
     }
-    private int Get(LevelData data, int x, int y, int z)
+
+    /// <summary>
+    /// The Get
+    /// </summary>
+    /// <param name="data">The data<see cref="CurrentLevelData"/></param>
+    /// <param name="x">The x<see cref="int"/></param>
+    /// <param name="y">The y<see cref="int"/></param>
+    /// <param name="z">The z<see cref="int"/></param>
+    /// <returns>The <see cref="int"/></returns>
+    private int GetBlockType(LevelData data, int x, int y, int z)
     {
         if (x < 0 || x >= data.levelSize[0]) return ObjectConstants.NoBlock;
         if (y < 0 || y >= data.levelSize[1]) return ObjectConstants.NoBlock;
         if (z < 0 || z >= data.levelSize[2]) return ObjectConstants.NoBlock;
         return data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
-
     }
 
-    private void Set(LevelData data,int value, int x, int y, int z)
+    /// <summary>
+    /// The Set
+    /// </summary>
+    /// <param name="data">The data<see cref="CurrentLevelData"/></param>
+    /// <param name="value">The value<see cref="int"/></param>
+    /// <param name="x">The x<see cref="int"/></param>
+    /// <param name="y">The y<see cref="int"/></param>
+    /// <param name="z">The z<see cref="int"/></param>
+    private void SetBlockType(LevelData data, int value, int x, int y, int z)
     {
         if (x < 0 || x >= data.levelSize[0]) return;
         if (y < 0 || y >= data.levelSize[1]) return;
         if (z < 0 || z >= data.levelSize[2]) return;
-        data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])]=value;
-
+        data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])] = value;
     }
-    private bool IsInsideMap(List<int>posToCheck,LevelData data)
+
+    /// <summary>
+    /// The IsInsideMap
+    /// </summary>
+    /// <param name="posToCheck">The posToCheck<see cref="List{int}"/></param>
+    /// <param name="data">The data<see cref="CurrentLevelData"/></param>
+    /// <returns>The <see cref="bool"/></returns>
+    private bool IsPositionInsideMap(List<int> posToCheck, LevelData data)
     {
 
         if (posToCheck[0] < 0)
@@ -320,13 +412,22 @@ public class Logic : MonoBehaviour
 
         return true;
     }
-    private List<int> BlockToMove(int playerOrientation, int x,int y,int z)
+
+    /// <summary>
+    /// The BlockToMove
+    /// </summary>
+    /// <param name="playerOrientation">The playerOrientation<see cref="int"/></param>
+    /// <param name="x">The x<see cref="int"/></param>
+    /// <param name="y">The y<see cref="int"/></param>
+    /// <param name="z">The z<see cref="int"/></param>
+    /// <returns>The <see cref="List{int}"/></returns>
+    private List<int> BlockToAdvanceTo(int playerOrientation, int x, int y, int z)
     {
         List<int> output = new List<int>();
         output.Add(x);
         output.Add(y);
         output.Add(z);
-       
+
         //0 - z+
         //1 - x+
         //2 - z-
@@ -336,7 +437,7 @@ public class Logic : MonoBehaviour
         {
             case 0:
                 output[2]++;
-                
+
                 break;
             case 1:
                 output[0]++;
@@ -357,36 +458,52 @@ public class Logic : MonoBehaviour
 
         return output;
     }
+
+    /// <summary>
+    /// The DoPlay
+    /// </summary>
     private void DoPlay()
     {
-
     }
+
+    /// <summary>
+    /// The DoRestart
+    /// </summary>
     private void DoRestart()
     {
-
     }
 
+    /// <summary>
+    /// The DoTurnLeft
+    /// </summary>
     private void DoTurnLeft()
     {
 
-        levelData.playerOrientation--;
-        if (levelData.playerOrientation < 0)
+        currentLevelData.playerOrientation--;
+        if (currentLevelData.playerOrientation < 0)
         {
-            levelData.playerOrientation = 3;
+            currentLevelData.playerOrientation = 3;
         }
-        manager.ActionRenderer.DoTurnLeft(mainCharacter);
+        levelManagerReference.ActionRenderer.DoTurnLeft(mainCharacterGameObject);
     }
+
+    /// <summary>
+    /// The DoTurnRight
+    /// </summary>
     private void DoTurnRight()
     {
-        levelData.playerOrientation++;
-        if (levelData.playerOrientation > 3)
+        currentLevelData.playerOrientation++;
+        if (currentLevelData.playerOrientation > 3)
         {
-            levelData.playerOrientation = 0;
+            currentLevelData.playerOrientation = 0;
         }
-        manager.ActionRenderer.DoTurnRight(mainCharacter);
+        levelManagerReference.ActionRenderer.DoTurnRight(mainCharacterGameObject);
     }
-    #endregion
 
+    /// <summary>
+    /// The GetLevelPath
+    /// </summary>
+    /// <returns>The <see cref="string"/></returns>
     private string GetLevelPath()
     {
         return "Assets/StoryLevels/test.json";

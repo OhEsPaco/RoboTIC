@@ -1,23 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-
     //VISUAL
     public LevelObjects LevelObjects;
     public MapRenderer MapRenderer;
     public LevelButtons LevelButtons;
     public LevelRoads LevelRoads;
     public ActionRenderer ActionRenderer;
+
     //LOGIC
     public Logic Logic;
 
     //PERSISTENCE
     public JSonLoader JSonLoader;
 
-    static LevelManager levelManager;
+    private static LevelManager levelManager;
 
     public static LevelManager instance
     {
@@ -36,7 +34,4 @@ public class LevelManager : MonoBehaviour
             return levelManager;
         }
     }
-
- 
- 
 }

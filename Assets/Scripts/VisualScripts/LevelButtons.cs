@@ -16,7 +16,7 @@ public class LevelButtons : MonoBehaviour
     private LevelManager manager;
 
 
-    public int setNumber(int button, int number)
+    public int SetNumberOfAvailableInstructions(int button, int number)
     {
         switch (button)
         {
@@ -47,7 +47,23 @@ public class LevelButtons : MonoBehaviour
 
         }
     }
- 
+
+    /// <summary>
+    /// The SetAvailableInstructions
+    /// </summary>
+    /// <param name="data">The data<see cref="CurrentLevelData"/></param>
+    public void SetNumberOfAvailableInstructions(LevelData data)
+    {
+      
+        SetNumberOfAvailableInstructions(ButtonConstants.Action, data.availableInstructions.action);
+        SetNumberOfAvailableInstructions(ButtonConstants.Condition, data.availableInstructions.condition);
+        SetNumberOfAvailableInstructions(ButtonConstants.Jump, data.availableInstructions.jump);
+        SetNumberOfAvailableInstructions(ButtonConstants.Loop, data.availableInstructions.loop);
+        SetNumberOfAvailableInstructions(ButtonConstants.Move, data.availableInstructions.move);
+        SetNumberOfAvailableInstructions(ButtonConstants.TurnLeft, data.availableInstructions.turnLeft);
+        SetNumberOfAvailableInstructions(ButtonConstants.TurnRight, data.availableInstructions.turnRight);
+    }
+
     void Awake()
     {
         manager = LevelManager.instance;

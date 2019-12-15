@@ -14,16 +14,16 @@ public class Counter : MonoBehaviour
     {
         numbersParent = transform.Find("Numbers").gameObject;
         numbers = new GameObject[maxNumber + 1];
-        for(int i = 0; i <= maxNumber; i++)
+        for (int i = 0; i <= maxNumber; i++)
         {
             numbers[i] = numbersParent.transform.Find("RepeatsX" + i).gameObject;
             numbers[i].SetActive(false);
 
         }
-        actualNumber=setNumber(defaultNumber);
+        actualNumber = SetNumber(defaultNumber);
     }
 
-    public int setNumber(int number)
+    public int SetNumber(int number)
     {
 
         numbers[actualNumber].SetActive(false);
@@ -47,6 +47,6 @@ public class Counter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

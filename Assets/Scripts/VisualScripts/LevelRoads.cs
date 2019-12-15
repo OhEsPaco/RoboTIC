@@ -9,7 +9,7 @@ public class LevelRoads : MonoBehaviour
     {
         manager = LevelManager.instance;
         
-        gameObject.SetActive(false);
+       // gameObject.SetActive(false);
     }
 
     // Update is called once per frame

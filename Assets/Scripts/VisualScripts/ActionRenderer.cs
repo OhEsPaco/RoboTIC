@@ -25,12 +25,12 @@ public class ActionRenderer : MonoBehaviour
     /// <summary>
     /// Altura del arco del salto
     /// </summary>
-    public float arcHeight=1f;
+    public float arcHeight = 1f;
 
     /// <summary>
     /// Angulo del salto
     /// </summary>
-    public float angle=1f;
+    public float angle = 1f;
 
     /// <summary>
     /// Referencia para el LevelManager
@@ -70,10 +70,7 @@ public class ActionRenderer : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (actionList.Count > 0 && lastActionFinished)
-        {
-            StartNextAction();
-        }
+        StartNextAction();
     }
 
     /// <summary>
@@ -94,7 +91,7 @@ public class ActionRenderer : MonoBehaviour
     /// </summary>
     private void StartNextAction()
     {
-        if (actionList.Count > 0)
+        if (actionList.Count > 0 && lastActionFinished)
         {
             IEnumerator coroutine = actionList[0];
             actionList.RemoveAt(0);
