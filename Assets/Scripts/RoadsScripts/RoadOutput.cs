@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class RoadOutput : MonoBehaviour
 {
-    private RoadInput roadInput;
+    public RoadInput roadInput;
 
-    public RoadInput RoadInput { get => roadInput; set => roadInput = value; }
+    //public RoadInput RoadInput { get => roadInput; set => roadInput = value; }
 
     void OnDrawGizmos()
     {
         // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.red;
+
+        if (roadInput != null)
+        {
+            Gizmos.color = Color.red;
+        }
+        else
+        {
+            Gizmos.color = Color.cyan;
+        }
+       
         Gizmos.DrawSphere(transform.position, 0.1f);
     }
 }
