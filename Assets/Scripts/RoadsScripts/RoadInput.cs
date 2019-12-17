@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class RoadInput : MonoBehaviour
 {
+    private Color gizmoColor = Color.yellow;
+
+    public Color GizmoColor { get => gizmoColor; set => gizmoColor = value; }
 
     void OnDrawGizmos()
     {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.green;
+
+            Gizmos.color = gizmoColor;
+        
+       
         Gizmos.DrawSphere(transform.position, 0.1f);
     }
 }
