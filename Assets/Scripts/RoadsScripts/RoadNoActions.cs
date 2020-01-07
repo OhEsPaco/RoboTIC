@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RoadNoActions : Road
 {
-    public override void ExecuteAction(Object[] arguments)
+    public override void ExecuteAction(RoadConstants.Actions action, int[] arguments)
     {
-      //Nothing to see here
+       //Do nothing
     }
 }

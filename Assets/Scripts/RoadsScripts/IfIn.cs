@@ -1,12 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using static RoadConstants;
 
 public class IfIn : Road
 {
-    public override void ExecuteAction(Object[] arguments)
-    {
-      
-    }
+    [SerializeField] private GameObject obstacleYes;
+    [SerializeField] private GameObject obstacleNo;
 
+    public override void ExecuteAction(Actions action, int[] arguments)
+    {
+        
+        switch (action)
+        {
+            case Actions.Reset:
+                obstacleYes.SetActive(true);
+                obstacleNo.SetActive(true);
+                break;
+
+            case Actions.GoToNo:
+                obstacleYes.SetActive(true);
+                obstacleNo.SetActive(false);
+                break;
+
+            case Actions.GoToYes:
+                obstacleYes.SetActive(false);
+                obstacleNo.SetActive(true);
+                break;
+        }
+    }
 }

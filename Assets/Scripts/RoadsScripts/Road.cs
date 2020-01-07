@@ -8,7 +8,7 @@ public abstract class Road : MonoBehaviour
     private RoadInput[] inputs;
     private RoadOutput[] outputs;
 
-    [SerializeField] private RoadType roadType = RoadType.Generic;
+    [SerializeField] private RoadType roadType = RoadType.Undetermined;
 
     private void Start()
     {
@@ -22,5 +22,5 @@ public abstract class Road : MonoBehaviour
     public RoadInput[] Inputs { get => inputs;  }
     public RoadOutput[] Outputs { get => outputs;  }
 
-    public abstract void ExecuteAction(Object[] arguments);
+    public abstract void ExecuteAction(Actions action,int[] arguments);
 }

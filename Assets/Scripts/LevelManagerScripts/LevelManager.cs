@@ -3,17 +3,18 @@
 public class LevelManager : MonoBehaviour
 {
     //VISUAL
-    public LevelObjects LevelObjects;
-    public MapRenderer MapRenderer;
-    public LevelButtons LevelButtons;
-    public LevelRoads LevelRoads;
-    public ActionRenderer ActionRenderer;
+    [SerializeField]private LevelObjects levelObjects;
+    [SerializeField] private MapRenderer mapRenderer;
+    [SerializeField] private LevelButtons levelButtons;
+    [SerializeField] private RoadFactory roadFactory;
+    [SerializeField] private ActionRenderer actionRenderer;
+
 
     //LOGIC
-    public Logic Logic;
+    [SerializeField] private Logic logic;
 
     //PERSISTENCE
-    public JSonLoader JSonLoader;
+    [SerializeField] private JSonLoader jSonLoader;
 
     private static LevelManager levelManager;
 
@@ -34,4 +35,12 @@ public class LevelManager : MonoBehaviour
             return levelManager;
         }
     }
+
+    public LevelObjects LevelObjects { get => levelObjects;  }
+    public MapRenderer MapRenderer { get => mapRenderer;  }
+    public LevelButtons LevelButtons { get => levelButtons;  }
+    public RoadFactory RoadFactory { get => roadFactory;  }
+    public ActionRenderer ActionRenderer { get => actionRenderer;  }
+    public Logic Logic { get => logic; }
+    public JSonLoader JSonLoader { get => jSonLoader; }
 }

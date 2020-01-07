@@ -111,7 +111,7 @@ NavMeshSettings:
     accuratePlacement: 1
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 8244e63846cc16845acca6cdaff211ab, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &3614531
 GameObject:
   m_ObjectHideFlags: 0
@@ -6689,8 +6689,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aab9eefde0905140a3b08dcbee4492b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadType: 1
+  roadType: 8
   counter: {fileID: 1278036967}
+  obstacleYes: {fileID: 1999466488021285519}
+  obstacleNo: {fileID: 1999466488021285551}
 --- !u!1 &1278036965
 GameObject:
   m_ObjectHideFlags: 0
@@ -9312,13 +9314,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc9eb876146da4e439edcbb38061ba63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelObjects: {fileID: 2141643522}
-  MapRenderer: {fileID: 1945986604}
-  LevelButtons: {fileID: 451819301}
-  LevelRoads: {fileID: 0}
-  ActionRenderer: {fileID: 1346261818}
-  Logic: {fileID: 1464003031}
-  JSonLoader: {fileID: 1617814716}
+  levelObjects: {fileID: 2141643522}
+  mapRenderer: {fileID: 1945986604}
+  levelButtons: {fileID: 451819301}
+  roadFactory: {fileID: 1999466488021285544}
+  actionRenderer: {fileID: 1346261818}
+  logic: {fileID: 1464003031}
+  jSonLoader: {fileID: 1617814716}
 --- !u!4 &1914626600
 Transform:
   m_ObjectHideFlags: 0
@@ -11224,6 +11226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999466488020985543}
+  - component: {fileID: 1999466488021285544}
   m_Layer: 0
   m_Name: LevelRoads
   m_TagString: Untagged
@@ -11231,6 +11234,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1999466488021285544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc15c2812c51c6c4b85922b63fc425b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roads: []
 --- !u!1 &1999466488021285545
 GameObject:
   m_ObjectHideFlags: 0
@@ -11297,7 +11313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e339545bd776e4b9ac067501a15f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadType: 3
+  roadType: 6
+  obstacleYes: {fileID: 1999466488021285513}
+  obstacleNo: {fileID: 1999466488021285545}
 --- !u!1 &1999466488021285551
 GameObject:
   m_ObjectHideFlags: 0
@@ -11400,7 +11418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadType: 0
+  roadType: 5
 --- !u!1 &1999466488021285579
 GameObject:
   m_ObjectHideFlags: 0
@@ -11432,7 +11450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadType: 4
+  roadType: 7
 --- !u!1 &1999466488021285583
 GameObject:
   m_ObjectHideFlags: 0
@@ -11464,7 +11482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadType: 2
+  roadType: 9
 --- !u!1 &1999466488021285585
 GameObject:
   m_ObjectHideFlags: 0
@@ -11546,7 +11564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadType: 0
+  roadType: 2
 --- !u!1 &1999466488021285591
 GameObject:
   m_ObjectHideFlags: 0
@@ -11578,7 +11596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadType: 0
+  roadType: 1
 --- !u!1 &1999466488021285593
 GameObject:
   m_ObjectHideFlags: 0
@@ -11610,7 +11628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadType: 0
+  roadType: 4
 --- !u!1 &1999466488021285595
 GameObject:
   m_ObjectHideFlags: 0
@@ -11642,7 +11660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadType: 0
+  roadType: 3
 --- !u!1 &1999466488021285597
 GameObject:
   m_ObjectHideFlags: 0
