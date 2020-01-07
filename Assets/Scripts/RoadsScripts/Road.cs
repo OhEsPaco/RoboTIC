@@ -1,27 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RoadConstants;
 
 public abstract class Road : MonoBehaviour
 {
-    [SerializeField] private Vector3 buttonPosition;
-    [SerializeField] private Quaternion buttonRotation;
-    private GameObject buttonGameObject;
-    [SerializeField] private float speed = 1f;
-    public float Speed { get => speed; set => speed = value; }
+    private RoadInput[] inputs;
+    private RoadOutput[] outputs;
 
-    //in out
-    //1   1
-    //1   2
-    //2   1
-    //2   2
+    [SerializeField] private RoadType roadType = RoadType.Generic;
 
-    private void RenderButton()
+    private void Start()
     {
+        inputs = GetComponentsInChildren<RoadInput>();
+        outputs = GetComponentsInChildren<RoadOutput>();
 
+        
     }
-    public abstract RoadOutput DoYourThing(GameObject character, RoadInput roadInput, float speed);
-    public abstract RoadOutput DoYourThing(GameObject character, RoadInput roadInput);
-    public abstract bool HaveYouFinishedYourThing();
 
+    public RoadType RoadType { get => roadType; }
+    public RoadInput[] Inputs { get => inputs;  }
+    public RoadOutput[] Outputs { get => outputs;  }
+
+    public abstract void ExecuteAction(Object[] arguments);
 }

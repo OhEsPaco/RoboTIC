@@ -6647,6 +6647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1273888337}
+  - component: {fileID: 1273888338}
   m_Layer: 0
   m_Name: Node_LoopIn
   m_TagString: Untagged
@@ -6676,6 +6677,20 @@ Transform:
   m_Father: {fileID: 1999466488020985543}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1273888338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273888336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aab9eefde0905140a3b08dcbee4492b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 1
+  counter: {fileID: 1278036967}
 --- !u!1 &1278036965
 GameObject:
   m_ObjectHideFlags: 0
@@ -10967,7 +10982,7 @@ GameObject:
   - component: {fileID: 1999466488023278799}
   - component: {fileID: 1999466488021285518}
   m_Layer: 0
-  m_Name: Input1
+  m_Name: InputBottom
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10985,6 +11000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 3
 --- !u!1 &1999466488021285519
 GameObject:
   m_ObjectHideFlags: 0
@@ -11261,6 +11277,7 @@ GameObject:
   - component: {fileID: 1999466488020985549}
   - component: {fileID: 1999466488024377007}
   - component: {fileID: 1999466488023278831}
+  - component: {fileID: 1999466488021285550}
   m_Layer: 0
   m_Name: Node_IfIn
   m_TagString: Untagged
@@ -11268,6 +11285,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &1999466488021285550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e339545bd776e4b9ac067501a15f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 3
 --- !u!1 &1999466488021285551
 GameObject:
   m_ObjectHideFlags: 0
@@ -11350,6 +11380,7 @@ GameObject:
   - component: {fileID: 1999466488020985575}
   - component: {fileID: 1999466488024377031}
   - component: {fileID: 1999466488023278599}
+  - component: {fileID: 1999466488021285576}
   m_Layer: 0
   m_Name: Connector_Vertical
   m_TagString: Untagged
@@ -11357,6 +11388,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &1999466488021285576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 0
 --- !u!1 &1999466488021285579
 GameObject:
   m_ObjectHideFlags: 0
@@ -11368,6 +11412,7 @@ GameObject:
   - component: {fileID: 1999466488020985579}
   - component: {fileID: 1999466488024377035}
   - component: {fileID: 1999466488023278603}
+  - component: {fileID: 1999466488021285580}
   m_Layer: 0
   m_Name: Node_IfOut
   m_TagString: Untagged
@@ -11375,6 +11420,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &1999466488021285580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 4
 --- !u!1 &1999466488021285583
 GameObject:
   m_ObjectHideFlags: 0
@@ -11386,6 +11444,7 @@ GameObject:
   - component: {fileID: 1999466488020985583}
   - component: {fileID: 1999466488024377039}
   - component: {fileID: 1999466488023278607}
+  - component: {fileID: 1999466488021285584}
   m_Layer: 0
   m_Name: Node_LoopOut
   m_TagString: Untagged
@@ -11393,6 +11452,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &1999466488021285584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 2
 --- !u!1 &1999466488021285585
 GameObject:
   m_ObjectHideFlags: 0
@@ -11404,6 +11476,7 @@ GameObject:
   - component: {fileID: 1999466488020985585}
   - component: {fileID: 1999466488024377041}
   - component: {fileID: 1999466488023278609}
+  - component: {fileID: 1999466488021285586}
   m_Layer: 0
   m_Name: Connector_CurveIn
   m_TagString: Untagged
@@ -11411,6 +11484,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &1999466488021285586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 0
 --- !u!1 &1999466488021285587
 GameObject:
   m_ObjectHideFlags: 0
@@ -11440,6 +11526,7 @@ GameObject:
   - component: {fileID: 1999466488020985589}
   - component: {fileID: 1999466488024377045}
   - component: {fileID: 1999466488023278613}
+  - component: {fileID: 1999466488021285590}
   m_Layer: 0
   m_Name: Connector_Double
   m_TagString: Untagged
@@ -11447,6 +11534,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &1999466488021285590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 0
 --- !u!1 &1999466488021285591
 GameObject:
   m_ObjectHideFlags: 0
@@ -11458,6 +11558,7 @@ GameObject:
   - component: {fileID: 1999466488020985591}
   - component: {fileID: 1999466488024377047}
   - component: {fileID: 1999466488023278615}
+  - component: {fileID: 1999466488021285592}
   m_Layer: 0
   m_Name: Connector_CurveOut
   m_TagString: Untagged
@@ -11465,6 +11566,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &1999466488021285592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 0
 --- !u!1 &1999466488021285593
 GameObject:
   m_ObjectHideFlags: 0
@@ -11476,6 +11590,7 @@ GameObject:
   - component: {fileID: 1999466488020985593}
   - component: {fileID: 1999466488024377049}
   - component: {fileID: 1999466488023278617}
+  - component: {fileID: 1999466488021285594}
   m_Layer: 0
   m_Name: Connector_HorizontalOut
   m_TagString: Untagged
@@ -11483,6 +11598,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &1999466488021285594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 0
 --- !u!1 &1999466488021285595
 GameObject:
   m_ObjectHideFlags: 0
@@ -11494,6 +11622,7 @@ GameObject:
   - component: {fileID: 1999466488020985595}
   - component: {fileID: 1999466488024377051}
   - component: {fileID: 1999466488023278619}
+  - component: {fileID: 1999466488021285596}
   m_Layer: 0
   m_Name: Connector_HorizontalIn
   m_TagString: Untagged
@@ -11501,6 +11630,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!114 &1999466488021285596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadType: 0
 --- !u!1 &1999466488021285597
 GameObject:
   m_ObjectHideFlags: 0
@@ -11549,8 +11691,9 @@ GameObject:
   - component: {fileID: 1999466488024377155}
   - component: {fileID: 1999466488023278723}
   - component: {fileID: 1999466488021285698}
+  - component: {fileID: 1999466488021285701}
   m_Layer: 0
-  m_Name: Output8
+  m_Name: OutputTop
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11568,7 +11711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 1
 --- !u!1 &1999466488021285699
 GameObject:
   m_ObjectHideFlags: 0
@@ -11581,8 +11724,9 @@ GameObject:
   - component: {fileID: 1999466488024377181}
   - component: {fileID: 1999466488023278749}
   - component: {fileID: 1999466488021285700}
+  - component: {fileID: 1999466488021285702}
   m_Layer: 0
-  m_Name: Output7
+  m_Name: Output
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11600,7 +11744,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 0
+--- !u!65 &1999466488021285701
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.96, y: 2.0000005, z: 5.15}
+  m_Center: {x: 0, y: 0.0000038146973, z: 2.02}
+--- !u!65 &1999466488021285702
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285699}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 2.0000005, z: 4.72}
+  m_Center: {x: 0, y: -0.000015258789, z: 2.07}
 --- !u!1 &1999466488021285703
 GameObject:
   m_ObjectHideFlags: 0
@@ -11613,8 +11783,9 @@ GameObject:
   - component: {fileID: 1999466488024377153}
   - component: {fileID: 1999466488023278721}
   - component: {fileID: 1999466488021285704}
+  - component: {fileID: 1999466488021285705}
   m_Layer: 0
-  m_Name: Output9
+  m_Name: Output
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11632,7 +11803,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 0
+--- !u!65 &1999466488021285705
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285703}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 2.0000005, z: 5}
+  m_Center: {x: 0.000015258789, y: -0.0000038146973, z: 2.74}
 --- !u!1 &1999466488021285713
 GameObject:
   m_ObjectHideFlags: 0
@@ -11645,8 +11829,9 @@ GameObject:
   - component: {fileID: 1999466488024377171}
   - component: {fileID: 1999466488023278739}
   - component: {fileID: 1999466488021285714}
+  - component: {fileID: 1999466488021285765}
   m_Layer: 0
-  m_Name: Output13
+  m_Name: OutputNo
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11664,7 +11849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 4
 --- !u!1 &1999466488021285715
 GameObject:
   m_ObjectHideFlags: 0
@@ -11677,8 +11862,9 @@ GameObject:
   - component: {fileID: 1999466488024377197}
   - component: {fileID: 1999466488023278765}
   - component: {fileID: 1999466488021285716}
+  - component: {fileID: 1999466488021285766}
   m_Layer: 0
-  m_Name: Output12
+  m_Name: OutputYes
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11696,7 +11882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 5
 --- !u!1 &1999466488021285717
 GameObject:
   m_ObjectHideFlags: 0
@@ -11709,8 +11895,9 @@ GameObject:
   - component: {fileID: 1999466488024377175}
   - component: {fileID: 1999466488023278743}
   - component: {fileID: 1999466488021285718}
+  - component: {fileID: 1999466488021285769}
   m_Layer: 0
-  m_Name: Output2
+  m_Name: OutputBottom
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11728,7 +11915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 3
 --- !u!1 &1999466488021285719
 GameObject:
   m_ObjectHideFlags: 0
@@ -11741,8 +11928,9 @@ GameObject:
   - component: {fileID: 1999466488024377169}
   - component: {fileID: 1999466488023278737}
   - component: {fileID: 1999466488021285720}
+  - component: {fileID: 1999466488021285764}
   m_Layer: 0
-  m_Name: Output14
+  m_Name: OutputIf
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11760,7 +11948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 6
 --- !u!1 &1999466488021285721
 GameObject:
   m_ObjectHideFlags: 0
@@ -11773,8 +11961,9 @@ GameObject:
   - component: {fileID: 1999466488024377179}
   - component: {fileID: 1999466488023278747}
   - component: {fileID: 1999466488021285722}
+  - component: {fileID: 1999466488021285761}
   m_Layer: 0
-  m_Name: Output4
+  m_Name: OutputBottom
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11792,7 +11981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 3
 --- !u!1 &1999466488021285723
 GameObject:
   m_ObjectHideFlags: 0
@@ -11805,8 +11994,9 @@ GameObject:
   - component: {fileID: 1999466488024377173}
   - component: {fileID: 1999466488023278741}
   - component: {fileID: 1999466488021285724}
+  - component: {fileID: 1999466488021285762}
   m_Layer: 0
-  m_Name: Output3
+  m_Name: OutputNo
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11824,7 +12014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 4
 --- !u!1 &1999466488021285725
 GameObject:
   m_ObjectHideFlags: 0
@@ -11837,8 +12027,9 @@ GameObject:
   - component: {fileID: 1999466488024377183}
   - component: {fileID: 1999466488023278751}
   - component: {fileID: 1999466488021285726}
+  - component: {fileID: 1999466488021285771}
   m_Layer: 0
-  m_Name: Output6
+  m_Name: Output
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11856,7 +12047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 0
 --- !u!1 &1999466488021285727
 GameObject:
   m_ObjectHideFlags: 0
@@ -11869,8 +12060,9 @@ GameObject:
   - component: {fileID: 1999466488024377177}
   - component: {fileID: 1999466488023278745}
   - component: {fileID: 1999466488021285728}
+  - component: {fileID: 1999466488021285767}
   m_Layer: 0
-  m_Name: Output5
+  m_Name: Output
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11888,7 +12080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 0
 --- !u!1 &1999466488021285729
 GameObject:
   m_ObjectHideFlags: 0
@@ -11902,7 +12094,7 @@ GameObject:
   - component: {fileID: 1999466488023278755}
   - component: {fileID: 1999466488021285730}
   m_Layer: 0
-  m_Name: Input6
+  m_Name: Input
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11920,6 +12112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1999466488021285731
 GameObject:
   m_ObjectHideFlags: 0
@@ -11933,7 +12126,7 @@ GameObject:
   - component: {fileID: 1999466488023278781}
   - component: {fileID: 1999466488021285732}
   m_Layer: 0
-  m_Name: Input5
+  m_Name: Input
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11951,6 +12144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1999466488021285733
 GameObject:
   m_ObjectHideFlags: 0
@@ -11964,7 +12158,7 @@ GameObject:
   - component: {fileID: 1999466488023278759}
   - component: {fileID: 1999466488021285734}
   m_Layer: 0
-  m_Name: Input8
+  m_Name: Input
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11982,6 +12176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1999466488021285735
 GameObject:
   m_ObjectHideFlags: 0
@@ -11995,7 +12190,7 @@ GameObject:
   - component: {fileID: 1999466488023278753}
   - component: {fileID: 1999466488021285736}
   m_Layer: 0
-  m_Name: Input7
+  m_Name: Input
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12013,6 +12208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1999466488021285737
 GameObject:
   m_ObjectHideFlags: 0
@@ -12025,8 +12221,9 @@ GameObject:
   - component: {fileID: 1999466488024377195}
   - component: {fileID: 1999466488023278763}
   - component: {fileID: 1999466488021285738}
+  - component: {fileID: 1999466488021285770}
   m_Layer: 0
-  m_Name: Output1
+  m_Name: OutputTop
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12044,7 +12241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 1
 --- !u!1 &1999466488021285739
 GameObject:
   m_ObjectHideFlags: 0
@@ -12058,7 +12255,7 @@ GameObject:
   - component: {fileID: 1999466488023278757}
   - component: {fileID: 1999466488021285740}
   m_Layer: 0
-  m_Name: Input9
+  m_Name: Input
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12076,6 +12273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1999466488021285741
 GameObject:
   m_ObjectHideFlags: 0
@@ -12088,8 +12286,9 @@ GameObject:
   - component: {fileID: 1999466488024377199}
   - component: {fileID: 1999466488023278767}
   - component: {fileID: 1999466488021285742}
+  - component: {fileID: 1999466488021285763}
   m_Layer: 0
-  m_Name: Output11
+  m_Name: OutputYes
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12107,7 +12306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 5
 --- !u!1 &1999466488021285743
 GameObject:
   m_ObjectHideFlags: 0
@@ -12120,8 +12319,9 @@ GameObject:
   - component: {fileID: 1999466488024377193}
   - component: {fileID: 1999466488023278761}
   - component: {fileID: 1999466488021285744}
+  - component: {fileID: 1999466488021285768}
   m_Layer: 0
-  m_Name: Output10
+  m_Name: Output
   m_TagString: Output
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12139,7 +12339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebceb4c80d70d984c9a01bba9ff7faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadInput: {fileID: 0}
+  type: 0
 --- !u!1 &1999466488021285745
 GameObject:
   m_ObjectHideFlags: 0
@@ -12153,7 +12353,7 @@ GameObject:
   - component: {fileID: 1999466488023278771}
   - component: {fileID: 1999466488021285746}
   m_Layer: 0
-  m_Name: Input11
+  m_Name: InputTop
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12171,6 +12371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &1999466488021285747
 GameObject:
   m_ObjectHideFlags: 0
@@ -12184,7 +12385,7 @@ GameObject:
   - component: {fileID: 1999466488023278797}
   - component: {fileID: 1999466488021285748}
   m_Layer: 0
-  m_Name: Input10
+  m_Name: InputRight
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12202,6 +12403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 2
 --- !u!1 &1999466488021285749
 GameObject:
   m_ObjectHideFlags: 0
@@ -12215,7 +12417,7 @@ GameObject:
   - component: {fileID: 1999466488023278775}
   - component: {fileID: 1999466488021285750}
   m_Layer: 0
-  m_Name: Input13
+  m_Name: InputYes
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12233,6 +12435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 5
 --- !u!1 &1999466488021285751
 GameObject:
   m_ObjectHideFlags: 0
@@ -12246,7 +12449,7 @@ GameObject:
   - component: {fileID: 1999466488023278769}
   - component: {fileID: 1999466488021285752}
   m_Layer: 0
-  m_Name: Input12
+  m_Name: InputIf
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12264,6 +12467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 6
 --- !u!1 &1999466488021285753
 GameObject:
   m_ObjectHideFlags: 0
@@ -12277,7 +12481,7 @@ GameObject:
   - component: {fileID: 1999466488023278779}
   - component: {fileID: 1999466488021285754}
   m_Layer: 0
-  m_Name: Input2
+  m_Name: InputTop
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12295,6 +12499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &1999466488021285755
 GameObject:
   m_ObjectHideFlags: 0
@@ -12308,7 +12513,7 @@ GameObject:
   - component: {fileID: 1999466488023278773}
   - component: {fileID: 1999466488021285756}
   m_Layer: 0
-  m_Name: Input14
+  m_Name: InputNo
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12326,6 +12531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 4
 --- !u!1 &1999466488021285757
 GameObject:
   m_ObjectHideFlags: 0
@@ -12339,7 +12545,7 @@ GameObject:
   - component: {fileID: 1999466488023278783}
   - component: {fileID: 1999466488021285758}
   m_Layer: 0
-  m_Name: Input4
+  m_Name: InputTop
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12357,6 +12563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &1999466488021285759
 GameObject:
   m_ObjectHideFlags: 0
@@ -12370,7 +12577,7 @@ GameObject:
   - component: {fileID: 1999466488023278777}
   - component: {fileID: 1999466488021285760}
   m_Layer: 0
-  m_Name: Input3
+  m_Name: InputBottom
   m_TagString: Input
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12388,6 +12595,150 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187dea5b1e6a2e34e9ce229540e4a6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 3
+--- !u!65 &1999466488021285761
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285721}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.12, y: 2.0000005, z: 5.2}
+  m_Center: {x: 0.000015258789, y: -0.0000076293945, z: 2.08}
+--- !u!65 &1999466488021285762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285723}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 2.0000005, z: 5}
+  m_Center: {x: 0.000015258789, y: 0, z: 2.57}
+--- !u!65 &1999466488021285763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285741}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 12.43, z: 5.54}
+  m_Center: {x: 0, y: 0, z: 2.6}
+--- !u!65 &1999466488021285764
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285719}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.33, y: 2.0000005, z: 5.8}
+  m_Center: {x: 0, y: -0.0000076293945, z: 2.61}
+--- !u!65 &1999466488021285765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.75, y: 2.0000005, z: 5.45}
+  m_Center: {x: 0, y: -0.000011444092, z: 2.45}
+--- !u!65 &1999466488021285766
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285715}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.11, y: 2.0000005, z: 4.23}
+  m_Center: {x: 0, y: -0.000011444092, z: 1.79}
+--- !u!65 &1999466488021285767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285727}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 12.29, z: 4.96}
+  m_Center: {x: 0, y: 0.0000038146973, z: 1.87}
+--- !u!65 &1999466488021285768
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285743}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 12, z: 5}
+  m_Center: {x: 0, y: 0, z: 2.13}
+--- !u!65 &1999466488021285769
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285717}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.79, y: 2.0000005, z: 4.17}
+  m_Center: {x: 0.000015258789, y: -0.000015258789, z: 1.89}
+--- !u!65 &1999466488021285770
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285737}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 2.0000005, z: 5}
+  m_Center: {x: 0, y: 0.0000009536743, z: 1.89}
+--- !u!65 &1999466488021285771
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 12.66, z: 4.92}
+  m_Center: {x: 0.000015258789, y: -0.0000038146973, z: 2.31}
 --- !u!23 &1999466488023278593
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13987,7 +14338,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999466488021285519}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -14024,7 +14375,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999466488021285513}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -14468,7 +14819,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999466488021285551}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -14505,7 +14856,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999466488021285545}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

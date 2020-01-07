@@ -1,6 +1,8 @@
 ﻿public abstract class ObjectConstants
 {
     //Blocks 0-24
+
+
     public const int NoBlock = 0;
     public const int WaterBlock = 1;
     public const int LavaBlock = 2;

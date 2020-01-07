@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RoadConstants;
 
 public class RoadOutput : MonoBehaviour
 {
     public static float InputDetectionDistance = 0.1f;
-    public RoadInput roadInput;
+    private RoadInput roadInput;
     private Color uniqueColor=Color.red;
     //public RoadInput RoadInput { get => roadInput; set => roadInput = value; }
+    [SerializeField] private IOType type = IOType.Generic;
+    public IOType Type { get => type; }
+    public RoadInput RoadInput { get => roadInput;  }
 
     void OnDrawGizmos()
     {
         
 
-        if (roadInput != null)
+        if (RoadInput != null)
         {
             
-            roadInput.GizmoColor = uniqueColor;
+            RoadInput.GizmoColor = uniqueColor;
          
         }
         Gizmos.color = uniqueColor;
@@ -60,5 +64,10 @@ public class RoadOutput : MonoBehaviour
         // A different random value is used for each color component (if
         // the same is used for R, G and B, a shade of grey is produced).
         return new Color(Random.value, Random.value, Random.value);
+    }
+
+    public Road GetParentRoad()
+    {
+        return transform.parent.GetComponent<Road>();
     }
 }
