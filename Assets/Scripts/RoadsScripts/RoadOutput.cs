@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoadOutput : MonoBehaviour
 {
-    public static float InputDetectionDistance = 1f;
+    public static float InputDetectionDistance = 0.1f;
     public RoadInput roadInput;
     private Color uniqueColor=Color.red;
     //public RoadInput RoadInput { get => roadInput; set => roadInput = value; }
