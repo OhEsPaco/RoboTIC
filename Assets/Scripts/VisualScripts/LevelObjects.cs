@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectConstants;
 
 public class LevelObjects : MonoBehaviour
 {
@@ -17,40 +18,42 @@ public class LevelObjects : MonoBehaviour
     public GameObject MainCharacter;
     public GameObject Flag;
 
-    public GameObject GetGameObjectInstance(int id)
+    
+
+    public GameObject GetGameObjectInstance(ObjectType id)
     {
         GameObject reference = MegaSwitch(id);
         return InstantiateObject(reference);
 
     }
-    private GameObject MegaSwitch(int id)
+    private GameObject MegaSwitch(ObjectType id)
     {
         switch (id)
         {
-            case ObjectConstants.NoBlock:
+            case ObjectType.NoBlock:
                 return NoBlock;
                 break;
-            case ObjectConstants.WaterBlock:
+            case ObjectType.WaterBlock:
                 return WaterBlock;
                 break;
-            case ObjectConstants.LavaBlock:
+            case ObjectType.LavaBlock:
                 return LavaBlock;
                 break;
-            case ObjectConstants.SolidBlock:
+            case ObjectType.SolidBlock:
                 return SolidBlock;
                 break;
-            case ObjectConstants.LiftBlock:
+            case ObjectType.LiftBlock:
                 return LiftBlock;
                 break;
-            case ObjectConstants.SpikesBlock:
+            case ObjectType.SpikesBlock:
                 return SpikesBlock;
                 break;
 
-            case ObjectConstants.IceBlock:
+            case ObjectType.IceBlock:
                 return IceBlock;
                 break;
 
-            case ObjectConstants.PlankItem:
+            case ObjectType.PlankItem:
                 return PlankItem;
                 break;
 

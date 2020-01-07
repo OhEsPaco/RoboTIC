@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using static ObjectConstants;
 
 /// <summary>
 /// Defines the <see cref="Logic" />
@@ -47,13 +48,10 @@ public class Logic : MonoBehaviour
     /// </summary>
     internal void Start()
     {
-
-        
         buttonInputBuffer = new List<int>(initialCapacityOfTheInputBuffer);
         LoadLevelData();
         LoadVisual();
         Debug.Log(currentLevelData.levelName);
-        
     }
 
     /// <summary>
@@ -89,9 +87,6 @@ public class Logic : MonoBehaviour
         currentLevelData = levelManagerReference.JSonLoader.LoadLevelData(GetLevelPath());
     }
 
-
-
-
     /// <summary>
     /// The ExecuteNextInput
     /// </summary>
@@ -107,51 +102,55 @@ public class Logic : MonoBehaviour
             }
             else
             {
-
                 Debug.Log("Pressed " + ButtonConstants.ButtonNames[buttonPressed] + " button.");
-                
+
                 switch (buttonPressed)
                 {
                     case ButtonConstants.Action:
 
                         DoAction();
                         break;
+
                     case ButtonConstants.Condition:
 
                         DoCondition();
                         break;
+
                     case ButtonConstants.Jump:
 
                         DoJump();
                         break;
+
                     case ButtonConstants.Loop:
 
                         DoLoop();
                         break;
+
                     case ButtonConstants.Move:
 
                         DoMove();
                         break;
+
                     case ButtonConstants.Play:
 
                         DoPlay();
                         break;
+
                     case ButtonConstants.Restart:
 
                         DoRestart();
                         break;
+
                     case ButtonConstants.TurnLeft:
 
                         DoTurnLeft();
                         break;
+
                     case ButtonConstants.TurnRight:
 
                         DoTurnRight();
                         break;
-
                 }
-
-
             }
         }
     }
@@ -184,7 +183,6 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoJump()
     {
-
         //blockC
         List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2]);
         //Bloque de enfrente y arriba
@@ -192,7 +190,7 @@ public class Logic : MonoBehaviour
         //blockA blockB 3
         //Robot  blockC 2
         //       blockD 1
-        //       blockE 0  
+        //       blockE 0
         int fallDamage = 0;
         bool isTopEmpty = IsEmptyBlock(currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2], currentLevelData);
 
@@ -224,9 +222,7 @@ public class Logic : MonoBehaviour
                 levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock, currentLevelData.playerOrientation);
                 YouLose();
             }
-
         }
-
 
         if (fallDamage > maxFallHeightOfCharactersInBlocks)
         {
@@ -246,7 +242,6 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoMove()
     {
-
         List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
 
         if (IsPositionInsideMap(intendedBlock, currentLevelData))
@@ -258,11 +253,9 @@ public class Logic : MonoBehaviour
                 {
                     levelManagerReference.ActionRenderer.DoMove(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock);
                     currentLevelData.playerPos = intendedBlock;
-
                 }
                 else
                 {
-
                     DoJump();
                 }
             }
@@ -270,9 +263,7 @@ public class Logic : MonoBehaviour
             {
                 //Collision
                 Debug.Log("You are colliding against a block");
- 
             }
-
         }
         else
         {
@@ -290,8 +281,8 @@ public class Logic : MonoBehaviour
     /// <returns>The <see cref="bool"/></returns>
     private bool IsEmptyBlock(int x, int y, int z, LevelData data)
     {
-        int blockIndex = GetBlockType(data, x, y, z);
-        if (blockIndex == ObjectConstants.NoBlock)
+        ObjectType type = GetBlockType(data, x, y, z);
+        if (type == ObjectType.NoBlock)
         {
             return true;
         }
@@ -308,23 +299,20 @@ public class Logic : MonoBehaviour
     /// <returns>The <see cref="bool"/></returns>
     private bool WalkableBlock(int x, int y, int z, LevelData data)
     {
-        int blockIndex = GetBlockType(data, x, y, z);
-
-        switch (blockIndex)
+        ObjectType type = GetBlockType(data, x, y, z);
+        switch (type)
         {
-            case ObjectConstants.SolidBlock:
+            case ObjectType.SolidBlock:
                 return true;
 
-            case ObjectConstants.IceBlock:
+            case ObjectType.IceBlock:
                 return true;
 
-
-            case ObjectConstants.LiftBlockActivated:
+            case ObjectType.LiftBlockActivated:
                 return true;
 
-            case ObjectConstants.SpikesBlockActivated:
+            case ObjectType.SpikesBlockActivated:
                 return true;
-
 
             default:
                 return false;
@@ -347,12 +335,12 @@ public class Logic : MonoBehaviour
     /// <param name="y">The y<see cref="int"/></param>
     /// <param name="z">The z<see cref="int"/></param>
     /// <returns>The <see cref="int"/></returns>
-    private int GetBlockType(LevelData data, int x, int y, int z)
+    private ObjectType GetBlockType(LevelData data, int x, int y, int z)
     {
-        if (x < 0 || x >= data.levelSize[0]) return ObjectConstants.NoBlock;
-        if (y < 0 || y >= data.levelSize[1]) return ObjectConstants.NoBlock;
-        if (z < 0 || z >= data.levelSize[2]) return ObjectConstants.NoBlock;
-        return data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
+        if (x < 0 || x >= data.levelSize[0]) return ObjectType.NoBlock;
+        if (y < 0 || y >= data.levelSize[1]) return ObjectType.NoBlock;
+        if (z < 0 || z >= data.levelSize[2]) return ObjectType.NoBlock;
+        return (ObjectType)data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
     }
 
     /// <summary>
@@ -363,12 +351,12 @@ public class Logic : MonoBehaviour
     /// <param name="x">The x<see cref="int"/></param>
     /// <param name="y">The y<see cref="int"/></param>
     /// <param name="z">The z<see cref="int"/></param>
-    private void SetBlockType(LevelData data, int value, int x, int y, int z)
+    private void SetBlockType(LevelData data, ObjectType value, int x, int y, int z)
     {
         if (x < 0 || x >= data.levelSize[0]) return;
         if (y < 0 || y >= data.levelSize[1]) return;
         if (z < 0 || z >= data.levelSize[2]) return;
-        data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])] = value;
+        data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])] = (int)value;
     }
 
     /// <summary>
@@ -379,7 +367,6 @@ public class Logic : MonoBehaviour
     /// <returns>The <see cref="bool"/></returns>
     private bool IsPositionInsideMap(List<int> posToCheck, LevelData data)
     {
-
         if (posToCheck[0] < 0)
         {
             return false;
@@ -439,18 +426,22 @@ public class Logic : MonoBehaviour
                 output[2]++;
 
                 break;
+
             case 1:
                 output[0]++;
 
                 break;
+
             case 2:
                 output[2]--;
 
                 break;
+
             case 3:
                 output[0]--;
 
                 break;
+
             default:
                 Debug.LogError("Unknown orientation");
                 break;
@@ -478,7 +469,6 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoTurnLeft()
     {
-
         currentLevelData.playerOrientation--;
         if (currentLevelData.playerOrientation < 0)
         {

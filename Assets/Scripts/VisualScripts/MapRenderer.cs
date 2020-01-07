@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectConstants;
 
 public class MapRenderer : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class MapRenderer : MonoBehaviour
             {
                 for (int z = 0; z <levelSize[2]; z++)
                 {
-                    int blockToSpawn = Get(mapAndItems,levelSize, x, y, z);
+                    ObjectType blockToSpawn = Get(mapAndItems,levelSize, x, y, z);
                   
                     GameObject block = manager.LevelObjects.GetGameObjectInstance(blockToSpawn);
                     Vector3 posNew = new Vector3(x * blockLength, y * blockLength, z * blockLength);
@@ -65,12 +66,12 @@ public class MapRenderer : MonoBehaviour
     {
         return mainCharacter;
     }
-    private int Get(List<int> mapAndItems, List<int> levelSize, int x, int y, int z)
+    private ObjectType Get(List<int> mapAndItems, List<int> levelSize, int x, int y, int z)
     {
-        if (x < 0 || x >= levelSize[0]) return ObjectConstants.NoBlock;
-        if (y < 0 || y >= levelSize[1]) return ObjectConstants.NoBlock;
-        if (z < 0 || z >= levelSize[2]) return ObjectConstants.NoBlock;
-        return mapAndItems[x + z * levelSize[0] + y * (levelSize[0] *levelSize[2])];
+        if (x < 0 || x >= levelSize[0]) return ObjectType.NoBlock;
+        if (y < 0 || y >= levelSize[1]) return ObjectType.NoBlock;
+        if (z < 0 || z >= levelSize[2]) return ObjectType.NoBlock;
+        return (ObjectType)mapAndItems[x + z * levelSize[0] + y * (levelSize[0] *levelSize[2])];
 
     }
 }
