@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private RoadFactory roadFactory;
     [SerializeField] private ActionRenderer actionRenderer;
 
-
+    public TestRoadScrp TestRoad;
     //LOGIC
     [SerializeField] private Logic logic;
 

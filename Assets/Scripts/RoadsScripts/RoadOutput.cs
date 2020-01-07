@@ -70,4 +70,10 @@ public class RoadOutput : MonoBehaviour
     {
         return transform.parent.GetComponent<Road>();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        LevelManager.instance.TestRoad.FinishedAction(this);
+    }
+
 }
