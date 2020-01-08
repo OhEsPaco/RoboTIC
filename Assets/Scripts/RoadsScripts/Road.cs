@@ -22,5 +22,16 @@ public abstract class Road : MonoBehaviour
     public RoadInput[] Inputs { get => inputs;  }
     public RoadOutput[] Outputs { get => outputs;  }
 
+    public RoadOutput ReturnOutputByType(IOType iOType)
+    {
+        foreach(RoadOutput output in outputs)
+        {
+            if (output.OutputType == iOType)
+            {
+                return output;
+            }
+        }
+        return null;
+    }
     public abstract void ExecuteAction(Actions action,int[] arguments);
 }

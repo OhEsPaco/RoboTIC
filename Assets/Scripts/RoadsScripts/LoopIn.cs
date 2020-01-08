@@ -13,8 +13,8 @@ public class LoopIn : Road
         switch (action)
         {
             case Actions.Reset:
-                obstacleYes.SetActive(true);
-                obstacleNo.SetActive(true);
+                obstacleYes.SetActive(false);
+                obstacleNo.SetActive(false);
                 break;
 
             case Actions.GoToNo:

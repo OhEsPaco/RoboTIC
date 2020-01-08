@@ -10,7 +10,7 @@ public class RoadInput : MonoBehaviour
     public Color GizmoColor { get => gizmoColor; set => gizmoColor = value; }
 
     [SerializeField] private IOType type = IOType.Generic;
-    public IOType Type { get => type; }
+    public IOType InputType { get => type; }
 
 
     void OnDrawGizmos()

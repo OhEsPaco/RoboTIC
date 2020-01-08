@@ -10,7 +10,7 @@ public class RoadOutput : MonoBehaviour
     private Color uniqueColor=Color.red;
     //public RoadInput RoadInput { get => roadInput; set => roadInput = value; }
     [SerializeField] private IOType type = IOType.Generic;
-    public IOType Type { get => type; }
+    public IOType OutputType { get => type; }
     public RoadInput RoadInput { get => roadInput;  }
 
     void OnDrawGizmos()
