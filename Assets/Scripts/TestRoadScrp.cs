@@ -161,7 +161,7 @@ public class TestRoadScrp : MonoBehaviour
     {
         int[] reps = { loopReps };
         roadInput.GetParentRoad().ExecuteAction(RoadConstants.Actions.SetCounter, reps);
-        character.GetComponent<NavMeshAgent>().SetDestination(finish.transform.position);
+       
     }
 
     private void ExecuteActionNoArguments(Road road, Actions action)
@@ -181,16 +181,17 @@ public class TestRoadScrp : MonoBehaviour
 
     IEnumerator ExampleCoroutine()
     {
-
+        Time.timeScale = 1;
         SetLoopReps(start, loopReps);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
 
-        SetLoopReps(start, loopReps);
+        
 
         if (loopReps > 0)
         {
+            
             loopReps--;
              SetLoopReps(start, loopReps);
             ExecuteActionNoArguments(start.GetParentRoad(), Actions.GoToYes);

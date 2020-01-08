@@ -6169,7 +6169,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.06666667
+  m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: d9115dfa1e57e49448008d3f6d4d705e, type: 2}
 --- !u!4 &634567146
@@ -9218,7 +9218,6 @@ GameObject:
   - component: {fileID: 963910086}
   - component: {fileID: 963910085}
   - component: {fileID: 963910084}
-  - component: {fileID: 963910083}
   - component: {fileID: 963910088}
   m_Layer: 0
   m_Name: TestCube
@@ -9227,19 +9226,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &963910083
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963910082}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &963910084
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19043,7 +19029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1999466488021285544
 MonoBehaviour:
   m_ObjectHideFlags: 0
