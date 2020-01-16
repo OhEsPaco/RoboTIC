@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LoopCounter : MonoBehaviour
 {
     // Start is called before the first frame update
     public int maxNumber = 9;
+
     public int defaultNumber = 0;
     private GameObject numbersParent;
     private GameObject[] numbers;
@@ -15,7 +14,7 @@ public class LoopCounter : MonoBehaviour
     public bool TouchLocked { get => touchLocked; set => touchLocked = value; }
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         TouchLocked = false;
         numbersParent = transform.Find("Numbers").gameObject;
@@ -24,14 +23,12 @@ public class LoopCounter : MonoBehaviour
         {
             numbers[i] = numbersParent.transform.Find("RepeatsX" + i).gameObject;
             numbers[i].SetActive(false);
-
         }
         actualNumber = setNumber(defaultNumber);
     }
 
     public int setNumber(int number)
     {
-
         numbers[actualNumber].SetActive(false);
         int numberAux = number;
         if (number < 0)
@@ -49,24 +46,22 @@ public class LoopCounter : MonoBehaviour
         return numberAux;
     }
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
-
         // this object was clicked - do something
         if (!TouchLocked)
         {
             actualNumber = setNumber(actualNumber + 1);
         }
     }
-    
+
     public int ActualNumber()
     {
         return actualNumber;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 }

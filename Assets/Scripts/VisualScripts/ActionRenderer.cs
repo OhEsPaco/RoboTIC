@@ -134,11 +134,11 @@ public class ActionRenderer : MonoBehaviour
     /// <param name="currentBlock">The currentBlock<see cref="List{int}"/></param>
     /// <param name="intendedBlock">The intendedBlock<see cref="List{int}"/></param>
     /// <param name="playerOrientation">The playerOrientation<see cref="int"/></param>
-    public void DoJump(GameObject player, List<int> currentBlock, List<int> intendedBlock, int playerOrientation)
+    public void DoJump(GameObject player, in List<int> currentBlock, in List<int> intendedBlock, in int playerOrientation)
     {
-        Vector3 target = new Vector3(player.transform.position.x + (intendedBlock[0] - currentBlock[0]) * manager.MapRenderer.blockLength,
-            player.transform.position.y + (intendedBlock[1] - currentBlock[1]) * manager.MapRenderer.blockLength,
-            player.transform.position.z + (intendedBlock[2] - currentBlock[2]) * manager.MapRenderer.blockLength);
+        Vector3 target = new Vector3(player.transform.position.x + (intendedBlock[0] - currentBlock[0]) * manager.MapRenderer.BlockLength,
+            player.transform.position.y + (intendedBlock[1] - currentBlock[1]) * manager.MapRenderer.BlockLength,
+            player.transform.position.z + (intendedBlock[2] - currentBlock[2]) * manager.MapRenderer.BlockLength);
 
         AddAction(JumpCoroutine(player, target, actionSpeed, arcHeight, angle));
     }
@@ -167,11 +167,11 @@ public class ActionRenderer : MonoBehaviour
     /// <param name="player">The player<see cref="GameObject"/></param>
     /// <param name="currentBlock">The currentBlock<see cref="List{int}"/></param>
     /// <param name="intendedBlock">The intendedBlock<see cref="List{int}"/></param>
-    public void DoMove(GameObject player, List<int> currentBlock, List<int> intendedBlock)
+    public void DoMove(GameObject player, in List<int> currentBlock, in List<int> intendedBlock)
     {
-        Vector3 target = new Vector3(player.transform.position.x + (intendedBlock[0] - currentBlock[0]) * manager.MapRenderer.blockLength,
-            player.transform.position.y + (intendedBlock[1] - currentBlock[1]) * manager.MapRenderer.blockLength,
-            player.transform.position.z + (intendedBlock[2] - currentBlock[2]) * manager.MapRenderer.blockLength);
+        Vector3 target = new Vector3(player.transform.position.x + (intendedBlock[0] - currentBlock[0]) * manager.MapRenderer.BlockLength,
+            player.transform.position.y + (intendedBlock[1] - currentBlock[1]) * manager.MapRenderer.BlockLength,
+            player.transform.position.z + (intendedBlock[2] - currentBlock[2]) * manager.MapRenderer.BlockLength);
 
         AddAction(MoveCoroutine(actionSpeed, player, target));
     }

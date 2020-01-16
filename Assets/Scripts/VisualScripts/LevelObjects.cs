@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static ObjectConstants;
 
 public class LevelObjects : MonoBehaviour
 {
-    private LevelManager manager;
     public GameObject NoBlock;
     public GameObject WaterBlock;
     public GameObject LavaBlock;
@@ -18,49 +15,42 @@ public class LevelObjects : MonoBehaviour
     public GameObject MainCharacter;
     public GameObject Flag;
 
-    
-
-    public GameObject GetGameObjectInstance(ObjectType id)
+    public GameObject GetGameObjectInstance(in ObjectType id)
     {
         GameObject reference = MegaSwitch(id);
         return InstantiateObject(reference);
-
     }
-    private GameObject MegaSwitch(ObjectType id)
+
+    private GameObject MegaSwitch(in ObjectType id)
     {
         switch (id)
         {
             case ObjectType.NoBlock:
                 return NoBlock;
-                break;
+
             case ObjectType.WaterBlock:
                 return WaterBlock;
-                break;
+
             case ObjectType.LavaBlock:
                 return LavaBlock;
-                break;
+
             case ObjectType.SolidBlock:
                 return SolidBlock;
-                break;
+
             case ObjectType.LiftBlock:
                 return LiftBlock;
-                break;
+
             case ObjectType.SpikesBlock:
                 return SpikesBlock;
-                break;
 
             case ObjectType.IceBlock:
                 return IceBlock;
-                break;
 
             case ObjectType.PlankItem:
                 return PlankItem;
-                break;
 
             default:
                 return NoBlock;
-                break;
-
         }
     }
 
@@ -68,31 +58,20 @@ public class LevelObjects : MonoBehaviour
     {
         return Instantiate(reference, reference.transform.position, reference.transform.rotation);
     }
+
     public GameObject GetMainCharacterInstance()
     {
-        
         return InstantiateObject(MainCharacter);
-
     }
 
     public GameObject GetFlagInstance()
     {
-
         return InstantiateObject(Flag);
-
     }
 
     // Start is called before the first frame update
-    void Awake()
+    private void Start()
     {
-        manager = LevelManager.instance;
-        
         gameObject.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -1,37 +1,72 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static RoadConstants;
 
 public abstract class Road : MonoBehaviour
 {
-    private RoadInput[] inputs;
-    private RoadOutput[] outputs;
-
     [SerializeField] private RoadType roadType = RoadType.Undetermined;
+    [SerializeField] private RoadIO[] inputsAndOutputs;
 
     private void Start()
     {
-        inputs = GetComponentsInChildren<RoadInput>();
-        outputs = GetComponentsInChildren<RoadOutput>();
+        //Pedimos los inputs
+        inputsAndOutputs = GetComponentsInChildren<RoadInput>();
 
-        
+        //Pedimos los outputs en un array diferente
+        RoadOutput[] outputs = GetComponentsInChildren<RoadOutput>();
+
+        //Hacemos que el array final aumente su longitud para acomodar a los outputs
+
+        Array.Resize(ref inputsAndOutputs, inputsAndOutputs.Length + outputs.Length);
+
+        //Copiamos los outputs
+        Array.Copy(outputs, 0, inputsAndOutputs, inputsAndOutputs.Length - outputs.Length, outputs.Length);
     }
 
     public RoadType RoadType { get => roadType; }
-    public RoadInput[] Inputs { get => inputs;  }
-    public RoadOutput[] Outputs { get => outputs;  }
 
-    public RoadOutput ReturnOutputByType(IOType iOType)
+    public List<RoadIO> Inputs()
     {
-        foreach(RoadOutput output in outputs)
+        return ReturnByIO(InputOutput.Input);
+    }
+
+    public List<RoadIO> Outputs()
+    {
+        return ReturnByIO(InputOutput.Output);
+    }
+
+    public List<RoadIO> ReturnByIO(in InputOutput isIO)
+    {
+        List<RoadIO> thisIos = new List<RoadIO>();
+        foreach (RoadIO roadIo in inputsAndOutputs)
         {
-            if (output.OutputType == iOType)
+            if (roadIo.IsInputOrOutput() == isIO)
             {
-                return output;
+                thisIos.Add(roadIo);
             }
         }
-        return null;
+        return thisIos;
     }
-    public abstract void ExecuteAction(Actions action,int[] arguments);
+
+    public List<RoadIO> ReturnByIOAndDirection(in InputOutput isIO, in PointingTo pointsTo)
+    {
+        List<RoadIO> thisIos = new List<RoadIO>();
+        foreach (RoadInput roadIo in inputsAndOutputs)
+        {
+            if (roadIo.IsInputOrOutput() == isIO && roadIo.PointsTo == pointsTo)
+            {
+                thisIos.Add(roadIo);
+            }
+        }
+        return thisIos;
+    }
+
+    public abstract void ExecuteAction(in Actions action, in int[] arguments);
+
+    private void OnDrawGizmos()
+    {
+        Handles.Label(transform.position, roadType.ToString("g"));
+    }
 }

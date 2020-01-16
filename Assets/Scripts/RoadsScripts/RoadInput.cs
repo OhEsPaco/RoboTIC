@@ -1,29 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static RoadConstants;
 
-public class RoadInput : MonoBehaviour
+public class RoadInput : RoadIO
 {
-    private Color gizmoColor = Color.yellow;
-
-    public Color GizmoColor { get => gizmoColor; set => gizmoColor = value; }
-
-    [SerializeField] private IOType type = IOType.Generic;
-    public IOType InputType { get => type; }
-
-
-    void OnDrawGizmos()
+    public override Color GetColor()
     {
-
-            Gizmos.color = gizmoColor;
-        
-       
-        Gizmos.DrawSphere(transform.position, 0.1f);
+        return Color.green;
     }
 
-    public Road GetParentRoad()
+    public override InputOutput IsInputOrOutput()
     {
-        return transform.parent.GetComponent<Road>();
+        return InputOutput.Input;
     }
 }

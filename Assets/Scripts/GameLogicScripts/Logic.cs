@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using static ButtonConstants;
 using static ObjectConstants;
 
 /// <summary>
@@ -25,7 +27,7 @@ public class Logic : MonoBehaviour
     /// <summary>
     /// Defines the buttonInputList
     /// </summary>
-    private List<int> buttonInputBuffer;
+    private List<Buttons> buttonInputBuffer;
 
     /// <summary>
     /// Defines the initialInputCapacity
@@ -42,13 +44,27 @@ public class Logic : MonoBehaviour
     /// </summary>
     public int maxFallHeightOfCharactersInBlocks = 1;
 
+    private Dictionary<Buttons, Action> buttonActionsDictionary;
+
     // Start is called before the first frame update
     /// <summary>
     /// The Start
     /// </summary>
     internal void Start()
     {
-        buttonInputBuffer = new List<int>(initialCapacityOfTheInputBuffer);
+        //Llenar el diccionario de funciones
+        buttonActionsDictionary = new Dictionary<Buttons, Action>();
+        buttonActionsDictionary.Add(Buttons.Action, DoAction);
+        buttonActionsDictionary.Add(Buttons.Condition, DoCondition);
+        buttonActionsDictionary.Add(Buttons.Jump, DoJump);
+        buttonActionsDictionary.Add(Buttons.Loop, DoLoop);
+        buttonActionsDictionary.Add(Buttons.Move, DoMove);
+        buttonActionsDictionary.Add(Buttons.Play, DoPlay);
+        buttonActionsDictionary.Add(Buttons.Restart, DoRestart);
+        buttonActionsDictionary.Add(Buttons.TurnLeft, DoTurnLeft);
+        buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
+
+        buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
         LoadLevelData();
         LoadVisual();
         Debug.Log(currentLevelData.levelName);
@@ -94,64 +110,9 @@ public class Logic : MonoBehaviour
     {
         if (buttonInputBuffer.Count > 0)
         {
-            int buttonPressed = buttonInputBuffer[0];
+            Buttons buttonPressed = buttonInputBuffer[0];
             buttonInputBuffer.RemoveAt(0);
-            if (buttonPressed < 0 || buttonPressed >= ButtonConstants.ButtonNames.Length)
-            {
-                Debug.Log("Invalid button");
-            }
-            else
-            {
-                Debug.Log("Pressed " + ButtonConstants.ButtonNames[buttonPressed] + " button.");
-
-                switch (buttonPressed)
-                {
-                    case ButtonConstants.Action:
-
-                        DoAction();
-                        break;
-
-                    case ButtonConstants.Condition:
-
-                        DoCondition();
-                        break;
-
-                    case ButtonConstants.Jump:
-
-                        DoJump();
-                        break;
-
-                    case ButtonConstants.Loop:
-
-                        DoLoop();
-                        break;
-
-                    case ButtonConstants.Move:
-
-                        DoMove();
-                        break;
-
-                    case ButtonConstants.Play:
-
-                        DoPlay();
-                        break;
-
-                    case ButtonConstants.Restart:
-
-                        DoRestart();
-                        break;
-
-                    case ButtonConstants.TurnLeft:
-
-                        DoTurnLeft();
-                        break;
-
-                    case ButtonConstants.TurnRight:
-
-                        DoTurnRight();
-                        break;
-                }
-            }
+            buttonActionsDictionary[buttonPressed]();
         }
     }
 
@@ -159,7 +120,7 @@ public class Logic : MonoBehaviour
     /// The ButtonInput
     /// </summary>
     /// <param name="buttonIndex">The buttonIndex<see cref="int"/></param>
-    public void AddInputFromButton(int buttonIndex)
+    public void AddInputFromButton(Buttons buttonIndex)
     {
         buttonInputBuffer.Add(buttonIndex);
     }

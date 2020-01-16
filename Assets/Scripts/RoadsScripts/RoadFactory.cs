@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ButtonConstants;
 using static RoadConstants;
 
 public class RoadFactory : MonoBehaviour
@@ -38,5 +39,16 @@ public class RoadFactory : MonoBehaviour
         }
         return null;
         
+    }
+
+    public GameObject GetVerticalConnectorWithButton(Buttons button)
+    {
+        GameObject road = GetGameObjectInstance(RoadType.Vertical);
+        if (road != null)
+        {
+            int[] desiredButton = { (int)button };
+            road.GetComponent<Road>().ExecuteAction(Actions.SetButton, desiredButton);
+        }
+        return road;
     }
 }

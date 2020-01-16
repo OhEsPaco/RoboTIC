@@ -1,26 +1,27 @@
 ﻿using UnityEngine;
 using static ButtonConstants;
 
-public class RoadButton : MonoBehaviour
+public class VerticalButton : MonoBehaviour
 {
     [SerializeField] private Buttons buttonIndex = Buttons.Undefined;
-    public GameObject mesh;
-    private LevelManager manager;
+    [SerializeField] private GameObject mesh;
     private Animation anim;
 
+    public Buttons ButtonIndex { get => buttonIndex; }
+
+    
     private void Awake()
     {
-        manager = LevelManager.instance;
         if (mesh != null)
         {
             anim = mesh.GetComponent<Animation>();
         }
     }
 
-    private void OnMouseDown()
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Pressed " + buttonIndex.ToString("g"));
-        manager.RoadLogic.AddInputFromButton(buttonIndex);
+        LevelManager.instance.Logic.AddInputFromButton(buttonIndex);
         if (mesh != null)
         {
             if (anim.isPlaying)

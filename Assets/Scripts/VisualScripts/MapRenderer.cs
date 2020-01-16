@@ -1,41 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using static ObjectConstants;
 
 public class MapRenderer : MonoBehaviour
 {
-    public float blockLength = 1f;
+    [SerializeField] private float blockLength = 1f;
 
-    private LevelManager manager;
-    private GameObject mainCharacter;
+    public float BlockLength { get => blockLength;  }
 
-    public GameObject MainCharacter { get => mainCharacter; }
-
-    // Start is called before the first frame update
-    void Awake()
+    public void RenderMapAndItems(in List<int> mapAndItems, in List<int> levelSize)
     {
-        manager = LevelManager.instance;
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void RenderMapAndItems(List<int> mapAndItems, List<int>levelSize)
-    {
-        for (int x = 0; x <levelSize[0]; x++)
+        for (int x = 0; x < levelSize[0]; x++)
         {
             for (int y = 0; y < levelSize[1]; y++)
             {
-                for (int z = 0; z <levelSize[2]; z++)
+                for (int z = 0; z < levelSize[2]; z++)
                 {
-                    ObjectType blockToSpawn = Get(mapAndItems,levelSize, x, y, z);
-                  
-                    GameObject block = manager.LevelObjects.GetGameObjectInstance(blockToSpawn);
+                    ObjectType blockToSpawn = Get(mapAndItems, levelSize, x, y, z);
+
+                    GameObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
                     Vector3 posNew = new Vector3(x * blockLength, y * blockLength, z * blockLength);
                     block.transform.position = posNew;
                     block.transform.parent = gameObject.transform;
@@ -44,34 +27,29 @@ public class MapRenderer : MonoBehaviour
         }
     }
 
-    public void RenderScenery(List<int>goal)
+    public void RenderScenery(in List<int> goal)
     {
-        GameObject flag = manager.LevelObjects.GetFlagInstance();
+        GameObject flag = LevelManager.instance.LevelObjects.GetFlagInstance();
         Vector3 posFlag = new Vector3(goal[0] * blockLength, goal[1] * blockLength, goal[2] * blockLength);
         flag.transform.position = posFlag;
         flag.transform.parent = gameObject.transform;
     }
 
-    public GameObject RenderMainCharacter(List<int>playerStart,int playerOrientation)
+    public GameObject RenderMainCharacter(in List<int> playerStart, in int playerOrientation)
     {
-        mainCharacter = manager.LevelObjects.GetMainCharacterInstance();
-        Vector3 posNewChar = new Vector3(playerStart[0] * blockLength,playerStart[1] * blockLength,playerStart[2] * blockLength);
-        mainCharacter.transform.Rotate(0, 90f *playerOrientation, 0);
+        GameObject mainCharacter = LevelManager.instance.LevelObjects.GetMainCharacterInstance();
+        Vector3 posNewChar = new Vector3(playerStart[0] * blockLength, playerStart[1] * blockLength, playerStart[2] * blockLength);
+        mainCharacter.transform.Rotate(0, 90f * playerOrientation, 0);
         mainCharacter.transform.position = posNewChar;
         mainCharacter.transform.parent = gameObject.transform;
         return mainCharacter;
     }
 
-    public GameObject GetMainCharacter()
-    {
-        return mainCharacter;
-    }
-    private ObjectType Get(List<int> mapAndItems, List<int> levelSize, int x, int y, int z)
+    private ObjectType Get(in List<int> mapAndItems, in List<int> levelSize, in int x, in int y, in int z)
     {
         if (x < 0 || x >= levelSize[0]) return ObjectType.NoBlock;
         if (y < 0 || y >= levelSize[1]) return ObjectType.NoBlock;
         if (z < 0 || z >= levelSize[2]) return ObjectType.NoBlock;
-        return (ObjectType)mapAndItems[x + z * levelSize[0] + y * (levelSize[0] *levelSize[2])];
-
+        return (ObjectType)mapAndItems[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])];
     }
 }

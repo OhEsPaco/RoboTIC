@@ -3,15 +3,17 @@
 public class LevelManager : MonoBehaviour
 {
     //VISUAL
-    [SerializeField]private LevelObjects levelObjects;
+    [SerializeField] private LevelObjects levelObjects;
+
     [SerializeField] private MapRenderer mapRenderer;
     [SerializeField] private LevelButtons levelButtons;
     [SerializeField] private RoadFactory roadFactory;
     [SerializeField] private ActionRenderer actionRenderer;
 
-    public TestRoadScrp TestRoad;
     //LOGIC
     [SerializeField] private Logic logic;
+
+    [SerializeField] private RoadLogic roadLogic;
 
     //PERSISTENCE
     [SerializeField] private JSonLoader jSonLoader;
@@ -36,11 +38,12 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public LevelObjects LevelObjects { get => levelObjects;  }
-    public MapRenderer MapRenderer { get => mapRenderer;  }
-    public LevelButtons LevelButtons { get => levelButtons;  }
-    public RoadFactory RoadFactory { get => roadFactory;  }
-    public ActionRenderer ActionRenderer { get => actionRenderer;  }
+    public LevelObjects LevelObjects { get => levelObjects; }
+    public MapRenderer MapRenderer { get => mapRenderer; }
+    public LevelButtons LevelButtons { get => levelButtons; }
+    public RoadFactory RoadFactory { get => roadFactory; }
+    public ActionRenderer ActionRenderer { get => actionRenderer; }
     public Logic Logic { get => logic; }
     public JSonLoader JSonLoader { get => jSonLoader; }
+    public RoadLogic RoadLogic { get => roadLogic; }
 }

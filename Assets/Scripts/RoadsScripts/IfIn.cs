@@ -6,9 +6,8 @@ public class IfIn : Road
     [SerializeField] private GameObject obstacleYes;
     [SerializeField] private GameObject obstacleNo;
 
-    public override void ExecuteAction(Actions action, int[] arguments)
+    public override void ExecuteAction(in Actions action, in int[] arguments)
     {
-        
         switch (action)
         {
             case Actions.Reset:

@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using static RoadConstants;
 
 public class RoadNoActions : Road
 {
-    public override void ExecuteAction(RoadConstants.Actions action, int[] arguments)
+    public override void ExecuteAction(in Actions action, in int[] arguments)
     {
-       //Do nothing
+        //Do nothing
     }
 }
