@@ -2,21 +2,16 @@
 
 public class LoopCounter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public int maxNumber = 9;
-
-    public int defaultNumber = 0;
+    [SerializeField] private int maxNumber = 9;
+    [SerializeField] private int defaultNumber = 0;
     private GameObject numbersParent;
     private GameObject[] numbers;
     private int actualNumber;
-    private bool touchLocked;
-
-    public bool TouchLocked { get => touchLocked; set => touchLocked = value; }
+    private bool isLocked = false;
 
     // Start is called before the first frame update
     private void Awake()
     {
-        TouchLocked = false;
         numbersParent = transform.Find("Numbers").gameObject;
         numbers = new GameObject[maxNumber + 1];
         for (int i = 0; i <= maxNumber; i++)
@@ -24,10 +19,10 @@ public class LoopCounter : MonoBehaviour
             numbers[i] = numbersParent.transform.Find("RepeatsX" + i).gameObject;
             numbers[i].SetActive(false);
         }
-        actualNumber = setNumber(defaultNumber);
+        actualNumber = SetNumber(defaultNumber);
     }
 
-    public int setNumber(int number)
+    public int SetNumber(int number)
     {
         numbers[actualNumber].SetActive(false);
         int numberAux = number;
@@ -48,10 +43,10 @@ public class LoopCounter : MonoBehaviour
 
     private void OnMouseDown()
     {
-        // this object was clicked - do something
-        if (!TouchLocked)
+        if (!isLocked)
         {
-            actualNumber = setNumber(actualNumber + 1);
+            actualNumber = SetNumber(actualNumber + 1);
+            LevelManager.instance.RoadLogic.InformOfLoopRepsChanged(GetParentRoad(), actualNumber);
         }
     }
 
@@ -60,8 +55,18 @@ public class LoopCounter : MonoBehaviour
         return actualNumber;
     }
 
-    // Update is called once per frame
-    private void Update()
+    public Road GetParentRoad()
     {
+        return transform.parent.GetComponent<Road>();
+    }
+
+    public void Lock()
+    {
+        isLocked = true;
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
     }
 }

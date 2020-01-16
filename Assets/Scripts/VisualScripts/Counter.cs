@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
@@ -9,8 +7,9 @@ public class Counter : MonoBehaviour
     private GameObject numbersParent;
     private GameObject[] numbers;
     private int actualNumber;
+
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         numbersParent = transform.Find("Numbers").gameObject;
         numbers = new GameObject[maxNumber + 1];
@@ -18,14 +17,12 @@ public class Counter : MonoBehaviour
         {
             numbers[i] = numbersParent.transform.Find("RepeatsX" + i).gameObject;
             numbers[i].SetActive(false);
-
         }
         actualNumber = SetNumber(defaultNumber);
     }
 
-    public int SetNumber(int number)
+    public int SetNumber(in int number)
     {
-
         numbers[actualNumber].SetActive(false);
         int numberAux = number;
         if (number < 0)
@@ -41,12 +38,5 @@ public class Counter : MonoBehaviour
         numbers[numberAux].SetActive(true);
         actualNumber = numberAux;
         return numberAux;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

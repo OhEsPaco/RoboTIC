@@ -3,7 +3,7 @@ using static RoadConstants;
 
 public class LoopIn : Road
 {
-    [SerializeField] private Counter counter;
+    [SerializeField] private LoopCounter counter;
     [SerializeField] private GameObject obstacleYes;
     [SerializeField] private GameObject obstacleNo;
 
@@ -31,6 +31,14 @@ public class LoopIn : Road
                 {
                     counter.SetNumber(arguments[0]);
                 }
+                break;
+
+            case Actions.Lock:
+                counter.Lock();
+                break;
+
+            case Actions.Unlock:
+                counter.Unlock();
                 break;
         }
     }

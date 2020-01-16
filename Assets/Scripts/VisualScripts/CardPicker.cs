@@ -1,109 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using static CardConstants;
 
 public class CardPicker : MonoBehaviour
 {
+    //Rehacer esta clase con animaciones y esas cosas
+    private Cards selectedCard = Cards.NoCard;
 
-    public int maxCard;
-    public Material textureCard;
-    private float yLengthTexture;
-    public float yLengthCard=380;
-    private int currentCard=0;
+    private bool isLocked = false;
 
-
-
-    public float distance = 1f;
-    public float speed = 1f;
-    private int dir;
-    private float currentDistance;
-
-    private bool playedUp = false;
-    private bool onAnim = false;
-   
-
-    bool LiftUp()
+    private void OnMouseDown()
     {
-        if (currentDistance >= distance)
+        if (!isLocked)
         {
-          
-            dir = dir * -1;
-            currentDistance = 0;
-            return true;
-        }
-        currentDistance += Time.deltaTime * speed;
-        transform.position += Vector3.up * Time.deltaTime * speed * dir;
-        return false;
-    }
-   
-
-
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        dir = 1;
-        currentDistance = 0;
-        yLengthTexture = textureCard.mainTexture.height;
-        textureCard.mainTextureOffset = new Vector2(0, -(yLengthCard*currentCard / yLengthTexture));
-    }
-
-  
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (onAnim)
-        {
-            if (!playedUp)
+            if (Cards.IsDefined(typeof(Cards), selectedCard + 1))
             {
-                
-                if (LiftUp())
-                {
-                    setCard(currentCard + 1);
-                    playedUp = true;
-                }
+                selectedCard++;
             }
             else
             {
-                if (LiftUp())
-                {
-                    playedUp = false;
-                    onAnim = false;
-                }
+                selectedCard = Cards.NoCard;
             }
-            
-           
+            InformOfCardChanged();
         }
-        
-
     }
 
-    public int setCard(int number)
+    private void InformOfCardChanged()
     {
-        int numberAux = number;
-        if (number < 0)
-        {
-            numberAux = 0;
-        }
-
-        if (number > maxCard)
-        {
-            numberAux = 0;
-        }
-
-        currentCard = numberAux;
-        textureCard.mainTextureOffset = new Vector2(0, -(yLengthCard * currentCard / yLengthTexture));
-        return numberAux;
+        LevelManager.instance.RoadLogic.InformOfCardChanged(GetParentRoad(), selectedCard);
     }
 
-    void OnMouseDown()
+    private Road GetParentRoad()
     {
-  
-        if (!onAnim)
-        {
-            playedUp = false;
-            onAnim = true;
-        }
+        return transform.parent.GetComponent<Road>();
+    }
+
+    public void Lock()
+    {
+        isLocked = true;
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
     }
 }

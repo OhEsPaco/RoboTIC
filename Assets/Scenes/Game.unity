@@ -7723,6 +7723,7 @@ Transform:
   - {fileID: 1999466488020985521}
   - {fileID: 1999466488020985551}
   - {fileID: 1999466488020985519}
+  - {fileID: 1278036966}
   - {fileID: 1999466488020985527}
   - {fileID: 1999466488020985485}
   - {fileID: 1999466488020985517}
@@ -7744,10 +7745,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aab9eefde0905140a3b08dcbee4492b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
-  outputs: []
   roadType: 9
-  counter: {fileID: 1278036967}
+  inputsAndOutputs: []
+  counter: {fileID: 1278036968}
   obstacleYes: {fileID: 1999466488021285519}
   obstacleNo: {fileID: 1999466488021285551}
 --- !u!1 &1278036965
@@ -7759,9 +7759,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1278036966}
-  - component: {fileID: 1278036967}
+  - component: {fileID: 1278036969}
+  - component: {fileID: 1278036968}
   m_Layer: 0
-  m_Name: Counter
+  m_Name: LoopCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7774,15 +7775,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278036965}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 3.129001, z: 1.7880006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1308571305}
-  m_Father: {fileID: 1999466488020985527}
-  m_RootOrder: 0
+  m_Father: {fileID: 1273888337}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1278036967
+--- !u!114 &1278036968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7791,11 +7792,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1278036965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ffeb698a61ac6e4a8c2767cfc43bc16, type: 3}
+  m_Script: {fileID: 11500000, guid: f7deddc0e0e2ed64589d7fb6ee65bf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxNumber: 9
   defaultNumber: 0
+--- !u!65 &1278036969
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278036965}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.72, y: 1.04, z: 0.18}
+  m_Center: {x: 0.99, y: 0.45, z: 0.05}
 --- !u!1 &1293307779
 GameObject:
   m_ObjectHideFlags: 0
@@ -7973,8 +7987,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308571304}
-  m_LocalRotation: {x: -0, y: 3.611073e-23, z: 2.2164608e-16, w: 1}
-  m_LocalPosition: {x: 1.4790621, y: 0.126158, z: 0.015189866}
+  m_LocalRotation: {x: -0, y: 3.3087218e-23, z: 2.216461e-16, w: 1}
+  m_LocalPosition: {x: 1.4790611, y: 0.12615825, z: 0.015188679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1999466488020985525}
@@ -9711,7 +9725,7 @@ Transform:
   m_Children:
   - {fileID: 1266698602}
   m_Father: {fileID: 1273888337}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1681731096
 BoxCollider:
@@ -11516,7 +11530,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.09999994, z: 0.09999994}
   m_Children: []
   m_Father: {fileID: 1273888337}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1999466488020985487
 Transform:
@@ -11600,7 +11614,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.09999994, z: 0.09999994}
   m_Children: []
   m_Father: {fileID: 1273888337}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1999466488020985499
 Transform:
@@ -11740,7 +11754,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.09999994, z: 0.09999994}
   m_Children: []
   m_Father: {fileID: 1273888337}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1999466488020985519
 Transform:
@@ -11808,10 +11822,9 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.0000009536743, y: 3.129, z: 1.788}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1278036966}
+  m_Children: []
   m_Father: {fileID: 1273888337}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &1999466488020985529
 Transform:
@@ -12295,7 +12308,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.09999994, z: 0.09999994}
   m_Children: []
   m_Father: {fileID: 1273888337}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1999466488020985725
 Transform:
@@ -12793,11 +12806,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e339545bd776e4b9ac067501a15f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
-  outputs: []
   roadType: 7
+  inputsAndOutputs: []
   obstacleYes: {fileID: 1999466488021285513}
   obstacleNo: {fileID: 1999466488021285545}
+  cardPicker: {fileID: 1999466488021285588}
 --- !u!1 &1999466488021285551
 GameObject:
   m_ObjectHideFlags: 0
@@ -12900,9 +12913,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab680590b6818d04f8f876c23a3d6722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
-  outputs: []
   roadType: 6
+  inputsAndOutputs: []
   buttons:
   - {fileID: 1211643766}
   - {fileID: 309069288}
@@ -12940,9 +12952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
-  outputs: []
   roadType: 8
+  inputsAndOutputs: []
 --- !u!1 &1999466488021285583
 GameObject:
   m_ObjectHideFlags: 0
@@ -12974,9 +12985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
-  outputs: []
   roadType: 10
+  inputsAndOutputs: []
 --- !u!1 &1999466488021285585
 GameObject:
   m_ObjectHideFlags: 0
@@ -13008,11 +13018,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs:
-  - {fileID: 0}
-  outputs:
-  - {fileID: 0}
   roadType: 1
+  inputsAndOutputs: []
 --- !u!1 &1999466488021285587
 GameObject:
   m_ObjectHideFlags: 0
@@ -13024,13 +13031,27 @@ GameObject:
   - component: {fileID: 1999466488020985587}
   - component: {fileID: 1999466488024377043}
   - component: {fileID: 1999466488023278611}
+  - component: {fileID: 1999466488021285588}
+  - component: {fileID: 1999466488021285598}
   m_Layer: 0
-  m_Name: ConditionIsWalkable
+  m_Name: CardPicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1999466488021285588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24334ef609cd94947bb59395faa0148e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1999466488021285589
 GameObject:
   m_ObjectHideFlags: 0
@@ -13062,9 +13083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
-  outputs: []
   roadType: 3
+  inputsAndOutputs: []
 --- !u!1 &1999466488021285591
 GameObject:
   m_ObjectHideFlags: 0
@@ -13096,9 +13116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
-  outputs: []
   roadType: 2
+  inputsAndOutputs: []
 --- !u!1 &1999466488021285593
 GameObject:
   m_ObjectHideFlags: 0
@@ -13130,9 +13149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
-  outputs: []
   roadType: 5
+  inputsAndOutputs: []
 --- !u!1 &1999466488021285595
 GameObject:
   m_ObjectHideFlags: 0
@@ -13164,9 +13182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245b52faff82024cbae97b5478cbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: []
-  outputs: []
   roadType: 4
+  inputsAndOutputs: []
 --- !u!1 &1999466488021285597
 GameObject:
   m_ObjectHideFlags: 0
@@ -13185,6 +13202,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1999466488021285598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999466488021285587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8751187, y: 0.07154589, z: 1.0672482}
+  m_Center: {x: 0, y: -0.0000004172325, z: 0.5336246}
 --- !u!1 &1999466488021285599
 GameObject:
   m_ObjectHideFlags: 0

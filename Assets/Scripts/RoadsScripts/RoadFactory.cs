@@ -1,35 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static ButtonConstants;
 using static RoadConstants;
 
 public class RoadFactory : MonoBehaviour
 {
-
-   [SerializeField] private Road[] roads;
-    private LevelManager manager;
+    [SerializeField] private Road[] roads;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         roads = GetComponentsInChildren<Road>(true);
     }
 
-    void Awake()
-    {
-        manager = LevelManager.instance;
-
-    }
     private GameObject InstantiateObject(GameObject reference)
     {
         return Instantiate(reference, reference.transform.position, reference.transform.rotation);
     }
 
-    public GameObject GetGameObjectInstance(RoadType id)
+    public GameObject GetGameObjectInstance(in RoadType id)
     {
-
-        foreach(Road road in roads)
+        foreach (Road road in roads)
         {
             if (road.RoadType == id)
             {
@@ -38,10 +28,9 @@ public class RoadFactory : MonoBehaviour
             }
         }
         return null;
-        
     }
 
-    public GameObject GetVerticalConnectorWithButton(Buttons button)
+    public GameObject GetVerticalConnectorWithButton(in Buttons button)
     {
         GameObject road = GetGameObjectInstance(RoadType.Vertical);
         if (road != null)

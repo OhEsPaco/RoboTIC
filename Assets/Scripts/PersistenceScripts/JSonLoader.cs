@@ -6,20 +6,6 @@
 public class JSonLoader : MonoBehaviour
 {
     /// <summary>
-    /// Defines the manager
-    /// </summary>
-    private LevelManager manager;
-
-    // Start is called before the first frame update
-    /// <summary>
-    /// The Awake
-    /// </summary>
-    private void Awake()
-    {
-        manager = LevelManager.instance;
-    }
-
-    /// <summary>
     /// The ReadString
     /// </summary>
     /// <param name="path">The path<see cref="string"/></param>

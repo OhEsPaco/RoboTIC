@@ -23,6 +23,6 @@ public class PlatformMovement : MonoBehaviour
             currentDistance = 0;
         }
         currentDistance += Time.deltaTime * speed;
-        transform.position += Vector3.up * Time.deltaTime * speed * dir;
+        transform.position += Vector3.up.FastMult(Time.deltaTime * speed * dir);
     }
 }

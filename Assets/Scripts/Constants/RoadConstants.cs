@@ -6,7 +6,7 @@
 
     public enum InputOutput { Input, Output };
 
-    public enum Actions { Reset, GoToNo, GoToYes, SetCounter, SetButton };
+    public enum Actions { Reset, GoToNo, GoToYes, SetCounter, SetButton, Lock, Unlock };
 
     public enum PointingTo { Forward = 0, Back = 1, Left = 2, Right = 3 };
 }

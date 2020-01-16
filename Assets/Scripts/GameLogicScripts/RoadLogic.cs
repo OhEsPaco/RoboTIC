@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static ButtonConstants;
+using static CardConstants;
 using static RoadConstants;
 
 public class RoadLogic : MonoBehaviour
@@ -22,8 +23,8 @@ public class RoadLogic : MonoBehaviour
 
     private struct SelectedRoadAndOutput
     {
-        int SelectedRoad;
-        int SelectedOutput;
+        private int SelectedRoad;
+        private int SelectedOutput;
     }
 
     internal void Start()
@@ -118,5 +119,15 @@ public class RoadLogic : MonoBehaviour
 
     private void SpawnRoad(RoadType thisRoad)
     {
+    }
+
+    public void InformOfCardChanged(Road road, Cards newCard)
+    {
+        Debug.Log("Changed to card " + newCard.ToString() + " on road " + road.RoadType.ToString());
+    }
+
+    public void InformOfLoopRepsChanged(Road road, int newReps)
+    {
+        Debug.Log("Changed to number " + newReps + " on road " + road.RoadType.ToString());
     }
 }

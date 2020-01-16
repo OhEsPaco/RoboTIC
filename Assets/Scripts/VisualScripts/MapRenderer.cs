@@ -6,7 +6,7 @@ public class MapRenderer : MonoBehaviour
 {
     [SerializeField] private float blockLength = 1f;
 
-    public float BlockLength { get => blockLength;  }
+    public float BlockLength { get => blockLength; }
 
     public void RenderMapAndItems(in List<int> mapAndItems, in List<int> levelSize)
     {
@@ -19,7 +19,10 @@ public class MapRenderer : MonoBehaviour
                     ObjectType blockToSpawn = Get(mapAndItems, levelSize, x, y, z);
 
                     GameObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
-                    Vector3 posNew = new Vector3(x * blockLength, y * blockLength, z * blockLength);
+                    Vector3 posNew;
+                    posNew.x = x * blockLength;
+                    posNew.y = y * blockLength;
+                    posNew.z = z * blockLength;
                     block.transform.position = posNew;
                     block.transform.parent = gameObject.transform;
                 }
@@ -30,7 +33,10 @@ public class MapRenderer : MonoBehaviour
     public void RenderScenery(in List<int> goal)
     {
         GameObject flag = LevelManager.instance.LevelObjects.GetFlagInstance();
-        Vector3 posFlag = new Vector3(goal[0] * blockLength, goal[1] * blockLength, goal[2] * blockLength);
+        Vector3 posFlag;
+        posFlag.x = goal[0] * blockLength;
+        posFlag.y = goal[1] * blockLength;
+        posFlag.z = goal[2] * blockLength;
         flag.transform.position = posFlag;
         flag.transform.parent = gameObject.transform;
     }
@@ -38,7 +44,11 @@ public class MapRenderer : MonoBehaviour
     public GameObject RenderMainCharacter(in List<int> playerStart, in int playerOrientation)
     {
         GameObject mainCharacter = LevelManager.instance.LevelObjects.GetMainCharacterInstance();
-        Vector3 posNewChar = new Vector3(playerStart[0] * blockLength, playerStart[1] * blockLength, playerStart[2] * blockLength);
+        Vector3 posNewChar;
+        posNewChar.x = playerStart[0] * blockLength;
+        posNewChar.y = playerStart[1] * blockLength;
+        posNewChar.z = playerStart[2] * blockLength;
+
         mainCharacter.transform.Rotate(0, 90f * playerOrientation, 0);
         mainCharacter.transform.position = posNewChar;
         mainCharacter.transform.parent = gameObject.transform;

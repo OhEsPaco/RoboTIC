@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ButtonCounterScript : MonoBehaviour
 {
-
     private GameObject counterObject;
     private Counter counterScript;
+
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
-        
         counterObject = transform.Find("Counter").gameObject;
         counterScript = counterObject.GetComponent<Counter>();
     }
@@ -19,11 +16,4 @@ public class ButtonCounterScript : MonoBehaviour
     {
         return counterScript.SetNumber(number);
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
 }
