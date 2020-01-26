@@ -26,6 +26,7 @@ public abstract class Road : MonoBehaviour
     }
 
     public RoadType RoadType { get => roadType; }
+    public RoadIO[] InputsAndOutputs { get => inputsAndOutputs; }
 
     public List<RoadIO> Inputs()
     {
@@ -53,9 +54,36 @@ public abstract class Road : MonoBehaviour
     public List<RoadIO> ReturnByIOAndDirection(in InputOutput isIO, in PointingTo pointsTo)
     {
         List<RoadIO> thisIos = new List<RoadIO>();
-        foreach (RoadInput roadIo in inputsAndOutputs)
+        foreach (RoadIO roadIo in inputsAndOutputs)
         {
             if (roadIo.IsInputOrOutput() == isIO && roadIo.PointsTo == pointsTo)
+            {
+                thisIos.Add(roadIo);
+            }
+        }
+        return thisIos;
+    }
+
+    public List<RoadIO> ReturnByIOAndDirectionAndType(in InputOutput isIO, in PointingTo pointsTo, in IOType ioType)
+    {
+        List<RoadIO> thisIos = new List<RoadIO>();
+        foreach (RoadIO roadIo in inputsAndOutputs)
+        {
+            if (roadIo.IsInputOrOutput() == isIO && roadIo.PointsTo == pointsTo && roadIo.IoType == ioType)
+            {
+                thisIos.Add(roadIo);
+            }
+        }
+        return thisIos;
+    }
+
+
+    public List<RoadIO> ReturnByDirection(in PointingTo pointsTo)
+    {
+        List<RoadIO> thisIos = new List<RoadIO>();
+        foreach (RoadIO roadIo in inputsAndOutputs)
+        {
+            if (roadIo.PointsTo == pointsTo)
             {
                 thisIos.Add(roadIo);
             }

@@ -2,7 +2,7 @@
 {
     public enum RoadType { Undetermined, CurveIn, CurveOut, Double, HorizontalIn, HorizontalOut, Vertical, IfIn, IfOut, LoopIn, LoopOut };
 
-    public enum IOType { Generic, Top, Right, Bottom, No, Yes, If };
+    public enum IOType { Generic, Top, Right, Bottom, No, Yes, If, IfNo, IfYes };
 
     public enum InputOutput { Input, Output };
 

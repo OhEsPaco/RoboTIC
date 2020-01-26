@@ -6,13 +6,12 @@ public abstract class RoadIO : MonoBehaviour
 {
     [SerializeField] private IOType ioType = IOType.Generic;
 
-    public IOType IOType { get => ioType; }
-
     public PointingTo PointsTo { get => pointsTo; }
+    public IOType IoType { get => ioType; set => ioType = value; }
 
     [SerializeField] private PointingTo pointsTo = PointingTo.Forward;
 
-    private RoadIO connectedTo;
+    [SerializeField] private RoadIO connectedTo;
 
     private void OnDrawGizmos()
     {
@@ -51,7 +50,13 @@ public abstract class RoadIO : MonoBehaviour
         }
         else
         {
-            connectedTo = connectToThisIo;
+            if (connectedTo != connectToThisIo)
+            {
+                connectedTo = connectToThisIo;
+                connectToThisIo.ConnectTo(this);
+               
+            }
+          
             return true;
         }
     }

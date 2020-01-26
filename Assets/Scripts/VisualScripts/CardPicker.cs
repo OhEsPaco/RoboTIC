@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using static CardConstants;
 
 public class CardPicker : MonoBehaviour
 {
     //Rehacer esta clase con animaciones y esas cosas
+    [SerializeField] private TextMeshPro textMesh;
+
     private Cards selectedCard = Cards.NoCard;
 
     private bool isLocked = false;
@@ -20,8 +23,15 @@ public class CardPicker : MonoBehaviour
             {
                 selectedCard = Cards.NoCard;
             }
+
+            textMesh.text = selectedCard.ToString();
             InformOfCardChanged();
         }
+    }
+
+    private void Start()
+    {
+        textMesh.text = selectedCard.ToString();
     }
 
     private void InformOfCardChanged()

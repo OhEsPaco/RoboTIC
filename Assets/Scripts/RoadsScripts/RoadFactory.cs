@@ -17,26 +17,26 @@ public class RoadFactory : MonoBehaviour
         return Instantiate(reference, reference.transform.position, reference.transform.rotation);
     }
 
-    public GameObject GetGameObjectInstance(in RoadType id)
+    public Road GetRoadInstance(in RoadType id)
     {
         foreach (Road road in roads)
         {
             if (road.RoadType == id)
             {
                 GameObject reference = road.gameObject;
-                return InstantiateObject(reference);
+                return InstantiateObject(reference).GetComponent<Road>();
             }
         }
         return null;
     }
 
-    public GameObject GetVerticalConnectorWithButton(in Buttons button)
+    public Road GetVerticalConnectorWithButton(in Buttons button)
     {
-        GameObject road = GetGameObjectInstance(RoadType.Vertical);
+        Road road = GetRoadInstance(RoadType.Vertical);
         if (road != null)
         {
             int[] desiredButton = { (int)button };
-            road.GetComponent<Road>().ExecuteAction(Actions.SetButton, desiredButton);
+            road.ExecuteAction(Actions.SetButton, desiredButton);
         }
         return road;
     }
