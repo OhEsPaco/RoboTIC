@@ -20,7 +20,7 @@ public class RoadButton : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Pressed " + buttonIndex.ToString("g"));
-        manager.RoadLogic.AddInputFromButton(buttonIndex);
+        manager.RoadPlacementLogic.AddInputFromButton(buttonIndex);
         if (mesh != null)
         {
             if (anim.isPlaying)

@@ -46,7 +46,7 @@ public class LoopCounter : MonoBehaviour
         if (!isLocked)
         {
             actualNumber = SetNumber(actualNumber + 1);
-            LevelManager.instance.RoadLogic.InformOfLoopRepsChanged(GetParentRoad(), actualNumber);
+            LevelManager.instance.RoadPlacementLogic.InformOfLoopRepsChanged(GetParentRoad(), actualNumber);
         }
     }
 

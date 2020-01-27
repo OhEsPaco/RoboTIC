@@ -6,6 +6,9 @@ public class LoopIn : Road
     [SerializeField] private LoopCounter counter;
     [SerializeField] private GameObject obstacleYes;
     [SerializeField] private GameObject obstacleNo;
+    [SerializeField] private RoutePoint routePoint;
+
+    public RoutePoint RoutePoint { get => routePoint;  }
 
     public override void ExecuteAction(in Actions action, in int[] arguments)
     {

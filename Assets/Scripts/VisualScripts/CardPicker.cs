@@ -36,7 +36,7 @@ public class CardPicker : MonoBehaviour
 
     private void InformOfCardChanged()
     {
-        LevelManager.instance.RoadLogic.InformOfCardChanged(GetParentRoad(), selectedCard);
+        LevelManager.instance.RoadPlacementLogic.InformOfCardChanged(GetParentRoad(), selectedCard);
     }
 
     private Road GetParentRoad()

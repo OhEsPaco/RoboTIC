@@ -5,11 +5,11 @@ using static ButtonConstants;
 using static CardConstants;
 using static RoadConstants;
 
-public class RoadLogic : MonoBehaviour
+public class RoadPlacementLogic : MonoBehaviour
 {
     [SerializeField] private GameObject roadStartMarker;
     [SerializeField] private GameObject selectedOutputMarker;
-
+    [SerializeField] private GameObject navmeshExtension;
     private List<Buttons> buttonInputBuffer;
     private RoadIO selectedIO = null;
     private RoadIO pivotIO = null;
@@ -955,6 +955,96 @@ public class RoadLogic : MonoBehaviour
 
     private void DoPlay()
     {
+        List<RoadIO> ioList = GetUnconnectedIO(pivotIO);
+        if (ioList.Count != 2)
+        {
+            Debug.Log("Invalid road");
+            return;
+        }
+
+        RoadInput firstInput = null;
+        RoadOutput lastOutput = null;
+        foreach (RoadIO rio in ioList)
+        {
+            if (rio.IsInputOrOutput() == InputOutput.Input)
+            {
+                firstInput = (RoadInput)rio;
+            }
+            else
+            {
+                lastOutput = (RoadOutput)rio;
+            }
+        }
+
+        if (firstInput == null || lastOutput == null)
+        {
+            Debug.Log("Invalid road");
+            return;
+        }
+        if (AreConditionsNotSet(pivotIO))
+        {
+            Debug.Log("Some ifs have no condition card");
+            return;
+        }
+        GameObject player = LevelManager.instance.LevelObjects.GetMainCharacterInstance();
+        player.transform.position = new Vector3(firstInput.transform.position.x, firstInput.transform.position.y + 0.5f, firstInput.transform.position.z);
+        navmeshExtension.transform.position = firstInput.transform.position;
+        LevelManager.instance.RoadMovementLogic.StartMovement(firstInput, lastOutput, player, conditionDictionary, loopsDictionary);
+    }
+
+    private bool AreConditionsNotSet(RoadIO startPoint)
+    {
+        if (conditionDictionary.ContainsValue(Cards.NoCard))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private List<RoadIO> GetUnconnectedIO(RoadIO startPoint)
+    {
+        List<RoadIO> result = new List<RoadIO>();
+        if (startPoint != null)
+        {
+            List<Road> processedRoads = new List<Road>();
+
+            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
+
+            RoadIO[] tmpe = startPoint.GetParentRoad().InputsAndOutputs;
+
+            foreach (RoadIO rio in tmpe)
+            {
+                ioToProc.Push(rio);
+            }
+
+            while (ioToProc.Count > 0)
+            {
+                RoadIO toProc = ioToProc.Pop();
+
+                processedRoads.Add(toProc.GetParentRoad());
+                RoadIO connectedTo = toProc.ConnectedTo();
+                if (connectedTo == null)
+                {
+                    if (!result.Contains(toProc))
+                    {
+                        result.Add(toProc);
+                    }
+                }
+                else
+                {
+                    Road nextRoad = connectedTo.GetParentRoad();
+                    if (!processedRoads.Contains(nextRoad))
+                    {
+                        tmpe = nextRoad.InputsAndOutputs;
+                        foreach (RoadIO candidate in tmpe)
+                        {
+                            ioToProc.Push(candidate);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     private void DoRestart()
@@ -983,7 +1073,6 @@ public class RoadLogic : MonoBehaviour
 
     public void InformOfCardChanged(Road road, Cards newCard)
     {
-       
         if (conditionDictionary.ContainsKey(road))
         {
             Debug.Log("Changed to card " + newCard.ToString() + " on road " + road.RoadType.ToString());
@@ -998,6 +1087,5 @@ public class RoadLogic : MonoBehaviour
             Debug.Log("Changed to number " + newReps + " on road " + road.RoadType.ToString());
             loopsDictionary[road] = newReps;
         }
-       
     }
 }

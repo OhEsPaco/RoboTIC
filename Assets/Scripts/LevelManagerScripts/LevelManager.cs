@@ -12,8 +12,10 @@ public class LevelManager : MonoBehaviour
 
     //LOGIC
     [SerializeField] private Logic logic;
+    [SerializeField] private RoadMovementLogic roadMovementLogic;
+ 
 
-    [SerializeField] private RoadLogic roadLogic;
+    [SerializeField] private RoadPlacementLogic roadPlacementLogic;
 
     //PERSISTENCE
     [SerializeField] private JSonLoader jSonLoader;
@@ -45,5 +47,7 @@ public class LevelManager : MonoBehaviour
     public ActionRenderer ActionRenderer { get => actionRenderer; }
     public Logic Logic { get => logic; }
     public JSonLoader JSonLoader { get => jSonLoader; }
-    public RoadLogic RoadLogic { get => roadLogic; }
+    public RoadPlacementLogic RoadPlacementLogic { get => roadPlacementLogic; }
+    public RoadMovementLogic RoadMovementLogic { get => roadMovementLogic; }
+
 }

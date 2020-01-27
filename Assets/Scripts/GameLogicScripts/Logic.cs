@@ -369,6 +369,38 @@ public class Logic : MonoBehaviour
     /// <param name="y">The y<see cref="int"/></param>
     /// <param name="z">The z<see cref="int"/></param>
     /// <returns>The <see cref="List{int}"/></returns>
+
+    public bool IsWalkable()
+    {
+        List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2]);
+        //Bloque de enfrente y arriba
+
+        bool isTopEmpty = IsEmptyBlock(currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2], currentLevelData);
+
+        if (WalkableBlock(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData) && IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData)
+            && isTopEmpty)
+        {
+            return true;
+        }
+        else
+        {
+            bool found = false;
+            for (int y = isTopEmpty ? currentLevelData.playerPos[1] : currentLevelData.playerPos[1] - 1; y >= 0; y--)
+            {
+                if (IsEmptyBlock(intendedBlock[0], y, intendedBlock[2], currentLevelData) && WalkableBlock(intendedBlock[0], y - 1, intendedBlock[2], currentLevelData))
+                {
+                    return true;
+                }
+            }
+            if (!found)
+            {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
     private List<int> BlockToAdvanceTo(int playerOrientation, int x, int y, int z)
     {
         List<int> output = new List<int>();
