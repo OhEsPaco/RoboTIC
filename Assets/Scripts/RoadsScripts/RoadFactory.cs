@@ -5,7 +5,7 @@ using static RoadConstants;
 public class RoadFactory : MonoBehaviour
 {
     [SerializeField] private Road[] roads;
-
+    [SerializeField] private GameObject roadScaler;
     // Start is called before the first frame update
     private void Start()
     {
@@ -14,7 +14,10 @@ public class RoadFactory : MonoBehaviour
 
     private GameObject InstantiateObject(GameObject reference)
     {
-        return Instantiate(reference, reference.transform.position, reference.transform.rotation);
+        GameObject road= Instantiate(reference, reference.transform.position, reference.transform.rotation);
+        road.transform.parent = roadScaler.transform;
+        road.transform.localScale = roadScaler.transform.localScale;
+        return road;
     }
 
     public Road GetRoadInstance(in RoadType id)

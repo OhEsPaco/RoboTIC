@@ -11,6 +11,7 @@ public class RoadMovementLogic : MonoBehaviour
     private GameObject character;
     private bool keepExecuting = true;
     [SerializeField] private NavMeshSurface navMesh;
+    [SerializeField] private GameObject roadScaler;
     private Dictionary<Road, Cards> conditionDictionary;
     private Dictionary<Road, int> loopsDictionary;
 
@@ -19,6 +20,8 @@ public class RoadMovementLogic : MonoBehaviour
         this.start = start;
         this.finish = finish;
         this.character = character;
+        this.character.transform.parent = roadScaler.transform.parent;
+        this.character.transform.localScale = roadScaler.transform.localScale;
         this.conditionDictionary = conditionDictionary;
         this.loopsDictionary = loopsDictionary;
         navMesh.BuildNavMesh();

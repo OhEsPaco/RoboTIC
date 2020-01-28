@@ -489,6 +489,6 @@ public class Logic : MonoBehaviour
     /// <returns>The <see cref="string"/></returns>
     private string GetLevelPath()
     {
-        return "Assets/StoryLevels/test.json";
+        return "Assets/StoryLevels/evalLevel.json";
     }
 }
