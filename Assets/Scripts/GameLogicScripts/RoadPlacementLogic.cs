@@ -986,8 +986,9 @@ public class RoadPlacementLogic : MonoBehaviour
             Debug.Log("Some ifs have no condition card");
             return;
         }
-        GameObject player = LevelManager.instance.LevelObjects.GetMainCharacterInstance();
+        GameObject player = LevelManager.instance.LevelObjects.GetMiniCharacterInstance();
         player.transform.position = new Vector3(firstInput.transform.position.x, firstInput.transform.position.y + 0.5f, firstInput.transform.position.z);
+        selectedOutputMarker.SetActive(false);
         navmeshExtension.transform.position = firstInput.transform.position;
         LevelManager.instance.RoadMovementLogic.StartMovement(firstInput, lastOutput, player, conditionDictionary, loopsDictionary);
     }

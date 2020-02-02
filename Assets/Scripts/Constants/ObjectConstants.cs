@@ -16,6 +16,7 @@
         SpikesBlockActivated = 8,
 
         //Items 25-inf
-        PlankItem = 25
+        PlankItem = 25,
+        FanItem=26
     };
 }

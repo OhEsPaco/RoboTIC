@@ -15,7 +15,12 @@ public class RoadOutput : RoadIO
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Output trigger triggered.");
-        LevelManager.instance.RoadMovementLogic.FinishedAction(this);
+        if (Active)
+        {
+            Debug.Log("Output trigger triggered.");
+            LevelManager.instance.RoadMovementLogic.FinishedAction(this);
+            Active = false;
+        }
+
     }
 }

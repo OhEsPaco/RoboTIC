@@ -8,8 +8,11 @@ public class MapRenderer : MonoBehaviour
 
     public float BlockLength { get => blockLength; }
 
-    public void RenderMapAndItems(in List<int> mapAndItems, in List<int> levelSize)
+  
+
+    public GameObject[] RenderMapAndItems(in List<int> mapAndItems, in List<int> levelSize)
     {
+        GameObject[] objectReferences = new GameObject[levelSize[0]*levelSize[1]*levelSize[2]];
         for (int x = 0; x < levelSize[0]; x++)
         {
             for (int y = 0; y < levelSize[1]; y++)
@@ -19,6 +22,7 @@ public class MapRenderer : MonoBehaviour
                     ObjectType blockToSpawn = Get(mapAndItems, levelSize, x, y, z);
 
                     GameObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
+                    objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
                     Vector3 posNew;
                     posNew.x = x * blockLength;
                     posNew.y = y * blockLength;
@@ -28,8 +32,21 @@ public class MapRenderer : MonoBehaviour
                 }
             }
         }
+        return objectReferences;
     }
 
+    public void RenderConcreteBlock(GameObject[] objectReferences, List<int> levelSize, ObjectType blockToSpawn, int x, int y, int z)
+    {
+       
+        GameObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
+        objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
+        Vector3 posNew;
+        posNew.x = x * blockLength;
+        posNew.y = y * blockLength;
+        posNew.z = z * blockLength;
+        block.transform.position = posNew;
+        block.transform.parent = gameObject.transform;
+    }
     public void RenderScenery(in List<int> goal)
     {
         GameObject flag = LevelManager.instance.LevelObjects.GetFlagInstance();

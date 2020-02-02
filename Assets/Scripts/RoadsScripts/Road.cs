@@ -25,6 +25,21 @@ public abstract class Road : MonoBehaviour
         Array.Copy(outputs, 0, inputsAndOutputs, inputsAndOutputs.Length - outputs.Length, outputs.Length);
     }
 
+    public void SetThisOutputActive(RoadIO rio)
+    {
+        foreach (RoadIO thisIO in inputsAndOutputs)
+        {
+            if (thisIO == rio)
+            {
+                thisIO.Active = true;
+            }
+            else
+            {
+                thisIO.Active = false;
+            }
+        }
+    }
+
     public RoadType RoadType { get => roadType; }
     public RoadIO[] InputsAndOutputs { get => inputsAndOutputs; }
 
@@ -76,7 +91,6 @@ public abstract class Road : MonoBehaviour
         }
         return thisIos;
     }
-
 
     public List<RoadIO> ReturnByDirection(in PointingTo pointsTo)
     {

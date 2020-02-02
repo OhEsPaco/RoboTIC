@@ -3,18 +3,19 @@ using static ObjectConstants;
 
 public class LevelObjects : MonoBehaviour
 {
-    public GameObject NoBlock;
-    public GameObject WaterBlock;
-    public GameObject LavaBlock;
-    public GameObject SolidBlock;
-    public GameObject LiftBlock;
-    public GameObject SpikesBlock;
-    public GameObject IceBlock;
+    [SerializeField] private GameObject NoBlock;
+    [SerializeField] private GameObject WaterBlock;
+    [SerializeField] private GameObject LavaBlock;
+    [SerializeField] private GameObject SolidBlock;
+    [SerializeField] private GameObject LiftBlock;
+    [SerializeField] private GameObject SpikesBlock;
+    [SerializeField] private GameObject IceBlock;
 
-    public GameObject PlankItem;
-    public GameObject MainCharacter;
-    public GameObject Flag;
-
+    [SerializeField] private GameObject PlankItem;
+    [SerializeField] private GameObject MainCharacter;
+    [SerializeField] private GameObject MiniCharacter;
+    [SerializeField] private GameObject Flag;
+    [SerializeField] private GameObject Fan;
     public GameObject GetGameObjectInstance(in ObjectType id)
     {
         GameObject reference = MegaSwitch(id);
@@ -48,7 +49,8 @@ public class LevelObjects : MonoBehaviour
 
             case ObjectType.PlankItem:
                 return PlankItem;
-
+            case ObjectType.FanItem:
+                return Fan;
             default:
                 return NoBlock;
         }
@@ -62,6 +64,11 @@ public class LevelObjects : MonoBehaviour
     public GameObject GetMainCharacterInstance()
     {
         return InstantiateObject(MainCharacter);
+    }
+
+    public GameObject GetMiniCharacterInstance()
+    {
+        return InstantiateObject(MiniCharacter);
     }
 
     public GameObject GetFlagInstance()

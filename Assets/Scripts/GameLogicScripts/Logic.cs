@@ -24,6 +24,8 @@ public class Logic : MonoBehaviour
     /// </summary>
     private GameObject mainCharacterGameObject;
 
+    private GameObject[] objectReferences;
+
     /// <summary>
     /// Defines the buttonInputList
     /// </summary>
@@ -39,12 +41,18 @@ public class Logic : MonoBehaviour
     /// </summary>
     public LevelData CurrentLevelData { get => currentLevelData; }
 
+    private Stack<GameObject> inventory = new Stack<GameObject>();
+
     /// <summary>
     /// Defines the maxFallHeightOfCharactersInBlocks
     /// </summary>
     public int maxFallHeightOfCharactersInBlocks = 1;
 
     private Dictionary<Buttons, Action> buttonActionsDictionary;
+
+    private Animator mainCharacterAnimator;
+
+    private bool haltExecution = false;
 
     // Start is called before the first frame update
     /// <summary>
@@ -70,6 +78,25 @@ public class Logic : MonoBehaviour
         Debug.Log(currentLevelData.levelName);
     }
 
+    private bool CheckWinState()
+    {
+        if (currentLevelData.goal[0] == currentLevelData.playerPos[0] + 1 && currentLevelData.goal[1] == currentLevelData.playerPos[1] + 1 && currentLevelData.goal[2] == currentLevelData.playerPos[2])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void YouWin()
+    {
+        mainCharacterAnimator.SetTrigger("HacerSaludo");
+        haltExecution = true;
+        Debug.Log("A winner is you");
+    }
+
     /// <summary>
     /// The Awake
     /// </summary>
@@ -85,6 +112,14 @@ public class Logic : MonoBehaviour
     internal void Update()
     {
         ExecuteNextAvailableInput();
+
+        if (!haltExecution)
+        {
+            if (CheckWinState())
+            {
+                YouWin();
+            }
+        }
     }
 
     /// <summary>
@@ -92,9 +127,10 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void LoadVisual()
     {
-        levelManagerReference.MapRenderer.RenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
+        objectReferences = levelManagerReference.MapRenderer.RenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
         levelManagerReference.MapRenderer.RenderScenery(currentLevelData.goal);
         mainCharacterGameObject = levelManagerReference.MapRenderer.RenderMainCharacter(currentLevelData.playerPos, currentLevelData.playerOrientation);
+        mainCharacterAnimator = mainCharacterGameObject.GetComponent<MainCharacterController>().GetAnimator();
         levelManagerReference.LevelButtons.SetNumberOfAvailableInstructions(currentLevelData);
     }
 
@@ -122,7 +158,10 @@ public class Logic : MonoBehaviour
     /// <param name="buttonIndex">The buttonIndex<see cref="int"/></param>
     public void AddInputFromButton(Buttons buttonIndex)
     {
-        buttonInputBuffer.Add(buttonIndex);
+        if (!haltExecution)
+        {
+            buttonInputBuffer.Add(buttonIndex);
+        }
     }
 
     /// <summary>
@@ -130,6 +169,44 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoAction()
     {
+        GameObject planks = inventory.Peek();
+        if (planks != null)
+        {
+            List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
+            if (GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.SpikesBlock)
+            {
+                inventory.Pop();
+                SetBlockType(currentLevelData, ObjectType.SolidBlock, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+                planks.transform.parent = LevelManager.instance.MapRenderer.transform;
+
+                planks.transform.localScale = new Vector3(1, 1, 1);
+                Vector3 posNew;
+                posNew.x = intendedBlock[0] * 1;
+                posNew.y = intendedBlock[1] * 1;
+                posNew.z = intendedBlock[2] * 1;
+                planks.transform.position = posNew;
+                planks.GetComponent<Animator>().SetTrigger("Colocar");
+                mainCharacterAnimator.SetTrigger("Usar");
+            }
+            else if (GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.WaterBlock)
+            {
+                inventory.Pop();
+                SetBlockType(currentLevelData, ObjectType.IceBlock, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+                GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]).SetActive(false);
+                LevelManager.instance.MapRenderer.RenderConcreteBlock(objectReferences, currentLevelData.levelSize, ObjectType.IceBlock, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+
+                planks.transform.parent = LevelManager.instance.MapRenderer.transform;
+
+                planks.transform.localScale = new Vector3(1, 1, 1);
+                Vector3 posNew;
+                posNew.x = intendedBlock[0] * 1;
+                posNew.y = intendedBlock[1] * 1;
+                posNew.z = intendedBlock[2] * 1;
+                planks.transform.position = posNew;
+                planks.GetComponent<Animator>().SetTrigger("Usar");
+                mainCharacterAnimator.SetTrigger("Usar");
+            }
+        }
     }
 
     /// <summary>
@@ -146,6 +223,7 @@ public class Logic : MonoBehaviour
     {
         //blockC
         List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2]);
+
         //Bloque de enfrente y arriba
 
         //blockA blockB 3
@@ -155,8 +233,7 @@ public class Logic : MonoBehaviour
         int fallDamage = 0;
         bool isTopEmpty = IsEmptyBlock(currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2], currentLevelData);
 
-        if (WalkableBlock(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData) && IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData)
-            && isTopEmpty)
+        if (WalkableBlock(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData) && isTopEmpty && (IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData) || TakeItem(intendedBlock)))
         {
             levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock, currentLevelData.playerOrientation);
             currentLevelData.playerPos = intendedBlock;
@@ -223,13 +300,45 @@ public class Logic : MonoBehaviour
             else
             {
                 //Collision
-                Debug.Log("You are colliding against a block");
+                if (TakeItem(intendedBlock))
+                {
+                    levelManagerReference.ActionRenderer.DoMove(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock);
+                    currentLevelData.playerPos = intendedBlock;
+                }
+                else
+                {
+                    Debug.Log("You are colliding against a block");
+                }
             }
         }
         else
         {
             DoJump();
         }
+    }
+
+    private bool TakeItem(List<int> intendedBlock)
+    {
+        if ((int)GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1], intendedBlock[2]) >= 25)
+        {
+            SetBlockType(currentLevelData, ObjectType.NoBlock, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
+            GameObject thisItem = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
+
+            if (thisItem != null)
+            {
+                inventory.Push(thisItem);
+                // thisItem.SetActive(false);
+                thisItem.transform.parent = mainCharacterGameObject.transform;
+
+                thisItem.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+                //thisItem.transform.position = mainCharacterGameObject.GetComponent<AnimatedObject>().InventoryMarker.transform.position;
+                Vector3 invMarker = mainCharacterGameObject.GetComponent<MainCharacterController>().InventoryMarker.transform.position;
+                thisItem.transform.position = new Vector3(invMarker.x, invMarker.y + 0.45f * (inventory.Count - 1), invMarker.z);
+
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>
@@ -285,6 +394,7 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void YouLose()
     {
+        haltExecution = true;
         Debug.Log("You lose :(");
     }
 
@@ -302,6 +412,14 @@ public class Logic : MonoBehaviour
         if (y < 0 || y >= data.levelSize[1]) return ObjectType.NoBlock;
         if (z < 0 || z >= data.levelSize[2]) return ObjectType.NoBlock;
         return (ObjectType)data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
+    }
+
+    private GameObject GetBlock(LevelData data, GameObject[] objects, int x, int y, int z)
+    {
+        if (x < 0 || x >= data.levelSize[0]) return null;
+        if (y < 0 || y >= data.levelSize[1]) return null;
+        if (z < 0 || z >= data.levelSize[2]) return null;
+        return objects[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
     }
 
     /// <summary>

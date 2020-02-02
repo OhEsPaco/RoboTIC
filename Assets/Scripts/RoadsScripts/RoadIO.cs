@@ -8,10 +8,15 @@ public abstract class RoadIO : MonoBehaviour
 
     public PointingTo PointsTo { get => pointsTo; }
     public IOType IoType { get => ioType; set => ioType = value; }
+    public bool Active { get => active; set => active = value; }
 
     [SerializeField] private PointingTo pointsTo = PointingTo.Forward;
 
     [SerializeField] private RoadIO connectedTo;
+
+    private bool active = false;
+
+    
 
     private void OnDrawGizmos()
     {

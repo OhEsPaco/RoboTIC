@@ -59,7 +59,7 @@ public class RoadMovementLogic : MonoBehaviour
     private void ProccessNextAction(RoadInput thisInput)
     {
         Road nextRoad = thisInput.GetParentRoad();
-
+        RoadIO nextIO = null;
         switch (nextRoad.RoadType)
         {
             case RoadConstants.RoadType.Undetermined:
@@ -69,18 +69,18 @@ public class RoadMovementLogic : MonoBehaviour
             case RoadConstants.RoadType.Double:
                 if (thisInput.IoType == IOType.No)
                 {
-                    GoToPos(nextRoad.ReturnByIOAndDirection(InputOutput.Output, PointingTo.Forward)[0].transform.position);
+                    nextIO = nextRoad.ReturnByIOAndDirection(InputOutput.Output, PointingTo.Forward)[0];
                 }
 
                 if (thisInput.IoType == IOType.Generic)
                 {
-                    GoToPos(nextRoad.ReturnByIOAndDirection(InputOutput.Output, PointingTo.Back)[0].transform.position);
+                    nextIO = nextRoad.ReturnByIOAndDirection(InputOutput.Output, PointingTo.Back)[0];
                 }
 
                 break;
 
             case RoadConstants.RoadType.Vertical:
-                GoToPos(nextRoad.Outputs()[0].transform.position);
+                nextIO = nextRoad.Outputs()[0];
                 break;
 
             case RoadConstants.RoadType.IfIn:
@@ -92,13 +92,13 @@ public class RoadMovementLogic : MonoBehaviour
                         Debug.Log("Condition is true");
 
                         ExecuteActionNoArguments(nextRoad, Actions.GoToYes);
-                        GoToPos(nextRoad.ReturnByIOAndDirectionAndType(InputOutput.Output, PointingTo.Forward, IOType.Yes)[0].transform.position);
+                        nextIO = nextRoad.ReturnByIOAndDirectionAndType(InputOutput.Output, PointingTo.Forward, IOType.Yes)[0];
                     }
                     else
                     {
                         Debug.Log("Condition is false");
                         ExecuteActionNoArguments(nextRoad, Actions.GoToNo);
-                        GoToPos(nextRoad.ReturnByIOAndDirectionAndType(InputOutput.Output, PointingTo.Forward, IOType.No)[0].transform.position);
+                        nextIO = nextRoad.ReturnByIOAndDirectionAndType(InputOutput.Output, PointingTo.Forward, IOType.No)[0];
                     }
                 }
                 else
@@ -109,7 +109,7 @@ public class RoadMovementLogic : MonoBehaviour
                 break;
 
             case RoadConstants.RoadType.IfOut:
-                GoToPos(nextRoad.Outputs()[0].transform.position);
+                nextIO = nextRoad.Outputs()[0];
                 break;
 
             case RoadConstants.RoadType.LoopIn:
@@ -121,13 +121,14 @@ public class RoadMovementLogic : MonoBehaviour
                         loopsDictionary[nextRoad]--;
                         SetLoopReps(thisInput, loopsDictionary[nextRoad]);
                         ExecuteActionNoArguments(nextRoad, Actions.GoToYes);
+                        nextRoad.SetThisOutputActive(nextRoad.ReturnByIOAndDirectionAndType(InputOutput.Output, PointingTo.Forward, IOType.Yes)[0]);
                         GoToPos(loopIn.RoutePoint.transform.position);
                     }
                     else
                     {
                         SetLoopReps(thisInput, loopsDictionary[nextRoad]);
                         ExecuteActionNoArguments(nextRoad, Actions.GoToNo);
-                        GoToPos(nextRoad.ReturnByIOAndDirectionAndType(InputOutput.Output, PointingTo.Forward, IOType.No)[0].transform.position);
+                        nextIO = nextRoad.ReturnByIOAndDirectionAndType(InputOutput.Output, PointingTo.Forward, IOType.No)[0];
                     }
                 }
                 else
@@ -142,15 +143,21 @@ public class RoadMovementLogic : MonoBehaviour
 
                 if (thisInput.IoType == IOType.No)
                 {
-                    GoToPos(nextRoad.ReturnByIOAndDirection(InputOutput.Output, PointingTo.Forward)[0].transform.position);
+                    nextIO = nextRoad.ReturnByIOAndDirection(InputOutput.Output, PointingTo.Forward)[0];
                 }
 
                 if (thisInput.IoType == IOType.Yes)
                 {
+                    nextRoad.SetThisOutputActive(nextRoad.ReturnByIOAndDirection(InputOutput.Output, PointingTo.Back)[0]);
                     GoToPos(roadLoopOut.RoutePoint.transform.position);
                 }
 
                 break;
+        }
+        if (nextIO != null)
+        {
+            nextRoad.SetThisOutputActive(nextIO);
+            GoToPos(nextIO.transform.position);
         }
     }
 
