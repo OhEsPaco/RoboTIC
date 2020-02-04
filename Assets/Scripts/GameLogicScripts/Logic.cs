@@ -41,7 +41,7 @@ public class Logic : MonoBehaviour
     /// </summary>
     public LevelData CurrentLevelData { get => currentLevelData; }
 
-    private Stack<GameObject> inventory = new Stack<GameObject>();
+    private Stack<Item> inventory = new Stack<Item>();
 
     /// <summary>
     /// Defines the maxFallHeightOfCharactersInBlocks
@@ -169,44 +169,51 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoAction()
     {
-        GameObject planks = inventory.Peek();
-        if (planks != null)
+
+        if (inventory.Count > 0)
         {
-            List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
-            if (GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.SpikesBlock)
+            Item item = inventory.Peek();
+            if (item != null)
             {
-                inventory.Pop();
-                SetBlockType(currentLevelData, ObjectType.SolidBlock, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
-                planks.transform.parent = LevelManager.instance.MapRenderer.transform;
+                List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
+                bool metConditions = false;
+                ObjectType convertBlockTo=ObjectType.SolidBlock;
+                ObjectType blockToSpawn = ObjectType.SolidBlock;
+                switch (item.ObjectType)
+                {
+                    case ObjectType.PlankItem:
+                        metConditions = GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.SpikesBlock;
+                        convertBlockTo = ObjectType.SpikesBlockActivated;
+                        blockToSpawn = ObjectType.SpikesBlock;
+                        break;
+                    case ObjectType.FanItem:
+                        metConditions = GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.WaterBlock;
+                        convertBlockTo = ObjectType.IceBlock;
+                        blockToSpawn = ObjectType.IceBlock;
+                        break;
+                }
+                if (metConditions)
+                {
+                    inventory.Pop();
+                    SetBlockType(currentLevelData, convertBlockTo, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+                    GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]).SetActive(false);
+                    LevelManager.instance.MapRenderer.RenderConcreteBlock(objectReferences, currentLevelData.levelSize, blockToSpawn, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
 
-                planks.transform.localScale = new Vector3(1, 1, 1);
-                Vector3 posNew;
-                posNew.x = intendedBlock[0] * 1;
-                posNew.y = intendedBlock[1] * 1;
-                posNew.z = intendedBlock[2] * 1;
-                planks.transform.position = posNew;
-                planks.GetComponent<Animator>().SetTrigger("Colocar");
-                mainCharacterAnimator.SetTrigger("Usar");
-            }
-            else if (GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.WaterBlock)
-            {
-                inventory.Pop();
-                SetBlockType(currentLevelData, ObjectType.IceBlock, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
-                GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]).SetActive(false);
-                LevelManager.instance.MapRenderer.RenderConcreteBlock(objectReferences, currentLevelData.levelSize, ObjectType.IceBlock, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+                    item.transform.parent = LevelManager.instance.MapRenderer.transform;
 
-                planks.transform.parent = LevelManager.instance.MapRenderer.transform;
+                    item.transform.localScale = new Vector3(1, 1, 1);
+                    Vector3 posNew;
+                    posNew.x = intendedBlock[0] * 1;
+                    posNew.y = intendedBlock[1] * 1;
+                    posNew.z = intendedBlock[2] * 1;
+                    item.transform.position = posNew;
+                    item.GetComponent<Animator>().SetTrigger("Usar");
+                    mainCharacterAnimator.SetTrigger("Usar");
+                }
 
-                planks.transform.localScale = new Vector3(1, 1, 1);
-                Vector3 posNew;
-                posNew.x = intendedBlock[0] * 1;
-                posNew.y = intendedBlock[1] * 1;
-                posNew.z = intendedBlock[2] * 1;
-                planks.transform.position = posNew;
-                planks.GetComponent<Animator>().SetTrigger("Usar");
-                mainCharacterAnimator.SetTrigger("Usar");
             }
         }
+
     }
 
     /// <summary>
@@ -214,7 +221,7 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoCondition()
     {
-    }
+   }
 
     /// <summary>
     /// The DoJump
@@ -322,7 +329,7 @@ public class Logic : MonoBehaviour
         if ((int)GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1], intendedBlock[2]) >= 25)
         {
             SetBlockType(currentLevelData, ObjectType.NoBlock, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
-            GameObject thisItem = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
+            Item thisItem = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]).GetComponent<Item>();
 
             if (thisItem != null)
             {
