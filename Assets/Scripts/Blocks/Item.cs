@@ -15,7 +15,7 @@ public class Item : LevelObject
 
     public void Use()
     {
-        SetTrigger(_Animator, "Use");
+        SetAnimationTrigger("Use");
     }
 
     public void Pick()
@@ -28,10 +28,5 @@ public class Item : LevelObject
 
     public override void Place()
     {
-    }
-
-    public override void Rebind()
-    {
-        RebindAnimator(_Animator);
     }
 }

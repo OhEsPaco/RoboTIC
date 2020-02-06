@@ -4,7 +4,7 @@ namespace UnityTemplateProjects
 {
     public class SimpleCameraController : MonoBehaviour
     {
-        class CameraState
+        private class CameraState
         {
             public float yaw;
             public float pitch;
@@ -37,7 +37,7 @@ namespace UnityTemplateProjects
                 yaw = Mathf.Lerp(yaw, target.yaw, rotationLerpPct);
                 pitch = Mathf.Lerp(pitch, target.pitch, rotationLerpPct);
                 roll = Mathf.Lerp(roll, target.roll, rotationLerpPct);
-                
+
                 x = Mathf.Lerp(x, target.x, positionLerpPct);
                 y = Mathf.Lerp(y, target.y, positionLerpPct);
                 z = Mathf.Lerp(z, target.z, positionLerpPct);
@@ -49,9 +49,9 @@ namespace UnityTemplateProjects
                 t.position = new Vector3(x, y, z);
             }
         }
-        
-        CameraState m_TargetCameraState = new CameraState();
-        CameraState m_InterpolatingCameraState = new CameraState();
+
+        private CameraState m_TargetCameraState = new CameraState();
+        private CameraState m_InterpolatingCameraState = new CameraState();
 
         [Header("Movement Settings")]
         [Tooltip("Exponential boost factor on translation, controllable by mouse wheel.")]
@@ -70,13 +70,13 @@ namespace UnityTemplateProjects
         [Tooltip("Whether or not to invert our Y axis for mouse input to rotation.")]
         public bool invertY = false;
 
-        void OnEnable()
+        private void OnEnable()
         {
             m_TargetCameraState.SetFromTransform(transform);
             m_InterpolatingCameraState.SetFromTransform(transform);
         }
 
-        Vector3 GetInputTranslationDirection()
+        private Vector3 GetInputTranslationDirection()
         {
             Vector3 direction = new Vector3();
             if (Input.GetKey(KeyCode.W))
@@ -105,16 +105,16 @@ namespace UnityTemplateProjects
             }
             return direction;
         }
-        
-        void Update()
+
+        private void Update()
         {
-            // Exit Sample  
+            // Exit Sample
             if (Input.GetKey(KeyCode.Escape))
             {
                 Application.Quit();
-				#if UNITY_EDITOR
-				UnityEditor.EditorApplication.isPlaying = false; 
-				#endif
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#endif
             }
 
             // Hide and lock cursor when right mouse button pressed
@@ -134,13 +134,13 @@ namespace UnityTemplateProjects
             if (Input.GetMouseButton(1))
             {
                 var mouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y") * (invertY ? 1 : -1));
-                
+
                 var mouseSensitivityFactor = mouseSensitivityCurve.Evaluate(mouseMovement.magnitude);
 
                 m_TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
                 m_TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
             }
-            
+
             // Translation
             var translation = GetInputTranslationDirection() * Time.deltaTime;
 
@@ -149,7 +149,7 @@ namespace UnityTemplateProjects
             {
                 translation *= 10.0f;
             }
-            
+
             // Modify movement by a boost factor (defined in Inspector and modified in play mode through the mouse scroll wheel)
             boost += Input.mouseScrollDelta.y * 0.2f;
             translation *= Mathf.Pow(2.0f, boost);
@@ -164,6 +164,44 @@ namespace UnityTemplateProjects
 
             m_InterpolatingCameraState.UpdateTransform(transform);
         }
-    }
 
+        [SerializeField] private Vector3 bumperRayOffset; // allows offset of the bumper ray from target origin
+        [SerializeField] private float bumperDistanceCheck = 2.5f; // length of bumper ray
+        [SerializeField] private float bumperCameraHeight = 1.0f; // adjust camera height while bumping
+        [SerializeField] private bool smoothRotation = true;
+        [SerializeField] private float damping = 5.0f;
+        [SerializeField] private Vector3 targetLookAtOffset; // allows offsetting of camera lookAt, very useful for low bumper heights
+        [SerializeField] private float rotationDamping = 10.0f;
+
+        private void FixedUpdate()
+        {
+            Vector3 wantedPosition = transform.position;
+
+            // check to see if there is anything behind the target
+            RaycastHit hit;
+            Vector3 back = transform.TransformDirection(-1 * Vector3.forward);
+
+            // cast the bumper ray out from rear and check to see if there is anything behind
+            if (Physics.Raycast(transform.TransformPoint(bumperRayOffset), back, out hit, bumperDistanceCheck)
+                && hit.transform != transform) // ignore ray-casts that hit the user. DR
+            {
+                // clamp wanted position to hit position
+                wantedPosition.x = hit.point.x;
+                wantedPosition.z = hit.point.z;
+                wantedPosition.y = Mathf.Lerp(hit.point.y + bumperCameraHeight, wantedPosition.y, Time.deltaTime * damping);
+            }
+
+            transform.position = Vector3.Lerp(transform.position, wantedPosition, Time.deltaTime * damping);
+
+            Vector3 lookPosition = transform.TransformPoint(targetLookAtOffset);
+
+            if (smoothRotation)
+            {
+                Quaternion wantedRotation = Quaternion.LookRotation(lookPosition - transform.position, transform.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);
+            }
+            else
+                transform.rotation = Quaternion.LookRotation(lookPosition - transform.position, transform.up);
+        }
+    }
 }

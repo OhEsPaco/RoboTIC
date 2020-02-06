@@ -130,7 +130,7 @@ public class Logic : MonoBehaviour
         objectReferences = levelManagerReference.MapRenderer.RenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
         levelManagerReference.MapRenderer.RenderScenery(currentLevelData.goal);
         mainCharacterGameObject = levelManagerReference.MapRenderer.RenderMainCharacter(currentLevelData.playerPos, currentLevelData.playerOrientation);
-        mainCharacterAnimator = mainCharacterGameObject.GetComponent<MainCharacterController>().GetAnimator();
+       // mainCharacterAnimator = mainCharacterGameObject.GetComponent<MainCharacterController>().GetAnimator();
         levelManagerReference.LevelButtons.SetNumberOfAvailableInstructions(currentLevelData);
     }
 
@@ -339,8 +339,8 @@ public class Logic : MonoBehaviour
 
                 thisItem.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 //thisItem.transform.position = mainCharacterGameObject.GetComponent<AnimatedObject>().InventoryMarker.transform.position;
-                Vector3 invMarker = mainCharacterGameObject.GetComponent<MainCharacterController>().InventoryMarker.transform.position;
-                thisItem.transform.position = new Vector3(invMarker.x, invMarker.y + 0.45f * (inventory.Count - 1), invMarker.z);
+               // Vector3 invMarker = mainCharacterGameObject.GetComponent<MainCharacterController>().InventoryMarker.transform.position;
+                //thisItem.transform.position = new Vector3(invMarker.x, invMarker.y + 0.45f * (inventory.Count - 1), invMarker.z);
 
                 return true;
             }

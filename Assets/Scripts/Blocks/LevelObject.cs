@@ -12,16 +12,15 @@ public abstract class LevelObject : MonoBehaviour
         SolidBlock = 3,
         LiftBlock = 4,
         SpikesBlock = 5,
-        IceBlock = 6,
-        LiftBlockActivated = 7,
-        SpikesBlockActivated = 8
+        IceBlock = 6
     };
 
     public enum Items
     {
         PlankItem = 25,
         FanItem = 26,
-        FlagItem=27
+        FlagItem = 27,
+        ActivatorItem = 28
     }
 
     public enum Effects
@@ -32,14 +31,6 @@ public abstract class LevelObject : MonoBehaviour
         Activate
     };
 
-    public enum BlockProperties
-    {
-        Immaterial,
-        Walkable,
-        Dangerous,
-        Icy
-    }
-
     private Animator animator;
 
     public Animator _Animator { get => animator; }
@@ -48,9 +39,7 @@ public abstract class LevelObject : MonoBehaviour
 
     public abstract void Destroy();
 
-    public abstract void Rebind();
-
-    protected void RebindAnimator(Animator animator)
+    protected void RebindAnimator()
     {
         if (animator != null)
         {
@@ -58,7 +47,7 @@ public abstract class LevelObject : MonoBehaviour
         }
     }
 
-    protected void SetTrigger(Animator animator, in string trigger)
+    public void SetAnimationTrigger(in string trigger)
     {
         if (animator != null)
         {

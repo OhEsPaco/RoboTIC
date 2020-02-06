@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Block : LevelObject
@@ -7,23 +8,64 @@ public class Block : LevelObject
 
     public Blocks BlockType { get => blockType; }
 
+    public enum BlockActions
+    {
+        Use, Destroy, Place, Activate, Rebind
+    }
+
+    public enum BlockProperties
+    {
+        Immaterial,
+        Walkable,
+        Dangerous,
+        Icy
+    }
+
     public override string ToString { get => blockType.ToString() + " block"; }
 
     [System.Serializable]
     public class EffectReaction
     {
+        //Si hay 0 compatible items se activara con cualquiera
+        public Items[] compatibleItems = new Items[0];
+
         public Effects effect;
+        public bool replaceBlock = false;
         public Blocks block;
-        //Posibilidad de usar metodo
-        //Y de cambiar propiedades
+        public BlockActions[] actionsToExecute = new BlockActions[0];
+        public BlockProperties[] newProperties = new BlockProperties[0];
+        public string[] animationTriggers = new string[0];
     }
 
-    [SerializeField] private EffectReaction effectReaction;
     [SerializeField] private BlockProperties[] blockProperties = new BlockProperties[0];
+    [SerializeField] private EffectReaction[] effectReaction = new EffectReaction[0];
+    private Dictionary<BlockActions, Action> actionsDictionary;
+
+    private void Awake()
+    {
+        actionsDictionary = new Dictionary<BlockActions, Action>();
+        actionsDictionary.Add(BlockActions.Use, Use);
+        actionsDictionary.Add(BlockActions.Destroy, Destroy);
+        actionsDictionary.Add(BlockActions.Place, Place);
+        actionsDictionary.Add(BlockActions.Activate, Activate);
+        actionsDictionary.Add(BlockActions.Rebind, RebindAnimator);
+    }
+
+    public void ExecuteAction(BlockActions action)
+    {
+        if (actionsDictionary.ContainsKey(action))
+        {
+            actionsDictionary[action]();
+        }
+        else
+        {
+            Debug.LogWarning("Unbinded BlockAction: " + action.ToString());
+        }
+    }
 
     public void Use()
     {
-        SetTrigger(_Animator, "Use");
+        SetAnimationTrigger("Use");
     }
 
     public override void Destroy()
@@ -34,8 +76,7 @@ public class Block : LevelObject
     {
     }
 
-    public override void Rebind()
+    public void Activate()
     {
-        RebindAnimator(_Animator);
     }
 }
