@@ -175,7 +175,7 @@ public class Logic : MonoBehaviour
             Item item = inventory.Peek();
             if (item != null)
             {
-                List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
+              /*  List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
                 bool metConditions = false;
                 ObjectType convertBlockTo=ObjectType.SolidBlock;
                 ObjectType blockToSpawn = ObjectType.SolidBlock;
@@ -209,7 +209,7 @@ public class Logic : MonoBehaviour
                     item.transform.position = posNew;
                     item.GetComponent<Animator>().SetTrigger("Usar");
                     mainCharacterAnimator.SetTrigger("Usar");
-                }
+                }*/
 
             }
         }
