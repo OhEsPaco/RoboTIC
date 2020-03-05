@@ -413,7 +413,7 @@ Camera:
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_GateFitMode: 2
-  m_FocalLength: 50
+  m_FocalLength: 35.9685
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -422,7 +422,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 59.5
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -494,13 +494,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   rotationLerpTime: 0.01
   invertY: 0
-  bumperRayOffset: {x: 0, y: 0, z: 0}
-  bumperDistanceCheck: 2.5
-  bumperCameraHeight: 1
-  smoothRotation: 1
-  damping: 5
-  targetLookAtOffset: {x: 0, y: 0, z: 0}
-  rotationDamping: 10
 --- !u!1 &54646847
 GameObject:
   m_ObjectHideFlags: 0
