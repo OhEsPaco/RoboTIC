@@ -17,6 +17,7 @@ public class RoadMovementLogic : MonoBehaviour
 
     public void StartMovement(RoadInput start, RoadOutput finish, GameObject character, Dictionary<Road, Cards> conditionDictionary, Dictionary<Road, int> loopsDictionary)
     {
+        this.keepExecuting = true;
         this.start = start;
         this.finish = finish;
         this.character = character;
@@ -28,6 +29,10 @@ public class RoadMovementLogic : MonoBehaviour
         ProccessNextAction(start);
     }
 
+    public void CancelMovement()
+    {
+        keepExecuting = false;
+    }
     private void GoToPos(Vector3 position)
     {
         character.GetComponent<NavMeshAgent>().SetDestination(position);
