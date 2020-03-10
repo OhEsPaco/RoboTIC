@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static Block;
 using static ButtonConstants;
 using static ObjectConstants;
 
@@ -24,7 +25,7 @@ public class Logic : MonoBehaviour
     /// </summary>
     private GameObject mainCharacterGameObject;
 
-    private GameObject[] objectReferences;
+    private LevelObject[] objectReferences;
 
     /// <summary>
     /// Defines the buttonInputList
@@ -130,7 +131,7 @@ public class Logic : MonoBehaviour
         objectReferences = levelManagerReference.MapRenderer.RenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
         levelManagerReference.MapRenderer.RenderScenery(currentLevelData.goal);
         mainCharacterGameObject = levelManagerReference.MapRenderer.RenderMainCharacter(currentLevelData.playerPos, currentLevelData.playerOrientation);
-       // mainCharacterAnimator = mainCharacterGameObject.GetComponent<MainCharacterController>().GetAnimator();
+        // mainCharacterAnimator = mainCharacterGameObject.GetComponent<MainCharacterController>().GetAnimator();
         levelManagerReference.LevelButtons.SetNumberOfAvailableInstructions(currentLevelData);
     }
 
@@ -169,51 +170,54 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoAction()
     {
-
         if (inventory.Count > 0)
         {
             Item item = inventory.Peek();
             if (item != null)
             {
-              /*  List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
-                bool metConditions = false;
-                ObjectType convertBlockTo=ObjectType.SolidBlock;
-                ObjectType blockToSpawn = ObjectType.SolidBlock;
-                switch (item.ObjectType)
+                List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
+                LevelObject blockLevelObject = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
+                if (blockLevelObject.GetType() == typeof(Block))
                 {
-                    case ObjectType.PlankItem:
-                        metConditions = GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.SpikesBlock;
-                        convertBlockTo = ObjectType.SpikesBlockActivated;
-                        blockToSpawn = ObjectType.SpikesBlock;
-                        break;
-                    case ObjectType.FanItem:
-                        metConditions = GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.WaterBlock;
-                        convertBlockTo = ObjectType.IceBlock;
-                        blockToSpawn = ObjectType.IceBlock;
-                        break;
                 }
-                if (metConditions)
-                {
-                    inventory.Pop();
-                    SetBlockType(currentLevelData, convertBlockTo, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
-                    GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]).SetActive(false);
-                    LevelManager.instance.MapRenderer.RenderConcreteBlock(objectReferences, currentLevelData.levelSize, blockToSpawn, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+                /*  List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
+                  bool metConditions = false;
+                  ObjectType convertBlockTo=ObjectType.SolidBlock;
+                  ObjectType blockToSpawn = ObjectType.SolidBlock;
+                  switch (item.ObjectType)
+                  {
+                      case ObjectType.PlankItem:
+                          metConditions = GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.SpikesBlock;
+                          convertBlockTo = ObjectType.SpikesBlockActivated;
+                          blockToSpawn = ObjectType.SpikesBlock;
+                          break;
 
-                    item.transform.parent = LevelManager.instance.MapRenderer.transform;
+                      case ObjectType.FanItem:
+                          metConditions = GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.WaterBlock;
+                          convertBlockTo = ObjectType.IceBlock;
+                          blockToSpawn = ObjectType.IceBlock;
+                          break;
+                  }
+                  if (metConditions)
+                  {
+                      inventory.Pop();
+                      SetBlockType(currentLevelData, convertBlockTo, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+                      GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]).SetActive(false);
+                      LevelManager.instance.MapRenderer.RenderConcreteBlock(objectReferences, currentLevelData.levelSize, blockToSpawn, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
 
-                    item.transform.localScale = new Vector3(1, 1, 1);
-                    Vector3 posNew;
-                    posNew.x = intendedBlock[0] * 1;
-                    posNew.y = intendedBlock[1] * 1;
-                    posNew.z = intendedBlock[2] * 1;
-                    item.transform.position = posNew;
-                    item.GetComponent<Animator>().SetTrigger("Usar");
-                    mainCharacterAnimator.SetTrigger("Usar");
-                }*/
+                      item.transform.parent = LevelManager.instance.MapRenderer.transform;
 
+                      item.transform.localScale = new Vector3(1, 1, 1);
+                      Vector3 posNew;
+                      posNew.x = intendedBlock[0] * 1;
+                      posNew.y = intendedBlock[1] * 1;
+                      posNew.z = intendedBlock[2] * 1;
+                      item.transform.position = posNew;
+                      item.GetComponent<Animator>().SetTrigger("Usar");
+                      mainCharacterAnimator.SetTrigger("Usar");
+                  }*/
             }
         }
-
     }
 
     /// <summary>
@@ -221,7 +225,7 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoCondition()
     {
-   }
+    }
 
     /// <summary>
     /// The DoJump
@@ -238,9 +242,9 @@ public class Logic : MonoBehaviour
         //       blockD 1
         //       blockE 0
         int fallDamage = 0;
-        bool isTopEmpty = IsEmptyBlock(currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2], currentLevelData);
+        bool isTopEmpty = CheckBlockProperty(currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2], currentLevelData, BlockProperties.Immaterial);
 
-        if (WalkableBlock(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData) && isTopEmpty && (IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData) || TakeItem(intendedBlock)))
+        if (CheckBlockProperty(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable) && isTopEmpty && (CheckBlockProperty(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData, BlockProperties.Immaterial) || TakeItem(intendedBlock)))
         {
             levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock, currentLevelData.playerOrientation);
             currentLevelData.playerPos = intendedBlock;
@@ -250,7 +254,7 @@ public class Logic : MonoBehaviour
             bool found = false;
             for (int y = isTopEmpty ? currentLevelData.playerPos[1] : currentLevelData.playerPos[1] - 1; y >= 0; y--)
             {
-                if (IsEmptyBlock(intendedBlock[0], y, intendedBlock[2], currentLevelData) && WalkableBlock(intendedBlock[0], y - 1, intendedBlock[2], currentLevelData))
+                if (CheckBlockProperty(intendedBlock[0], y, intendedBlock[2], currentLevelData, BlockProperties.Immaterial) && CheckBlockProperty(intendedBlock[0], y - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable))
                 {
                     found = true;
                     intendedBlock[1] = y;
@@ -291,10 +295,10 @@ public class Logic : MonoBehaviour
 
         if (IsPositionInsideMap(intendedBlock, currentLevelData))
         {
-            if (IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData))
+            if (CheckBlockProperty(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData, BlockProperties.Immaterial))
             {
                 //Miramos el bloque de debajo
-                if (WalkableBlock(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData))
+                if (CheckBlockProperty(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable))
                 {
                     levelManagerReference.ActionRenderer.DoMove(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock);
                     currentLevelData.playerPos = intendedBlock;
@@ -339,7 +343,7 @@ public class Logic : MonoBehaviour
 
                 thisItem.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 //thisItem.transform.position = mainCharacterGameObject.GetComponent<AnimatedObject>().InventoryMarker.transform.position;
-               // Vector3 invMarker = mainCharacterGameObject.GetComponent<MainCharacterController>().InventoryMarker.transform.position;
+                // Vector3 invMarker = mainCharacterGameObject.GetComponent<MainCharacterController>().InventoryMarker.transform.position;
                 //thisItem.transform.position = new Vector3(invMarker.x, invMarker.y + 0.45f * (inventory.Count - 1), invMarker.z);
 
                 return true;
@@ -348,52 +352,25 @@ public class Logic : MonoBehaviour
         return false;
     }
 
-    /// <summary>
-    /// The IsEmptyBlock
-    /// </summary>
-    /// <param name="x">The x<see cref="int"/></param>
-    /// <param name="y">The y<see cref="int"/></param>
-    /// <param name="z">The z<see cref="int"/></param>
-    /// <param name="data">The data<see cref="CurrentLevelData"/></param>
-    /// <returns>The <see cref="bool"/></returns>
-    private bool IsEmptyBlock(int x, int y, int z, LevelData data)
+    private bool CheckBlockProperty(int x, int y, int z, LevelData data, BlockProperties property)
     {
-        ObjectType type = GetBlockType(data, x, y, z);
-        if (type == ObjectType.NoBlock)
+        LevelObject blockLevelObject = GetBlock(data, objectReferences, x, y, z);
+        if (blockLevelObject.IsBlock())
         {
-            return true;
+            Block block = (Block)blockLevelObject;
+            BlockProperties[] properties = block._BlockProperties;
+            if (properties != null)
+            {
+                foreach (BlockProperties prop in properties)
+                {
+                    if (prop == property)
+                    {
+                        return true;
+                    }
+                }
+            }
         }
         return false;
-    }
-
-    /// <summary>
-    /// The WalkableBlock
-    /// </summary>
-    /// <param name="x">The x<see cref="int"/></param>
-    /// <param name="y">The y<see cref="int"/></param>
-    /// <param name="z">The z<see cref="int"/></param>
-    /// <param name="data">The data<see cref="CurrentLevelData"/></param>
-    /// <returns>The <see cref="bool"/></returns>
-    private bool WalkableBlock(int x, int y, int z, LevelData data)
-    {
-        ObjectType type = GetBlockType(data, x, y, z);
-        switch (type)
-        {
-            case ObjectType.SolidBlock:
-                return true;
-
-            case ObjectType.IceBlock:
-                return true;
-
-            case ObjectType.LiftBlockActivated:
-                return true;
-
-            case ObjectType.SpikesBlockActivated:
-                return true;
-
-            default:
-                return false;
-        }
     }
 
     /// <summary>
@@ -421,7 +398,7 @@ public class Logic : MonoBehaviour
         return (ObjectType)data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
     }
 
-    private GameObject GetBlock(LevelData data, GameObject[] objects, int x, int y, int z)
+    private LevelObject GetBlock(LevelData data, LevelObject[] objects, int x, int y, int z)
     {
         if (x < 0 || x >= data.levelSize[0]) return null;
         if (y < 0 || y >= data.levelSize[1]) return null;
@@ -500,9 +477,9 @@ public class Logic : MonoBehaviour
         List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2]);
         //Bloque de enfrente y arriba
 
-        bool isTopEmpty = IsEmptyBlock(currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2], currentLevelData);
+        bool isTopEmpty = CheckBlockProperty(currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2], currentLevelData, BlockProperties.Immaterial);
 
-        if (WalkableBlock(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData) && IsEmptyBlock(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData)
+        if (CheckBlockProperty(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable) && CheckBlockProperty(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData, BlockProperties.Immaterial)
             && isTopEmpty)
         {
             return true;
@@ -512,7 +489,7 @@ public class Logic : MonoBehaviour
             bool found = false;
             for (int y = isTopEmpty ? currentLevelData.playerPos[1] : currentLevelData.playerPos[1] - 1; y >= 0; y--)
             {
-                if (IsEmptyBlock(intendedBlock[0], y, intendedBlock[2], currentLevelData) && WalkableBlock(intendedBlock[0], y - 1, intendedBlock[2], currentLevelData))
+                if (CheckBlockProperty(intendedBlock[0], y, intendedBlock[2], currentLevelData, BlockProperties.Immaterial) && CheckBlockProperty(intendedBlock[0], y - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable))
                 {
                     return true;
                 }

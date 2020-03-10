@@ -22,6 +22,7 @@ public class Block : LevelObject
     }
 
     public override string ToString { get => blockType.ToString() + " block"; }
+    public BlockProperties[] _BlockProperties { get => blockProperties;}
 
     [System.Serializable]
     public class EffectReaction

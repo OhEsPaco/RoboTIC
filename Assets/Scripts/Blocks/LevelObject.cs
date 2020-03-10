@@ -65,5 +65,23 @@ public abstract class LevelObject : MonoBehaviour
         }
     }
 
+    public bool IsBlock()
+    {
+        if (this.GetType() == typeof(Block))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool IsItem()
+    {
+        if (this.GetType() == typeof(Item))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public abstract new string ToString { get; }
 }

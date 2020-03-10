@@ -3,26 +3,29 @@ using static ObjectConstants;
 
 public class LevelObjects : MonoBehaviour
 {
-    [SerializeField] private GameObject NoBlock;
-    [SerializeField] private GameObject WaterBlock;
-    [SerializeField] private GameObject LavaBlock;
-    [SerializeField] private GameObject SolidBlock;
-    [SerializeField] private GameObject LiftBlock;
-    [SerializeField] private GameObject SpikesBlock;
-    [SerializeField] private GameObject IceBlock;
+    [SerializeField] private Block NoBlock;
+    [SerializeField] private Block WaterBlock;
+    [SerializeField] private Block LavaBlock;
+    [SerializeField] private Block SolidBlock;
+    [SerializeField] private Block LiftBlock;
+    [SerializeField] private Block SpikesBlock;
+    [SerializeField] private Block IceBlock;
 
-    [SerializeField] private GameObject PlankItem;
+    [SerializeField] private Item PlankItem;
+    [SerializeField] private Item Flag;
+    [SerializeField] private Item Fan;
+
     [SerializeField] private GameObject MainCharacter;
     [SerializeField] private GameObject MiniCharacter;
-    [SerializeField] private GameObject Flag;
-    [SerializeField] private GameObject Fan;
-    public GameObject GetGameObjectInstance(in ObjectType id)
+
+
+    public LevelObject GetGameObjectInstance(in ObjectType id)
     {
-        GameObject reference = MegaSwitch(id);
+        LevelObject reference = MegaSwitch(id);
         return InstantiateObject(reference);
     }
 
-    private GameObject MegaSwitch(in ObjectType id)
+    private LevelObject MegaSwitch(in ObjectType id)
     {
         switch (id)
         {
@@ -56,22 +59,25 @@ public class LevelObjects : MonoBehaviour
         }
     }
 
-    private GameObject InstantiateObject(GameObject reference)
+    private LevelObject InstantiateObject(LevelObject reference)
     {
+      
         return Instantiate(reference, reference.transform.position, reference.transform.rotation);
     }
 
     public GameObject GetMainCharacterInstance()
     {
-        return InstantiateObject(MainCharacter);
+        return Instantiate(MainCharacter, MainCharacter.transform.position, MainCharacter.transform.rotation);
+       
     }
 
     public GameObject GetMiniCharacterInstance()
     {
-        return InstantiateObject(MiniCharacter);
+        return Instantiate(MiniCharacter, MiniCharacter.transform.position, MiniCharacter.transform.rotation);
+      
     }
 
-    public GameObject GetFlagInstance()
+    public LevelObject GetFlagInstance()
     {
         return InstantiateObject(Flag);
     }

@@ -10,9 +10,9 @@ public class MapRenderer : MonoBehaviour
 
   
 
-    public GameObject[] RenderMapAndItems(in List<int> mapAndItems, in List<int> levelSize)
+    public LevelObject[] RenderMapAndItems(in List<int> mapAndItems, in List<int> levelSize)
     {
-        GameObject[] objectReferences = new GameObject[levelSize[0]*levelSize[1]*levelSize[2]];
+        LevelObject[] objectReferences = new LevelObject[levelSize[0]*levelSize[1]*levelSize[2]];
         for (int x = 0; x < levelSize[0]; x++)
         {
             for (int y = 0; y < levelSize[1]; y++)
@@ -21,7 +21,7 @@ public class MapRenderer : MonoBehaviour
                 {
                     ObjectType blockToSpawn = Get(mapAndItems, levelSize, x, y, z);
 
-                    GameObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
+                    LevelObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
                     objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
                     Vector3 posNew;
                     posNew.x = x * blockLength;
@@ -35,10 +35,10 @@ public class MapRenderer : MonoBehaviour
         return objectReferences;
     }
 
-    public void RenderConcreteBlock(GameObject[] objectReferences, List<int> levelSize, ObjectType blockToSpawn, int x, int y, int z)
+    public void RenderConcreteBlock(LevelObject[] objectReferences, List<int> levelSize, ObjectType blockToSpawn, int x, int y, int z)
     {
-       
-        GameObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
+
+        LevelObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
         objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
         Vector3 posNew;
         posNew.x = x * blockLength;
@@ -49,7 +49,7 @@ public class MapRenderer : MonoBehaviour
     }
     public void RenderScenery(in List<int> goal)
     {
-        GameObject flag = LevelManager.instance.LevelObjects.GetFlagInstance();
+        LevelObject flag = LevelManager.instance.LevelObjects.GetFlagInstance();
         Vector3 posFlag;
         posFlag.x = goal[0] * blockLength;
         posFlag.y = goal[1] * blockLength;
