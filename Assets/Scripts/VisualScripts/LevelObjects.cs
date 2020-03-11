@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
-using static ObjectConstants;
+using static LevelObject;
 
 public class LevelObjects : MonoBehaviour
 {
-    [SerializeField] private Block NoBlock;
+    [SerializeField] private Block[] blocks = new Block[0];
+    [SerializeField] private Item[] items = new Item[0];
+
+    /*[SerializeField] private Block NoBlock;
     [SerializeField] private Block WaterBlock;
     [SerializeField] private Block LavaBlock;
     [SerializeField] private Block SolidBlock;
@@ -13,73 +16,51 @@ public class LevelObjects : MonoBehaviour
 
     [SerializeField] private Item PlankItem;
     [SerializeField] private Item Flag;
-    [SerializeField] private Item Fan;
+    [SerializeField] private Item Fan;*/
 
     [SerializeField] private GameObject MainCharacter;
     [SerializeField] private GameObject MiniCharacter;
 
-
-    public LevelObject GetGameObjectInstance(in ObjectType id)
+    public LevelObject GetGameObjectInstance(in int id)
     {
         LevelObject reference = MegaSwitch(id);
         return InstantiateObject(reference);
     }
 
-    private LevelObject MegaSwitch(in ObjectType id)
+    private LevelObject MegaSwitch(in int id)
     {
-        switch (id)
+        foreach (Block block in blocks)
         {
-            case ObjectType.NoBlock:
-                return NoBlock;
-
-            case ObjectType.WaterBlock:
-                return WaterBlock;
-
-            case ObjectType.LavaBlock:
-                return LavaBlock;
-
-            case ObjectType.SolidBlock:
-                return SolidBlock;
-
-            case ObjectType.LiftBlock:
-                return LiftBlock;
-
-            case ObjectType.SpikesBlock:
-                return SpikesBlock;
-
-            case ObjectType.IceBlock:
-                return IceBlock;
-
-            case ObjectType.PlankItem:
-                return PlankItem;
-            case ObjectType.FanItem:
-                return Fan;
-            default:
-                return NoBlock;
+            if (block.BlockType == (Blocks)id)
+            {
+                return block;
+            }
         }
+
+        foreach (Item item in items)
+        {
+            if (item.ItemType == (Items)id)
+            {
+                return item;
+            }
+        }
+
+        return null;
     }
 
     private LevelObject InstantiateObject(LevelObject reference)
     {
-      
         return Instantiate(reference, reference.transform.position, reference.transform.rotation);
     }
 
     public GameObject GetMainCharacterInstance()
     {
         return Instantiate(MainCharacter, MainCharacter.transform.position, MainCharacter.transform.rotation);
-       
     }
 
     public GameObject GetMiniCharacterInstance()
     {
         return Instantiate(MiniCharacter, MiniCharacter.transform.position, MiniCharacter.transform.rotation);
-      
-    }
-
-    public LevelObject GetFlagInstance()
-    {
-        return InstantiateObject(Flag);
     }
 
     // Start is called before the first frame update

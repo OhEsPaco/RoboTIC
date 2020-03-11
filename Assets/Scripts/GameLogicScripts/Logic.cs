@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Block;
 using static ButtonConstants;
-using static ObjectConstants;
+using static LevelObject;
 
 /// <summary>
 /// Defines the <see cref="Logic" />
@@ -165,6 +166,77 @@ public class Logic : MonoBehaviour
         }
     }
 
+    //Ejecuta un efecto sobre un bloque
+    private bool ExecuteActionEffect(LevelObject blockLevelObject, Item item, int x, int y, int z)
+    {
+        if (blockLevelObject != null && blockLevelObject.IsBlock())
+        {
+            Block frontBlock = (Block)blockLevelObject;
+
+            EffectReaction[] effectReactions = frontBlock.EffectReactions;
+            Effects itemEffect = item.Effect;
+
+            if (itemEffect != Effects.None)
+            {
+                foreach (EffectReaction reaction in effectReactions)
+                {
+                    //Comprobar si esta reaccion se activa con el efecto del item
+                    if (reaction.effect == itemEffect)
+                    {
+                        //Miramos si el item es compatible con este objeto
+                        bool compatible = false;
+                        if (reaction.compatibleItems.Length <= 0)
+                        {
+                            compatible = true;
+                        }
+                        else
+                        {
+                            foreach (Items itemSearch in reaction.compatibleItems)
+                            {
+                                if (itemSearch == item.ItemType)
+                                {
+                                    compatible = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        //Si es compatible ejecutamos las acciones necesarias
+                        if (compatible)
+                        {
+                            foreach (BlockActions blockAction in reaction.actionsToExecute)
+                            {
+                                frontBlock.ExecuteAction(blockAction);
+                            }
+
+                            if (reaction.newProperties.Length != 0)
+                            {
+                                frontBlock._BlockProperties = reaction.newProperties;
+                            }
+
+                            foreach (string trigger in reaction.animationTriggers)
+                            {
+                                frontBlock.SetAnimationTrigger(trigger);
+                            }
+
+                            if (reaction.replaceBlock)
+                            {
+                                //Aqui lanzar corrutina que espere a que todo lo anterior se haya acabado
+                                //y acto seguido replace el bloque por uno nuevo y ejecute la accion place
+                                StartCoroutine(ReplaceBlock(frontBlock, reaction.block, x, y, z));
+                            }
+                            //Se ha podido usar el item
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        //No se ha podido usar el item
+        return false;
+    }
+
     /// <summary>
     /// The DoAction
     /// </summary>
@@ -175,48 +247,81 @@ public class Logic : MonoBehaviour
             Item item = inventory.Peek();
             if (item != null)
             {
+                Debug.Log("About to use " + item.ToString());
                 List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
                 LevelObject blockLevelObject = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
-                if (blockLevelObject.GetType() == typeof(Block))
+
+                //Intentamos aplicar el item al bloque de enfrente
+                if (ExecuteActionEffect(blockLevelObject, item, intendedBlock[0], intendedBlock[1], intendedBlock[2]))
                 {
+                    item.transform.parent = LevelManager.instance.MapRenderer.transform;
+
+                    item.transform.localScale = new Vector3(1, 1, 1);
+                    Vector3 posNew;
+                    posNew.x = intendedBlock[0] * 1;
+                    posNew.y = intendedBlock[1] * 1;
+                    posNew.z = intendedBlock[2] * 1;
+                    item.transform.position = posNew;
+                    item.Use();
+
+                    //Cambiar esto por llamadas al objeto BigCharacter
+                    mainCharacterAnimator.SetTrigger("Usar");
+
+                    inventory.Pop();
                 }
-                /*  List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
-                  bool metConditions = false;
-                  ObjectType convertBlockTo=ObjectType.SolidBlock;
-                  ObjectType blockToSpawn = ObjectType.SolidBlock;
-                  switch (item.ObjectType)
-                  {
-                      case ObjectType.PlankItem:
-                          metConditions = GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.SpikesBlock;
-                          convertBlockTo = ObjectType.SpikesBlockActivated;
-                          blockToSpawn = ObjectType.SpikesBlock;
-                          break;
+                else
+                {
+                    //Intentamos aplicar el item al bloque de abajo
+                    if (blockLevelObject != null && blockLevelObject.IsBlock())
+                    {
+                        Block frontBlock = (Block)blockLevelObject;
 
-                      case ObjectType.FanItem:
-                          metConditions = GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]) == ObjectConstants.ObjectType.WaterBlock;
-                          convertBlockTo = ObjectType.IceBlock;
-                          blockToSpawn = ObjectType.IceBlock;
-                          break;
-                  }
-                  if (metConditions)
-                  {
-                      inventory.Pop();
-                      SetBlockType(currentLevelData, convertBlockTo, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
-                      GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]).SetActive(false);
-                      LevelManager.instance.MapRenderer.RenderConcreteBlock(objectReferences, currentLevelData.levelSize, blockToSpawn, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+                        if (frontBlock.CheckProperty(BlockProperties.Immaterial))
+                        {
+                            blockLevelObject = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+                            if (ExecuteActionEffect(blockLevelObject, item, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]))
+                            {
+                                item.transform.parent = LevelManager.instance.MapRenderer.transform;
 
-                      item.transform.parent = LevelManager.instance.MapRenderer.transform;
+                                item.transform.localScale = new Vector3(1, 1, 1);
+                                Vector3 posNew;
+                                posNew.x = intendedBlock[0] * 1;
+                                posNew.y = intendedBlock[1] * 1;
+                                posNew.z = intendedBlock[2] * 1;
+                                item.transform.position = posNew;
+                                item.Use();
 
-                      item.transform.localScale = new Vector3(1, 1, 1);
-                      Vector3 posNew;
-                      posNew.x = intendedBlock[0] * 1;
-                      posNew.y = intendedBlock[1] * 1;
-                      posNew.z = intendedBlock[2] * 1;
-                      item.transform.position = posNew;
-                      item.GetComponent<Animator>().SetTrigger("Usar");
-                      mainCharacterAnimator.SetTrigger("Usar");
-                  }*/
+                                //Cambiar esto por llamadas al objeto BigCharacter
+                                mainCharacterAnimator.SetTrigger("Usar");
+
+                                inventory.Pop();
+                            }
+                        }
+                    }
+                }
             }
+        }
+    }
+
+    private IEnumerator ReplaceBlock(Block block, Blocks newBlock, int x, int y, int z)
+    {
+        bool allDone = false;
+        while (!allDone)
+        {
+            if (block.ActionsDone())
+            {
+                block.gameObject.SetActive(false);
+                Destroy(block.gameObject);
+                LevelObject newlySpawnedObject = LevelManager.instance.MapRenderer.RenderBlock(objectReferences, currentLevelData.levelSize, (int)newBlock, x, y, z);
+                if (newlySpawnedObject != null && newlySpawnedObject.IsBlock())
+                {
+                    Block newlySpawnedBlock = (Block)newlySpawnedObject;
+                    newlySpawnedBlock.ExecuteAction(BlockActions.Place);
+                }
+
+                allDone = true;
+            }
+            yield return null;
         }
     }
 
@@ -332,19 +437,20 @@ public class Logic : MonoBehaviour
     {
         if ((int)GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1], intendedBlock[2]) >= 25)
         {
-            SetBlockType(currentLevelData, ObjectType.NoBlock, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
-            Item thisItem = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]).GetComponent<Item>();
+            SetBlockType(currentLevelData, (int)Blocks.NoBlock, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
+            LevelObject thisItem = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]).GetComponent<Item>();
 
-            if (thisItem != null)
+            if (thisItem != null&&thisItem.IsItem())
             {
-                inventory.Push(thisItem);
+                inventory.Push((Item)thisItem);
                 // thisItem.SetActive(false);
                 thisItem.transform.parent = mainCharacterGameObject.transform;
 
                 thisItem.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+
                 //thisItem.transform.position = mainCharacterGameObject.GetComponent<AnimatedObject>().InventoryMarker.transform.position;
-                // Vector3 invMarker = mainCharacterGameObject.GetComponent<MainCharacterController>().InventoryMarker.transform.position;
-                //thisItem.transform.position = new Vector3(invMarker.x, invMarker.y + 0.45f * (inventory.Count - 1), invMarker.z);
+                Vector3 invMarker = mainCharacterGameObject.GetComponent<BigCharacter>().GetInventoryPosition();
+                thisItem.transform.position = new Vector3(invMarker.x, invMarker.y + 0.45f * (inventory.Count - 1), invMarker.z);
 
                 return true;
             }
@@ -355,20 +461,10 @@ public class Logic : MonoBehaviour
     private bool CheckBlockProperty(int x, int y, int z, LevelData data, BlockProperties property)
     {
         LevelObject blockLevelObject = GetBlock(data, objectReferences, x, y, z);
-        if (blockLevelObject.IsBlock())
+        if (blockLevelObject != null && blockLevelObject.IsBlock())
         {
             Block block = (Block)blockLevelObject;
-            BlockProperties[] properties = block._BlockProperties;
-            if (properties != null)
-            {
-                foreach (BlockProperties prop in properties)
-                {
-                    if (prop == property)
-                    {
-                        return true;
-                    }
-                }
-            }
+            return block.CheckProperty(property);
         }
         return false;
     }
@@ -390,12 +486,12 @@ public class Logic : MonoBehaviour
     /// <param name="y">The y<see cref="int"/></param>
     /// <param name="z">The z<see cref="int"/></param>
     /// <returns>The <see cref="int"/></returns>
-    private ObjectType GetBlockType(LevelData data, int x, int y, int z)
+    private int GetBlockType(LevelData data, int x, int y, int z)
     {
-        if (x < 0 || x >= data.levelSize[0]) return ObjectType.NoBlock;
-        if (y < 0 || y >= data.levelSize[1]) return ObjectType.NoBlock;
-        if (z < 0 || z >= data.levelSize[2]) return ObjectType.NoBlock;
-        return (ObjectType)data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
+        if (x < 0 || x >= data.levelSize[0]) return (int)Blocks.NoBlock;
+        if (y < 0 || y >= data.levelSize[1]) return (int)Blocks.NoBlock;
+        if (z < 0 || z >= data.levelSize[2]) return (int)Blocks.NoBlock;
+        return data.mapAndItems[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
     }
 
     private LevelObject GetBlock(LevelData data, LevelObject[] objects, int x, int y, int z)
@@ -414,7 +510,7 @@ public class Logic : MonoBehaviour
     /// <param name="x">The x<see cref="int"/></param>
     /// <param name="y">The y<see cref="int"/></param>
     /// <param name="z">The z<see cref="int"/></param>
-    private void SetBlockType(LevelData data, ObjectType value, int x, int y, int z)
+    private void SetBlockType(LevelData data, int value, int x, int y, int z)
     {
         if (x < 0 || x >= data.levelSize[0]) return;
         if (y < 0 || y >= data.levelSize[1]) return;

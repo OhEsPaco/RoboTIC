@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using static ObjectConstants;
+using static LevelObject;
 
 public class MapRenderer : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class MapRenderer : MonoBehaviour
             {
                 for (int z = 0; z < levelSize[2]; z++)
                 {
-                    ObjectType blockToSpawn = Get(mapAndItems, levelSize, x, y, z);
+                    int blockToSpawn = Get(mapAndItems, levelSize, x, y, z);
 
                     LevelObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
                     objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
@@ -35,7 +35,7 @@ public class MapRenderer : MonoBehaviour
         return objectReferences;
     }
 
-    public void RenderConcreteBlock(LevelObject[] objectReferences, List<int> levelSize, ObjectType blockToSpawn, int x, int y, int z)
+    public LevelObject RenderBlock(LevelObject[] objectReferences, List<int> levelSize, int blockToSpawn, int x, int y, int z)
     {
 
         LevelObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
@@ -46,10 +46,12 @@ public class MapRenderer : MonoBehaviour
         posNew.z = z * blockLength;
         block.transform.position = posNew;
         block.transform.parent = gameObject.transform;
+
+        return block;
     }
     public void RenderScenery(in List<int> goal)
     {
-        LevelObject flag = LevelManager.instance.LevelObjects.GetFlagInstance();
+        LevelObject flag = LevelManager.instance.LevelObjects.GetGameObjectInstance((int)Items.FlagItem);
         Vector3 posFlag;
         posFlag.x = goal[0] * blockLength;
         posFlag.y = goal[1] * blockLength;
@@ -72,11 +74,11 @@ public class MapRenderer : MonoBehaviour
         return mainCharacter;
     }
 
-    private ObjectType Get(in List<int> mapAndItems, in List<int> levelSize, in int x, in int y, in int z)
+    private int Get(in List<int> mapAndItems, in List<int> levelSize, in int x, in int y, in int z)
     {
-        if (x < 0 || x >= levelSize[0]) return ObjectType.NoBlock;
-        if (y < 0 || y >= levelSize[1]) return ObjectType.NoBlock;
-        if (z < 0 || z >= levelSize[2]) return ObjectType.NoBlock;
-        return (ObjectType)mapAndItems[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])];
+        if (x < 0 || x >= levelSize[0]) return (int)Blocks.NoBlock;
+        if (y < 0 || y >= levelSize[1]) return (int)Blocks.NoBlock;
+        if (z < 0 || z >= levelSize[2]) return (int)Blocks.NoBlock;
+        return mapAndItems[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])];
     }
 }

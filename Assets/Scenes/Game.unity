@@ -12976,16 +12976,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f0f54a820f07a40bc7cfdbbd202e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoBlock: {fileID: 559417952}
-  WaterBlock: {fileID: 32913181}
-  LavaBlock: {fileID: 1772708440}
-  SolidBlock: {fileID: 1333224724}
-  LiftBlock: {fileID: 1828380502}
-  SpikesBlock: {fileID: 2086831099}
-  IceBlock: {fileID: 962504932}
-  PlankItem: {fileID: 1420041284}
-  Flag: {fileID: 201143166}
-  Fan: {fileID: 1129726831}
+  blocks:
+  - {fileID: 559417952}
+  - {fileID: 32913181}
+  - {fileID: 962504932}
+  - {fileID: 1772708440}
+  - {fileID: 1828380502}
+  - {fileID: 1333224724}
+  - {fileID: 2086831099}
+  items:
+  - {fileID: 201143166}
+  - {fileID: 1420041284}
+  - {fileID: 1129726831}
+  - {fileID: 1566848041}
   MainCharacter: {fileID: 2120529149}
   MiniCharacter: {fileID: 1493676823}
 --- !u!4 &2141643523

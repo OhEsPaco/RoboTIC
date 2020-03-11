@@ -22,7 +22,8 @@ public class Block : LevelObject
     }
 
     public override string ToString { get => blockType.ToString() + " block"; }
-    public BlockProperties[] _BlockProperties { get => blockProperties;}
+    public BlockProperties[] _BlockProperties { get => blockProperties; set => blockProperties = value; }
+    public EffectReaction[] EffectReactions { get => effectReaction; set => effectReaction = value; }
 
     [System.Serializable]
     public class EffectReaction
@@ -54,6 +55,7 @@ public class Block : LevelObject
 
     public void ExecuteAction(BlockActions action)
     {
+        //quiza crear cola de acciones y controlar que terminen para pasar a la siguiente
         if (actionsDictionary.ContainsKey(action))
         {
             actionsDictionary[action]();
@@ -62,6 +64,12 @@ public class Block : LevelObject
         {
             Debug.LogWarning("Unbinded BlockAction: " + action.ToString());
         }
+    }
+
+    public bool ActionsDone()
+    {
+        //COMPROBAR QUE SE HAYAN TERMINADO LAS ACCIONES
+        return true;
     }
 
     public void Use()
@@ -79,5 +87,18 @@ public class Block : LevelObject
 
     public void Activate()
     {
+    }
+
+    public bool CheckProperty(BlockProperties property)
+    {
+        foreach (BlockProperties prop in blockProperties)
+        {
+            if (prop == property)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
