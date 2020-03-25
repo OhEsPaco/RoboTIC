@@ -1,26 +1,13 @@
 ﻿using UnityEngine;
-using static RoadConstants;
 
-public class RoadOutput : RoadIO
+public class RoadOutput : MonoBehaviour
 {
-    public override Color GetColor()
-    {
-        return Color.red;
-    }
+    public RoadInput RoadInput { get; set; }
 
-    public override InputOutput IsInputOrOutput()
+    void OnDrawGizmos()
     {
-        return InputOutput.Output;
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (Active)
-        {
-            Debug.Log("Output trigger triggered.");
-            LevelManager.instance.RoadMovementLogic.FinishedAction(this);
-            Active = false;
-        }
-
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.2f);
     }
 }

@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
-using static RoadConstants;
 
-public class RoadInput : RoadIO
+public class RoadInput : MonoBehaviour
 {
-    public override Color GetColor()
-    {
-        return Color.green;
-    }
+    public RoadOutput RoadOutput { get; set; }
 
-    public override InputOutput IsInputOrOutput()
+    void OnDrawGizmos()
     {
-        return InputOutput.Input;
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position, 0.2f);
     }
 }

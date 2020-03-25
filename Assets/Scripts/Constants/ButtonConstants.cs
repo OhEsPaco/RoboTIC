@@ -11,6 +11,7 @@
         Restart = 6,
         TurnLeft = 7,
         TurnRight = 8,
+        Undo=9,
         Undefined = 999
     };
 }
