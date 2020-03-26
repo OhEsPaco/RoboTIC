@@ -10,6 +10,6 @@ public class PathPoint : MonoBehaviour
         Gizmos.color = color;
         Gizmos.DrawWireSphere(transform.position, .1f);
 
-        Handles.Label(transform.position, gameObject.name);
+       // Handles.Label(transform.position, gameObject.name);
     }
 }
