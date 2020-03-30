@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/*https://forum.unity.com/threads/debug-drawarrow.85980*/
+using UnityEngine;
 
 public static class DrawArrow
 {

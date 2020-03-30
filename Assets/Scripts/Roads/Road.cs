@@ -5,15 +5,21 @@ using static RoadIO;
 public class Road : MonoBehaviour
 {
     private Dictionary<IODirection, List<RoadIO>> roadsByDirection = new Dictionary<IODirection, List<RoadIO>>();
-
+    private RoadIO[] allIO;
     public List<RoadIO> GetRoadIOByDirection(IODirection direction)
     {
+        
         return roadsByDirection[direction];
     }
 
-    private void Start()
+    public RoadIO[] GetAllIO()
     {
-        RoadIO[] AllIO = GetComponentsInChildren<RoadIO>();
+        return allIO;
+    }
+
+    private void Awake()
+    {
+        allIO = GetComponentsInChildren<RoadIO>();
 
         foreach (IODirection direction in System.Enum.GetValues(typeof(IODirection)))
         {
@@ -21,12 +27,16 @@ public class Road : MonoBehaviour
             roadsByDirection.Add(direction, listOfIO);
         }
 
-        foreach (RoadIO thisIO in AllIO)
+
+
+        foreach (RoadIO thisIO in allIO)
         {
             List<RoadIO> listOfIO = roadsByDirection[thisIO.Direction];
             listOfIO.Add(thisIO);
-            Debug.Log(thisIO.Direction);
+            //Debug.Log(thisIO.Direction);
         }
+
+       
     }
 
     public RoadOutput GetNextOutput(RoadInput roadInput)
