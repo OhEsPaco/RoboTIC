@@ -10,7 +10,7 @@ public abstract class RoadIO : MonoBehaviour
     [SerializeField] private IODirection pointsTo = IODirection.Forward;
     public IODirection Direction { get => pointsTo; }
     public RoadIO connectedTo;
-
+    [SerializeField] bool canBeSelected = true;
     [UniqueIdentifier,SerializeField] private string id;
 
     public string IOIdentifier
@@ -79,8 +79,8 @@ public abstract class RoadIO : MonoBehaviour
                 DrawArrow.ForGizmo(transform.position, Vector3.right);
                 break;
         }
-        //  Handles.Label(transform.position, gameObject.name);
-        Handles.Label(transform.position, id);
+          Handles.Label(transform.position, gameObject.name);
+        //Handles.Label(transform.position, id);
     }
 
     public void MoveRoadTo(in Vector3 newPos)
