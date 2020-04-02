@@ -7,8 +7,8 @@ public class LoopCounter : MonoBehaviour
     private GameObject numbersParent;
     private GameObject[] numbers;
     private int actualNumber;
-    private bool isLocked = false;
-
+    private bool locked = false;
+    public bool Locked { get { return locked; } }
     // Start is called before the first frame update
     private void Awake()
     {
@@ -41,6 +41,15 @@ public class LoopCounter : MonoBehaviour
         return numberAux;
     }
 
+    private void OnMouseDown()
+    {
+        if (!locked)
+        {
+            SetNumber(actualNumber + 1);
+        }
+        
+    }
+
     public int ActualNumber()
     {
         return actualNumber;
@@ -49,11 +58,11 @@ public class LoopCounter : MonoBehaviour
 
     public void Lock()
     {
-        isLocked = true;
+        locked = true;
     }
 
     public void Unlock()
     {
-        isLocked = false;
+        locked = false;
     }
 }

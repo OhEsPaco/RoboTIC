@@ -1,21 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using static PathContainer;
 using static RoadIO;
 
-public class Road : MonoBehaviour
+public abstract class Road : MonoBehaviour
 {
     private Dictionary<IODirection, List<RoadIO>> ioByDirection = new Dictionary<IODirection, List<RoadIO>>();
     private Dictionary<string, RoadIO> ioByID = new Dictionary<string, RoadIO>();
+    private Dictionary<string, Path> pathsByName = new Dictionary<string, Path>();
 
     private RoadIO[] allIO;
-
-    [UniqueIdentifier, SerializeField] private string id;
+    private PathContainer pathContainer;
 
     public string RoadIdentifier
     {
         get
         {
-            return id;
+            return gameObject.name;
         }
     }
 
@@ -40,6 +41,8 @@ public class Road : MonoBehaviour
 
     private void Awake()
     {
+        pathContainer = GetComponentInChildren<PathContainer>();
+
         allIO = GetComponentsInChildren<RoadIO>();
 
         foreach (IODirection direction in System.Enum.GetValues(typeof(IODirection)))
@@ -56,12 +59,42 @@ public class Road : MonoBehaviour
             {
                 ioByID.Add(thisIO.IOIdentifier, thisIO);
             }
-
         }
     }
 
-    public RoadOutput GetNextOutput(RoadInput roadInput)
+    public abstract void ExecuteAction(in string[] args);
+
+    public abstract bool GetPathAndOutput(in RoadInput input, out Path path, out RoadOutput output);
+
+    protected bool GetPathByName(in string name, out Path path)
     {
-        return null;
+        if (pathsByName.ContainsKey(name))
+        {
+            path = pathsByName[name];
+            return true;
+        }
+        else
+        {
+            if (pathContainer != null)
+            {
+                if (pathContainer.GetPathByName(name, out path))
+                {
+                    pathsByName.Add(name, path);
+
+                    return true;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("No PathContainer found");
+            }
+        }
+        path = new Path();
+        return false;
+    }
+
+    protected bool DoesThisRoadHasThisIO(string id)
+    {
+        return ioByID.ContainsKey(id);
     }
 }

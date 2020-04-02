@@ -126,7 +126,7 @@ public class RoadFactory : MonoBehaviour
     }
 
     //Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa
-    private bool SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin)
+    public bool SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin)
     {
         //Si alguna de las dos listas no tiene io no se pueden conectar
         if (ioToMatch.Count > 0)

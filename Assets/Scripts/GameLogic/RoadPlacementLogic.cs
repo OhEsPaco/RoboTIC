@@ -32,6 +32,9 @@ public class RoadPlacementLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
         buttonActionsDictionary.Add(Buttons.Undo, DoUndo);
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
+
+
+        selectedOutputMarker.transform.position = roadStartMarker.transform.position;
     }
 
     private void DoUndo()

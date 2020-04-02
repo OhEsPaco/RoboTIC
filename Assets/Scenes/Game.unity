@@ -392,12 +392,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths:
-  - name: Path
+  - pathName: Path
     points:
     - {fileID: 1216770651}
     - {fileID: 71432143}
     color: {r: 0, g: 1, b: 0, a: 1}
     drawPreview: 1
+    ioBegin: {fileID: 691191304}
+    ioEnd: {fileID: 866928103}
 --- !u!1 &32913176
 GameObject:
   m_ObjectHideFlags: 0
@@ -3139,9 +3141,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 309069286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ffd0da11567ec540a55b024a9d10a0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 34feba6bd96b52440baca3c1551d821e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 1776466499}
+  buttonName: jump
 --- !u!65 &309069289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3427,9 +3431,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 337265892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ffd0da11567ec540a55b024a9d10a0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 34feba6bd96b52440baca3c1551d821e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 674082066}
+  buttonName: move
 --- !u!65 &337265895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3746,9 +3752,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 378679883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ffd0da11567ec540a55b024a9d10a0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 34feba6bd96b52440baca3c1551d821e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 497147350}
+  buttonName: turn_right
 --- !u!65 &378679886
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8577,37 +8585,37 @@ PrefabInstance:
     - target: {fileID: 8387556658861830191, guid: 71859e10df921ca4f87df39f1683fd1e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.387596
+      value: -15.330029
       objectReference: {fileID: 0}
     - target: {fileID: 8387556658861830191, guid: 71859e10df921ca4f87df39f1683fd1e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 42.1773
+      value: 14.320549
       objectReference: {fileID: 0}
     - target: {fileID: 8387556658861830191, guid: 71859e10df921ca4f87df39f1683fd1e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.242363
+      value: -11.0486145
       objectReference: {fileID: 0}
     - target: {fileID: 8387556658861830191, guid: 71859e10df921ca4f87df39f1683fd1e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2940232
+      value: 0.40554807
       objectReference: {fileID: 0}
     - target: {fileID: 8387556658861830191, guid: 71859e10df921ca4f87df39f1683fd1e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70507
+      value: 0.16873111
       objectReference: {fileID: 0}
     - target: {fileID: 8387556658861830191, guid: 71859e10df921ca4f87df39f1683fd1e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.47710112
+      value: -0.07644606
       objectReference: {fileID: 0}
     - target: {fileID: 8387556658861830191, guid: 71859e10df921ca4f87df39f1683fd1e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.43451267
+      value: 0.89510703
       objectReference: {fileID: 0}
     - target: {fileID: 8387556658861830191, guid: 71859e10df921ca4f87df39f1683fd1e,
         type: 3}
@@ -9895,9 +9903,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1211643764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ffd0da11567ec540a55b024a9d10a0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 34feba6bd96b52440baca3c1551d821e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 1413974780}
+  buttonName: action
 --- !u!65 &1211643767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10864,6 +10874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1273888337}
   - component: {fileID: 1273888338}
+  - component: {fileID: 1273888339}
   m_Layer: 11
   m_Name: NodeLoopIn
   m_TagString: Untagged
@@ -10894,7 +10905,7 @@ Transform:
   - {fileID: 1681731094}
   - {fileID: 1577714304}
   m_Father: {fileID: 1999466488020985543}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &1273888338
 MonoBehaviour:
@@ -10905,10 +10916,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1273888336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f443249b7ec7b47827cd5f5c912ac7, type: 3}
+  m_Script: {fileID: 11500000, guid: 916df51462abfe64299ce1c8ae273b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: f4207dd6-6b60-4907-b3cc-cfe1fa09441f
+  inputIf: {fileID: 0}
+  cPicker: {fileID: 0}
+--- !u!114 &1273888339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273888336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d54f4632d99f84e9218a446055272b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lCounter: {fileID: 1278036968}
+  inputTop: {fileID: 1999466488021285763}
+  inputBottom: {fileID: 1999466488021285519}
 --- !u!1 &1278036965
 GameObject:
   m_ObjectHideFlags: 0
@@ -12605,9 +12632,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1520423938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ffd0da11567ec540a55b024a9d10a0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 34feba6bd96b52440baca3c1551d821e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 445624700}
+  buttonName: turn_left
 --- !u!65 &1520423941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12840,20 +12869,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths:
-  - name: Yes
+  - pathName: Yes
     points:
     - {fileID: 1215164074}
     - {fileID: 1948730017}
     - {fileID: 637794080}
     color: {r: 0, g: 1, b: 0, a: 1}
     drawPreview: 1
-  - name: No
+    ioBegin: {fileID: 1999466488021285771}
+    ioEnd: {fileID: 1999466488021285728}
+  - pathName: No
     points:
     - {fileID: 1215164074}
     - {fileID: 1948730017}
     - {fileID: 752371006}
     color: {r: 1, g: 0.26456058, b: 0, a: 1}
     drawPreview: 1
+    ioBegin: {fileID: 1999466488021285771}
+    ioEnd: {fileID: 1999466488021285727}
 --- !u!1 &1559032175
 GameObject:
   m_ObjectHideFlags: 0
@@ -13150,7 +13183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths:
-  - name: TopToYes
+  - pathName: TopToYes
     points:
     - {fileID: 870573685}
     - {fileID: 1369609082}
@@ -13162,7 +13195,9 @@ MonoBehaviour:
     - {fileID: 5499332811673639200}
     color: {r: 1, g: 0, b: 0.46467113, a: 1}
     drawPreview: 1
-  - name: TopToNo
+    ioBegin: {fileID: 1999466488021285763}
+    ioEnd: {fileID: 1999466488021285707}
+  - pathName: TopToNo
     points:
     - {fileID: 870573685}
     - {fileID: 1369609082}
@@ -13170,7 +13205,9 @@ MonoBehaviour:
     - {fileID: 1169821554}
     color: {r: 1, g: 0.04654569, b: 0, a: 1}
     drawPreview: 1
-  - name: BottomToYes
+    ioBegin: {fileID: 1999466488021285763}
+    ioEnd: {fileID: 1999466488021285725}
+  - pathName: BottomToYes
     points:
     - {fileID: 457378819}
     - {fileID: 599628019}
@@ -13179,7 +13216,9 @@ MonoBehaviour:
     - {fileID: 5499332811673639200}
     color: {r: 1, g: 1, b: 1, a: 1}
     drawPreview: 1
-  - name: BottomToNo
+    ioBegin: {fileID: 1999466488021285519}
+    ioEnd: {fileID: 1999466488021285707}
+  - pathName: BottomToNo
     points:
     - {fileID: 457378819}
     - {fileID: 599628019}
@@ -13189,6 +13228,8 @@ MonoBehaviour:
     - {fileID: 1169821554}
     color: {r: 1, g: 0.5506037, b: 0, a: 1}
     drawPreview: 1
+    ioBegin: {fileID: 1999466488021285519}
+    ioEnd: {fileID: 1999466488021285725}
 --- !u!1 &1581994292
 GameObject:
   m_ObjectHideFlags: 0
@@ -13713,12 +13754,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths:
-  - name: Path
+  - pathName: Path
     points:
     - {fileID: 1102507471}
     - {fileID: 1431977395}
     color: {r: 0, g: 1, b: 0, a: 1}
     drawPreview: 1
+    ioBegin: {fileID: 1999466488021285736}
+    ioEnd: {fileID: 1999466488021285700}
 --- !u!1001 &1648862188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14445,20 +14488,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths:
-  - name: No
+  - pathName: No
     points:
     - {fileID: 1278497037}
     - {fileID: 1361649683}
     - {fileID: 29868761}
     color: {r: 1, g: 0, b: 0, a: 1}
     drawPreview: 1
-  - name: Yes
+    ioBegin: {fileID: 1999466488021285767}
+    ioEnd: {fileID: 1999466488021285726}
+  - pathName: Yes
     points:
     - {fileID: 470876070}
     - {fileID: 1361649683}
     - {fileID: 29868761}
     color: {r: 0, g: 1, b: 0, a: 1}
     drawPreview: 1
+    ioBegin: {fileID: 1999466488021285768}
+    ioEnd: {fileID: 1999466488021285726}
 --- !u!1 &1729691198
 GameObject:
   m_ObjectHideFlags: 0
@@ -14544,7 +14591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths:
-  - name: TopToBottom
+  - pathName: TopToBottom
     points:
     - {fileID: 1103600412}
     - {fileID: 1207257639}
@@ -14552,7 +14599,9 @@ MonoBehaviour:
     - {fileID: 768656172}
     color: {r: 0.8490566, g: 0.20882997, b: 0, a: 1}
     drawPreview: 1
-  - name: YesToTop
+    ioBegin: {fileID: 1999466488021285747}
+    ioEnd: {fileID: 1999466488021285722}
+  - pathName: YesToTop
     points:
     - {fileID: 1970601462}
     - {fileID: 162287901}
@@ -14562,6 +14611,8 @@ MonoBehaviour:
     - {fileID: 1648862189}
     color: {r: 0, g: 1, b: 0.16342616, a: 1}
     drawPreview: 1
+    ioBegin: {fileID: 1999466488021285739}
+    ioEnd: {fileID: 1999466488021285706}
 --- !u!1 &1751112317
 GameObject:
   m_ObjectHideFlags: 0
@@ -14687,18 +14738,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paths:
-  - name: InToOut
+  - pathName: B
     points:
     - {fileID: 295280118}
     - {fileID: 1003260066}
     color: {r: 0, g: 1, b: 0, a: 1}
     drawPreview: 1
-  - name: OutToIn
+    ioBegin: {fileID: 1999466488021285758}
+    ioEnd: {fileID: 1999466488021285718}
+  - pathName: A
     points:
     - {fileID: 163470600}
     - {fileID: 232375403}
     color: {r: 1, g: 0, b: 0, a: 1}
     drawPreview: 1
+    ioBegin: {fileID: 1999466488021285772}
+    ioEnd: {fileID: 1999466488021285738}
 --- !u!1 &1772708435
 GameObject:
   m_ObjectHideFlags: 0
@@ -15197,10 +15252,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1826144856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f443249b7ec7b47827cd5f5c912ac7, type: 3}
+  m_Script: {fileID: 11500000, guid: 32d844dd13554d140bdbe906b3f2d845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: fc616838-710e-4921-8e5e-58320950e0b4
+  rInput: {fileID: 691191304}
 --- !u!23 &1826144858
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15261,7 +15316,7 @@ Transform:
   - {fileID: 866928102}
   - {fileID: 31777382}
   m_Father: {fileID: 1999466488020985543}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1828380498
 GameObject:
@@ -17786,13 +17841,13 @@ Transform:
   m_LocalPosition: {x: -41.97, y: 28.6, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1999466488020985589}
   - {fileID: 1999466488020985575}
   - {fileID: 1999466488020985549}
   - {fileID: 1999466488020985579}
   - {fileID: 1273888337}
   - {fileID: 1999466488020985583}
   - {fileID: 1826144860}
+  - {fileID: 1999466488020985589}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17817,7 +17872,7 @@ Transform:
   - {fileID: 700716683}
   - {fileID: 1545106377}
   m_Father: {fileID: 1999466488020985543}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &1999466488020985569
 Transform:
@@ -17855,7 +17910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999466488021285575}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.53, y: -0.135, z: 3.54}
+  m_LocalPosition: {x: -0.53, y: -0.135, z: -2.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1211643765}
@@ -17867,7 +17922,7 @@ Transform:
   - {fileID: 1999466488020985699}
   - {fileID: 1643786742}
   m_Father: {fileID: 1999466488020985543}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &1999466488020985579
 Transform:
@@ -17887,7 +17942,7 @@ Transform:
   - {fileID: 1999466488020985719}
   - {fileID: 1713116920}
   m_Father: {fileID: 1999466488020985543}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &1999466488020985583
 Transform:
@@ -17897,7 +17952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999466488021285583}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10.228, y: -0.1, z: 5.14}
+  m_LocalPosition: {x: 10.228, y: -0.1, z: 12.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1999466488020985591}
@@ -17908,7 +17963,7 @@ Transform:
   - {fileID: 1999466488020985489}
   - {fileID: 1750927750}
   m_Father: {fileID: 1999466488020985543}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &1999466488020985585
 Transform:
@@ -17956,7 +18011,7 @@ Transform:
   - {fileID: 1999466488020985717}
   - {fileID: 1771692365}
   m_Father: {fileID: 1999466488020985543}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &1999466488020985591
 Transform:
@@ -18466,16 +18521,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadConnectors:
-  - {fileID: 1999466488021285590}
   - {fileID: 1826144857}
-  funcionRoads:
   - {fileID: 1999466488021285590}
+  funcionRoads:
   - {fileID: 1999466488021285576}
   - {fileID: 1999466488021285550}
   - {fileID: 1999466488021285580}
   - {fileID: 1273888338}
   - {fileID: 1999466488021285584}
   - {fileID: 1826144857}
+  - {fileID: 1999466488021285590}
   roadStartMarker: {fileID: 599656022}
 --- !u!1 &1999466488021285549
 GameObject:
@@ -18505,10 +18560,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999466488021285549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f443249b7ec7b47827cd5f5c912ac7, type: 3}
+  m_Script: {fileID: 11500000, guid: 916df51462abfe64299ce1c8ae273b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 210a1966-f862-4d2d-b5ac-10bb04c8dd0c
+  inputIf: {fileID: 1999466488021285771}
+  cPicker: {fileID: 1999466488021285588}
 --- !u!1 &1999466488021285569
 GameObject:
   m_ObjectHideFlags: 0
@@ -18558,7 +18614,7 @@ GameObject:
   - component: {fileID: 1999466488023278599}
   - component: {fileID: 1999466488021285576}
   m_Layer: 11
-  m_Name: VerticalButton
+  m_Name: NodeVerticalButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18573,10 +18629,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999466488021285575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f443249b7ec7b47827cd5f5c912ac7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bbd7011bed858643adff0081f6b7bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2ab46e2d-6a44-41f8-b43c-fd4062b656fe
+  buttonList:
+  - {fileID: 1211643766}
+  - {fileID: 309069288}
+  - {fileID: 337265894}
+  - {fileID: 1520423940}
+  - {fileID: 378679885}
+  rInput: {fileID: 1999466488021285736}
 --- !u!1 &1999466488021285579
 GameObject:
   m_ObjectHideFlags: 0
@@ -18605,10 +18667,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999466488021285579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f443249b7ec7b47827cd5f5c912ac7, type: 3}
+  m_Script: {fileID: 11500000, guid: 899914e08eda5134cbdb18a7066c383b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 8feea0dc-3c81-476b-8edd-a4b3a9fea1d2
+  inputYes: {fileID: 1999466488021285768}
+  inputNo: {fileID: 1999466488021285767}
 --- !u!1 &1999466488021285583
 GameObject:
   m_ObjectHideFlags: 0
@@ -18637,10 +18700,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999466488021285583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f443249b7ec7b47827cd5f5c912ac7, type: 3}
+  m_Script: {fileID: 11500000, guid: 65eb11b366bb4524db7b0a0b05640f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 9e96a0be-b81d-41ce-8711-df62547fcb1c
+  inputTop: {fileID: 1999466488021285747}
+  inputYes: {fileID: 1999466488021285739}
 --- !u!1 &1999466488021285585
 GameObject:
   m_ObjectHideFlags: 0
@@ -18733,10 +18797,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999466488021285589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f443249b7ec7b47827cd5f5c912ac7, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fdf1474ae1c07f42a820ba8af33d643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3e2eeb42-7a39-43e8-b005-ded3f7b54c4a
+  inputB: {fileID: 1999466488021285758}
+  inputA: {fileID: 1999466488021285772}
 --- !u!1 &1999466488021285591
 GameObject:
   m_ObjectHideFlags: 0

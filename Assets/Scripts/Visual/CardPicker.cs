@@ -9,11 +9,12 @@ public class CardPicker : MonoBehaviour
 
     private Cards selectedCard = Cards.NoCard;
 
-    private bool isLocked = false;
+    private bool locked = false;
+    public bool Locked { get { return locked; } }
 
     private void OnMouseDown()
     {
-        if (!isLocked)
+        if (!locked)
         {
             if (Cards.IsDefined(typeof(Cards), selectedCard + 1))
             {
@@ -39,11 +40,11 @@ public class CardPicker : MonoBehaviour
 
     public void Lock()
     {
-        isLocked = true;
+        locked = true;
     }
 
     public void Unlock()
     {
-        isLocked = false;
+        locked = false;
     }
 }
