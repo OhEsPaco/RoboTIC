@@ -55,6 +55,12 @@ public class SelectedOutputMarker : MonoBehaviour
             {
                 LevelManager.instance.RoadPlacementLogic.SelectedIO = closests;
                 gameObject.transform.position = closests.transform.position;
+
+                /*if(closests is RoadInput)
+                {
+                    Debug.Log("input");
+                    LevelManager.instance.RoadPlacementLogic.PivotIO = closests;
+                }*/
             }
         }
     }
@@ -103,7 +109,11 @@ public class SelectedOutputMarker : MonoBehaviour
 
                 if (Vector3.Distance(closestIO.transform.position, transform.position) > Vector3.Distance(toProc.transform.position, transform.position))
                 {
-                    closestIO = toProc;
+                    if (toProc.CanBeSelected)
+                    {
+                        closestIO = toProc;
+                    }
+                  
                 }
                 if (!processedIO.Contains(toProc))
                 {
@@ -114,7 +124,7 @@ public class SelectedOutputMarker : MonoBehaviour
             Debug.Log(processedIO.Count);
             if (closestIO.connectedTo != null)
             {
-                if (closestIO.connectedTo is RoadOutput)
+                if (closestIO.connectedTo is RoadOutput && closestIO.connectedTo.CanBeSelected)
                 {
                     closestIO = closestIO.connectedTo;
                 }

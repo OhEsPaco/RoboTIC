@@ -17,7 +17,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private const float MAX_ACCEPTABLE_DISTANCE = 0.3f;
 
-    public RoadIO PivotIO { get => pivotIO;  }
+    public RoadIO PivotIO { get => pivotIO; set => pivotIO = value; }
     public RoadIO SelectedIO { get => selectedIO; set => selectedIO = value; }
 
     internal void Start()
@@ -92,17 +92,17 @@ public class RoadPlacementLogic : MonoBehaviour
             {
                 spawnedRoad.transform.parent = roadParent;
                 RoadIO[] allRoadIO = spawnedRoad.GetAllIO();
-                if (pivotIO == null)
+               /* if (pivotIO == null)
                 {
                     pivotIO = allRoadIO[0];
-                }
+                }*/
 
                 foreach (RoadIO rIO in allRoadIO)
                 {
-                    if (rIO is RoadOutput && rIO.CanBeSelected)
+                    if (rIO is RoadInput && rIO.CanBeSelected)
                     {
                         this.selectedIO = rIO;
-
+                        pivotIO = rIO;
                         break;
                     }
                 }
@@ -116,10 +116,11 @@ public class RoadPlacementLogic : MonoBehaviour
                 List<RoadIO> ioToMatch = new List<RoadIO>();
                 ioToMatch.Add(this.selectedIO);
                 //SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
+                
                 if (LevelManager.instance.RoadFactory.SpawnRoadByName(id, ioToMatch, out spawnedRoad))
                 {
                     spawnedRoad.transform.parent = roadParent;
-                    RoadIO[] allRoadIO = spawnedRoad.GetAllIO();
+                    /*RoadIO[] allRoadIO = spawnedRoad.GetAllIO();
                     foreach (RoadIO rIO in allRoadIO)
                     {
                         if (rIO is RoadOutput && rIO.CanBeSelected)
@@ -128,7 +129,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
                             break;
                         }
-                    }
+                    }*/
                 }
             }
             else
@@ -142,7 +143,7 @@ public class RoadPlacementLogic : MonoBehaviour
                 if (LevelManager.instance.RoadFactory.SpawnRoadByName(id, ioToMatch, ioToMatch2, out spawnedRoad))
                 {
                     spawnedRoad.transform.parent = roadParent;
-                    RoadIO[] allRoadIO = spawnedRoad.GetAllIO();
+                   /* RoadIO[] allRoadIO = spawnedRoad.GetAllIO();
                     foreach (RoadIO rIO in allRoadIO)
                     {
                         if (rIO is RoadOutput && rIO.CanBeSelected)
@@ -151,7 +152,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
                             break;
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -162,12 +163,50 @@ public class RoadPlacementLogic : MonoBehaviour
         }
         else
         {
+            //Mejorar esto
             CorrectRoadsPosition(this.pivotIO, MAX_ACCEPTABLE_DISTANCE);
+
+            if(this.selectedIO is RoadInput)
+            {
+                RoadIO f = FindFartestInput(this.selectedIO, spawnedRoad.GetAllIO());
+                if (f != null)
+                {
+                    this.selectedIO = f;
+                    this.pivotIO = f;
+                    CorrectRoadsPosition(this.pivotIO, MAX_ACCEPTABLE_DISTANCE);
+                }
+
+            }
             this.selectedOutputMarker.transform.position = this.selectedIO.transform.position;
             return true;
         }
     }
 
+    private RoadIO FindFartestInput(RoadIO pivot, RoadIO[] allIO)
+    {
+
+        RoadIO fartest = allIO[0];
+        foreach(RoadIO rIO in allIO)
+        {
+            if(fartest is RoadOutput && rIO is RoadInput && rIO.CanBeSelected)
+            {
+                fartest = rIO;
+            }
+            else if(rIO is RoadInput && rIO.CanBeSelected)
+            {
+                if (Vector3.Distance(pivot.transform.position, fartest.transform.position) < Vector3.Distance(pivot.transform.position, rIO.transform.position))
+                {
+                    fartest = rIO;
+                }
+            }
+        }
+
+        if(fartest is RoadOutput || !fartest.CanBeSelected)
+        {
+            return null;
+        }
+        return fartest;
+    }
     private void SpawnVerticalButton(string button)
     {
         Road spawnedRoad;
