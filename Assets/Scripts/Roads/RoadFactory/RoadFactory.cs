@@ -4,17 +4,90 @@ using static RoadIO;
 
 public class RoadFactory : MonoBehaviour
 {
-    [SerializeField] private Road[] roadConnectors = new Road[0];
-    [SerializeField] private Road[] funcionRoads = new Road[0];
-    [SerializeField] private Transform roadStartMarker;
+    //[SerializeField] private Road[] roadConnectors = new Road[0];
+    // [SerializeField] private Road[] funcionRoads = new Road[0];
+
+    private Dictionary<string, Road> roadsByID = new Dictionary<string, Road>();
 
     // Start is called before the first frame update
     private void Start()
     {
+        Road[] roads = GetComponentsInChildren<Road>();
+        foreach (Road r in roads)
+        {
+            Debug.Log("Added road: " + r.RoadIdentifier);
+            if (!roadsByID.ContainsKey(r.RoadIdentifier))
+            {
+                roadsByID.Add(r.RoadIdentifier, r);
+            }
+            else
+            {
+                Debug.LogError("A road with this name is already added: " + r.RoadIdentifier);
+            }
+        }
+    }
+
+    public bool GetRoadByID(in string id, out Road road)
+    {
+        if (roadsByID.ContainsKey(id))
+        {
+            road = roadsByID[id];
+            return true;
+        }
+        road = null;
+        return false;
+    }
+
+    public bool SpawnRoadByName(in string id, out Road road)
+    {
+        Road roadToSpawn;
+        if (GetRoadByID(id, out roadToSpawn))
+        {
+            road = Instantiate(roadToSpawn);
+            return true;
+        }
+
+        road = null;
+        return false;
+    }
+
+    //SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
+
+    public bool SpawnRoadByName(in string id, in List<RoadIO> ioToMatch, out Road road)
+    {
+        Road roadToSpawn;
+        if (GetRoadByID(id, out roadToSpawn))
+        {
+            if (SpawnAndConnectRoad(roadToSpawn, ioToMatch, 0.3f, out road))
+            {
+                return true;
+            }
+        }
+
+        road = null;
+        return false;
+    }
+
+    public bool SpawnRoadByName(in string id, in List<RoadIO> ioToMatch, in List<RoadIO> ioToMatch2, out Road road)
+    {
+        Road roadToSpawn;
+        if (GetRoadByID(id, out roadToSpawn))
+        {
+            Road[] connectors = { roadToSpawn };
+            road = ConnectRoads(connectors, ioToMatch, ioToMatch2, 0.3f);
+            if (road != null)
+            {
+                return true;
+            }
+        }
+
+        road = null;
+        return false;
     }
 
     //Dadas una lista de carreteras, una lista de io de la carretera a un lado de un hueco y una lista de io de la carretera al otro lado
     //intenta conectarlas mediante una carretera de la lista anterior
+    //public bool SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
     public Road ConnectRoads(in Road[] connectors, in List<RoadIO> ioRoad1, in List<RoadIO> ioRoad2, float errorMargin)
     {
         //Si alguna de las dos listas no tiene io no se pueden conectar
@@ -52,15 +125,15 @@ public class RoadFactory : MonoBehaviour
         //Cada key es el id de un io de la carretera de inicio y el value, de un io del conector
         List<Dictionary<string, string>> connectionsRoad1;
         //Buscamos una lista de las carreteras que encajan con la carretera 1
-        List<Road> connectorsRoad1 = FindSuitableRoads(connectors, ioRoad1, errorMargin, out connectionsRoad1);
+        List<Road> connectorsRoad1;
 
-        if (connectorsRoad1.Count > 0)
+        if (FindSuitableRoads(connectors, ioRoad1, errorMargin, out connectorsRoad1, out connectionsRoad1))
         {
             //Buscamos una lista de las carreteras que encajan con la carretera 1
             List<Dictionary<string, string>> connectionsRoad2;
-            List<Road> connectorsRoad2 = FindSuitableRoads(connectors, ioRoad2, errorMargin, out connectionsRoad2);
+            List<Road> connectorsRoad2;
 
-            if (connectorsRoad2.Count > 0)
+            if (FindSuitableRoads(connectors, ioRoad2, errorMargin, out connectorsRoad2, out connectionsRoad2))
             {
                 //Buscamos una carretera comun en ambas listas
                 Road commonRoad = null;
@@ -91,7 +164,7 @@ public class RoadFactory : MonoBehaviour
                     Road road2 = ioRoad2[0].GetParentRoad();
 
                     //Hacemos que el conector sea del mismo padre que road1
-                    connector.transform.parent = road1.transform.parent;
+                    //connector.transform.parent = road1.transform.parent;
 
                     //Buscamos el diccionario con las conexiones que corresponden a esta carretera en las de inicio
                     Dictionary<string, string> ioIdentifiersDictionary1 = connectionsRoad1[connectorsRoad1.FindIndex(a => a.RoadIdentifier.Equals(commonRoad.RoadIdentifier))];
@@ -104,7 +177,7 @@ public class RoadFactory : MonoBehaviour
                         RoadIO connectorIO = connector.GetRoadIOByID(entry.Value);
 
                         originalIO.ConnectedTo = connectorIO;
-                        connectorIO.MoveRoadTo(originalIO.transform.position);
+                        //connectorIO.MoveRoadTo(originalIO.transform.position);
                     }
 
                     //Conectamos la otra carretera al conector
@@ -114,7 +187,7 @@ public class RoadFactory : MonoBehaviour
                         RoadIO connectorIO = connector.GetRoadIOByID(entry.Value);
 
                         originalIO.ConnectedTo = connectorIO;
-                        originalIO.MoveRoadTo(connectorIO.transform.position);
+                        //originalIO.MoveRoadTo(connectorIO.transform.position);
                     }
 
                     //Devolvemos el conector
@@ -126,7 +199,7 @@ public class RoadFactory : MonoBehaviour
     }
 
     //Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa
-    public bool SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin)
+    public bool SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
     {
         //Si alguna de las dos listas no tiene io no se pueden conectar
         if (ioToMatch.Count > 0)
@@ -139,6 +212,7 @@ public class RoadFactory : MonoBehaviour
             {
                 if (parentRoad != rIO.GetParentRoad() || dir != rIO.Direction)
                 {
+                    spawnedRoad = null;
                     return false;
                 }
             }
@@ -150,14 +224,15 @@ public class RoadFactory : MonoBehaviour
         //Cada key es el id de un io de la carretera de inicio y el value, de un io del conector
         List<Dictionary<string, string>> connectionsRoad1;
         //Buscamos una lista de las carreteras que encajan con la carretera 1
-        List<Road> connectorsRoad1 = FindSuitableRoads(connectors, ioToMatch, errorMargin, out connectionsRoad1);
+        List<Road> connectorsRoad1;
 
         //Devuelve las carreteras validas si hay, en este caso solo una
-        if (connectorsRoad1.Count == 1)
+        if (FindSuitableRoads(connectors, ioToMatch, errorMargin, out connectorsRoad1, out connectionsRoad1))
         {
             //Comprobamos que sean la misma por si acaso
             if (connectorsRoad1[0] != roadToSpawn)
             {
+                spawnedRoad = null;
                 return false;
             }
 
@@ -166,7 +241,7 @@ public class RoadFactory : MonoBehaviour
             Road road1 = ioToMatch[0].GetParentRoad();
 
             //Hacemos que el conector sea del mismo padre que road1
-            connector.transform.parent = road1.transform.parent;
+            //connector.transform.parent = road1.transform.parent;
 
             //Buscamos el diccionario con las conexiones que corresponden a esta carretera en las de inicio
             Dictionary<string, string> ioIdentifiersDictionary1 = connectionsRoad1[connectorsRoad1.FindIndex(a => a.RoadIdentifier.Equals(connectorsRoad1[0].RoadIdentifier))];
@@ -178,23 +253,25 @@ public class RoadFactory : MonoBehaviour
                 RoadIO connectorIO = connector.GetRoadIOByID(entry.Value);
 
                 originalIO.ConnectedTo = connectorIO;
-                connectorIO.MoveRoadTo(originalIO.transform.position);
+                //connectorIO.MoveRoadTo(originalIO.transform.position);
             }
 
+            spawnedRoad = connector;
             return true;
         }
 
+        spawnedRoad = null;
         return false;
     }
 
     //Dada una lista de carreteras y una serie de io, devuelve una lista de carreteras que encajan ahi y un dictionario con las conexiones (id de ioToMatch, id de conector)
-    public List<Road> FindSuitableRoads(in Road[] roadList, in List<RoadIO> ioToMatch, in float errorMargin, out List<Dictionary<string, string>> connectionsDictionary)
+    public bool FindSuitableRoads(in Road[] roadList, in List<RoadIO> ioToMatch, in float errorMargin, out List<Road> validRoads, out List<Dictionary<string, string>> connectionsDictionary)
     {
-        connectionsDictionary = new List<Dictionary<string, string>>();
         if (ioToMatch.Count > 0)
         {
             IODirection oppositeDirection = RoadIO.GetOppositeDirection(ioToMatch[0].Direction);
-            List<Road> validRoads = new List<Road>();
+            validRoads = new List<Road>();
+            connectionsDictionary = new List<Dictionary<string, string>>();
 
             if (oppositeDirection != IODirection.Undefined && ioToMatch.Count > 0)
             {
@@ -212,9 +289,18 @@ public class RoadFactory : MonoBehaviour
                 }
             }
 
-            return validRoads;
+            if (validRoads.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        return null;
+        connectionsDictionary = null;
+        validRoads = null;
+        return false;
     }
 
     private bool CheckIfValid(in List<RoadIO> ioToMatch, in List<RoadIO> candidateIO, in float errorMargin, out Dictionary<string, string> connections)
@@ -267,54 +353,5 @@ public class RoadFactory : MonoBehaviour
         }
 
         return false;
-    }
-
-    private void CorrectRoadsPosition(RoadIO pivotIO, in float maxAcceptableDistance)
-    {
-        if (pivotIO != null)
-        {
-            pivotIO.MoveRoadTo(roadStartMarker.position);
-
-            List<Road> processedRoads = new List<Road>();
-            processedRoads.Add(pivotIO.GetParentRoad());
-
-            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
-
-            RoadIO[] tmpe = pivotIO.GetParentRoad().GetAllIO();
-
-            foreach (RoadIO rio in tmpe)
-            {
-                ioToProc.Push(rio);
-            }
-
-            while (ioToProc.Count > 0)
-            {
-                RoadIO toProc = ioToProc.Pop();
-                RoadIO connectedTo = toProc.ConnectedTo;
-                if (connectedTo != null)
-                {
-                    float distance = Vector3.Distance(toProc.transform.position, connectedTo.transform.position);
-                    if (distance > maxAcceptableDistance)
-                    {
-                        connectedTo.MoveRoadTo(toProc.transform.position);
-                    }
-
-                    processedRoads.Add(connectedTo.GetParentRoad());
-
-                    tmpe = connectedTo.GetParentRoad().GetAllIO();
-
-                    foreach (RoadIO rio in tmpe)
-                    {
-                        if (rio.ConnectedTo != null)
-                        {
-                            if (!processedRoads.Contains(rio.ConnectedTo.GetParentRoad()))
-                            {
-                                ioToProc.Push(rio);
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }

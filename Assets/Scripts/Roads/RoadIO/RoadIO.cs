@@ -35,6 +35,8 @@ public abstract class RoadIO : MonoBehaviour
         }
     }
 
+    public bool CanBeSelected { get => canBeSelected;  }
+
     public static IODirection GetOppositeDirection(IODirection direction)
     {
         switch (direction)
