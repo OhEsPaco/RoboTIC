@@ -5,6 +5,7 @@ public class SelectedOutputMarker : MonoBehaviour
 {
     private Vector3 mOffset;
     private float mZCoord;
+    [SerializeField] private Transform floor;
 
     private void OnMouseDown()
     {
@@ -21,6 +22,14 @@ public class SelectedOutputMarker : MonoBehaviour
         if (LevelManager.instance.RoadPlacementLogic.SelectedIO != null)
         {
             transform.position = GetMouseWorldPos() + mOffset;
+
+            if (floor != null)
+            {
+                if (transform.position.y < floor.position.y)
+                {
+                    transform.position = new Vector3(transform.position.x, floor.position.y, transform.position.z);
+                }
+            }
         }
     }
 
@@ -100,7 +109,6 @@ public class SelectedOutputMarker : MonoBehaviour
                 {
                     processedIO.Add(toProc);
                 }
-                    
             }
 
             Debug.Log(processedIO.Count);
@@ -108,7 +116,7 @@ public class SelectedOutputMarker : MonoBehaviour
             {
                 if (closestIO.connectedTo is RoadOutput)
                 {
-                     closestIO = closestIO.connectedTo;
+                    closestIO = closestIO.connectedTo;
                 }
             }
             return closestIO;
