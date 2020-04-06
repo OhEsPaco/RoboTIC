@@ -8,11 +8,11 @@ public class RoadFactory : MonoBehaviour
     // [SerializeField] private Road[] funcionRoads = new Road[0];
 
     private Dictionary<string, Road> roadsByID = new Dictionary<string, Road>();
-
+    private Road[] roads;
     // Start is called before the first frame update
     private void Start()
     {
-        Road[] roads = GetComponentsInChildren<Road>();
+        roads = GetComponentsInChildren<Road>();
         foreach (Road r in roads)
         {
             Debug.Log("Added road: " + r.RoadIdentifier);
@@ -81,6 +81,18 @@ public class RoadFactory : MonoBehaviour
             }
         }
 
+        road = null;
+        return false;
+    }
+
+    public bool FillGap(in List<RoadIO> ioToMatch, in List<RoadIO> ioToMatch2, out Road road)
+    {
+
+        road = ConnectRoads(roads, ioToMatch, ioToMatch2, 0.3f);
+        if (road != null)
+        {
+            return true;
+        }
         road = null;
         return false;
     }
@@ -197,7 +209,18 @@ public class RoadFactory : MonoBehaviour
         }
         return null;
     }
+    public bool SpawnAndConnectRoad(in string roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
+    {
+        Road r;
+        if(GetRoadByID(roadToSpawn,out r))
+        {
 
+            return SpawnAndConnectRoad(r, ioToMatch, errorMargin, out spawnedRoad);
+        }
+
+        spawnedRoad = null;
+        return false;
+    }
     //Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa
     public bool SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
     {

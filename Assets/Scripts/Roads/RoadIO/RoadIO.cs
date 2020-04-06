@@ -81,7 +81,7 @@ public abstract class RoadIO : MonoBehaviour
                 DrawArrow.ForGizmo(transform.position, Vector3.right);
                 break;
         }
-          Handles.Label(transform.position, gameObject.name);
+         // Handles.Label(transform.position, gameObject.name);
         //Handles.Label(transform.position, id);
     }
 

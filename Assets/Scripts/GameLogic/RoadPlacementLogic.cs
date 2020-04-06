@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static ButtonConstants;
+using static RoadIO;
 
 public class RoadPlacementLogic : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class RoadPlacementLogic : MonoBehaviour
     internal void Start()
     {
         // selectedOutputMarker.transform.parent = roadParent;
-
+        roadParent.position = roadStartMarker.position;
         //Llenar el diccionario de funciones
         buttonActionsDictionary = new Dictionary<Buttons, Action>();
         buttonActionsDictionary.Add(Buttons.Action, DoAction);
@@ -72,6 +73,34 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoCondition()
     {
+        Road loopIn;
+        /*Vector3 loopPos = roadStartMarker.transform.position;
+        if (selectedIO != null)
+        {
+            loopPos = new Vector3(this.selectedIO.transform.position.x, this.selectedIO.transform.position.y, this.selectedIO.transform.position.z);
+        }*/
+        if (SpawnRoad("NodeIfIn", out loopIn))
+        {
+            Road loopOut;
+            LevelManager.instance.RoadFactory.SpawnRoadByName("NodeIfOut", loopIn.GetRoadIOByDirection(RoadIO.IODirection.Forward), out loopOut);
+            loopOut.transform.parent = roadParent;
+            loopOut.GetRoadIOByDirection(IODirection.Back)[0].MoveRoadTo(loopOut.GetRoadIOByDirection(IODirection.Back)[0].connectedTo.transform.position);
+
+            //FillGaps(this.pivotIO, MAX_ACCEPTABLE_DISTANCE);
+        }
+
+        /*//Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa
+     public bool SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
+     */
+      /*  Road ifIn;
+        if (LevelManager.instance.RoadFactory.SpawnRoadByName("NodeIfIn", out ifIn))
+        {
+            Road ifOut;
+            if (LevelManager.instance.RoadFactory.SpawnAndConnectRoad("NodeIfOut", ifIn.GetRoadIOByDirection(IODirection.Forward),MAX_ACCEPTABLE_DISTANCE, out ifOut))
+            {
+
+            }
+        }*/
     }
 
     private void DoJump()
@@ -81,6 +110,21 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoLoop()
     {
+        Road loopIn;
+        /*Vector3 loopPos = roadStartMarker.transform.position;
+        if (selectedIO != null)
+        {
+            loopPos = new Vector3(this.selectedIO.transform.position.x, this.selectedIO.transform.position.y, this.selectedIO.transform.position.z);
+        }*/
+        if (SpawnRoad("NodeLoopIn", out loopIn))
+        {
+            Road loopOut;
+            LevelManager.instance.RoadFactory.SpawnRoadByName("NodeLoopOut", loopIn.GetRoadIOByDirection(RoadIO.IODirection.Forward), out loopOut);
+            loopOut.transform.parent = roadParent;
+            loopOut.GetRoadIOByDirection(IODirection.Back)[0].MoveRoadTo(loopOut.GetRoadIOByDirection(IODirection.Back)[0].connectedTo.transform.position);
+
+            //FillGaps(this.pivotIO, MAX_ACCEPTABLE_DISTANCE);
+        }
     }
 
     private bool SpawnRoad(in string id, out Road spawnedRoad)
@@ -92,10 +136,10 @@ public class RoadPlacementLogic : MonoBehaviour
             {
                 spawnedRoad.transform.parent = roadParent;
                 RoadIO[] allRoadIO = spawnedRoad.GetAllIO();
-               /* if (pivotIO == null)
-                {
-                    pivotIO = allRoadIO[0];
-                }*/
+                /* if (pivotIO == null)
+                 {
+                     pivotIO = allRoadIO[0];
+                 }*/
 
                 foreach (RoadIO rIO in allRoadIO)
                 {
@@ -106,6 +150,8 @@ public class RoadPlacementLogic : MonoBehaviour
                         break;
                     }
                 }
+
+                this.pivotIO.MoveRoadTo(roadStartMarker.transform.position);
             }
         }
         else
@@ -115,22 +161,13 @@ public class RoadPlacementLogic : MonoBehaviour
             {
                 List<RoadIO> ioToMatch = new List<RoadIO>();
                 ioToMatch.Add(this.selectedIO);
-                //SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
-                
+
                 if (LevelManager.instance.RoadFactory.SpawnRoadByName(id, ioToMatch, out spawnedRoad))
                 {
                     spawnedRoad.transform.parent = roadParent;
-                    /*RoadIO[] allRoadIO = spawnedRoad.GetAllIO();
-                    foreach (RoadIO rIO in allRoadIO)
-                    {
-                        if (rIO is RoadOutput && rIO.CanBeSelected)
-                        {
-                            //this.selectedIO = rIO;
-
-                            break;
-                        }
-                    }*/
                 }
+
+                this.selectedIO.connectedTo.MoveRoadTo(this.selectedIO.transform.position);
             }
             else
             {
@@ -139,20 +176,143 @@ public class RoadPlacementLogic : MonoBehaviour
 
                 List<RoadIO> ioToMatch2 = new List<RoadIO>();
                 ioToMatch2.Add(this.selectedIO.connectedTo);
-                //SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
+
                 if (LevelManager.instance.RoadFactory.SpawnRoadByName(id, ioToMatch, ioToMatch2, out spawnedRoad))
                 {
                     spawnedRoad.transform.parent = roadParent;
-                   /* RoadIO[] allRoadIO = spawnedRoad.GetAllIO();
-                    foreach (RoadIO rIO in allRoadIO)
-                    {
-                        if (rIO is RoadOutput && rIO.CanBeSelected)
-                        {
-                            this.selectedIO = rIO;
+                    this.selectedIO.connectedTo.MoveRoadTo(this.selectedIO.transform.position);
+                    //Hacer la magia
 
-                            break;
+                    //Guardo la direccion en la que se ha puesto esta carretera
+                    IODirection newRoadDir = this.selectedIO.Direction;
+                    IODirection oppositeDirection = RoadIO.GetOppositeDirection(newRoadDir);
+                    //Cada vez que se pasa a una carretera por esa direccion, se suma un nivel
+                    //En direccion contraria se resta
+                    //Y en el resto se queda igual
+
+                    //Creo un diccionario de carreteras y el numero que tienen
+                    Dictionary<Road, int> roadAndValue = new Dictionary<Road, int>();
+
+                    //Lista de IO procesadas
+                    List<RoadIO> processedIO = new List<RoadIO>();
+                    List<Road> processedRoads = new List<Road>();
+
+                    //Stack de IO a procesar
+                    Stack<RoadIO> ioToProccess = new Stack<RoadIO>();
+
+                    //Añado el IO de la nueva carretera a la pila
+                    foreach (RoadIO r in spawnedRoad.GetAllIO())
+                    {
+                        if (r.connectedTo != null)
+                        {
+                            ioToProccess.Push(r);
                         }
-                    }*/
+                    }
+
+                    processedRoads.Add(spawnedRoad);
+                    //Marco la nueva carretera con un 0
+                    roadAndValue.Add(spawnedRoad, 0);
+
+                    while (ioToProccess.Count > 0)
+                    {
+                        //Tomamos la io a procesar
+                        RoadIO currentIO = ioToProccess.Pop();
+
+                        //La añadimos a la lista de procesadas
+                        processedIO.Add(currentIO);
+
+                        if (currentIO.connectedTo != null)
+                        {
+                            RoadIO connectedTo = currentIO.connectedTo;
+                            int nextRoadLevel = roadAndValue[currentIO.GetParentRoad()];
+
+                            if (currentIO.Direction == newRoadDir)
+                            {
+                                //La siguiente carretera suma
+                                nextRoadLevel++;
+                            }
+                            else if (currentIO.Direction == oppositeDirection)
+                            {
+                                //La siguiente carretera resta
+                                nextRoadLevel--;
+                            }
+                            else
+                            {
+                                ////Queda igual
+                            }
+
+                            //Si es menor que cero hemos encontrado un hueco
+                            if (nextRoadLevel <= 0)
+                            {
+                                Debug.Log("Hueco");
+                                //MAX_ACCEPTABLE_DISTANCE
+                                //Llenamos el hueco
+                                List<RoadIO> currentRoadIO = new List<RoadIO>();
+                                List<RoadIO> nextRoadIO = new List<RoadIO>();
+
+                                foreach(RoadIO r in currentIO.GetParentRoad().GetRoadIOByDirection(currentIO.Direction))
+                                {
+                                    if (Vector3.Distance(r.transform.position, r.connectedTo.transform.position) > MAX_ACCEPTABLE_DISTANCE)
+                                    {
+                                        currentRoadIO.Add(r);
+                                        nextRoadIO.Add(r.connectedTo);
+                                    }
+
+                                    if (currentRoadIO.Count > 0)
+                                    {
+                                        Road gap;
+                                        if (LevelManager.instance.RoadFactory.FillGap(nextRoadIO,currentRoadIO,out gap))
+                                        {
+                                            processedRoads.Add(gap);
+                                            gap.transform.parent = roadParent;
+                                            nextRoadIO[0].connectedTo.MoveRoadTo(nextRoadIO[0].transform.position);
+                                        }
+                                    }
+                                    
+                                }
+                                //currentIO.GetParentRoad().GetRoadIOByDirection(currentIO.Direction);
+
+
+
+                            }
+                            else
+                            {
+                                //Si es mayor o igual que cero seguimos
+                                if (!roadAndValue.ContainsKey(connectedTo.GetParentRoad()))
+                                {
+                                    //Si no contiene esta carretera, la añadimos
+                                    roadAndValue.Add(connectedTo.GetParentRoad(), nextRoadLevel);
+                                }
+                                else
+                                {
+                                    //Si la contiene, modificamos el valor de esta carretera si es menor que el que tiene
+                                    /*if (roadAndValue[connectedTo.GetParentRoad()] > nextRoadLevel)
+                                    {
+                                        roadAndValue[connectedTo.GetParentRoad()] = nextRoadLevel;
+                                    }*/
+                                }
+
+                                //Movemos la nueva carretera a su posicion
+                                if (!processedRoads.Contains(connectedTo.GetParentRoad())){
+                                    connectedTo.MoveRoadTo(currentIO.transform.position);
+                                    processedRoads.Add(connectedTo.GetParentRoad());
+                                }
+                                
+
+                                //Añadimos nueva io
+                                foreach (RoadIO r in connectedTo.GetParentRoad().GetAllIO())
+                                {
+                                    if (r.connectedTo != null)
+                                    {
+                                        if (!processedIO.Contains(r))
+                                        {
+                                            ioToProccess.Push(r);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -163,20 +323,16 @@ public class RoadPlacementLogic : MonoBehaviour
         }
         else
         {
-            //Mejorar esto
-            CorrectRoadsPosition(this.pivotIO, MAX_ACCEPTABLE_DISTANCE);
-
-            if(this.selectedIO is RoadInput)
+            if (this.selectedIO is RoadInput)
             {
                 RoadIO f = FindFartestInput(this.selectedIO, spawnedRoad.GetAllIO());
                 if (f != null)
                 {
                     this.selectedIO = f;
                     this.pivotIO = f;
-                    CorrectRoadsPosition(this.pivotIO, MAX_ACCEPTABLE_DISTANCE);
                 }
-
             }
+
             this.selectedOutputMarker.transform.position = this.selectedIO.transform.position;
             return true;
         }
@@ -184,15 +340,14 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private RoadIO FindFartestInput(RoadIO pivot, RoadIO[] allIO)
     {
-
         RoadIO fartest = allIO[0];
-        foreach(RoadIO rIO in allIO)
+        foreach (RoadIO rIO in allIO)
         {
-            if(fartest is RoadOutput && rIO is RoadInput && rIO.CanBeSelected)
+            if (fartest is RoadOutput && rIO is RoadInput && rIO.CanBeSelected)
             {
                 fartest = rIO;
             }
-            else if(rIO is RoadInput && rIO.CanBeSelected)
+            else if (rIO is RoadInput && rIO.CanBeSelected)
             {
                 if (Vector3.Distance(pivot.transform.position, fartest.transform.position) < Vector3.Distance(pivot.transform.position, rIO.transform.position))
                 {
@@ -201,12 +356,13 @@ public class RoadPlacementLogic : MonoBehaviour
             }
         }
 
-        if(fartest is RoadOutput || !fartest.CanBeSelected)
+        if (fartest is RoadOutput || !fartest.CanBeSelected)
         {
             return null;
         }
         return fartest;
     }
+
     private void SpawnVerticalButton(string button)
     {
         Road spawnedRoad;
@@ -239,56 +395,5 @@ public class RoadPlacementLogic : MonoBehaviour
     private void DoTurnRight()
     {
         SpawnVerticalButton("turn_right");
-    }
-
-    
-
-    private void CorrectRoadsPosition(RoadIO pivotIO, in float maxAcceptableDistance)
-    {
-        if (pivotIO != null)
-        {
-            pivotIO.MoveRoadTo(roadStartMarker.position);
-
-            List<Road> processedRoads = new List<Road>();
-            processedRoads.Add(pivotIO.GetParentRoad());
-
-            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
-
-            RoadIO[] tmpe = pivotIO.GetParentRoad().GetAllIO();
-
-            foreach (RoadIO rio in tmpe)
-            {
-                ioToProc.Push(rio);
-            }
-
-            while (ioToProc.Count > 0)
-            {
-                RoadIO toProc = ioToProc.Pop();
-                RoadIO connectedTo = toProc.ConnectedTo;
-                if (connectedTo != null)
-                {
-                    float distance = Vector3.Distance(toProc.transform.position, connectedTo.transform.position);
-                    if (distance > maxAcceptableDistance)
-                    {
-                        connectedTo.MoveRoadTo(toProc.transform.position);
-                    }
-
-                    processedRoads.Add(connectedTo.GetParentRoad());
-
-                    tmpe = connectedTo.GetParentRoad().GetAllIO();
-
-                    foreach (RoadIO rio in tmpe)
-                    {
-                        if (rio.ConnectedTo != null)
-                        {
-                            if (!processedRoads.Contains(rio.ConnectedTo.GetParentRoad()))
-                            {
-                                ioToProc.Push(rio);
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
