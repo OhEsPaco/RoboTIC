@@ -97,4 +97,9 @@ public abstract class Road : MonoBehaviour
     {
         return ioByID.ContainsKey(id);
     }
+
+    public bool RoadReady()
+    {
+        return true;
+    }
 }

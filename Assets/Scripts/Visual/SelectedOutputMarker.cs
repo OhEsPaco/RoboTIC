@@ -6,6 +6,7 @@ public class SelectedOutputMarker : MonoBehaviour
     private Vector3 mOffset;
     private float mZCoord;
     [SerializeField] private Transform floor;
+    [SerializeField] private GameObject sphere;
 
     private void OnMouseDown()
     {
@@ -14,6 +15,8 @@ public class SelectedOutputMarker : MonoBehaviour
         {
             mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
             mOffset = gameObject.transform.position - GetMouseWorldPos();
+            sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.SelectedIO).transform.position;
+            sphere.SetActive(true);
         }
     }
 
@@ -29,8 +32,13 @@ public class SelectedOutputMarker : MonoBehaviour
                 {
                     transform.position = new Vector3(transform.position.x, floor.position.y, transform.position.z);
                 }
+
+                //OPTIMIZAR
+                sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.SelectedIO).transform.position;
+
             }
         }
+      
     }
 
     private Vector3 GetMouseWorldPos()
@@ -55,7 +63,7 @@ public class SelectedOutputMarker : MonoBehaviour
             {
                 LevelManager.instance.RoadPlacementLogic.SelectedIO = closests;
                 gameObject.transform.position = closests.transform.position;
-
+                sphere.SetActive(false);
                 /*if(closests is RoadInput)
                 {
                     Debug.Log("input");

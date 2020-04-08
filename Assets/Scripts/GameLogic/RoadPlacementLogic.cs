@@ -38,7 +38,7 @@ public class RoadPlacementLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
         buttonActionsDictionary.Add(Buttons.Undo, DoUndo);
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
-
+        selectedOutputMarker.transform.parent = roadStartMarker;
         selectedOutputMarker.transform.position = roadStartMarker.position;
     }
 
@@ -92,15 +92,14 @@ public class RoadPlacementLogic : MonoBehaviour
         /*//Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa
      public bool SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
      */
-      /*  Road ifIn;
-        if (LevelManager.instance.RoadFactory.SpawnRoadByName("NodeIfIn", out ifIn))
-        {
-            Road ifOut;
-            if (LevelManager.instance.RoadFactory.SpawnAndConnectRoad("NodeIfOut", ifIn.GetRoadIOByDirection(IODirection.Forward),MAX_ACCEPTABLE_DISTANCE, out ifOut))
-            {
-
-            }
-        }*/
+        /*  Road ifIn;
+          if (LevelManager.instance.RoadFactory.SpawnRoadByName("NodeIfIn", out ifIn))
+          {
+              Road ifOut;
+              if (LevelManager.instance.RoadFactory.SpawnAndConnectRoad("NodeIfOut", ifIn.GetRoadIOByDirection(IODirection.Forward),MAX_ACCEPTABLE_DISTANCE, out ifOut))
+              {
+              }
+          }*/
     }
 
     private void DoJump()
@@ -250,7 +249,7 @@ public class RoadPlacementLogic : MonoBehaviour
                                 List<RoadIO> currentRoadIO = new List<RoadIO>();
                                 List<RoadIO> nextRoadIO = new List<RoadIO>();
 
-                                foreach(RoadIO r in currentIO.GetParentRoad().GetRoadIOByDirection(currentIO.Direction))
+                                foreach (RoadIO r in currentIO.GetParentRoad().GetRoadIOByDirection(currentIO.Direction))
                                 {
                                     if (Vector3.Distance(r.transform.position, r.connectedTo.transform.position) > MAX_ACCEPTABLE_DISTANCE)
                                     {
@@ -261,19 +260,15 @@ public class RoadPlacementLogic : MonoBehaviour
                                     if (currentRoadIO.Count > 0)
                                     {
                                         Road gap;
-                                        if (LevelManager.instance.RoadFactory.FillGap(nextRoadIO,currentRoadIO,out gap))
+                                        if (LevelManager.instance.RoadFactory.FillGap(nextRoadIO, currentRoadIO, out gap))
                                         {
                                             processedRoads.Add(gap);
                                             gap.transform.parent = roadParent;
                                             nextRoadIO[0].connectedTo.MoveRoadTo(nextRoadIO[0].transform.position);
                                         }
                                     }
-                                    
                                 }
                                 //currentIO.GetParentRoad().GetRoadIOByDirection(currentIO.Direction);
-
-
-
                             }
                             else
                             {
@@ -293,11 +288,11 @@ public class RoadPlacementLogic : MonoBehaviour
                                 }
 
                                 //Movemos la nueva carretera a su posicion
-                                if (!processedRoads.Contains(connectedTo.GetParentRoad())){
+                                if (!processedRoads.Contains(connectedTo.GetParentRoad()))
+                                {
                                     connectedTo.MoveRoadTo(currentIO.transform.position);
                                     processedRoads.Add(connectedTo.GetParentRoad());
                                 }
-                                
 
                                 //Añadimos nueva io
                                 foreach (RoadIO r in connectedTo.GetParentRoad().GetAllIO())
@@ -381,6 +376,138 @@ public class RoadPlacementLogic : MonoBehaviour
     private void DoPlay()
     {
         //LevelManager.instance.RoadMovementLogic.StartMovement(firstInput, lastOutput, player, conditionDictionary, loopsDictionary);
+        //Quiza se podrian acelerar estas cosas añadiendo un flag de procesamiento a cada RoadIO y reseteandolo antes de empezar el algoritmo
+
+        if (pivotIO != null)
+        {
+            List<Road> allRoads = new List<Road>();
+            Stack<Road> roadsToProccess = new Stack<Road>();
+
+            RoadInput roadInput = null;
+            RoadOutput roadOutput = null;
+
+            roadsToProccess.Push(pivotIO.GetParentRoad());
+            while (roadsToProccess.Count > 0)
+            {
+                Road r = roadsToProccess.Pop();
+
+                foreach (RoadIO rIO in r.GetAllIO())
+                {
+                    if (rIO.connectedTo != null)
+                    {
+                        if (!allRoads.Contains(rIO.connectedTo.GetParentRoad()))
+                        {
+                            roadsToProccess.Push(rIO.connectedTo.GetParentRoad());
+                        }
+                    }
+                    else
+                    {
+                        if (rIO is RoadInput)
+                        {
+                            roadInput = (RoadInput)rIO;
+                        }
+                        else
+                        {
+                            roadOutput = (RoadOutput)rIO;
+                        }
+                    }
+                }
+
+                if (!allRoads.Contains(r))
+                {
+                    allRoads.Add(r);
+                }
+            }
+
+            Debug.Log("Number of roads: " + allRoads.Count);
+            Debug.Log("RoadInput: " + roadInput.IOIdentifier);
+            Debug.Log("RoadOutput: " + roadOutput.IOIdentifier);
+
+            bool invalidRoad = false;
+            foreach (Road r in allRoads)
+            {
+                if (!r.RoadReady())
+                {
+                    invalidRoad = true;
+                    Debug.LogError(r.RoadIdentifier + " not ready");
+                }
+            }
+            //Comprobar condiciones
+
+            if (!invalidRoad)
+            {
+                //Lock all roads
+                string[] lockArgs = { "lock" };
+                foreach (Road r in allRoads)
+                {
+                    r.ExecuteAction(lockArgs);
+                }
+                selectedOutputMarker.SetActive(false);
+
+                LevelManager.instance.RoadMovement.StartMovement(roadInput, roadOutput);
+
+
+            }
+            else
+            {
+                InvalidRoad();
+            }
+        }
+        else
+        {
+            InvalidRoad();
+        }
+    }
+
+    private void InvalidRoad()
+    {
+        Debug.LogError("Invalid Road");
+    }
+
+    private List<RoadIO> GetUnconnectedIO(RoadIO startPoint)
+    {
+        List<RoadIO> result = new List<RoadIO>();
+        if (startPoint != null)
+        {
+            List<Road> processedRoads = new List<Road>();
+
+            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
+
+            RoadIO[] tmpe = startPoint.GetParentRoad().GetAllIO();
+
+            foreach (RoadIO rio in tmpe)
+            {
+                ioToProc.Push(rio);
+            }
+
+            while (ioToProc.Count > 0)
+            {
+                RoadIO toProc = ioToProc.Pop();
+
+                processedRoads.Add(toProc.GetParentRoad());
+                RoadIO connectedTo = toProc.ConnectedTo;
+                if (connectedTo == null)
+                {
+                    if (!result.Contains(toProc))
+                    {
+                        result.Add(toProc);
+                    }
+                }
+                else
+                {
+                    Road nextRoad = connectedTo.GetParentRoad();
+                    if (!processedRoads.Contains(nextRoad))
+                    {
+                        tmpe = nextRoad.GetAllIO();
+                        foreach (RoadIO candidate in tmpe)
+                        {
+                            ioToProc.Push(candidate);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     private void DoRestart()
