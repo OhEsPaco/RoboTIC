@@ -1,23 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using static PathContainer;
 
 public class RoadMovementLogic : MonoBehaviour
 {
-    public enum Direction { Forward, Reverse };
-
-    private Direction characterDirection;
     private bool movementStarted = false;
     private float pathPercent = 0;
 
-    [SerializeField] private float speed = .2f;
     [SerializeField] private MiniCharacter player;
+    [SerializeField] private float minimumDist = 0.1f;
     private RoadInput input;
     private RoadOutput output;
-    private Vector3 floorPosition;
-    private Transform[] controlPath;
-    private RoadOutput nextOutput;
-    private float lookAheadAmount = .01f;
 
+    private List<Vector3> controlPath = new List<Vector3>();
+    private RoadOutput nextOutput;
+    private LTSpline track;
+    private float carAdd;
+    private int trackMaxItems = 10;
+    [SerializeField] private float speed = 20;
     private void Start()
     {
         //plop the character pieces in the "Ignore Raycast" layer so we don't have false raycast data:
@@ -26,7 +27,6 @@ public class RoadMovementLogic : MonoBehaviour
             child.gameObject.layer = 2;
         }
         player.transform.parent = transform;
-        characterDirection = Direction.Forward;
     }
 
     // GetPathAndOutput(in RoadInput input, out Path path, out RoadOutput output)
@@ -34,11 +34,11 @@ public class RoadMovementLogic : MonoBehaviour
     {
         this.input = input;
         this.output = output;
-        this.controlPath = null;
+
         this.nextOutput = null;
 
-        pathPercent = 0;
         player.gameObject.SetActive(true);
+        player.transform.position = input.transform.position;
         if (GetNewPath(input))
         {
             movementStarted = true;
@@ -47,6 +47,7 @@ public class RoadMovementLogic : MonoBehaviour
         {
             Debug.LogError("No path available");
         }
+        pathPercent = 0;
     }
 
     private bool GetNewPath(RoadInput input)
@@ -55,70 +56,118 @@ public class RoadMovementLogic : MonoBehaviour
         RoadOutput outp;
         if (input.GetParentRoad().GetPathAndOutput(input, out path, out outp))
         {
-            controlPath = path.points;
+            Vector3[] trackPoints = new Vector3[path.points.Length];
+            for (int i = 0; i < trackPoints.Length; i++)
+            {
+                trackPoints[i] = path.points[i].position;
+            }
+
+            if (controlPath.Count == 0)
+            {
+                //Necesita al menos 4 puntos
+                if (trackPoints.Length == 3)
+                {
+                    Array.Resize<Vector3>(ref trackPoints, 5);
+                    trackPoints[4] = new Vector3(trackPoints[2].x, trackPoints[2].y, trackPoints[2].z);
+                    trackPoints[2] = new Vector3(trackPoints[1].x, trackPoints[1].y, trackPoints[1].z);
+
+                    trackPoints[1] = Vector3.Lerp(trackPoints[0], trackPoints[2], 0.5f);
+
+                    trackPoints[3] = Vector3.Lerp(trackPoints[2], trackPoints[4], 0.5f);
+                }
+
+                if (trackPoints.Length == 2)
+                {
+                    Array.Resize<Vector3>(ref trackPoints, 5);
+                    trackPoints[4] = new Vector3(trackPoints[1].x, trackPoints[1].y, trackPoints[1].z);
+
+                    trackPoints[2] = Vector3.Lerp(trackPoints[0], trackPoints[4], 0.5f);
+                    trackPoints[1] = Vector3.Lerp(trackPoints[0], trackPoints[2], 0.5f);
+                    trackPoints[3] = Vector3.Lerp(trackPoints[2], trackPoints[4], 0.5f);
+                }
+
+                controlPath.Add(trackPoints[0]);
+                foreach (Vector3 v in trackPoints)
+                {
+                    Debug.Log(v);
+                    controlPath.Add(v);
+                }
+              
+            }
+            else
+            {
+                controlPath.RemoveAt(controlPath.Count-1);
+                for (int i = 1; i < trackPoints.Length; i++)
+                {
+                    controlPath.Add(trackPoints[i]);
+                }
+               
+            }
+
+            while (controlPath.Count > trackMaxItems)
+            {
+                controlPath.RemoveAt(0); // Remove the trailing spline node
+            }
+
+            controlPath.Add(controlPath[controlPath.Count-1]);
+            track = new LTSpline(controlPath.ToArray());
+
+            carAdd = speed / track.distance; // we want to make sure the speed is based on the distance of the spline for a more constant speed
+            pathPercent += carAdd * Time.deltaTime;
+            Debug.Log(pathPercent);
+
             nextOutput = outp;
-            floorPosition = input.transform.position;
+
             return true;
         }
 
         return false;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        foreach (Vector3 v in controlPath.ToArray())
+        {
+            Gizmos.DrawSphere(v, 0.1f);
+        }
+    }
+
     private void Update()
     {
         if (movementStarted)
         {
-            pathPercent += Time.deltaTime * speed;
+             float zLastDist = Vector3.Distance(controlPath[controlPath.Count-1], player.transform.position);
+              //Debug.Log(zLastDist);
+              if (zLastDist < minimumDist)
+              {
+                  //Debug.Log("Hola");
+                  //Hace falta un nuevo camino
 
-            if (pathPercent > 1)
-            {
-                //Hace falta un nuevo camino
-                pathPercent = pathPercent - 1;
+                  if (nextOutput == output)
+                  {
+                     Debug.Log("End of the road!!");
+                      // movementStarted = false;
+                  }
+                  else
+                  {
+                     if (!GetNewPath((RoadInput)nextOutput.connectedTo))
+                      {
+                          //movementStarted = false;
 
-                if (nextOutput == output)
-                {
-                    Debug.Log("End of the road!!");
-                    movementStarted = false;
-                }
-                else
-                {
-                    if (!GetNewPath((RoadInput)nextOutput.connectedTo))
-                    {
-                        movementStarted = false;
+                          Debug.LogError("No path available");
+                      }
+                      else
+                      {
+                          pathPercent = track.ratioAtPoint(player.transform.position);
+                          Debug.Log("Marcha atras");
+                      }
+                  }
+              }
 
-                        Debug.LogError("No path available");
-                    }
-                }
-            }
-
-            if (movementStarted)
-            {
-                Vector3 coordinateOnPath = iTween.PointOnPath(controlPath, pathPercent);
-                
-                Vector3 lookTarget;
-                //calculate look data if we aren't going to be looking beyond the extents of the path:
-                if (pathPercent - lookAheadAmount >= 0 && pathPercent + lookAheadAmount <= 1)
-                {
-                    //leading or trailing point so we can have something to look at:
-                    if (characterDirection == Direction.Forward)
-                    {
-                        lookTarget = iTween.PointOnPath(controlPath, pathPercent + lookAheadAmount);
-                    }
-                    else
-                    {
-                        lookTarget = iTween.PointOnPath(controlPath, pathPercent - lookAheadAmount);
-                    }
-
-                    //look:
-                    player.transform.LookAt(lookTarget);
-
-                    //nullify all rotations but y since we just want to look where we are going:
-                    float yRot = player.transform.eulerAngles.y;
-                    player.transform.eulerAngles = new Vector3(0, yRot, 0);
-                }
-
-                player.transform.position = new Vector3(coordinateOnPath.x, floorPosition.y, coordinateOnPath.z);
-            }
+         
+            track.place(player.transform, pathPercent);
+            pathPercent += carAdd * Time.deltaTime;
         }
     }
 }
