@@ -2180,7 +2180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1493676829}
   minimumDist: 0.1
-  speed: 10
+  speed: 5
+  pathMaxPoints: 20
 --- !u!4 &212684769
 Transform:
   m_ObjectHideFlags: 0

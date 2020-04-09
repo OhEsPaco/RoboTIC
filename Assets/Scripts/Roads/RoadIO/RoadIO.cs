@@ -12,7 +12,7 @@ public abstract class RoadIO : MonoBehaviour
     public RoadIO connectedTo;
     [SerializeField] bool canBeSelected = true;
     [UniqueIdentifier,SerializeField] private string id;
-
+    
     public string IOIdentifier
     {
         get
@@ -60,6 +60,7 @@ public abstract class RoadIO : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        /*
         Gizmos.color = Color();
         Gizmos.DrawSphere(transform.position, 0.1f);
 
@@ -80,7 +81,7 @@ public abstract class RoadIO : MonoBehaviour
             case IODirection.Right:
                 DrawArrow.ForGizmo(transform.position, Vector3.right);
                 break;
-        }
+        }*/
          // Handles.Label(transform.position, gameObject.name);
         //Handles.Label(transform.position, id);
     }

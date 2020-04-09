@@ -31,7 +31,7 @@ public class PathContainer : MonoBehaviour
                         total = total / nPoints;
                         GUIStyle style = new GUIStyle();
                         style.normal.textColor = p.color;
-                       Handles.Label(total,p.pathName,style);
+                       //Handles.Label(total,p.pathName,style);
                     }
                 }
                 /*Transform firstPoint = p.points[0];
