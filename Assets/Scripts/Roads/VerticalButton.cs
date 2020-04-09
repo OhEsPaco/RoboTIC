@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
+using static LevelButtons;
 
 public class VerticalButton : MonoBehaviour
 {
     [SerializeField] private GameObject mesh;
-    [SerializeField] private string buttonName;
+    [SerializeField] private Buttons buttonName;
 
     private Animation anim;
     private bool locked = false;
 
     public bool Locked { get { return locked; } }
-    public string ButtonName { get { return buttonName; } }
+    public string ButtonName { get { return buttonName.ToString(); } }
 
     // Start is called before the first frame update
     private void Start()
@@ -31,21 +32,18 @@ public class VerticalButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!locked)
+        Debug.Log("Pressed " + buttonName);
+        LevelManager.instance.Logic.AddInputFromButton(buttonName);
+        //Send message here
+        if (mesh != null)
         {
-            Debug.Log("Pressed " + buttonName);
-            // LevelManager.instance.Logic.AddInputFromButton(buttonIndex);
-            //Send message here
-            if (mesh != null)
+            if (anim.isPlaying)
             {
-                if (anim.isPlaying)
-                {
-                    return;
-                }
-                else
-                {
-                    anim.Play("ButtonPressed");
-                }
+                return;
+            }
+            else
+            {
+                anim.Play("ButtonPressed");
             }
         }
     }

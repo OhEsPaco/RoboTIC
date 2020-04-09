@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static ButtonConstants;
+using static LevelButtons;
 using static RoadIO;
 
 public class RoadPlacementLogic : MonoBehaviour
@@ -68,7 +68,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoAction()
     {
-        SpawnVerticalButton("action");
+        SpawnVerticalButton(Buttons.Action);
     }
 
     private void DoCondition()
@@ -106,7 +106,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoJump()
     {
-        SpawnVerticalButton("jump");
+        SpawnVerticalButton(Buttons.Jump);
     }
 
     private void DoLoop()
@@ -370,19 +370,19 @@ public class RoadPlacementLogic : MonoBehaviour
         return fartest;
     }
 
-    private void SpawnVerticalButton(string button)
+    private void SpawnVerticalButton(Buttons button)
     {
         Road spawnedRoad;
         if (SpawnRoad("NodeVerticalButton", out spawnedRoad))
         {
-            string[] args = { "activate", button };
+            string[] args = { "activate", button.ToString() };
             spawnedRoad.ExecuteAction(args);
         }
     }
 
     private void DoMove()
     {
-        SpawnVerticalButton("move");
+        SpawnVerticalButton(Buttons.Move);
     }
 
     private void DoPlay()
@@ -528,11 +528,11 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoTurnLeft()
     {
-        SpawnVerticalButton("turn_left");
+        SpawnVerticalButton(Buttons.TurnLeft);
     }
 
     private void DoTurnRight()
     {
-        SpawnVerticalButton("turn_right");
+        SpawnVerticalButton(Buttons.TurnRight);
     }
 }

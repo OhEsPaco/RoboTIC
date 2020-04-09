@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using static ButtonConstants;
+using static LevelButtons;
 
 public class RoadButton : MonoBehaviour
 {

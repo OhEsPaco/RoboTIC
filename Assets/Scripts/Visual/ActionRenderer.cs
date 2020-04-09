@@ -13,24 +13,25 @@ public class ActionRenderer : MonoBehaviour
     public float actionSpeed = 1f;
 
     /// <summary>
-    /// Multiplicador para la velocidad de rotacion
+    /// Altura del salto
     /// </summary>
-    public float rotationSpeedMultiplier = 100f;
+    public float jumpHeight = 1f;
+
+    /// <summary>
+    /// Porcentaje del tiempo de salto que se pasa ascendiendo
+    /// </summary>
+    [Range(0, 1)]
+    public float takeOff = 0.8f;
+
+    /// <summary>
+    /// Tiempo que dura la rotacion
+    /// </summary>
+    public float rotationTime = 1f;
 
     /// <summary>
     /// Capacidad inicial de la lista de acciones pendientes
     /// </summary>
     public int initialActionCapacity = 20;
-
-    /// <summary>
-    /// Altura del arco del salto
-    /// </summary>
-    public float arcHeight = 1f;
-
-    /// <summary>
-    /// Angulo del salto
-    /// </summary>
-    public float angle = 1f;
 
     /// <summary>
     /// Referencia para el LevelManager
@@ -111,29 +112,16 @@ public class ActionRenderer : MonoBehaviour
         actionList.Add(action);
     }
 
-    /// <summary>
-    /// Metodo para notificar que empieza una accion
-    /// </summary>
     private void NotifyStartOfAction()
     {
         lastActionFinished = false;
     }
 
-    /// <summary>
-    /// Metodo para notificar que acaba una accion
-    /// </summary>
     private void NotifyEndOfAction()
     {
         lastActionFinished = true;
     }
 
-    /// <summary>
-    /// Añade a la lista una accion de saltar
-    /// </summary>
-    /// <param name="player">The player<see cref="GameObject"/></param>
-    /// <param name="currentBlock">The currentBlock<see cref="List{int}"/></param>
-    /// <param name="intendedBlock">The intendedBlock<see cref="List{int}"/></param>
-    /// <param name="playerOrientation">The playerOrientation<see cref="int"/></param>
     public void DoJump(GameObject player, in List<int> currentBlock, in List<int> intendedBlock, in int playerOrientation)
     {
         Vector3 target;
@@ -141,33 +129,19 @@ public class ActionRenderer : MonoBehaviour
         target.y = player.transform.position.y + (intendedBlock[1] - currentBlock[1]) * manager.MapRenderer.BlockLength;
         target.z = player.transform.position.z + (intendedBlock[2] - currentBlock[2]) * manager.MapRenderer.BlockLength;
 
-        AddAction(JumpCoroutine(player, target, actionSpeed, arcHeight, angle));
+        AddAction(JumpCoroutine(player, target, actionSpeed, jumpHeight, takeOff));
     }
 
-    /// <summary>
-    /// Añade a la lista una accion de girar a la derecha
-    /// </summary>
-    /// <param name="player">The player<see cref="GameObject"/></param>
     public void DoTurnRight(GameObject player)
     {
-        AddAction(TurnCoroutine(rotationSpeedMultiplier * actionSpeed, player, 90f, false));
+        AddAction(TurnCoroutine(rotationTime, player, 90f));
     }
 
-    /// <summary>
-    /// Añade a la lista una accion de girar a la izquierda
-    /// </summary>
-    /// <param name="player">The player<see cref="GameObject"/></param>
     public void DoTurnLeft(GameObject player)
     {
-        AddAction(TurnCoroutine(rotationSpeedMultiplier * actionSpeed, player, 90f, true));
+        AddAction(TurnCoroutine(rotationTime, player, -90f));
     }
 
-    /// <summary>
-    /// Añade a la lista una accion de avanzar
-    /// </summary>
-    /// <param name="player">The player<see cref="GameObject"/></param>
-    /// <param name="currentBlock">The currentBlock<see cref="List{int}"/></param>
-    /// <param name="intendedBlock">The intendedBlock<see cref="List{int}"/></param>
     public void DoMove(GameObject player, in List<int> currentBlock, in List<int> intendedBlock)
     {
         Vector3 target;
@@ -178,76 +152,85 @@ public class ActionRenderer : MonoBehaviour
         AddAction(MoveCoroutine(actionSpeed, player, target));
     }
 
-    /// <summary>
-    /// Rutina que lleva a cabo el salto
-    /// </summary>
-    /// <param name="player">The player<see cref="GameObject"/></param>
-    /// <param name="target">The target<see cref="Vector3"/></param>
-    /// <param name="speed">The speed<see cref="float"/></param>
-    /// <param name="arcHeight">The arcHeight<see cref="float"/></param>
-    /// <param name="angle">The angle<see cref="float"/></param>
-    /// <returns>The <see cref="IEnumerator"/></returns>
-    private IEnumerator JumpCoroutine(GameObject player, Vector3 target, float speed, float arcHeight, float angle)
+    private IEnumerator JumpCoroutine(GameObject player, Vector3 target, float speed, float jumpHeight, float takeOff)
     {
         NotifyStartOfAction();
-        for (float currentTime = 0; currentTime <= 1; currentTime += speed * Time.deltaTime)
-        {
-            Vector3 newPoint = Vector3.Lerp(player.transform.position, target, currentTime);
 
-            player.transform.position = new Vector3(newPoint.x, (-angle * arcHeight * currentTime * currentTime + angle * arcHeight * currentTime) + Mathf.Lerp(player.transform.position.y, target.y, currentTime), newPoint.z);
+        //Porcentaje del movimiento en el que nos encontramos
+        float percent = 0;
+
+        //Posicion de partida
+        Vector3 originalPos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+
+        //Mientras el porcentaje sea menor o igual que 1
+        while (percent <= 1)
+        {
+            //Para la x y la z simplemente hacemos lerp entre el punto original y el final
+            Vector3 newPos = Vector3.Lerp(originalPos, target, percent);
+
+            //Para la y tomamos en cuenta si estamos subiendo o bajando
+            if (percent < takeOff)
+            {
+                newPos.y = Mathf.Lerp(originalPos.y, originalPos.y + jumpHeight, percent / takeOff);
+            }
+            else
+            {
+                newPos.y = Mathf.Lerp(originalPos.y + jumpHeight, target.y, (percent - takeOff) / (1 - takeOff));
+            }
+
+            //Actualizamos la posicion del jugador
+            player.transform.position = newPos;
+
+            //Actualizamos el porcentaje recorrido
+            percent += speed * Time.deltaTime;
 
             yield return null;
         }
 
-        //error correction
-        player.transform.position = new Vector3(target.x, target.y, target.z);
+        //Transportamos al personaje a su posicion final para evitar errores de exactitud
+        player.transform.position = target;
         NotifyEndOfAction();
     }
 
-    /// <summary>
-    /// Rutina que lleva a cabo el giro
-    /// </summary>
-    /// <param name="speed">The speed<see cref="float"/></param>
-    /// <param name="player">The player<see cref="GameObject"/></param>
-    /// <param name="degrees">The degrees<see cref="float"/></param>
-    /// <param name="left">The left<see cref="bool"/></param>
-    /// <returns>The <see cref="IEnumerator"/></returns>
-    private IEnumerator TurnCoroutine(float speed, GameObject player, float degrees, bool left)
+    private IEnumerator TurnCoroutine(float time, GameObject player, float degrees)
     {
         NotifyStartOfAction();
-        int sign = left ? -1 : 1;
-        float currentDegrees = 0f;
-        for (; currentDegrees < degrees; currentDegrees += speed * Time.deltaTime)
+
+        //La rotacion es la rotacion actual + los grados en el eje 'y' (por eso multiplico
+        //por Vector3.up (0,1,0)
+
+        Vector3 finalRotation = player.transform.eulerAngles + Vector3.up * degrees;
+
+        LTDescr lTDescr = LeanTween.rotate(player, finalRotation, time).setEaseInOutSine();
+
+        while (LeanTween.isTweening(lTDescr.id))
         {
-            float step = sign * (speed * Time.deltaTime);
-            player.transform.Rotate(0, step, 0);
             yield return null;
         }
 
-        //error correction
-        player.transform.Rotate(0, sign * (degrees - currentDegrees), 0);
         NotifyEndOfAction();
     }
 
-    /// <summary>
-    /// Rutina que lleva a cabo la accion de avanzar
-    /// </summary>
-    /// <param name="speed">The speed<see cref="float"/></param>
-    /// <param name="player">The player<see cref="GameObject"/></param>
-    /// <param name="target">The target<see cref="Vector3"/></param>
-    /// <returns>The <see cref="IEnumerator"/></returns>
     private IEnumerator MoveCoroutine(float speed, GameObject player, Vector3 target)
     {
         NotifyStartOfAction();
-        float distance = Vector3.Distance(player.transform.position, target);
-        for (float currentDistance = 0f; currentDistance < distance; currentDistance += speed * Time.deltaTime)
+        //Se repiten el primer y ultimo punto ya que se usan para calcular angulos
+        Vector3[] track = new Vector3[4];
+        track[0] = player.transform.position;
+        track[1] = player.transform.position;
+        track[2] = target;
+        track[3] = target;
+
+        LTSpline lTSpline = new LTSpline(track);
+
+        //El tiempo es la distancia dividida entre la velocidad
+        LTDescr ltDescr = LeanTween.moveSpline(player.gameObject, lTSpline, lTSpline.distance / speed).setOrientToPath(true).setEaseInOutSine();
+
+        while (LeanTween.isTweening(ltDescr.id))
         {
-            float step = speed * Time.deltaTime;
-            player.transform.position = Vector3.MoveTowards(player.transform.position, target, step);
             yield return null;
         }
-        //error correction
-        player.transform.position = new Vector3(target.x, target.y, target.z);
+
         NotifyEndOfAction();
     }
 }
