@@ -53,7 +53,7 @@ public class SelectedOutputMarker : MonoBehaviour
 
     private void OnMouseUp()
     {
-        Debug.Log(transform.position);
+       
         RoadIO pivotIO = LevelManager.instance.RoadPlacementLogic.SelectedIO;
 
         if (pivotIO != null)
@@ -129,7 +129,7 @@ public class SelectedOutputMarker : MonoBehaviour
                 }
             }
 
-            Debug.Log(processedIO.Count);
+         
             if (closestIO.connectedTo != null)
             {
                 if (closestIO.connectedTo is RoadOutput && closestIO.connectedTo.CanBeSelected)

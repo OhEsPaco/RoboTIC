@@ -23,7 +23,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
     internal void Start()
     {
-        // selectedOutputMarker.transform.parent = roadParent;
+        selectedOutputMarker.transform.parent = roadParent;
         roadParent.position = roadStartMarker.position;
         //Llenar el diccionario de funciones
         buttonActionsDictionary = new Dictionary<Buttons, Action>();
@@ -38,7 +38,7 @@ public class RoadPlacementLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
         buttonActionsDictionary.Add(Buttons.Undo, DoUndo);
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
-        selectedOutputMarker.transform.parent = roadStartMarker;
+        //selectedOutputMarker.transform.parent = roadStartMarker;
         selectedOutputMarker.transform.position = roadStartMarker.position;
     }
 
@@ -81,9 +81,11 @@ public class RoadPlacementLogic : MonoBehaviour
         }*/
         if (SpawnRoad("NodeIfIn", out loopIn))
         {
+            
             Road loopOut;
             LevelManager.instance.RoadFactory.SpawnRoadByName("NodeIfOut", loopIn.GetRoadIOByDirection(RoadIO.IODirection.Forward), out loopOut);
             loopOut.transform.parent = roadParent;
+           
             loopOut.GetRoadIOByDirection(IODirection.Back)[0].MoveRoadTo(loopOut.GetRoadIOByDirection(IODirection.Back)[0].connectedTo.transform.position);
 
             //FillGaps(this.pivotIO, MAX_ACCEPTABLE_DISTANCE);
@@ -117,9 +119,13 @@ public class RoadPlacementLogic : MonoBehaviour
         }*/
         if (SpawnRoad("NodeLoopIn", out loopIn))
         {
+       
             Road loopOut;
+           
             LevelManager.instance.RoadFactory.SpawnRoadByName("NodeLoopOut", loopIn.GetRoadIOByDirection(RoadIO.IODirection.Forward), out loopOut);
+   
             loopOut.transform.parent = roadParent;
+           
             loopOut.GetRoadIOByDirection(IODirection.Back)[0].MoveRoadTo(loopOut.GetRoadIOByDirection(IODirection.Back)[0].connectedTo.transform.position);
 
             //FillGaps(this.pivotIO, MAX_ACCEPTABLE_DISTANCE);
@@ -134,6 +140,7 @@ public class RoadPlacementLogic : MonoBehaviour
             if (LevelManager.instance.RoadFactory.SpawnRoadByName(id, out spawnedRoad))
             {
                 spawnedRoad.transform.parent = roadParent;
+          
                 RoadIO[] allRoadIO = spawnedRoad.GetAllIO();
                 /* if (pivotIO == null)
                  {
@@ -164,6 +171,7 @@ public class RoadPlacementLogic : MonoBehaviour
                 if (LevelManager.instance.RoadFactory.SpawnRoadByName(id, ioToMatch, out spawnedRoad))
                 {
                     spawnedRoad.transform.parent = roadParent;
+                   
                 }
 
                 this.selectedIO.connectedTo.MoveRoadTo(this.selectedIO.transform.position);
@@ -179,6 +187,7 @@ public class RoadPlacementLogic : MonoBehaviour
                 if (LevelManager.instance.RoadFactory.SpawnRoadByName(id, ioToMatch, ioToMatch2, out spawnedRoad))
                 {
                     spawnedRoad.transform.parent = roadParent;
+                  
                     this.selectedIO.connectedTo.MoveRoadTo(this.selectedIO.transform.position);
                     //Hacer la magia
 
@@ -262,8 +271,10 @@ public class RoadPlacementLogic : MonoBehaviour
                                         Road gap;
                                         if (LevelManager.instance.RoadFactory.FillGap(nextRoadIO, currentRoadIO, out gap))
                                         {
+
                                             processedRoads.Add(gap);
                                             gap.transform.parent = roadParent;
+                                      
                                             nextRoadIO[0].connectedTo.MoveRoadTo(nextRoadIO[0].transform.position);
                                         }
                                     }
@@ -318,6 +329,7 @@ public class RoadPlacementLogic : MonoBehaviour
         }
         else
         {
+            
             if (this.selectedIO is RoadInput)
             {
                 RoadIO f = FindFartestInput(this.selectedIO, spawnedRoad.GetAllIO());
