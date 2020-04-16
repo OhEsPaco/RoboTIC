@@ -14,11 +14,12 @@ public class RoadPlacementLogic : MonoBehaviour
     private Dictionary<Buttons, Action> buttonActionsDictionary;
 
     private RoadIO selectedIO = null;
-    private RoadIO pivotIO = null;
 
-    private const float MAX_ACCEPTABLE_DISTANCE = 0.3f*0.3f;
+    private RoadIO firsInput = null;
 
-    public RoadIO PivotIO { get => pivotIO; set => pivotIO = value; }
+    //Para escala 1 funcionaba bien 0.3, asi que para escala 0.3 lo multiplico por ella
+    private const float MAX_ACCEPTABLE_DISTANCE = 0.3f * 0.3f;
+
     public RoadIO SelectedIO { get => selectedIO; set => selectedIO = value; }
 
     internal void Start()
@@ -218,41 +219,6 @@ public class RoadPlacementLogic : MonoBehaviour
         return success;
     }
 
-    //Tiene que tener un solo input y un solo output
-    //La direccion es hacia la que se va a poner la carretera
-    private bool ValidRoadSequence(in Road[] roads, IODirection direction)
-    {
-        //Si no tiene carreteras no es una secuencia válida
-        if (roads.Length == 0)
-        {
-            return false;
-        }
-
-        //La primera solo puede tener un io en dirección opuesta
-        if (roads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction)).Count != 1)
-        {
-            return false;
-        }
-
-        //La ultima solo puede tener un io en esta direccion
-        if (roads[roads.Length - 1].GetRoadIOByDirection(direction).Count != 1)
-        {
-            return false;
-        }
-
-        for (int i = 0; i < roads.Length - 1; i++)
-        {
-            Road thisRoad = roads[i];
-            Road nextRoad = roads[i + 1];
-            if (thisRoad.GetRoadIOByDirection(direction).Count != nextRoad.GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction)).Count)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     //Genera y conecta una serie de carreteras
     private bool GenerateRoads(in string[] ids, in IODirection direction, in Vector3 position, out Road[] spawnedRoads)
     {
@@ -327,6 +293,13 @@ public class RoadPlacementLogic : MonoBehaviour
     private bool SpawnRoads(in string[] ids, in IODirection direction, out Road[] spawnedRoads)
     {
         Vector3 pos = this.selectedIO != null ? this.selectedIO.transform.position : roadStartMarker.position;
+        spawnedRoads = null;
+        if (this.selectedIO != null && this.selectedIO == firsInput)
+        {
+            //AVISO DE QUE NO SE PUEDE PONER AHI
+            Debug.LogWarning("No se puede poner aqui");
+            return false;
+        }
 
         if (!GenerateRoads(ids, direction, pos, out spawnedRoads))
         {
@@ -353,14 +326,13 @@ public class RoadPlacementLogic : MonoBehaviour
                 roadIOR.ConnectedTo = spawnedRoads[spawnedRoads.Length - 1].GetRoadIOByDirection(direction)[0];
             }
 
-            this.pivotIO = roadIOL.ConnectedTo;
             roadIOL.ConnectedTo.MoveRoadTo(roadIOL.transform.position);
         }
         else
         {
             //Si no hay io seleccionada
             this.selectedIO = spawnedRoads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0];
-            this.pivotIO = this.selectedIO;
+            this.firsInput = selectedIO;
         }
 
         int numberOfPiecesGap = spawnedRoads.Length;
@@ -566,7 +538,7 @@ public class RoadPlacementLogic : MonoBehaviour
         //LevelManager.instance.RoadMovementLogic.StartMovement(firstInput, lastOutput, player, conditionDictionary, loopsDictionary);
         //Quiza se podrian acelerar estas cosas añadiendo un flag de procesamiento a cada RoadIO y reseteandolo antes de empezar el algoritmo
 
-        if (pivotIO != null)
+        if (selectedIO != null)
         {
             List<Road> allRoads = new List<Road>();
             Stack<Road> roadsToProccess = new Stack<Road>();
@@ -574,7 +546,7 @@ public class RoadPlacementLogic : MonoBehaviour
             RoadInput roadInput = null;
             RoadOutput roadOutput = null;
 
-            roadsToProccess.Push(pivotIO.GetParentRoad());
+            roadsToProccess.Push(selectedIO.GetParentRoad());
             while (roadsToProccess.Count > 0)
             {
                 Road r = roadsToProccess.Pop();
