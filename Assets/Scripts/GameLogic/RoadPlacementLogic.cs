@@ -73,10 +73,50 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoCondition()
     {
-        string[] ids = { "NodeIfIn", "NodeIfOut" };
-        Road[] spawnedRoad;
-        if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad))
+        //No se pueden poner ifs dentro de ifs
+        bool foundIf = false;
+        if (this.selectedIO != null)
         {
+            List<RoadIO> processedIO = new List<RoadIO>();
+            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
+
+            foreach (RoadIO io in this.selectedIO.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+            {
+                ioToProc.Push(io);
+            }
+
+            while (ioToProc.Count > 0 && !foundIf)
+            {
+                RoadIO thisIO = ioToProc.Pop();
+                processedIO.Add(thisIO);
+                Debug.Log(thisIO.GetParentRoad().RoadIdentifier);
+                if (thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfIn"))
+                {
+                    foundIf = true;
+                }
+                else if (!thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfOut"))
+                {
+                    if (thisIO.connectedTo != null)
+                    {
+                        foreach (RoadIO io in thisIO.connectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+                        {
+                            if (!processedIO.Contains(io))
+                            {
+                                ioToProc.Push(io);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!foundIf)
+        {
+            string[] ids = { "NodeIfIn", "NodeIfOut" };
+            Road[] spawnedRoad;
+            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad))
+            {
+            }
         }
     }
 
@@ -87,10 +127,50 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoLoop()
     {
-        string[] ids = { "NodeLoopIn", "NodeLoopOut" };
-        Road[] spawnedRoad;
-        if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad))
+        //No se pueden poner loops dentro de ifs
+        bool foundIf = false;
+        if (this.selectedIO != null)
         {
+            List<RoadIO> processedIO = new List<RoadIO>();
+            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
+
+            foreach (RoadIO io in this.selectedIO.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+            {
+                ioToProc.Push(io);
+            }
+
+            while (ioToProc.Count > 0 && !foundIf)
+            {
+                RoadIO thisIO = ioToProc.Pop();
+                processedIO.Add(thisIO);
+                Debug.Log(thisIO.GetParentRoad().RoadIdentifier);
+                if (thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfIn"))
+                {
+                    foundIf = true;
+                }
+                else if (!thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfOut"))
+                {
+                    if (thisIO.connectedTo != null)
+                    {
+                        foreach (RoadIO io in thisIO.connectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+                        {
+                            if (!processedIO.Contains(io))
+                            {
+                                ioToProc.Push(io);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!foundIf)
+        {
+            string[] ids = { "NodeLoopIn", "NodeLoopOut" };
+            Road[] spawnedRoad;
+            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad))
+            {
+            }
         }
     }
 
@@ -246,9 +326,9 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private bool SpawnRoads(in string[] ids, in IODirection direction, out Road[] spawnedRoads)
     {
-        Vector3 pos = this.selectedIO != null?this.selectedIO.transform.position:roadStartMarker.position;
+        Vector3 pos = this.selectedIO != null ? this.selectedIO.transform.position : roadStartMarker.position;
 
-        if (!GenerateRoads(ids,direction,pos, out spawnedRoads))
+        if (!GenerateRoads(ids, direction, pos, out spawnedRoads))
         {
             return false;
         }
@@ -282,7 +362,6 @@ public class RoadPlacementLogic : MonoBehaviour
             this.selectedIO = spawnedRoads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0];
             this.pivotIO = this.selectedIO;
         }
-
 
         int numberOfPiecesGap = spawnedRoads.Length;
 
@@ -377,22 +456,21 @@ public class RoadPlacementLogic : MonoBehaviour
                                 // gap.transform.parent = roadParent;
 
                                 string[] idsGap = new string[numberOfPiecesGap];
-                                for(int i = 0; i < idsGap.Length; i++)
+                                for (int i = 0; i < idsGap.Length; i++)
                                 {
                                     idsGap[i] = gap.RoadIdentifier;
                                 }
 
                                 Road[] spanedRoads;
-                                if(GenerateRoads(idsGap, nextRoadIO[0].Direction, nextRoadIO[0].transform.position,out spanedRoads))
+                                if (GenerateRoads(idsGap, nextRoadIO[0].Direction, nextRoadIO[0].transform.position, out spanedRoads))
                                 {
                                     ConnectRoads(nextRoadIO[0].GetParentRoad(), spanedRoads[0], connectionsR1_Connector);
                                     ConnectRoads(currentRoadIO[0].GetParentRoad(), spanedRoads[spanedRoads.Length - 1], connectionsR2_Connector);
-                                    foreach(Road newR in spanedRoads)
+                                    foreach (Road newR in spanedRoads)
                                     {
                                         processedRoads.Add(newR);
                                     }
                                 }
-
 
                                 //nextRoadIO[0].ConnectedTo.MoveRoadTo(nextRoadIO[0].transform.position);
                             }
@@ -438,9 +516,6 @@ public class RoadPlacementLogic : MonoBehaviour
                 }
             }
         }
-
-
-
 
         return true;
     }

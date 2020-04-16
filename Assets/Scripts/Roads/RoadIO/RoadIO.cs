@@ -12,6 +12,8 @@ public abstract class RoadIO : MonoBehaviour
     //A qué está conectada
     public RoadIO connectedTo;
 
+   
+
     //Si se puede usar como io seleccionada
     [SerializeField] private bool canBeSelected = true;
 
