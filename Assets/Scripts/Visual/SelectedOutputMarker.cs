@@ -130,11 +130,11 @@ public class SelectedOutputMarker : MonoBehaviour
             }
 
          
-            if (closestIO.connectedTo != null)
+            if (closestIO.ConnectedTo != null)
             {
-                if (closestIO.connectedTo is RoadOutput && closestIO.connectedTo.CanBeSelected)
+                if (closestIO.ConnectedTo is RoadOutput && closestIO.ConnectedTo.CanBeSelected)
                 {
-                    closestIO = closestIO.connectedTo;
+                    closestIO = closestIO.ConnectedTo;
                 }
             }
             return closestIO;

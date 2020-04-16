@@ -11065,6 +11065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d54f4632d99f84e9218a446055272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connector: 0
   lCounter: {fileID: 1278036968}
   inputTop: {fileID: 1999466488021285763}
   inputBottom: {fileID: 1999466488021285519}
@@ -15406,6 +15407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d844dd13554d140bdbe906b3f2d845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connector: 1
   rInput: {fileID: 691191304}
 --- !u!23 &1826144858
 MeshRenderer:
@@ -18699,6 +18701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4daefc8eb3cca3043bc10ea292a082d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxGapBetweenRoads: 0.3
 --- !u!1 &1999466488021285549
 GameObject:
   m_ObjectHideFlags: 0
@@ -18730,6 +18733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916df51462abfe64299ce1c8ae273b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connector: 0
   inputIf: {fileID: 1999466488021285771}
   cPicker: {fileID: 1999466488021285588}
 --- !u!1 &1999466488021285569
@@ -18799,6 +18803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bbd7011bed858643adff0081f6b7bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connector: 0
   buttonList:
   - {fileID: 1211643766}
   - {fileID: 309069288}
@@ -18837,6 +18842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899914e08eda5134cbdb18a7066c383b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connector: 1
   inputYes: {fileID: 1999466488021285768}
   inputNo: {fileID: 1999466488021285767}
 --- !u!1 &1999466488021285583
@@ -18870,6 +18876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb11b366bb4524db7b0a0b05640f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connector: 1
   inputTop: {fileID: 1999466488021285747}
   inputYes: {fileID: 1999466488021285739}
 --- !u!1 &1999466488021285585
@@ -18967,6 +18974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdf1474ae1c07f42a820ba8af33d643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connector: 1
   inputB: {fileID: 1999466488021285758}
   inputA: {fileID: 1999466488021285772}
 --- !u!1 &1999466488021285591

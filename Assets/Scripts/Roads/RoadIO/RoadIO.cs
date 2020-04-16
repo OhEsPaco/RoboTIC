@@ -1,5 +1,4 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class RoadIO : MonoBehaviour
 {
@@ -9,10 +8,16 @@ public abstract class RoadIO : MonoBehaviour
 
     [SerializeField] private IODirection pointsTo = IODirection.Forward;
     public IODirection Direction { get => pointsTo; }
+
+    //A qué está conectada
     public RoadIO connectedTo;
-    [SerializeField] bool canBeSelected = true;
-    [UniqueIdentifier,SerializeField] private string id;
-    
+
+    //Si se puede usar como io seleccionada
+    [SerializeField] private bool canBeSelected = true;
+
+    //Id, aleatorio y unico
+    [UniqueIdentifier, SerializeField] private string id;
+
     public string IOIdentifier
     {
         get
@@ -30,12 +35,23 @@ public abstract class RoadIO : MonoBehaviour
 
         set
         {
-            connectedTo = value;
-            value.connectedTo = this;
+            if (value != null)
+            {
+                if (this.GetType() == value.GetType())
+                {
+                    Debug.LogWarning("Connecting IO of the same type");
+                }
+                connectedTo = value;
+                value.connectedTo = this;
+            }
+            else
+            {
+                connectedTo = null;
+            }
         }
     }
 
-    public bool CanBeSelected { get => canBeSelected;  }
+    public bool CanBeSelected { get => canBeSelected; }
 
     public static IODirection GetOppositeDirection(IODirection direction)
     {
@@ -60,8 +76,11 @@ public abstract class RoadIO : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        /*
         Gizmos.color = Color();
+        if (ConnectedTo != null)
+        {
+            Gizmos.color = UnityEngine.Color.magenta;
+        }
         Gizmos.DrawSphere(transform.position, 0.1f);
 
         switch (pointsTo)
@@ -81,8 +100,8 @@ public abstract class RoadIO : MonoBehaviour
             case IODirection.Right:
                 DrawArrow.ForGizmo(transform.position, Vector3.right);
                 break;
-        }*/
-         // Handles.Label(transform.position, gameObject.name);
+        }
+        // Handles.Label(transform.position, gameObject.name);
         //Handles.Label(transform.position, id);
     }
 

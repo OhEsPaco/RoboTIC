@@ -125,7 +125,7 @@ public class RoadMovementLogic : MonoBehaviour
                 else
                 {
                     //Pedir mas camino
-                    if (!StartNewPath((RoadInput)nextOutput.connectedTo, out tweenDescr))
+                    if (!StartNewPath((RoadInput)nextOutput.ConnectedTo, out tweenDescr))
                     {
                         movementStarted = false;
                         Debug.LogError("No path available");

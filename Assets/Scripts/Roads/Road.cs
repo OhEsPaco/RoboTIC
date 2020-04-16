@@ -5,13 +5,25 @@ using static RoadIO;
 
 public abstract class Road : MonoBehaviour
 {
+    //Si es un conector o no
+    [SerializeField] private bool connector = false;
+
+    //Los objetos RoadIO como un diccionario de listas
     private Dictionary<IODirection, List<RoadIO>> ioByDirection = new Dictionary<IODirection, List<RoadIO>>();
+
+    //Los objetos RoadIO como un diccionario por id
     private Dictionary<string, RoadIO> ioByID = new Dictionary<string, RoadIO>();
+
+    //Los caminos por id
     private Dictionary<string, Path> pathsByName = new Dictionary<string, Path>();
 
+    //Toda la io sin ordenar
     private RoadIO[] allIO;
+
+    //El container de los caminos
     private PathContainer pathContainer;
 
+    //En este caso el identificador es el nombre del objeto
     public string RoadIdentifier
     {
         get
@@ -19,6 +31,9 @@ public abstract class Road : MonoBehaviour
             return gameObject.name;
         }
     }
+
+    //Devuelve si es conector o no
+    public bool Connector { get => connector; }
 
     public List<RoadIO> GetRoadIOByDirection(IODirection direction)
     {
