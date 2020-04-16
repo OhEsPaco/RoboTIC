@@ -16,7 +16,7 @@ public class RoadPlacementLogic : MonoBehaviour
     private RoadIO selectedIO = null;
     private RoadIO pivotIO = null;
 
-    private const float MAX_ACCEPTABLE_DISTANCE = 0.3f;
+    private const float MAX_ACCEPTABLE_DISTANCE = 0.3f*0.3f;
 
     public RoadIO PivotIO { get => pivotIO; set => pivotIO = value; }
     public RoadIO SelectedIO { get => selectedIO; set => selectedIO = value; }
