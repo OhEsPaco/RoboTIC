@@ -9,6 +9,8 @@ public class RoadPlacementLogic : MonoBehaviour
     [SerializeField] private Transform roadStartMarker;
     [SerializeField] private GameObject selectedOutputMarker;
     [SerializeField] private Transform roadParent;
+    [SerializeField] private Road roadStart;
+    [SerializeField] private MiniCharacter minibot;
     private List<Buttons> buttonInputBuffer;
     public int initialCapacityOfTheInputBuffer = 20;
     private Dictionary<Buttons, Action> buttonActionsDictionary;
@@ -25,7 +27,16 @@ public class RoadPlacementLogic : MonoBehaviour
     internal void Start()
     {
         selectedOutputMarker.transform.parent = roadParent;
+        roadStart.transform.parent = roadParent;
         roadParent.position = roadStartMarker.position;
+
+        firsInput = roadStart.GetRoadIOByDirection(IODirection.Back)[0];
+        firsInput.MoveRoadTo(roadStartMarker.position);
+        this.selectedIO= roadStart.GetRoadIOByDirection(IODirection.Forward)[0];
+
+        selectedOutputMarker.transform.position = this.selectedIO.transform.position;
+        minibot.transform.position = firsInput.transform.position;
+        minibot.gameObject.SetActive(true);
         //Llenar el diccionario de funciones
         buttonActionsDictionary = new Dictionary<Buttons, Action>();
         buttonActionsDictionary.Add(Buttons.Action, DoAction);
@@ -40,7 +51,7 @@ public class RoadPlacementLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.Undo, DoUndo);
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
         //selectedOutputMarker.transform.parent = roadStartMarker;
-        selectedOutputMarker.transform.position = roadStartMarker.position;
+    
     }
 
     private void DoUndo()
