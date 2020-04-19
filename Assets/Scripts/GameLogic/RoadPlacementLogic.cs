@@ -32,7 +32,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
         firsInput = roadStart.GetRoadIOByDirection(IODirection.Back)[0];
         firsInput.MoveRoadTo(roadStartMarker.position);
-        this.selectedIO= roadStart.GetRoadIOByDirection(IODirection.Forward)[0];
+        this.selectedIO = roadStart.GetRoadIOByDirection(IODirection.Forward)[0];
 
         selectedOutputMarker.transform.position = this.selectedIO.transform.position;
         minibot.transform.position = firsInput.transform.position;
@@ -51,7 +51,6 @@ public class RoadPlacementLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.Undo, DoUndo);
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
         //selectedOutputMarker.transform.parent = roadStartMarker;
-    
     }
 
     private void DoUndo()
@@ -198,6 +197,7 @@ public class RoadPlacementLogic : MonoBehaviour
             if (r1IO != null && r2IO != null)
             {
                 r1IO.ConnectedTo = r2IO;
+                r2IO.ConnectedTo = r1IO;
             }
             else
             {
@@ -342,7 +342,7 @@ public class RoadPlacementLogic : MonoBehaviour
         else
         {
             //Si no hay io seleccionada
-            this.selectedIO = spawnedRoads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0];
+            // this.selectedIO = spawnedRoads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0];
             this.firsInput = selectedIO;
         }
 
@@ -530,12 +530,44 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void SpawnVerticalButton(Buttons button)
     {
-        string[] ids = { "NodeVerticalButton" };
-        Road[] spawnedRoad;
-        if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad))
+        bool placed = false;
+
+        if (this.selectedIO != null)
         {
-            string[] args = { "activate", button.ToString() };
-            spawnedRoad[0].ExecuteAction(args);
+            //Debug.LogError(this.selectedIO.IOIdentifier);
+            if (this.selectedIO.GetParentRoad() is NodeVerticalButton)
+            {
+                NodeVerticalButton node = (NodeVerticalButton)this.selectedIO.GetParentRoad();
+
+                if (node.AddButton(button.ToString(), this.selectedIO))
+                {
+                    Debug.LogError("Placed");
+                    placed = true;
+                }
+            }
+            if (!placed&&this.selectedIO.connectedTo != null)
+            {
+                //Debug.LogError(this.selectedIO.connectedTo.IOIdentifier);
+                if (this.selectedIO.connectedTo.GetParentRoad() is NodeVerticalButton)
+                {
+                    NodeVerticalButton node1 = (NodeVerticalButton)this.selectedIO.connectedTo.GetParentRoad();
+                    if (node1.AddButton(button.ToString(), this.selectedIO.connectedTo))
+                    {
+                        placed = true;
+                    }
+                }
+            }
+        }
+
+        if (!placed)
+        {
+            string[] ids = { "NodeVerticalButton" };
+            Road[] spawnedRoad;
+            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad))
+            {
+                string[] args = { "activate", button.ToString() };
+                spawnedRoad[0].ExecuteAction(args);
+            }
         }
     }
 

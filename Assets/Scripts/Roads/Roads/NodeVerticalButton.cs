@@ -1,10 +1,136 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using static PathContainer;
 
 public class NodeVerticalButton : Road
 {
     [SerializeField] private VerticalButton[] buttonList = new VerticalButton[0];
     [SerializeField] private RoadInput rInput;
+    [SerializeField] private RoadOutput rOutput;
+    private VerticalButton[] currentButtons = new VerticalButton[3];
+
+    public bool AddButton(string buttonName, RoadIO io)
+    {
+        int numberOfButtons = NumberOfButtons();
+
+        if (numberOfButtons > 2 || (io != rInput && io != rOutput))
+        {
+            return false;
+        }
+
+        Vector3 pos1 = Vector3.Lerp(rInput.transform.position, rOutput.transform.position, 0.5f);
+        Vector3 pos0 = Vector3.Lerp(rInput.transform.position, pos1, 0.5f);
+        Vector3 pos2 = Vector3.Lerp(pos1, rOutput.transform.position, 0.5f);
+        VerticalButton spwButton;
+
+        if (!SpawnButton(buttonName, out spwButton))
+        {
+            return false;
+        }
+
+        switch (numberOfButtons)
+        {
+            case 0:
+
+                currentButtons[1] = spwButton;
+                spwButton.transform.position = pos1;
+                break;
+
+            case 1:
+
+                if (io == rInput)
+                {
+                   //Switch(currentButtons, 1, 2);
+
+                    currentButtons[2] = currentButtons[1];
+                    currentButtons[1] = null;
+                    currentButtons[0] = spwButton;
+                }
+                else
+                {
+                   // Switch(currentButtons, 1, 0);
+                    currentButtons[0] = currentButtons[1];
+                    currentButtons[1] = null;
+                    currentButtons[2] = spwButton;
+                }
+
+                currentButtons[2].transform.position = pos2;
+                currentButtons[0].transform.position = pos0;
+                break;
+
+            case 2:
+                if (io == rInput)
+                {
+                    currentButtons[1] = currentButtons[0];
+                    currentButtons[0] = spwButton;
+                }
+                else
+                {
+                    currentButtons[1] = currentButtons[2];
+                    currentButtons[2] = spwButton;
+                }
+                currentButtons[1].transform.position = pos1;
+                currentButtons[2].transform.position = pos2;
+                currentButtons[0].transform.position = pos0;
+
+                break;
+
+            default:
+                return false;
+        }
+        return true;
+    }
+
+    private bool SpawnButton(in string bname, out VerticalButton button)
+    {
+        VerticalButton myButton = null;
+        button = null;
+        foreach (VerticalButton vbutton in buttonList)
+        {
+            if (vbutton.ButtonName.Equals(bname))
+            {
+                myButton = vbutton;
+                break;
+            }
+        }
+
+        if (myButton == null)
+        {
+            Debug.LogError("Not found: " + bname);
+            return false;
+        }
+        else
+        {
+            button = Instantiate(myButton,myButton.transform.position,myButton.transform.rotation,this.transform);
+            button.gameObject.SetActive(true);
+           // button.transform.parent = this.transform;
+            return true;
+        }
+    }
+
+    private int NumberOfButtons()
+    {
+        int n = 0;
+
+        for(int i = 0; i < currentButtons.Length; i++)
+        {
+            if (currentButtons[i] != null)
+            {
+                n++;
+            }
+        }
+
+        Debug.Log("Number of buttons" + n);
+        return n;
+    }
+
+    /*private void Start()
+    {
+        for (int i = 0; i < currentButtons.Length; i++)
+        {
+            currentButtons[i] = null;
+        }
+    }*/
 
     public override void ExecuteAction(in string[] args)
     {
@@ -21,8 +147,18 @@ public class NodeVerticalButton : Road
                         {
                             if (vbutton.ButtonName.Equals(buttonName))
                             {
-                                vbutton.gameObject.SetActive(true);
-                                foundButton = true;
+                                vbutton.gameObject.SetActive(false);
+                               
+                                VerticalButton spwB;
+                                if(SpawnButton(buttonName,out spwB))
+                                {
+                                    foundButton = true;
+                                    Vector3 pos1 = Vector3.Lerp(rInput.transform.position, rOutput.transform.position, 0.5f);
+                                    currentButtons[1] = spwB;
+                                    NumberOfButtons();
+                                    spwB.transform.position = pos1;
+                                }
+                                
                             }
                             else
                             {
@@ -77,5 +213,12 @@ public class NodeVerticalButton : Road
         path = new Path();
         output = null;
         return false;
+    }
+
+    public static void Switch<T>(IList<T> array, int index1, int index2)
+    {
+        var aux = array[index1];
+        array[index1] = array[index2];
+        array[index2] = aux;
     }
 }
