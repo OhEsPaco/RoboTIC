@@ -9,10 +9,83 @@ public class NodeVerticalButton : Road
     [SerializeField] private RoadOutput rOutput;
     private VerticalButton[] currentButtons = new VerticalButton[3];
 
-    public bool AddButton(string buttonName, RoadIO io)
+    public bool DestroyButton(in VerticalButton button)
+    {
+        for (int i = 0; i < currentButtons.Length; i++)
+        {
+            VerticalButton c = currentButtons[i];
+
+            if (c != null)
+            {
+                if (c == button)
+                {
+                    Destroy(c.gameObject);
+                    currentButtons[i] = null;
+                    int numberOfButtons = NumberOfButtons();
+                    Vector3 pos1 = Vector3.Lerp(rInput.transform.position, rOutput.transform.position, 0.5f);
+                    Vector3 pos0 = Vector3.Lerp(rInput.transform.position, pos1, 0.5f);
+                    Vector3 pos2 = Vector3.Lerp(pos1, rOutput.transform.position, 0.5f);
+                    switch (numberOfButtons)
+                    {
+                        case 1:
+                            for (int j = 0; j < currentButtons.Length; j++)
+                            {
+                                if (currentButtons[j] != null)
+                                {
+                                    VerticalButton t = currentButtons[j];
+                                    currentButtons[j] = null;
+                                    currentButtons[1] = t;
+                                    t.transform.position = pos1;
+                                    break;
+                                }
+                            }
+
+                            break;
+
+                        case 2:
+
+                            VerticalButton button0 = null;
+                            VerticalButton button2 = null;
+                            for (int j = 0; j < currentButtons.Length; j++)
+                            {
+                                if (currentButtons[j] != null)
+                                {
+                                    if (button0 == null)
+                                    {
+                                        button0 = currentButtons[j];
+                                    }
+                                    else
+                                    {
+                                        button2 = currentButtons[j];
+                                    }
+                                    currentButtons[j] = null;
+                                }
+                            }
+
+                            currentButtons[0] = button0;
+                            currentButtons[2] = button2;
+                            currentButtons[1] = null;
+
+                            currentButtons[0].transform.position = pos0;
+                            currentButtons[2].transform.position = pos2;
+                            break;
+                    }
+
+                    return true;
+                }
+            }
+        }
+
+        foreach (VerticalButton c in currentButtons)
+        {
+        }
+        return false;
+    }
+
+    public bool AddButton(string buttonName, RoadIO io, out VerticalButton spwButton)
     {
         int numberOfButtons = NumberOfButtons();
-
+        spwButton = null;
         if (numberOfButtons > 2 || (io != rInput && io != rOutput))
         {
             return false;
@@ -21,7 +94,6 @@ public class NodeVerticalButton : Road
         Vector3 pos1 = Vector3.Lerp(rInput.transform.position, rOutput.transform.position, 0.5f);
         Vector3 pos0 = Vector3.Lerp(rInput.transform.position, pos1, 0.5f);
         Vector3 pos2 = Vector3.Lerp(pos1, rOutput.transform.position, 0.5f);
-        VerticalButton spwButton;
 
         if (!SpawnButton(buttonName, out spwButton))
         {
@@ -40,7 +112,7 @@ public class NodeVerticalButton : Road
 
                 if (io == rInput)
                 {
-                   //Switch(currentButtons, 1, 2);
+                    //Switch(currentButtons, 1, 2);
 
                     currentButtons[2] = currentButtons[1];
                     currentButtons[1] = null;
@@ -48,7 +120,7 @@ public class NodeVerticalButton : Road
                 }
                 else
                 {
-                   // Switch(currentButtons, 1, 0);
+                    // Switch(currentButtons, 1, 0);
                     currentButtons[0] = currentButtons[1];
                     currentButtons[1] = null;
                     currentButtons[2] = spwButton;
@@ -101,9 +173,9 @@ public class NodeVerticalButton : Road
         }
         else
         {
-            button = Instantiate(myButton,myButton.transform.position,myButton.transform.rotation,this.transform);
+            button = Instantiate(myButton, myButton.transform.position, myButton.transform.rotation, this.transform);
             button.gameObject.SetActive(true);
-           // button.transform.parent = this.transform;
+            // button.transform.parent = this.transform;
             return true;
         }
     }
@@ -112,7 +184,7 @@ public class NodeVerticalButton : Road
     {
         int n = 0;
 
-        for(int i = 0; i < currentButtons.Length; i++)
+        for (int i = 0; i < currentButtons.Length; i++)
         {
             if (currentButtons[i] != null)
             {
@@ -148,9 +220,9 @@ public class NodeVerticalButton : Road
                             if (vbutton.ButtonName.Equals(buttonName))
                             {
                                 vbutton.gameObject.SetActive(false);
-                               
+
                                 VerticalButton spwB;
-                                if(SpawnButton(buttonName,out spwB))
+                                if (SpawnButton(buttonName, out spwB))
                                 {
                                     foundButton = true;
                                     Vector3 pos1 = Vector3.Lerp(rInput.transform.position, rOutput.transform.position, 0.5f);
@@ -158,7 +230,6 @@ public class NodeVerticalButton : Road
                                     NumberOfButtons();
                                     spwB.transform.position = pos1;
                                 }
-                                
                             }
                             else
                             {

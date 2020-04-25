@@ -10,7 +10,7 @@ public abstract class RoadIO : MonoBehaviour
     public IODirection Direction { get => pointsTo; }
 
     //A qué está conectada
-    public RoadIO connectedTo;
+    private RoadIO connectedTo;
 
    
 

@@ -11,34 +11,27 @@ public class SelectedOutputMarker : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log(transform.position);
-        if (LevelManager.instance.RoadPlacementLogic.SelectedIO != null)
-        {
-            mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-            mOffset = gameObject.transform.position - GetMouseWorldPos();
-            sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.SelectedIO).transform.position;
-            sphere.SetActive(true);
-        }
+
+        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        mOffset = gameObject.transform.position - GetMouseWorldPos();
+        sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.firsInput).transform.position;
+        sphere.SetActive(true);
     }
 
     private void OnMouseDrag()
     {
-        if (LevelManager.instance.RoadPlacementLogic.SelectedIO != null)
+        transform.position = GetMouseWorldPos() + mOffset;
+
+        if (floor != null)
         {
-            transform.position = GetMouseWorldPos() + mOffset;
-
-            if (floor != null)
+            if (transform.position.y < floor.position.y)
             {
-                if (transform.position.y < floor.position.y)
-                {
-                    transform.position = new Vector3(transform.position.x, floor.position.y, transform.position.z);
-                }
-
-                //OPTIMIZAR
-                sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.SelectedIO).transform.position;
-
+                transform.position = new Vector3(transform.position.x, floor.position.y, transform.position.z);
             }
+
+            //OPTIMIZAR
+            sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.firsInput).transform.position;
         }
-      
     }
 
     private Vector3 GetMouseWorldPos()
@@ -53,8 +46,12 @@ public class SelectedOutputMarker : MonoBehaviour
 
     private void OnMouseUp()
     {
-       
-        RoadIO pivotIO = LevelManager.instance.RoadPlacementLogic.SelectedIO;
+        FindAndSelectClosestIO();
+    }
+
+    public void FindAndSelectClosestIO()
+    {
+        RoadIO pivotIO = LevelManager.instance.RoadPlacementLogic.firsInput;
 
         if (pivotIO != null)
         {
@@ -121,7 +118,6 @@ public class SelectedOutputMarker : MonoBehaviour
                     {
                         closestIO = toProc;
                     }
-                  
                 }
                 if (!processedIO.Contains(toProc))
                 {
@@ -129,7 +125,6 @@ public class SelectedOutputMarker : MonoBehaviour
                 }
             }
 
-         
             if (closestIO.ConnectedTo != null)
             {
                 if (closestIO.ConnectedTo is RoadOutput && closestIO.ConnectedTo.CanBeSelected)

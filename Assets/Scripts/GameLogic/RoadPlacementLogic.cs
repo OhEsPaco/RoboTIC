@@ -7,7 +7,7 @@ using static RoadIO;
 public class RoadPlacementLogic : MonoBehaviour
 {
     [SerializeField] private Transform roadStartMarker;
-    [SerializeField] private GameObject selectedOutputMarker;
+    [SerializeField] private SelectedOutputMarker selectedOutputMarker;
     [SerializeField] private Transform roadParent;
     [SerializeField] private Road roadStart;
     [SerializeField] private MiniCharacter minibot;
@@ -17,12 +17,13 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private RoadIO selectedIO = null;
 
-    private RoadIO firsInput = null;
+    public RoadIO firsInput = null;
 
     //Para escala 1 funcionaba bien 0.3, asi que para escala 0.3 lo multiplico por ella
     private const float MAX_ACCEPTABLE_DISTANCE = 0.3f * 0.3f;
 
     public RoadIO SelectedIO { get => selectedIO; set => selectedIO = value; }
+    private Stack<RoadChanges> undoStack = new Stack<RoadChanges>();
 
     internal void Start()
     {
@@ -53,8 +54,53 @@ public class RoadPlacementLogic : MonoBehaviour
         //selectedOutputMarker.transform.parent = roadStartMarker;
     }
 
+    private class RoadChanges
+    {
+        public List<Road> addedRoads = new List<Road>();
+        public Dictionary<RoadIO, RoadIO> connectionsChanged = new Dictionary<RoadIO, RoadIO>();
+        public Tuple<NodeVerticalButton, VerticalButton> addedButton = null;
+        public RoadIO selectedIOBack = null;
+    }
+
     private void DoUndo()
     {
+        if (undoStack.Count > 0)
+        {
+            RoadChanges thisChanges = undoStack.Pop();
+            //Delete added roads
+            foreach (Road r in thisChanges.addedRoads)
+            {
+                Debug.Log("destroy");
+                Destroy(r.gameObject);
+            }
+
+            //Revert connections
+            foreach (KeyValuePair<RoadIO, RoadIO> entry in thisChanges.connectionsChanged)
+            {
+                entry.Key.ConnectedTo = entry.Value;
+                // entry.Value.ConnectedTo = entry.Key;
+            }
+
+            //Delete added buttons
+            if (thisChanges.addedButton != null)
+            {
+                thisChanges.addedButton.Item1.DestroyButton(thisChanges.addedButton.Item2);
+            }
+
+            //Move marker to nearby io
+            if (thisChanges.selectedIOBack)
+            {
+                this.selectedIO = thisChanges.selectedIOBack;
+                selectedOutputMarker.transform.position = this.SelectedIO.transform.position;
+            }
+            else
+            {
+                selectedOutputMarker.FindAndSelectClosestIO();
+            }
+
+            //Move roads to correct positions
+            CorrectPositions(MAX_ACCEPTABLE_DISTANCE, firsInput);
+        }
     }
 
     internal void Update()
@@ -107,9 +153,9 @@ public class RoadPlacementLogic : MonoBehaviour
                 }
                 else if (!thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfOut"))
                 {
-                    if (thisIO.connectedTo != null)
+                    if (thisIO.ConnectedTo != null)
                     {
-                        foreach (RoadIO io in thisIO.connectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+                        foreach (RoadIO io in thisIO.ConnectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
                         {
                             if (!processedIO.Contains(io))
                             {
@@ -123,10 +169,14 @@ public class RoadPlacementLogic : MonoBehaviour
 
         if (!foundIf)
         {
+            RoadIO selectedIOBack = this.selectedIO;
             string[] ids = { "NodeIfIn", "NodeIfOut" };
             Road[] spawnedRoad;
-            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad))
+            List<Road> extraRoads;
+            Dictionary<RoadIO, RoadIO> oldConnections;
+            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad, out extraRoads, out oldConnections))
             {
+                NewActionOnStack(spawnedRoad, extraRoads, oldConnections, selectedIOBack);
             }
         }
     }
@@ -161,9 +211,9 @@ public class RoadPlacementLogic : MonoBehaviour
                 }
                 else if (!thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfOut"))
                 {
-                    if (thisIO.connectedTo != null)
+                    if (thisIO.ConnectedTo != null)
                     {
-                        foreach (RoadIO io in thisIO.connectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+                        foreach (RoadIO io in thisIO.ConnectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
                         {
                             if (!processedIO.Contains(io))
                             {
@@ -177,10 +227,14 @@ public class RoadPlacementLogic : MonoBehaviour
 
         if (!foundIf)
         {
+            RoadIO selectedIOBack = this.selectedIO;
             string[] ids = { "NodeLoopIn", "NodeLoopOut" };
             Road[] spawnedRoad;
-            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad))
+            List<Road> extraRoads;
+            Dictionary<RoadIO, RoadIO> oldConnections;
+            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad, out extraRoads, out oldConnections))
             {
+                NewActionOnStack(spawnedRoad, extraRoads, oldConnections, selectedIOBack);
             }
         }
     }
@@ -188,6 +242,7 @@ public class RoadPlacementLogic : MonoBehaviour
     private bool ConnectRoads(in Road road1, in Road road2, in Dictionary<string, string> ioR1_ioR2)
     {
         bool success = true;
+
         //Conectamos una carretera a la otra
         foreach (KeyValuePair<string, string> entry in ioR1_ioR2)
         {
@@ -272,7 +327,7 @@ public class RoadPlacementLogic : MonoBehaviour
                 else
                 {
                     RoadIO io = spawnedRoads[i + 1].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0];
-                    io.MoveRoadTo(io.connectedTo.transform.position);
+                    io.MoveRoadTo(io.ConnectedTo.transform.position);
                 }
             }
             else
@@ -301,10 +356,12 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
-    private bool SpawnRoads(in string[] ids, in IODirection direction, out Road[] spawnedRoads)
+    private bool SpawnRoads(in string[] ids, in IODirection direction, out Road[] spawnedRoads, out List<Road> extraSpawnedRoads, out Dictionary<RoadIO, RoadIO> oldConnections)
     {
         Vector3 pos = this.selectedIO != null ? this.selectedIO.transform.position : roadStartMarker.position;
+        oldConnections = new Dictionary<RoadIO, RoadIO>();
         spawnedRoads = null;
+        extraSpawnedRoads = new List<Road>();
         if (this.selectedIO != null && this.selectedIO == firsInput)
         {
             //AVISO DE QUE NO SE PUEDE PONER AHI
@@ -330,6 +387,7 @@ public class RoadPlacementLogic : MonoBehaviour
                 roadIOR = this.selectedIO.ConnectedTo;
             }
 
+            oldConnections.Add(roadIOL, roadIOL.ConnectedTo);
             roadIOL.ConnectedTo = spawnedRoads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0];
 
             if (roadIOR != null)
@@ -338,12 +396,6 @@ public class RoadPlacementLogic : MonoBehaviour
             }
 
             roadIOL.ConnectedTo.MoveRoadTo(roadIOL.transform.position);
-        }
-        else
-        {
-            //Si no hay io seleccionada
-            // this.selectedIO = spawnedRoads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0];
-            this.firsInput = selectedIO;
         }
 
         int numberOfPiecesGap = spawnedRoads.Length;
@@ -411,7 +463,6 @@ public class RoadPlacementLogic : MonoBehaviour
                 //Si es menor que cero hemos encontrado un hueco
                 if (nextRoadLevel <= 0)
                 {
-                    Debug.Log("Hueco");
                     //MAX_ACCEPTABLE_DISTANCE
                     //Llenamos el hueco
                     List<RoadIO> currentRoadIO = new List<RoadIO>();
@@ -421,6 +472,7 @@ public class RoadPlacementLogic : MonoBehaviour
                     {
                         if (Vector3.Distance(r.transform.position, r.ConnectedTo.transform.position) > MAX_ACCEPTABLE_DISTANCE)
                         {
+                            oldConnections.Add(r, r.ConnectedTo);
                             currentRoadIO.Add(r);
                             nextRoadIO.Add(r.ConnectedTo);
                         }
@@ -452,6 +504,7 @@ public class RoadPlacementLogic : MonoBehaviour
                                     foreach (Road newR in spanedRoads)
                                     {
                                         processedRoads.Add(newR);
+                                        extraSpawnedRoads.Add(newR);
                                     }
                                 }
 
@@ -535,24 +588,33 @@ public class RoadPlacementLogic : MonoBehaviour
         if (this.selectedIO != null)
         {
             //Debug.LogError(this.selectedIO.IOIdentifier);
+            VerticalButton addedButton;
             if (this.selectedIO.GetParentRoad() is NodeVerticalButton)
             {
                 NodeVerticalButton node = (NodeVerticalButton)this.selectedIO.GetParentRoad();
 
-                if (node.AddButton(button.ToString(), this.selectedIO))
+                if (node.AddButton(button.ToString(), this.selectedIO, out addedButton))
                 {
-                    Debug.LogError("Placed");
+                    
+                    RoadChanges c = new RoadChanges();
+                    c.addedButton = new Tuple<NodeVerticalButton, VerticalButton>(node, addedButton);
+                    c.selectedIOBack = this.selectedIO;
+                    undoStack.Push(c);
                     placed = true;
                 }
             }
-            if (!placed&&this.selectedIO.connectedTo != null)
+            if (!placed && this.selectedIO.ConnectedTo != null)
             {
                 //Debug.LogError(this.selectedIO.connectedTo.IOIdentifier);
-                if (this.selectedIO.connectedTo.GetParentRoad() is NodeVerticalButton)
+                if (this.selectedIO.ConnectedTo.GetParentRoad() is NodeVerticalButton)
                 {
-                    NodeVerticalButton node1 = (NodeVerticalButton)this.selectedIO.connectedTo.GetParentRoad();
-                    if (node1.AddButton(button.ToString(), this.selectedIO.connectedTo))
+                    NodeVerticalButton node1 = (NodeVerticalButton)this.selectedIO.ConnectedTo.GetParentRoad();
+                    if (node1.AddButton(button.ToString(), this.selectedIO.ConnectedTo, out addedButton))
                     {
+                        RoadChanges c = new RoadChanges();
+                        c.addedButton = new Tuple<NodeVerticalButton, VerticalButton>(node1, addedButton);
+                        c.selectedIOBack = this.selectedIO;
+                        undoStack.Push(c);
                         placed = true;
                     }
                 }
@@ -561,14 +623,50 @@ public class RoadPlacementLogic : MonoBehaviour
 
         if (!placed)
         {
+            RoadIO selectedIOBack = this.selectedIO;
             string[] ids = { "NodeVerticalButton" };
             Road[] spawnedRoad;
-            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad))
+            List<Road> extraRoads;
+            Dictionary<RoadIO, RoadIO> oldConnections;
+            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad, out extraRoads, out oldConnections))
             {
                 string[] args = { "activate", button.ToString() };
                 spawnedRoad[0].ExecuteAction(args);
+                NewActionOnStack(spawnedRoad, extraRoads, oldConnections, selectedIOBack);
             }
         }
+    }
+
+    private void NewActionOnStack(Road[] r, List<Road> rl, Dictionary<RoadIO, RoadIO> o, RoadIO selectedIOback)
+    {
+        RoadChanges rChanges = new RoadChanges();
+        if (r != null)
+        {
+            foreach (Road rr in r)
+            {
+                rChanges.addedRoads.Add(rr);
+            }
+        }
+
+        if (rl != null)
+        {
+            foreach (Road rrl in rl)
+            {
+                rChanges.addedRoads.Add(rrl);
+            }
+        }
+
+        if (o != null)
+        {
+            foreach (KeyValuePair<RoadIO, RoadIO> entry in o)
+            {
+                rChanges.connectionsChanged.Add(entry.Key, entry.Value);
+            }
+        }
+
+        rChanges.selectedIOBack = selectedIOback;
+
+        undoStack.Push(rChanges);
     }
 
     private void DoMove()
@@ -645,7 +743,7 @@ public class RoadPlacementLogic : MonoBehaviour
                 {
                     r.ExecuteAction(lockArgs);
                 }
-                selectedOutputMarker.SetActive(false);
+                selectedOutputMarker.gameObject.SetActive(false);
 
                 LevelManager.instance.RoadMovement.StartMovement(roadInput, roadOutput);
             }
@@ -723,5 +821,54 @@ public class RoadPlacementLogic : MonoBehaviour
     private void DoTurnRight()
     {
         SpawnVerticalButton(Buttons.TurnRight);
+    }
+
+    private void CorrectPositions(in float maxAcceptableDistance, RoadIO pivotIO)
+    {
+        if (pivotIO != null)
+        {
+            pivotIO.MoveRoadTo(roadStartMarker.transform.position);
+
+            List<Road> processedRoads = new List<Road>();
+            processedRoads.Add(pivotIO.GetParentRoad());
+
+            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
+
+            RoadIO[] tmpe = pivotIO.GetParentRoad().GetAllIO();
+
+            foreach (RoadIO rio in tmpe)
+            {
+                ioToProc.Push(rio);
+            }
+
+            while (ioToProc.Count > 0)
+            {
+                RoadIO toProc = ioToProc.Pop();
+                RoadIO connectedTo = toProc.ConnectedTo;
+                if (connectedTo != null)
+                {
+                    float distance = Vector3.Distance(toProc.transform.position, connectedTo.transform.position);
+                    if (distance > maxAcceptableDistance)
+                    {
+                        connectedTo.MoveRoadTo(toProc.transform.position);
+                    }
+
+                    processedRoads.Add(connectedTo.GetParentRoad());
+
+                    tmpe = connectedTo.GetParentRoad().GetAllIO();
+
+                    foreach (RoadIO rio in tmpe)
+                    {
+                        if (rio.ConnectedTo != null)
+                        {
+                            if (!processedRoads.Contains(rio.ConnectedTo.GetParentRoad()))
+                            {
+                                ioToProc.Push(rio);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
