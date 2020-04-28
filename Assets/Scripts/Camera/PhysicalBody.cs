@@ -24,6 +24,18 @@ public class PhysicalBody : MonoBehaviour
         rb.angularVelocity = new Vector3(0, 0, 0);
     }
 
+    public void Teleport(Vector3 position)
+    {
+        rotatedTranslation.x = 0;
+        rotatedTranslation.y = 0;
+        rotatedTranslation.z = 0;
+        rb.velocity = new Vector3(0, 0, 0);
+        rb.angularVelocity = new Vector3(0, 0, 0);
+
+        transform.position = position;
+
+    }
+
     public Vector3 TargetPosition()
     {
         return rb.transform.position;
