@@ -42,6 +42,10 @@ public class PhysicalCameraController : MonoBehaviour
         pitch = Mathf.Lerp(Pitch, TargetPitch, rotationLerpPct);
         roll = Mathf.Lerp(Roll, TargetRoll, rotationLerpPct);
 
+        /*float space = Mathf.Abs(speed * Time.deltaTime);
+
+        float spacePercentage = space != 0 ? space / Vector3.Distance(targetPosition, transform.position) : 0;*/
+
         newPosition = Vector3.Lerp(transform.position, targetPosition, positionLerpPct);
     }
 }

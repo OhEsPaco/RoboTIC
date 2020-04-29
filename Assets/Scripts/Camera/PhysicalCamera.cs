@@ -6,6 +6,8 @@ public class PhysicalCamera : MonoBehaviour
     [SerializeField] private PhysicalCameraController cameraController;
     [SerializeField] private CamCage cage;
 
+   
+
     [Header("Rotation Settings")]
     [Tooltip("X = Change in mouse position.\nY = Multiplicative factor for camera rotation.")]
     public AnimationCurve mouseSensitivityCurve = new AnimationCurve(new Keyframe(0f, 0.5f, 0f, 5f), new Keyframe(1f, 2.5f, 0f, 0f));
@@ -76,49 +78,13 @@ public class PhysicalCamera : MonoBehaviour
         float positionLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / positionLerpTime) * Time.deltaTime);
         float rotationLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / rotationLerpTime) * Time.deltaTime);
 
-       
-
         Vector3 rotatedTranslation = Quaternion.Euler(cameraController.TargetPitch, cameraController.TargetYaw, cameraController.TargetRoll) * translation;
 
-        Vector3 adjTrans;
-        Vector3 adjPos;
-        bool x;
-        bool y;
-        bool z;
+        physicalBody.RotatedTranslation = cage.AdjustTranslation(physicalBody.transform.position,rotatedTranslation);
 
-        cage.AdjustTranslation(physicalBody.transform.position,rotatedTranslation, out adjTrans,out adjPos,out x, out y, out z);
-
-        if (x)
-        {
-            rotatedTranslation.x = 0;
-          
-        }
-
-        if (y)
-        {
-            rotatedTranslation.y = 0;
-           
-        }
-
-        if (z)
-        {
-            rotatedTranslation.z = 0;
-           
-        }
-        physicalBody.RotatedTranslation = rotatedTranslation;
+       
         cameraController.LerpTowards(physicalBody.TargetPosition(), positionLerpPct, rotationLerpPct);
 
-
-       /* if (x || y || z)
-        {
-            //cameraController.transform.position=adjPos;
-            physicalBody.Teleport(adjPos);
-            cameraController.LerpTowards(adjPos, positionLerpPct, rotationLerpPct);
-        }
-        else
-        {
-            cameraController.LerpTowards(physicalBody.TargetPosition(), positionLerpPct, rotationLerpPct);
-        }*/
 
        
     }

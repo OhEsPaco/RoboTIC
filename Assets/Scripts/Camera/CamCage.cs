@@ -30,16 +30,12 @@ public class CamCage : MonoBehaviour
     {
     }
 
-    public void AdjustTranslation(Vector3 camPosition, Vector3 rotatedTranslation, out Vector3 output, out Vector3 correctedPos, out bool x, out bool y, out bool z) 
+    public Vector3 AdjustTranslation(Vector3 camPosition, Vector3 rotatedTranslation)
     {
-        
+        Vector3 output;
         output.x = rotatedTranslation.x;
         output.y = rotatedTranslation.y;
         output.z = rotatedTranslation.z;
-
-        correctedPos.x = camPosition.x;
-        correctedPos.y = camPosition.y;
-        correctedPos.z = camPosition.z;
 
         float xn = xMinus.transform.position.x;
         float xp = xPlus.transform.position.x;
@@ -50,52 +46,37 @@ public class CamCage : MonoBehaviour
         float zn = zMinus.transform.position.z;
         float zp = zPlus.transform.position.z;
 
-        x = false;
-        y = false;
-        z = false;
-
-        if (camPosition.x > xp && rotatedTranslation.x > 0)
+        if (camPosition.x + rotatedTranslation.x > xp)
         {
-            output.x = 0;
-            correctedPos.x = xp;
-            x = true;
+            output.x = xp - camPosition.x;
         }
 
-        if (camPosition.x < xn && rotatedTranslation.x < 0)
+        if (camPosition.y + rotatedTranslation.y > yp)
         {
-            output.x = 0;
-            correctedPos.x = xn;
-            x = true;
+            output.y = yp - camPosition.y;
         }
 
-        if (camPosition.y > yp && rotatedTranslation.y > 0)
+        if (camPosition.z + rotatedTranslation.z > zp)
         {
-            output.y = 0;
-            correctedPos.y = yp;
-            y = true;
+            output.z = zp - camPosition.z;
         }
 
-        if (camPosition.y < yn && rotatedTranslation.y < 0)
+        if (camPosition.x + rotatedTranslation.x < xn)
         {
-            output.y = 0;
-            correctedPos.y = yn;
-            y = true;
+            output.x = xn - camPosition.x;
         }
 
-        if (camPosition.z > zp && rotatedTranslation.z > 0)
+        if (camPosition.y + rotatedTranslation.y < yn)
         {
-            output.z = 0;
-            correctedPos.z = zp;
-            z = true;
+            output.y = yn - camPosition.y;
         }
 
-        if (camPosition.z < zn && rotatedTranslation.z < 0)
+        if (camPosition.z + rotatedTranslation.z < zn)
         {
-            output.z = 0;
-            correctedPos.z = zn;
-            z = true;
+            output.z = zn - camPosition.z;
         }
 
+        return output;
     }
 
     private void OnDrawGizmos()

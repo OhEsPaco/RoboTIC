@@ -1,118 +1,125 @@
 fileFormatVersion: 2
-guid: c181e60236c59144aaf9ce09d26f011b
+guid: 5c06dddfae465014985b9772cf8371da
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Books
-    100002: Books.001
-    100004: Books2
-    100006: Camera
-    100008: Cube
-    100010: Cylinder
-    100012: Icosphere
-    100014: Icosphere.001
-    100016: Icosphere.002
-    100018: Light
-    100020: //RootNode
-    100022: Shelf
-    100024: Shelf.001
-    100026: Table
-    100028: Table.001
-    100030: Walls
-    100032: Yoni
-    400000: Books
-    400002: Books.001
-    400004: Books2
-    400006: Camera
-    400008: Cube
-    400010: Cylinder
-    400012: Icosphere
-    400014: Icosphere.001
-    400016: Icosphere.002
-    400018: Light
-    400020: //RootNode
-    400022: Shelf
-    400024: Shelf.001
-    400026: Table
-    400028: Table.001
-    400030: Walls
-    400032: Yoni
+    100000: Bed
+    100002: Books
+    100004: Books.001
+    100006: Books2
+    100008: Cactus
+    100010: Camera
+    100012: Floor
+    100014: Icosphere
+    100016: Icosphere.001
+    100018: Icosphere.002
+    100020: Light
+    100022: //RootNode
+    100024: Shelf
+    100026: Shelf.001
+    100028: Table
+    100030: Table.001
+    100032: Walls
+    100034: Yoni
+    400000: Bed
+    400002: Books
+    400004: Books.001
+    400006: Books2
+    400008: Cactus
+    400010: Camera
+    400012: Floor
+    400014: Icosphere
+    400016: Icosphere.001
+    400018: Icosphere.002
+    400020: Light
+    400022: //RootNode
+    400024: Shelf
+    400026: Shelf.001
+    400028: Table
+    400030: Table.001
+    400032: Walls
+    400034: Yoni
     2000000: Camera
     2100000: Material.035
     2100002: Material.036
     2100004: Material.037
     2100006: Material.038
-    2100008: Material.003
-    2100010: Material.001
-    2100012: Material.002
-    2100014: Floor
-    2100016: Walls
-    2100018: Wood
-    2100020: B1
-    2100022: B4
-    2100024: B2
-    2100026: B0
-    2100028: B5
-    2100030: Material.026
-    2100032: Material.027
-    2100034: Material.025
-    2100036: Material.028
-    2100038: Material.030
-    2100040: Material.029
-    2100042: Table
-    2100044: B1.001
-    2100046: B4.001
-    2100048: B2.001
-    2100050: B0.001
-    2100052: B5.001
-    2100054: Wood.001
-    2100056: Material.031
-    2100058: Material.033
-    2100060: Material.032
-    2100062: Material.034
-    2100064: Table.001
-    2300000: Books
-    2300002: Books.001
-    2300004: Books2
-    2300006: Cube
-    2300008: Cylinder
-    2300010: Icosphere
-    2300012: Icosphere.001
-    2300014: Icosphere.002
-    2300016: Shelf
-    2300018: Shelf.001
-    2300020: Table
-    2300022: Table.001
-    2300024: Walls
-    2300026: Yoni
-    3300000: Books
-    3300002: Books.001
-    3300004: Books2
-    3300006: Cube
-    3300008: Cylinder
-    3300010: Icosphere
-    3300012: Icosphere.001
-    3300014: Icosphere.002
-    3300016: Shelf
-    3300018: Shelf.001
-    3300020: Table
-    3300022: Table.001
-    3300024: Walls
-    3300026: Yoni
-    4300000: Cylinder
+    2100008: Floor
+    2100010: Walls
+    2100012: Ceiling
+    2100014: Wood
+    2100016: B1
+    2100018: B4
+    2100020: B2
+    2100022: B0
+    2100024: B5
+    2100026: Material.026
+    2100028: Material.027
+    2100030: Material.025
+    2100032: Material.028
+    2100034: Material.030
+    2100036: Material.029
+    2100038: Table
+    2100040: B1.001
+    2100042: B4.001
+    2100044: B2.001
+    2100046: B0.001
+    2100048: B5.001
+    2100050: Wood.001
+    2100052: Material.031
+    2100054: Material.033
+    2100056: Material.032
+    2100058: Material.034
+    2100060: Table.001
+    2100062: Material
+    2100064: Material.001
+    2100066: Material.002
+    2100068: Material.003
+    2300000: Bed
+    2300002: Books
+    2300004: Books.001
+    2300006: Books2
+    2300008: Cactus
+    2300010: Floor
+    2300012: Icosphere
+    2300014: Icosphere.001
+    2300016: Icosphere.002
+    2300018: Shelf
+    2300020: Shelf.001
+    2300022: Table
+    2300024: Table.001
+    2300026: Walls
+    2300028: Yoni
+    3300000: Bed
+    3300002: Books
+    3300004: Books.001
+    3300006: Books2
+    3300008: Cactus
+    3300010: Floor
+    3300012: Icosphere
+    3300014: Icosphere.001
+    3300016: Icosphere.002
+    3300018: Shelf
+    3300020: Shelf.001
+    3300022: Table
+    3300024: Table.001
+    3300026: Walls
+    3300028: Yoni
+    4300000: Cactus
     4300002: Icosphere.001
     4300004: Icosphere.002
-    4300006: Cube
-    4300008: Walls
-    4300010: Shelf
-    4300012: Books
-    4300014: Yoni
-    4300016: Table
-    4300018: Books.001
-    4300020: Shelf.001
-    4300022: Books2
-    4300024: Icosphere
-    4300026: Table.001
+    4300006: Walls
+    4300008: Shelf
+    4300010: Books
+    4300012: Yoni
+    4300014: Table
+    4300016: Books.001
+    4300018: Shelf.001
+    4300020: Books2
+    4300022: Icosphere
+    4300024: Table.001
+    4300026: Floor
+    4300028: Bed
     10800000: Light
     2186277476908879412: ImportLogs
   externalObjects: {}
@@ -154,7 +161,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    swapUVChannels: 0
+    swapUVChannels: 1
     generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
