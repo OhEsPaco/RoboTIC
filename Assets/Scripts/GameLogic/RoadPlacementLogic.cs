@@ -595,7 +595,6 @@ public class RoadPlacementLogic : MonoBehaviour
 
                 if (node.AddButton(button.ToString(), this.selectedIO, out addedButton))
                 {
-                    
                     RoadChanges c = new RoadChanges();
                     c.addedButton = new Tuple<NodeVerticalButton, VerticalButton>(node, addedButton);
                     c.selectedIOBack = this.selectedIO;
@@ -811,6 +810,30 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoRestart()
     {
+        LevelManager.instance.RoadMovement.StopMovement();
+        while (undoStack.Count > 0)
+        {
+            RoadChanges c = undoStack.Pop();
+            foreach (Road r in c.addedRoads)
+            {
+                Destroy(r.gameObject);
+            }
+        }
+
+        selectedOutputMarker.transform.parent = roadParent;
+        roadStart.transform.parent = roadParent;
+        roadParent.position = roadStartMarker.position;
+
+        firsInput = roadStart.GetRoadIOByDirection(IODirection.Back)[0];
+        firsInput.MoveRoadTo(roadStartMarker.position);
+        this.selectedIO = roadStart.GetRoadIOByDirection(IODirection.Forward)[0];
+
+        selectedOutputMarker.transform.position = this.selectedIO.transform.position;
+        selectedOutputMarker.gameObject.SetActive(true);
+        minibot.transform.position = firsInput.transform.position;
+        minibot.gameObject.SetActive(true);
+
+        LevelManager.instance.Logic.AddInputFromButton(Buttons.Restart);
     }
 
     private void DoTurnLeft()

@@ -80,6 +80,34 @@ public class Logic : MonoBehaviour
         Debug.Log(currentLevelData.levelName);
     }
 
+    private void Restart()
+    {
+        LoadLevelData();
+        Destroy(mainCharacterGameObject);
+
+        // mainCharacterAnimator = mainCharacterGameObject.GetComponent<MainCharacterController>().GetAnimator();
+        levelManagerReference.LevelButtons.SetNumberOfAvailableInstructions(currentLevelData);
+
+        foreach (LevelObject l in objectReferences)
+        {
+            Destroy(l.gameObject);
+        }
+
+        objectReferences = levelManagerReference.MapRenderer.RenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
+
+        mainCharacterGameObject = levelManagerReference.MapRenderer.RenderMainCharacter(currentLevelData.playerPos, currentLevelData.playerOrientation);
+        Vector3 playerPos;
+        if (GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos))
+        {
+            mainCharacterGameObject.transform.position = playerPos;
+        }
+
+        buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
+        inventory = new Stack<Item>();
+        haltExecution = false;
+        Debug.Log(currentLevelData.levelName);
+    }
+
     private bool GetBlockSurfacePoint(in int x, in int y, in int z, out Vector3 surfacePoint)
     {
         LevelObject rawObj = GetBlock(CurrentLevelData, objectReferences, x, y, z);
@@ -184,7 +212,14 @@ public class Logic : MonoBehaviour
     {
         if (!haltExecution)
         {
-            buttonInputBuffer.Add(buttonIndex);
+            if (buttonIndex == Buttons.Restart)
+            {
+                Restart();
+            }
+            else
+            {
+                buttonInputBuffer.Add(buttonIndex);
+            }
         }
     }
 
@@ -684,6 +719,7 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoRestart()
     {
+        Restart();
     }
 
     /// <summary>

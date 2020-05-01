@@ -29,7 +29,6 @@ public class RoadMovementLogic : MonoBehaviour
         //Hacemos que el robot sea hijo de este objeto y lo marcamos como inactivo
         player.transform.parent = transform;
         player.gameObject.SetActive(false);
-
     }
 
     //Inicia el movimiento dado el input y el output de la carretera
@@ -107,6 +106,19 @@ public class RoadMovementLogic : MonoBehaviour
 
         ltDescr = null;
         return false;
+    }
+
+    public void StopMovement()
+    {
+        //Resetemos todo
+        movementStarted = false;
+        if (tweenDescr != null)
+        {
+            if (LeanTween.isTweening(tweenDescr.id))
+            {
+                LeanTween.cancel(tweenDescr.id);
+            }
+        }
     }
 
     private void Update()
