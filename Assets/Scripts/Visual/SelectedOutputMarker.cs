@@ -14,7 +14,7 @@ public class SelectedOutputMarker : MonoBehaviour
 
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         mOffset = gameObject.transform.position - GetMouseWorldPos();
-        sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.firsInput).transform.position;
+        sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.FirstInput).transform.position;
         sphere.SetActive(true);
     }
 
@@ -30,7 +30,7 @@ public class SelectedOutputMarker : MonoBehaviour
             }
 
             //OPTIMIZAR
-            sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.firsInput).transform.position;
+            sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.FirstInput).transform.position;
         }
     }
 
@@ -51,7 +51,7 @@ public class SelectedOutputMarker : MonoBehaviour
 
     public void FindAndSelectClosestIO()
     {
-        RoadIO pivotIO = LevelManager.instance.RoadPlacementLogic.firsInput;
+        RoadIO pivotIO = LevelManager.instance.RoadPlacementLogic.FirstInput;
 
         if (pivotIO != null)
         {

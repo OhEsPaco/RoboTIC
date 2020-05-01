@@ -22,9 +22,9 @@ public class MapRenderer : MonoBehaviour
                     LevelObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
                     objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
                     Vector3 posNew;
-                    posNew.x = x * blockLength;
-                    posNew.y = y * blockLength;
-                    posNew.z = z * blockLength;
+                    posNew.x = gameObject.transform.position.x + x * blockLength;
+                    posNew.y = gameObject.transform.position.y + y * blockLength;
+                    posNew.z = gameObject.transform.position.z + z * blockLength;
                     block.transform.position = posNew;
                     block.transform.parent = gameObject.transform;
                 }
@@ -38,9 +38,9 @@ public class MapRenderer : MonoBehaviour
         LevelObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
         objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
         Vector3 posNew;
-        posNew.x = x * blockLength;
-        posNew.y = y * blockLength;
-        posNew.z = z * blockLength;
+        posNew.x = gameObject.transform.position.x + x * blockLength;
+        posNew.y = gameObject.transform.position.y + y * blockLength;
+        posNew.z = gameObject.transform.position.z + z * blockLength;
         block.transform.position = posNew;
         block.transform.parent = gameObject.transform;
 
@@ -51,9 +51,9 @@ public class MapRenderer : MonoBehaviour
     {
         LevelObject flag = LevelManager.instance.LevelObjects.GetGameObjectInstance((int)Items.FlagItem);
         Vector3 posFlag;
-        posFlag.x = goal[0] * blockLength;
-        posFlag.y = goal[1] * blockLength;
-        posFlag.z = goal[2] * blockLength;
+        posFlag.x = gameObject.transform.position.x + goal[0] * blockLength;
+        posFlag.y = gameObject.transform.position.y + goal[1] * blockLength;
+        posFlag.z = gameObject.transform.position.z + goal[2] * blockLength;
         flag.transform.position = posFlag;
         flag.transform.parent = gameObject.transform;
     }
@@ -62,9 +62,9 @@ public class MapRenderer : MonoBehaviour
     {
         GameObject mainCharacter = LevelManager.instance.LevelObjects.GetMainCharacterInstance();
         Vector3 posNewChar;
-        posNewChar.x = playerStart[0] * blockLength;
-        posNewChar.y = playerStart[1] * blockLength;
-        posNewChar.z = playerStart[2] * blockLength;
+        posNewChar.x = gameObject.transform.position.x + playerStart[0] * blockLength;
+        posNewChar.y = gameObject.transform.position.y + playerStart[1] * blockLength;
+        posNewChar.z = gameObject.transform.position.z + playerStart[2] * blockLength;
 
         mainCharacter.transform.Rotate(0, 90f * playerOrientation, 0);
         mainCharacter.transform.position = posNewChar;

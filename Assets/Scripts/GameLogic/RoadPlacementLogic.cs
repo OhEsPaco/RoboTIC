@@ -11,13 +11,23 @@ public class RoadPlacementLogic : MonoBehaviour
     [SerializeField] private Transform roadParent;
     [SerializeField] private Road roadStart;
     [SerializeField] private MiniCharacter minibot;
+    [SerializeField] private CamCage playArea;
+
     private List<Buttons> buttonInputBuffer;
     public int initialCapacityOfTheInputBuffer = 20;
     private Dictionary<Buttons, Action> buttonActionsDictionary;
 
     private RoadIO selectedIO = null;
 
-    public RoadIO firsInput = null;
+    private RoadIO firstInput = null;
+
+    public RoadIO FirstInput
+    {
+        get
+        {
+            return firstInput;
+        }
+    }
 
     //Para escala 1 funcionaba bien 0.3, asi que para escala 0.3 lo multiplico por ella
     private const float MAX_ACCEPTABLE_DISTANCE = 0.3f * 0.3f;
@@ -31,12 +41,12 @@ public class RoadPlacementLogic : MonoBehaviour
         roadStart.transform.parent = roadParent;
         roadParent.position = roadStartMarker.position;
 
-        firsInput = roadStart.GetRoadIOByDirection(IODirection.Back)[0];
-        firsInput.MoveRoadTo(roadStartMarker.position);
+        firstInput = roadStart.GetRoadIOByDirection(IODirection.Back)[0];
+        firstInput.MoveRoadTo(roadStartMarker.position);
         this.selectedIO = roadStart.GetRoadIOByDirection(IODirection.Forward)[0];
 
         selectedOutputMarker.transform.position = this.selectedIO.transform.position;
-        minibot.transform.position = firsInput.transform.position;
+        minibot.transform.position = firstInput.transform.position;
         minibot.gameObject.SetActive(true);
         //Llenar el diccionario de funciones
         buttonActionsDictionary = new Dictionary<Buttons, Action>();
@@ -99,7 +109,7 @@ public class RoadPlacementLogic : MonoBehaviour
             }
 
             //Move roads to correct positions
-            CorrectPositions(MAX_ACCEPTABLE_DISTANCE, firsInput);
+            CorrectPositions(MAX_ACCEPTABLE_DISTANCE, firstInput);
         }
     }
 
@@ -337,6 +347,18 @@ public class RoadPlacementLogic : MonoBehaviour
             }
         }
 
+        /*foreach(Road r in spawnedRoads)
+        {
+            foreach(RoadIO io in r.GetAllIO())
+            {
+                if (!playArea.IsPointInsideOfCageXZ(io.transform.position))
+                {
+                    DestroyRoads(spawnedRoads);
+                    return false;
+                }
+            }
+        }*/
+
         foreach (Road r in spawnedRoads)
         {
             r.transform.parent = roadParent;
@@ -362,7 +384,7 @@ public class RoadPlacementLogic : MonoBehaviour
         oldConnections = new Dictionary<RoadIO, RoadIO>();
         spawnedRoads = null;
         extraSpawnedRoads = new List<Road>();
-        if (this.selectedIO != null && this.selectedIO == firsInput)
+        if (this.selectedIO != null && this.selectedIO == firstInput)
         {
             //AVISO DE QUE NO SE PUEDE PONER AHI
             Debug.LogWarning("No se puede poner aqui");
@@ -552,7 +574,27 @@ public class RoadPlacementLogic : MonoBehaviour
                 }
             }
         }
-
+        /*if (spawnedRoads.Length > 0)
+        {
+            //Como medida de seguridad comprobamos que la ultima carretera está dentro del area de juego
+            Road lastRoad = GetLastRoad();
+            foreach (RoadIO io in lastRoad.GetAllIO())
+            {
+                if (!playArea.IsPointInsideOfCageXZ(io.transform.position))
+                {
+                    foreach(Road r in spawnedRoads)
+                    {
+                        Destroy(r.gameObject);
+                    }
+                    foreach (Road r in extraSpawnedRoads)
+                    {
+                        Destroy(r.gameObject);
+                    }
+               
+                    return false;
+                }
+            }
+        }*/
         return true;
     }
 
@@ -671,6 +713,42 @@ public class RoadPlacementLogic : MonoBehaviour
     private void DoMove()
     {
         SpawnVerticalButton(Buttons.Move);
+    }
+
+    private Road GetLastRoad()
+    {
+        List<Road> allRoads = new List<Road>();
+        Stack<Road> roadsToProccess = new Stack<Road>();
+        roadsToProccess.Push(firstInput.GetParentRoad());
+        while (roadsToProccess.Count > 0)
+        {
+            Road r = roadsToProccess.Pop();
+
+            foreach (RoadIO rIO in r.GetAllIO())
+            {
+                if (rIO.ConnectedTo != null)
+                {
+                    if (!allRoads.Contains(rIO.ConnectedTo.GetParentRoad()))
+                    {
+                        roadsToProccess.Push(rIO.ConnectedTo.GetParentRoad());
+                    }
+                }
+                else
+                {
+                    if (rIO is RoadOutput)
+                    {
+                        return rIO.GetParentRoad();
+                    }
+                }
+            }
+
+            if (!allRoads.Contains(r))
+            {
+                allRoads.Add(r);
+            }
+        }
+
+        return null;
     }
 
     private void DoPlay()
@@ -824,13 +902,13 @@ public class RoadPlacementLogic : MonoBehaviour
         roadStart.transform.parent = roadParent;
         roadParent.position = roadStartMarker.position;
 
-        firsInput = roadStart.GetRoadIOByDirection(IODirection.Back)[0];
-        firsInput.MoveRoadTo(roadStartMarker.position);
+        firstInput = roadStart.GetRoadIOByDirection(IODirection.Back)[0];
+        firstInput.MoveRoadTo(roadStartMarker.position);
         this.selectedIO = roadStart.GetRoadIOByDirection(IODirection.Forward)[0];
 
         selectedOutputMarker.transform.position = this.selectedIO.transform.position;
         selectedOutputMarker.gameObject.SetActive(true);
-        minibot.transform.position = firsInput.transform.position;
+        minibot.transform.position = firstInput.transform.position;
         minibot.gameObject.SetActive(true);
 
         LevelManager.instance.Logic.AddInputFromButton(Buttons.Restart);
