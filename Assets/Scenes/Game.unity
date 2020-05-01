@@ -532,6 +532,7 @@ MonoBehaviour:
     actionsToExecute: 
     newProperties: 
     animationTriggers: []
+  surfaceOffset: {x: 0, y: 1, z: 0}
 --- !u!65 &32913182
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5276,6 +5277,7 @@ MonoBehaviour:
   blockType: 0
   blockProperties: 00000000
   effectReaction: []
+  surfaceOffset: {x: 0, y: 1, z: 0}
 --- !u!1 &564599001
 GameObject:
   m_ObjectHideFlags: 0
@@ -8425,6 +8427,7 @@ MonoBehaviour:
     actionsToExecute: 01000000
     newProperties: 
     animationTriggers: []
+  surfaceOffset: {x: 0, y: 1, z: 0}
 --- !u!65 &962504933
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11772,6 +11775,7 @@ MonoBehaviour:
     actionsToExecute: 01000000
     newProperties: 
     animationTriggers: []
+  surfaceOffset: {x: 0, y: 1, z: 0}
 --- !u!65 &1333224725
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11957,7 +11961,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionSpeed: 2
-  jumpHeight: 2
+  jumpPct: 1
+  descendJumpPct: 0.3
   takeOff: 0.8
   rotationTime: 1
   initialActionCapacity: 20
@@ -15432,6 +15437,7 @@ MonoBehaviour:
     actionsToExecute: 
     newProperties: 
     animationTriggers: []
+  surfaceOffset: {x: 0, y: 1, z: 0}
 --- !u!65 &1772708441
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15895,6 +15901,7 @@ MonoBehaviour:
     actionsToExecute: 01000000
     newProperties: 
     animationTriggers: []
+  surfaceOffset: {x: 0, y: 1, z: 0}
 --- !u!65 &1828380503
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17342,6 +17349,7 @@ MonoBehaviour:
     actionsToExecute: 03000000
     newProperties: 01000000
     animationTriggers: []
+  surfaceOffset: {x: 0, y: 1, z: 0}
 --- !u!65 &2086831100
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17789,7 +17797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141643521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.06, y: -120.6, z: 3.86}
+  m_LocalPosition: {x: -220, y: -22.9, z: 3.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 559417951}
@@ -23124,7 +23132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2796145986203667589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2796145986203439267}

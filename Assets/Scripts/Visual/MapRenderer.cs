@@ -8,11 +8,9 @@ public class MapRenderer : MonoBehaviour
 
     public float BlockLength { get => blockLength; }
 
-  
-
     public LevelObject[] RenderMapAndItems(in List<int> mapAndItems, in List<int> levelSize)
     {
-        LevelObject[] objectReferences = new LevelObject[levelSize[0]*levelSize[1]*levelSize[2]];
+        LevelObject[] objectReferences = new LevelObject[levelSize[0] * levelSize[1] * levelSize[2]];
         for (int x = 0; x < levelSize[0]; x++)
         {
             for (int y = 0; y < levelSize[1]; y++)
@@ -37,7 +35,6 @@ public class MapRenderer : MonoBehaviour
 
     public LevelObject RenderBlock(LevelObject[] objectReferences, List<int> levelSize, int blockToSpawn, int x, int y, int z)
     {
-
         LevelObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
         objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
         Vector3 posNew;
@@ -49,6 +46,7 @@ public class MapRenderer : MonoBehaviour
 
         return block;
     }
+
     public void RenderScenery(in List<int> goal)
     {
         LevelObject flag = LevelManager.instance.LevelObjects.GetGameObjectInstance((int)Items.FlagItem);

@@ -80,6 +80,23 @@ public class Logic : MonoBehaviour
         Debug.Log(currentLevelData.levelName);
     }
 
+    private bool GetBlockSurfacePoint(in int x, in int y, in int z, out Vector3 surfacePoint)
+    {
+        LevelObject rawObj = GetBlock(CurrentLevelData, objectReferences, x, y, z);
+        if (rawObj != null)
+        {
+            if (rawObj is Block)
+            {
+                Block b = (Block)rawObj;
+                surfacePoint = b.SurfacePoint;
+                return true;
+            }
+        }
+
+        surfacePoint = new Vector3();
+        return false;
+    }
+
     private bool CheckWinState()
     {
         if (currentLevelData.goal[0] == currentLevelData.playerPos[0] + 1 && currentLevelData.goal[1] == currentLevelData.playerPos[1] + 1 && currentLevelData.goal[2] == currentLevelData.playerPos[2])
@@ -132,6 +149,11 @@ public class Logic : MonoBehaviour
         objectReferences = levelManagerReference.MapRenderer.RenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
         levelManagerReference.MapRenderer.RenderScenery(currentLevelData.goal);
         mainCharacterGameObject = levelManagerReference.MapRenderer.RenderMainCharacter(currentLevelData.playerPos, currentLevelData.playerOrientation);
+        Vector3 playerPos;
+        if (GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos))
+        {
+            mainCharacterGameObject.transform.position = playerPos;
+        }
         // mainCharacterAnimator = mainCharacterGameObject.GetComponent<MainCharacterController>().GetAnimator();
         levelManagerReference.LevelButtons.SetNumberOfAvailableInstructions(currentLevelData);
     }
@@ -351,30 +373,30 @@ public class Logic : MonoBehaviour
 
         if (CheckBlockProperty(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable) && isTopEmpty && (CheckBlockProperty(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData, BlockProperties.Immaterial) || TakeItem(intendedBlock)))
         {
-            levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock, currentLevelData.playerOrientation);
-            currentLevelData.playerPos = intendedBlock;
+            Vector3 target;
+            if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
+            {
+                levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, target, currentLevelData.playerOrientation);
+                currentLevelData.playerPos = intendedBlock;
+            }
         }
         else
         {
-            bool found = false;
             for (int y = isTopEmpty ? currentLevelData.playerPos[1] : currentLevelData.playerPos[1] - 1; y >= 0; y--)
             {
                 if (CheckBlockProperty(intendedBlock[0], y, intendedBlock[2], currentLevelData, BlockProperties.Immaterial) && CheckBlockProperty(intendedBlock[0], y - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable))
                 {
-                    found = true;
                     intendedBlock[1] = y;
                     fallDamage = currentLevelData.playerPos[1] - y;
-                    levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock, currentLevelData.playerOrientation);
-                    currentLevelData.playerPos = intendedBlock;
+                    Vector3 target;
+                    if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
+                    {
+                        levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, target, currentLevelData.playerOrientation);
+                        currentLevelData.playerPos = intendedBlock;
+                    }
 
                     break;
                 }
-            }
-            if (!found)
-            {
-                intendedBlock[1] = -1;
-                levelManagerReference.ActionRenderer.DoJump(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock, currentLevelData.playerOrientation);
-                YouLose();
             }
         }
 
@@ -405,8 +427,13 @@ public class Logic : MonoBehaviour
                 //Miramos el bloque de debajo
                 if (CheckBlockProperty(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable))
                 {
-                    levelManagerReference.ActionRenderer.DoMove(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock);
-                    currentLevelData.playerPos = intendedBlock;
+                    Vector3 target;
+                    if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
+                    {
+                        Debug.Log(target);
+                        levelManagerReference.ActionRenderer.DoMove(mainCharacterGameObject, target);
+                        currentLevelData.playerPos = intendedBlock;
+                    }
                 }
                 else
                 {
@@ -418,8 +445,12 @@ public class Logic : MonoBehaviour
                 //Collision
                 if (TakeItem(intendedBlock))
                 {
-                    levelManagerReference.ActionRenderer.DoMove(mainCharacterGameObject, currentLevelData.playerPos, intendedBlock);
-                    currentLevelData.playerPos = intendedBlock;
+                    Vector3 target;
+                    if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
+                    {
+                        levelManagerReference.ActionRenderer.DoMove(mainCharacterGameObject, target);
+                        currentLevelData.playerPos = intendedBlock;
+                    }
                 }
                 else
                 {
@@ -440,7 +471,7 @@ public class Logic : MonoBehaviour
             SetBlockType(currentLevelData, (int)Blocks.NoBlock, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
             LevelObject thisItem = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]).GetComponent<Item>();
 
-            if (thisItem != null&&thisItem.IsItem())
+            if (thisItem != null && thisItem.IsItem())
             {
                 inventory.Push((Item)thisItem);
                 // thisItem.SetActive(false);

@@ -41,6 +41,7 @@ public class Block : LevelObject
 
     [SerializeField] private BlockProperties[] blockProperties = new BlockProperties[0];
     [SerializeField] private EffectReaction[] effectReaction = new EffectReaction[0];
+    [SerializeField] private Vector3 surfaceOffset = new Vector3(0, 1, 0);
     private Dictionary<BlockActions, Action> actionsDictionary;
 
     private void Awake()
@@ -51,6 +52,27 @@ public class Block : LevelObject
         actionsDictionary.Add(BlockActions.Place, Place);
         actionsDictionary.Add(BlockActions.Activate, Activate);
         actionsDictionary.Add(BlockActions.Rebind, RebindAnimator);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        //Debug.Log(transform.localScale);
+
+        Gizmos.DrawSphere(SurfacePoint, 0.1f);
+    }
+
+    private Vector3 defOffset;
+
+    public Vector3 SurfacePoint
+    {
+        get
+        {
+            defOffset.x = surfaceOffset.x * transform.localScale.x;
+            defOffset.y = surfaceOffset.y * transform.localScale.z;
+            defOffset.z = surfaceOffset.z * transform.localScale.y;
+            return defOffset + transform.position;
+        }
     }
 
     public void ExecuteAction(BlockActions action)

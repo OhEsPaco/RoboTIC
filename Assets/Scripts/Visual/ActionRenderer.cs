@@ -13,9 +13,18 @@ public class ActionRenderer : MonoBehaviour
     public float actionSpeed = 1f;
 
     /// <summary>
-    /// Altura del salto
+    /// Porcentaje de la altura del salto hacia arriba respecto a la del bloque
     /// </summary>
-    public float jumpHeight = 1f;
+    [Range(0.0f, 10.0f)]
+    public float jumpPct = 1f;
+
+    private float jumpHeight;
+
+    /// <summary>
+    /// Porcentaje de la altura del salto hacia abajo respecto a la altura total del salto
+    /// </summary>
+    [Range(0.0f, 1.0f)]
+    public float descendJumpPct = 0.3f;
 
     /// <summary>
     /// Porcentaje del tiempo de salto que se pasa ascendiendo
@@ -64,6 +73,7 @@ public class ActionRenderer : MonoBehaviour
     {
         actionList = new List<IEnumerator>(20);
         lastActionFinished = true;
+        jumpHeight = LevelManager.instance.MapRenderer.BlockLength * jumpPct;
     }
 
     /// <summary>
@@ -122,14 +132,10 @@ public class ActionRenderer : MonoBehaviour
         lastActionFinished = true;
     }
 
-    public void DoJump(GameObject player, in List<int> currentBlock, in List<int> intendedBlock, in int playerOrientation)
+    public void DoJump(GameObject player, in Vector3 target, in int playerOrientation)
     {
-        Vector3 target;
-        target.x = player.transform.position.x + (intendedBlock[0] - currentBlock[0]) * manager.MapRenderer.BlockLength;
-        target.y = player.transform.position.y + (intendedBlock[1] - currentBlock[1]) * manager.MapRenderer.BlockLength;
-        target.z = player.transform.position.z + (intendedBlock[2] - currentBlock[2]) * manager.MapRenderer.BlockLength;
-
-        AddAction(JumpCoroutine(player, target, actionSpeed, jumpHeight, takeOff));
+        float finalHeight = player.transform.position.y > target.y ? jumpHeight * descendJumpPct : jumpHeight;
+        AddAction(JumpCoroutine(player, target, actionSpeed, finalHeight, takeOff));
     }
 
     public void DoTurnRight(GameObject player)
@@ -142,13 +148,8 @@ public class ActionRenderer : MonoBehaviour
         AddAction(TurnCoroutine(rotationTime, player, -90f));
     }
 
-    public void DoMove(GameObject player, in List<int> currentBlock, in List<int> intendedBlock)
+    public void DoMove(GameObject player, in Vector3 target)
     {
-        Vector3 target;
-        target.x = player.transform.position.x + (intendedBlock[0] - currentBlock[0]) * manager.MapRenderer.BlockLength;
-        target.y = player.transform.position.y + (intendedBlock[1] - currentBlock[1]) * manager.MapRenderer.BlockLength;
-        target.z = player.transform.position.z + (intendedBlock[2] - currentBlock[2]) * manager.MapRenderer.BlockLength;
-
         AddAction(MoveCoroutine(actionSpeed, player, target));
     }
 
