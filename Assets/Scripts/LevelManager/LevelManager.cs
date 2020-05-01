@@ -20,8 +20,24 @@ public class LevelManager : MonoBehaviour
     //PERSISTENCE
     [SerializeField] private JSonLoader jSonLoader;
 
+    [SerializeField] private Shader commonShader;
+
     private static LevelManager levelManager;
 
+    private void Awake()
+    {
+       /* MeshRenderer[] allRenderers = FindObjectsOfType<MeshRenderer>();
+
+        foreach (MeshRenderer r in allRenderers)
+        {
+            foreach(Material m in r.materials)
+            {
+                m.shader = commonShader;
+            }
+
+        }*/
+
+    }
     public static LevelManager instance
     {
         get
