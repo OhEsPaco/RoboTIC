@@ -182,7 +182,7 @@ public class Logic : MonoBehaviour
         {
             mainCharacterGameObject.transform.position = playerPos;
         }
-        // mainCharacterAnimator = mainCharacterGameObject.GetComponent<MainCharacterController>().GetAnimator();
+        mainCharacterAnimator = mainCharacterGameObject.GetComponent<BigCharacter>().GetAnimator();
         levelManagerReference.LevelButtons.SetNumberOfAvailableInstructions(currentLevelData);
     }
 

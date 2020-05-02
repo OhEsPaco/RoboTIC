@@ -14,6 +14,11 @@ public abstract class Character : MonoBehaviour
         }
     }
 
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
+
     protected void SetAnimationTrigger(in string trigger)
     {
         if (animator != null)
