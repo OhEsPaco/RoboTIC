@@ -7,6 +7,15 @@ public class RoadButton : MonoBehaviour
     public GameObject mesh;
     private LevelManager manager;
     private Animation anim;
+    private bool enable = true;
+
+    public Buttons ButtonType
+    {
+        get
+        {
+            return buttonIndex;
+        }
+    }
 
     private void Awake()
     {
@@ -19,18 +28,31 @@ public class RoadButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Pressed " + buttonIndex.ToString("g"));
-        manager.RoadPlacementLogic.AddInputFromButton(buttonIndex);
-        if (mesh != null)
+        if (enable)
         {
-            if (anim.isPlaying)
+            Debug.Log("Pressed " + buttonIndex.ToString("g"));
+            manager.RoadPlacementLogic.AddInputFromButton(buttonIndex);
+            if (mesh != null)
             {
-                return;
-            }
-            else
-            {
-                anim.Play("ButtonPressed");
+                if (anim.isPlaying)
+                {
+                    return;
+                }
+                else
+                {
+                    anim.Play("ButtonPressed");
+                }
             }
         }
+    }
+
+    public void Disable()
+    {
+        enable = false;
+    }
+
+    public void Enable()
+    {
+        enable = true;
     }
 }

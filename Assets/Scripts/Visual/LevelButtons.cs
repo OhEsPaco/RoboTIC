@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-
 public class LevelButtons : MonoBehaviour
 {
-
     public enum Buttons
     {
         Action = 0,
@@ -26,6 +24,33 @@ public class LevelButtons : MonoBehaviour
     public ButtonCounterScript Move;
     public ButtonCounterScript TurnLeft;
     public ButtonCounterScript TurnRight;
+
+    private RoadButton[] allRoadButtons;
+
+    public void DisableAllButtons(Buttons exception)
+    {
+        foreach (RoadButton r in allRoadButtons)
+        {
+            if (r.ButtonType != exception)
+            {
+                r.Disable();
+            }
+            
+        }
+    }
+
+    public void EnableAllButtons()
+    {
+        foreach (RoadButton r in allRoadButtons)
+        {
+            r.Enable();
+        }
+    }
+
+    private void Start()
+    {
+        allRoadButtons = FindObjectsOfType<RoadButton>();
+    }
 
     public int SetNumberOfAvailableInstructions(in Buttons button, int number)
     {

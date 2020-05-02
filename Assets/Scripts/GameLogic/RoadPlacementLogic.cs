@@ -758,6 +758,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
         if (selectedIO != null)
         {
+            LevelManager.instance.LevelButtons.DisableAllButtons(Buttons.Restart);
             List<Road> allRoads = new List<Road>();
             Stack<Road> roadsToProccess = new Stack<Road>();
 
@@ -888,6 +889,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoRestart()
     {
+        LevelManager.instance.LevelButtons.EnableAllButtons();
         LevelManager.instance.RoadMovement.StopMovement();
         while (undoStack.Count > 0)
         {
