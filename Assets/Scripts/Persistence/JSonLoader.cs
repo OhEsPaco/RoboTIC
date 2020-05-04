@@ -5,6 +5,18 @@
 /// </summary>
 public class JSonLoader : MonoBehaviour
 {
+    [SerializeField] private EventAggregator eventAggregator;
+    public void Awake()
+    {
+        eventAggregator.Subscribe<MsgLoadLevelData>(LoadLevelData);
+    }
+    private void Start()
+    {
+        /*eventAggregator.Subscribe<ResponseWrapper<MsgLoadLevelData, LevelData>>(this.ReceiveLevelData);
+        eventAggregator.Publish<MsgLoadLevelData>(new MsgLoadLevelData(GetLevelPath()));*/
+       
+    }
+
     /// <summary>
     /// The ReadString
     /// </summary>
@@ -23,11 +35,12 @@ public class JSonLoader : MonoBehaviour
     /// </summary>
     /// <param name="jsonPath">The jsonPath<see cref="string"/></param>
     /// <returns>The <see cref="LevelData"/></returns>
-    public LevelData LoadLevelData(in string jsonPath)
+    private void LoadLevelData(MsgLoadLevelData msg)
     {
         LevelData levelData = new LevelData();
-        string readedString = ReadFileAsString(jsonPath);
+        string readedString = ReadFileAsString(msg.Path);
         JsonUtility.FromJsonOverwrite(readedString, levelData);
-        return levelData;
+
+        eventAggregator.Publish(new ResponseWrapper<MsgLoadLevelData, LevelData>(msg, levelData));
     }
 }

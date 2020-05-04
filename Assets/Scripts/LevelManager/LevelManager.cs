@@ -7,7 +7,6 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private MapRenderer mapRenderer;
     [SerializeField] private LevelButtons levelButtons;
-    [SerializeField] private ActionRenderer actionRenderer;
     [SerializeField] private RoadFactory roadFactory;
 
     //LOGIC
@@ -59,7 +58,6 @@ public class LevelManager : MonoBehaviour
     public LevelObjects LevelObjects { get => levelObjects; }
     public MapRenderer MapRenderer { get => mapRenderer; }
     public LevelButtons LevelButtons { get => levelButtons; }
-    public ActionRenderer ActionRenderer { get => actionRenderer; }
     public Logic Logic { get => logic; }
     public JSonLoader JSonLoader { get => jSonLoader; }
     public RoadPlacementLogic RoadPlacementLogic { get => roadPlacementLogic; }

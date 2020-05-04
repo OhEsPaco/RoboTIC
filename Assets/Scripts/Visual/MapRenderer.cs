@@ -5,11 +5,20 @@ using static LevelObject;
 public class MapRenderer : MonoBehaviour
 {
     [SerializeField] private float blockLength = 1f;
-
+    [SerializeField] private EventAggregator eventAggregator;
     public float BlockLength { get => blockLength; }
 
-    public LevelObject[] RenderMapAndItems(in List<int> mapAndItems, in List<int> levelSize)
+    private void Awake()
     {
+        eventAggregator.Subscribe<MsgRenderMapAndItems>(RenderMapAndItems);
+        eventAggregator.Subscribe<MsgRenderScenery>(RenderScenery);
+
+
+    }
+    private void RenderMapAndItems(MsgRenderMapAndItems msg)
+    {
+        List<int> levelSize = msg.LevelSize;
+        List<int> mapAndItems = msg.MapAndItems;
         LevelObject[] objectReferences = new LevelObject[levelSize[0] * levelSize[1] * levelSize[2]];
         for (int x = 0; x < levelSize[0]; x++)
         {
@@ -30,7 +39,9 @@ public class MapRenderer : MonoBehaviour
                 }
             }
         }
-        return objectReferences;
+
+        eventAggregator.Publish(new ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>(msg, objectReferences));
+        
     }
 
     public LevelObject RenderBlock(LevelObject[] objectReferences, List<int> levelSize, int blockToSpawn, int x, int y, int z)
@@ -47,30 +58,17 @@ public class MapRenderer : MonoBehaviour
         return block;
     }
 
-    public void RenderScenery(in List<int> goal)
+    private void RenderScenery(MsgRenderScenery msg)
     {
         LevelObject flag = LevelManager.instance.LevelObjects.GetGameObjectInstance((int)Items.FlagItem);
         Vector3 posFlag;
-        posFlag.x = gameObject.transform.position.x + goal[0] * blockLength;
-        posFlag.y = gameObject.transform.position.y + goal[1] * blockLength;
-        posFlag.z = gameObject.transform.position.z + goal[2] * blockLength;
+        posFlag.x = gameObject.transform.position.x + msg.Goal[0] * blockLength;
+        posFlag.y = gameObject.transform.position.y + msg.Goal[1] * blockLength;
+        posFlag.z = gameObject.transform.position.z + msg.Goal[2] * blockLength;
         flag.transform.position = posFlag;
         flag.transform.parent = gameObject.transform;
     }
 
-    public GameObject RenderMainCharacter(in List<int> playerStart, in int playerOrientation)
-    {
-        GameObject mainCharacter = LevelManager.instance.LevelObjects.GetMainCharacterInstance();
-        Vector3 posNewChar;
-        posNewChar.x = gameObject.transform.position.x + playerStart[0] * blockLength;
-        posNewChar.y = gameObject.transform.position.y + playerStart[1] * blockLength;
-        posNewChar.z = gameObject.transform.position.z + playerStart[2] * blockLength;
-
-        mainCharacter.transform.Rotate(0, 90f * playerOrientation, 0);
-        mainCharacter.transform.position = posNewChar;
-        mainCharacter.transform.parent = gameObject.transform;
-        return mainCharacter;
-    }
 
     private int Get(in List<int> mapAndItems, in List<int> levelSize, in int x, in int y, in int z)
     {

@@ -2,6 +2,7 @@
 
 public class LevelButtons : MonoBehaviour
 {
+    [SerializeField] EventAggregator eventAggregator;
     public enum Buttons
     {
         Action = 0,
@@ -37,6 +38,10 @@ public class LevelButtons : MonoBehaviour
             }
             
         }
+    }
+    private void Awake()
+    {
+        eventAggregator.Subscribe<MsgSetAvInstructions>(SetNumberOfAvailableInstructions);
     }
 
     public void EnableAllButtons()
@@ -86,14 +91,15 @@ public class LevelButtons : MonoBehaviour
     /// The SetAvailableInstructions
     /// </summary>
     /// <param name="data">The data<see cref="CurrentLevelData"/></param>
-    public void SetNumberOfAvailableInstructions(in LevelData data)
+    private void SetNumberOfAvailableInstructions(MsgSetAvInstructions msg)
     {
-        SetNumberOfAvailableInstructions(Buttons.Action, data.availableInstructions.action);
-        SetNumberOfAvailableInstructions(Buttons.Condition, data.availableInstructions.condition);
-        SetNumberOfAvailableInstructions(Buttons.Jump, data.availableInstructions.jump);
-        SetNumberOfAvailableInstructions(Buttons.Loop, data.availableInstructions.loop);
-        SetNumberOfAvailableInstructions(Buttons.Move, data.availableInstructions.move);
-        SetNumberOfAvailableInstructions(Buttons.TurnLeft, data.availableInstructions.turnLeft);
-        SetNumberOfAvailableInstructions(Buttons.TurnRight, data.availableInstructions.turnRight);
+        AvailableInstructions availableInstructions = msg.avInst;
+        SetNumberOfAvailableInstructions(Buttons.Action, availableInstructions.action);
+        SetNumberOfAvailableInstructions(Buttons.Condition, availableInstructions.condition);
+        SetNumberOfAvailableInstructions(Buttons.Jump, availableInstructions.jump);
+        SetNumberOfAvailableInstructions(Buttons.Loop, availableInstructions.loop);
+        SetNumberOfAvailableInstructions(Buttons.Move, availableInstructions.move);
+        SetNumberOfAvailableInstructions(Buttons.TurnLeft, availableInstructions.turnLeft);
+        SetNumberOfAvailableInstructions(Buttons.TurnRight, availableInstructions.turnRight);
     }
 }
