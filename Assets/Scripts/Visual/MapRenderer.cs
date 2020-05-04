@@ -6,15 +6,23 @@ public class MapRenderer : MonoBehaviour
 {
     [SerializeField] private float blockLength = 1f;
     [SerializeField] private EventAggregator eventAggregator;
+    private LevelObjects levelObjects;
     public float BlockLength { get => blockLength; }
 
     private void Awake()
     {
         eventAggregator.Subscribe<MsgRenderMapAndItems>(RenderMapAndItems);
         eventAggregator.Subscribe<MsgRenderScenery>(RenderScenery);
-
-
+        eventAggregator.Subscribe<MsgBlockLength>(ServeBlockLength);
+        eventAggregator.Subscribe<MsgRenderBlock>(RenderBlock);
+        levelObjects = GetComponentInChildren<LevelObjects>();
     }
+
+    private void ServeBlockLength(MsgBlockLength msg)
+    {
+        eventAggregator.Publish<ResponseWrapper<MsgBlockLength, float>>(new ResponseWrapper<MsgBlockLength, float>(msg, blockLength));
+    }
+
     private void RenderMapAndItems(MsgRenderMapAndItems msg)
     {
         List<int> levelSize = msg.LevelSize;
@@ -28,7 +36,7 @@ public class MapRenderer : MonoBehaviour
                 {
                     int blockToSpawn = Get(mapAndItems, levelSize, x, y, z);
 
-                    LevelObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
+                    LevelObject block = levelObjects.GetGameObjectInstance(blockToSpawn);
                     objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
                     Vector3 posNew;
                     posNew.x = gameObject.transform.position.x + x * blockLength;
@@ -41,26 +49,25 @@ public class MapRenderer : MonoBehaviour
         }
 
         eventAggregator.Publish(new ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>(msg, objectReferences));
-        
     }
 
-    public LevelObject RenderBlock(LevelObject[] objectReferences, List<int> levelSize, int blockToSpawn, int x, int y, int z)
+    private void RenderBlock(MsgRenderBlock msg)
     {
-        LevelObject block = LevelManager.instance.LevelObjects.GetGameObjectInstance(blockToSpawn);
-        objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
+        LevelObject block = levelObjects.GetGameObjectInstance(msg.blockToSpawn);
+        msg.objectReferences[msg.x + msg.z * msg.levelSize[0] + msg.y * (msg.levelSize[0] * msg.levelSize[2])] = block;
         Vector3 posNew;
-        posNew.x = gameObject.transform.position.x + x * blockLength;
-        posNew.y = gameObject.transform.position.y + y * blockLength;
-        posNew.z = gameObject.transform.position.z + z * blockLength;
+        posNew.x = gameObject.transform.position.x + msg.x * blockLength;
+        posNew.y = gameObject.transform.position.y + msg.y * blockLength;
+        posNew.z = gameObject.transform.position.z + msg.z * blockLength;
         block.transform.position = posNew;
         block.transform.parent = gameObject.transform;
 
-        return block;
+        eventAggregator.Publish<ResponseWrapper<MsgRenderBlock, LevelObject>>(new ResponseWrapper<MsgRenderBlock, LevelObject>(msg, block));
     }
 
     private void RenderScenery(MsgRenderScenery msg)
     {
-        LevelObject flag = LevelManager.instance.LevelObjects.GetGameObjectInstance((int)Items.FlagItem);
+        LevelObject flag = levelObjects.GetGameObjectInstance((int)Items.FlagItem);
         Vector3 posFlag;
         posFlag.x = gameObject.transform.position.x + msg.Goal[0] * blockLength;
         posFlag.y = gameObject.transform.position.y + msg.Goal[1] * blockLength;
@@ -68,7 +75,6 @@ public class MapRenderer : MonoBehaviour
         flag.transform.position = posFlag;
         flag.transform.parent = gameObject.transform;
     }
-
 
     private int Get(in List<int> mapAndItems, in List<int> levelSize, in int x, in int y, in int z)
     {

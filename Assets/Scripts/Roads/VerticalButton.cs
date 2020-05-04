@@ -5,7 +5,6 @@ public class VerticalButton : MonoBehaviour
 {
     [SerializeField] private GameObject mesh;
     [SerializeField] private Buttons buttonName;
-
     private Animation anim;
     private bool locked = false;
 
@@ -33,7 +32,8 @@ public class VerticalButton : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Pressed " + buttonName);
-        LevelManager.instance.Logic.AddInputFromButton(buttonName);
+
+        EventAggregator.instance.Publish(new MsgAddInputFromButton(buttonName));
         //Send message here
         if (mesh != null)
         {

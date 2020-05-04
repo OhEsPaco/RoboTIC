@@ -27,11 +27,4 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    public void Start()
-    {
-        if (animator == null)
-        {
-            Debug.LogWarning("Animator not set in character");
-        }
-    }
 }

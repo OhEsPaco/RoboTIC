@@ -7,6 +7,7 @@ public class SelectedOutputMarker : MonoBehaviour
     private float mZCoord;
     [SerializeField] private Transform floor;
     [SerializeField] private GameObject sphere;
+    [SerializeField] private RoadPlacementLogic RoadPlacementLogic;
 
     private void OnMouseDown()
     {
@@ -14,7 +15,7 @@ public class SelectedOutputMarker : MonoBehaviour
 
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         mOffset = gameObject.transform.position - GetMouseWorldPos();
-        sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.FirstInput).transform.position;
+        sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
         sphere.SetActive(true);
     }
 
@@ -30,7 +31,7 @@ public class SelectedOutputMarker : MonoBehaviour
             }
 
             //OPTIMIZAR
-            sphere.transform.position = SearchClosestsIO(LevelManager.instance.RoadPlacementLogic.FirstInput).transform.position;
+            sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
         }
     }
 
@@ -51,14 +52,14 @@ public class SelectedOutputMarker : MonoBehaviour
 
     public void FindAndSelectClosestIO()
     {
-        RoadIO pivotIO = LevelManager.instance.RoadPlacementLogic.FirstInput;
+        RoadIO pivotIO = RoadPlacementLogic.FirstInput;
 
         if (pivotIO != null)
         {
             RoadIO closests = SearchClosestsIO(pivotIO);
             if (closests != null)
             {
-                LevelManager.instance.RoadPlacementLogic.SelectedIO = closests;
+                RoadPlacementLogic.SelectedIO=closests;
                 gameObject.transform.position = closests.transform.position;
                 sphere.SetActive(false);
                 /*if(closests is RoadInput)

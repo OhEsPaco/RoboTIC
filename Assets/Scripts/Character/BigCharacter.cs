@@ -54,13 +54,15 @@ public class BigCharacter : Character
     /// </summary>
     private bool lastActionFinished;
 
-    /// <summary>
-    /// Aqui tomamos la referencia al LevelManager
-    /// </summary>
+    private MessageWarehouse msgWar;
+    private bool loaded = false;
+    private float blockLenght;
+
     private void Awake()
     {
         eventAggregator.Subscribe<MsgBigRobotAction>(ReceiveAction);
         eventAggregator.Subscribe<MsgPlaceCharacter>(PlaceCharacter);
+        msgWar = new MessageWarehouse(eventAggregator);
     }
 
     /// <summary>
@@ -68,10 +70,20 @@ public class BigCharacter : Character
     /// </summary>
     private void Start()
     {
+        StartCoroutine(StartCrt());
+    }
 
+    private IEnumerator StartCrt()
+    {
+        loaded = false;
         actionList = new List<IEnumerator>(20);
         lastActionFinished = true;
-        jumpHeight = LevelManager.instance.MapRenderer.BlockLength * jumpPct;
+
+        MsgBlockLength msg = new MsgBlockLength();
+        msgWar.PublishMsgAndWaitForResponse<MsgBlockLength, float>(msg);
+        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBlockLength, float>(msg, out blockLenght));
+        jumpHeight = blockLenght * jumpPct;
+        loaded = true;
     }
 
     private void PlaceCharacter(MsgPlaceCharacter msg)
@@ -103,24 +115,26 @@ public class BigCharacter : Character
 
     private void ReceiveAction(MsgBigRobotAction msg)
     {
-        Debug.Log("Hola");
-        switch (msg.Action)
+        if (loaded)
         {
-            case MsgBigRobotAction.BigRobotActions.Jump:
-                DoJump(msg.Target);
-                break;
+            switch (msg.Action)
+            {
+                case MsgBigRobotAction.BigRobotActions.Jump:
+                    DoJump(msg.Target);
+                    break;
 
-            case MsgBigRobotAction.BigRobotActions.Move:
-                DoMove(msg.Target);
-                break;
+                case MsgBigRobotAction.BigRobotActions.Move:
+                    DoMove(msg.Target);
+                    break;
 
-            case MsgBigRobotAction.BigRobotActions.TurnLeft:
-                DoTurnLeft();
-                break;
+                case MsgBigRobotAction.BigRobotActions.TurnLeft:
+                    DoTurnLeft();
+                    break;
 
-            case MsgBigRobotAction.BigRobotActions.TurnRight:
-                DoTurnRight();
-                break;
+                case MsgBigRobotAction.BigRobotActions.TurnRight:
+                    DoTurnRight();
+                    break;
+            }
         }
     }
 

@@ -55,6 +55,8 @@ public class Logic : MonoBehaviour
 
     private bool loading = true;
 
+    private MessageWarehouse msgWar;
+
     // Start is called before the first frame update
     /// <summary>
     /// The Start
@@ -134,6 +136,8 @@ public class Logic : MonoBehaviour
     /// </summary>
     internal void Awake()
     {
+        msgWar = new MessageWarehouse(eventAggregator);
+        eventAggregator.Subscribe<MsgAddInputFromButton>(AddInputFromButton);
     }
 
     // Update is called once per frame
@@ -159,27 +163,21 @@ public class Logic : MonoBehaviour
     private IEnumerator LoadSceneCrt()
     {
         this.loading = true;
+
         //Nos suscribimos para recibir los datos del nivel
-        //Subscription<ResponseWrapper<MsgLoadLevelData, LevelData>> subscription = eventAggregator.Subscribe<ResponseWrapper<MsgLoadLevelData, LevelData>>(this.ReceiveLevelData);
-        //Hacemos publico que queremos cargar un nivel
-        //eventAggregator.Publish(new MsgLoadLevelData(GetLevelPath()));
-        //Esperamos hasta que este cargado el nivel
-        //yield return new WaitUntil(() => currentLevelData != null);
-        //eventAggregator.Unsubscribe(subscription);
-
-        MessageWarehouse msgWar = new MessageWarehouse(eventAggregator);
         MsgLoadLevelData msgLld = new MsgLoadLevelData(GetLevelPath());
-
         msgWar.PublishMsgAndWaitForResponse<MsgLoadLevelData, LevelData>(msgLld);
-        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgLoadLevelData, LevelData>(msgLld, out currentLevelData)==true);
+        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgLoadLevelData, LevelData>(msgLld, out currentLevelData));
 
-        Subscription<ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>> subscription2 = eventAggregator.Subscribe<ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>>(this.ReceiveObjectReferences);
-        eventAggregator.Publish<MsgRenderMapAndItems>(new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize));
-        yield return new WaitUntil(() => objectReferences != null);
-        eventAggregator.Unsubscribe(subscription2);
+        //Renderizamos el mapa
+        MsgRenderMapAndItems msgReferences = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
+        msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msgReferences);
+        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msgReferences, out objectReferences));
 
+        //La bandera
         eventAggregator.Publish<MsgRenderScenery>(new MsgRenderScenery(currentLevelData.goal));
 
+        //Ponemos el numero de instrucciones en los botones
         eventAggregator.Publish<MsgSetAvInstructions>(new MsgSetAvInstructions(currentLevelData.availableInstructions));
 
         //Ponemos al personaje en su lugar
@@ -190,16 +188,6 @@ public class Logic : MonoBehaviour
 
         Debug.Log(currentLevelData.levelName);
         this.loading = false;
-    }
-
-    private void ReceiveLevelData(ResponseWrapper<MsgLoadLevelData, LevelData> msg)
-    {
-        currentLevelData = msg.Response;
-    }
-
-    private void ReceiveObjectReferences(ResponseWrapper<MsgRenderMapAndItems, LevelObject[]> msg)
-    {
-        objectReferences = msg.Response;
     }
 
     /// <summary>
@@ -219,17 +207,17 @@ public class Logic : MonoBehaviour
     /// The ButtonInput
     /// </summary>
     /// <param name="buttonIndex">The buttonIndex<see cref="int"/></param>
-    public void AddInputFromButton(Buttons buttonIndex)
+    private void AddInputFromButton(MsgAddInputFromButton msg)
     {
         if (!haltExecution)
         {
-            if (buttonIndex == Buttons.Restart)
+            if (msg.button == Buttons.Restart)
             {
                 Restart();
             }
             else
             {
-                buttonInputBuffer.Add(buttonIndex);
+                buttonInputBuffer.Add(msg.button);
             }
         }
     }
@@ -372,7 +360,11 @@ public class Logic : MonoBehaviour
             {
                 block.gameObject.SetActive(false);
                 Destroy(block.gameObject);
-                LevelObject newlySpawnedObject = LevelManager.instance.MapRenderer.RenderBlock(objectReferences, currentLevelData.levelSize, (int)newBlock, x, y, z);
+                LevelObject newlySpawnedObject = null;
+                MsgRenderBlock msg = new MsgRenderBlock(objectReferences, currentLevelData.levelSize, (int)newBlock, x, y, z);
+                msgWar.PublishMsgAndWaitForResponse<MsgRenderBlock, LevelObject>(msg);
+                yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderBlock, LevelObject>(msg, out newlySpawnedObject));
+
                 if (newlySpawnedObject != null && newlySpawnedObject.IsBlock())
                 {
                     Block newlySpawnedBlock = (Block)newlySpawnedObject;

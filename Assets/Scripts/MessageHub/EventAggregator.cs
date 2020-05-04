@@ -10,7 +10,25 @@ public class EventAggregator : MonoBehaviour
 {
     private Dictionary<Type, IList> subscriber = new Dictionary<Type, IList>();
 
+    private static EventAggregator eventAgregator;
 
+    public static EventAggregator instance
+    {
+        get
+        {
+            if (!eventAgregator)
+            {
+                eventAgregator = FindObjectOfType(typeof(EventAggregator)) as EventAggregator;
+
+                if (!eventAgregator)
+                {
+                    Debug.LogError("There needs to be one active EventAggregator script on a GameObject in your scene.");
+                }
+            }
+
+            return eventAgregator;
+        }
+    }
 
     public void Publish<TMessageType>(TMessageType message)
     {
@@ -55,5 +73,4 @@ public class EventAggregator : MonoBehaviour
             subscriber[t].Remove(subscription);
         }
     }
-
 }

@@ -5,7 +5,6 @@ public class RoadButton : MonoBehaviour
 {
     [SerializeField] private Buttons buttonIndex = Buttons.Undefined;
     public GameObject mesh;
-    private LevelManager manager;
     private Animation anim;
     private bool enable = true;
 
@@ -19,7 +18,6 @@ public class RoadButton : MonoBehaviour
 
     private void Awake()
     {
-        manager = LevelManager.instance;
         if (mesh != null)
         {
             anim = mesh.GetComponent<Animation>();
@@ -31,7 +29,8 @@ public class RoadButton : MonoBehaviour
         if (enable)
         {
             Debug.Log("Pressed " + buttonIndex.ToString("g"));
-            manager.RoadPlacementLogic.AddInputFromButton(buttonIndex);
+
+            EventAggregator.instance.Publish(new MsgAddInputFromButtonRoadPlacement(buttonIndex));
             if (mesh != null)
             {
                 if (anim.isPlaying)

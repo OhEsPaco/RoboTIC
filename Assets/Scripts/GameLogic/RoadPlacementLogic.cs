@@ -12,10 +12,12 @@ public class RoadPlacementLogic : MonoBehaviour
     [SerializeField] private Road roadStart;
     [SerializeField] private MiniCharacter minibot;
     [SerializeField] private CamCage playArea;
+    [SerializeField] private EventAggregator eventAggregator;
 
     private List<Buttons> buttonInputBuffer;
     public int initialCapacityOfTheInputBuffer = 20;
     private Dictionary<Buttons, Action> buttonActionsDictionary;
+    private RoadFactory levelRoads;
 
     private RoadIO selectedIO = null;
 
@@ -34,6 +36,12 @@ public class RoadPlacementLogic : MonoBehaviour
 
     public RoadIO SelectedIO { get => selectedIO; set => selectedIO = value; }
     private Stack<RoadChanges> undoStack = new Stack<RoadChanges>();
+
+    private void Awake()
+    {
+        levelRoads = GetComponentInChildren<RoadFactory>();
+        eventAggregator.Subscribe<MsgAddInputFromButtonRoadPlacement>(AddInputFromButton);
+    }
 
     internal void Start()
     {
@@ -128,9 +136,9 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
-    public void AddInputFromButton(Buttons buttonIndex)
+    public void AddInputFromButton(MsgAddInputFromButtonRoadPlacement msg)
     {
-        buttonInputBuffer.Add(buttonIndex);
+        buttonInputBuffer.Add(msg.buttonIndex);
     }
 
     private void DoAction()
@@ -307,7 +315,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
         //Generamos la primera
         Road spw;
-        if (LevelManager.instance.RoadFactory.SpawnRoadByID(ids[0], out spw))
+        if (levelRoads.SpawnRoadByID(ids[0], out spw))
         {
             spawnedRoads[0] = Instantiate(spw);
             spawnedRoads[0].transform.parent = roadParent;
@@ -325,7 +333,7 @@ public class RoadPlacementLogic : MonoBehaviour
             Road nextRoad;
             Dictionary<string, string> connectionsR_C;
 
-            if (LevelManager.instance.RoadFactory.SpawnRoadByID(ids[i + 1], ioToMatch, out nextRoad, out connectionsR_C))
+            if (levelRoads.SpawnRoadByID(ids[i + 1], ioToMatch, out nextRoad, out connectionsR_C))
             {
                 spawnedRoads[i + 1] = Instantiate(nextRoad);
                 spawnedRoads[i + 1].transform.parent = roadParent;
@@ -507,7 +515,7 @@ public class RoadPlacementLogic : MonoBehaviour
                             Dictionary<string, string> connectionsR2_Connector;
                             // GenerateRoads(in string[] ids, in IODirection direction, out Road[] spawnedRoads)
 
-                            if (LevelManager.instance.RoadFactory.FillGapWithConnector(nextRoadIO, currentRoadIO, out gap, out connectionsR1_Connector, out connectionsR2_Connector))
+                            if (levelRoads.FillGapWithConnector(nextRoadIO, currentRoadIO, out gap, out connectionsR1_Connector, out connectionsR2_Connector))
                             {
                                 // processedRoads.Add(gap);
                                 // gap.transform.parent = roadParent;
@@ -590,7 +598,7 @@ public class RoadPlacementLogic : MonoBehaviour
                     {
                         Destroy(r.gameObject);
                     }
-               
+
                     return false;
                 }
             }
@@ -753,12 +761,11 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoPlay()
     {
-        //LevelManager.instance.RoadMovementLogic.StartMovement(firstInput, lastOutput, player, conditionDictionary, loopsDictionary);
-        //Quiza se podrian acelerar estas cosas añadiendo un flag de procesamiento a cada RoadIO y reseteandolo antes de empezar el algoritmo
-
         if (selectedIO != null)
         {
-            LevelManager.instance.LevelButtons.DisableAllButtons(Buttons.Restart);
+            eventAggregator.Publish(new MsgDisableAllButtons());
+            eventAggregator.Publish(new MsgEnableButton(Buttons.Restart));
+
             List<Road> allRoads = new List<Road>();
             Stack<Road> roadsToProccess = new Stack<Road>();
 
@@ -822,8 +829,7 @@ public class RoadPlacementLogic : MonoBehaviour
                     r.ExecuteAction(lockArgs);
                 }
                 selectedOutputMarker.gameObject.SetActive(false);
-
-                LevelManager.instance.RoadMovement.StartMovement(roadInput, roadOutput);
+                eventAggregator.Publish(new MsgStartRoadMovement(roadInput, roadOutput));
             }
             else
             {
@@ -889,8 +895,9 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoRestart()
     {
-        LevelManager.instance.LevelButtons.EnableAllButtons();
-        LevelManager.instance.RoadMovement.StopMovement();
+        eventAggregator.Publish(new MsgEnableAllButtons());
+        eventAggregator.Publish(new MsgStopMovement());
+
         while (undoStack.Count > 0)
         {
             RoadChanges c = undoStack.Pop();
@@ -912,8 +919,7 @@ public class RoadPlacementLogic : MonoBehaviour
         selectedOutputMarker.gameObject.SetActive(true);
         minibot.transform.position = firstInput.transform.position;
         minibot.gameObject.SetActive(true);
-
-        LevelManager.instance.Logic.AddInputFromButton(Buttons.Restart);
+        eventAggregator.Publish(new MsgAddInputFromButton(Buttons.Restart));
     }
 
     private void DoTurnLeft()

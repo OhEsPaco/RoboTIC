@@ -27,24 +27,39 @@ public class LevelButtons : MonoBehaviour
     public ButtonCounterScript TurnRight;
 
     private RoadButton[] allRoadButtons;
-
-    public void DisableAllButtons(Buttons exception)
+    
+    private void DisableAllButtons(MsgDisableAllButtons msg)
     {
         foreach (RoadButton r in allRoadButtons)
         {
-            if (r.ButtonType != exception)
-            {
+          
                 r.Disable();
-            }
+            
             
         }
     }
+    private void EnableButton(MsgEnableButton msg)
+    {
+        foreach (RoadButton r in allRoadButtons)
+        {
+            if (r.ButtonType == msg.button)
+            {
+                r.Enable();
+            }
+
+        }
+    }
+
     private void Awake()
     {
         eventAggregator.Subscribe<MsgSetAvInstructions>(SetNumberOfAvailableInstructions);
+        eventAggregator.Subscribe<MsgEnableAllButtons>(EnableAllButtons);
+        eventAggregator.Subscribe<MsgDisableAllButtons>(DisableAllButtons);
+        eventAggregator.Subscribe<MsgEnableButton>(EnableButton);
+
     }
 
-    public void EnableAllButtons()
+    private void EnableAllButtons(MsgEnableAllButtons msg)
     {
         foreach (RoadButton r in allRoadButtons)
         {
@@ -57,7 +72,7 @@ public class LevelButtons : MonoBehaviour
         allRoadButtons = FindObjectsOfType<RoadButton>();
     }
 
-    public int SetNumberOfAvailableInstructions(in Buttons button, int number)
+    private int SetNumberOfAvailableInstructions(in Buttons button, int number)
     {
         switch (button)
         {

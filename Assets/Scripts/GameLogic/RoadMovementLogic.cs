@@ -24,6 +24,8 @@ public class RoadMovementLogic : MonoBehaviour
     //Descriptor del tween
     private LTDescr tweenDescr;
 
+    [SerializeField] private EventAggregator eventAggregator;
+
     private void Start()
     {
         //Hacemos que el robot sea hijo de este objeto y lo marcamos como inactivo
@@ -31,20 +33,26 @@ public class RoadMovementLogic : MonoBehaviour
         player.gameObject.SetActive(false);
     }
 
+    private void Awake()
+    {
+        eventAggregator.Subscribe<MsgStartRoadMovement>(StartMovement);
+        eventAggregator.Subscribe<MsgStopMovement>(StopMovement);
+    }
+
     //Inicia el movimiento dado el input y el output de la carretera
-    public void StartMovement(RoadInput input, RoadOutput output)
+    private void StartMovement(MsgStartRoadMovement msg)
     {
         //Resetemos todo
         movementStarted = false;
-        finalOutput = output;
+        finalOutput = msg.output;
         nextOutput = null;
         player.gameObject.SetActive(true);
-        player.transform.position = input.transform.position;
+        player.transform.position = msg.input.transform.position;
         track = null;
         tweenDescr = null;
 
         //Tomamos el camino que empieza en input
-        if (StartNewPath(input, out tweenDescr))
+        if (StartNewPath(msg.input, out tweenDescr))
         {
             movementStarted = true;
         }
@@ -108,7 +116,7 @@ public class RoadMovementLogic : MonoBehaviour
         return false;
     }
 
-    public void StopMovement()
+    private void StopMovement(MsgStopMovement msg)
     {
         //Resetemos todo
         movementStarted = false;
