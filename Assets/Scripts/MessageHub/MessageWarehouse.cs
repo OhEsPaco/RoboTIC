@@ -50,16 +50,17 @@ public class MessageWarehouse
             receivedMessages.Add(msg, null);
             //Nos suscribimos
             Subscription<ResponseWrapper<MessageType, ResponseType>> subsToken = eventAggregator.Subscribe<ResponseWrapper<MessageType, ResponseType>>(this.EventReceiver<MessageType, ResponseType>);
-            Debug.Log("Subscribed!");
-
-            //Mandamos el mensaje
-            eventAggregator.Publish(msg);
+            Debug.Log("Subscribed: " + msg.ToString());
 
             //Guardamos el token de suscripcion
-            if (!subscriptionTokens.ContainsKey(subsToken))
+            if (!subscriptionTokens.ContainsKey(msg))
             {
                 subscriptionTokens.Add(msg, subsToken);
             }
+
+            //Mandamos el mensaje
+            Debug.Log("Published: " + msg.ToString());
+            eventAggregator.Publish(msg);
         }
     }
 
@@ -73,7 +74,7 @@ public class MessageWarehouse
             {
                 //Ponemos la respuesta para poder usarla cuando se requiera
                 receivedMessages[msg.Petition] = msg.Response;
-                Debug.Log("Received!");
+                Debug.Log("Received: " + msg.Petition.ToString());
                 //Si hay token de subscripcion para este mensaje seguimos
                 if (subscriptionTokens.ContainsKey(msg.Petition))
                 {
@@ -88,7 +89,7 @@ public class MessageWarehouse
 
                             //Quitamos el token del diccionario
                             subscriptionTokens.Remove(msg.Petition);
-                            Debug.Log("Unsubscribed!");
+                            Debug.Log("Unsubscribed: " + msg.Petition.ToString());
                         }
                     }
                 }
