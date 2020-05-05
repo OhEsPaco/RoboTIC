@@ -89,7 +89,6 @@ public class Logic : MonoBehaviour
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
         inventory = new Stack<Item>();
         haltExecution = false;
-
         StartCoroutine(LoadSceneCrt());
 
         Debug.Log(currentLevelData.levelName);
@@ -223,7 +222,7 @@ public class Logic : MonoBehaviour
     }
 
     //Ejecuta un efecto sobre un bloque
-    private bool ExecuteActionEffect(LevelObject blockLevelObject, Item item, int x, int y, int z)
+    private bool ExecuteActionEffect(LevelObject blockLevelObject, Item item, int x, int y, int z, Vector3 itemPos)
     {
         if (blockLevelObject != null && blockLevelObject.IsBlock())
         {
@@ -234,56 +233,34 @@ public class Logic : MonoBehaviour
 
             if (itemEffect != Effects.None)
             {
-                foreach (EffectReaction reaction in effectReactions)
+                EffectReaction reaction = Array.Find<EffectReaction>(effectReactions, value => value.effect == itemEffect);
+
+                if (reaction != null)
                 {
-                    //Comprobar si esta reaccion se activa con el efecto del item
-                    if (reaction.effect == itemEffect)
+                    //Miramos si el item es compatible con este objeto
+                    bool compatible = false;
+                    if (reaction.compatibleItems.Length <= 0)
                     {
-                        //Miramos si el item es compatible con este objeto
-                        bool compatible = false;
-                        if (reaction.compatibleItems.Length <= 0)
+                        compatible = true;
+                    }
+                    else
+                    {
+                        foreach (Items itemSearch in reaction.compatibleItems)
                         {
-                            compatible = true;
-                        }
-                        else
-                        {
-                            foreach (Items itemSearch in reaction.compatibleItems)
+                            if (itemSearch == item.ItemType)
                             {
-                                if (itemSearch == item.ItemType)
-                                {
-                                    compatible = true;
-                                    break;
-                                }
+                                compatible = true;
+                                break;
                             }
                         }
+                    }
 
-                        //Si es compatible ejecutamos las acciones necesarias
-                        if (compatible)
-                        {
-                            foreach (BlockActions blockAction in reaction.actionsToExecute)
-                            {
-                                frontBlock.ExecuteAction(blockAction);
-                            }
-
-                            if (reaction.newProperties.Length != 0)
-                            {
-                                frontBlock._BlockProperties = reaction.newProperties;
-                            }
-
-                            foreach (string trigger in reaction.animationTriggers)
-                            {
-                                frontBlock.SetAnimationTrigger(trigger);
-                            }
-
-                            if (reaction.replaceBlock)
-                            {
-                                //Aqui lanzar corrutina que espere a que todo lo anterior se haya acabado
-                                //y acto seguido replace el bloque por uno nuevo y ejecute la accion place
-                                StartCoroutine(ReplaceBlock(frontBlock, reaction.block, x, y, z));
-                            }
-                            //Se ha podido usar el item
-                            return true;
-                        }
+                    //Si es compatible ejecutamos las acciones necesarias
+                    if (compatible)
+                    {
+                        StartCoroutine(ActionCrt(reaction, frontBlock, x, y, z, itemPos, item));
+                        //Se ha podido usar el item
+                        return true;
                     }
                 }
             }
@@ -291,6 +268,25 @@ public class Logic : MonoBehaviour
 
         //No se ha podido usar el item
         return false;
+    }
+
+    private IEnumerator ActionCrt(EffectReaction reaction, Block frontBlock, int x, int y, int z, Vector3 itemPos, Item item)
+    {
+        LevelObject newlySpawnedObject = null;
+        if (reaction.newProperties.Length != 0)
+        {
+            frontBlock._BlockProperties = reaction.newProperties;
+        }
+
+        if (reaction.replaceBlock)
+        {
+            MsgRenderBlock msg = new MsgRenderBlock(objectReferences, currentLevelData.levelSize, (int)reaction.block, x, y, z,false);
+            msgWar.PublishMsgAndWaitForResponse<MsgRenderBlock, LevelObject>(msg);
+            yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderBlock, LevelObject>(msg, out newlySpawnedObject));
+           
+        }
+
+        eventAggregator.Publish(new MsgUseItem(frontBlock, reaction, newlySpawnedObject, itemPos, item));
     }
 
     /// <summary>
@@ -308,17 +304,11 @@ public class Logic : MonoBehaviour
                 LevelObject blockLevelObject = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
 
                 //Intentamos aplicar el item al bloque de enfrente
-                if (ExecuteActionEffect(blockLevelObject, item, intendedBlock[0], intendedBlock[1], intendedBlock[2]))
+                Vector3 posNew;
+                GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out posNew);
+
+                if (ExecuteActionEffect(blockLevelObject, item, intendedBlock[0], intendedBlock[1], intendedBlock[2], posNew))
                 {
-                    item.transform.localScale = new Vector3(1, 1, 1);
-                    Vector3 posNew;
-                    GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out posNew);
-                    item.transform.position = posNew;
-                    item.Use();
-
-                    //Cambiar esto por llamadas al objeto BigCharacter
-                    //mainCharacterAnimator.SetTrigger("Usar");
-
                     inventory.Pop();
                 }
                 else
@@ -331,49 +321,16 @@ public class Logic : MonoBehaviour
                         if (frontBlock.CheckProperty(BlockProperties.Immaterial))
                         {
                             blockLevelObject = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
-                            if (ExecuteActionEffect(blockLevelObject, item, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]))
+                            GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out posNew);
+
+                            if (ExecuteActionEffect(blockLevelObject, item, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], posNew))
                             {
-                                item.transform.localScale = new Vector3(1, 1, 1);
-                                Vector3 posNew;
-                                GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out posNew);
-                                item.transform.position = posNew;
-                                item.Use();
-
-                                //Cambiar esto por llamadas al objeto BigCharacter
-                                //mainCharacterAnimator.SetTrigger("Usar");
-
                                 inventory.Pop();
                             }
                         }
                     }
                 }
             }
-        }
-    }
-
-    private IEnumerator ReplaceBlock(Block block, Blocks newBlock, int x, int y, int z)
-    {
-        bool allDone = false;
-        while (!allDone)
-        {
-            if (block.ActionsDone())
-            {
-                block.gameObject.SetActive(false);
-                Destroy(block.gameObject);
-                LevelObject newlySpawnedObject = null;
-                MsgRenderBlock msg = new MsgRenderBlock(objectReferences, currentLevelData.levelSize, (int)newBlock, x, y, z);
-                msgWar.PublishMsgAndWaitForResponse<MsgRenderBlock, LevelObject>(msg);
-                yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderBlock, LevelObject>(msg, out newlySpawnedObject));
-
-                if (newlySpawnedObject != null && newlySpawnedObject.IsBlock())
-                {
-                    Block newlySpawnedBlock = (Block)newlySpawnedObject;
-                    newlySpawnedBlock.ExecuteAction(BlockActions.Place);
-                }
-
-                allDone = true;
-            }
-            yield return null;
         }
     }
 
@@ -504,14 +461,7 @@ public class Logic : MonoBehaviour
             if (thisItem != null && thisItem.IsItem())
             {
                 inventory.Push((Item)thisItem);
-                // thisItem.SetActive(false);
-                //thisItem.transform.parent = mainCharacterGameObject.transform;
-
-                thisItem.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-
-                //thisItem.transform.position = mainCharacterGameObject.GetComponent<AnimatedObject>().InventoryMarker.transform.position;
-                //Vector3 invMarker = mainCharacterGameObject.GetComponent<BigCharacter>().GetInventoryPosition();
-                //thisItem.transform.position = new Vector3(invMarker.x, invMarker.y + 0.45f * (inventory.Count - 1), invMarker.z);
+                eventAggregator.Publish<MsgTakeItem>(new MsgTakeItem((Item)thisItem, inventory.Count));
 
                 return true;
             }

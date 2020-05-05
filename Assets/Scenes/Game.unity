@@ -17684,6 +17684,7 @@ MonoBehaviour:
   animator: {fileID: 2796145986196258635}
   inventoryMarker: {fileID: 1116673390}
   eventAggregator: {fileID: 1863889551}
+  itemScale: {x: 1, y: 1, z: 1}
   actionSpeed: 2
   jumpPct: 1
   descendJumpPct: 0.3

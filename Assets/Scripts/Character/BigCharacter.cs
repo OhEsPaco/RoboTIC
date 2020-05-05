@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Block;
 
 public class BigCharacter : Character
 {
     [SerializeField] private GameObject inventoryMarker;
     /*  [SerializeField] private Animator animator;*/
     [SerializeField] private EventAggregator eventAggregator;
+    [SerializeField] private Vector3 itemScale = new Vector3(1, 1, 1);
 
     /// <summary>
     /// Velocidad a la que van las acciones
@@ -62,6 +64,9 @@ public class BigCharacter : Character
     {
         eventAggregator.Subscribe<MsgBigRobotAction>(ReceiveAction);
         eventAggregator.Subscribe<MsgPlaceCharacter>(PlaceCharacter);
+        eventAggregator.Subscribe<MsgTakeItem>(TakeItem);
+        eventAggregator.Subscribe<MsgBigRobotIdle>(IsRobotIdle);
+        eventAggregator.Subscribe<MsgUseItem>(UseObject);
         msgWar = new MessageWarehouse(eventAggregator);
     }
 
@@ -111,6 +116,18 @@ public class BigCharacter : Character
             return true;
         }
         return false;
+    }
+
+    private void IsRobotIdle(MsgBigRobotIdle msg)
+    {
+        if (AreAllActionsFinished())
+        {
+            eventAggregator.Publish(new ResponseWrapper<MsgBigRobotIdle, bool>(msg, true));
+        }
+        else
+        {
+            eventAggregator.Publish(new ResponseWrapper<MsgBigRobotIdle, bool>(msg, false));
+        }
     }
 
     private void ReceiveAction(MsgBigRobotAction msg)
@@ -171,6 +188,57 @@ public class BigCharacter : Character
     private void NotifyEndOfAction()
     {
         lastActionFinished = true;
+    }
+
+    private void TakeItem(MsgTakeItem msg)
+    {
+        AddAction(TakeItemCoroutine(msg.item, msg.numberOfItems));
+    }
+
+    private void UseObject(MsgUseItem msg)
+    {
+        AddAction(UseItemCoroutine(msg.frontBlock, msg.reaction, msg.replaceBlock, msg.itemPos, msg.item));
+    }
+
+    private IEnumerator UseItemCoroutine(Block frontBlock, EffectReaction reaction, LevelObject newlySpawnedObject, Vector3 posNew, Item item)
+    {
+        NotifyStartOfAction();
+        foreach (BlockActions blockAction in reaction.actionsToExecute)
+        {
+            frontBlock.ExecuteAction(blockAction);
+        }
+        item.transform.localScale = new Vector3(1, 1, 1);
+        item.transform.position = posNew;
+        item.Use();
+        //
+        foreach (string trigger in reaction.animationTriggers)
+        {
+            frontBlock.SetAnimationTrigger(trigger);
+        }
+        if (reaction.replaceBlock && newlySpawnedObject != null)
+        {
+            newlySpawnedObject.gameObject.SetActive(true);
+            frontBlock.gameObject.SetActive(false);
+            Destroy(frontBlock.gameObject);
+
+            if (newlySpawnedObject != null && newlySpawnedObject.IsBlock())
+            {
+                Block newlySpawnedBlock = (Block)newlySpawnedObject;
+                newlySpawnedBlock.ExecuteAction(BlockActions.Place);
+            }
+        }
+        yield return null;
+        NotifyEndOfAction();
+    }
+
+    private IEnumerator TakeItemCoroutine(Item item, int numberOfItems)
+    {
+        NotifyStartOfAction();
+        item.transform.parent = transform;
+        item.transform.localScale = itemScale;
+        item.transform.position = new Vector3(GetInventoryPosition().x, GetInventoryPosition().y + 0.45f * (numberOfItems - 1), GetInventoryPosition().z);
+        yield return null;
+        NotifyEndOfAction();
     }
 
     private void DoJump(Vector3 target)

@@ -61,6 +61,7 @@ public class MapRenderer : MonoBehaviour
         posNew.z = gameObject.transform.position.z + msg.z * blockLength;
         block.transform.position = posNew;
         block.transform.parent = gameObject.transform;
+        block.gameObject.SetActive(msg.active);
 
         eventAggregator.Publish<ResponseWrapper<MsgRenderBlock, LevelObject>>(new ResponseWrapper<MsgRenderBlock, LevelObject>(msg, block));
     }
