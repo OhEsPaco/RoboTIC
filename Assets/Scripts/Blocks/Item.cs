@@ -9,8 +9,10 @@ public class Item : LevelObject
 
     public override string ToString { get => itemType.ToString() + " item"; }
     public Effects Effect { get => effect; }
+    public bool ParentToBlockParent { get => parentToBlockParent;}
 
     [SerializeField] private bool pickable;
+    [SerializeField] private bool parentToBlockParent;
     [SerializeField] private Effects effect;
 
     public void Use()

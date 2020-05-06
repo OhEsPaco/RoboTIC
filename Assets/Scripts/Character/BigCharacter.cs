@@ -207,6 +207,14 @@ public class BigCharacter : Character
         {
             frontBlock.ExecuteAction(blockAction);
         }
+        if (item.ParentToBlockParent)
+        {
+            Transform blockParent = frontBlock.transform.parent;
+            if (blockParent != null)
+            {
+                item.transform.parent = blockParent;
+            }
+        }
         item.transform.localScale = new Vector3(1, 1, 1);
         item.transform.position = posNew;
         item.Use();
