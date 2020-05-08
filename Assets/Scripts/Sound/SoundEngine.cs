@@ -11,6 +11,7 @@ public class SoundEngine : MonoBehaviour
     {
         if (eventAggregator != null)
         {
+            audioSource = GetComponent<AudioSource>();
             eventAggregator.Subscribe<MsgPlaySfx>(PlaySfx);
             eventAggregator.Subscribe<MsgPlaySfxAtPoint>(PlaySfxAtPoint);
         }
