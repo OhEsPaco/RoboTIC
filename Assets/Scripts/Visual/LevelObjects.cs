@@ -3,11 +3,15 @@ using static LevelObject;
 
 public class LevelObjects : MonoBehaviour
 {
-    [SerializeField] private Block[] blocks = new Block[0];
-    [SerializeField] private Item[] items = new Item[0];
+    private Block[] blocks;
+    private Item[] items;
     [SerializeField] private GameObject MainCharacter;
     [SerializeField] private GameObject MiniCharacter;
-
+    private void Awake()
+    {
+        blocks = GetComponentsInChildren<Block>(true);
+        items = GetComponentsInChildren<Item>(true);
+    }
     public LevelObject GetGameObjectInstance(in int id)
     {
         LevelObject reference = MegaSwitch(id);
@@ -51,8 +55,5 @@ public class LevelObjects : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    private void Start()
-    {
-        //gameObject.SetActive(false);
-    }
+
 }
