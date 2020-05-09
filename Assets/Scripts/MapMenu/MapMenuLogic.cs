@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class MapMenuLogic : MonoBehaviour
     [SerializeField] private Transform center;
     [SerializeField] private Transform left;
     [SerializeField] private Transform right;
+    private float blockLength;
 
     // Start is called before the first frame update
     private MessageWarehouse msgWar;
@@ -75,13 +77,12 @@ public class MapMenuLogic : MonoBehaviour
     {
         if (firstIt)
         {
-            StartCoroutine(CenterFirstMap());
+            StartCoroutine(CenterFirstMap(center.position, left.position, 1500f));
         }
         else
         {
             if (allDone)
             {
-               
                 if (Input.GetKey(KeyCode.A))
                 {
                     //StartCoroutine(ShiftLeft(indexC, 1500f));
@@ -97,17 +98,38 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
-    private IEnumerator CenterFirstMap()
+    private IEnumerator CenterFirstMap(Vector3 centerPos, Vector3 leftPos, float speed)
     {
         //Pone en el centro de la pantalla el mapa 0
         allDone = false;
         firstIt = true;
+        // eventAggregator.Publish<ResponseWrapper<MsgBlockLength, float>>(new ResponseWrapper<MsgBlockLength, float>(msg, blockLength));
+        MsgBlockLength iNeedTheLength = new MsgBlockLength();
+        msgWar.PublishMsgAndWaitForResponse<MsgBlockLength, float>(iNeedTheLength);
+        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBlockLength, float>(iNeedTheLength, out blockLength));
 
         LevelData centerObj = levels[0];
         yield return new WaitUntil(() => loadedLevels[centerObj] != null);
         GameObject centerParent = loadedLevels[centerObj][0].transform.parent.gameObject;
-        centerParent.transform.position = center.position;
+        centerParent.transform.position = leftPos;
         centerParent.SetActive(true);
+
+        //Calculamos el offset necesario para centrarlo bien
+        float xOffset = Math.Abs((blockLength * centerObj.levelSize[0]) / 2 - (blockLength / 2));
+        Vector3 centerAdjusted = centerPos;
+        centerAdjusted.x = centerAdjusted.x - xOffset;
+
+        //Movemos el mapa desde la izquierda de la pantalla
+        float distance = Vector3.Distance(leftPos, centerAdjusted);
+
+        for (float i = 0; i <= 1;)
+        {
+            i += ((speed * Time.deltaTime) / distance);
+            centerParent.transform.position = Vector3.Lerp(leftPos, centerAdjusted, i);
+            yield return null;
+        }
+        centerParent.transform.position = centerAdjusted;
+
         allDone = true;
         firstIt = false;
     }
@@ -123,15 +145,14 @@ public class MapMenuLogic : MonoBehaviour
         GameObject centerParent = loadedLevels[centerObj][0].transform.parent.gameObject;
 
         //Distancia entre el centro y a donde vamos a mover el mapa
-        float distance = Vector3.Distance(centerPos, nextPos);
+        float distance = Vector3.Distance(centerParent.transform.position, nextPos);
+        Vector3 initialPos = centerParent.transform.position;
 
         //Movemos el mapa
-        Vector3 newPos;
         for (float i = 0; i <= 1;)
         {
             i += ((speed * Time.deltaTime) / distance);
-            newPos = Vector3.Lerp(centerPos, nextPos, i);
-            centerParent.transform.position = newPos;
+            centerParent.transform.position = Vector3.Lerp(initialPos, nextPos, i);
             yield return null;
         }
         //Ajustamos la posicion por si acaso
@@ -151,17 +172,20 @@ public class MapMenuLogic : MonoBehaviour
         //Distancia entre este objeto y la posicion final
         distance = Vector3.Distance(centerPos, lastPos);
 
+        //Calculamos el offset necesario para centrarlo bien
+        float xOffset = Math.Abs((blockLength * rightObj.levelSize[0]) / 2 - (blockLength / 2));
+        Vector3 centerAdjusted = centerPos;
+        centerAdjusted.x = centerAdjusted.x - xOffset;
+
         //Movemos el mapa al centro
         for (float i = 0; i <= 1;)
         {
             i += ((speed * Time.deltaTime) / distance);
-
-            newPos = Vector3.Lerp(lastPos, centerPos, i);
-            rightParent.transform.position = newPos;
+            rightParent.transform.position = Vector3.Lerp(lastPos, centerAdjusted, i);
             yield return null;
         }
         //Ajustamos la posicion
-        rightParent.transform.position = centerPos;
+        rightParent.transform.position = centerAdjusted;
 
         allDone = true;
     }
