@@ -163,10 +163,22 @@ public class Logic : MonoBehaviour
     {
         this.loading = true;
 
-        //Nos suscribimos para recibir los datos del nivel
-        MsgLoadLevelData msgLld = new MsgLoadLevelData(GetLevelPath());
-        msgWar.PublishMsgAndWaitForResponse<MsgLoadLevelData, LevelData>(msgLld);
-        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgLoadLevelData, LevelData>(msgLld, out currentLevelData));
+    
+        SelectedMap loadedLevel = FindObjectOfType<SelectedMap>();
+        //Cargamos el mapa seleccionado en el menu
+        if (loadedLevel != null&& loadedLevel.LevelData != null)
+        {
+            currentLevelData = loadedLevel.LevelData;
+        }
+        else
+        {
+            //Si no hay mapa seleccionado pues es que estamos haciendo pruebas asi que cojo el mapa por defecto
+            //Nos suscribimos para recibir los datos del nivel
+            MsgLoadLevelData msgLld = new MsgLoadLevelData(GetLevelPath());
+            msgWar.PublishMsgAndWaitForResponse<MsgLoadLevelData, LevelData>(msgLld);
+            yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgLoadLevelData, LevelData>(msgLld, out currentLevelData));
+        }
+
 
         //Renderizamos el mapa
         MsgRenderMapAndItems msgReferences = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);

@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class MapSelector : MonoBehaviour
 {
+    public delegate void UserHasClicked();
+    public UserHasClicked InformOnClick;
+
     // Start is called before the first frame update
     private GameObject selectedObject;
 
@@ -27,10 +30,10 @@ public class MapSelector : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnMouseDown()
     {
+        InformOnClick();
     }
-
     private void OnMouseEnter()
     {
         

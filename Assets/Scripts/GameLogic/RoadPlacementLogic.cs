@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static LevelButtons;
 using static RoadIO;
 
@@ -68,8 +69,20 @@ public class RoadPlacementLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.TurnLeft, DoTurnLeft);
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
         buttonActionsDictionary.Add(Buttons.Undo, DoUndo);
+        buttonActionsDictionary.Add(Buttons.MapMenu, MapMenu);
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
         //selectedOutputMarker.transform.parent = roadStartMarker;
+    }
+
+    private void MapMenu()
+    {
+        SelectedMap loadedLevel = FindObjectOfType<SelectedMap>();
+        if (loadedLevel != null)
+        {
+            Destroy(loadedLevel.gameObject);
+        }
+
+        SceneManager.LoadScene("Menu");
     }
 
     private class RoadChanges

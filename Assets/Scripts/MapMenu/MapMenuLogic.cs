@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapMenuLogic : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MapMenuLogic : MonoBehaviour
     [SerializeField] private SelectArrow leftArrow;
     [SerializeField] private SelectArrow rightArrow;
     [SerializeField] private MapSelector mapSelector;
+    [SerializeField] private GenericButton mainMenuButton;
     public float arrowDistance = 4f;
 
     private float blockLength;
@@ -35,7 +37,8 @@ public class MapMenuLogic : MonoBehaviour
         {
             Debug.Log(file);
         }*/
-
+        mainMenuButton.ClickCalbacks = UserClickedOnMainMenu;
+        mapSelector.InformOnClick += UserClickedOnMap;
         leftArrow.InformMe(InputLeft);
         rightArrow.InformMe(InputRight);
         string[] storyLevelsString = new string[storyLevels.Length];
@@ -80,6 +83,28 @@ public class MapMenuLogic : MonoBehaviour
 
     private bool firstIt = true;
 
+    private void UserClickedOnMainMenu()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    private void UserClickedOnMap()
+    {
+        if (allDone && !firstIt && levels[indexC] != null)
+        {
+            allDone = false;
+            Debug.Log("User clicked");
+            LevelData centerObj = levels[indexC];
+            GameObject selectedLevel = new GameObject();
+            selectedLevel.name = "SelectedLevel";
+            SelectedMap s = selectedLevel.AddComponent<SelectedMap>();
+            s.LevelData = centerObj;
+
+            DontDestroyOnLoad(selectedLevel);
+            SceneManager.LoadScene("Game");
+        }
+    }
+
     private void Update()
     {
         if (firstIt)
@@ -114,7 +139,6 @@ public class MapMenuLogic : MonoBehaviour
             allDone = false;
             StartCoroutine(ShiftMap(indexC, GetIndexRight(indexC), center.position, right.position, left.position, 1500f));
             indexC = GetIndexRight(indexC);
-
         }
     }
 
@@ -127,6 +151,7 @@ public class MapMenuLogic : MonoBehaviour
             indexC = GetIndexLeft(indexC);
         }
     }
+
     private void PlaceArrows(GameObject obj, float centerX, float centerY, float centerZ)
     {
         leftArrow.transform.parent = obj.transform;
@@ -135,18 +160,14 @@ public class MapMenuLogic : MonoBehaviour
         leftArrow.gameObject.SetActive(true);
         rightArrow.gameObject.SetActive(true);
 
-
         leftArrow.transform.position = new Vector3(centerX - arrowDistance, centerY, centerZ);
         rightArrow.transform.position = new Vector3(centerX + arrowDistance, centerY, centerZ);
-
-
-
-
     }
+
     private IEnumerator CenterFirstMap(Vector3 centerPos, Vector3 leftPos, float speed)
     {
         //Pone en el centro de la pantalla el mapa 0
-       
+
         // eventAggregator.Publish<ResponseWrapper<MsgBlockLength, float>>(new ResponseWrapper<MsgBlockLength, float>(msg, blockLength));
         MsgBlockLength iNeedTheLength = new MsgBlockLength();
         msgWar.PublishMsgAndWaitForResponse<MsgBlockLength, float>(iNeedTheLength);
@@ -168,7 +189,7 @@ public class MapMenuLogic : MonoBehaviour
         float zOffset = Math.Abs((blockLength * centerObj.levelSize[2]) / 2 - (blockLength / 2));
 
         //Le colocamos las flechas
-        PlaceArrows(centerParent, centerParent.transform.position.x + xOffset, centerParent.transform.position.y, centerParent.transform.position.z+zOffset);
+        PlaceArrows(centerParent, centerParent.transform.position.x + xOffset, centerParent.transform.position.y, centerParent.transform.position.z + zOffset);
         //Movemos el mapa desde la izquierda de la pantalla
         float distance = Vector3.Distance(leftPos, centerAdjusted);
 
@@ -183,7 +204,6 @@ public class MapMenuLogic : MonoBehaviour
         rightArrow.transform.parent = gameObject.transform;
         mapSelector.SelectedObject = centerParent;
         allDone = true;
-
     }
 
     private IEnumerator ShiftMap(int index, int nextIndex, Vector3 centerPos, Vector3 lastPos, Vector3 nextPos, float speed)
@@ -291,12 +311,10 @@ public class MapMenuLogic : MonoBehaviour
             foreach (LevelObject obj in loadedLevel)
             {
                 obj.gameObject.transform.parent = parent.transform;
-                
             }
 
             if (loadedLevels.ContainsKey(level))
             {
-              
                 loadedLevels[level] = loadedLevel;
 
                 parent.SetActive(false);

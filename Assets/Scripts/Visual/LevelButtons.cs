@@ -2,7 +2,8 @@
 
 public class LevelButtons : MonoBehaviour
 {
-    [SerializeField] EventAggregator eventAggregator;
+    [SerializeField] private EventAggregator eventAggregator;
+
     public enum Buttons
     {
         Action = 0,
@@ -15,6 +16,7 @@ public class LevelButtons : MonoBehaviour
         TurnLeft = 7,
         TurnRight = 8,
         Undo = 9,
+        MapMenu = 10,
         Undefined = 999
     };
 
@@ -27,17 +29,15 @@ public class LevelButtons : MonoBehaviour
     public ButtonCounterScript TurnRight;
 
     private RoadButton[] allRoadButtons;
-    
+
     private void DisableAllButtons(MsgDisableAllButtons msg)
     {
         foreach (RoadButton r in allRoadButtons)
         {
-          
-                r.Disable();
-            
-            
+            r.Disable();
         }
     }
+
     private void EnableButton(MsgEnableButton msg)
     {
         foreach (RoadButton r in allRoadButtons)
@@ -46,7 +46,6 @@ public class LevelButtons : MonoBehaviour
             {
                 r.Enable();
             }
-
         }
     }
 
@@ -56,7 +55,6 @@ public class LevelButtons : MonoBehaviour
         eventAggregator.Subscribe<MsgEnableAllButtons>(EnableAllButtons);
         eventAggregator.Subscribe<MsgDisableAllButtons>(DisableAllButtons);
         eventAggregator.Subscribe<MsgEnableButton>(EnableButton);
-
     }
 
     private void EnableAllButtons(MsgEnableAllButtons msg)
