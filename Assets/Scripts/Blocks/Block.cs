@@ -5,7 +5,8 @@ using UnityEngine;
 public class Block : LevelObject
 {
     [SerializeField] private Blocks blockType;
-
+    [Range(0f,100f)]
+    [SerializeField] private float surfaceSphereGizmoRadious = 0f;
     public Blocks BlockType { get => blockType; }
 
     public enum BlockActions
@@ -59,7 +60,7 @@ public class Block : LevelObject
         Gizmos.color = Color.yellow;
         //Debug.Log(transform.localScale);
 
-        Gizmos.DrawSphere(SurfacePoint, 0.1f);
+        Gizmos.DrawSphere(SurfacePoint, surfaceSphereGizmoRadious);
     }
 
     private Vector3 defOffset;

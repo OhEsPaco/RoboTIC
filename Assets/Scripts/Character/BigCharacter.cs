@@ -203,6 +203,7 @@ public class BigCharacter : Character
     private IEnumerator UseItemCoroutine(Block frontBlock, EffectReaction reaction, LevelObject newlySpawnedObject, Vector3 posNew, Item item)
     {
         NotifyStartOfAction();
+
         foreach (BlockActions blockAction in reaction.actionsToExecute)
         {
             frontBlock.ExecuteAction(blockAction);

@@ -76,7 +76,7 @@ public class Logic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
 
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
-        StartCoroutine(LoadSceneCrt());
+        StartCoroutine(LoadSceneCrt(false));
     }
 
     private void Restart()
@@ -89,7 +89,7 @@ public class Logic : MonoBehaviour
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
         inventory = new Stack<Item>();
         haltExecution = false;
-        StartCoroutine(LoadSceneCrt());
+        StartCoroutine(LoadSceneCrt(true));
 
         Debug.Log(currentLevelData.levelName);
     }
@@ -159,14 +159,13 @@ public class Logic : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadSceneCrt()
+    private IEnumerator LoadSceneCrt(bool restarting)
     {
         this.loading = true;
 
-    
         SelectedMap loadedLevel = FindObjectOfType<SelectedMap>();
         //Cargamos el mapa seleccionado en el menu
-        if (loadedLevel != null&& loadedLevel.LevelData != null)
+        if (loadedLevel != null && loadedLevel.LevelData != null)
         {
             currentLevelData = loadedLevel.LevelData;
         }
@@ -179,14 +178,16 @@ public class Logic : MonoBehaviour
             yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgLoadLevelData, LevelData>(msgLld, out currentLevelData));
         }
 
-
         //Renderizamos el mapa
         MsgRenderMapAndItems msgReferences = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
         msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msgReferences);
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msgReferences, out objectReferences));
 
         //La bandera
-        eventAggregator.Publish<MsgRenderScenery>(new MsgRenderScenery(currentLevelData.goal));
+        if (!restarting)
+        {
+            eventAggregator.Publish<MsgRenderScenery>(new MsgRenderScenery(currentLevelData.goal));
+        }
 
         //Ponemos el numero de instrucciones en los botones
         eventAggregator.Publish<MsgSetAvInstructions>(new MsgSetAvInstructions(currentLevelData.availableInstructions));
@@ -292,10 +293,9 @@ public class Logic : MonoBehaviour
 
         if (reaction.replaceBlock)
         {
-            MsgRenderBlock msg = new MsgRenderBlock(objectReferences, currentLevelData.levelSize, (int)reaction.block, x, y, z,false);
+            MsgRenderBlock msg = new MsgRenderBlock(objectReferences, currentLevelData.levelSize, (int)reaction.block, x, y, z, false);
             msgWar.PublishMsgAndWaitForResponse<MsgRenderBlock, LevelObject>(msg);
             yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderBlock, LevelObject>(msg, out newlySpawnedObject));
-           
         }
 
         eventAggregator.Publish(new MsgUseItem(frontBlock, reaction, newlySpawnedObject, itemPos, item));

@@ -6,7 +6,7 @@ public class SelectArrow : MonoBehaviour
 
     private CallbackDelegate callbackDelegate;
 
-    private void OnMouseDown()
+    private void OnSelect()
     {
         if (callbackDelegate != null)
         {

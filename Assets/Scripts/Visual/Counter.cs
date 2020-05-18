@@ -8,6 +8,8 @@ public class Counter : MonoBehaviour
     private GameObject[] numbers;
     private int actualNumber;
 
+    public int ActualNumber { get => actualNumber; }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -27,12 +29,12 @@ public class Counter : MonoBehaviour
         int numberAux = number;
         if (number < 0)
         {
-            numberAux = 0;
+            numberAux = maxNumber;
         }
 
         if (number > maxNumber)
         {
-            numberAux = maxNumber;
+            numberAux = 0;
         }
 
         numbers[numberAux].SetActive(true);

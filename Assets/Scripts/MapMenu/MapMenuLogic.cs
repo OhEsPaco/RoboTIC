@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -16,6 +15,7 @@ public class MapMenuLogic : MonoBehaviour
     [SerializeField] private SelectArrow rightArrow;
     [SerializeField] private MapSelector mapSelector;
     [SerializeField] private GenericButton mainMenuButton;
+    [SerializeField] private GameObject placeableMap;
     public float arrowDistance = 4f;
 
     private float blockLength;
@@ -25,6 +25,9 @@ public class MapMenuLogic : MonoBehaviour
 
     private Dictionary<LevelData, LevelObject[]> loadedLevels = new Dictionary<LevelData, LevelObject[]>();
     private List<LevelData> levels;
+
+    [Range(0f, 5000f)]
+    public float speed = 1f;
 
     private void Start()
     {
@@ -74,6 +77,7 @@ public class MapMenuLogic : MonoBehaviour
             StartCoroutine(RenderALevel(level));
         }*/
         //eventAggregator.Publish(new MsgRenderMapAndItems(userLevelsLoaded[0].mapAndItems, userLevelsLoaded[0].levelSize));
+        SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
     }
 
     // Update is called once per frame
@@ -111,24 +115,7 @@ public class MapMenuLogic : MonoBehaviour
         {
             firstIt = false;
             allDone = false;
-            StartCoroutine(CenterFirstMap(center.position, left.position, 1500f));
-        }
-        else
-        {
-            /*if (allDone)
-            {
-                if (Input.GetKey(KeyCode.A))
-                {
-                    //StartCoroutine(ShiftLeft(indexC, 1500f));
-                    StartCoroutine(ShiftMap(indexC, GetIndexRight(indexC), center.position, right.position, left.position, 1500f));
-                    indexC = GetIndexRight(indexC);
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    StartCoroutine(ShiftMap(indexC, GetIndexLeft(indexC), center.position, left.position, right.position, 1500f));
-                    indexC = GetIndexLeft(indexC);
-                }
-            }*/
+            StartCoroutine(CenterFirstMap(center.position, left.position, speed));
         }
     }
 
@@ -137,7 +124,7 @@ public class MapMenuLogic : MonoBehaviour
         if (!firstIt && allDone)
         {
             allDone = false;
-            StartCoroutine(ShiftMap(indexC, GetIndexRight(indexC), center.position, right.position, left.position, 1500f));
+            StartCoroutine(ShiftMap(indexC, GetIndexRight(indexC), speed));
             indexC = GetIndexRight(indexC);
         }
     }
@@ -147,66 +134,49 @@ public class MapMenuLogic : MonoBehaviour
         if (!firstIt && allDone)
         {
             allDone = false;
-            StartCoroutine(ShiftMap(indexC, GetIndexLeft(indexC), center.position, left.position, right.position, 1500f));
+            StartCoroutine(ShiftMap(indexC, GetIndexLeft(indexC), speed));
             indexC = GetIndexLeft(indexC);
         }
     }
 
-    private void PlaceArrows(GameObject obj, float centerX, float centerY, float centerZ)
-    {
-        leftArrow.transform.parent = obj.transform;
-        rightArrow.transform.parent = obj.transform;
-
-        leftArrow.gameObject.SetActive(true);
-        rightArrow.gameObject.SetActive(true);
-
-        leftArrow.transform.position = new Vector3(centerX - arrowDistance, centerY, centerZ);
-        rightArrow.transform.position = new Vector3(centerX + arrowDistance, centerY, centerZ);
-    }
-
     private IEnumerator CenterFirstMap(Vector3 centerPos, Vector3 leftPos, float speed)
     {
-        //Pone en el centro de la pantalla el mapa 0
-
-        // eventAggregator.Publish<ResponseWrapper<MsgBlockLength, float>>(new ResponseWrapper<MsgBlockLength, float>(msg, blockLength));
-        MsgBlockLength iNeedTheLength = new MsgBlockLength();
-        msgWar.PublishMsgAndWaitForResponse<MsgBlockLength, float>(iNeedTheLength);
-        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBlockLength, float>(iNeedTheLength, out blockLength));
-
+        //Pedimos el primer mapa
         LevelData centerObj = levels[0];
         yield return new WaitUntil(() => loadedLevels[centerObj] != null);
         GameObject centerParent = loadedLevels[centerObj][0].transform.parent.gameObject;
 
-        centerParent.transform.position = leftPos;
+        //Lo hacemos hijo del escenario
+        centerParent.transform.parent = placeableMap.transform;
+
+        //Contiene el centro del mapa
+        MapContainer mcont = centerParent.GetComponent<MapContainer>();
+
+        mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
+        //Ponemos el escenario
+        yield return new WaitUntil(() => SpaceCollectionManager.Instance.IsReady());
+        SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
+
+        Vector3 mapScale = centerParent.transform.localScale;
+
+        centerParent.transform.localScale = new Vector3();
         centerParent.SetActive(true);
 
-        //Calculamos el offset necesario para centrarlo bien
-        float xOffset = Math.Abs((blockLength * centerObj.levelSize[0]) / 2 - (blockLength / 2));
-        Vector3 centerAdjusted = centerPos;
-        centerAdjusted.x = centerAdjusted.x - xOffset;
-
-        //Offset en z para las flechas
-        float zOffset = Math.Abs((blockLength * centerObj.levelSize[2]) / 2 - (blockLength / 2));
-
-        //Le colocamos las flechas
-        PlaceArrows(centerParent, centerParent.transform.position.x + xOffset, centerParent.transform.position.y, centerParent.transform.position.z + zOffset);
-        //Movemos el mapa desde la izquierda de la pantalla
-        float distance = Vector3.Distance(leftPos, centerAdjusted);
-
+        //Hacemos grande el mapa
+        Vector3 lastPos = centerParent.transform.localScale;
+        float distance = Vector3.Distance(lastPos, mapScale);
         for (float i = 0; i <= 1;)
         {
             i += ((speed * Time.deltaTime) / distance);
-            centerParent.transform.position = Vector3.Lerp(leftPos, centerAdjusted, i);
+            centerParent.transform.localScale = Vector3.Lerp(lastPos, mapScale, i);
             yield return null;
         }
-        centerParent.transform.position = centerAdjusted;
-        leftArrow.transform.parent = gameObject.transform;
-        rightArrow.transform.parent = gameObject.transform;
-        mapSelector.SelectedObject = centerParent;
+        centerParent.transform.localScale = mapScale;
+
         allDone = true;
     }
 
-    private IEnumerator ShiftMap(int index, int nextIndex, Vector3 centerPos, Vector3 lastPos, Vector3 nextPos, float speed)
+    private IEnumerator ShiftMap(int index, int nextIndex, float speed)
     {
         allDone = false;
         //Tomamos el mapa actual y esperamos si no esta cargado
@@ -215,60 +185,68 @@ public class MapMenuLogic : MonoBehaviour
 
         //Sacamos el padre del mapa actual
         GameObject centerParent = loadedLevels[centerObj][0].transform.parent.gameObject;
-        leftArrow.transform.parent = centerParent.transform;
-        rightArrow.transform.parent = centerParent.transform;
-        //Distancia entre el centro y a donde vamos a mover el mapa
-        float distance = Vector3.Distance(centerParent.transform.position, nextPos);
-        Vector3 initialPos = centerParent.transform.position;
-
-        //Movemos el mapa
-        for (float i = 0; i <= 1;)
-        {
-            i += ((speed * Time.deltaTime) / distance);
-            centerParent.transform.position = Vector3.Lerp(initialPos, nextPos, i);
-            yield return null;
-        }
-        //Ajustamos la posicion por si acaso
-        centerParent.transform.position = nextPos;
-        //Lo desactivamos para no renderizarlo
-        centerParent.SetActive(false);
 
         //Tomamos el siguiente objeto
         LevelData rightObj = levels[nextIndex];
         yield return new WaitUntil(() => loadedLevels[rightObj] != null);
         GameObject rightParent = loadedLevels[rightObj][0].transform.parent.gameObject;
+       
+        rightParent.SetActive(false);
+
+        placeableMap.SetActive(false);
+        Vector3 lpos = placeableMap.transform.position;
+        Quaternion lrot = placeableMap.transform.rotation;
+
+        placeableMap.transform.position = new Vector3();
+        placeableMap.transform.rotation = new Quaternion();
+
+        rightParent.transform.position = new Vector3();
+        rightParent.transform.rotation = new Quaternion();
+
+        rightParent.GetComponent<MapContainer>().MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
+
+        //Lo hacemos padre del escenario
+        rightParent.transform.parent = placeableMap.transform;
+
+        placeableMap.transform.position = lpos;
+        placeableMap.transform.rotation = lrot;
+
         //Lo activamos
-        rightParent.SetActive(true);
-        //Movemos el objeto a la posicion de inicio
-        rightParent.transform.position = lastPos;
+        placeableMap.SetActive(true);
 
-        //Distancia entre este objeto y la posicion final
-        distance = Vector3.Distance(centerPos, lastPos);
+        //Hacemos pequeño el que esta
+        Vector3 mapScale = centerParent.transform.localScale;
+        Vector3 goalScale = new Vector3();
 
-        //Calculamos el offset necesario para centrarlo bien
-        float xOffset = Math.Abs((blockLength * rightObj.levelSize[0]) / 2 - (blockLength / 2));
-        Vector3 centerAdjusted = centerPos;
-        centerAdjusted.x = centerAdjusted.x - xOffset;
-
-        //Offset en z para las flechas
-        float zOffset = Math.Abs((blockLength * rightObj.levelSize[2]) / 2 - (blockLength / 2));
-
-        //Le colocamos las flechas
-        PlaceArrows(rightParent, rightParent.transform.position.x + xOffset, rightParent.transform.position.y, rightParent.transform.position.z + zOffset);
-
-        //Movemos el mapa al centro
+        float distance = Vector3.Distance(goalScale, mapScale);
         for (float i = 0; i <= 1;)
         {
             i += ((speed * Time.deltaTime) / distance);
-            rightParent.transform.position = Vector3.Lerp(lastPos, centerAdjusted, i);
+            centerParent.transform.localScale = Vector3.Lerp(mapScale, goalScale, i);
             yield return null;
         }
-        //Ajustamos la posicion
-        rightParent.transform.position = centerAdjusted;
 
-        leftArrow.transform.parent = gameObject.transform;
-        rightArrow.transform.parent = gameObject.transform;
-        mapSelector.SelectedObject = rightParent;
+        centerParent.SetActive(false);
+        centerParent.transform.localScale = mapScale;
+
+        goalScale = rightParent.transform.localScale;
+        mapScale = new Vector3();
+
+        rightParent.transform.localScale = mapScale;
+
+        rightParent.SetActive(true);
+
+        //Hacemos grande el mapa
+
+        distance = Vector3.Distance(goalScale, mapScale);
+        for (float i = 0; i <= 1;)
+        {
+            i += ((speed * Time.deltaTime) / distance);
+            rightParent.transform.localScale = Vector3.Lerp(mapScale, goalScale, i);
+            yield return null;
+        }
+        rightParent.transform.localScale = goalScale;
+
         allDone = true;
     }
 
@@ -304,9 +282,11 @@ public class MapMenuLogic : MonoBehaviour
         if (loadedLevel != null)
         {
             GameObject parent = new GameObject();
+            MapContainer mcont = parent.AddComponent<MapContainer>();
 
             parent.transform.position = left.position;
             parent.name = System.Guid.NewGuid().ToString();
+
             yield return null;
             foreach (LevelObject obj in loadedLevel)
             {
@@ -316,7 +296,7 @@ public class MapMenuLogic : MonoBehaviour
             if (loadedLevels.ContainsKey(level))
             {
                 loadedLevels[level] = loadedLevel;
-
+                mcont.UpdateMapCenter();
                 parent.SetActive(false);
             }
             else
