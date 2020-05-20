@@ -12,7 +12,6 @@ public class RoadPlacementLogic : MonoBehaviour
     [SerializeField] private Transform roadParent;
     [SerializeField] private Road roadStart;
     [SerializeField] private MiniCharacter minibot;
-    [SerializeField] private CamCage playArea;
     [SerializeField] private EventAggregator eventAggregator;
 
     private List<Buttons> buttonInputBuffer;
@@ -35,6 +34,7 @@ public class RoadPlacementLogic : MonoBehaviour
     //Para escala 1 funcionaba bien 0.3, asi que para escala 0.3 lo multiplico por ella
     private const float MAX_ACCEPTABLE_DISTANCE = 0.3f * 0.3f;
 
+    [SerializeField] private GameObject placeableMap;
     public RoadIO SelectedIO { get => selectedIO; set => selectedIO = value; }
     private Stack<RoadChanges> undoStack = new Stack<RoadChanges>();
 
@@ -330,7 +330,12 @@ public class RoadPlacementLogic : MonoBehaviour
         Road spw;
         if (levelRoads.SpawnRoadByID(ids[0], out spw))
         {
-            spawnedRoads[0] = Instantiate(spw);
+
+
+            spawnedRoads[0] = Instantiate(spw,roadStart.transform.localPosition, roadStart.transform.rotation);
+
+      
+
             spawnedRoads[0].transform.parent = roadParent;
             spawnedRoads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0].MoveRoadTo(position);
         }
@@ -348,7 +353,11 @@ public class RoadPlacementLogic : MonoBehaviour
 
             if (levelRoads.SpawnRoadByID(ids[i + 1], ioToMatch, out nextRoad, out connectionsR_C))
             {
-                spawnedRoads[i + 1] = Instantiate(nextRoad);
+
+
+                spawnedRoads[i + 1] = Instantiate(nextRoad, roadStart.transform.localPosition, roadStart.transform.rotation);
+   
+
                 spawnedRoads[i + 1].transform.parent = roadParent;
                 if (!ConnectRoads(spawnedRoads[i], spawnedRoads[i + 1], connectionsR_C))
                 {

@@ -76,12 +76,23 @@ public class Logic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
 
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
-        StartCoroutine(LoadSceneCrt(false));
+        eventAggregator.Subscribe<MsgStartLevel>(StartLevel);
+        // StartCoroutine(LoadSceneCrt(false));
+    }
+
+    private void StartLevel(MsgStartLevel msg)
+    {
+        if (msg.levelData != null && msg.levelObjects != null)
+        {
+            currentLevelData = msg.levelData;
+            objectReferences = msg.levelObjects;
+            loading = false;
+        }
     }
 
     private void Restart()
     {
-        foreach (LevelObject l in objectReferences)
+        /*foreach (LevelObject l in objectReferences)
         {
             Destroy(l.gameObject);
         }
@@ -91,7 +102,7 @@ public class Logic : MonoBehaviour
         haltExecution = false;
         StartCoroutine(LoadSceneCrt(true));
 
-        Debug.Log(currentLevelData.levelName);
+        Debug.Log(currentLevelData.levelName);*/
     }
 
     private bool GetBlockSurfacePoint(in int x, in int y, in int z, out Vector3 surfacePoint)
@@ -145,62 +156,63 @@ public class Logic : MonoBehaviour
     /// </summary>
     internal void Update()
     {
-        if (!loading)
-        {
-            ExecuteNextAvailableInput();
-
-            if (!haltExecution)
+            if (!loading)
             {
-                if (CheckWinState())
+                ExecuteNextAvailableInput();
+
+                if (!haltExecution)
                 {
-                    YouWin();
+                    if (CheckWinState())
+                    {
+                        YouWin();
+                    }
                 }
             }
-        }
+        
     }
 
-    private IEnumerator LoadSceneCrt(bool restarting)
-    {
-        this.loading = true;
+    /* private IEnumerator LoadSceneCrt(bool restarting)
+     {
+         this.loading = true;
 
-        SelectedMap loadedLevel = FindObjectOfType<SelectedMap>();
-        //Cargamos el mapa seleccionado en el menu
-        if (loadedLevel != null && loadedLevel.LevelData != null)
-        {
-            currentLevelData = loadedLevel.LevelData;
-        }
-        else
-        {
-            //Si no hay mapa seleccionado pues es que estamos haciendo pruebas asi que cojo el mapa por defecto
-            //Nos suscribimos para recibir los datos del nivel
-            MsgLoadLevelData msgLld = new MsgLoadLevelData(GetLevelPath());
-            msgWar.PublishMsgAndWaitForResponse<MsgLoadLevelData, LevelData>(msgLld);
-            yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgLoadLevelData, LevelData>(msgLld, out currentLevelData));
-        }
+         SelectedMap loadedLevel = FindObjectOfType<SelectedMap>();
+         //Cargamos el mapa seleccionado en el menu
+         if (loadedLevel != null && loadedLevel.LevelData != null)
+         {
+             currentLevelData = loadedLevel.LevelData;
+         }
+         else
+         {
+             //Si no hay mapa seleccionado pues es que estamos haciendo pruebas asi que cojo el mapa por defecto
+             //Nos suscribimos para recibir los datos del nivel
+             MsgLoadLevelData msgLld = new MsgLoadLevelData(GetLevelPath());
+             msgWar.PublishMsgAndWaitForResponse<MsgLoadLevelData, LevelData>(msgLld);
+             yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgLoadLevelData, LevelData>(msgLld, out currentLevelData));
+         }
 
-        //Renderizamos el mapa
-        MsgRenderMapAndItems msgReferences = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
-        msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msgReferences);
-        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msgReferences, out objectReferences));
+         //Renderizamos el mapa
+         MsgRenderMapAndItems msgReferences = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
+         msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msgReferences);
+         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msgReferences, out objectReferences));
 
-        //La bandera
-        if (!restarting)
-        {
-            eventAggregator.Publish<MsgRenderScenery>(new MsgRenderScenery(currentLevelData.goal));
-        }
+         //La bandera
+         if (!restarting)
+         {
+             eventAggregator.Publish<MsgRenderScenery>(new MsgRenderScenery(currentLevelData.goal));
+         }
 
-        //Ponemos el numero de instrucciones en los botones
-        eventAggregator.Publish<MsgSetAvInstructions>(new MsgSetAvInstructions(currentLevelData.availableInstructions));
+         //Ponemos el numero de instrucciones en los botones
+         eventAggregator.Publish<MsgSetAvInstructions>(new MsgSetAvInstructions(currentLevelData.availableInstructions));
 
-        //Ponemos al personaje en su lugar
-        Vector3 playerPos;
-        //Podria dar fallo si el personaje esta mal colocado
-        GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
-        eventAggregator.Publish(new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0)));
+         //Ponemos al personaje en su lugar
+         Vector3 playerPos;
+         //Podria dar fallo si el personaje esta mal colocado
+         GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
+         eventAggregator.Publish(new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0)));
 
-        Debug.Log(currentLevelData.levelName);
-        this.loading = false;
-    }
+         Debug.Log(currentLevelData.levelName);
+         this.loading = false;
+     }*/
 
     /// <summary>
     /// The ExecuteNextInput

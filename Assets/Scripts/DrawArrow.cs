@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class DrawArrow
 {
-	public static void ForGizmo(Vector3 pos, Vector3 direction, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
+	public static void ForGizmo(Vector3 pos, Vector3 direction, float arrowHeadLength = 0.02f, float arrowHeadAngle = 20.0f)
 	{
 		Gizmos.DrawRay(pos, direction);
 

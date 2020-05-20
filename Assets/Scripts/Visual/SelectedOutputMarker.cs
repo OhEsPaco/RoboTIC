@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Academy.HoloToolkit.Unity;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectedOutputMarker : MonoBehaviour
@@ -8,17 +9,34 @@ public class SelectedOutputMarker : MonoBehaviour
     [SerializeField] private Transform floor;
     [SerializeField] private GameObject sphere;
     [SerializeField] private RoadPlacementLogic RoadPlacementLogic;
-
-    private void OnMouseDown()
+    private bool placing = false;
+    private void OnSelect()
     {
-        Debug.Log(transform.position);
+        if (!placing)
+        {
+            Debug.Log(transform.position);
 
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        mOffset = gameObject.transform.position - GetMouseWorldPos();
-        sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
-        sphere.SetActive(true);
+            mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+            mOffset = gameObject.transform.position - GetMouseWorldPos();
+            sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
+            sphere.SetActive(true);
+            placing = true;
+        }
+        else
+        {
+            placing = false;
+            FindAndSelectClosestIO();
+
+        }
+
     }
-
+    private void Update()
+    {
+        if (placing)
+        {
+            OnMouseDrag();
+        }
+    }
     private void OnMouseDrag()
     {
         transform.position = GetMouseWorldPos() + mOffset;
@@ -137,4 +155,7 @@ public class SelectedOutputMarker : MonoBehaviour
         }
         return null;
     }
+
+    
+
 }

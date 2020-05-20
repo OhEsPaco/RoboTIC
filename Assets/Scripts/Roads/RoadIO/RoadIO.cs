@@ -83,24 +83,24 @@ public abstract class RoadIO : MonoBehaviour
         {
             Gizmos.color = UnityEngine.Color.magenta;
         }
-        Gizmos.DrawSphere(transform.position, 0.1f);
+        Gizmos.DrawSphere(transform.position, 0.002f);
 
         switch (pointsTo)
         {
             case IODirection.Forward:
-                DrawArrow.ForGizmo(transform.position, Vector3.forward);
+                DrawArrow.ForGizmo(transform.position, Vector3.forward* 0.05f);
                 break;
 
             case IODirection.Back:
-                DrawArrow.ForGizmo(transform.position, Vector3.back);
+                DrawArrow.ForGizmo(transform.position, Vector3.back * 0.05f);
                 break;
 
             case IODirection.Left:
-                DrawArrow.ForGizmo(transform.position, Vector3.left);
+                DrawArrow.ForGizmo(transform.position, Vector3.left * 0.05f);
                 break;
 
             case IODirection.Right:
-                DrawArrow.ForGizmo(transform.position, Vector3.right);
+                DrawArrow.ForGizmo(transform.position, Vector3.right * 0.05f);
                 break;
         }
         // Handles.Label(transform.position, gameObject.name);

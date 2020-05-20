@@ -44,6 +44,7 @@ public class RoadFactory : MonoBehaviour
             {
                 Debug.LogError("A road with this name is already added: " + r.RoadIdentifier);
             }
+          
         }
 
         functionRoads = tmp_functionRoads.ToArray();

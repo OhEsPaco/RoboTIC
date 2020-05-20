@@ -29,7 +29,7 @@ public class RoadButton : MonoBehaviour
         eventAggregator = EventAggregator.instance;
     }
 
-    private void OnMouseDown()
+    public void OnSelect()
     {
         if (enable)
         {

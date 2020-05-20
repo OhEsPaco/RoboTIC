@@ -16,6 +16,7 @@ public class MapMenuLogic : MonoBehaviour
     [SerializeField] private MapSelector mapSelector;
     [SerializeField] private GenericButton mainMenuButton;
     [SerializeField] private GameObject placeableMap;
+    [SerializeField] private GenericButton mapBounds;
     public float arrowDistance = 4f;
 
     private float blockLength;
@@ -41,7 +42,7 @@ public class MapMenuLogic : MonoBehaviour
             Debug.Log(file);
         }*/
         mainMenuButton.ClickCalbacks = UserClickedOnMainMenu;
-        mapSelector.InformOnClick += UserClickedOnMap;
+        mapBounds.ClickCalbacks += UserClickedOnMap;
         leftArrow.InformMe(InputLeft);
         rightArrow.InformMe(InputRight);
         string[] storyLevelsString = new string[storyLevels.Length];
@@ -99,13 +100,10 @@ public class MapMenuLogic : MonoBehaviour
             allDone = false;
             Debug.Log("User clicked");
             LevelData centerObj = levels[indexC];
-            GameObject selectedLevel = new GameObject();
-            selectedLevel.name = "SelectedLevel";
-            SelectedMap s = selectedLevel.AddComponent<SelectedMap>();
-            s.LevelData = centerObj;
-
-            DontDestroyOnLoad(selectedLevel);
-            SceneManager.LoadScene("Game");
+            MsgStartLevel msg = new MsgStartLevel(centerObj, loadedLevels[centerObj]);
+            eventAggregator.Publish<MsgStartLevel>(msg);
+            leftArrow.gameObject.SetActive(false);
+            rightArrow.gameObject.SetActive(false);
         }
     }
 
