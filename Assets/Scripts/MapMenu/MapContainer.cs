@@ -5,7 +5,7 @@ public class MapContainer : MonoBehaviour
     private Vector3 mapCenter;
 
     public Vector3 MapCenter { get => mapCenter; }
-
+ 
     // Start is called before the first frame update
     private void Start()
     {
@@ -40,6 +40,7 @@ public class MapContainer : MonoBehaviour
         {
             mapcenter = mapcenter / count;
             mapCenter = mapcenter - transform.position;
+            mapCenter.y = 0;
         }
         else
         {

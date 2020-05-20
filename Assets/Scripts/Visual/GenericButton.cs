@@ -3,6 +3,7 @@
 public class GenericButton : MonoBehaviour
 {
     public delegate void Clicked();
+
     private Clicked clickCalbacks;
     [SerializeField] private AudioClip buttonClick;
     private EventAggregator eventAggregator;
@@ -11,7 +12,7 @@ public class GenericButton : MonoBehaviour
     private Animation anim;
     private bool enable = true;
 
-    public Clicked ClickCalbacks { get => clickCalbacks; set => clickCalbacks+= value; }
+    public Clicked ClickCalbacks { get => clickCalbacks; set => clickCalbacks += value; }
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class GenericButton : MonoBehaviour
         eventAggregator = EventAggregator.instance;
     }
 
-    private void OnMouseDown()
+    public void OnSelect()
     {
         if (enable)
         {
