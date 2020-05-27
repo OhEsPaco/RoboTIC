@@ -7,15 +7,6 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Main.unity
-    guid: de47b6f911edc7047b2d77773dcd1c5a
-  - enabled: 1
-    path: Assets/Scenes/Download.unity
-    guid: 0db0c12ffffafba43ad77399883fb7e5
-  - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: f1addcb92342a5544a1fbd78fcec968d
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
     guid: efe72208f15eeb545b2a81dd2389da8e
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 2f243fb456fb1934bb6ec94f200541b9,

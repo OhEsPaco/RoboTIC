@@ -6,20 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class MapMenuLogic : MonoBehaviour
 {
-    private EventAggregator eventAggregator;
     [SerializeField] private TextAsset[] storyLevels = new TextAsset[0];
-    [SerializeField] private Transform center;
-    [SerializeField] private Transform left;
-    [SerializeField] private Transform right;
     [SerializeField] private SelectArrow leftArrow;
     [SerializeField] private SelectArrow rightArrow;
-    [SerializeField] private MapSelector mapSelector;
     [SerializeField] private GenericButton mainMenuButton;
     [SerializeField] private GameObject placeableMap;
     [SerializeField] private GenericButton mapBounds;
-    public float arrowDistance = 4f;
 
-    private float blockLength;
+    [Range(0, 100f)]
+    [SerializeField] private float arrowDistance = 0.3f;
 
     // Start is called before the first frame update
     private MessageWarehouse msgWar;
@@ -32,8 +27,7 @@ public class MapMenuLogic : MonoBehaviour
 
     private void Start()
     {
-        eventAggregator = EventAggregator.instance;
-        msgWar = new MessageWarehouse(eventAggregator);
+        msgWar = new MessageWarehouse(EventAggregator.instance);
         //DirectoryInfo levelDirectoryPath = new DirectoryInfo(Application.streamingAssetsPath);
         //Debug.Log(levelDirectoryPath.FullName);
         //FileInfo[]fileInfo="ASDf".
@@ -101,7 +95,7 @@ public class MapMenuLogic : MonoBehaviour
             Debug.Log("User clicked");
             LevelData centerObj = levels[indexC];
             MsgStartLevel msg = new MsgStartLevel(centerObj, loadedLevels[centerObj]);
-            eventAggregator.Publish<MsgStartLevel>(msg);
+            EventAggregator.instance.Publish<MsgStartLevel>(msg);
             leftArrow.gameObject.SetActive(false);
             rightArrow.gameObject.SetActive(false);
         }
@@ -113,7 +107,7 @@ public class MapMenuLogic : MonoBehaviour
         {
             firstIt = false;
             allDone = false;
-            StartCoroutine(CenterFirstMap(center.position, left.position, speed));
+            StartCoroutine(CenterFirstMap(speed));
         }
     }
 
@@ -137,7 +131,7 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
-    private IEnumerator CenterFirstMap(Vector3 centerPos, Vector3 leftPos, float speed)
+    private IEnumerator CenterFirstMap(float speed)
     {
         //Pedimos el primer mapa
         LevelData centerObj = levels[0];
@@ -188,7 +182,7 @@ public class MapMenuLogic : MonoBehaviour
         LevelData rightObj = levels[nextIndex];
         yield return new WaitUntil(() => loadedLevels[rightObj] != null);
         GameObject rightParent = loadedLevels[rightObj][0].transform.parent.gameObject;
-       
+
         rightParent.SetActive(false);
 
         placeableMap.SetActive(false);
@@ -282,7 +276,7 @@ public class MapMenuLogic : MonoBehaviour
             GameObject parent = new GameObject();
             MapContainer mcont = parent.AddComponent<MapContainer>();
 
-            parent.transform.position = left.position;
+            parent.transform.position = new Vector3(-1000, -1000, -1000);
             parent.name = System.Guid.NewGuid().ToString();
 
             yield return null;
