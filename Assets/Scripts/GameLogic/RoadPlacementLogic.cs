@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using static LevelButtons;
 using static RoadIO;
 
@@ -12,7 +11,6 @@ public class RoadPlacementLogic : MonoBehaviour
     [SerializeField] private Transform roadParent;
     [SerializeField] private Road roadStart;
     [SerializeField] private MiniCharacter minibot;
-    [SerializeField] private EventAggregator eventAggregator;
 
     private List<Buttons> buttonInputBuffer;
     public int initialCapacityOfTheInputBuffer = 20;
@@ -41,7 +39,7 @@ public class RoadPlacementLogic : MonoBehaviour
     private void Awake()
     {
         levelRoads = GetComponentInChildren<RoadFactory>();
-        eventAggregator.Subscribe<MsgAddInputFromButtonRoadPlacement>(AddInputFromButton);
+        EventAggregator.Instance.Subscribe<MsgAddInputFromButtonRoadPlacement>(AddInputFromButton);
     }
 
     internal void Start()
@@ -71,18 +69,14 @@ public class RoadPlacementLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.Undo, DoUndo);
         buttonActionsDictionary.Add(Buttons.MapMenu, MapMenu);
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
-        //selectedOutputMarker.transform.parent = roadStartMarker;
     }
 
     private void MapMenu()
     {
-        SelectedMap loadedLevel = FindObjectOfType<SelectedMap>();
-        if (loadedLevel != null)
-        {
-            Destroy(loadedLevel.gameObject);
-        }
+        ResetRoad();
+        EventAggregator.Instance.Publish(new MsgAddInputFromButton(Buttons.MapMenu));
 
-        SceneManager.LoadScene("Menu");
+        //TODO: llamar al menu
     }
 
     private class RoadChanges
@@ -330,11 +324,7 @@ public class RoadPlacementLogic : MonoBehaviour
         Road spw;
         if (levelRoads.SpawnRoadByID(ids[0], out spw))
         {
-
-
-            spawnedRoads[0] = Instantiate(spw,roadStart.transform.localPosition, roadStart.transform.rotation);
-
-      
+            spawnedRoads[0] = Instantiate(spw, roadStart.transform.localPosition, roadStart.transform.rotation);
 
             spawnedRoads[0].transform.parent = roadParent;
             spawnedRoads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0].MoveRoadTo(position);
@@ -353,10 +343,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
             if (levelRoads.SpawnRoadByID(ids[i + 1], ioToMatch, out nextRoad, out connectionsR_C))
             {
-
-
                 spawnedRoads[i + 1] = Instantiate(nextRoad, roadStart.transform.localPosition, roadStart.transform.rotation);
-   
 
                 spawnedRoads[i + 1].transform.parent = roadParent;
                 if (!ConnectRoads(spawnedRoads[i], spawnedRoads[i + 1], connectionsR_C))
@@ -376,18 +363,6 @@ public class RoadPlacementLogic : MonoBehaviour
                 return false;
             }
         }
-
-        /*foreach(Road r in spawnedRoads)
-        {
-            foreach(RoadIO io in r.GetAllIO())
-            {
-                if (!playArea.IsPointInsideOfCageXZ(io.transform.position))
-                {
-                    DestroyRoads(spawnedRoads);
-                    return false;
-                }
-            }
-        }*/
 
         foreach (Road r in spawnedRoads)
         {
@@ -604,27 +579,7 @@ public class RoadPlacementLogic : MonoBehaviour
                 }
             }
         }
-        /*if (spawnedRoads.Length > 0)
-        {
-            //Como medida de seguridad comprobamos que la ultima carretera está dentro del area de juego
-            Road lastRoad = GetLastRoad();
-            foreach (RoadIO io in lastRoad.GetAllIO())
-            {
-                if (!playArea.IsPointInsideOfCageXZ(io.transform.position))
-                {
-                    foreach(Road r in spawnedRoads)
-                    {
-                        Destroy(r.gameObject);
-                    }
-                    foreach (Road r in extraSpawnedRoads)
-                    {
-                        Destroy(r.gameObject);
-                    }
 
-                    return false;
-                }
-            }
-        }*/
         return true;
     }
 
@@ -785,8 +740,8 @@ public class RoadPlacementLogic : MonoBehaviour
     {
         if (selectedIO != null)
         {
-            eventAggregator.Publish(new MsgDisableAllButtons());
-            eventAggregator.Publish(new MsgEnableButton(Buttons.Restart));
+            EventAggregator.Instance.Publish(new MsgDisableAllButtons());
+            EventAggregator.Instance.Publish(new MsgEnableButton(Buttons.Restart));
 
             List<Road> allRoads = new List<Road>();
             Stack<Road> roadsToProccess = new Stack<Road>();
@@ -851,7 +806,7 @@ public class RoadPlacementLogic : MonoBehaviour
                     r.ExecuteAction(lockArgs);
                 }
                 selectedOutputMarker.gameObject.SetActive(false);
-                eventAggregator.Publish(new MsgStartRoadMovement(roadInput, roadOutput));
+                EventAggregator.Instance.Publish(new MsgStartRoadMovement(roadInput, roadOutput));
             }
             else
             {
@@ -917,8 +872,14 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoRestart()
     {
-        eventAggregator.Publish(new MsgEnableAllButtons());
-        eventAggregator.Publish(new MsgStopMovement());
+        ResetRoad();
+        EventAggregator.Instance.Publish(new MsgAddInputFromButton(Buttons.Restart));
+    }
+
+    private void ResetRoad()
+    {
+        EventAggregator.Instance.Publish(new MsgEnableAllButtons());
+        EventAggregator.Instance.Publish(new MsgStopMovement());
 
         while (undoStack.Count > 0)
         {
@@ -941,7 +902,6 @@ public class RoadPlacementLogic : MonoBehaviour
         selectedOutputMarker.gameObject.SetActive(true);
         minibot.transform.position = firstInput.transform.position;
         minibot.gameObject.SetActive(true);
-        eventAggregator.Publish(new MsgAddInputFromButton(Buttons.Restart));
     }
 
     private void DoTurnLeft()

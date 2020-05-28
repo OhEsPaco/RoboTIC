@@ -55,6 +55,7 @@ public class LevelButtons : MonoBehaviour
         eventAggregator.Subscribe<MsgEnableAllButtons>(EnableAllButtons);
         eventAggregator.Subscribe<MsgDisableAllButtons>(DisableAllButtons);
         eventAggregator.Subscribe<MsgEnableButton>(EnableButton);
+
     }
 
     private void EnableAllButtons(MsgEnableAllButtons msg)

@@ -9,10 +9,9 @@ using UnityEngine;
 public class EventAggregator : MonoBehaviour
 {
     private Dictionary<Type, IList> subscriber = new Dictionary<Type, IList>();
-
     private static EventAggregator eventAgregator;
 
-    public static EventAggregator instance
+    public static EventAggregator Instance
     {
         get
         {

@@ -13,11 +13,11 @@ public class ArrowAnim : MonoBehaviour
     public float speed = 10f;
 
     [Range(0.0f, 100f)]
-    public float scaleMultiplier=20f;
+    public float scaleMultiplier = 20f;
 
     private void Start()
     {
-        originalScale = new Vector3(scaleMultiplier,scaleMultiplier,scaleMultiplier);
+        originalScale = new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
         gameObject.transform.localScale = originalScale;
         reducedScale = originalScale * reducedPercent;
         StartCoroutine(Minimize());
@@ -30,6 +30,7 @@ public class ArrowAnim : MonoBehaviour
         reducedScale = originalScale * reducedPercent;
         StartCoroutine(Minimize());
     }
+
     private IEnumerator Minimize()
     {
         float distance = Vector3.Distance(originalScale, reducedScale);
@@ -57,5 +58,4 @@ public class ArrowAnim : MonoBehaviour
         yield return null;
         StartCoroutine(Minimize());
     }
-
 }

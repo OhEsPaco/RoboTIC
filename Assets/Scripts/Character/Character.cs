@@ -26,5 +26,4 @@ public abstract class Character : MonoBehaviour
             animator.SetTrigger(trigger);
         }
     }
-
 }

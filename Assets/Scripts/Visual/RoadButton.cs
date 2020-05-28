@@ -26,7 +26,7 @@ public class RoadButton : MonoBehaviour
             anim = mesh.GetComponent<Animation>();
         }
 
-        eventAggregator = EventAggregator.instance;
+        eventAggregator = EventAggregator.Instance;
     }
 
     public void OnSelect()
@@ -35,7 +35,7 @@ public class RoadButton : MonoBehaviour
         {
             Debug.Log("Pressed " + buttonIndex.ToString("g"));
 
-            EventAggregator.instance.Publish(new MsgAddInputFromButtonRoadPlacement(buttonIndex));
+            EventAggregator.Instance.Publish(new MsgAddInputFromButtonRoadPlacement(buttonIndex));
             if (mesh != null)
             {
                 if (anim.isPlaying)

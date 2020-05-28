@@ -6,8 +6,6 @@ using static Block;
 public class BigCharacter : Character
 {
     [SerializeField] private GameObject inventoryMarker;
-    /*  [SerializeField] private Animator animator;*/
-    [SerializeField] private EventAggregator eventAggregator;
     [SerializeField] private Vector3 itemScale = new Vector3(1, 1, 1);
 
     /// <summary>
@@ -62,12 +60,12 @@ public class BigCharacter : Character
 
     private void Awake()
     {
-        eventAggregator.Subscribe<MsgBigRobotAction>(ReceiveAction);
-        eventAggregator.Subscribe<MsgPlaceCharacter>(PlaceCharacter);
-        eventAggregator.Subscribe<MsgTakeItem>(TakeItem);
-        eventAggregator.Subscribe<MsgBigRobotIdle>(IsRobotIdle);
-        eventAggregator.Subscribe<MsgUseItem>(UseObject);
-        msgWar = new MessageWarehouse(eventAggregator);
+        EventAggregator.Instance.Subscribe<MsgBigRobotAction>(ReceiveAction);
+        EventAggregator.Instance.Subscribe<MsgPlaceCharacter>(PlaceCharacter);
+        EventAggregator.Instance.Subscribe<MsgTakeItem>(TakeItem);
+        EventAggregator.Instance.Subscribe<MsgBigRobotIdle>(IsRobotIdle);
+        EventAggregator.Instance.Subscribe<MsgUseItem>(UseObject);
+        msgWar = new MessageWarehouse(EventAggregator.Instance);
     }
 
     /// <summary>
@@ -93,8 +91,14 @@ public class BigCharacter : Character
 
     private void PlaceCharacter(MsgPlaceCharacter msg)
     {
+
+        if (msg.NewParent != null)
+        {
+            gameObject.transform.parent = msg.NewParent;
+        }
         gameObject.transform.position = msg.Position;
         gameObject.transform.Rotate(msg.Rotation);
+        EventAggregator.Instance.Publish(new ResponseWrapper<MsgPlaceCharacter, GameObject>(msg, this.gameObject));
     }
 
     /// <summary>
@@ -122,11 +126,11 @@ public class BigCharacter : Character
     {
         if (AreAllActionsFinished())
         {
-            eventAggregator.Publish(new ResponseWrapper<MsgBigRobotIdle, bool>(msg, true));
+            EventAggregator.Instance.Publish(new ResponseWrapper<MsgBigRobotIdle, bool>(msg, true));
         }
         else
         {
-            eventAggregator.Publish(new ResponseWrapper<MsgBigRobotIdle, bool>(msg, false));
+            EventAggregator.Instance.Publish(new ResponseWrapper<MsgBigRobotIdle, bool>(msg, false));
         }
     }
 

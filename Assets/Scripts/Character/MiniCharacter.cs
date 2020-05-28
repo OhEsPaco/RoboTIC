@@ -1,8 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MiniCharacter : Character
+﻿public class MiniCharacter : Character
 {
-    
 }

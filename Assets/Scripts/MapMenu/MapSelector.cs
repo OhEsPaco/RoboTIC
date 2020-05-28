@@ -4,6 +4,7 @@ using UnityEngine;
 public class MapSelector : MonoBehaviour
 {
     public delegate void UserHasClicked();
+
     public UserHasClicked InformOnClick;
 
     // Start is called before the first frame update
@@ -34,9 +35,9 @@ public class MapSelector : MonoBehaviour
     {
         InformOnClick();
     }
+
     private void OnMouseEnter()
     {
-        
         if (selectedObject != null)
         {
             StopAllCoroutines();
@@ -56,7 +57,7 @@ public class MapSelector : MonoBehaviour
     private IEnumerator Maximize()
     {
         selectedObject.transform.localScale = originalScale;
-        
+
         float distance = Vector3.Distance(originalScale, bigScale);
         for (float i = 0; i <= 1;)
         {
@@ -80,5 +81,4 @@ public class MapSelector : MonoBehaviour
         }
         selectedObject.transform.localScale = originalScale;
     }
-
 }

@@ -33,7 +33,7 @@ public class VerticalButton : MonoBehaviour
     {
         Debug.Log("Pressed " + buttonName);
 
-        EventAggregator.instance.Publish(new MsgAddInputFromButton(buttonName));
+        EventAggregator.Instance.Publish(new MsgAddInputFromButton(buttonName));
         //Send message here
         if (mesh != null)
         {

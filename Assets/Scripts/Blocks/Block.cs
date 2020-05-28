@@ -5,15 +5,19 @@ using UnityEngine;
 public class Block : LevelObject
 {
     [SerializeField] private Blocks blockType;
-    [Range(0f,100f)]
+
+    [Range(0f, 100f)]
     [SerializeField] private float surfaceSphereGizmoRadious = 0f;
+
     public Blocks BlockType { get => blockType; }
 
+    //Enum de acciones que soporta el bloque
     public enum BlockActions
     {
         Use, Destroy, Place, Activate, Rebind
     }
 
+    //Enum de propiedades que pueden tener los bloques
     public enum BlockProperties
     {
         Immaterial,
@@ -58,17 +62,15 @@ public class Block : LevelObject
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        //Debug.Log(transform.localScale);
-
         Gizmos.DrawSphere(SurfacePoint, surfaceSphereGizmoRadious);
     }
 
-    private Vector3 defOffset;
-
+    //Calcula el centro de la superficie del bloque
     public Vector3 SurfacePoint
     {
         get
         {
+            Vector3 defOffset;
             defOffset.x = surfaceOffset.x * transform.localScale.x;
             defOffset.y = surfaceOffset.y * transform.localScale.z;
             defOffset.z = surfaceOffset.z * transform.localScale.y;
@@ -76,6 +78,7 @@ public class Block : LevelObject
         }
     }
 
+    //Ejecuta una accion
     public void ExecuteAction(BlockActions action)
     {
         //quiza crear cola de acciones y controlar que terminen para pasar a la siguiente
@@ -91,7 +94,7 @@ public class Block : LevelObject
 
     public bool ActionsDone()
     {
-        //COMPROBAR QUE SE HAYAN TERMINADO LAS ACCIONES
+        //TODO: COMPROBAR QUE SE HAYAN TERMINADO LAS ACCIONES
         return true;
     }
 

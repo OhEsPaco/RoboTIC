@@ -27,7 +27,8 @@ public class MapMenuLogic : MonoBehaviour
 
     private void Start()
     {
-        msgWar = new MessageWarehouse(EventAggregator.instance);
+        placeableMap.GetComponent<MapController>().EnableMenuControls();
+        msgWar = new MessageWarehouse(EventAggregator.Instance);
         //DirectoryInfo levelDirectoryPath = new DirectoryInfo(Application.streamingAssetsPath);
         //Debug.Log(levelDirectoryPath.FullName);
         //FileInfo[]fileInfo="ASDf".
@@ -37,8 +38,8 @@ public class MapMenuLogic : MonoBehaviour
         }*/
         mainMenuButton.ClickCalbacks = UserClickedOnMainMenu;
         mapBounds.ClickCalbacks += UserClickedOnMap;
-        leftArrow.InformMe(InputLeft);
-        rightArrow.InformMe(InputRight);
+        leftArrow.InformMeOfClickedArrow(InputLeft);
+        rightArrow.InformMeOfClickedArrow(InputRight);
         string[] storyLevelsString = new string[storyLevels.Length];
 
         for (int i = 0; i < storyLevels.Length; i++)
@@ -72,7 +73,7 @@ public class MapMenuLogic : MonoBehaviour
             StartCoroutine(RenderALevel(level));
         }*/
         //eventAggregator.Publish(new MsgRenderMapAndItems(userLevelsLoaded[0].mapAndItems, userLevelsLoaded[0].levelSize));
-        SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
+        //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
     }
 
     // Update is called once per frame
@@ -95,7 +96,7 @@ public class MapMenuLogic : MonoBehaviour
             Debug.Log("User clicked");
             LevelData centerObj = levels[indexC];
             MsgStartLevel msg = new MsgStartLevel(centerObj, loadedLevels[centerObj]);
-            EventAggregator.instance.Publish<MsgStartLevel>(msg);
+            EventAggregator.Instance.Publish<MsgStartLevel>(msg);
             leftArrow.gameObject.SetActive(false);
             rightArrow.gameObject.SetActive(false);
         }
@@ -275,8 +276,6 @@ public class MapMenuLogic : MonoBehaviour
         {
             GameObject parent = new GameObject();
             MapContainer mcont = parent.AddComponent<MapContainer>();
-
-            parent.transform.position = new Vector3(-1000, -1000, -1000);
             parent.name = System.Guid.NewGuid().ToString();
 
             yield return null;
@@ -289,6 +288,11 @@ public class MapMenuLogic : MonoBehaviour
             {
                 loadedLevels[level] = loadedLevel;
                 mcont.UpdateMapCenter();
+                mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
+                foreach(LevelObject ob in loadedLevel)
+                {
+                    ob.gameObject.SetActive(true);
+                }
                 parent.SetActive(false);
             }
             else

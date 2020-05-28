@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using static LevelObject;
 
@@ -25,18 +26,24 @@ public class MapRenderer : MonoBehaviour
 
     private void RenderMapAndItems(MsgRenderMapAndItems msg)
     {
+        StartCoroutine(RenderMapAndItemsCoroutine(msg));
+    }
+
+    private IEnumerator RenderMapAndItemsCoroutine(MsgRenderMapAndItems msg)
+    {
         List<int> levelSize = msg.LevelSize;
         List<int> mapAndItems = msg.MapAndItems;
         LevelObject[] objectReferences = new LevelObject[levelSize[0] * levelSize[1] * levelSize[2]];
-        for (int x = 0; x < levelSize[0]; x++)
+        for (int y = 0; y < levelSize[1]; y++)
         {
-            for (int y = 0; y < levelSize[1]; y++)
+            for (int x = 0; x < levelSize[0]; x++)
             {
                 for (int z = 0; z < levelSize[2]; z++)
                 {
                     int blockToSpawn = Get(mapAndItems, levelSize, x, y, z);
 
                     LevelObject block = levelObjects.GetGameObjectInstance(blockToSpawn);
+
                     objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
                     Vector3 posNew;
                     posNew.x = gameObject.transform.position.x + x * blockLength;
@@ -44,7 +51,9 @@ public class MapRenderer : MonoBehaviour
                     posNew.z = gameObject.transform.position.z + z * blockLength;
                     block.transform.position = posNew;
                     block.transform.parent = gameObject.transform;
+                    block.gameObject.SetActive(false);
                 }
+                yield return null;
             }
         }
 

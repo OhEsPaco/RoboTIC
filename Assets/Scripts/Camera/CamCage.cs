@@ -30,12 +30,11 @@ public class CamCage : MonoBehaviour
     {
     }
 
-
     public bool IsPointInsideOfCageXZ(Vector3 point)
     {
         bool output = true;
 
-        Debug.Log(point.z +" --- "+ zPlus.transform.position.z);
+        Debug.Log(point.z + " --- " + zPlus.transform.position.z);
         if (point.x > xPlus.transform.position.x || point.x < xMinus.transform.position.x)
         {
             output = false;
@@ -48,8 +47,8 @@ public class CamCage : MonoBehaviour
 
         Debug.Log(output);
         return output;
-
     }
+
     public Vector3 AdjustTranslation(Vector3 camPosition, Vector3 rotatedTranslation)
     {
         Vector3 output;

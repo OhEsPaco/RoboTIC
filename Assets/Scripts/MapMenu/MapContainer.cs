@@ -5,16 +5,6 @@ public class MapContainer : MonoBehaviour
     private Vector3 mapCenter;
 
     public Vector3 MapCenter { get => mapCenter; }
- 
-    // Start is called before the first frame update
-    private void Start()
-    {
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-    }
 
     private void OnDrawGizmos()
     {

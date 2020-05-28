@@ -4,40 +4,36 @@
 public class MapController : MonoBehaviour
 {
     [SerializeField] private Transform center;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
+    [SerializeField] private GameObject arrowR;
+    [SerializeField] private GameObject arrowL;
+    [SerializeField] private GameObject levelButtons;
+    [SerializeField] private GameObject roadScaler;
     private void OnDrawGizmos()
     {
-        /*  BoxCollider col = GetComponent<BoxCollider>();
-          Gizmos.color = Color.yellow;
-          Gizmos.DrawSphere(transform.position + col.center, 0.03f);*/
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(MapControllerCenter, 0.03f);
     }
 
+
+    public void EnableGameControls()
+    {
+        levelButtons.SetActive(true);
+        roadScaler.SetActive(true);
+        arrowR.SetActive(false);
+        arrowL.SetActive(false);
+    }
+
+
+    public void EnableMenuControls()
+    {
+        arrowR.SetActive(true);
+        arrowL.SetActive(true);
+        levelButtons.SetActive(false);
+        roadScaler.SetActive(false);
+    }
+
     public Vector3 MapControllerCenter
     {
-        /*get
-        {
-            BoxCollider col = GetComponent<BoxCollider>();
-            if (col != null)
-            {
-                return transform.position + col.center;
-            }
-            else
-            {
-                return transform.position;
-            }
-        }*/
         get
         {
             if (center != null)

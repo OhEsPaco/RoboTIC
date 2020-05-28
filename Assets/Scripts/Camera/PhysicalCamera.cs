@@ -6,8 +6,6 @@ public class PhysicalCamera : MonoBehaviour
     [SerializeField] private PhysicalCameraController cameraController;
     [SerializeField] private CamCage cage;
 
-   
-
     [Header("Rotation Settings")]
     [Tooltip("X = Change in mouse position.\nY = Multiplicative factor for camera rotation.")]
     public AnimationCurve mouseSensitivityCurve = new AnimationCurve(new Keyframe(0f, 0.5f, 0f, 5f), new Keyframe(1f, 2.5f, 0f, 0f));
@@ -80,13 +78,9 @@ public class PhysicalCamera : MonoBehaviour
 
         Vector3 rotatedTranslation = Quaternion.Euler(cameraController.TargetPitch, cameraController.TargetYaw, cameraController.TargetRoll) * translation;
 
-        physicalBody.RotatedTranslation = cage.AdjustTranslation(physicalBody.transform.position,rotatedTranslation);
+        physicalBody.RotatedTranslation = cage.AdjustTranslation(physicalBody.transform.position, rotatedTranslation);
 
-       
         cameraController.LerpTowards(physicalBody.TargetPosition(), positionLerpPct, rotationLerpPct);
-
-
-       
     }
 
     private Vector3 GetInputTranslationDirection()

@@ -7,21 +7,16 @@ using static LevelButtons;
 using static LevelObject;
 
 /// <summary>
-/// Defines the <see cref="Logic" />
+/// Defines the <see cref="GameLogic" />
 /// </summary>
-public class Logic : MonoBehaviour
+public class GameLogic : MonoBehaviour
 {
-    [SerializeField] private EventAggregator eventAggregator;
+    [SerializeField] private GameObject placeableMap;
 
     /// <summary>
     /// Defines the levelData
     /// </summary>
     private LevelData currentLevelData;
-
-    /// <summary>
-    /// Defines the mainCharacter
-    /// </summary>
-   // private GameObject mainCharacterGameObject;
 
     private LevelObject[] objectReferences;
 
@@ -40,6 +35,7 @@ public class Logic : MonoBehaviour
     /// </summary>
     public LevelData CurrentLevelData { get => currentLevelData; }
 
+    private LevelData clonedLevelData;
     private Stack<Item> inventory = new Stack<Item>();
 
     /// <summary>
@@ -76,33 +72,26 @@ public class Logic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
 
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
-        eventAggregator.Subscribe<MsgStartLevel>(StartLevel);
+        EventAggregator.Instance.Subscribe<MsgStartLevel>(StartLevel);
         // StartCoroutine(LoadSceneCrt(false));
     }
 
     private void StartLevel(MsgStartLevel msg)
     {
+        this.loading = true;
+        this.haltExecution = true;
         if (msg.levelData != null && msg.levelObjects != null)
         {
+            placeableMap.GetComponent<MapController>().EnableGameControls();
+            buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
+            inventory = new Stack<Item>();
+            haltExecution = false;
+            clonedLevelData = msg.levelData.Clone();
             currentLevelData = msg.levelData;
             objectReferences = msg.levelObjects;
+            StartCoroutine(RenderALevel(false));
             loading = false;
         }
-    }
-
-    private void Restart()
-    {
-        /*foreach (LevelObject l in objectReferences)
-        {
-            Destroy(l.gameObject);
-        }
-
-        buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
-        inventory = new Stack<Item>();
-        haltExecution = false;
-        StartCoroutine(LoadSceneCrt(true));
-
-        Debug.Log(currentLevelData.levelName);*/
     }
 
     private bool GetBlockSurfacePoint(in int x, in int y, in int z, out Vector3 surfacePoint)
@@ -146,8 +135,8 @@ public class Logic : MonoBehaviour
     /// </summary>
     internal void Awake()
     {
-        msgWar = new MessageWarehouse(eventAggregator);
-        eventAggregator.Subscribe<MsgAddInputFromButton>(AddInputFromButton);
+        msgWar = new MessageWarehouse(EventAggregator.Instance);
+        EventAggregator.Instance.Subscribe<MsgAddInputFromButton>(AddInputFromButton);
     }
 
     // Update is called once per frame
@@ -156,22 +145,149 @@ public class Logic : MonoBehaviour
     /// </summary>
     internal void Update()
     {
-            if (!loading)
-            {
-                ExecuteNextAvailableInput();
+        if (!loading)
+        {
+            ExecuteNextAvailableInput();
 
-                if (!haltExecution)
+            if (!haltExecution)
+            {
+                if (CheckWinState())
                 {
-                    if (CheckWinState())
+                    YouWin();
+                }
+            }
+        }
+    }
+
+    private IEnumerator RenderALevel(bool loadingMenu)
+    {
+        this.loading = true;
+        this.haltExecution = true;
+        // eventAggregator.Publish(new ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>(msg, objectReferences));
+
+        /*foreach (LevelObject l in objectReferences)
+         {
+             Destroy(l.gameObject);
+         }*/
+        //Tomamos el padre
+        GameObject parent = objectReferences[0].transform.parent.gameObject;
+        //Reseteamos el input buffer
+        buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
+        //Reseteamos el inventario
+        inventory = new Stack<Item>();
+
+        //Reseteamos el leveldata
+        currentLevelData = clonedLevelData.Clone();
+
+        //Pedimos que se renderice el nivel
+        MsgRenderMapAndItems msg = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
+        LevelObject[] loadedLevel = null;
+        msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msg);
+        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msg, out loadedLevel));
+
+        if (loadedLevel != null)
+        {
+            //Ponemos el numero de instrucciones en los botones
+            EventAggregator.Instance.Publish<MsgSetAvInstructions>(new MsgSetAvInstructions(currentLevelData.availableInstructions));
+            MapContainer mcont = parent.GetComponent<MapContainer>();
+
+            Vector3 lpos = placeableMap.transform.position;
+            Quaternion lrot = placeableMap.transform.rotation;
+
+            placeableMap.transform.position = new Vector3();
+            placeableMap.transform.rotation = new Quaternion();
+
+            parent.transform.position = new Vector3();
+            parent.transform.rotation = new Quaternion();
+
+            foreach (LevelObject obj in loadedLevel)
+            {
+                obj.gameObject.transform.parent = parent.transform;
+            }
+            mcont.UpdateMapCenter();
+            mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
+
+            Vector3 playerPos;
+            //Podria dar fallo si el personaje esta mal colocado
+            GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
+            //Lo ponemos en una posicion falsa para que no se vea de momento
+            //Esto es asi para que cambie el padre mientras se carga el mapa y ahorremos tiempo
+            MsgPlaceCharacter msgLld = new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0), parent.transform);
+            msgWar.PublishMsgAndWaitForResponse<MsgPlaceCharacter, GameObject>(msgLld);
+            GameObject bigCharater = null;
+            yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgPlaceCharacter, GameObject>(msgLld, out bigCharater));
+            bigCharater.SetActive(false);
+
+            placeableMap.transform.position = lpos;
+            placeableMap.transform.rotation = lrot;
+
+            int toDestroy = 0;
+            int toActivate = loadedLevel.Length - 1;
+            foreach (LevelObject lo in objectReferences)
+            {
+                Destroy(lo.gameObject);
+            }
+            //GetBlock(LevelData data, LevelObject[] objects, int x, int y, int z)
+
+            for (int y = 0; y < currentLevelData.levelSize[1]; y++)
+            {
+                for (int x = 0; x < currentLevelData.levelSize[0]; x++)
+                {
+                    for (int z = 0; z < currentLevelData.levelSize[2]; z++)
                     {
-                        YouWin();
+                        if (currentLevelData.playerPos[0] == x && currentLevelData.playerPos[1] - 1 == y && currentLevelData.playerPos[2] == z)
+                        {
+                            bigCharater.SetActive(true);
+                        }
+                        try
+                        {
+                            GetBlock(currentLevelData, loadedLevel, x, y, z).gameObject.SetActive(true);
+                        }
+                        catch
+                        {
+                            //Do nothing
+                        }
+
+                        /*try
+                        {
+                            Destroy(GetBlock(currentLevelData, objectReferences, currentLevelData.levelSize[0] - x - 1, currentLevelData.levelSize[1] - y - 1, currentLevelData.levelSize[2] - z - 1).gameObject);
+                        }
+                        catch
+                        {
+                            //Do nothing
+                        }*/
+                        yield return null;
                     }
                 }
             }
-        
+
+            /* while (toDestroy < objectReferences.Length || toActivate >= 0)
+             {
+                 if (toActivate >= 0)
+                 {
+                     loadedLevel[toActivate].gameObject.SetActive(true);
+                 }
+
+                 if (toDestroy < objectReferences.Length)
+                 {
+                     Destroy(objectReferences[toDestroy].gameObject);
+                 }
+                 toActivate--;
+                 toDestroy++;
+                 yield return null;
+             }*/
+
+            objectReferences = loadedLevel;
+        }
+        if (loadingMenu)
+        {
+            placeableMap.GetComponent<MapController>().EnableMenuControls();
+        }
+        haltExecution = false;
+        this.loading = false;
     }
 
-    /* private IEnumerator LoadSceneCrt(bool restarting)
+    /*private IEnumerator LoadSceneCrt(bool restarting)
      {
          this.loading = true;
 
@@ -237,7 +353,11 @@ public class Logic : MonoBehaviour
         {
             if (msg.button == Buttons.Restart)
             {
-                Restart();
+                StartCoroutine(RenderALevel(false));
+            }
+            else if (msg.button == Buttons.MapMenu)
+            {
+                StartCoroutine(RenderALevel(true));
             }
             else
             {
@@ -310,7 +430,7 @@ public class Logic : MonoBehaviour
             yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderBlock, LevelObject>(msg, out newlySpawnedObject));
         }
 
-        eventAggregator.Publish(new MsgUseItem(frontBlock, reaction, newlySpawnedObject, itemPos, item));
+        EventAggregator.Instance.Publish(new MsgUseItem(frontBlock, reaction, newlySpawnedObject, itemPos, item));
     }
 
     /// <summary>
@@ -387,7 +507,7 @@ public class Logic : MonoBehaviour
             Vector3 target;
             if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
             {
-                eventAggregator.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Jump, target));
+                EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Jump, target));
                 currentLevelData.playerPos = intendedBlock;
             }
         }
@@ -402,7 +522,7 @@ public class Logic : MonoBehaviour
                     Vector3 target;
                     if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
                     {
-                        eventAggregator.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Jump, target));
+                        EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Jump, target));
                         currentLevelData.playerPos = intendedBlock;
                     }
 
@@ -442,7 +562,7 @@ public class Logic : MonoBehaviour
                     if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
                     {
                         Debug.Log(target);
-                        eventAggregator.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Move, target));
+                        EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Move, target));
                         currentLevelData.playerPos = intendedBlock;
                     }
                 }
@@ -459,7 +579,7 @@ public class Logic : MonoBehaviour
                     Vector3 target;
                     if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
                     {
-                        eventAggregator.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Move, target));
+                        EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Move, target));
                         currentLevelData.playerPos = intendedBlock;
                     }
                 }
@@ -485,7 +605,7 @@ public class Logic : MonoBehaviour
             if (thisItem != null && thisItem.IsItem())
             {
                 inventory.Push((Item)thisItem);
-                eventAggregator.Publish<MsgTakeItem>(new MsgTakeItem((Item)thisItem, inventory.Count));
+                EventAggregator.Instance.Publish<MsgTakeItem>(new MsgTakeItem((Item)thisItem, inventory.Count));
 
                 return true;
             }
@@ -648,7 +768,7 @@ public class Logic : MonoBehaviour
     /// </summary>
     private void DoRestart()
     {
-        Restart();
+        StartCoroutine(RenderALevel(false));
     }
 
     /// <summary>
@@ -661,7 +781,7 @@ public class Logic : MonoBehaviour
         {
             currentLevelData.playerOrientation = 3;
         }
-        eventAggregator.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.TurnLeft, new Vector3(0, 0, 0)));
+        EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.TurnLeft, new Vector3(0, 0, 0)));
     }
 
     /// <summary>
@@ -674,15 +794,6 @@ public class Logic : MonoBehaviour
         {
             currentLevelData.playerOrientation = 0;
         }
-        eventAggregator.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.TurnRight, new Vector3(0, 0, 0)));
-    }
-
-    /// <summary>
-    /// The GetLevelPath
-    /// </summary>
-    /// <returns>The <see cref="string"/></returns>
-    private string GetLevelPath()
-    {
-        return "Assets/StoryLevels/evalLevel.json";
+        EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.TurnRight, new Vector3(0, 0, 0)));
     }
 }

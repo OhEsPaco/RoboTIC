@@ -8,13 +8,11 @@ public class SelectArrow : MonoBehaviour
 
     private void OnSelect()
     {
-        if (callbackDelegate != null)
-        {
-            callbackDelegate();
-        }
+        Debug.Log("Pressed Arrow");
+        callbackDelegate?.Invoke();
     }
 
-    public void InformMe(CallbackDelegate action)
+    public void InformMeOfClickedArrow(CallbackDelegate action)
     {
         callbackDelegate += action;
     }

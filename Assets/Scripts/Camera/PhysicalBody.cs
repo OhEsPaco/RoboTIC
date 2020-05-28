@@ -8,7 +8,6 @@ public class PhysicalBody : MonoBehaviour
 
     public Vector3 RotatedTranslation { get => rotatedTranslation; set => rotatedTranslation = value; }
 
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,7 +32,6 @@ public class PhysicalBody : MonoBehaviour
         rb.angularVelocity = new Vector3(0, 0, 0);
 
         transform.position = position;
-
     }
 
     public Vector3 TargetPosition()

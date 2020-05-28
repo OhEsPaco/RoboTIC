@@ -24,8 +24,6 @@ public class RoadMovementLogic : MonoBehaviour
     //Descriptor del tween
     private LTDescr tweenDescr;
 
-    [SerializeField] private EventAggregator eventAggregator;
-
     private void Start()
     {
         //Hacemos que el robot sea hijo de este objeto y lo marcamos como inactivo
@@ -35,8 +33,8 @@ public class RoadMovementLogic : MonoBehaviour
 
     private void Awake()
     {
-        eventAggregator.Subscribe<MsgStartRoadMovement>(StartMovement);
-        eventAggregator.Subscribe<MsgStopMovement>(StopMovement);
+        EventAggregator.Instance.Subscribe<MsgStartRoadMovement>(StartMovement);
+        EventAggregator.Instance.Subscribe<MsgStopMovement>(StopMovement);
     }
 
     //Inicia el movimiento dado el input y el output de la carretera

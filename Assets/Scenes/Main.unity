@@ -220,6 +220,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {fileID: 240837307}
+  arrowR: {fileID: 6484631077656493153}
+  arrowL: {fileID: 826147977591767585}
+  levelButtons: {fileID: 1555116332877643327}
+  roadScaler: {fileID: 9002325528025176967}
 --- !u!1 &189511118
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,12 +754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyLevels:
   - {fileID: 4900000, guid: 35715c226b54d884299a0f02c65be9c4, type: 3}
-  center: {fileID: 0}
-  left: {fileID: 4813218493123496165}
-  right: {fileID: 0}
   leftArrow: {fileID: 826147977591767586}
   rightArrow: {fileID: 6484631077656493154}
-  mapSelector: {fileID: 0}
   mainMenuButton: {fileID: 1843240215}
   placeableMap: {fileID: 14435332}
   mapBounds: {fileID: 1508373158}
@@ -10758,7 +10758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39210c6c3ce5c174ca558293f065d4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventAggregator: {fileID: 1056709992}
+  placeableMap: {fileID: 14435332}
   initialCapacityOfTheInputBuffer: 20
   maxFallHeightOfCharactersInBlocks: 1
 --- !u!1 &2510474422366945427
@@ -12763,7 +12763,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7207478224074723717}
   inventoryMarker: {fileID: 4813218493938138016}
-  eventAggregator: {fileID: 1056709992}
   itemScale: {x: 0.3, y: 0.3, z: 0.3}
   actionSpeed: 2
   jumpPct: 1
@@ -14801,7 +14800,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 4813218493544357331}
   speed: 0.4
-  eventAggregator: {fileID: 1056709992}
 --- !u!4 &6122043637406794157
 Transform:
   m_ObjectHideFlags: 0
@@ -19890,7 +19888,6 @@ MonoBehaviour:
   roadParent: {fileID: 9002325528025176966}
   roadStart: {fileID: 9002325528679873488}
   minibot: {fileID: 4813218493544357331}
-  eventAggregator: {fileID: 1056709992}
   initialCapacityOfTheInputBuffer: 20
   placeableMap: {fileID: 14435332}
 --- !u!23 &9002325527876167440

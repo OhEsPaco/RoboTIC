@@ -21,7 +21,7 @@ public class GenericButton : MonoBehaviour
             anim = mesh.GetComponent<Animation>();
         }
 
-        eventAggregator = EventAggregator.instance;
+        eventAggregator = EventAggregator.Instance;
     }
 
     public void OnSelect()
