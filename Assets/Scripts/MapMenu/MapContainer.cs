@@ -9,7 +9,7 @@ public class MapContainer : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position + mapCenter, 0.03f);
+        Gizmos.DrawSphere(transform.position + mapCenter, 3f);
     }
 
     public void MoveMapTo(in Vector3 newPos)
@@ -23,17 +23,22 @@ public class MapContainer : MonoBehaviour
         int count = 0;
         foreach (Transform child in transform)
         {
-            mapcenter += child.position;
-            count++;
+            if (child.gameObject.GetComponent<Block>() != null)
+            {
+                mapcenter += child.position;
+                count++;
+            }
+   
         }
         if (count != 0)
         {
             mapcenter = mapcenter / count;
             mapCenter = mapcenter - transform.position;
-            mapCenter.y = 0;
+           // mapCenter.y = 0;
         }
         else
         {
+            Debug.LogError("COUNT 0");
             mapCenter = new Vector3(0, 0, 0);
         }
     }

@@ -87,12 +87,15 @@ public class GameLogic : MonoBehaviour
             inventory = new Stack<Item>();
             haltExecution = false;
             clonedLevelData = msg.levelData.Clone();
-            currentLevelData = msg.levelData;
-            objectReferences = msg.levelObjects;
+            currentLevelData = msg.levelData.Clone();
+            // objectReferences = msg.levelObjects;
+            mapParent = msg.levelObjects[0].gameObject.transform.parent.gameObject;
             StartCoroutine(RenderALevel(false));
             loading = false;
         }
     }
+
+    private GameObject mapParent;
 
     private bool GetBlockSurfacePoint(in int x, in int y, in int z, out Vector3 surfacePoint)
     {
@@ -170,7 +173,7 @@ public class GameLogic : MonoBehaviour
              Destroy(l.gameObject);
          }*/
         //Tomamos el padre
-        GameObject parent = objectReferences[0].transform.parent.gameObject;
+        GameObject parent = mapParent;
         //Reseteamos el input buffer
         buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
         //Reseteamos el inventario
@@ -206,6 +209,17 @@ public class GameLogic : MonoBehaviour
             }
             mcont.UpdateMapCenter();
             mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
+            if (objectReferences != null)
+            {
+                foreach (LevelObject lo in objectReferences)
+                {
+                    Destroy(lo.gameObject);
+                }
+            }
+            else
+            {
+                objectReferences = loadedLevel;
+            }
 
             Vector3 playerPos;
             //Podria dar fallo si el personaje esta mal colocado
@@ -221,33 +235,39 @@ public class GameLogic : MonoBehaviour
             placeableMap.transform.position = lpos;
             placeableMap.transform.rotation = lrot;
 
-            int toDestroy = 0;
-            int toActivate = loadedLevel.Length - 1;
-            foreach (LevelObject lo in objectReferences)
-            {
-                Destroy(lo.gameObject);
-            }
-            //GetBlock(LevelData data, LevelObject[] objects, int x, int y, int z)
-
+            bool doReturn = true;
             for (int y = 0; y < currentLevelData.levelSize[1]; y++)
             {
                 for (int x = 0; x < currentLevelData.levelSize[0]; x++)
                 {
                     for (int z = 0; z < currentLevelData.levelSize[2]; z++)
                     {
+                        doReturn = true;
                         if (currentLevelData.playerPos[0] == x && currentLevelData.playerPos[1] - 1 == y && currentLevelData.playerPos[2] == z)
                         {
                             bigCharater.SetActive(true);
                         }
                         try
                         {
-                            GetBlock(currentLevelData, loadedLevel, x, y, z).gameObject.SetActive(true);
+                            LevelObject lOb = GetBlock(currentLevelData, loadedLevel, x, y, z);
+                            lOb.gameObject.SetActive(true);
+                            if (lOb is Block)
+                            {
+                                Block lOb2 = (Block)lOb;
+                                if (lOb2.BlockType == Blocks.NoBlock)
+                                {
+                                    doReturn = false;
+                                }
+                            }
                         }
                         catch
                         {
                             //Do nothing
                         }
-
+                        if (doReturn)
+                        {
+                            yield return null;
+                        }
                         /*try
                         {
                             Destroy(GetBlock(currentLevelData, objectReferences, currentLevelData.levelSize[0] - x - 1, currentLevelData.levelSize[1] - y - 1, currentLevelData.levelSize[2] - z - 1).gameObject);
@@ -256,7 +276,6 @@ public class GameLogic : MonoBehaviour
                         {
                             //Do nothing
                         }*/
-                        yield return null;
                     }
                 }
             }

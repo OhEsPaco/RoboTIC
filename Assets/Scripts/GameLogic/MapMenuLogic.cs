@@ -92,13 +92,18 @@ public class MapMenuLogic : MonoBehaviour
     {
         if (allDone && !firstIt && levels[indexC] != null)
         {
-            allDone = false;
             Debug.Log("User clicked");
             LevelData centerObj = levels[indexC];
             MsgStartLevel msg = new MsgStartLevel(centerObj, loadedLevels[centerObj]);
+            foreach (LevelObject l in loadedLevels[centerObj])
+            {
+                l.gameObject.SetActive(false);
+            }
             EventAggregator.Instance.Publish<MsgStartLevel>(msg);
-            leftArrow.gameObject.SetActive(false);
-            rightArrow.gameObject.SetActive(false);
+        }
+        if (levels[indexC] == null)
+        {
+            Debug.Log("NUUUUUUULLLLLL");
         }
     }
 
@@ -114,6 +119,7 @@ public class MapMenuLogic : MonoBehaviour
 
     private void InputLeft()
     {
+        Debug.Log("LEEEEEEFT");
         if (!firstIt && allDone)
         {
             allDone = false;
@@ -276,6 +282,8 @@ public class MapMenuLogic : MonoBehaviour
         {
             GameObject parent = new GameObject();
             MapContainer mcont = parent.AddComponent<MapContainer>();
+
+            parent.transform.position = placeableMap.transform.position;
             parent.name = System.Guid.NewGuid().ToString();
 
             yield return null;
@@ -286,14 +294,16 @@ public class MapMenuLogic : MonoBehaviour
 
             if (loadedLevels.ContainsKey(level))
             {
-                loadedLevels[level] = loadedLevel;
-                mcont.UpdateMapCenter();
-                mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
-                foreach(LevelObject ob in loadedLevel)
+               
+               
+                foreach(LevelObject lo in loadedLevel)
                 {
-                    ob.gameObject.SetActive(true);
+                    lo.gameObject.SetActive(true);
                 }
+                mcont.UpdateMapCenter();
                 parent.SetActive(false);
+                loadedLevels[level] = loadedLevel;
+
             }
             else
             {
