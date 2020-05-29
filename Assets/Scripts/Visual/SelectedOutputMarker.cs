@@ -1,18 +1,36 @@
-﻿using Academy.HoloToolkit.Unity;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectedOutputMarker : MonoBehaviour
 {
     private Vector3 mOffset;
     private float mZCoord;
-    [SerializeField] private Transform floor;
     [SerializeField] private GameObject sphere;
     [SerializeField] private RoadPlacementLogic RoadPlacementLogic;
     private bool placing = false;
+
+    private void Start()
+    {
+        EventAggregator.Instance.Subscribe<MsgSomethingTapped>(SomethingTapped);
+    }
+
+    //Para mejorar la usabilidad el gesto de tap sirve para parar la colocación del marcador
+    //aunque no se haya hecho tap sobre el mismo
+    private void SomethingTapped(MsgSomethingTapped msg)
+    {
+        if (placing)
+        {
+            placing = false;
+            tappedMsg = true;
+            FindAndSelectClosestIO();
+        }
+    }
+
+    private bool tappedMsg = false;
+
     private void OnSelect()
     {
-        if (!placing)
+        if (!placing && !tappedMsg)
         {
             Debug.Log(transform.position);
 
@@ -22,14 +40,17 @@ public class SelectedOutputMarker : MonoBehaviour
             sphere.SetActive(true);
             placing = true;
         }
+        else if (!placing && tappedMsg)
+        {
+            tappedMsg = false;
+        }
         else
         {
             placing = false;
             FindAndSelectClosestIO();
-
         }
-
     }
+
     private void Update()
     {
         if (placing)
@@ -37,20 +58,18 @@ public class SelectedOutputMarker : MonoBehaviour
             OnMouseDrag();
         }
     }
+
     private void OnMouseDrag()
     {
         transform.position = GetMouseWorldPos() + mOffset;
 
-        if (floor != null)
-        {
-            if (transform.position.y < floor.position.y)
-            {
-                transform.position = new Vector3(transform.position.x, floor.position.y, transform.position.z);
-            }
+        /* if (transform.position.y < 0)
+         {
+             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+         }*/
 
-            //OPTIMIZAR
-            sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
-        }
+        //OPTIMIZAR
+        sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
     }
 
     private Vector3 GetMouseWorldPos()
@@ -77,7 +96,7 @@ public class SelectedOutputMarker : MonoBehaviour
             RoadIO closests = SearchClosestsIO(pivotIO);
             if (closests != null)
             {
-                RoadPlacementLogic.SelectedIO=closests;
+                RoadPlacementLogic.SelectedIO = closests;
                 gameObject.transform.position = closests.transform.position;
                 sphere.SetActive(false);
                 /*if(closests is RoadInput)
@@ -155,7 +174,4 @@ public class SelectedOutputMarker : MonoBehaviour
         }
         return null;
     }
-
-    
-
 }

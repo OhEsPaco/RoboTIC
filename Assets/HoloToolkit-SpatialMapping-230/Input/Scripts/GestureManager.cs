@@ -35,7 +35,7 @@ namespace Academy.HoloToolkit.Unity
         private GestureRecognizer gestureRecognizer;
         private GameObject focusedObject;
 
-        void Start()
+        private void Start()
         {
             // Create a new GestureRecognizer. Sign up for tapped events.
             gestureRecognizer = new GestureRecognizer();
@@ -49,6 +49,7 @@ namespace Academy.HoloToolkit.Unity
 
         private void GestureRecognizer_Tapped(TappedEventArgs args)
         {
+            EventAggregator.Instance.Publish<MsgSomethingTapped>(new MsgSomethingTapped());
             if (focusedObject != null)
             {
                 Debug.Log(focusedObject.name);
@@ -56,7 +57,7 @@ namespace Academy.HoloToolkit.Unity
             }
         }
 
-        void LateUpdate()
+        private void LateUpdate()
         {
             GameObject oldFocusedObject = focusedObject;
 
@@ -83,7 +84,7 @@ namespace Academy.HoloToolkit.Unity
             }
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             gestureRecognizer.StopCapturingGestures();
             gestureRecognizer.Tapped -= GestureRecognizer_Tapped;

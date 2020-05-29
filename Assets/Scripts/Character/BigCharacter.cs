@@ -11,7 +11,7 @@ public class BigCharacter : Character
     /// <summary>
     /// Velocidad a la que van las acciones
     /// </summary>
-    public float actionSpeed = 1f;
+    public float actionSpeed = 0.5f;
 
     /// <summary>
     /// Porcentaje de la altura del salto hacia arriba respecto a la del bloque
@@ -68,6 +68,7 @@ public class BigCharacter : Character
         msgWar = new MessageWarehouse(EventAggregator.Instance);
     }
 
+    
     /// <summary>
     /// Inicializacion de variables
     /// </summary>
@@ -97,6 +98,7 @@ public class BigCharacter : Character
             gameObject.transform.parent = msg.NewParent;
         }
         gameObject.transform.position = msg.Position;
+        gameObject.transform.rotation = new Quaternion();
         gameObject.transform.Rotate(msg.Rotation);
         EventAggregator.Instance.Publish(new ResponseWrapper<MsgPlaceCharacter, GameObject>(msg, this.gameObject));
     }

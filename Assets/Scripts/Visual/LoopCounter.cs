@@ -9,6 +9,7 @@ public class LoopCounter : MonoBehaviour
     private int actualNumber;
     private bool locked = false;
     public bool Locked { get { return locked; } }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -41,20 +42,26 @@ public class LoopCounter : MonoBehaviour
         return numberAux;
     }
 
+    public void OnSelect()
+    {
+        if (!locked)
+        {
+            SetNumber(actualNumber + 1);
+        }
+    }
+
     private void OnMouseDown()
     {
         if (!locked)
         {
             SetNumber(actualNumber + 1);
         }
-        
     }
 
     public int ActualNumber()
     {
         return actualNumber;
     }
-
 
     public void Lock()
     {

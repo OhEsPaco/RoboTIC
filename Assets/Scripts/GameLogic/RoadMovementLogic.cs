@@ -27,8 +27,8 @@ public class RoadMovementLogic : MonoBehaviour
     private void Start()
     {
         //Hacemos que el robot sea hijo de este objeto y lo marcamos como inactivo
-        player.transform.parent = transform;
-        player.gameObject.SetActive(false);
+        //player.transform.parent = transform;
+        //player.gameObject.SetActive(false);
     }
 
     private void Awake()

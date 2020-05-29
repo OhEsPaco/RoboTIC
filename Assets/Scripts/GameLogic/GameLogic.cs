@@ -220,12 +220,10 @@ public class GameLogic : MonoBehaviour
             {
                 objectReferences = loadedLevel;
             }
-
+            Debug.LogError("Player orientation: "+currentLevelData.playerOrientation);
             Vector3 playerPos;
             //Podria dar fallo si el personaje esta mal colocado
             GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
-            //Lo ponemos en una posicion falsa para que no se vea de momento
-            //Esto es asi para que cambie el padre mientras se carga el mapa y ahorremos tiempo
             MsgPlaceCharacter msgLld = new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0), parent.transform);
             msgWar.PublishMsgAndWaitForResponse<MsgPlaceCharacter, GameObject>(msgLld);
             GameObject bigCharater = null;

@@ -53,6 +53,7 @@ public class RoadPlacementLogic : MonoBehaviour
         this.selectedIO = roadStart.GetRoadIOByDirection(IODirection.Forward)[0];
 
         selectedOutputMarker.transform.position = this.selectedIO.transform.position;
+        minibot.transform.parent = roadParent;
         minibot.transform.position = firstInput.transform.position;
         minibot.gameObject.SetActive(true);
         //Llenar el diccionario de funciones
