@@ -220,7 +220,7 @@ public class GameLogic : MonoBehaviour
             {
                 objectReferences = loadedLevel;
             }
-            Debug.LogError("Player orientation: "+currentLevelData.playerOrientation);
+            Debug.LogError("Player orientation: " + currentLevelData.playerOrientation);
             Vector3 playerPos;
             //Podria dar fallo si el personaje esta mal colocado
             GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
@@ -628,6 +628,22 @@ public class GameLogic : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public bool CheckNextBlockUpProperty(BlockProperties property)
+    {
+       
+        List<int> nextBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
+
+        return CheckBlockProperty(nextBlock[0], nextBlock[1], nextBlock[2], currentLevelData, property);
+    }
+
+    public bool CheckNextBlockDownProperty(BlockProperties property)
+    {
+        //-1 a la y para mirar el que va a pisar el robot
+        List<int> nextBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
+
+        return CheckBlockProperty(nextBlock[0], nextBlock[1] - 1, nextBlock[2], currentLevelData, property);
     }
 
     private bool CheckBlockProperty(int x, int y, int z, LevelData data, BlockProperties property)

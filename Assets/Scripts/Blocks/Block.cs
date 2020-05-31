@@ -23,7 +23,10 @@ public class Block : LevelObject
         Immaterial,
         Walkable,
         Dangerous,
-        Icy
+        Icy,
+        Destructible,
+        Usable,
+        Freezable
     }
 
     public override string ToString { get => blockType.ToString() + " block"; }

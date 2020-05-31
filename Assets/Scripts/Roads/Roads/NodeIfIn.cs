@@ -4,7 +4,8 @@ using static PathContainer;
 public class NodeIfIn : Road
 {
     [SerializeField] private RoadInput inputIf;
-    [SerializeField] private CardPicker cPicker;
+    [SerializeField] private ConditionCardPicker cPicker;
+    [SerializeField] private GameLogic gameLogic;
 
     public override void ExecuteAction(in string[] args)
     {
@@ -54,6 +55,6 @@ public class NodeIfIn : Road
     private bool IsConditionMet()
     {
         //Comunicarse con la logica
-        return true;
+        return gameLogic.CheckNextBlockDownProperty(cPicker.GetCardProperty());
     }
 }
