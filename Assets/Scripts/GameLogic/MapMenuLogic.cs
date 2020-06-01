@@ -273,7 +273,7 @@ public class MapMenuLogic : MonoBehaviour
     {
         // eventAggregator.Publish(new ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>(msg, objectReferences));
 
-        MsgRenderMapAndItems msg = new MsgRenderMapAndItems(level.mapAndItems, level.levelSize);
+        MsgRenderMapAndItems msg = new MsgRenderMapAndItems(level.mapAndItems, level.levelSize, level.goal);
         LevelObject[] loadedLevel = null;
         msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msg);
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msg, out loadedLevel));
@@ -294,16 +294,13 @@ public class MapMenuLogic : MonoBehaviour
 
             if (loadedLevels.ContainsKey(level))
             {
-               
-               
-                foreach(LevelObject lo in loadedLevel)
+                foreach (LevelObject lo in loadedLevel)
                 {
                     lo.gameObject.SetActive(true);
                 }
                 mcont.UpdateMapCenter();
                 parent.SetActive(false);
                 loadedLevels[level] = loadedLevel;
-
             }
             else
             {

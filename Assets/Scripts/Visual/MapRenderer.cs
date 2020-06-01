@@ -10,12 +10,30 @@ public class MapRenderer : MonoBehaviour
     private LevelObjects levelObjects;
     public float BlockLength { get => blockLength; }
 
+    private static MapRenderer mapRenderer;
+
+    public static MapRenderer Instance
+    {
+        get
+        {
+            if (!mapRenderer)
+            {
+                mapRenderer = FindObjectOfType(typeof(MapRenderer)) as MapRenderer;
+
+                if (!mapRenderer)
+                {
+                    Debug.LogError("There needs to be one active MapRenderer script on a GameObject in your scene.");
+                }
+            }
+
+            return mapRenderer;
+        }
+    }
+
     private void Awake()
     {
         eventAggregator.Subscribe<MsgRenderMapAndItems>(RenderMapAndItems);
-        eventAggregator.Subscribe<MsgRenderScenery>(RenderScenery);
         eventAggregator.Subscribe<MsgBlockLength>(ServeBlockLength);
-        eventAggregator.Subscribe<MsgRenderBlock>(RenderBlock);
         levelObjects = GetComponentInChildren<LevelObjects>();
     }
 
@@ -51,6 +69,19 @@ public class MapRenderer : MonoBehaviour
                     posNew.z = gameObject.transform.position.z + z * blockLength;
                     block.transform.position = posNew;
                     block.transform.parent = gameObject.transform;
+
+                    if (x + 1 == msg.Goal[0]  && y + 1 == msg.Goal[1] - 1 && z + 1 == msg.Goal[2]+1)
+                    {
+                        Debug.LogError("HOOOLA");
+                        LevelObject flag = levelObjects.GetGameObjectInstance((int)Items.FlagItem);
+                        Vector3 posFlag;
+                        posFlag.x = gameObject.transform.position.x + msg.Goal[0] * blockLength;
+                        posFlag.y = gameObject.transform.position.y + msg.Goal[1] * blockLength;
+                        posFlag.z = gameObject.transform.position.z + msg.Goal[2] * blockLength;
+                        flag.transform.position = posFlag;
+                        flag.transform.parent = block.transform;
+                    }
+
                     block.gameObject.SetActive(false);
                 }
                 yield return null;
@@ -60,30 +91,11 @@ public class MapRenderer : MonoBehaviour
         eventAggregator.Publish(new ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>(msg, objectReferences));
     }
 
-    private void RenderBlock(MsgRenderBlock msg)
+    public LevelObject SpawnBlock(int blockToSpawn)
     {
-        LevelObject block = levelObjects.GetGameObjectInstance(msg.blockToSpawn);
-        msg.objectReferences[msg.x + msg.z * msg.levelSize[0] + msg.y * (msg.levelSize[0] * msg.levelSize[2])] = block;
-        Vector3 posNew;
-        posNew.x = gameObject.transform.position.x + msg.x * blockLength;
-        posNew.y = gameObject.transform.position.y + msg.y * blockLength;
-        posNew.z = gameObject.transform.position.z + msg.z * blockLength;
-        block.transform.position = posNew;
-        block.transform.parent = gameObject.transform;
-        block.gameObject.SetActive(msg.active);
+        LevelObject block = levelObjects.GetGameObjectInstance(blockToSpawn);
 
-        eventAggregator.Publish<ResponseWrapper<MsgRenderBlock, LevelObject>>(new ResponseWrapper<MsgRenderBlock, LevelObject>(msg, block));
-    }
-
-    private void RenderScenery(MsgRenderScenery msg)
-    {
-        LevelObject flag = levelObjects.GetGameObjectInstance((int)Items.FlagItem);
-        Vector3 posFlag;
-        posFlag.x = gameObject.transform.position.x + msg.Goal[0] * blockLength;
-        posFlag.y = gameObject.transform.position.y + msg.Goal[1] * blockLength;
-        posFlag.z = gameObject.transform.position.z + msg.Goal[2] * blockLength;
-        flag.transform.position = posFlag;
-        flag.transform.parent = gameObject.transform;
+        return block;
     }
 
     private int Get(in List<int> mapAndItems, in List<int> levelSize, in int x, in int y, in int z)

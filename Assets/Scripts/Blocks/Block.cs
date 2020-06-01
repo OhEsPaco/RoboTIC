@@ -108,6 +108,15 @@ public class Block : LevelObject
 
     public override void Destroy()
     {
+        BlockExploder b = GetComponent<BlockExploder>();
+        if (b != null)
+        {
+            b.Explode();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public override void Place()

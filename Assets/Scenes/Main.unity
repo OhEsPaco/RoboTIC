@@ -11645,7 +11645,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placeableMap: {fileID: 14435332}
-  initialCapacityOfTheInputBuffer: 20
   maxFallHeightOfCharactersInBlocks: 1
 --- !u!1 &2510474422366945427
 GameObject:
@@ -12775,6 +12774,7 @@ GameObject:
   - component: {fileID: 4813218491938391596}
   - component: {fileID: 4813218491938391599}
   - component: {fileID: 4813218491938391594}
+  - component: {fileID: 4813218491938391600}
   m_Layer: 12
   m_Name: Ice
   m_TagString: Untagged
@@ -12819,6 +12819,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4813218491938391600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813218491938391598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0257ebf2b82ba24192ace33f549c89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 2
+  particleDuration: 1
+  explosionForce: 50
+  explosionRadius: 4
+  explosionUpward: 0.4
+  mass: 0.1
+  particleMaterial: {fileID: 0}
 --- !u!4 &4813218491960868070
 Transform:
   m_ObjectHideFlags: 0
@@ -13650,11 +13670,11 @@ MonoBehaviour:
   animator: {fileID: 7207478224074723717}
   inventoryMarker: {fileID: 4813218493938138016}
   itemScale: {x: 0.3, y: 0.3, z: 0.3}
-  actionSpeed: 2
+  actionSpeed: 0.5
   jumpPct: 1
   descendJumpPct: 0.3
   takeOff: 0.8
-  rotationTime: 1
+  rotationTime: 0.5
   initialActionCapacity: 20
 --- !u!65 &4813218492929956401
 BoxCollider:
@@ -13790,6 +13810,7 @@ GameObject:
   - component: {fileID: 4813218492963122487}
   - component: {fileID: 4813218492963122486}
   - component: {fileID: 4813218492963122485}
+  - component: {fileID: 4813218492963122490}
   m_Layer: 12
   m_Name: Spikes
   m_TagString: Untagged
@@ -13797,6 +13818,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4813218492963122490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813218492963122489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0257ebf2b82ba24192ace33f549c89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 2
+  particleDuration: 1
+  explosionForce: 50
+  explosionRadius: 4
+  explosionUpward: 0.4
+  mass: 0.1
+  particleMaterial: {fileID: 0}
 --- !u!1 &4813218493056857432
 GameObject:
   m_ObjectHideFlags: 0
@@ -13940,6 +13981,7 @@ GameObject:
   - component: {fileID: 4813218493240455578}
   - component: {fileID: 4813218493240455581}
   - component: {fileID: 4813218493240455576}
+  - component: {fileID: 4813218493240455583}
   - component: {fileID: 4813218493240455582}
   m_Layer: 12
   m_Name: Lift
@@ -14004,6 +14046,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4813218493240455583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813218493240455580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0257ebf2b82ba24192ace33f549c89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 5
+  particleDuration: 1
+  explosionForce: 50
+  explosionRadius: 4
+  explosionUpward: 0.4
+  mass: 0.1
+  particleMaterial: {fileID: 0}
 --- !u!114 &4813218493285764246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14514,6 +14576,7 @@ GameObject:
   - component: {fileID: 4813218493719481308}
   - component: {fileID: 4813218493719481311}
   - component: {fileID: 4813218493719481306}
+  - component: {fileID: 4813218493719481312}
   m_Layer: 12
   m_Name: Solid
   m_TagString: Untagged
@@ -14558,6 +14621,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4813218493719481312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813218493719481310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0257ebf2b82ba24192ace33f549c89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeSize: 0.2
+  cubesInRow: 5
+  particleDuration: 1
+  explosionForce: 50
+  explosionRadius: 4
+  explosionUpward: 0.4
+  mass: 0.1
+  particleMaterial: {fileID: 0}
 --- !u!1 &4813218493779417038
 GameObject:
   m_ObjectHideFlags: 0
@@ -20374,7 +20457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connector: 0
   inputIf: {fileID: 7444775031474644016}
-  cPicker: {fileID: 0}
+  cPicker: {fileID: 5391588250630015186}
   gameLogic: {fileID: 2510474422366945425}
 --- !u!1 &7444775031474644246
 GameObject:
@@ -21212,7 +21295,7 @@ GameObject:
   - component: {fileID: 9002325527872710009}
   - component: {fileID: 9002325527872710015}
   m_Layer: 0
-  m_Name: RoadPlacement
+  m_Name: RoadPlacementLogic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21235,7 +21318,6 @@ MonoBehaviour:
   roadParent: {fileID: 9002325528025176966}
   roadStart: {fileID: 9002325528679873488}
   minibot: {fileID: 4813218493544357331}
-  initialCapacityOfTheInputBuffer: 20
   placeableMap: {fileID: 14435332}
 --- !u!23 &9002325527876167440
 MeshRenderer:

@@ -68,7 +68,6 @@ public class BigCharacter : Character
         msgWar = new MessageWarehouse(EventAggregator.Instance);
     }
 
-    
     /// <summary>
     /// Inicializacion de variables
     /// </summary>
@@ -92,7 +91,6 @@ public class BigCharacter : Character
 
     private void PlaceCharacter(MsgPlaceCharacter msg)
     {
-
         if (msg.NewParent != null)
         {
             gameObject.transform.parent = msg.NewParent;
@@ -222,6 +220,7 @@ public class BigCharacter : Character
                 item.transform.parent = blockParent;
             }
         }
+
         item.transform.localScale = new Vector3(1, 1, 1);
         item.transform.position = posNew;
         item.Use();

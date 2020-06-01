@@ -21,16 +21,6 @@ public class GameLogic : MonoBehaviour
     private LevelObject[] objectReferences;
 
     /// <summary>
-    /// Defines the buttonInputList
-    /// </summary>
-    private List<Buttons> buttonInputBuffer;
-
-    /// <summary>
-    /// Defines the initialInputCapacity
-    /// </summary>
-    public int initialCapacityOfTheInputBuffer = 20;
-
-    /// <summary>
     /// Gets the LevelData
     /// </summary>
     public LevelData CurrentLevelData { get => currentLevelData; }
@@ -71,9 +61,28 @@ public class GameLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.TurnLeft, DoTurnLeft);
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
 
-        buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
         EventAggregator.Instance.Subscribe<MsgStartLevel>(StartLevel);
         // StartCoroutine(LoadSceneCrt(false));
+    }
+
+    private static GameLogic gameLogic;
+
+    public static GameLogic Instance
+    {
+        get
+        {
+            if (!gameLogic)
+            {
+                gameLogic = FindObjectOfType(typeof(GameLogic)) as GameLogic;
+
+                if (!gameLogic)
+                {
+                    Debug.LogError("There needs to be one active GameLogic script on a GameObject in your scene.");
+                }
+            }
+
+            return gameLogic;
+        }
     }
 
     private void StartLevel(MsgStartLevel msg)
@@ -83,7 +92,7 @@ public class GameLogic : MonoBehaviour
         if (msg.levelData != null && msg.levelObjects != null)
         {
             placeableMap.GetComponent<MapController>().EnableGameControls();
-            buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
+
             inventory = new Stack<Item>();
             haltExecution = false;
             clonedLevelData = msg.levelData.Clone();
@@ -139,7 +148,6 @@ public class GameLogic : MonoBehaviour
     internal void Awake()
     {
         msgWar = new MessageWarehouse(EventAggregator.Instance);
-        EventAggregator.Instance.Subscribe<MsgAddInputFromButton>(AddInputFromButton);
     }
 
     // Update is called once per frame
@@ -150,8 +158,6 @@ public class GameLogic : MonoBehaviour
     {
         if (!loading)
         {
-            ExecuteNextAvailableInput();
-
             if (!haltExecution)
             {
                 if (CheckWinState())
@@ -174,8 +180,6 @@ public class GameLogic : MonoBehaviour
          }*/
         //Tomamos el padre
         GameObject parent = mapParent;
-        //Reseteamos el input buffer
-        buttonInputBuffer = new List<Buttons>(initialCapacityOfTheInputBuffer);
         //Reseteamos el inventario
         inventory = new Stack<Item>();
 
@@ -183,7 +187,7 @@ public class GameLogic : MonoBehaviour
         currentLevelData = clonedLevelData.Clone();
 
         //Pedimos que se renderice el nivel
-        MsgRenderMapAndItems msg = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
+        MsgRenderMapAndItems msg = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize, currentLevelData.goal);
         LevelObject[] loadedLevel = null;
         msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msg);
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msg, out loadedLevel));
@@ -266,33 +270,9 @@ public class GameLogic : MonoBehaviour
                         {
                             yield return null;
                         }
-                        /*try
-                        {
-                            Destroy(GetBlock(currentLevelData, objectReferences, currentLevelData.levelSize[0] - x - 1, currentLevelData.levelSize[1] - y - 1, currentLevelData.levelSize[2] - z - 1).gameObject);
-                        }
-                        catch
-                        {
-                            //Do nothing
-                        }*/
                     }
                 }
             }
-
-            /* while (toDestroy < objectReferences.Length || toActivate >= 0)
-             {
-                 if (toActivate >= 0)
-                 {
-                     loadedLevel[toActivate].gameObject.SetActive(true);
-                 }
-
-                 if (toDestroy < objectReferences.Length)
-                 {
-                     Destroy(objectReferences[toDestroy].gameObject);
-                 }
-                 toActivate--;
-                 toDestroy++;
-                 yield return null;
-             }*/
 
             objectReferences = loadedLevel;
         }
@@ -348,37 +328,32 @@ public class GameLogic : MonoBehaviour
      }*/
 
     /// <summary>
-    /// The ExecuteNextInput
-    /// </summary>
-    private void ExecuteNextAvailableInput()
-    {
-        if (buttonInputBuffer.Count > 0)
-        {
-            Buttons buttonPressed = buttonInputBuffer[0];
-            buttonInputBuffer.RemoveAt(0);
-            buttonActionsDictionary[buttonPressed]();
-        }
-    }
-
-    /// <summary>
     /// The ButtonInput
     /// </summary>
     /// <param name="buttonIndex">The buttonIndex<see cref="int"/></param>
-    private void AddInputFromButton(MsgAddInputFromButton msg)
+    public void AddInputFromButton(Buttons button)
     {
+        Debug.LogError(button);
         if (!haltExecution)
         {
-            if (msg.button == Buttons.Restart)
+            try
             {
-                StartCoroutine(RenderALevel(false));
+                if (button == Buttons.Restart)
+                {
+                    StartCoroutine(RenderALevel(false));
+                }
+                else if (button == Buttons.MapMenu)
+                {
+                    StartCoroutine(RenderALevel(true));
+                }
+                else
+                {
+                    buttonActionsDictionary[button]();
+                }
             }
-            else if (msg.button == Buttons.MapMenu)
+            catch
             {
-                StartCoroutine(RenderALevel(true));
-            }
-            else
-            {
-                buttonInputBuffer.Add(msg.button);
+                Debug.LogError("Unknown input: " + button.ToString());
             }
         }
     }
@@ -420,7 +395,37 @@ public class GameLogic : MonoBehaviour
                     //Si es compatible ejecutamos las acciones necesarias
                     if (compatible)
                     {
-                        StartCoroutine(ActionCrt(reaction, frontBlock, x, y, z, itemPos, item));
+                        if (reaction.newProperties.Length != 0)
+                        {
+                            frontBlock._BlockProperties = reaction.newProperties;
+                        }
+                        LevelObject spawnedGameObject = null;
+                        //LevelObject oldGameObject = null;
+                        if (reaction.replaceBlock)
+                        {
+                            LevelObject spawnedObject = MapRenderer.Instance.SpawnBlock((int)reaction.block);
+                            spawnedObject.gameObject.transform.parent = frontBlock.transform.parent;
+                            spawnedObject.gameObject.transform.position = frontBlock.transform.position;
+                            spawnedObject.gameObject.transform.rotation = frontBlock.transform.rotation;
+
+                            spawnedObject.gameObject.SetActive(false);
+                            /* if (GetBlock(currentLevelData, objectReferences, x, y, z) != null)
+                             {
+                                 //oldGameObject = GetBlock(currentLevelData, objectReferences, x, y, z);
+                             }*/
+
+                            objectReferences[x + z * currentLevelData.levelSize[0] + y * (currentLevelData.levelSize[0] * currentLevelData.levelSize[2])] = spawnedObject;
+                            if (spawnedObject != null)
+                            {
+                                spawnedGameObject = spawnedObject;
+                            }
+                            //  objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
+                            //MsgRenderBlock msg = new MsgRenderBlock(objectReferences, currentLevelData.levelSize, (int)reaction.block, x, y, z, false);
+                            //msgWar.PublishMsgAndWaitForResponse<MsgRenderBlock, LevelObject>(msg);
+                            // yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderBlock, LevelObject>(msg, out newlySpawnedObject));
+                        }
+                        EventAggregator.Instance.Publish(new MsgUseItem(frontBlock, reaction, spawnedGameObject, itemPos, item));
+
                         //Se ha podido usar el item
                         return true;
                     }
@@ -430,24 +435,6 @@ public class GameLogic : MonoBehaviour
 
         //No se ha podido usar el item
         return false;
-    }
-
-    private IEnumerator ActionCrt(EffectReaction reaction, Block frontBlock, int x, int y, int z, Vector3 itemPos, Item item)
-    {
-        LevelObject newlySpawnedObject = null;
-        if (reaction.newProperties.Length != 0)
-        {
-            frontBlock._BlockProperties = reaction.newProperties;
-        }
-
-        if (reaction.replaceBlock)
-        {
-            MsgRenderBlock msg = new MsgRenderBlock(objectReferences, currentLevelData.levelSize, (int)reaction.block, x, y, z, false);
-            msgWar.PublishMsgAndWaitForResponse<MsgRenderBlock, LevelObject>(msg);
-            yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderBlock, LevelObject>(msg, out newlySpawnedObject));
-        }
-
-        EventAggregator.Instance.Publish(new MsgUseItem(frontBlock, reaction, newlySpawnedObject, itemPos, item));
     }
 
     /// <summary>
@@ -632,7 +619,6 @@ public class GameLogic : MonoBehaviour
 
     public bool CheckNextBlockUpProperty(BlockProperties property)
     {
-       
         List<int> nextBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
 
         return CheckBlockProperty(nextBlock[0], nextBlock[1], nextBlock[2], currentLevelData, property);

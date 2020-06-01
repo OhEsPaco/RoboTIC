@@ -34,8 +34,8 @@ public class RoadButton : MonoBehaviour
         if (enable)
         {
             Debug.Log("Pressed " + buttonIndex.ToString("g"));
+            RoadPlacementLogic.Instance.AddInputFromButton(buttonIndex);
 
-            EventAggregator.Instance.Publish(new MsgAddInputFromButtonRoadPlacement(buttonIndex));
             if (mesh != null)
             {
                 if (anim.isPlaying)

@@ -11,11 +11,6 @@ public class VerticalButton : MonoBehaviour
     public bool Locked { get { return locked; } }
     public string ButtonName { get { return buttonName.ToString(); } }
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-    }
-
     private void Awake()
     {
         if (mesh != null)
@@ -24,17 +19,14 @@ public class VerticalButton : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Pressed " + buttonName);
+        //Quito el mensaje y lo cambio a una referencia directa ya que es muy importante que se ejecuten en
+        //el orden correcto
+        //EventAggregator.Instance.Publish(new MsgAddInputFromButton(buttonName));
+        GameLogic.Instance.AddInputFromButton(buttonName);
 
-        EventAggregator.Instance.Publish(new MsgAddInputFromButton(buttonName));
-        //Send message here
         if (mesh != null)
         {
             if (anim.isPlaying)
