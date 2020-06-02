@@ -65,6 +65,7 @@ public class BigCharacter : Character
         EventAggregator.Instance.Subscribe<MsgTakeItem>(TakeItem);
         EventAggregator.Instance.Subscribe<MsgBigRobotIdle>(IsRobotIdle);
         EventAggregator.Instance.Subscribe<MsgUseItem>(UseObject);
+        EventAggregator.Instance.Subscribe<MsgBigCharacterAllActionsFinished>(ServeAllActionsFinished);
         msgWar = new MessageWarehouse(EventAggregator.Instance);
     }
 
@@ -89,12 +90,24 @@ public class BigCharacter : Character
         loaded = true;
     }
 
+    private void ServeAllActionsFinished(MsgBigCharacterAllActionsFinished msg)
+    {
+        StartCoroutine(ServeAllActionsFinishedCrt(msg));
+    }
+
+    private IEnumerator ServeAllActionsFinishedCrt(MsgBigCharacterAllActionsFinished msg)
+    {
+        yield return new WaitUntil(() => AreAllActionsFinished());
+        EventAggregator.Instance.Publish(new ResponseWrapper<MsgBigCharacterAllActionsFinished, bool>(msg, true));
+    }
+
     private void PlaceCharacter(MsgPlaceCharacter msg)
     {
         if (msg.NewParent != null)
         {
             gameObject.transform.parent = msg.NewParent;
         }
+        gameObject.transform.position = new Vector3();
         gameObject.transform.position = msg.Position;
         gameObject.transform.rotation = new Quaternion();
         gameObject.transform.Rotate(msg.Rotation);
@@ -338,22 +351,16 @@ public class BigCharacter : Character
     private IEnumerator MoveCoroutine(float speed, Vector3 target)
     {
         NotifyStartOfAction();
-        //Se repiten el primer y ultimo punto ya que se usan para calcular angulos
-        Vector3[] track = new Vector3[4];
-        track[0] = transform.position;
-        track[1] = transform.position;
-        track[2] = target;
-        track[3] = target;
+        Vector3 startPos = transform.position;
+        float distance = Vector3.Distance(startPos, target);
 
-        LTSpline lTSpline = new LTSpline(track);
-
-        //El tiempo es la distancia dividida entre la velocidad
-        LTDescr ltDescr = LeanTween.moveSpline(gameObject, lTSpline, lTSpline.distance / speed).setOrientToPath(true).setEaseInOutSine();
-
-        while (LeanTween.isTweening(ltDescr.id))
+        for (float i = 0; i <= 1;)
         {
+            i += ((speed * Time.deltaTime) / distance);
+            transform.position = Vector3.Lerp(startPos, target, i);
             yield return null;
         }
+        transform.position = target;
 
         NotifyEndOfAction();
     }

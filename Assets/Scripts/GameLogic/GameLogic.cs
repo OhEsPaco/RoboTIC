@@ -42,6 +42,7 @@ public class GameLogic : MonoBehaviour
     private bool loading = true;
 
     private MessageWarehouse msgWar;
+    private GameObject bigCharater;
 
     // Start is called before the first frame update
     /// <summary>
@@ -100,7 +101,7 @@ public class GameLogic : MonoBehaviour
             // objectReferences = msg.levelObjects;
             mapParent = msg.levelObjects[0].gameObject.transform.parent.gameObject;
             StartCoroutine(RenderALevel(false));
-            loading = false;
+            //loading = false;
         }
     }
 
@@ -109,6 +110,7 @@ public class GameLogic : MonoBehaviour
     private bool GetBlockSurfacePoint(in int x, in int y, in int z, out Vector3 surfacePoint)
     {
         LevelObject rawObj = GetBlock(CurrentLevelData, objectReferences, x, y, z);
+
         if (rawObj != null)
         {
             if (rawObj is Block)
@@ -135,11 +137,16 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    private void YouWin()
+    private IEnumerator YouWin()
     {
         // mainCharacterAnimator.SetTrigger("HacerSaludo");
         haltExecution = true;
         Debug.Log("A winner is you");
+        MsgBigCharacterAllActionsFinished msg = new MsgBigCharacterAllActionsFinished();
+        msgWar.PublishMsgAndWaitForResponse<MsgBigCharacterAllActionsFinished, bool>(msg);
+        bool outTmp;
+        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBigCharacterAllActionsFinished, bool>(msg, out outTmp));
+        EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("win"));
     }
 
     /// <summary>
@@ -162,7 +169,7 @@ public class GameLogic : MonoBehaviour
             {
                 if (CheckWinState())
                 {
-                    YouWin();
+                    StartCoroutine(YouWin());
                 }
             }
         }
@@ -172,12 +179,15 @@ public class GameLogic : MonoBehaviour
     {
         this.loading = true;
         this.haltExecution = true;
-        // eventAggregator.Publish(new ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>(msg, objectReferences));
+        if (loadingMenu)
+        {
+            placeableMap.GetComponent<MapController>().EnableMenuControls();
+            if (bigCharater != null)
+            {
+                bigCharater.SetActive(false);
+            }
+        }
 
-        /*foreach (LevelObject l in objectReferences)
-         {
-             Destroy(l.gameObject);
-         }*/
         //Tomamos el padre
         GameObject parent = mapParent;
         //Reseteamos el inventario
@@ -211,29 +221,31 @@ public class GameLogic : MonoBehaviour
             {
                 obj.gameObject.transform.parent = parent.transform;
             }
+
             mcont.UpdateMapCenter();
             mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
-            if (objectReferences != null)
+            if (objectReferences != null && loadingMenu)
             {
                 foreach (LevelObject lo in objectReferences)
                 {
                     Destroy(lo.gameObject);
                 }
             }
-            else
-            {
-                objectReferences = loadedLevel;
-            }
-            Debug.LogError("Player orientation: " + currentLevelData.playerOrientation);
-            Vector3 playerPos;
-            //Podria dar fallo si el personaje esta mal colocado
-            GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
-            MsgPlaceCharacter msgLld = new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0), parent.transform);
-            msgWar.PublishMsgAndWaitForResponse<MsgPlaceCharacter, GameObject>(msgLld);
-            GameObject bigCharater = null;
-            yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgPlaceCharacter, GameObject>(msgLld, out bigCharater));
-            bigCharater.SetActive(false);
+            objectReferences = loadedLevel;
 
+            if (!loadingMenu)
+            {
+                Debug.LogError("Player orientation: " + currentLevelData.playerOrientation);
+                Vector3 playerPos;
+                //Podria dar fallo si el personaje esta mal colocado
+                GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
+
+                MsgPlaceCharacter msgLld = new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0), parent.transform);
+                msgWar.PublishMsgAndWaitForResponse<MsgPlaceCharacter, GameObject>(msgLld);
+                //bigCharater = null;
+                yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgPlaceCharacter, GameObject>(msgLld, out bigCharater));
+                bigCharater.SetActive(false);
+            }
             placeableMap.transform.position = lpos;
             placeableMap.transform.rotation = lrot;
 
@@ -245,10 +257,14 @@ public class GameLogic : MonoBehaviour
                     for (int z = 0; z < currentLevelData.levelSize[2]; z++)
                     {
                         doReturn = true;
-                        if (currentLevelData.playerPos[0] == x && currentLevelData.playerPos[1] - 1 == y && currentLevelData.playerPos[2] == z)
+                        if (!loadingMenu)
                         {
-                            bigCharater.SetActive(true);
+                            if (currentLevelData.playerPos[0] == x && currentLevelData.playerPos[1] - 1 == y && currentLevelData.playerPos[2] == z)
+                            {
+                                bigCharater.SetActive(true);
+                            }
                         }
+
                         try
                         {
                             LevelObject lOb = GetBlock(currentLevelData, loadedLevel, x, y, z);
@@ -276,10 +292,7 @@ public class GameLogic : MonoBehaviour
 
             objectReferences = loadedLevel;
         }
-        if (loadingMenu)
-        {
-            placeableMap.GetComponent<MapController>().EnableMenuControls();
-        }
+
         haltExecution = false;
         this.loading = false;
     }
