@@ -1,11 +1,13 @@
-﻿public class MsgStartLevel
+﻿using UnityEngine;
+
+public class MsgStartLevel
 {
     public LevelData levelData;
-    public LevelObject[] levelObjects;
+    public GameObject mapParent;
 
-    public MsgStartLevel(LevelData levelData, LevelObject[] levelObjects)
+    public MsgStartLevel(LevelData levelData, GameObject mapParent)
     {
         this.levelData = levelData;
-        this.levelObjects = levelObjects;
+        this.mapParent = mapParent;
     }
 }

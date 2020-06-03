@@ -750,7 +750,6 @@ public class RoadPlacementLogic : MonoBehaviour
         if (selectedIO != null)
         {
             EventAggregator.Instance.Publish(new MsgDisableAllButtons());
-            EventAggregator.Instance.Publish(new MsgEnableButton(Buttons.Restart));
 
             List<Road> allRoads = new List<Road>();
             Stack<Road> roadsToProccess = new Stack<Road>();
@@ -910,6 +909,7 @@ public class RoadPlacementLogic : MonoBehaviour
         selectedOutputMarker.transform.position = this.selectedIO.transform.position;
         selectedOutputMarker.gameObject.SetActive(true);
         minibot.transform.position = firstInput.transform.position;
+        minibot.transform.rotation = new Quaternion();
         minibot.gameObject.SetActive(true);
     }
 

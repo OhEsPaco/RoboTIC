@@ -62,7 +62,6 @@ public class GameLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.TurnLeft, DoTurnLeft);
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
 
-        EventAggregator.Instance.Subscribe<MsgStartLevel>(StartLevel);
         // StartCoroutine(LoadSceneCrt(false));
     }
 
@@ -86,23 +85,21 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    private void StartLevel(MsgStartLevel msg)
+    public void StartLevel(LevelData levelData, GameObject mapParent)
     {
         this.loading = true;
         this.haltExecution = true;
-        if (msg.levelData != null && msg.levelObjects != null)
-        {
-            placeableMap.GetComponent<MapController>().EnableGameControls();
 
-            inventory = new Stack<Item>();
-            haltExecution = false;
-            clonedLevelData = msg.levelData.Clone();
-            currentLevelData = msg.levelData.Clone();
-            // objectReferences = msg.levelObjects;
-            mapParent = msg.levelObjects[0].gameObject.transform.parent.gameObject;
-            StartCoroutine(RenderALevel(false));
-            //loading = false;
-        }
+        placeableMap.GetComponent<MapController>().EnableGameControls();
+
+        inventory = new Stack<Item>();
+        haltExecution = false;
+        clonedLevelData = levelData.Clone();
+        currentLevelData = levelData.Clone();
+        // objectReferences = msg.levelObjects;
+        this.mapParent = mapParent;
+        StartCoroutine(RenderALevel());
+        //loading = false;
     }
 
     private GameObject mapParent;
@@ -175,21 +172,11 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    private IEnumerator RenderALevel(bool loadingMenu)
+    private IEnumerator RenderALevel()
     {
         this.loading = true;
         this.haltExecution = true;
-        if (loadingMenu)
-        {
-            placeableMap.GetComponent<MapController>().EnableMenuControls();
-            if (bigCharater != null)
-            {
-                bigCharater.SetActive(false);
-            }
-        }
 
-        //Tomamos el padre
-        GameObject parent = mapParent;
         //Reseteamos el inventario
         inventory = new Stack<Item>();
 
@@ -206,7 +193,7 @@ public class GameLogic : MonoBehaviour
         {
             //Ponemos el numero de instrucciones en los botones
             EventAggregator.Instance.Publish<MsgSetAvInstructions>(new MsgSetAvInstructions(currentLevelData.availableInstructions));
-            MapContainer mcont = parent.GetComponent<MapContainer>();
+            MapContainer mcont = mapParent.GetComponent<MapContainer>();
 
             Vector3 lpos = placeableMap.transform.position;
             Quaternion lrot = placeableMap.transform.rotation;
@@ -214,38 +201,29 @@ public class GameLogic : MonoBehaviour
             placeableMap.transform.position = new Vector3();
             placeableMap.transform.rotation = new Quaternion();
 
-            parent.transform.position = new Vector3();
-            parent.transform.rotation = new Quaternion();
+            mapParent.transform.position = new Vector3();
+            mapParent.transform.rotation = new Quaternion();
 
             foreach (LevelObject obj in loadedLevel)
             {
-                obj.gameObject.transform.parent = parent.transform;
+                obj.gameObject.transform.parent = mapParent.transform;
             }
 
             mcont.UpdateMapCenter();
             mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
-            if (objectReferences != null && loadingMenu)
-            {
-                foreach (LevelObject lo in objectReferences)
-                {
-                    Destroy(lo.gameObject);
-                }
-            }
             objectReferences = loadedLevel;
 
-            if (!loadingMenu)
-            {
-                Debug.LogError("Player orientation: " + currentLevelData.playerOrientation);
-                Vector3 playerPos;
-                //Podria dar fallo si el personaje esta mal colocado
-                GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
+            Debug.LogError("Player orientation: " + currentLevelData.playerOrientation);
+            Vector3 playerPos;
+            //Podria dar fallo si el personaje esta mal colocado
+            GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
 
-                MsgPlaceCharacter msgLld = new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0), parent.transform);
-                msgWar.PublishMsgAndWaitForResponse<MsgPlaceCharacter, GameObject>(msgLld);
-                //bigCharater = null;
-                yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgPlaceCharacter, GameObject>(msgLld, out bigCharater));
-                bigCharater.SetActive(false);
-            }
+            MsgPlaceCharacter msgLld = new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0), mapParent.transform);
+            msgWar.PublishMsgAndWaitForResponse<MsgPlaceCharacter, GameObject>(msgLld);
+            //bigCharater = null;
+            yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgPlaceCharacter, GameObject>(msgLld, out bigCharater));
+            bigCharater.SetActive(false);
+
             placeableMap.transform.position = lpos;
             placeableMap.transform.rotation = lrot;
 
@@ -257,12 +235,10 @@ public class GameLogic : MonoBehaviour
                     for (int z = 0; z < currentLevelData.levelSize[2]; z++)
                     {
                         doReturn = true;
-                        if (!loadingMenu)
+
+                        if (currentLevelData.playerPos[0] == x && currentLevelData.playerPos[1] - 1 == y && currentLevelData.playerPos[2] == z)
                         {
-                            if (currentLevelData.playerPos[0] == x && currentLevelData.playerPos[1] - 1 == y && currentLevelData.playerPos[2] == z)
-                            {
-                                bigCharater.SetActive(true);
-                            }
+                            bigCharater.SetActive(true);
                         }
 
                         try
@@ -351,13 +327,9 @@ public class GameLogic : MonoBehaviour
         {
             try
             {
-                if (button == Buttons.Restart)
+                if (button == Buttons.MapMenu)
                 {
-                    StartCoroutine(RenderALevel(false));
-                }
-                else if (button == Buttons.MapMenu)
-                {
-                    StartCoroutine(RenderALevel(true));
+                    GoToMapMenu();
                 }
                 else
                 {
@@ -368,6 +340,34 @@ public class GameLogic : MonoBehaviour
             {
                 Debug.LogError("Unknown input: " + button.ToString());
             }
+        }
+    }
+
+    private void GoToMapMenu()
+    {
+        bigCharater.SetActive(false);
+        currentLevelData = null;
+        clonedLevelData = null;
+        if (objectReferences != null)
+        {
+            StartCoroutine(DestroyLevelObjectsOnBackground((LevelObject[])objectReferences.Clone()));
+            objectReferences = null;
+        }
+        MapMenuLogic.Instance.RevertToMapMenu();
+    }
+
+    private IEnumerator DestroyLevelObjectsOnBackground(LevelObject[] levelObjects)
+    {
+        foreach (LevelObject l in levelObjects)
+        {
+            l.gameObject.SetActive(false);
+        }
+
+        yield return null;
+        foreach (LevelObject l in levelObjects)
+        {
+            Destroy(l.gameObject);
+            yield return null;
         }
     }
 
@@ -800,7 +800,15 @@ public class GameLogic : MonoBehaviour
     /// </summary>
     private void DoRestart()
     {
-        StartCoroutine(RenderALevel(false));
+        currentLevelData = clonedLevelData.Clone();
+        bigCharater.SetActive(false);
+        if (objectReferences != null)
+        {
+            StartCoroutine(DestroyLevelObjectsOnBackground((LevelObject[])objectReferences.Clone()));
+            objectReferences = null;
+        }
+
+        StartCoroutine(RenderALevel());
     }
 
     /// <summary>

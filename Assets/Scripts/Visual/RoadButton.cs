@@ -5,6 +5,7 @@ public class RoadButton : MonoBehaviour
 {
     [SerializeField] private Buttons buttonIndex = Buttons.Undefined;
     [SerializeField] private AudioClip buttonClick;
+    [SerializeField] private bool allwaysActive = false;
     private EventAggregator eventAggregator;
 
     public GameObject mesh;
@@ -31,7 +32,7 @@ public class RoadButton : MonoBehaviour
 
     public void OnSelect()
     {
-        if (enable)
+        if (enable || allwaysActive)
         {
             Debug.Log("Pressed " + buttonIndex.ToString("g"));
             RoadPlacementLogic.Instance.AddInputFromButton(buttonIndex);

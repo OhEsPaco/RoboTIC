@@ -25,6 +25,26 @@ public class MapMenuLogic : MonoBehaviour
     [Range(0f, 5000f)]
     public float speed = 1f;
 
+    private static MapMenuLogic mapMenuLogic;
+
+    public static MapMenuLogic Instance
+    {
+        get
+        {
+            if (!mapMenuLogic)
+            {
+                mapMenuLogic = FindObjectOfType(typeof(MapMenuLogic)) as MapMenuLogic;
+
+                if (!mapMenuLogic)
+                {
+                    Debug.LogError("There needs to be one active MapMenuLogic script on a GameObject in your scene.");
+                }
+            }
+
+            return mapMenuLogic;
+        }
+    }
+
     private void Start()
     {
         placeableMap.GetComponent<MapController>().EnableMenuControls();
@@ -94,17 +114,25 @@ public class MapMenuLogic : MonoBehaviour
         {
             Debug.Log("User clicked");
             LevelData centerObj = levels[indexC];
-            MsgStartLevel msg = new MsgStartLevel(centerObj, loadedLevels[centerObj]);
+          
             foreach (LevelObject l in loadedLevels[centerObj])
             {
                 l.gameObject.SetActive(false);
             }
-            EventAggregator.Instance.Publish<MsgStartLevel>(msg);
+
+            GameLogic.Instance.StartLevel(centerObj, loadedLevels[centerObj][0].transform.parent.gameObject);
         }
-        if (levels[indexC] == null)
+    }
+
+    public void RevertToMapMenu()
+    {
+        LevelData centerObj = levels[indexC];
+        foreach (LevelObject l in loadedLevels[centerObj])
         {
-            Debug.Log("NUUUUUUULLLLLL");
+            l.gameObject.SetActive(true);
         }
+
+        placeableMap.GetComponent<MapController>().EnableMenuControls();
     }
 
     private void Update()

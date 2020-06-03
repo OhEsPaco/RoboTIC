@@ -319,7 +319,7 @@ public class BigCharacter : Character
             transform.position = newPos;
 
             //Actualizamos el porcentaje recorrido
-            percent += speed * Time.deltaTime;
+            percent += speed * Time.deltaTime *50;
 
             yield return null;
         }
