@@ -25,13 +25,9 @@ public class GameLogic : MonoBehaviour
     /// </summary>
     public LevelData CurrentLevelData { get => currentLevelData; }
 
+    private Item[] items;
     private LevelData clonedLevelData;
     private Stack<Item> inventory = new Stack<Item>();
-
-    /// <summary>
-    /// Defines the maxFallHeightOfCharactersInBlocks
-    /// </summary>
-    public int maxFallHeightOfCharactersInBlocks = 1;
 
     private Dictionary<Buttons, Action> buttonActionsDictionary;
 
@@ -43,6 +39,7 @@ public class GameLogic : MonoBehaviour
 
     private MessageWarehouse msgWar;
     private GameObject bigCharater;
+    private bool finishedMinibotMovement = false;
 
     // Start is called before the first frame update
     /// <summary>
@@ -61,8 +58,7 @@ public class GameLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.Restart, DoRestart);
         buttonActionsDictionary.Add(Buttons.TurnLeft, DoTurnLeft);
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
-
-        // StartCoroutine(LoadSceneCrt(false));
+        buttonActionsDictionary.Add(Buttons.MapMenu, GoToMapMenu);
     }
 
     private static GameLogic gameLogic;
@@ -85,21 +81,24 @@ public class GameLogic : MonoBehaviour
         }
     }
 
+    public bool FinishedMinibotMovement { get => finishedMinibotMovement; set => finishedMinibotMovement = value; }
+
     public void StartLevel(LevelData levelData, GameObject mapParent)
     {
         this.loading = true;
         this.haltExecution = true;
-
+        finishedMinibotMovement = false;
         placeableMap.GetComponent<MapController>().EnableGameControls();
 
         inventory = new Stack<Item>();
         haltExecution = false;
+
         clonedLevelData = levelData.Clone();
         currentLevelData = levelData.Clone();
-        // objectReferences = msg.levelObjects;
+        items = null;
+
         this.mapParent = mapParent;
         StartCoroutine(RenderALevel());
-        //loading = false;
     }
 
     private GameObject mapParent;
@@ -122,9 +121,36 @@ public class GameLogic : MonoBehaviour
         return false;
     }
 
+    private void CheckState()
+    {
+        if (CheckWinState())
+        {
+            haltExecution = true;
+            StartCoroutine(YouWin());
+        }
+        else if (CheckLoseState())
+        {
+            haltExecution = true;
+            StartCoroutine(YouLose());
+        }
+    }
+
     private bool CheckWinState()
     {
         if (currentLevelData.goal[0] == currentLevelData.playerPos[0] + 1 && currentLevelData.goal[1] == currentLevelData.playerPos[1] + 1 && currentLevelData.goal[2] == currentLevelData.playerPos[2])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool CheckLoseState()
+    {
+        if (CheckBlockProperty(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], currentLevelData, BlockProperties.Dangerous)
+            || !IsPositionInsideMap(currentLevelData.playerPos, currentLevelData) || (finishedMinibotMovement && !CheckWinState()))
         {
             return true;
         }
@@ -146,30 +172,23 @@ public class GameLogic : MonoBehaviour
         EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("win"));
     }
 
+    private IEnumerator YouLose()
+    {
+        // mainCharacterAnimator.SetTrigger("HacerSaludo");
+        haltExecution = true;
+        Debug.Log("A loser is you");
+        MsgBigCharacterAllActionsFinished msg = new MsgBigCharacterAllActionsFinished();
+        msgWar.PublishMsgAndWaitForResponse<MsgBigCharacterAllActionsFinished, bool>(msg);
+        bool outTmp;
+        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBigCharacterAllActionsFinished, bool>(msg, out outTmp));
+    }
+
     /// <summary>
     /// The Awake
     /// </summary>
     internal void Awake()
     {
         msgWar = new MessageWarehouse(EventAggregator.Instance);
-    }
-
-    // Update is called once per frame
-    /// <summary>
-    /// The Update
-    /// </summary>
-    internal void Update()
-    {
-        if (!loading)
-        {
-            if (!haltExecution)
-            {
-                if (CheckWinState())
-                {
-                    StartCoroutine(YouWin());
-                }
-            }
-        }
     }
 
     private IEnumerator RenderALevel()
@@ -266,6 +285,43 @@ public class GameLogic : MonoBehaviour
                 }
             }
 
+            //Separar los items y en su lugar spawnear noblocks
+            Vector3 itemPosition;
+            Quaternion itemRotation;
+            Transform itemParent;
+            items = new Item[loadedLevel.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                items[i] = null;
+            }
+            for (int y = 0; y < currentLevelData.levelSize[1]; y++)
+            {
+                for (int x = 0; x < currentLevelData.levelSize[0]; x++)
+                {
+                    for (int z = 0; z < currentLevelData.levelSize[2]; z++)
+                    {
+                        if ((int)GetBlockType(currentLevelData, x, y, z) >= 25)
+                        {
+                            SetBlockType(currentLevelData, (int)Blocks.NoBlock, x, y, z);
+                            Item thisItem = GetBlock(currentLevelData, loadedLevel, x, y, z).GetComponent<Item>();
+
+                            if (thisItem != null && thisItem.IsItem())
+                            {
+                                items[x + z * currentLevelData.levelSize[0] + y * (currentLevelData.levelSize[0] * currentLevelData.levelSize[2])] = thisItem;
+                                itemPosition = thisItem.transform.position;
+                                itemRotation = thisItem.transform.rotation;
+                                itemParent = thisItem.transform.parent;
+                                LevelObject spawnedObject = MapRenderer.Instance.SpawnBlock((int)Blocks.NoBlock);
+                                spawnedObject.gameObject.transform.parent = itemParent;
+                                spawnedObject.gameObject.transform.position = itemPosition;
+                                spawnedObject.gameObject.transform.rotation = itemRotation;
+                                SetBlock(currentLevelData, loadedLevel, x, y, z, spawnedObject);
+                            }
+                        }
+                    }
+                }
+            }
+
             objectReferences = loadedLevel;
         }
 
@@ -273,68 +329,22 @@ public class GameLogic : MonoBehaviour
         this.loading = false;
     }
 
-    /*private IEnumerator LoadSceneCrt(bool restarting)
-     {
-         this.loading = true;
-
-         SelectedMap loadedLevel = FindObjectOfType<SelectedMap>();
-         //Cargamos el mapa seleccionado en el menu
-         if (loadedLevel != null && loadedLevel.LevelData != null)
-         {
-             currentLevelData = loadedLevel.LevelData;
-         }
-         else
-         {
-             //Si no hay mapa seleccionado pues es que estamos haciendo pruebas asi que cojo el mapa por defecto
-             //Nos suscribimos para recibir los datos del nivel
-             MsgLoadLevelData msgLld = new MsgLoadLevelData(GetLevelPath());
-             msgWar.PublishMsgAndWaitForResponse<MsgLoadLevelData, LevelData>(msgLld);
-             yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgLoadLevelData, LevelData>(msgLld, out currentLevelData));
-         }
-
-         //Renderizamos el mapa
-         MsgRenderMapAndItems msgReferences = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize);
-         msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msgReferences);
-         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msgReferences, out objectReferences));
-
-         //La bandera
-         if (!restarting)
-         {
-             eventAggregator.Publish<MsgRenderScenery>(new MsgRenderScenery(currentLevelData.goal));
-         }
-
-         //Ponemos el numero de instrucciones en los botones
-         eventAggregator.Publish<MsgSetAvInstructions>(new MsgSetAvInstructions(currentLevelData.availableInstructions));
-
-         //Ponemos al personaje en su lugar
-         Vector3 playerPos;
-         //Podria dar fallo si el personaje esta mal colocado
-         GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
-         eventAggregator.Publish(new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0)));
-
-         Debug.Log(currentLevelData.levelName);
-         this.loading = false;
-     }*/
-
     /// <summary>
     /// The ButtonInput
     /// </summary>
     /// <param name="buttonIndex">The buttonIndex<see cref="int"/></param>
     public void AddInputFromButton(Buttons button)
     {
-        Debug.LogError(button);
+        if (button == Buttons.Restart)
+        {
+            haltExecution = false;
+        }
+
         if (!haltExecution)
         {
             try
             {
-                if (button == Buttons.MapMenu)
-                {
-                    GoToMapMenu();
-                }
-                else
-                {
-                    buttonActionsDictionary[button]();
-                }
+                buttonActionsDictionary[button]();
             }
             catch
             {
@@ -345,19 +355,29 @@ public class GameLogic : MonoBehaviour
 
     private void GoToMapMenu()
     {
+        EventAggregator.Instance.Publish<MsgHideAllScreens>(new MsgHideAllScreens());
+        finishedMinibotMovement = false;
         bigCharater.SetActive(false);
         currentLevelData = null;
         clonedLevelData = null;
         if (objectReferences != null)
         {
-            StartCoroutine(DestroyLevelObjectsOnBackground((LevelObject[])objectReferences.Clone()));
+            StartCoroutine(DestroyLevelObjectsOnBackground((LevelObject[])objectReferences.Clone(), (Item[])items.Clone()));
             objectReferences = null;
+            items = null;
         }
         MapMenuLogic.Instance.RevertToMapMenu();
     }
 
-    private IEnumerator DestroyLevelObjectsOnBackground(LevelObject[] levelObjects)
+    private IEnumerator DestroyLevelObjectsOnBackground(LevelObject[] levelObjects, Item[] items)
     {
+        foreach (Item i in items)
+        {
+            if (i != null)
+            {
+                i.gameObject.SetActive(false);
+            }
+        }
         foreach (LevelObject l in levelObjects)
         {
             l.gameObject.SetActive(false);
@@ -368,6 +388,24 @@ public class GameLogic : MonoBehaviour
         {
             Destroy(l.gameObject);
             yield return null;
+        }
+        foreach (Item i in items)
+        {
+            if (i != null)
+            {
+                Destroy(i.gameObject);
+                yield return null;
+            }
+        }
+    }
+
+    private void TakeItem(int x, int y, int z)
+    {
+        Item item = items[x + z * currentLevelData.levelSize[0] + y * (currentLevelData.levelSize[0] * currentLevelData.levelSize[2])];
+        if (item != null)
+        {
+            inventory.Push(item);
+            EventAggregator.Instance.Publish<MsgTakeItem>(new MsgTakeItem(item, inventory.Count));
         }
     }
 
@@ -502,55 +540,26 @@ public class GameLogic : MonoBehaviour
     {
     }
 
-    /// <summary>
-    /// The DoJump
-    /// </summary>
     private void DoJump()
     {
-        //blockC
-        List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2]);
-
-        //Bloque de enfrente y arriba
-
-        //blockA blockB 3
-        //Robot  blockC 2
-        //       blockD 1
-        //       blockE 0
-        int fallDamage = 0;
-        bool isTopEmpty = CheckBlockProperty(currentLevelData.playerPos[0], currentLevelData.playerPos[1] + 1, currentLevelData.playerPos[2], currentLevelData, BlockProperties.Immaterial);
-
-        if (CheckBlockProperty(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable) && isTopEmpty && (CheckBlockProperty(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData, BlockProperties.Immaterial) || TakeItem(intendedBlock)))
+        for (int y = currentLevelData.playerPos[1]; y >= 0; y--)
         {
-            Vector3 target;
-            if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
+            List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], y, currentLevelData.playerPos[2]);
+            if (IsPositionInsideMap(intendedBlock, currentLevelData))
             {
-                EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Jump, target));
-                currentLevelData.playerPos = intendedBlock;
-            }
-        }
-        else
-        {
-            for (int y = isTopEmpty ? currentLevelData.playerPos[1] : currentLevelData.playerPos[1] - 1; y >= 0; y--)
-            {
-                if (CheckBlockProperty(intendedBlock[0], y, intendedBlock[2], currentLevelData, BlockProperties.Immaterial) && CheckBlockProperty(intendedBlock[0], y - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable))
+                if (!CheckBlockProperty(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData, BlockProperties.Immaterial))
                 {
-                    intendedBlock[1] = y;
-                    fallDamage = currentLevelData.playerPos[1] - y;
                     Vector3 target;
-                    if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
+                    if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1], intendedBlock[2], out target))
                     {
                         EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Jump, target));
+                        TakeItem(intendedBlock[0], intendedBlock[1] + 1, intendedBlock[2]);
                         currentLevelData.playerPos = intendedBlock;
+                        CheckState();
+                        break;
                     }
-
-                    break;
                 }
             }
-        }
-
-        if (fallDamage > maxFallHeightOfCharactersInBlocks)
-        {
-            YouLose();
         }
     }
 
@@ -580,7 +589,9 @@ public class GameLogic : MonoBehaviour
                     {
                         Debug.Log(target);
                         EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Move, target));
+                        TakeItem(intendedBlock[0], intendedBlock[1], intendedBlock[2]);
                         currentLevelData.playerPos = intendedBlock;
+                        CheckState();
                     }
                 }
                 else
@@ -590,51 +601,13 @@ public class GameLogic : MonoBehaviour
             }
             else
             {
-                //Collision
-                if (TakeItem(intendedBlock))
-                {
-                    Vector3 target;
-                    if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
-                    {
-                        EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Move, target));
-                        currentLevelData.playerPos = intendedBlock;
-                    }
-                }
-                else
-                {
-                    Debug.Log("You are colliding against a block");
-                }
+                Debug.Log("You are colliding against a block");
             }
         }
         else
         {
             DoJump();
         }
-    }
-
-    private bool TakeItem(List<int> intendedBlock)
-    {
-        if ((int)GetBlockType(currentLevelData, intendedBlock[0], intendedBlock[1], intendedBlock[2]) >= 25)
-        {
-            SetBlockType(currentLevelData, (int)Blocks.NoBlock, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
-            LevelObject thisItem = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]).GetComponent<Item>();
-
-            if (thisItem != null && thisItem.IsItem())
-            {
-                inventory.Push((Item)thisItem);
-                EventAggregator.Instance.Publish<MsgTakeItem>(new MsgTakeItem((Item)thisItem, inventory.Count));
-
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public bool CheckNextBlockUpProperty(BlockProperties property)
-    {
-        List<int> nextBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
-
-        return CheckBlockProperty(nextBlock[0], nextBlock[1], nextBlock[2], currentLevelData, property);
     }
 
     public bool CheckNextBlockDownProperty(BlockProperties property)
@@ -654,15 +627,6 @@ public class GameLogic : MonoBehaviour
             return block.CheckProperty(property);
         }
         return false;
-    }
-
-    /// <summary>
-    /// The YouLose
-    /// </summary>
-    private void YouLose()
-    {
-        haltExecution = true;
-        Debug.Log("You lose :(");
     }
 
     /// <summary>
@@ -687,6 +651,14 @@ public class GameLogic : MonoBehaviour
         if (y < 0 || y >= data.levelSize[1]) return null;
         if (z < 0 || z >= data.levelSize[2]) return null;
         return objects[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])];
+    }
+
+    private void SetBlock(LevelData data, LevelObject[] objects, int x, int y, int z, LevelObject levelObject)
+    {
+        if (x < 0 || x >= data.levelSize[0]) return;
+        if (y < 0 || y >= data.levelSize[1]) return;
+        if (z < 0 || z >= data.levelSize[2]) return;
+        objects[x + z * data.levelSize[0] + y * (data.levelSize[0] * data.levelSize[2])] = levelObject;
     }
 
     /// <summary>
@@ -800,12 +772,15 @@ public class GameLogic : MonoBehaviour
     /// </summary>
     private void DoRestart()
     {
+        EventAggregator.Instance.Publish<MsgHideAllScreens>(new MsgHideAllScreens());
         currentLevelData = clonedLevelData.Clone();
+        finishedMinibotMovement = false;
         bigCharater.SetActive(false);
         if (objectReferences != null)
         {
-            StartCoroutine(DestroyLevelObjectsOnBackground((LevelObject[])objectReferences.Clone()));
+            StartCoroutine(DestroyLevelObjectsOnBackground((LevelObject[])objectReferences.Clone(), (Item[])items.Clone()));
             objectReferences = null;
+            items = null;
         }
 
         StartCoroutine(RenderALevel());

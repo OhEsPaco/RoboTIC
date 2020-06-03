@@ -261,9 +261,10 @@ public class BigCharacter : Character
     private IEnumerator TakeItemCoroutine(Item item, int numberOfItems)
     {
         NotifyStartOfAction();
-        item.transform.parent = transform;
-        item.transform.localScale = itemScale;
-        item.transform.position = new Vector3(GetInventoryPosition().x, GetInventoryPosition().y + 0.45f * (numberOfItems - 1), GetInventoryPosition().z);
+        item.Pick(transform, new Vector3(GetInventoryPosition().x, GetInventoryPosition().y + 0.45f * (numberOfItems - 1), GetInventoryPosition().z));
+        // item.transform.parent = transform;
+        //item.transform.localScale = itemScale;
+        //item.transform.position = new Vector3(GetInventoryPosition().x, GetInventoryPosition().y + 0.45f * (numberOfItems - 1), GetInventoryPosition().z);
         yield return null;
         NotifyEndOfAction();
     }
@@ -319,7 +320,7 @@ public class BigCharacter : Character
             transform.position = newPos;
 
             //Actualizamos el porcentaje recorrido
-            percent += speed * Time.deltaTime *50;
+            percent += speed * Time.deltaTime * 50;
 
             yield return null;
         }

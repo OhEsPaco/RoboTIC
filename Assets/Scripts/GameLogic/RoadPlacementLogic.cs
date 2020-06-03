@@ -750,6 +750,8 @@ public class RoadPlacementLogic : MonoBehaviour
         if (selectedIO != null)
         {
             EventAggregator.Instance.Publish(new MsgDisableAllButtons());
+            EventAggregator.Instance.Publish(new MsgEnableButton(Buttons.Restart));
+            EventAggregator.Instance.Publish(new MsgEnableButton(Buttons.MapMenu));
 
             List<Road> allRoads = new List<Road>();
             Stack<Road> roadsToProccess = new Stack<Road>();

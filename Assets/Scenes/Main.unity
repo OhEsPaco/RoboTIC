@@ -3628,7 +3628,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 10
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 1
   mesh: {fileID: 1555116331990272390}
 --- !u!4 &1555116331869392167
 Transform:
@@ -3736,7 +3735,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 8
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 0
   mesh: {fileID: 1555116332988391045}
 --- !u!65 &1555116331903198346
 BoxCollider:
@@ -5357,7 +5355,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 9
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 0
   mesh: {fileID: 1555116332333448485}
 --- !u!111 &1555116332333448539
 Animation:
@@ -6880,7 +6877,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 4
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 0
   mesh: {fileID: 1555116332503887448}
 --- !u!65 &1555116332649106322
 BoxCollider:
@@ -7381,7 +7377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 0
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 0
   mesh: {fileID: 1555116332388330101}
 --- !u!65 &1555116332779709507
 BoxCollider:
@@ -7578,7 +7573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 2
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 0
   mesh: {fileID: 1555116332441703329}
 --- !u!65 &1555116332784628599
 BoxCollider:
@@ -10536,7 +10530,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 1
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 0
   mesh: {fileID: 1555116332797385672}
 --- !u!65 &1555116333677303238
 BoxCollider:
@@ -10690,7 +10683,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 5
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 0
   mesh: {fileID: 1555116333679732768}
 --- !u!33 &1555116333703362264
 MeshFilter:
@@ -10799,7 +10791,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 6
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 1
   mesh: {fileID: 1555116333709017392}
 --- !u!1 &1555116333709017392
 GameObject:
@@ -11053,7 +11044,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 7
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 0
   mesh: {fileID: 1555116332135997644}
 --- !u!65 &1555116333777177167
 BoxCollider:
@@ -11141,7 +11131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonIndex: 3
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
-  allwaysActive: 0
   mesh: {fileID: 1555116333925320092}
 --- !u!114 &1555116333877338928
 MonoBehaviour:
@@ -13773,7 +13762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7207478224074723717}
   inventoryMarker: {fileID: 4813218493938138016}
-  itemScale: {x: 0.3, y: 0.3, z: 0.3}
+  itemScale: {x: 1, y: 1, z: 1}
   actionSpeed: 0.1
   jumpPct: 2
   descendJumpPct: 0.3

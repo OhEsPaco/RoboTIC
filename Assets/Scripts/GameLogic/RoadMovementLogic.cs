@@ -24,13 +24,6 @@ public class RoadMovementLogic : MonoBehaviour
     //Descriptor del tween
     private LTDescr tweenDescr;
 
-    private void Start()
-    {
-        //Hacemos que el robot sea hijo de este objeto y lo marcamos como inactivo
-        //player.transform.parent = transform;
-        //player.gameObject.SetActive(false);
-    }
-
     private void Awake()
     {
         EventAggregator.Instance.Subscribe<MsgStartRoadMovement>(StartMovement);
@@ -138,7 +131,9 @@ public class RoadMovementLogic : MonoBehaviour
                 if (nextOutput == finalOutput)
                 {
                     Debug.Log("End of the road!!");
+
                     movementStarted = false;
+                    GameLogic.Instance.FinishedMinibotMovement = true;
                 }
                 else
                 {
@@ -147,6 +142,7 @@ public class RoadMovementLogic : MonoBehaviour
                     {
                         movementStarted = false;
                         Debug.LogError("No path available");
+                        GameLogic.Instance.FinishedMinibotMovement = true;
                     }
                 }
             }
