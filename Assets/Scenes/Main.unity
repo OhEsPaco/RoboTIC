@@ -442,7 +442,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.85
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 16
   orthographic: 0
@@ -1185,6 +1185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyLevels:
   - {fileID: 4900000, guid: 35715c226b54d884299a0f02c65be9c4, type: 3}
+  - {fileID: 4900000, guid: 198d576c548195045a792c353e0dcf43, type: 3}
   leftArrow: {fileID: 826147977591767586}
   rightArrow: {fileID: 6484631077656493154}
   mainMenuButton: {fileID: 1843240215}
@@ -2784,7 +2785,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
   secondaryMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
   minimumFloors: 1
-  minimumWalls: 1
+  minimumWalls: 0
 --- !u!114 &114000012288925639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2801,7 +2802,7 @@ MonoBehaviour:
   SurfacePlanePrefab: {fileID: 169982, guid: 42b74bedbbfbbe64bbe5df849a1baca3, type: 3}
   MinArea: 0.025
   drawPlanesMask: 0
-  destroyPlanesMask: 24
+  destroyPlanesMask: 21
 --- !u!114 &114000012441148543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11738,7 +11739,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placeableMap: {fileID: 14435332}
-  maxFallHeightOfCharactersInBlocks: 1
 --- !u!1 &2510474422366945427
 GameObject:
   m_ObjectHideFlags: 0
@@ -13495,6 +13495,9 @@ MonoBehaviour:
   pickable: 0
   parentToBlockParent: 1
   effect: 0
+  useOnFrontBlock: 0
+  useOnFrontBelowBlock: 0
+  useOnPlayersHand: 0
 --- !u!1 &4813218492720864690
 GameObject:
   m_ObjectHideFlags: 0
@@ -14338,6 +14341,9 @@ MonoBehaviour:
   pickable: 1
   parentToBlockParent: 1
   effect: 3
+  useOnFrontBlock: 0
+  useOnFrontBelowBlock: 1
+  useOnPlayersHand: 1
 --- !u!1 &4813218493483637481
 GameObject:
   m_ObjectHideFlags: 0
@@ -14559,6 +14565,9 @@ MonoBehaviour:
   pickable: 1
   parentToBlockParent: 1
   effect: 3
+  useOnFrontBlock: 0
+  useOnFrontBelowBlock: 1
+  useOnPlayersHand: 0
 --- !u!95 &4813218493638832780
 Animator:
   serializedVersion: 3
@@ -14875,6 +14884,9 @@ MonoBehaviour:
   pickable: 1
   parentToBlockParent: 1
   effect: 1
+  useOnFrontBlock: 1
+  useOnFrontBelowBlock: 1
+  useOnPlayersHand: 1
 --- !u!1 &4813218493918653858
 GameObject:
   m_ObjectHideFlags: 0

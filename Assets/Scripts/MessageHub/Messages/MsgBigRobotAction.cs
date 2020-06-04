@@ -7,7 +7,9 @@ public class MsgBigRobotAction
         Jump,
         Move,
         TurnLeft,
-        TurnRight
+        TurnRight,
+        Win,
+        Lose
     }
 
     private BigRobotActions action;

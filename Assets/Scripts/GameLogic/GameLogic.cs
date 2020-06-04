@@ -123,15 +123,18 @@ public class GameLogic : MonoBehaviour
 
     private void CheckState()
     {
-        if (CheckWinState())
+        if (!haltExecution)
         {
-            haltExecution = true;
-            StartCoroutine(YouWin());
-        }
-        else if (CheckLoseState())
-        {
-            haltExecution = true;
-            StartCoroutine(YouLose());
+            if (CheckWinState())
+            {
+                haltExecution = true;
+                StartCoroutine(YouWin());
+            }
+            else if (CheckLoseState())
+            {
+                haltExecution = true;
+                StartCoroutine(YouLose());
+            }
         }
     }
 
@@ -169,6 +172,7 @@ public class GameLogic : MonoBehaviour
         msgWar.PublishMsgAndWaitForResponse<MsgBigCharacterAllActionsFinished, bool>(msg);
         bool outTmp;
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBigCharacterAllActionsFinished, bool>(msg, out outTmp));
+        EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Win, new Vector3()));
         EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("win"));
     }
 
@@ -181,6 +185,7 @@ public class GameLogic : MonoBehaviour
         msgWar.PublishMsgAndWaitForResponse<MsgBigCharacterAllActionsFinished, bool>(msg);
         bool outTmp;
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBigCharacterAllActionsFinished, bool>(msg, out outTmp));
+        EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Lose, new Vector3()));
     }
 
     /// <summary>
@@ -323,6 +328,9 @@ public class GameLogic : MonoBehaviour
             }
 
             objectReferences = loadedLevel;
+            //Por si acaso hay un item en la casilla inicial o está el jugador en mala posicion
+            CheckState();
+            TakeItem();
         }
 
         haltExecution = false;
@@ -399,13 +407,17 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    private void TakeItem(int x, int y, int z)
+    private void TakeItem()
     {
-        Item item = items[x + z * currentLevelData.levelSize[0] + y * (currentLevelData.levelSize[0] * currentLevelData.levelSize[2])];
+        Item item = items[currentLevelData.playerPos[0] + currentLevelData.playerPos[2] * currentLevelData.levelSize[0] + currentLevelData.playerPos[1] * (currentLevelData.levelSize[0] * currentLevelData.levelSize[2])];
         if (item != null)
         {
-            inventory.Push(item);
-            EventAggregator.Instance.Publish<MsgTakeItem>(new MsgTakeItem(item, inventory.Count));
+            if (!inventory.Contains(item))
+            {
+                Debug.Log("Item taken");
+                inventory.Push(item);
+                EventAggregator.Instance.Publish<MsgTakeItem>(new MsgTakeItem(item, inventory.Count));
+            }
         }
     }
 
@@ -450,34 +462,22 @@ public class GameLogic : MonoBehaviour
                         {
                             frontBlock._BlockProperties = reaction.newProperties;
                         }
-                        LevelObject spawnedGameObject = null;
-                        //LevelObject oldGameObject = null;
+                        LevelObject spawnedObject = null;
+
                         if (reaction.replaceBlock)
                         {
-                            LevelObject spawnedObject = MapRenderer.Instance.SpawnBlock((int)reaction.block);
+                            spawnedObject = MapRenderer.Instance.SpawnBlock((int)reaction.block);
                             spawnedObject.gameObject.transform.parent = frontBlock.transform.parent;
                             spawnedObject.gameObject.transform.position = frontBlock.transform.position;
                             spawnedObject.gameObject.transform.rotation = frontBlock.transform.rotation;
 
                             spawnedObject.gameObject.SetActive(false);
-                            /* if (GetBlock(currentLevelData, objectReferences, x, y, z) != null)
-                             {
-                                 //oldGameObject = GetBlock(currentLevelData, objectReferences, x, y, z);
-                             }*/
 
                             objectReferences[x + z * currentLevelData.levelSize[0] + y * (currentLevelData.levelSize[0] * currentLevelData.levelSize[2])] = spawnedObject;
-                            if (spawnedObject != null)
-                            {
-                                spawnedGameObject = spawnedObject;
-                            }
-                            //  objectReferences[x + z * levelSize[0] + y * (levelSize[0] * levelSize[2])] = block;
-                            //MsgRenderBlock msg = new MsgRenderBlock(objectReferences, currentLevelData.levelSize, (int)reaction.block, x, y, z, false);
-                            //msgWar.PublishMsgAndWaitForResponse<MsgRenderBlock, LevelObject>(msg);
-                            // yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderBlock, LevelObject>(msg, out newlySpawnedObject));
                         }
-                        EventAggregator.Instance.Publish(new MsgUseItem(frontBlock, reaction, spawnedGameObject, itemPos, item));
+                        inventory.Pop();
+                        EventAggregator.Instance.Publish(new MsgUseItem(frontBlock, reaction, spawnedObject, itemPos, item, inventory));
 
-                        //Se ha podido usar el item
                         return true;
                     }
                 }
@@ -498,39 +498,31 @@ public class GameLogic : MonoBehaviour
             Item item = inventory.Peek();
             if (item != null)
             {
-                Debug.Log("About to use " + item.ToString());
                 List<int> intendedBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
-                LevelObject blockLevelObject = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
-
-                //Intentamos aplicar el item al bloque de enfrente
-                Vector3 posNew;
-                GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out posNew);
-
-                if (ExecuteActionEffect(blockLevelObject, item, intendedBlock[0], intendedBlock[1], intendedBlock[2], posNew))
+                LevelObject frontBlock = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1], intendedBlock[2]);
+                LevelObject frontBelowBlock = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
+                bool usedItem = false;
+                if (frontBlock != null && item.UseOnFrontBlock && frontBlock.IsBlock())
                 {
-                    inventory.Pop();
-                }
-                else
-                {
-                    //Intentamos aplicar el item al bloque de abajo
-                    if (blockLevelObject != null && blockLevelObject.IsBlock())
+                    Vector3 posNew;
+                    GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1], intendedBlock[2], out posNew);
+                    if (ExecuteActionEffect(frontBlock, item, intendedBlock[0], intendedBlock[1], intendedBlock[2], posNew))
                     {
-                        Block frontBlock = (Block)blockLevelObject;
-
-                        if (frontBlock.CheckProperty(BlockProperties.Immaterial))
-                        {
-                            blockLevelObject = GetBlock(currentLevelData, objectReferences, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2]);
-                            GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out posNew);
-
-                            if (ExecuteActionEffect(blockLevelObject, item, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], posNew))
-                            {
-                                inventory.Pop();
-                            }
-                        }
+                        usedItem = true;
+                    }
+                }
+                if (frontBlock == null || CheckBlockProperty(frontBlock, BlockProperties.Immaterial))
+                {
+                    if (frontBelowBlock != null && item.UseOnFrontBelowBlock && !usedItem && frontBelowBlock.IsBlock())
+                    {
+                        Vector3 posNew;
+                        GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out posNew);
+                        ExecuteActionEffect(frontBelowBlock, item, intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], posNew);
                     }
                 }
             }
         }
+        CheckState();
     }
 
     /// <summary>
@@ -538,6 +530,7 @@ public class GameLogic : MonoBehaviour
     /// </summary>
     private void DoCondition()
     {
+        CheckState();
     }
 
     private void DoJump()
@@ -553,14 +546,20 @@ public class GameLogic : MonoBehaviour
                     if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1], intendedBlock[2], out target))
                     {
                         EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Jump, target));
-                        TakeItem(intendedBlock[0], intendedBlock[1] + 1, intendedBlock[2]);
-                        currentLevelData.playerPos = intendedBlock;
-                        CheckState();
+
+                        currentLevelData.playerPos[0] = intendedBlock[0];
+                        //Al saltar queda por encima del bloque
+                        currentLevelData.playerPos[1] = intendedBlock[1] + 1;
+                        currentLevelData.playerPos[2] = intendedBlock[2];
+
                         break;
                     }
                 }
             }
         }
+
+        TakeItem();
+        CheckState();
     }
 
     /// <summary>
@@ -568,6 +567,7 @@ public class GameLogic : MonoBehaviour
     /// </summary>
     private void DoLoop()
     {
+        CheckState();
     }
 
     /// <summary>
@@ -582,16 +582,15 @@ public class GameLogic : MonoBehaviour
             if (CheckBlockProperty(intendedBlock[0], intendedBlock[1], intendedBlock[2], currentLevelData, BlockProperties.Immaterial))
             {
                 //Miramos el bloque de debajo
-                if (CheckBlockProperty(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData, BlockProperties.Walkable))
+                if (!CheckBlockProperty(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], currentLevelData, BlockProperties.Immaterial))
                 {
                     Vector3 target;
                     if (GetBlockSurfacePoint(intendedBlock[0], intendedBlock[1] - 1, intendedBlock[2], out target))
                     {
                         Debug.Log(target);
                         EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Move, target));
-                        TakeItem(intendedBlock[0], intendedBlock[1], intendedBlock[2]);
+
                         currentLevelData.playerPos = intendedBlock;
-                        CheckState();
                     }
                 }
                 else
@@ -608,6 +607,8 @@ public class GameLogic : MonoBehaviour
         {
             DoJump();
         }
+        TakeItem();
+        CheckState();
     }
 
     public bool CheckNextBlockDownProperty(BlockProperties property)
@@ -616,6 +617,16 @@ public class GameLogic : MonoBehaviour
         List<int> nextBlock = BlockToAdvanceTo(currentLevelData.playerOrientation, currentLevelData.playerPos[0], currentLevelData.playerPos[1], currentLevelData.playerPos[2]);
 
         return CheckBlockProperty(nextBlock[0], nextBlock[1] - 1, nextBlock[2], currentLevelData, property);
+    }
+
+    private bool CheckBlockProperty(LevelObject blockLevelObject, BlockProperties property)
+    {
+        if (blockLevelObject != null && blockLevelObject.IsBlock())
+        {
+            Block block = (Block)blockLevelObject;
+            return block.CheckProperty(property);
+        }
+        return false;
     }
 
     private bool CheckBlockProperty(int x, int y, int z, LevelData data, BlockProperties property)

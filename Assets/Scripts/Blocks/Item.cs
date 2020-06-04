@@ -13,10 +13,18 @@ public class Item : LevelObject
     public override string ToString { get => itemType.ToString() + " item"; }
     public Effects Effect { get => effect; }
     public bool ParentToBlockParent { get => parentToBlockParent; }
+    public bool UseOnFrontBlock { get => useOnFrontBlock; set => useOnFrontBlock = value; }
+    public bool UseOnFrontBelowBlock { get => useOnFrontBelowBlock; set => useOnFrontBelowBlock = value; }
+    public bool UseOnPlayersHand { get => useOnPlayersHand; set => useOnPlayersHand = value; }
+    public Vector3 FollowOffset { get => followOffset; set => followOffset = value; }
 
     [SerializeField] private bool pickable;
     [SerializeField] private bool parentToBlockParent;
     [SerializeField] private Effects effect;
+    [SerializeField] private bool useOnFrontBlock;
+    [SerializeField] private bool useOnFrontBelowBlock;
+    [SerializeField] private bool useOnPlayersHand;
+
     private Transform transformToFollow;
     private Vector3 followOffset;
 
@@ -24,13 +32,15 @@ public class Item : LevelObject
     {
         if (transformToFollow != null)
         {
-            transform.position = Vector3.Lerp(transform.position, transformToFollow.position + followOffset, 0);
+            transform.position = Vector3.Lerp(transform.position, transformToFollow.position + followOffset, 1);
         }
     }
 
     public void Use()
     {
+        transformToFollow = null;
         SetAnimationTrigger("Use");
+        
     }
 
     public void Pick(Transform transformToFollow, Vector3 followOffset)

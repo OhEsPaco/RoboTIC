@@ -54,9 +54,11 @@ public class BigCharacter : Character
     /// </summary>
     private bool lastActionFinished;
 
+    private Vector3 defaultLocalPosition = new Vector3();
+    private Quaternion defaultLocalRotation = new Quaternion();
     private MessageWarehouse msgWar;
     private bool loaded = false;
-    private float blockLenght;
+    private float blockLength;
 
     private void Awake()
     {
@@ -64,8 +66,9 @@ public class BigCharacter : Character
         EventAggregator.Instance.Subscribe<MsgPlaceCharacter>(PlaceCharacter);
         EventAggregator.Instance.Subscribe<MsgTakeItem>(TakeItem);
         EventAggregator.Instance.Subscribe<MsgBigRobotIdle>(IsRobotIdle);
-        EventAggregator.Instance.Subscribe<MsgUseItem>(UseObject);
+        EventAggregator.Instance.Subscribe<MsgUseItem>(UseItem);
         EventAggregator.Instance.Subscribe<MsgBigCharacterAllActionsFinished>(ServeAllActionsFinished);
+
         msgWar = new MessageWarehouse(EventAggregator.Instance);
     }
 
@@ -85,8 +88,8 @@ public class BigCharacter : Character
 
         MsgBlockLength msg = new MsgBlockLength();
         msgWar.PublishMsgAndWaitForResponse<MsgBlockLength, float>(msg);
-        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBlockLength, float>(msg, out blockLenght));
-        jumpHeight = blockLenght * jumpPct;
+        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBlockLength, float>(msg, out blockLength));
+        jumpHeight = blockLength * jumpPct;
         loaded = true;
     }
 
@@ -109,8 +112,12 @@ public class BigCharacter : Character
         }
         gameObject.transform.position = new Vector3();
         gameObject.transform.position = msg.Position;
+
         gameObject.transform.rotation = new Quaternion();
         gameObject.transform.Rotate(msg.Rotation);
+
+        defaultLocalPosition = gameObject.transform.localPosition;
+        defaultLocalRotation = gameObject.transform.localRotation;
         EventAggregator.Instance.Publish(new ResponseWrapper<MsgPlaceCharacter, GameObject>(msg, this.gameObject));
     }
 
@@ -168,8 +175,44 @@ public class BigCharacter : Character
                 case MsgBigRobotAction.BigRobotActions.TurnRight:
                     DoTurnRight();
                     break;
+
+                case MsgBigRobotAction.BigRobotActions.Win:
+                    DoWin();
+                    break;
+
+                case MsgBigRobotAction.BigRobotActions.Lose:
+                    DoLose();
+                    break;
             }
         }
+    }
+
+    private void DoWin()
+    {
+        AddAction(WinCoroutine());
+    }
+
+    private IEnumerator WinCoroutine()
+    {
+        NotifyStartOfAction();
+        SetAnimationTrigger("Greet");
+        yield return null;
+        NotifyEndOfAction();
+    }
+
+    private IEnumerator LoseCoroutine()
+    {
+        NotifyStartOfAction();
+        SetAnimationTrigger("Lose");
+        yield return new WaitForSeconds(0.5f);
+        gameObject.transform.localRotation = defaultLocalRotation;
+        gameObject.transform.localPosition = defaultLocalPosition;
+        NotifyEndOfAction();
+    }
+
+    private void DoLose()
+    {
+        AddAction(LoseCoroutine());
     }
 
     /// <summary>
@@ -212,15 +255,25 @@ public class BigCharacter : Character
         AddAction(TakeItemCoroutine(msg.item, msg.numberOfItems));
     }
 
-    private void UseObject(MsgUseItem msg)
+    private void UpdateItemsPos(Stack<Item> inventory)
     {
-        AddAction(UseItemCoroutine(msg.frontBlock, msg.reaction, msg.replaceBlock, msg.itemPos, msg.item));
+        int numberOfItems = 1;
+        foreach (Item item in inventory)
+        {
+            item.FollowOffset = new Vector3(0, numberOfItems * blockLength, 0);
+            numberOfItems++;
+        }
     }
 
-    private IEnumerator UseItemCoroutine(Block frontBlock, EffectReaction reaction, LevelObject newlySpawnedObject, Vector3 posNew, Item item)
+    private void UseItem(MsgUseItem msg)
+    {
+        AddAction(UseItemCoroutine(msg.frontBlock, msg.reaction, msg.replaceBlock, msg.itemPos, msg.item, msg.inventory));
+    }
+
+    private IEnumerator UseItemCoroutine(Block frontBlock, EffectReaction reaction, LevelObject newlySpawnedObject, Vector3 posNew, Item item, Stack<Item> inventory)
     {
         NotifyStartOfAction();
-
+        UpdateItemsPos(inventory);
         foreach (BlockActions blockAction in reaction.actionsToExecute)
         {
             frontBlock.ExecuteAction(blockAction);
@@ -234,10 +287,19 @@ public class BigCharacter : Character
             }
         }
 
-        item.transform.localScale = new Vector3(1, 1, 1);
-        item.transform.position = posNew;
+        item.transform.position = inventoryMarker.transform.position;
+        if (!item.UseOnPlayersHand)
+        {
+            Vector3 itempos;
+            itempos.x = frontBlock.SurfacePoint.x;
+            itempos.y = frontBlock.SurfacePoint.y + blockLength / 2;
+            itempos.z = frontBlock.SurfacePoint.z;
+
+            item.transform.position = itempos;
+        }
+        SetAnimationTrigger("Use");
         item.Use();
-        //
+
         foreach (string trigger in reaction.animationTriggers)
         {
             frontBlock.SetAnimationTrigger(trigger);
@@ -254,17 +316,14 @@ public class BigCharacter : Character
                 newlySpawnedBlock.ExecuteAction(BlockActions.Place);
             }
         }
-        yield return null;
+        yield return new WaitForSeconds(1);
         NotifyEndOfAction();
     }
 
     private IEnumerator TakeItemCoroutine(Item item, int numberOfItems)
     {
         NotifyStartOfAction();
-        item.Pick(transform, new Vector3(GetInventoryPosition().x, GetInventoryPosition().y + 0.45f * (numberOfItems - 1), GetInventoryPosition().z));
-        // item.transform.parent = transform;
-        //item.transform.localScale = itemScale;
-        //item.transform.position = new Vector3(GetInventoryPosition().x, GetInventoryPosition().y + 0.45f * (numberOfItems - 1), GetInventoryPosition().z);
+        item.Pick(inventoryMarker.transform, new Vector3(0, numberOfItems * blockLength, 0));
         yield return null;
         NotifyEndOfAction();
     }

@@ -95,12 +95,6 @@ public class Block : LevelObject
         }
     }
 
-    public bool ActionsDone()
-    {
-        //TODO: COMPROBAR QUE SE HAYAN TERMINADO LAS ACCIONES
-        return true;
-    }
-
     public void Use()
     {
         SetAnimationTrigger("Use");
