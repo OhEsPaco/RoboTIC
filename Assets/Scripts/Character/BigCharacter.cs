@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static Block;
+using static LevelObject;
 
 public class BigCharacter : Character
 {
@@ -307,8 +308,15 @@ public class BigCharacter : Character
         if (reaction.replaceBlock && newlySpawnedObject != null)
         {
             newlySpawnedObject.gameObject.SetActive(true);
-            frontBlock.gameObject.SetActive(false);
-            Destroy(frontBlock.gameObject);
+            if (item.Effect == Effects.Destroy)
+            {
+                frontBlock.Destroy();
+            }
+            else
+            {
+                frontBlock.gameObject.SetActive(false);
+                Destroy(frontBlock.gameObject);
+            }
 
             if (newlySpawnedObject != null && newlySpawnedObject.IsBlock())
             {

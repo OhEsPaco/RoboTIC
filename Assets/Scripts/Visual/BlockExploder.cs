@@ -46,7 +46,7 @@ public class BlockExploder : MonoBehaviour
     /// <summary>
     /// Defines the particleMaterial
     /// </summary>
-    public Material particleMaterial;
+    private Material particleMaterial;
 
     /// <summary>
     /// Defines the pieces
@@ -58,6 +58,16 @@ public class BlockExploder : MonoBehaviour
     /// </summary>
     internal void Start()
     {
+        Renderer r = GetComponent<Renderer>();
+        if (r != null)
+        {
+            Material m = r.material;
+            if (m != null)
+            {
+                particleMaterial = m;
+            }
+        }
+
         pieces = new List<GameObject>();
     }
 
@@ -140,7 +150,13 @@ public class BlockExploder : MonoBehaviour
         yield return new WaitForSecondsRealtime(seconds);
         foreach (GameObject g in particles)
         {
+            g.SetActive(false);
+        }
+        yield return null;
+        foreach (GameObject g in particles)
+        {
             Destroy(g);
+            yield return null;
         }
 
         Destroy(this.gameObject);

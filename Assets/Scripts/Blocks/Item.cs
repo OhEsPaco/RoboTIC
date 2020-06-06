@@ -24,7 +24,7 @@ public class Item : LevelObject
     [SerializeField] private bool useOnFrontBlock;
     [SerializeField] private bool useOnFrontBelowBlock;
     [SerializeField] private bool useOnPlayersHand;
-
+    [SerializeField] private bool inactiveOnUse = true;
     private Transform transformToFollow;
     private Vector3 followOffset;
 
@@ -39,8 +39,14 @@ public class Item : LevelObject
     public void Use()
     {
         transformToFollow = null;
-        SetAnimationTrigger("Use");
-        
+        if (inactiveOnUse)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            SetAnimationTrigger("Use");
+        }
     }
 
     public void Pick(Transform transformToFollow, Vector3 followOffset)

@@ -20,7 +20,8 @@ public abstract class LevelObject : MonoBehaviour
         PlankItem = 25,
         FanItem = 26,
         FlagItem = 27,
-        ActivatorItem = 28
+        ActivatorItem = 28,
+        BombItem = 29
     }
 
     public enum Effects
