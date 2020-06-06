@@ -15,7 +15,17 @@ ModelImporter:
     3300002: Platform
     4300000: Lift Cube
     4300002: Platform
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete
+    second: {fileID: 2100000, guid: 2bdc1261570a3a3489f08e099a41a863, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: 0bb8f27f84da3bc4da9154f4bf22a1a8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

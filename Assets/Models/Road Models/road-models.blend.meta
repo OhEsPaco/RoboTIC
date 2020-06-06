@@ -407,7 +407,12 @@ ModelImporter:
     4300142: Output12
     4300144: Output13
     4300146: Output14
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoadMaterial
+    second: {fileID: 2100000, guid: e2d9c3917e5db71449b745767edab914, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

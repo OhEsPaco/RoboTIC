@@ -61,7 +61,12 @@ ModelImporter:
     4300016: exit
     4300018: robotic
     4300020: try again
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 4ef4c9b9c1cc7ee4ab8befb5041bbfc2, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

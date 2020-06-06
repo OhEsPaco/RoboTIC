@@ -86,7 +86,12 @@ ModelImporter:
     4300026: TurnLeftsAvailable
     4300028: Button_TurnRight
     4300030: TurnRightsAvailable
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtonMaterial
+    second: {fileID: 2100000, guid: a101aa00b6d81304a88e023074a692a5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

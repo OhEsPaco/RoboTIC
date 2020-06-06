@@ -15,7 +15,12 @@ ModelImporter:
     3300002: //RootNode
     4300000: Spikes Cube
     4300002: Spikes
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Danger
+    second: {fileID: 2100000, guid: c817ac2e8031dff4b99c3b75c97e9160, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

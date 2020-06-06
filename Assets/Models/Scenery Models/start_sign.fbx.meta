@@ -11,7 +11,22 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: start_sign
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: bbc0855f10c7e974a98501ae67395565, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: d879b01ab1582b046a30bab6d9df0ddf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: aab5579184b08d2478762c1531fabf1c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

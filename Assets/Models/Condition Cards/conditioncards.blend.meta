@@ -4,40 +4,50 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: 'dangerous '
-    100004: destructible
+    100002: Dangerous
+    100004: Destructible
     100006: frame
-    100008: freezable
-    100010: usable
-    100012: walkable
+    100008: Freezable
+    100010: Usable
+    100012: Walkable
     400000: //RootNode
-    400002: 'dangerous '
-    400004: destructible
+    400002: Dangerous
+    400004: Destructible
     400006: frame
-    400008: freezable
-    400010: usable
-    400012: walkable
-    2100000: TextMat
-    2100002: red
-    2300000: 'dangerous '
-    2300002: destructible
+    400008: Freezable
+    400010: Usable
+    400012: Walkable
+    2100000: red
+    2100002: No Name
+    2300000: Dangerous
+    2300002: Destructible
     2300004: frame
-    2300006: freezable
-    2300008: usable
-    2300010: walkable
-    3300000: 'dangerous '
-    3300002: destructible
+    2300006: Freezable
+    2300008: Usable
+    2300010: Walkable
+    3300000: Dangerous
+    3300002: Destructible
     3300004: frame
-    3300006: freezable
-    3300008: usable
-    3300010: walkable
-    4300000: destructible
-    4300002: walkable
-    4300004: usable
-    4300006: freezable
-    4300008: 'dangerous '
-    4300010: frame
-  externalObjects: {}
+    3300006: Freezable
+    3300008: Usable
+    3300010: Walkable
+    4300000: frame
+    4300002: Walkable
+    4300004: Usable
+    4300006: Freezable
+    4300008: Destructible
+    4300010: Dangerous
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 498ca5b9431e8fc47be5328c52a02ebf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: red
+    second: {fileID: 2100000, guid: 9eebea60bf798a841866db6659ea8545, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

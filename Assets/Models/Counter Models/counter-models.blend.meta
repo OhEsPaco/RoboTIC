@@ -56,7 +56,12 @@ ModelImporter:
     4300014: RepeatsX8
     4300016: RepeatsX9
     4300018: RepeatsX0
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 2aa8abad19b862f44afdeda68423148d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
