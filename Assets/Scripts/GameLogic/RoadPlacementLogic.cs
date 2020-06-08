@@ -880,13 +880,13 @@ public class RoadPlacementLogic : MonoBehaviour
         return result;
     }
 
-    private void DoRestart()
+    public void DoRestart()
     {
         ResetRoad();
         GameLogic.Instance.AddInputFromButton(Buttons.Restart);
     }
 
-    private void ResetRoad()
+    public void ResetRoad()
     {
         EventAggregator.Instance.Publish(new MsgEnableAllButtons());
         EventAggregator.Instance.Publish(new MsgStopMovement());

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
+using static MessageScreenManager;
 
 [RequireComponent(typeof(Collider))]
 public class MessageScreenButton : MonoBehaviour
 {
-    public delegate void MessageScreenButtonPressed(MessageScreenButtons pressed);
-
-    private MessageScreenButtonPressed informOnPressed;
+    private OnMessageScreenButtonPressed informOnPressed;
     [SerializeField] private MessageScreenButtons buttonType;
-    public MessageScreenButtonPressed InformOnPressed { get => informOnPressed; set => informOnPressed += value; }
+    public OnMessageScreenButtonPressed InformOnPressed { get => informOnPressed; set => informOnPressed += value; }
+    public MessageScreenButtons ButtonType { get => buttonType; set => buttonType = value; }
 
     public enum MessageScreenButtons
     {
@@ -18,11 +18,22 @@ public class MessageScreenButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        informOnPressed(buttonType);
+        if (informOnPressed != null)
+        {
+            informOnPressed();
+        }
     }
 
     public void OnSelect()
     {
-        informOnPressed(buttonType);
+        if (informOnPressed != null)
+        {
+            informOnPressed();
+        }
+    }
+
+    public void ResetDelegates()
+    {
+        informOnPressed = null;
     }
 }

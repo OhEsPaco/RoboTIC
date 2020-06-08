@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using static MessageScreenButton;
 
 public class MessageScreenManager : MonoBehaviour
 {
     private Dictionary<string, MessageScreen> messageScreensDic = new Dictionary<string, MessageScreen>();
+
+    public delegate void OnMessageScreenButtonPressed();
 
     // Start is called before the first frame update
     private void Start()
@@ -29,6 +33,7 @@ public class MessageScreenManager : MonoBehaviour
     {
         foreach (KeyValuePair<string, MessageScreen> entry in messageScreensDic)
         {
+            entry.Value.ResetAllButtons();
             entry.Value.gameObject.SetActive(false);
         }
     }
@@ -37,7 +42,12 @@ public class MessageScreenManager : MonoBehaviour
     {
         if (messageScreensDic.ContainsKey(msg.screenName))
         {
-            messageScreensDic[msg.screenName].gameObject.SetActive(true);
+            MessageScreen msgScreen = messageScreensDic[msg.screenName];
+            msgScreen.gameObject.SetActive(true);
+            foreach (Tuple<MessageScreenButtons, OnMessageScreenButtonPressed> t in msg.listOfActions)
+            {
+                msgScreen.AddDelegateToButton(t.Item1, t.Item2);
+            }
         }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 using static Block;
 using static LevelButtons;
 using static LevelObject;
+using static MessageScreenButton;
+using static MessageScreenManager;
 
 /// <summary>
 /// Defines the <see cref="GameLogic" />
@@ -173,7 +175,21 @@ public class GameLogic : MonoBehaviour
         bool outTmp;
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBigCharacterAllActionsFinished, bool>(msg, out outTmp));
         EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Win, new Vector3()));
-        EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("win"));
+        EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("win", new Tuple<MessageScreenButtons, OnMessageScreenButtonPressed>[] {
+            Tuple.Create<MessageScreenButtons, OnMessageScreenButtonPressed>(MessageScreenButtons.Yes, YesButton),
+            Tuple.Create<MessageScreenButtons, OnMessageScreenButtonPressed>(MessageScreenButtons.No, NoButton)}));
+    }
+
+    private void YesButton()
+    {
+        RoadPlacementLogic.Instance.ResetRoad();
+        DoRestart();
+    }
+
+    private void NoButton()
+    {
+        RoadPlacementLogic.Instance.ResetRoad();
+        GoToMapMenu();
     }
 
     private IEnumerator YouLose()
@@ -186,6 +202,9 @@ public class GameLogic : MonoBehaviour
         bool outTmp;
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBigCharacterAllActionsFinished, bool>(msg, out outTmp));
         EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Lose, new Vector3()));
+        EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("lose", new Tuple<MessageScreenButtons, OnMessageScreenButtonPressed>[] {
+            Tuple.Create<MessageScreenButtons, OnMessageScreenButtonPressed>(MessageScreenButtons.Yes, YesButton),
+            Tuple.Create<MessageScreenButtons, OnMessageScreenButtonPressed>(MessageScreenButtons.No, NoButton)}));
     }
 
     /// <summary>
