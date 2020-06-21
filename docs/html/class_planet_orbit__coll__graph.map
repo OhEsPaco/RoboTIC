@@ -1,0 +1,4 @@
+<map id="PlanetOrbit" name="PlanetOrbit">
+<area shape="rect" id="node1" title="Controls a planet&#39;s movement around the sun (years) and rotation around its axis (days) and distance ..." alt="" coords="17,80,104,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,116,32"/>
+</map>

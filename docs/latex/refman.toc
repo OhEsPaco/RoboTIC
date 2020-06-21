@@ -1,0 +1,175 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Hierarchical Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Class Index}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class List}{5}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Documentation}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Arrow\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Anim Class Reference}{9}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Available\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Instructions Class Reference}{10}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Big\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Character Class Reference}{10}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Member Function Documentation}{11}{subsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.1.1}AreAllActionsFinished()}{12}{subsubsection.3.3.1.1}%
+\contentsline {subsection}{\numberline {3.3.2}Member Data Documentation}{12}{subsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.2.1}actionSpeed}{12}{subsubsection.3.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.3.2.2}descendJumpPct}{12}{subsubsection.3.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.3.2.3}initialActionCapacity}{12}{subsubsection.3.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.3.2.4}jumpPct}{12}{subsubsection.3.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.3.2.5}rotationTime}{13}{subsubsection.3.3.2.5}%
+\contentsline {subsubsection}{\numberline {3.3.2.6}takeOff}{13}{subsubsection.3.3.2.6}%
+\contentsline {section}{\numberline {3.4}Block Class Reference}{13}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Block\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Exploder Class Reference}{15}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Detailed Description}{16}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Member Function Documentation}{16}{subsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.2.1}Explode()}{16}{subsubsection.3.5.2.1}%
+\contentsline {subsection}{\numberline {3.5.3}Member Data Documentation}{16}{subsection.3.5.3}%
+\contentsline {subsubsection}{\numberline {3.5.3.1}cubesInRow}{16}{subsubsection.3.5.3.1}%
+\contentsline {subsubsection}{\numberline {3.5.3.2}cubeSize}{17}{subsubsection.3.5.3.2}%
+\contentsline {subsubsection}{\numberline {3.5.3.3}explosionForce}{17}{subsubsection.3.5.3.3}%
+\contentsline {subsubsection}{\numberline {3.5.3.4}explosionRadius}{17}{subsubsection.3.5.3.4}%
+\contentsline {subsubsection}{\numberline {3.5.3.5}explosionUpward}{17}{subsubsection.3.5.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.3.6}mass}{17}{subsubsection.3.5.3.6}%
+\contentsline {subsubsection}{\numberline {3.5.3.7}particleDuration}{17}{subsubsection.3.5.3.7}%
+\contentsline {section}{\numberline {3.6}Button\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Counter\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Script Class Reference}{18}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Cage\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Point Class Reference}{19}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Cam\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Cage Class Reference}{20}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Camera\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Msgs Class Reference}{21}{section.3.9}%
+\contentsline {section}{\numberline {3.10}Card\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Constants Class Reference}{22}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Character Class Reference}{22}{section.3.11}%
+\contentsline {section}{\numberline {3.12}Condition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Card Class Reference}{23}{section.3.12}%
+\contentsline {section}{\numberline {3.13}Condition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Card\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Frame Class Reference}{24}{section.3.13}%
+\contentsline {section}{\numberline {3.14}Condition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Card\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Picker Class Reference}{25}{section.3.14}%
+\contentsline {section}{\numberline {3.15}Connector\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Double Class Reference}{26}{section.3.15}%
+\contentsline {section}{\numberline {3.16}Connector\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Vertical Class Reference}{27}{section.3.16}%
+\contentsline {section}{\numberline {3.17}Counter Class Reference}{28}{section.3.17}%
+\contentsline {section}{\numberline {3.18}Block.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Effect\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Reaction Class Reference}{29}{section.3.18}%
+\contentsline {section}{\numberline {3.19}Event\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Aggregator Class Reference}{29}{section.3.19}%
+\contentsline {subsection}{\numberline {3.19.1}Detailed Description}{30}{subsection.3.19.1}%
+\contentsline {subsection}{\numberline {3.19.2}Member Function Documentation}{30}{subsection.3.19.2}%
+\contentsline {subsubsection}{\numberline {3.19.2.1}Publish$<$ TMessageType $>$()}{30}{subsubsection.3.19.2.1}%
+\contentsline {subsubsection}{\numberline {3.19.2.2}Subscribe$<$ TMessageType $>$()}{31}{subsubsection.3.19.2.2}%
+\contentsline {subsubsection}{\numberline {3.19.2.3}Unsubscribe$<$ TMessageType $>$()}{31}{subsubsection.3.19.2.3}%
+\contentsline {subsection}{\numberline {3.19.3}Property Documentation}{32}{subsection.3.19.3}%
+\contentsline {subsubsection}{\numberline {3.19.3.1}Instance}{32}{subsubsection.3.19.3.1}%
+\contentsline {section}{\numberline {3.20}Face\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Target Class Reference}{32}{section.3.20}%
+\contentsline {section}{\numberline {3.21}Game\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Logic Class Reference}{33}{section.3.21}%
+\contentsline {subsection}{\numberline {3.21.1}Detailed Description}{34}{subsection.3.21.1}%
+\contentsline {subsection}{\numberline {3.21.2}Member Function Documentation}{34}{subsection.3.21.2}%
+\contentsline {subsubsection}{\numberline {3.21.2.1}AddInputFromButton()}{34}{subsubsection.3.21.2.1}%
+\contentsline {subsection}{\numberline {3.21.3}Property Documentation}{34}{subsection.3.21.3}%
+\contentsline {subsubsection}{\numberline {3.21.3.1}CurrentLevelData}{34}{subsubsection.3.21.3.1}%
+\contentsline {section}{\numberline {3.22}Generic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Button Class Reference}{34}{section.3.22}%
+\contentsline {section}{\numberline {3.23}Head\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Follower Class Reference}{35}{section.3.23}%
+\contentsline {section}{\numberline {3.24}Interactible Class Reference}{36}{section.3.24}%
+\contentsline {subsection}{\numberline {3.24.1}Detailed Description}{37}{subsection.3.24.1}%
+\contentsline {section}{\numberline {3.25}Interactible\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Manager Class Reference}{37}{section.3.25}%
+\contentsline {subsection}{\numberline {3.25.1}Detailed Description}{38}{subsection.3.25.1}%
+\contentsline {section}{\numberline {3.26}Interactible\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parameters Class Reference}{38}{section.3.26}%
+\contentsline {subsection}{\numberline {3.26.1}Detailed Description}{38}{subsection.3.26.1}%
+\contentsline {section}{\numberline {3.27}Item Class Reference}{39}{section.3.27}%
+\contentsline {section}{\numberline {3.28}J\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Son\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader Class Reference}{40}{section.3.28}%
+\contentsline {subsection}{\numberline {3.28.1}Detailed Description}{41}{subsection.3.28.1}%
+\contentsline {section}{\numberline {3.29}Level\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Buttons Class Reference}{41}{section.3.29}%
+\contentsline {section}{\numberline {3.30}Level\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data Class Reference}{42}{section.3.30}%
+\contentsline {section}{\numberline {3.31}Level\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Object Class Reference}{43}{section.3.31}%
+\contentsline {section}{\numberline {3.32}Level\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Objects Class Reference}{44}{section.3.32}%
+\contentsline {section}{\numberline {3.33}Loop\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Counter Class Reference}{45}{section.3.33}%
+\contentsline {section}{\numberline {3.34}Map\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Container Class Reference}{46}{section.3.34}%
+\contentsline {section}{\numberline {3.35}Map\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{47}{section.3.35}%
+\contentsline {section}{\numberline {3.36}Map\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Logic Class Reference}{48}{section.3.36}%
+\contentsline {section}{\numberline {3.37}Map\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Renderer Class Reference}{49}{section.3.37}%
+\contentsline {section}{\numberline {3.38}Map\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Selector Class Reference}{50}{section.3.38}%
+\contentsline {section}{\numberline {3.39}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Screen Class Reference}{51}{section.3.39}%
+\contentsline {section}{\numberline {3.40}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Screen\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Button Class Reference}{52}{section.3.40}%
+\contentsline {section}{\numberline {3.41}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Screen\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Manager Class Reference}{53}{section.3.41}%
+\contentsline {section}{\numberline {3.42}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Warehouse Class Reference}{54}{section.3.42}%
+\contentsline {section}{\numberline {3.43}Mini\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Character Class Reference}{55}{section.3.43}%
+\contentsline {section}{\numberline {3.44}Move\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Cursor Class Reference}{56}{section.3.44}%
+\contentsline {section}{\numberline {3.45}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Add\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}From\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Button Class Reference}{56}{section.3.45}%
+\contentsline {section}{\numberline {3.46}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Add\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}From\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Button\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Road\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Placement Class Reference}{57}{section.3.46}%
+\contentsline {section}{\numberline {3.47}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Big\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Character\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}All\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Actions\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Finished Class Reference}{57}{section.3.47}%
+\contentsline {section}{\numberline {3.48}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Big\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Robot\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Action Class Reference}{57}{section.3.48}%
+\contentsline {section}{\numberline {3.49}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Big\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Robot\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Idle Class Reference}{58}{section.3.49}%
+\contentsline {section}{\numberline {3.50}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Block\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Length Class Reference}{58}{section.3.50}%
+\contentsline {section}{\numberline {3.51}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Change\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parent\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Big\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Character Class Reference}{58}{section.3.51}%
+\contentsline {section}{\numberline {3.52}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Disable\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}All\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Buttons Class Reference}{58}{section.3.52}%
+\contentsline {section}{\numberline {3.53}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Enable\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}All\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Buttons Class Reference}{59}{section.3.53}%
+\contentsline {section}{\numberline {3.54}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Enable\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Button Class Reference}{59}{section.3.54}%
+\contentsline {section}{\numberline {3.55}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Get\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Main\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Camera\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Transform Class Reference}{59}{section.3.55}%
+\contentsline {section}{\numberline {3.56}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hide\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}All\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Screens Class Reference}{59}{section.3.56}%
+\contentsline {section}{\numberline {3.57}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Load\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Level\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data Class Reference}{59}{section.3.57}%
+\contentsline {section}{\numberline {3.58}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Place\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Character Class Reference}{60}{section.3.58}%
+\contentsline {section}{\numberline {3.59}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Play\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sfx Class Reference}{60}{section.3.59}%
+\contentsline {section}{\numberline {3.60}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Play\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sfx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}At\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Point Class Reference}{60}{section.3.60}%
+\contentsline {section}{\numberline {3.61}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Render\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Map\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}And\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Items Class Reference}{61}{section.3.61}%
+\contentsline {section}{\numberline {3.62}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Render\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Scenery Class Reference}{61}{section.3.62}%
+\contentsline {section}{\numberline {3.63}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Set\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Av\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Instructions Class Reference}{62}{section.3.63}%
+\contentsline {section}{\numberline {3.64}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Show\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Screen Class Reference}{62}{section.3.64}%
+\contentsline {section}{\numberline {3.65}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Something\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tapped Class Reference}{63}{section.3.65}%
+\contentsline {section}{\numberline {3.66}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Start\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Level Class Reference}{63}{section.3.66}%
+\contentsline {section}{\numberline {3.67}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Start\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Road\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Movement Class Reference}{64}{section.3.67}%
+\contentsline {section}{\numberline {3.68}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stop\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Movement Class Reference}{64}{section.3.68}%
+\contentsline {section}{\numberline {3.69}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Take\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item Class Reference}{65}{section.3.69}%
+\contentsline {section}{\numberline {3.70}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tapped\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Condition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Card Class Reference}{66}{section.3.70}%
+\contentsline {section}{\numberline {3.71}Msg\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Use\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item Class Reference}{67}{section.3.71}%
+\contentsline {section}{\numberline {3.72}Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}If\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}In Class Reference}{68}{section.3.72}%
+\contentsline {section}{\numberline {3.73}Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}If\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Out Class Reference}{69}{section.3.73}%
+\contentsline {section}{\numberline {3.74}Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loop\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}In Class Reference}{70}{section.3.74}%
+\contentsline {section}{\numberline {3.75}Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loop\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Out Class Reference}{71}{section.3.75}%
+\contentsline {section}{\numberline {3.76}Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Vertical\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Button Class Reference}{72}{section.3.76}%
+\contentsline {section}{\numberline {3.77}Path\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Container.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Path Struct Reference}{73}{section.3.77}%
+\contentsline {section}{\numberline {3.78}Path\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Container Class Reference}{74}{section.3.78}%
+\contentsline {section}{\numberline {3.79}Path\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Point Class Reference}{75}{section.3.79}%
+\contentsline {section}{\numberline {3.80}Physical\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Body Class Reference}{76}{section.3.80}%
+\contentsline {section}{\numberline {3.81}Physical\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Camera Class Reference}{77}{section.3.81}%
+\contentsline {section}{\numberline {3.82}Physical\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Camera\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{78}{section.3.82}%
+\contentsline {section}{\numberline {3.83}Placeable Class Reference}{79}{section.3.83}%
+\contentsline {subsection}{\numberline {3.83.1}Detailed Description}{80}{subsection.3.83.1}%
+\contentsline {subsection}{\numberline {3.83.2}Member Function Documentation}{80}{subsection.3.83.2}%
+\contentsline {subsubsection}{\numberline {3.83.2.1}OnPlacementStart()}{80}{subsubsection.3.83.2.1}%
+\contentsline {subsubsection}{\numberline {3.83.2.2}OnPlacementStop()}{80}{subsubsection.3.83.2.2}%
+\contentsline {subsection}{\numberline {3.83.3}Property Documentation}{80}{subsection.3.83.3}%
+\contentsline {subsubsection}{\numberline {3.83.3.1}IsPlacing}{81}{subsubsection.3.83.3.1}%
+\contentsline {section}{\numberline {3.84}Planet\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Occlusion Class Reference}{81}{section.3.84}%
+\contentsline {subsection}{\numberline {3.84.1}Detailed Description}{82}{subsection.3.84.1}%
+\contentsline {section}{\numberline {3.85}Planet\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Orbit Class Reference}{82}{section.3.85}%
+\contentsline {subsection}{\numberline {3.85.1}Detailed Description}{82}{subsection.3.85.1}%
+\contentsline {section}{\numberline {3.86}Platform\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Movement Class Reference}{83}{section.3.86}%
+\contentsline {section}{\numberline {3.87}Play\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Space\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Manager Class Reference}{83}{section.3.87}%
+\contentsline {subsection}{\numberline {3.87.1}Detailed Description}{84}{subsection.3.87.1}%
+\contentsline {section}{\numberline {3.88}Response\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Wrapper$<$ T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Petition, T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Response $>$ Class Template Reference}{85}{section.3.88}%
+\contentsline {section}{\numberline {3.89}Road Class Reference}{85}{section.3.89}%
+\contentsline {section}{\numberline {3.90}Road\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Button Class Reference}{87}{section.3.90}%
+\contentsline {section}{\numberline {3.91}Road\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Factory Class Reference}{88}{section.3.91}%
+\contentsline {section}{\numberline {3.92}Road\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Input Class Reference}{89}{section.3.92}%
+\contentsline {section}{\numberline {3.93}Road\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IO Class Reference}{90}{section.3.93}%
+\contentsline {section}{\numberline {3.94}Road\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Movement\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Logic Class Reference}{91}{section.3.94}%
+\contentsline {section}{\numberline {3.95}Road\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Output Class Reference}{92}{section.3.95}%
+\contentsline {section}{\numberline {3.96}Road\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Placement\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Logic Class Reference}{93}{section.3.96}%
+\contentsline {section}{\numberline {3.97}Rotate\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Asteroids Class Reference}{94}{section.3.97}%
+\contentsline {subsection}{\numberline {3.97.1}Detailed Description}{95}{subsection.3.97.1}%
+\contentsline {subsection}{\numberline {3.97.2}Member Data Documentation}{95}{subsection.3.97.2}%
+\contentsline {subsubsection}{\numberline {3.97.2.1}period}{95}{subsubsection.3.97.2.1}%
+\contentsline {section}{\numberline {3.98}Rotate\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Main\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Background Class Reference}{96}{section.3.98}%
+\contentsline {section}{\numberline {3.99}Scene\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Caller Class Reference}{97}{section.3.99}%
+\contentsline {section}{\numberline {3.100}Scroll\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Texture Class Reference}{98}{section.3.100}%
+\contentsline {section}{\numberline {3.101}Select\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Arrow Class Reference}{99}{section.3.101}%
+\contentsline {section}{\numberline {3.102}Selected\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Map Class Reference}{100}{section.3.102}%
+\contentsline {section}{\numberline {3.103}Selected\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Output\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Marker Class Reference}{101}{section.3.103}%
+\contentsline {section}{\numberline {3.104}Sound\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Engine Class Reference}{102}{section.3.104}%
+\contentsline {section}{\numberline {3.105}Space\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Collection\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Manager Class Reference}{102}{section.3.105}%
+\contentsline {subsection}{\numberline {3.105.1}Detailed Description}{103}{subsection.3.105.1}%
+\contentsline {subsection}{\numberline {3.105.2}Member Function Documentation}{103}{subsection.3.105.2}%
+\contentsline {subsubsection}{\numberline {3.105.2.1}SetSurfaces()}{104}{subsubsection.3.105.2.1}%
+\contentsline {section}{\numberline {3.106}Subscription$<$ Tmessage $>$ Class Template Reference}{104}{section.3.106}%
+\contentsline {section}{\numberline {3.107}Sun\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Script Class Reference}{105}{section.3.107}%
+\contentsline {subsection}{\numberline {3.107.1}Detailed Description}{106}{subsection.3.107.1}%
+\contentsline {subsection}{\numberline {3.107.2}Member Function Documentation}{106}{subsection.3.107.2}%
+\contentsline {subsubsection}{\numberline {3.107.2.1}GetDayTime()}{106}{subsubsection.3.107.2.1}%
+\contentsline {subsubsection}{\numberline {3.107.2.2}GetDistance()}{106}{subsubsection.3.107.2.2}%
+\contentsline {subsubsection}{\numberline {3.107.2.3}GetYearTime()}{108}{subsubsection.3.107.2.3}%
+\contentsline {subsection}{\numberline {3.107.3}Member Data Documentation}{108}{subsection.3.107.3}%
+\contentsline {subsubsection}{\numberline {3.107.3.1}EarthYear}{108}{subsubsection.3.107.3.1}%
+\contentsline {subsubsection}{\numberline {3.107.3.2}OneAUInMeters}{108}{subsubsection.3.107.3.2}%
+\contentsline {section}{\numberline {3.108}Unique\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Identifier\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Attribute Class Reference}{109}{section.3.108}%
+\contentsline {section}{\numberline {3.109}Vertical\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Button Class Reference}{110}{section.3.109}%
+\contentsline {chapter}{Index}{111}{section*.334}%

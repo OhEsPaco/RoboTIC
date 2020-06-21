@@ -6,11 +6,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Defines the <see cref="EventAggregator" />.
+/// </summary>
 public class EventAggregator : MonoBehaviour
 {
+    /// <summary>
+    /// Defines the subscriber.
+    /// </summary>
     private Dictionary<Type, IList> subscriber = new Dictionary<Type, IList>();
+
+    /// <summary>
+    /// Defines the eventAgregator.
+    /// </summary>
     private static EventAggregator eventAgregator;
 
+    /// <summary>
+    /// Gets the Instance.
+    /// </summary>
     public static EventAggregator Instance
     {
         get
@@ -29,6 +42,11 @@ public class EventAggregator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// The Publish.
+    /// </summary>
+    /// <typeparam name="TMessageType">.</typeparam>
+    /// <param name="message">The message<see cref="TMessageType"/>.</param>
     public void Publish<TMessageType>(TMessageType message)
     {
         Type t = typeof(TMessageType);
@@ -44,6 +62,12 @@ public class EventAggregator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// The Subscribe.
+    /// </summary>
+    /// <typeparam name="TMessageType">.</typeparam>
+    /// <param name="action">The action<see cref="Action{TMessageType}"/>.</param>
+    /// <returns>The <see cref="Subscription{TMessageType}"/>.</returns>
     public Subscription<TMessageType> Subscribe<TMessageType>(Action<TMessageType> action)
     {
         Type t = typeof(TMessageType);
@@ -64,6 +88,11 @@ public class EventAggregator : MonoBehaviour
         return actiondetail;
     }
 
+    /// <summary>
+    /// The Unsubscribe.
+    /// </summary>
+    /// <typeparam name="TMessageType">.</typeparam>
+    /// <param name="subscription">The subscription<see cref="Subscription{TMessageType}"/>.</param>
     public void Unsubscribe<TMessageType>(Subscription<TMessageType> subscription)
     {
         Type t = typeof(TMessageType);

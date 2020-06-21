@@ -1,0 +1,117 @@
+\hypertarget{class_placeable}{}\doxysection{Placeable Class Reference}
+\label{class_placeable}\index{Placeable@{Placeable}}
+
+
+The \mbox{\hyperlink{class_placeable}{Placeable}} class implements the logic used to determine if a Game\+Object can be placed on a target surface. Constraints for placement include\+:  
+
+
+
+
+Inheritance diagram for Placeable\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{class_placeable__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Placeable\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{class_placeable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_placeable_a6b4b6ebfcbd2d7e2c76b283ae1c2ce4f}\label{class_placeable_a6b4b6ebfcbd2d7e2c76b283ae1c2ce4f}} 
+void {\bfseries On\+Place} ()
+\item 
+\mbox{\Hypertarget{class_placeable_a4369b7f944cf64800e4222a502201d38}\label{class_placeable_a4369b7f944cf64800e4222a502201d38}} 
+void {\bfseries On\+Select} ()
+\item 
+void \mbox{\hyperlink{class_placeable_a1bde01908d5da4b46af09cd04b5ac43c}{On\+Placement\+Start}} ()
+\begin{DoxyCompactList}\small\item\em Put the object into placement mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_placeable_a52c560a11636e0d491b826877cb757bd}{On\+Placement\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Take the object out of placement mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_placeable_aeaccfdf1384ac034c3e8ad40cccc28a0}\label{class_placeable_aeaccfdf1384ac034c3e8ad40cccc28a0}} 
+Material {\bfseries Placeable\+Bounds\+Material} = null
+\item 
+\mbox{\Hypertarget{class_placeable_aeb2aea6777581a3265bc93ccde7eae73}\label{class_placeable_aeb2aea6777581a3265bc93ccde7eae73}} 
+Material {\bfseries Not\+Placeable\+Bounds\+Material} = null
+\item 
+\mbox{\Hypertarget{class_placeable_a32aff8bcf2b37462317593b8b93b1e5b}\label{class_placeable_a32aff8bcf2b37462317593b8b93b1e5b}} 
+Material {\bfseries Placeable\+Shadow\+Material} = null
+\item 
+\mbox{\Hypertarget{class_placeable_aef9325782488d6a82b459388b2a4c5b9}\label{class_placeable_aef9325782488d6a82b459388b2a4c5b9}} 
+Material {\bfseries Not\+Placeable\+Shadow\+Material} = null
+\item 
+\mbox{\Hypertarget{class_placeable_aa0f20de4fd0477e26638745a13020022}\label{class_placeable_aa0f20de4fd0477e26638745a13020022}} 
+Placement\+Surfaces {\bfseries Placement\+Surface} = Placement\+Surfaces.\+Horizontal
+\item 
+\mbox{\Hypertarget{class_placeable_aead6fccd8c88795342ea8fe6c9a980db}\label{class_placeable_aead6fccd8c88795342ea8fe6c9a980db}} 
+List$<$ Game\+Object $>$ {\bfseries Children\+To\+Hide} = new List$<$Game\+Object$>$()
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_placeable_a4a892123c3aaac47426f31785ba19030}{Is\+Placing}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicates if the object is in the process of being placed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_placeable}{Placeable}} class implements the logic used to determine if a Game\+Object can be placed on a target surface. Constraints for placement include\+: 
+
+
+\begin{DoxyItemize}
+\item No part of the Game\+Object\textquotesingle{}s box collider impacts with another object in the scene
+\item The object lays flat (within specified tolerances) against the surface
+\item The object would not fall off of the surface if gravity were enabled. This class also provides the following visualizations.
+\item A transparent cube representing the object\textquotesingle{}s box collider.
+\item Shadow on the target surface indicating whether or not placement is valid.
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_placeable_a1bde01908d5da4b46af09cd04b5ac43c}\label{class_placeable_a1bde01908d5da4b46af09cd04b5ac43c}} 
+\index{Placeable@{Placeable}!OnPlacementStart@{OnPlacementStart}}
+\index{OnPlacementStart@{OnPlacementStart}!Placeable@{Placeable}}
+\doxysubsubsection{\texorpdfstring{OnPlacementStart()}{OnPlacementStart()}}
+{\footnotesize\ttfamily void Placeable.\+On\+Placement\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Put the object into placement mode. 
+
+\mbox{\Hypertarget{class_placeable_a52c560a11636e0d491b826877cb757bd}\label{class_placeable_a52c560a11636e0d491b826877cb757bd}} 
+\index{Placeable@{Placeable}!OnPlacementStop@{OnPlacementStop}}
+\index{OnPlacementStop@{OnPlacementStop}!Placeable@{Placeable}}
+\doxysubsubsection{\texorpdfstring{OnPlacementStop()}{OnPlacementStop()}}
+{\footnotesize\ttfamily void Placeable.\+On\+Placement\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Take the object out of placement mode. 
+
+This method will leave the object in placement mode if called while the object is in an invalid location. To determine whether or not the object has been placed, check the value of the Is\+Placing property. 
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_placeable_a4a892123c3aaac47426f31785ba19030}\label{class_placeable_a4a892123c3aaac47426f31785ba19030}} 
+\index{Placeable@{Placeable}!IsPlacing@{IsPlacing}}
+\index{IsPlacing@{IsPlacing}!Placeable@{Placeable}}
+\doxysubsubsection{\texorpdfstring{IsPlacing}{IsPlacing}}
+{\footnotesize\ttfamily bool Placeable.\+Is\+Placing\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Indicates if the object is in the process of being placed. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Scripts/Placeable.\+cs\end{DoxyCompactItemize}

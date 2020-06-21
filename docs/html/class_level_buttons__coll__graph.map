@@ -1,0 +1,5 @@
+<map id="LevelButtons" name="LevelButtons">
+<area shape="rect" id="node1" title=" " alt="" coords="5,259,101,285"/>
+<area shape="rect" id="node2" title=" " alt="" coords="11,5,122,32"/>
+<area shape="rect" id="node3" href="$class_button_counter_script.html" title=" " alt="" coords="69,81,208,108"/>
+</map>

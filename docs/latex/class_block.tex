@@ -1,0 +1,95 @@
+\hypertarget{class_block}{}\doxysection{Block Class Reference}
+\label{class_block}\index{Block@{Block}}
+
+
+Inheritance diagram for Block\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{class_block__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Block\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{class_block__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_block_1_1_effect_reaction}{Effect\+Reaction}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_block_a74f6c4d67d92f3b9b8272c8748db0295}\label{class_block_a74f6c4d67d92f3b9b8272c8748db0295}} 
+enum {\bfseries Block\+Actions} \{ \newline
+{\bfseries Use}, 
+{\bfseries Destroy}, 
+{\bfseries Place}, 
+{\bfseries Activate}, 
+\newline
+{\bfseries Rebind}
+ \}
+\item 
+\mbox{\Hypertarget{class_block_ad15b8909d9b87663f418617219eda273}\label{class_block_ad15b8909d9b87663f418617219eda273}} 
+enum {\bfseries Block\+Properties} \{ \newline
+{\bfseries Immaterial}, 
+{\bfseries Walkable}, 
+{\bfseries Dangerous}, 
+{\bfseries Icy}, 
+\newline
+{\bfseries Destructible}, 
+{\bfseries Usable}, 
+{\bfseries Freezable}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_block_a536e884fefd812debd5c016ef2756262}\label{class_block_a536e884fefd812debd5c016ef2756262}} 
+void {\bfseries Execute\+Action} (Block\+Actions action)
+\item 
+\mbox{\Hypertarget{class_block_a991717f13157e416b88248d0e313641d}\label{class_block_a991717f13157e416b88248d0e313641d}} 
+void {\bfseries Use} ()
+\item 
+\mbox{\Hypertarget{class_block_a8b33897bbebd56798b7abc0944bec4b7}\label{class_block_a8b33897bbebd56798b7abc0944bec4b7}} 
+override void {\bfseries Destroy} ()
+\item 
+\mbox{\Hypertarget{class_block_a78b26d8948e2bcfc83559d4754a8d53e}\label{class_block_a78b26d8948e2bcfc83559d4754a8d53e}} 
+override void {\bfseries Place} ()
+\item 
+\mbox{\Hypertarget{class_block_a1a0a5cee568376fb772d869604549822}\label{class_block_a1a0a5cee568376fb772d869604549822}} 
+void {\bfseries Activate} ()
+\item 
+\mbox{\Hypertarget{class_block_a6d9713d5845bc5decedd012819453978}\label{class_block_a6d9713d5845bc5decedd012819453978}} 
+bool {\bfseries Check\+Property} (Block\+Properties property)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_block_aa85574352686f4c1dec2a79a7cba40d9}\label{class_block_aa85574352686f4c1dec2a79a7cba40d9}} 
+Blocks {\bfseries Block\+Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_block_a9cc10bdab66bde18e1c186ba7915f07b}\label{class_block_a9cc10bdab66bde18e1c186ba7915f07b}} 
+override string {\bfseries To\+String}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_block_ab47491af857919d6529f2c2f6676fa30}\label{class_block_ab47491af857919d6529f2c2f6676fa30}} 
+Block\+Properties\mbox{[}$\,$\mbox{]} {\bfseries \+\_\+\+Block\+Properties}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_block_ac298e87f86aecd912c04a873e7435772}\label{class_block_ac298e87f86aecd912c04a873e7435772}} 
+\mbox{\hyperlink{class_block_1_1_effect_reaction}{Effect\+Reaction}}\mbox{[}$\,$\mbox{]} {\bfseries Effect\+Reactions}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_block_a17f9c205f0a4c59f9cec95fc02c24246}\label{class_block_a17f9c205f0a4c59f9cec95fc02c24246}} 
+Vector3 {\bfseries Surface\+Point}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Scripts/\+Blocks/Block.\+cs\end{DoxyCompactItemize}

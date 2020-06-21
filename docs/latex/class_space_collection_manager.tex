@@ -1,0 +1,69 @@
+\hypertarget{class_space_collection_manager}{}\doxysection{Space\+Collection\+Manager Class Reference}
+\label{class_space_collection_manager}\index{SpaceCollectionManager@{SpaceCollectionManager}}
+
+
+Called by \mbox{\hyperlink{class_play_space_manager}{Play\+Space\+Manager}} after planes have been generated from the Spatial Mapping Mesh. This class will create a collection of prefab objects that have the \textquotesingle{}\mbox{\hyperlink{class_placeable}{Placeable}}\textquotesingle{} component and will attempt to set their initial location on planes that are close to the user.  
+
+
+
+
+Inheritance diagram for Space\+Collection\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{class_space_collection_manager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Space\+Collection\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{class_space_collection_manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_space_collection_manager_a2c3548a367b0a3dd5a9bd58fc7c806b3}{Set\+Surfaces}} (List$<$ Game\+Object $>$ horizontal\+Surfaces, List$<$ Game\+Object $>$ vertical\+Surfaces)
+\begin{DoxyCompactList}\small\item\em Generates a collection of \mbox{\hyperlink{class_placeable}{Placeable}} objects in the world and sets them on planes that match their affinity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_space_collection_manager_aab32138a0dcb86acafb14bb330f66dbe}\label{class_space_collection_manager_aab32138a0dcb86acafb14bb330f66dbe}} 
+bool {\bfseries Is\+Ready} ()
+\item 
+\mbox{\Hypertarget{class_space_collection_manager_a511c55ab4021cb3785a7846802b87aa3}\label{class_space_collection_manager_a511c55ab4021cb3785a7846802b87aa3}} 
+bool {\bfseries Place\+Item\+In\+World} (Game\+Object space\+Object\+Prefabs)
+\item 
+\mbox{\Hypertarget{class_space_collection_manager_abbc7d1ae0609a75037b3ed1957280e81}\label{class_space_collection_manager_abbc7d1ae0609a75037b3ed1957280e81}} 
+bool {\bfseries Place\+Items\+In\+World} (List$<$ Game\+Object $>$ space\+Object\+Prefabs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Called by \mbox{\hyperlink{class_play_space_manager}{Play\+Space\+Manager}} after planes have been generated from the Spatial Mapping Mesh. This class will create a collection of prefab objects that have the \textquotesingle{}\mbox{\hyperlink{class_placeable}{Placeable}}\textquotesingle{} component and will attempt to set their initial location on planes that are close to the user. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_space_collection_manager_a2c3548a367b0a3dd5a9bd58fc7c806b3}\label{class_space_collection_manager_a2c3548a367b0a3dd5a9bd58fc7c806b3}} 
+\index{SpaceCollectionManager@{SpaceCollectionManager}!SetSurfaces@{SetSurfaces}}
+\index{SetSurfaces@{SetSurfaces}!SpaceCollectionManager@{SpaceCollectionManager}}
+\doxysubsubsection{\texorpdfstring{SetSurfaces()}{SetSurfaces()}}
+{\footnotesize\ttfamily void Space\+Collection\+Manager.\+Set\+Surfaces (\begin{DoxyParamCaption}\item[{List$<$ Game\+Object $>$}]{horizontal\+Surfaces,  }\item[{List$<$ Game\+Object $>$}]{vertical\+Surfaces }\end{DoxyParamCaption})}
+
+
+
+Generates a collection of \mbox{\hyperlink{class_placeable}{Placeable}} objects in the world and sets them on planes that match their affinity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em horizontal\+Surfaces} & Horizontal surface planes (floors, tables).\\
+\hline
+{\em vertical\+Surfaces} & Vertical surface planes (walls).\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Scripts/Space\+Collection\+Manager.\+cs\end{DoxyCompactItemize}
