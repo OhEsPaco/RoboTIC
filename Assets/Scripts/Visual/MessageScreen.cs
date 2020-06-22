@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using static MessageScreenButton;
 using static MessageScreenManager;
 
 public class MessageScreen : MonoBehaviour
 {
     [SerializeField] private string screenName = "defaultName";
-    private Dictionary<MessageScreenButtons, MessageScreenButton> buttons = new Dictionary<MessageScreenButtons, MessageScreenButton>();
+    private Dictionary<string, MessageScreenButton> buttons = new Dictionary<string, MessageScreenButton>();
     private MessageScreenButton[] allButtons;
     public string ScreenName { get => screenName; }
 
@@ -37,11 +36,10 @@ public class MessageScreen : MonoBehaviour
         }
     }
 
-    public void AddDelegateToButton(MessageScreenButtons bType, OnMessageScreenButtonPressed bDelegate)
+    public void AddDelegateToButton(string bType, OnMessageScreenButtonPressed bDelegate)
     {
         if (buttons.ContainsKey(bType))
         {
-            Debug.Log("BBBBBBBBB");
             buttons[bType].InformOnPressed = bDelegate;
         }
     }

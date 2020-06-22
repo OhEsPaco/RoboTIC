@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MapMenuLogic : MonoBehaviour
 {
@@ -47,15 +46,8 @@ public class MapMenuLogic : MonoBehaviour
 
     private void Start()
     {
-        placeableMap.GetComponent<MapController>().EnableMenuControls();
         msgWar = new MessageWarehouse(EventAggregator.Instance);
-        //DirectoryInfo levelDirectoryPath = new DirectoryInfo(Application.streamingAssetsPath);
-        //Debug.Log(levelDirectoryPath.FullName);
-        //FileInfo[]fileInfo="ASDf".
-        /*foreach (string file in System.IO.Directory.GetFiles((System.IO.Directory.GetCurrentDirectory())))
-        {
-            Debug.Log(file);
-        }*/
+
         mainMenuButton.ClickCalbacks = UserClickedOnMainMenu;
         mapBounds.ClickCalbacks += UserClickedOnMap;
         leftArrow.InformMeOfClickedArrow(InputLeft);
@@ -82,6 +74,15 @@ public class MapMenuLogic : MonoBehaviour
             StartCoroutine(RenderALevel(level));
         }
         levels = storyLevelsLoaded;
+
+        //DirectoryInfo levelDirectoryPath = new DirectoryInfo(Application.streamingAssetsPath);
+        //Debug.Log(levelDirectoryPath.FullName);
+        //FileInfo[]fileInfo="ASDf".
+        /*foreach (string file in System.IO.Directory.GetFiles((System.IO.Directory.GetCurrentDirectory())))
+        {
+            Debug.Log(file);
+        }*/
+
         /*List<LevelData> userLevelsLoaded = LoadImportedLevels(GetListOfImportedLevels());
         foreach (LevelData level in userLevelsLoaded)
         {
@@ -93,7 +94,38 @@ public class MapMenuLogic : MonoBehaviour
             StartCoroutine(RenderALevel(level));
         }*/
         //eventAggregator.Publish(new MsgRenderMapAndItems(userLevelsLoaded[0].mapAndItems, userLevelsLoaded[0].levelSize));
+
         //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
+    }
+
+    public void ShowMapMenu()
+    {
+        placeableMap.GetComponent<MapController>().EnableMenuControls();
+        if (!loaded)
+        {
+            firstIt = true;
+        }
+        else
+        {
+            LevelData centerObj = levels[indexC];
+            foreach (LevelObject l in loadedLevels[centerObj])
+            {
+                l.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void HideMapMenu()
+    {
+        if (loaded)
+        {
+            LevelData centerObj = levels[indexC];
+
+            foreach (LevelObject l in loadedLevels[centerObj])
+            {
+                l.gameObject.SetActive(false);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -101,11 +133,13 @@ public class MapMenuLogic : MonoBehaviour
 
     private bool allDone = true;
 
-    private bool firstIt = true;
+    private bool firstIt = false;
+
+    private bool loaded = false;
 
     private void UserClickedOnMainMenu()
     {
-        SceneManager.LoadScene("Main");
+        //SceneManager.LoadScene("Main");
     }
 
     private void UserClickedOnMap()
@@ -114,7 +148,7 @@ public class MapMenuLogic : MonoBehaviour
         {
             Debug.Log("User clicked");
             LevelData centerObj = levels[indexC];
-          
+
             foreach (LevelObject l in loadedLevels[centerObj])
             {
                 l.gameObject.SetActive(false);
@@ -124,21 +158,12 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
-    public void RevertToMapMenu()
-    {
-        LevelData centerObj = levels[indexC];
-        foreach (LevelObject l in loadedLevels[centerObj])
-        {
-            l.gameObject.SetActive(true);
-        }
-
-        placeableMap.GetComponent<MapController>().EnableMenuControls();
-    }
 
     private void Update()
     {
         if (firstIt)
         {
+            loaded = true;
             firstIt = false;
             allDone = false;
             StartCoroutine(CenterFirstMap(speed));
@@ -147,7 +172,7 @@ public class MapMenuLogic : MonoBehaviour
 
     private void InputLeft()
     {
-        Debug.Log("LEEEEEEFT");
+       
         if (!firstIt && allDone)
         {
             allDone = false;
@@ -173,16 +198,34 @@ public class MapMenuLogic : MonoBehaviour
         yield return new WaitUntil(() => loadedLevels[centerObj] != null);
         GameObject centerParent = loadedLevels[centerObj][0].transform.parent.gameObject;
 
+        Vector3 lpos = placeableMap.transform.position;
+        Quaternion lrot = placeableMap.transform.rotation;
+
+        placeableMap.transform.position = new Vector3();
+        placeableMap.transform.rotation = new Quaternion();
+
+        centerParent.transform.position = new Vector3();
+        centerParent.transform.rotation = new Quaternion();
+
+        centerParent.GetComponent<MapContainer>().MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
+
+        //Lo hacemos padre del escenario
+        centerParent.transform.parent = placeableMap.transform;
+
+        placeableMap.transform.position = lpos;
+        placeableMap.transform.rotation = lrot;
+
         //Lo hacemos hijo del escenario
         centerParent.transform.parent = placeableMap.transform;
 
         //Contiene el centro del mapa
-        MapContainer mcont = centerParent.GetComponent<MapContainer>();
+        //MapContainer mcont = centerParent.GetComponent<MapContainer>();
 
-        mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
+
+       // mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
         //Ponemos el escenario
-        yield return new WaitUntil(() => SpaceCollectionManager.Instance.IsReady());
-        SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
+        //yield return new WaitUntil(() => SpaceCollectionManager.Instance.IsReady());
+        //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
 
         Vector3 mapScale = centerParent.transform.localScale;
 

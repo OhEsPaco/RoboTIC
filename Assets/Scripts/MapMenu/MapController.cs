@@ -70,6 +70,15 @@ public class MapController : MonoBehaviour
         arrowL.gameObject.SetActive(true);
     }
 
+    public void EnableMainMenuControls()
+    {
+        levelButtons.gameObject.SetActive(false);
+        roadScaler.gameObject.SetActive(false);
+        mapBounds.gameObject.SetActive(false);
+        arrowR.gameObject.SetActive(false);
+        arrowL.gameObject.SetActive(false);
+    }
+
     public Vector3 MapControllerCenter
     {
         get

@@ -60,7 +60,7 @@ public class GameLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.Restart, DoRestart);
         buttonActionsDictionary.Add(Buttons.TurnLeft, DoTurnLeft);
         buttonActionsDictionary.Add(Buttons.TurnRight, DoTurnRight);
-        buttonActionsDictionary.Add(Buttons.MapMenu, GoToMapMenu);
+        buttonActionsDictionary.Add(Buttons.MapMenu, GoToMainMenu);
     }
 
     private static GameLogic gameLogic;
@@ -175,9 +175,9 @@ public class GameLogic : MonoBehaviour
         bool outTmp;
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBigCharacterAllActionsFinished, bool>(msg, out outTmp));
         EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Win, new Vector3()));
-        EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("win", new Tuple<MessageScreenButtons, OnMessageScreenButtonPressed>[] {
-            Tuple.Create<MessageScreenButtons, OnMessageScreenButtonPressed>(MessageScreenButtons.Yes, YesButton),
-            Tuple.Create<MessageScreenButtons, OnMessageScreenButtonPressed>(MessageScreenButtons.No, NoButton)}));
+        EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("win", new Tuple<string, OnMessageScreenButtonPressed>[] {
+            Tuple.Create<string, OnMessageScreenButtonPressed>("Yes", YesButton),
+            Tuple.Create<string, OnMessageScreenButtonPressed>("No", NoButton)}));
     }
 
     private void YesButton()
@@ -189,7 +189,7 @@ public class GameLogic : MonoBehaviour
     private void NoButton()
     {
         RoadPlacementLogic.Instance.ResetRoad();
-        GoToMapMenu();
+        GoToMainMenu();
     }
 
     private IEnumerator YouLose()
@@ -202,9 +202,9 @@ public class GameLogic : MonoBehaviour
         bool outTmp;
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBigCharacterAllActionsFinished, bool>(msg, out outTmp));
         EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Lose, new Vector3()));
-        EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("lose", new Tuple<MessageScreenButtons, OnMessageScreenButtonPressed>[] {
-            Tuple.Create<MessageScreenButtons, OnMessageScreenButtonPressed>(MessageScreenButtons.Yes, YesButton),
-            Tuple.Create<MessageScreenButtons, OnMessageScreenButtonPressed>(MessageScreenButtons.No, NoButton)}));
+        EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("lose", new Tuple<string, OnMessageScreenButtonPressed>[] {
+            Tuple.Create<string, OnMessageScreenButtonPressed>("Yes", YesButton),
+            Tuple.Create<string, OnMessageScreenButtonPressed>("No", NoButton)}));
     }
 
     /// <summary>
@@ -256,7 +256,6 @@ public class GameLogic : MonoBehaviour
             mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
             objectReferences = loadedLevel;
 
-            Debug.LogError("Player orientation: " + currentLevelData.playerOrientation);
             Vector3 playerPos;
             //Podria dar fallo si el personaje esta mal colocado
             GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
@@ -380,7 +379,7 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    private void GoToMapMenu()
+    private void GoToMainMenu()
     {
         EventAggregator.Instance.Publish<MsgHideAllScreens>(new MsgHideAllScreens());
         finishedMinibotMovement = false;
@@ -393,7 +392,8 @@ public class GameLogic : MonoBehaviour
             objectReferences = null;
             items = null;
         }
-        MapMenuLogic.Instance.RevertToMapMenu();
+        //MapMenuLogic.Instance.ShowMapMenu();
+        MainMenuLogic.Instance.ShowMainMenu();
     }
 
     private IEnumerator DestroyLevelObjectsOnBackground(LevelObject[] levelObjects, Item[] items)

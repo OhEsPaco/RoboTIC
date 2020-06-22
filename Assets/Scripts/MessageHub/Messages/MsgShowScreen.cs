@@ -1,13 +1,12 @@
 ﻿using System;
-using static MessageScreenButton;
 using static MessageScreenManager;
 
 public class MsgShowScreen
 {
     public string screenName;
-    public Tuple<MessageScreenButtons, OnMessageScreenButtonPressed>[] listOfActions;
+    public Tuple<string, OnMessageScreenButtonPressed>[] listOfActions;
 
-    public MsgShowScreen(string screenName, Tuple<MessageScreenButtons, OnMessageScreenButtonPressed>[] listOfActions)
+    public MsgShowScreen(string screenName, Tuple<string, OnMessageScreenButtonPressed>[] listOfActions)
     {
         this.screenName = screenName;
         this.listOfActions = listOfActions;
@@ -16,6 +15,6 @@ public class MsgShowScreen
     public MsgShowScreen(string screenName)
     {
         this.screenName = screenName;
-        this.listOfActions = new Tuple<MessageScreenButtons, OnMessageScreenButtonPressed>[0];
+        this.listOfActions = new Tuple<string, OnMessageScreenButtonPressed>[0];
     }
 }

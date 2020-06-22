@@ -44,7 +44,7 @@ public class MessageScreenManager : MonoBehaviour
         {
             MessageScreen msgScreen = messageScreensDic[msg.screenName];
             msgScreen.gameObject.SetActive(true);
-            foreach (Tuple<MessageScreenButtons, OnMessageScreenButtonPressed> t in msg.listOfActions)
+            foreach (Tuple<string, OnMessageScreenButtonPressed> t in msg.listOfActions)
             {
                 msgScreen.AddDelegateToButton(t.Item1, t.Item2);
             }
