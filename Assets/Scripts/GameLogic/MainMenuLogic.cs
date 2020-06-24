@@ -47,7 +47,7 @@ public class MainMenuLogic : MonoBehaviour
         } while (!success);
 
         EventAggregator.Instance.Publish<MsgFindingSpace>(new MsgFindingSpace(false));
-        ShowMainMenu();
+        //ShowMainMenu();
     }
 
     public void ShowMainMenu()

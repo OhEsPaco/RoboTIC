@@ -74,7 +74,7 @@ public class SelectedOutputMarker : MonoBehaviour
 
     private Vector3 GetMouseWorldPos()
     {
-        //Coordinadas en pixeles
+        //Coordenadas en pixeles
         Vector3 mousePoint = Input.mousePosition;
 
         mousePoint.z = mZCoord;
