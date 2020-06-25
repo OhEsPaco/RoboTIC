@@ -4,9 +4,7 @@ public class EditorSurfacePoint : MonoBehaviour
 {
     private int[] mapPos = new int[3];
     private float blockLength;
-    public Material mA;
-    public Material mB;
-
+    private Transform editorSurface;
     public void SetPosition(int x, int z)
     {
         mapPos[0] = x;
@@ -16,10 +14,19 @@ public class EditorSurfacePoint : MonoBehaviour
 
     public void OnSelect()
     {
-        transform.position += new Vector3(0, blockLength, 0);
-        Renderer r = GetComponent<Renderer>();
+        EventAggregator.Instance.Publish(new MsgEditorSurfaceTapped(this));
+    }
 
-        r.material = mB;
+    public Vector3 Up()
+    {
+        transform.position += new Vector3(0, blockLength, 0);
+        return transform.position;
+    }
+
+    public Vector3 Down()
+    {
+        transform.position -= new Vector3(0, blockLength, 0);
+        return transform.position;
     }
 
     public int SurfacePointPositionX
@@ -39,6 +46,7 @@ public class EditorSurfacePoint : MonoBehaviour
     }
 
     public float BlockLength { get => blockLength; set => blockLength = value; }
+    public Transform EditorSurface { get => editorSurface; set => editorSurface = value; }
 
     public void GenerateBoxCollider()
     {

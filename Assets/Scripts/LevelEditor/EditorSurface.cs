@@ -13,7 +13,8 @@ public class EditorSurface : MonoBehaviour
     public float maxArrowDistance = 0.2f;
     private bool readyArrow = false;
     [SerializeField] private Material cubeMaterial;
-    [SerializeField] private Material cubeMaterialB;
+    private bool readySurface = false;
+
     private void Update()
     {
         EditorSurfacePoint closestPoint = GetClosestSurfacePoint(GazeManager.Instance.Position, maxArrowDistance);
@@ -39,11 +40,7 @@ public class EditorSurface : MonoBehaviour
 
     private void Awake()
     {
-        EventAggregator.Instance.Subscribe<MsgSomethingTapped>(SomethingTapped);
-    }
-
-    private void SomethingTapped(MsgSomethingTapped msg)
-    {
+        EventAggregator.Instance.Subscribe<MsgResetEditorSurface>(ResetEditorSurface);
     }
 
     // Start is called before the first frame update
@@ -55,6 +52,7 @@ public class EditorSurface : MonoBehaviour
 
     private IEnumerator SetUpSurface()
     {
+        readySurface = false;
         MsgBlockLength msg = new MsgBlockLength();
         msgWar.PublishMsgAndWaitForResponse<MsgBlockLength, float>(msg);
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBlockLength, float>(msg, out blockLength));
@@ -72,26 +70,25 @@ public class EditorSurface : MonoBehaviour
             {
                 objToSpawn = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 objToSpawn.GetComponent<Renderer>().material = cubeMaterial;
-                objToSpawn.transform.localScale = new Vector3(objToSpawn.transform.localScale.x * (blockLength-0.001f), 0.001f, objToSpawn.transform.localScale.z * (blockLength - 0.001f));
+                objToSpawn.transform.localScale = new Vector3(objToSpawn.transform.localScale.x * (blockLength - 0.001f), 0.001f, objToSpawn.transform.localScale.z * (blockLength - 0.001f));
                 objToSpawn.transform.parent = transform;
                 objToSpawn.transform.rotation = transform.rotation;
-                objToSpawn.transform.position = new Vector3(transform.position.x + blockLength * x, transform.position.y-blockLength/2, transform.position.z + blockLength * z);
+                objToSpawn.transform.position = new Vector3(transform.position.x + blockLength * x, transform.position.y - blockLength / 2, transform.position.z + blockLength * z);
                 editorSurfacePoint = objToSpawn.AddComponent<EditorSurfacePoint>();
-                editorSurfacePoint.mA = cubeMaterial;
-                editorSurfacePoint.mB = cubeMaterialB;
+                editorSurfacePoint.EditorSurface = transform;
                 editorSurfacePoint.SetPosition(x, z);
                 editorSurfacePoint.BlockLength = blockLength;
                 points[index] = editorSurfacePoint;
                 index++;
             }
         }
-
+        readySurface = true;
         //centerOffset = new Vector3((levelSize[0] * blockLength) / 2, (levelSize[1] * blockLength) / 2, (levelSize[2] * blockLength) / 2);
     }
 
-    public void ResetPoints()
+    private void ResetEditorSurface(MsgResetEditorSurface msg)
     {
-        if (points != null && points.Length > 0)
+        if (readySurface)
         {
             int index = 0;
             for (int x = 0; x < levelSize[0]; x++)
@@ -99,12 +96,12 @@ public class EditorSurface : MonoBehaviour
                 for (int z = 0; z < levelSize[2]; z++)
                 {
                     points[index].gameObject.transform.parent = transform;
-                    points[index].gameObject.transform.rotation = transform.rotation;
+                    //points[index].gameObject.transform.rotation = transform.rotation;
                     points[index].gameObject.transform.position = new Vector3(transform.position.x + blockLength * x, transform.position.y + blockLength / 2, transform.position.z + blockLength * z);
 
                     points[index].SetPosition(x, z);
                     points[index].BlockLength = blockLength;
-
+                    points[index].EditorSurface = transform;
                     index++;
                 }
             }
