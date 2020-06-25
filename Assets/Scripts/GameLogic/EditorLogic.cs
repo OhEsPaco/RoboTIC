@@ -131,6 +131,10 @@ public class EditorLogic : MonoBehaviour
                     break;
 
                 case EditorToolType.Player:
+                    if (PlaceCharacter(selectedTool.ToolIdentifier, x, z, msg.TappedPoint))
+                    {
+                        msg.TappedPoint.Up();
+                    }
                     break;
 
                 case EditorToolType.Eraser:
@@ -141,6 +145,52 @@ public class EditorLogic : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private bool PlaceCharacter(int orientation, int x, int z, EditorSurfacePoint TappedPoint)
+    {
+        if (!hasPlayer)
+        {
+            int y = 0;
+            bool insideMap = false;
+            for (; y < mapSizeY; y++)
+            {
+                if (GetEditorObject(x, y, z) == null)
+                {
+                    insideMap = true;
+                    break;
+                }
+            }
+
+            if (insideMap)
+            {
+                bool validPos = false;
+                EditorObject obj = GetEditorObject(x, y - 1, z);
+                //Solo se puede poner un jugador encima de un bloque
+                if (obj.ObjectType == EditorToolType.Block)
+                {
+                    validPos = true;
+                }
+
+                if (validPos)
+                {
+                    GameObject spawned = MapRenderer.Instance.RenderMainCharacter();
+                    EditorObject newEditorObject = new EditorObject(spawned, selectedTool.ToolType, selectedTool.ToolIdentifier);
+                    SetEditorObject(x, y, z, newEditorObject);
+
+                    spawned.transform.parent = TappedPoint.EditorSurface;
+                    spawned.transform.rotation = TappedPoint.transform.rotation * spawned.transform.rotation;
+                    spawned.transform.Rotate(new Vector3(0, 90f * selectedTool.ToolIdentifier, 0));
+                    spawned.transform.position = new Vector3(TappedPoint.transform.position.x,
+                        (TappedPoint.EditorSurface.position.y + TappedPoint.BlockLength * y) - TappedPoint.BlockLength / 2,
+                        TappedPoint.transform.position.z);
+
+                    hasPlayer = true;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private bool PlaceBlockOrItem(bool isBlock, int x, int z, EditorSurfacePoint TappedPoint)
@@ -199,7 +249,7 @@ public class EditorLogic : MonoBehaviour
                 //Quaternion placeableMapRot = placeableMap.transform.rotation;
                 //placeableMap.transform.rotation = new Quaternion();
                 spawned.transform.parent = TappedPoint.EditorSurface;
-              spawned.transform.rotation = TappedPoint.transform.rotation * spawned.transform.rotation;
+                spawned.transform.rotation = TappedPoint.transform.rotation * spawned.transform.rotation;
                 spawned.transform.position = new Vector3(TappedPoint.transform.position.x,
                     TappedPoint.EditorSurface.position.y + TappedPoint.BlockLength * y,
                     TappedPoint.transform.position.z);

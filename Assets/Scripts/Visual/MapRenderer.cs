@@ -97,6 +97,11 @@ public class MapRenderer : MonoBehaviour
         return block;
     }
 
+    public GameObject RenderMainCharacter()
+    {
+        return levelObjects.InstantiateMainCharacter();
+    }
+
     private int Get(in List<int> mapAndItems, in List<int> levelSize, in int x, in int y, in int z)
     {
         if (x < 0 || x >= levelSize[0]) return (int)Blocks.NoBlock;

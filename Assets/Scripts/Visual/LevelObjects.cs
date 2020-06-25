@@ -7,11 +7,13 @@ public class LevelObjects : MonoBehaviour
     private Item[] items;
     [SerializeField] private GameObject MainCharacter;
     [SerializeField] private GameObject MiniCharacter;
+
     private void Awake()
     {
         blocks = GetComponentsInChildren<Block>(true);
         items = GetComponentsInChildren<Item>(true);
     }
+
     public LevelObject GetGameObjectInstance(in int id)
     {
         LevelObject reference = MegaSwitch(id);
@@ -49,11 +51,15 @@ public class LevelObjects : MonoBehaviour
         return MainCharacter;
     }
 
+    public GameObject InstantiateMainCharacter()
+    {
+        return Instantiate(MainCharacter);
+    }
+
     public GameObject GetMiniCharacterInstance()
     {
         return Instantiate(MiniCharacter, MiniCharacter.transform.position, MiniCharacter.transform.rotation);
     }
 
     // Start is called before the first frame update
-
 }
