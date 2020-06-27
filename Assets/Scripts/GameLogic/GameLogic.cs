@@ -142,7 +142,7 @@ public class GameLogic : MonoBehaviour
 
     private bool CheckWinState()
     {
-        if (currentLevelData.goal[0] == currentLevelData.playerPos[0] + 1 && currentLevelData.goal[1] == currentLevelData.playerPos[1] + 1 && currentLevelData.goal[2] == currentLevelData.playerPos[2])
+        if (currentLevelData.goal[0] == currentLevelData.playerPos[0] && currentLevelData.goal[1] == currentLevelData.playerPos[1] && currentLevelData.goal[2] == currentLevelData.playerPos[2])
         {
             return true;
         }

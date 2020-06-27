@@ -5,6 +5,9 @@ public class EditorSurfacePoint : MonoBehaviour
     private int[] mapPos = new int[3];
     private float blockLength;
     private Transform editorSurface;
+    private BoxCollider box;
+    private Vector3 surfacePoint;
+
     public void SetPosition(int x, int z)
     {
         mapPos[0] = x;
@@ -17,16 +20,34 @@ public class EditorSurfacePoint : MonoBehaviour
         EventAggregator.Instance.Publish(new MsgEditorSurfaceTapped(this));
     }
 
-    public Vector3 Up()
+    public void Up()
     {
-        transform.position += new Vector3(0, blockLength, 0);
-        return transform.position;
+        if (box != null)
+        {
+            box.center += new Vector3(0, blockLength / transform.localScale.y, 0);
+            surfacePoint += new Vector3(0, blockLength, 0);
+        }
+        // transform.position += new Vector3(0, blockLength, 0);
+        //return transform.position;
     }
 
-    public Vector3 Down()
+    public void Down()
     {
-        transform.position -= new Vector3(0, blockLength, 0);
-        return transform.position;
+        if (box != null)
+        {
+            box.center -= new Vector3(0, blockLength / transform.localScale.y, 0);
+            surfacePoint -= new Vector3(0, blockLength, 0);
+        }
+        //transform.position -= new Vector3(0, blockLength, 0);
+        //return transform.position;
+    }
+
+    public void ResetBox()
+    {
+        if (box != null)
+        {
+            box.center = new Vector3(0, 0, 0);
+        }
     }
 
     public int SurfacePointPositionX
@@ -47,11 +68,12 @@ public class EditorSurfacePoint : MonoBehaviour
 
     public float BlockLength { get => blockLength; set => blockLength = value; }
     public Transform EditorSurface { get => editorSurface; set => editorSurface = value; }
+    public Vector3 SurfacePoint { get => surfacePoint; set => surfacePoint = value; }
 
-    public void GenerateBoxCollider()
+    private void Start()
     {
-        BoxCollider box = gameObject.AddComponent<BoxCollider>();
-        box.size = new Vector3(blockLength, blockLength, blockLength);
+        box = GetComponent<BoxCollider>();
+        surfacePoint = transform.position;
     }
 
     private void OnDrawGizmos()

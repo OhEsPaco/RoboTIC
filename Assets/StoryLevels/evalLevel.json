@@ -1,9 +1,9 @@
 {
 	"levelName": "Evaluation Level",
 	"levelSize": [ 8, 4, 6 ],
-	"playerPos": [ 1, 1, 1 ],
+	"playerPos": [ 1, 2, 1 ],
 	"playerOrientation": 0,
-	"goal": [ 7, 4, 1 ],
+	"goal": [ 6, 3, 1 ],
 	"availableInstructions": {
 		"condition": 1,
 		"loop": 1,

@@ -3,7 +3,7 @@
   "levelSize": [ 3, 2, 4 ],
   "playerPos": [ 1, 1, 0 ],
   "playerOrientation": 0,
-  "goal": [ 2, 2, 3 ],
+  "goal": [ 1, 1, 3 ],
   "availableInstructions": {
     "condition": 0,
     "loop": 0,

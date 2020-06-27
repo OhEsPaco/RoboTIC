@@ -1,5 +1,4 @@
-﻿using Academy.HoloToolkit.Unity;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,34 +8,14 @@ public class EditorSurface : MonoBehaviour
     private float blockLength;
     private List<int> levelSize;
     private EditorSurfacePoint[] points;
-    [SerializeField] private EditorSurfaceArrow arrow;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float secondsBetweenUpdates;
+
     public float maxArrowDistance = 0.2f;
     private bool readyArrow = false;
     [SerializeField] private Material cubeMaterial;
     private bool readySurface = false;
-
-    private void Update()
-    {
-        EditorSurfacePoint closestPoint = GetClosestSurfacePoint(GazeManager.Instance.Position, maxArrowDistance);
-        if (closestPoint != null)
-        {
-            arrow.gameObject.SetActive(true);
-            if (readyArrow)
-            {
-                arrow.UpdateArrowPos(closestPoint.transform.position);
-            }
-            else
-            {
-                arrow.StartPlacingArrow(closestPoint.transform.position);
-                readyArrow = true;
-            }
-        }
-        else
-        {
-            arrow.gameObject.SetActive(false);
-            readyArrow = false;
-        }
-    }
 
     private void Awake()
     {
@@ -98,7 +77,7 @@ public class EditorSurface : MonoBehaviour
                     points[index].gameObject.transform.parent = transform;
                     //points[index].gameObject.transform.rotation = transform.rotation;
                     points[index].gameObject.transform.position = new Vector3(transform.position.x + blockLength * x, transform.position.y + blockLength / 2, transform.position.z + blockLength * z);
-
+                    points[index].ResetBox();
                     points[index].SetPosition(x, z);
                     points[index].BlockLength = blockLength;
                     points[index].EditorSurface = transform;
@@ -106,16 +85,6 @@ public class EditorSurface : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void PointUp(EditorSurfacePoint point)
-    {
-        point.gameObject.transform.position += new Vector3(0, blockLength, 0);
-    }
-
-    public void PointDown(EditorSurfacePoint point)
-    {
-        point.gameObject.transform.position -= new Vector3(0, blockLength, 0);
     }
 
     public EditorSurfacePoint GetClosestSurfacePoint(Vector3 targetPosition, float maxDistance)

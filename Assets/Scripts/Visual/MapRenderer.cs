@@ -70,7 +70,7 @@ public class MapRenderer : MonoBehaviour
                     block.transform.position = posNew;
                     block.transform.parent = gameObject.transform;
 
-                    if (x + 1 == msg.Goal[0] && y + 1 == msg.Goal[1] - 1 && z + 1 == msg.Goal[2] + 1)
+                    if (x == msg.Goal[0] && y == msg.Goal[1]-1 && z == msg.Goal[2])
                     {
                         LevelObject flag = levelObjects.GetGameObjectInstance((int)Items.FlagItem);
                         Vector3 posFlag;

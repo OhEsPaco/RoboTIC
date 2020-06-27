@@ -158,7 +158,6 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         if (firstIt)
@@ -172,7 +171,6 @@ public class MapMenuLogic : MonoBehaviour
 
     private void InputLeft()
     {
-       
         if (!firstIt && allDone)
         {
             allDone = false;
@@ -221,8 +219,7 @@ public class MapMenuLogic : MonoBehaviour
         //Contiene el centro del mapa
         //MapContainer mcont = centerParent.GetComponent<MapContainer>();
 
-
-       // mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
+        // mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
         //Ponemos el escenario
         //yield return new WaitUntil(() => SpaceCollectionManager.Instance.IsReady());
         //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
@@ -382,13 +379,26 @@ public class MapMenuLogic : MonoBehaviour
 
     private string[] GetListOfImportedLevels()
     {
-        if (!Directory.Exists(System.IO.Directory.GetCurrentDirectory() + "/UserLevels"))
+        if (Application.isEditor)
         {
-            Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "/UserLevels");
-            return new string[0];
-        }
+            if (!Directory.Exists(System.IO.Directory.GetCurrentDirectory() + "/UserLevels"))
+            {
+                Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "/UserLevels");
+                return new string[0];
+            }
 
-        return System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory() + "/UserLevels", "*.json");
+            return System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory() + "/UserLevels", "*.json");
+        }
+        else
+        {
+            if (!Directory.Exists(Application.persistentDataPath + "/UserLevels"))
+            {
+                Directory.CreateDirectory(Application.persistentDataPath + "/UserLevels");
+                return new string[0];
+            }
+
+            return System.IO.Directory.GetFiles(Application.persistentDataPath + "/UserLevels", "*.json");
+        }
     }
 
     private List<LevelData> LoadStoryLevels(string[] levels)

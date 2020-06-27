@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(EditorTool))]
 public class EditorToolFeedback : MonoBehaviour
 {
     private Vector3 originalScale;
