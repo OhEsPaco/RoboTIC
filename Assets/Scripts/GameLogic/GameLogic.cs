@@ -5,7 +5,6 @@ using UnityEngine;
 using static Block;
 using static LevelButtons;
 using static LevelObject;
-using static MessageScreenButton;
 using static MessageScreenManager;
 
 /// <summary>
@@ -259,13 +258,22 @@ public class GameLogic : MonoBehaviour
             Vector3 playerPos;
             //Podria dar fallo si el personaje esta mal colocado
             GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
+         
+
+            if (bigCharater == null)
+            {
+                MsgRenderMainCharacter msgMain = new MsgRenderMainCharacter();
+                msgWar.PublishMsgAndWaitForResponse<MsgRenderMainCharacter, GameObject>(msgMain);
+                yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMainCharacter, GameObject>(msgMain, out bigCharater));
+            }
+       
 
             MsgPlaceCharacter msgLld = new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0), mapParent.transform);
             msgWar.PublishMsgAndWaitForResponse<MsgPlaceCharacter, GameObject>(msgLld);
-            //bigCharater = null;
             yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgPlaceCharacter, GameObject>(msgLld, out bigCharater));
-            bigCharater.SetActive(false);
 
+            bigCharater.SetActive(false);
+            
             placeableMap.transform.position = lpos;
             placeableMap.transform.rotation = lrot;
 
@@ -287,6 +295,7 @@ public class GameLogic : MonoBehaviour
                         {
                             LevelObject lOb = GetBlock(currentLevelData, loadedLevel, x, y, z);
                             lOb.gameObject.SetActive(true);
+                         
                             if (lOb is Block)
                             {
                                 Block lOb2 = (Block)lOb;
@@ -298,7 +307,7 @@ public class GameLogic : MonoBehaviour
                         }
                         catch
                         {
-                            //Do nothing
+                          
                         }
                         if (doReturn)
                         {
@@ -383,7 +392,11 @@ public class GameLogic : MonoBehaviour
     {
         EventAggregator.Instance.Publish<MsgHideAllScreens>(new MsgHideAllScreens());
         finishedMinibotMovement = false;
-        bigCharater.SetActive(false);
+        if (bigCharater != null)
+        {
+            Destroy(bigCharater);
+            bigCharater = null;
+        }
         currentLevelData = null;
         clonedLevelData = null;
         if (objectReferences != null)

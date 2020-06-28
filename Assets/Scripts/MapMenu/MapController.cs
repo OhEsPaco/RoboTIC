@@ -9,6 +9,9 @@ public class MapController : MonoBehaviour
     [SerializeField] private GameObject levelButtons;
     [SerializeField] private GameObject roadScaler;
     [SerializeField] private GameObject mapBounds;
+    [SerializeField] private GameObject editorButtons;
+    [SerializeField] private GameObject editorSurface;
+    [SerializeField] private GameObject mapPlacer;
     [SerializeField] private bool drawCollidersGizmo;
     /* private Vector3 arrowRPos;
      private Vector3 arrowLPos;
@@ -44,6 +47,7 @@ public class MapController : MonoBehaviour
         Gizmos.DrawSphere(MapControllerCenter, 0.03f);
     }
 
+   
     public void EnableGameControls()
     {
         /*levelButtons.transform.localPosition = levelButtonsPos;
@@ -55,6 +59,9 @@ public class MapController : MonoBehaviour
         mapBounds.gameObject.SetActive(false);
         arrowR.gameObject.SetActive(false);
         arrowL.gameObject.SetActive(false);
+        editorButtons.gameObject.SetActive(false);
+        editorSurface.gameObject.SetActive(false);
+        mapPlacer.gameObject.SetActive(true);
     }
 
     public void EnableMenuControls()
@@ -68,6 +75,9 @@ public class MapController : MonoBehaviour
         mapBounds.gameObject.SetActive(true);
         arrowR.gameObject.SetActive(true);
         arrowL.gameObject.SetActive(true);
+        editorButtons.gameObject.SetActive(false);
+        editorSurface.gameObject.SetActive(false);
+        mapPlacer.gameObject.SetActive(true);
     }
 
     public void EnableMainMenuControls()
@@ -77,6 +87,21 @@ public class MapController : MonoBehaviour
         mapBounds.gameObject.SetActive(false);
         arrowR.gameObject.SetActive(false);
         arrowL.gameObject.SetActive(false);
+        editorButtons.gameObject.SetActive(false);
+        editorSurface.gameObject.SetActive(false);
+        mapPlacer.gameObject.SetActive(false);
+    }
+
+    public void EnableEditorControls()
+    {
+        editorButtons.gameObject.SetActive(true);
+        editorSurface.gameObject.SetActive(true);
+        levelButtons.gameObject.SetActive(false);
+        roadScaler.gameObject.SetActive(false);
+        mapBounds.gameObject.SetActive(false);
+        arrowR.gameObject.SetActive(false);
+        arrowL.gameObject.SetActive(false);
+        mapPlacer.gameObject.SetActive(true);
     }
 
     public Vector3 MapControllerCenter

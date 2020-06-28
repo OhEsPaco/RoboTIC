@@ -57,7 +57,14 @@ public class EventAggregator : MonoBehaviour
 
             foreach (Subscription<TMessageType> a in actionlst)
             {
-                a.Action(message);
+                try
+                {
+                    a.Action(message);
+                }
+                catch
+                {
+                    Unsubscribe(a);
+                }
             }
         }
     }

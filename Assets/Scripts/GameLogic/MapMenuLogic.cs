@@ -98,6 +98,13 @@ public class MapMenuLogic : MonoBehaviour
         //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
     }
 
+    public void AddNewLevel(LevelData newLevel)
+    {
+        levels.Add(newLevel);
+        loadedLevels.Add(newLevel, null);
+        StartCoroutine(RenderALevel(newLevel));
+    }
+
     public void ShowMapMenu()
     {
         placeableMap.GetComponent<MapController>().EnableMenuControls();

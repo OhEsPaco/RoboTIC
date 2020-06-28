@@ -47,7 +47,8 @@ public class MainMenuLogic : MonoBehaviour
         } while (!success);
 
         EventAggregator.Instance.Publish<MsgFindingSpace>(new MsgFindingSpace(false));
-       // ShowMainMenu();
+       
+         ShowMainMenu();
     }
 
     public void ShowMainMenu()
@@ -55,8 +56,8 @@ public class MainMenuLogic : MonoBehaviour
         placeableMap.GetComponent<MapController>().EnableMainMenuControls();
         EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("main", new Tuple<string, OnMessageScreenButtonPressed>[] {
             Tuple.Create<string, OnMessageScreenButtonPressed>("Play", ShowMapMenu),
-            Tuple.Create<string, OnMessageScreenButtonPressed>("Exit", ShowEditor),
-            Tuple.Create<string, OnMessageScreenButtonPressed>("Editor", ExitProgram)}));
+            Tuple.Create<string, OnMessageScreenButtonPressed>("Exit", ExitProgram),
+            Tuple.Create<string, OnMessageScreenButtonPressed>("Editor", ShowEditor)}));
     }
 
     public void ShowMapMenu()
@@ -67,6 +68,8 @@ public class MainMenuLogic : MonoBehaviour
 
     public void ShowEditor()
     {
+        EventAggregator.Instance.Publish<MsgHideAllScreens>(new MsgHideAllScreens());
+        EditorLogic.Instance.ShowEditor();
     }
 
     public void ExitProgram()

@@ -10,6 +10,7 @@ public class EditorLogic : MonoBehaviour
     [SerializeField] private int mapSizeY = 4;
     [SerializeField] private int mapSizeZ = 8;
     [SerializeField] private GameObject placeableMap;
+    [SerializeField] private float seconsWarningScreen = 3;
     private EditorObject[] levelObjects;
     private SelectedTool selectedTool;
     private LevelData newLevel;
@@ -22,6 +23,26 @@ public class EditorLogic : MonoBehaviour
         Item, Block, Player, Eraser
     }
 
+    private static EditorLogic editorLogic;
+
+    public static EditorLogic Instance
+    {
+        get
+        {
+            if (!editorLogic)
+            {
+                editorLogic = FindObjectOfType(typeof(EditorLogic)) as EditorLogic;
+
+                if (!editorLogic)
+                {
+                    Debug.LogError("There needs to be one active EditorLogic script on a GameObject in your scene.");
+                }
+            }
+
+            return editorLogic;
+        }
+    }
+
     private void Awake()
     {
         EventAggregator.Instance.Subscribe<MsgEditorMapSize>(ServeMapSize);
@@ -29,6 +50,20 @@ public class EditorLogic : MonoBehaviour
         EventAggregator.Instance.Subscribe<MsgEditorToolSelected>(ChangeSelectedTool);
         EventAggregator.Instance.Subscribe<MsgEditorAvailableInstructionsChanged>(ChangeAvailableInstructions);
         EventAggregator.Instance.Subscribe<MsgEditorSaveMap>(SaveMap);
+        EventAggregator.Instance.Subscribe<MsgEditorMenu>(ReturnToMainMenu);
+    }
+
+    private void ReturnToMainMenu(MsgEditorMenu msg)
+    {
+        EventAggregator.Instance.Publish<MsgHideAllScreens>(new MsgHideAllScreens());
+        ResetEditor();
+        MainMenuLogic.Instance.ShowMainMenu();
+    }
+
+    public void ShowEditor()
+    {
+        placeableMap.GetComponent<MapController>().EnableEditorControls();
+        ResetEditor();
     }
 
     private void ChangeAvailableInstructions(MsgEditorAvailableInstructionsChanged msg)
@@ -109,19 +144,20 @@ public class EditorLogic : MonoBehaviour
     {
         if (!hasPlayer)
         {
-            //poner mensaje
+            EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("error_no_robot", seconsWarningScreen));
             return;
         }
 
         if (!hasFlag)
         {
-            //poner mensaje
+            EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("error_no_flag", seconsWarningScreen));
             return;
         }
         LevelData newLevel = GenerateLevel();
         if (newLevel != null)
         {
             SaveMap(newLevel);
+            MapMenuLogic.Instance.AddNewLevel(newLevel);
         }
     }
 
@@ -424,7 +460,7 @@ public class EditorLogic : MonoBehaviour
                     GameObject spawned = MapRenderer.Instance.RenderMainCharacter();
                     EditorObject newEditorObject = new EditorObject(spawned, selectedTool.ToolType, selectedTool.ToolIdentifier);
                     SetEditorObject(x, y, z, newEditorObject);
-
+                    spawned.SetActive(true);
                     spawned.transform.parent = TappedPoint.EditorSurface;
                     spawned.transform.rotation = TappedPoint.transform.rotation * spawned.transform.rotation;
                     spawned.transform.Rotate(new Vector3(0, 90f * selectedTool.ToolIdentifier, 0));
@@ -490,6 +526,7 @@ public class EditorLogic : MonoBehaviour
                     }
                 }
                 GameObject spawned = MapRenderer.Instance.SpawnBlock(selectedTool.ToolIdentifier).gameObject;
+                spawned.SetActive(true);
                 EditorObject newEditorObject = new EditorObject(spawned, selectedTool.ToolType, selectedTool.ToolIdentifier);
                 SetEditorObject(x, y, z, newEditorObject);
 

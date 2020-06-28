@@ -10,8 +10,12 @@ public class LevelObjects : MonoBehaviour
 
     private void Awake()
     {
-        blocks = GetComponentsInChildren<Block>(true);
-        items = GetComponentsInChildren<Item>(true);
+        // blocks = GetComponentsInChildren<Block>(true);
+        // items = GetComponentsInChildren<Item>(true);
+        blocks = Resources.LoadAll<Block>("Prefabs/Blocks");
+        items = Resources.LoadAll<Item>("Prefabs/Items");
+       
+        EventAggregator.Instance.Subscribe<MsgRenderMainCharacter>(GetMainCharacterInstance);
     }
 
     public LevelObject GetGameObjectInstance(in int id)
@@ -46,9 +50,14 @@ public class LevelObjects : MonoBehaviour
         return Instantiate(reference, reference.transform.position, reference.transform.rotation);
     }
 
-    public GameObject GetMainCharacterInstance()
+    public void GetMainCharacterInstance(MsgRenderMainCharacter msg)
     {
-        return MainCharacter;
+       
+        GameObject mainCharacter = Instantiate(MainCharacter);
+        Debug.LogError("3333");
+        EventAggregator.Instance.Publish(new ResponseWrapper<MsgRenderMainCharacter, GameObject>(msg, mainCharacter));
+
+      
     }
 
     public GameObject InstantiateMainCharacter()
@@ -60,6 +69,4 @@ public class LevelObjects : MonoBehaviour
     {
         return Instantiate(MiniCharacter, MiniCharacter.transform.position, MiniCharacter.transform.rotation);
     }
-
-    // Start is called before the first frame update
 }

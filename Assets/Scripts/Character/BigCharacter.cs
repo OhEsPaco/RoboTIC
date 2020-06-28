@@ -60,7 +60,7 @@ public class BigCharacter : Character
     private MessageWarehouse msgWar;
     private bool loaded = false;
     private float blockLength;
-
+   
     private void Awake()
     {
         EventAggregator.Instance.Subscribe<MsgBigRobotAction>(ReceiveAction);
@@ -72,6 +72,7 @@ public class BigCharacter : Character
 
         msgWar = new MessageWarehouse(EventAggregator.Instance);
     }
+
 
     /// <summary>
     /// Inicializacion de variables

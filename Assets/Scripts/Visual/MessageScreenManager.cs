@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static MessageScreenButton;
 
 public class MessageScreenManager : MonoBehaviour
 {
@@ -48,6 +48,17 @@ public class MessageScreenManager : MonoBehaviour
             {
                 msgScreen.AddDelegateToButton(t.Item1, t.Item2);
             }
+
+            if (msg.seconds > 0)
+            {
+                StartCoroutine(DisableScreenOnSeconds(msgScreen, msg.seconds));
+            }
         }
+    }
+
+    private IEnumerator DisableScreenOnSeconds(MessageScreen messageScreen, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        messageScreen.gameObject.SetActive(false);
     }
 }

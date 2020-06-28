@@ -17,6 +17,15 @@ public class EditorSurface : MonoBehaviour
     [SerializeField] private Material cubeMaterial;
     private bool readySurface = false;
 
+    private void Update()
+    {
+        /* if (transform.localRotation.y != transform.parent.localRotation.y)
+         {
+             transform.localRotation = transform.parent.localRotation;
+         }*/
+        //Debug.Log(transform.parent.localRotation);
+    }
+
     private void Awake()
     {
         EventAggregator.Instance.Subscribe<MsgResetEditorSurface>(ResetEditorSurface);
@@ -26,12 +35,23 @@ public class EditorSurface : MonoBehaviour
     private void Start()
     {
         msgWar = new MessageWarehouse(EventAggregator.Instance);
-        StartCoroutine(SetUpSurface());
+    }
+
+    private void OnEnable()
+    {
+        if (!readySurface)
+        {
+            StartCoroutine(SetUpSurface());
+        }
     }
 
     private IEnumerator SetUpSurface()
     {
         readySurface = false;
+        if (msgWar == null)
+        {
+            yield return null;
+        }
         MsgBlockLength msg = new MsgBlockLength();
         msgWar.PublishMsgAndWaitForResponse<MsgBlockLength, float>(msg);
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBlockLength, float>(msg, out blockLength));
@@ -43,6 +63,7 @@ public class EditorSurface : MonoBehaviour
         int index = 0;
         EditorSurfacePoint editorSurfacePoint;
         GameObject objToSpawn;
+
         for (int x = 0; x < levelSize[0]; x++)
         {
             for (int z = 0; z < levelSize[2]; z++)
@@ -51,14 +72,18 @@ public class EditorSurface : MonoBehaviour
                 objToSpawn.GetComponent<Renderer>().material = cubeMaterial;
                 objToSpawn.transform.localScale = new Vector3(objToSpawn.transform.localScale.x * (blockLength - 0.001f), 0.001f, objToSpawn.transform.localScale.z * (blockLength - 0.001f));
                 objToSpawn.transform.parent = transform;
-                objToSpawn.transform.rotation = transform.rotation;
+
+                //objToSpawn.transform.localRotation = transform.parent.localRotation;
                 objToSpawn.transform.position = new Vector3(transform.position.x + blockLength * x, transform.position.y - blockLength / 2, transform.position.z + blockLength * z);
+                objToSpawn.transform.RotateAround(transform.position, Vector3.up, transform.eulerAngles.y);
+                //objToSpawn.transform.position = new Vector3(blockLength * x, - blockLength / 2, blockLength * z);
                 editorSurfacePoint = objToSpawn.AddComponent<EditorSurfacePoint>();
                 editorSurfacePoint.EditorSurface = transform;
                 editorSurfacePoint.SetPosition(x, z);
                 editorSurfacePoint.BlockLength = blockLength;
                 points[index] = editorSurfacePoint;
                 index++;
+                yield return null;
             }
         }
         readySurface = true;
@@ -76,7 +101,7 @@ public class EditorSurface : MonoBehaviour
                 {
                     points[index].gameObject.transform.parent = transform;
                     //points[index].gameObject.transform.rotation = transform.rotation;
-                    points[index].gameObject.transform.position = new Vector3(transform.position.x + blockLength * x, transform.position.y + blockLength / 2, transform.position.z + blockLength * z);
+                    // points[index].gameObject.transform.position = new Vector3(transform.position.x + blockLength * x, transform.position.y + blockLength / 2, transform.position.z + blockLength * z);
                     points[index].ResetBox();
                     points[index].SetPosition(x, z);
                     points[index].BlockLength = blockLength;
