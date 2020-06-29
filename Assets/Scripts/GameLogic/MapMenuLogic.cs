@@ -465,9 +465,10 @@ public class MapMenuLogic : MonoBehaviour
 
     private string ReadFileAsString(in string path)
     {
-        System.IO.StreamReader reader = new System.IO.StreamReader(path);
-        string output = reader.ReadToEnd();
-        reader.Close();
+        StreamReader sr = new StreamReader(new FileStream(path, FileMode.Open));
+
+        string output = sr.ReadToEnd();
+       // sr.Close();
         return output;
     }
 }

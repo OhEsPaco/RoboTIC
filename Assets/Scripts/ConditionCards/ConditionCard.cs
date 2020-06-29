@@ -100,7 +100,7 @@ public class ConditionCard : MonoBehaviour
         if (endPosition != null)
         {
             Gizmos.color = Color.green;
-            Handles.Label(endPosition.position, condition.ToString());
+           
             Gizmos.DrawSphere(endPosition.position, 0.001f);
         }
     }

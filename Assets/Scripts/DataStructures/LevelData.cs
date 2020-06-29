@@ -15,7 +15,7 @@ public class LevelData
     {
         LevelData clone = new LevelData
         {
-            levelName = (string)this.levelName.Clone(),
+            levelName = this.levelName,
             playerOrientation = this.playerOrientation,
             levelSize = CloneListInt(this.levelSize),
             playerPos = CloneListInt(this.playerPos),

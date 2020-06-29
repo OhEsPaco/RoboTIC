@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+//DELETE ME
 /// <summary>
 /// Defines the <see cref="JSonLoader" />
 /// </summary>
@@ -24,10 +24,8 @@ public class JSonLoader : MonoBehaviour
     /// <returns>The <see cref="string"/></returns>
     private string ReadFileAsString(in string path)
     {
-        System.IO.StreamReader reader = new System.IO.StreamReader(path);
-        string output = reader.ReadToEnd();
-        reader.Close();
-        return output;
+        
+        return "";
     }
 
     /// <summary>

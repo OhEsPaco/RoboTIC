@@ -7,6 +7,6 @@ public class CagePoint : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(this.transform.position, 0.2f);
-        Handles.Label(transform.position, name);
+        
     }
 }
