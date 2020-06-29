@@ -54,7 +54,6 @@ public class LevelObjects : MonoBehaviour
     {
        
         GameObject mainCharacter = Instantiate(MainCharacter);
-        Debug.LogError("3333");
         EventAggregator.Instance.Publish(new ResponseWrapper<MsgRenderMainCharacter, GameObject>(msg, mainCharacter));
 
       

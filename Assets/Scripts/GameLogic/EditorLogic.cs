@@ -349,6 +349,7 @@ public class EditorLogic : MonoBehaviour
 
     private void ResetEditor()
     {
+        EventAggregator.Instance.Publish<MsgEditorResetAllCounters>(new MsgEditorResetAllCounters());
         EventAggregator.Instance.Publish<MsgResetEditorSurface>(new MsgResetEditorSurface());
         selectedTool = null;
         hasFlag = false;

@@ -24,6 +24,15 @@ public class EditorInstructionButton : MonoBehaviour
         {
             anim = mesh.GetComponent<Animation>();
         }
+        EventAggregator.Instance.Subscribe<MsgEditorResetAllCounters>(ResetCounter);
+    }
+
+    public void ResetCounter(MsgEditorResetAllCounters msg)
+    {
+        if (counter != null)
+        {
+            counter.SetNumber(0);
+        }
     }
 
     public void OnSelect()
@@ -32,7 +41,7 @@ public class EditorInstructionButton : MonoBehaviour
         {
             counter.SetNumber(counter.ActualNumber + 1);
             EventAggregator.Instance.Publish<MsgEditorAvailableInstructionsChanged>(new MsgEditorAvailableInstructionsChanged(buttonIndex, counter.ActualNumber));
-            
+
             if (mesh != null)
             {
                 if (anim.isPlaying)
@@ -49,8 +58,6 @@ public class EditorInstructionButton : MonoBehaviour
             {
                 EventAggregator.Instance.Publish<MsgPlaySfxAtPoint>(new MsgPlaySfxAtPoint(buttonClick, 1.0f, transform.position));
             }
-
-         
         }
     }
 }

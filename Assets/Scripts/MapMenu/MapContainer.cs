@@ -1,64 +1,42 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class MapContainer : MonoBehaviour
 {
-    private Vector3 mapCenter;
+    private GameObject mapCenter;
+    public Vector3 MapCenter { get => mapCenter.transform.position - transform.position; }
 
-    public Vector3 MapCenter { get => mapCenter; }
+    private int[] mapSize;
+
+    private void Start()
+    {
+        mapCenter = new GameObject();
+        mapCenter.transform.parent = transform;
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position + mapCenter, 3f);
+        Gizmos.DrawSphere(transform.position + MapCenter, 0.01f);
     }
 
-    public void MoveMapTo(in Vector3 newPos)
+    public void MoveMapTo(in Vector3 mapCenterPos, float surfaceY, float blockLength)
     {
-        transform.position = MoveRoadFromPoint(transform.position + mapCenter, newPos, transform.position);
+        Vector3 newPos;
+        newPos.x = mapCenterPos.x - MapCenter.x;
+        newPos.y = surfaceY + blockLength / 2;
+        newPos.z = mapCenterPos.z - MapCenter.z;
+        transform.position = newPos;
     }
 
-    public void UpdateMapCenter()
+    public void UpdateMapCenter(List<int> mapSize, float blockLength)
     {
-        Vector3 mapcenter = new Vector3(0, 0, 0);
-        int count = 0;
-        foreach (Transform child in transform)
-        {
-            if (child.gameObject.GetComponent<Block>() != null)
-            {
-                mapcenter += child.position;
-                count++;
-            }
-   
-        }
-        if (count != 0)
-        {
-            mapcenter = mapcenter / count;
-            mapCenter = mapcenter - transform.position;
-           // mapCenter.y = 0;
-        }
-        else
-        {
-            Debug.LogError("COUNT 0");
-            mapCenter = new Vector3(0, 0, 0);
-        }
-    }
+        Vector3 mapCenter;
+        mapCenter.x = ((mapSize[0] - 1) * blockLength) / 2;
+        mapCenter.y = 0;
+        mapCenter.z = ((mapSize[2] - 1) * blockLength) / 2;
+        mapCenter += transform.position;
 
-    private Vector3 MoveRoadFromPoint(in Vector3 point, in Vector3 newPositionOfPoint, in Vector3 roadPosition)
-    {
-        /*
-         * Los struct (por ejemplo Vector3) se pasan siempre por valor, es decir que se copian.
-         * No es necesario hacer "new" en los struct, de hecho es mucho más lento.
-         * Para pasar por referencia y ahorrar el tiempo de copiarlos se pueden usar las palabras
-         * in, ref y out.
-         * ref -> requiere la variable inicializada.
-         * out -> no hace falta inicializar la variable.
-         * in -> requiere la variable inicializada pero no dejará que se ejecuten cambios sobre ella.
-         *       (es decir, point.x=3 dará error).
-         */
-        Vector3 result;
-        result.x = roadPosition.x + (newPositionOfPoint.x - point.x);
-        result.y = roadPosition.y + (newPositionOfPoint.y - point.y);
-        result.z = roadPosition.z + (newPositionOfPoint.z - point.z);
-        return result;
+        this.mapCenter.transform.position = mapCenter;
     }
 }

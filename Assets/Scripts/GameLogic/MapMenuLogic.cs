@@ -20,6 +20,7 @@ public class MapMenuLogic : MonoBehaviour
 
     private Dictionary<LevelData, LevelObject[]> loadedLevels = new Dictionary<LevelData, LevelObject[]>();
     private List<LevelData> levels;
+    private float blockLength;
 
     [Range(0f, 5000f)]
     public float speed = 1f;
@@ -64,17 +65,7 @@ public class MapMenuLogic : MonoBehaviour
             storyLevelsLoaded.Add(level);
         }
 
-        foreach (LevelData level in storyLevelsLoaded)
-        {
-            if (!loadedLevels.ContainsKey(level))
-            {
-                loadedLevels.Add(level, null);
-            }
-
-            StartCoroutine(RenderALevel(level));
-        }
-        levels = storyLevelsLoaded;
-
+        StartCoroutine(RenderAllLevels(storyLevelsLoaded));
         //DirectoryInfo levelDirectoryPath = new DirectoryInfo(Application.streamingAssetsPath);
         //Debug.Log(levelDirectoryPath.FullName);
         //FileInfo[]fileInfo="ASDf".
@@ -96,6 +87,24 @@ public class MapMenuLogic : MonoBehaviour
         //eventAggregator.Publish(new MsgRenderMapAndItems(userLevelsLoaded[0].mapAndItems, userLevelsLoaded[0].levelSize));
 
         //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
+    }
+
+    private IEnumerator RenderAllLevels(List<LevelData> storyLevelsLoaded)
+    {
+        MsgBlockLength msg = new MsgBlockLength();
+        msgWar.PublishMsgAndWaitForResponse<MsgBlockLength, float>(msg);
+        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgBlockLength, float>(msg, out blockLength));
+
+        foreach (LevelData level in storyLevelsLoaded)
+        {
+            if (!loadedLevels.ContainsKey(level))
+            {
+                loadedLevels.Add(level, null);
+            }
+
+            StartCoroutine(RenderALevel(level));
+        }
+        levels = storyLevelsLoaded;
     }
 
     public void AddNewLevel(LevelData newLevel)
@@ -203,25 +212,32 @@ public class MapMenuLogic : MonoBehaviour
         yield return new WaitUntil(() => loadedLevels[centerObj] != null);
         GameObject centerParent = loadedLevels[centerObj][0].transform.parent.gameObject;
 
-        Vector3 lpos = placeableMap.transform.position;
-        Quaternion lrot = placeableMap.transform.rotation;
+        /* Vector3 lpos = placeableMap.transform.position;
+         Quaternion lrot = placeableMap.transform.rotation;
 
-        placeableMap.transform.position = new Vector3();
-        placeableMap.transform.rotation = new Quaternion();
+         placeableMap.transform.position = new Vector3();
+         placeableMap.transform.rotation = new Quaternion();
 
-        centerParent.transform.position = new Vector3();
-        centerParent.transform.rotation = new Quaternion();
-
-        centerParent.GetComponent<MapContainer>().MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
-
-        //Lo hacemos padre del escenario
-        centerParent.transform.parent = placeableMap.transform;
-
-        placeableMap.transform.position = lpos;
-        placeableMap.transform.rotation = lrot;
+         centerParent.transform.position = new Vector3();
+         centerParent.transform.rotation = new Quaternion();*/
 
         //Lo hacemos hijo del escenario
+
         centerParent.transform.parent = placeableMap.transform;
+        centerParent.transform.position = new Vector3();
+        centerParent.transform.localRotation = new Quaternion();
+
+        Vector3 mapCenter = placeableMap.GetComponent<MapController>().MapControllerCenter;
+
+        /*  Vector3 centerOffset = centerParent.GetComponent<MapContainer>().MapCenter;
+          mapCenter.x -= centerOffset.x;
+          mapCenter.y = placeableMap.transform.position.y + blockLength / 2;
+          mapCenter.z -= centerOffset.z;
+          centerParent.transform.position = mapCenter;*/
+
+        centerParent.GetComponent<MapContainer>().MoveMapTo(mapCenter, placeableMap.transform.position.y, blockLength);
+        // placeableMap.transform.position = lpos;
+        // placeableMap.transform.rotation = lrot;
 
         //Contiene el centro del mapa
         //MapContainer mcont = centerParent.GetComponent<MapContainer>();
@@ -268,22 +284,23 @@ public class MapMenuLogic : MonoBehaviour
         rightParent.SetActive(false);
 
         placeableMap.SetActive(false);
-        Vector3 lpos = placeableMap.transform.position;
-        Quaternion lrot = placeableMap.transform.rotation;
+        //Vector3 lpos = placeableMap.transform.position;
+        //Quaternion lrot = placeableMap.transform.rotation;
 
-        placeableMap.transform.position = new Vector3();
-        placeableMap.transform.rotation = new Quaternion();
-
-        rightParent.transform.position = new Vector3();
-        rightParent.transform.rotation = new Quaternion();
-
-        rightParent.GetComponent<MapContainer>().MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
-
-        //Lo hacemos padre del escenario
+        // placeableMap.transform.position = new Vector3();
+        //placeableMap.transform.rotation = new Quaternion();
         rightParent.transform.parent = placeableMap.transform;
 
-        placeableMap.transform.position = lpos;
-        placeableMap.transform.rotation = lrot;
+        rightParent.transform.position = new Vector3();
+        rightParent.transform.localRotation = new Quaternion();
+        Vector3 mapCenter = placeableMap.GetComponent<MapController>().MapControllerCenter;
+
+        rightParent.GetComponent<MapContainer>().MoveMapTo(mapCenter, placeableMap.transform.position.y, blockLength);
+
+        //Lo hacemos padre del escenario
+
+        // placeableMap.transform.position = lpos;
+        // placeableMap.transform.rotation = lrot;
 
         //Lo activamos
         placeableMap.SetActive(true);
@@ -302,7 +319,7 @@ public class MapMenuLogic : MonoBehaviour
 
         centerParent.SetActive(false);
         centerParent.transform.localScale = mapScale;
-
+        centerParent.transform.parent = transform;
         goalScale = rightParent.transform.localScale;
         mapScale = new Vector3();
 
@@ -347,25 +364,24 @@ public class MapMenuLogic : MonoBehaviour
     private IEnumerator RenderALevel(LevelData level)
     {
         // eventAggregator.Publish(new ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>(msg, objectReferences));
-
-        MsgRenderMapAndItems msg = new MsgRenderMapAndItems(level.mapAndItems, level.levelSize, level.goal);
+        GameObject parent = new GameObject();
+        MsgRenderMapAndItems msg = new MsgRenderMapAndItems(level.mapAndItems, level.levelSize, level.goal, parent);
         LevelObject[] loadedLevel = null;
         msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msg);
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msg, out loadedLevel));
 
         if (loadedLevel != null)
         {
-            GameObject parent = new GameObject();
             MapContainer mcont = parent.AddComponent<MapContainer>();
 
             parent.transform.position = placeableMap.transform.position;
             parent.name = System.Guid.NewGuid().ToString();
 
             yield return null;
-            foreach (LevelObject obj in loadedLevel)
-            {
-                obj.gameObject.transform.parent = parent.transform;
-            }
+            /* foreach (LevelObject obj in loadedLevel)
+             {
+                 obj.gameObject.transform.parent = parent.transform;
+             }*/
 
             if (loadedLevels.ContainsKey(level))
             {
@@ -373,7 +389,7 @@ public class MapMenuLogic : MonoBehaviour
                 {
                     lo.gameObject.SetActive(true);
                 }
-                mcont.UpdateMapCenter();
+                mcont.UpdateMapCenter(level.levelSize, blockLength);
                 parent.SetActive(false);
                 loadedLevels[level] = loadedLevel;
             }

@@ -112,7 +112,6 @@ public class RoadPlacementLogic : MonoBehaviour
             //Delete added roads
             foreach (Road r in thisChanges.addedRoads)
             {
-                Debug.Log("destroy");
                 Destroy(r.gameObject);
             }
 
@@ -159,116 +158,213 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoAction()
     {
-        SpawnVerticalButton(Buttons.Action);
+        if (EnoughNumberOfInstrucions(Buttons.Action))
+        {
+            SpawnVerticalButton(Buttons.Action);
+        }
+    }
+
+    private bool EnoughNumberOfInstrucions(Buttons button)
+    {
+        if (Application.isEditor)
+        {
+            //return true;
+        }
+        if (GameLogic.Instance.CurrentLevelData == null)
+        {
+            return false;
+        }
+        bool updateInstructions = false;
+
+        switch (button)
+        {
+            case Buttons.Action:
+
+                if (GameLogic.Instance.CurrentLevelData.availableInstructions.action > 0)
+                {
+                    GameLogic.Instance.CurrentLevelData.availableInstructions.action--;
+                    updateInstructions = true;
+                }
+                break;
+
+            case Buttons.Condition:
+
+                if (GameLogic.Instance.CurrentLevelData.availableInstructions.condition > 0)
+                {
+                    GameLogic.Instance.CurrentLevelData.availableInstructions.condition--;
+                    updateInstructions = true;
+                }
+
+                break;
+
+            case Buttons.Jump:
+                if (GameLogic.Instance.CurrentLevelData.availableInstructions.jump > 0)
+                {
+                    GameLogic.Instance.CurrentLevelData.availableInstructions.jump--;
+                    updateInstructions = true;
+                }
+
+                break;
+
+            case Buttons.Loop:
+
+                if (GameLogic.Instance.CurrentLevelData.availableInstructions.loop > 0)
+                {
+                    GameLogic.Instance.CurrentLevelData.availableInstructions.loop--;
+                    updateInstructions = true;
+                }
+                break;
+
+            case Buttons.Move:
+
+                if (GameLogic.Instance.CurrentLevelData.availableInstructions.move > 0)
+                {
+                    GameLogic.Instance.CurrentLevelData.availableInstructions.move--;
+                    updateInstructions = true;
+                }
+                break;
+
+            case Buttons.TurnLeft:
+
+                if (GameLogic.Instance.CurrentLevelData.availableInstructions.turnLeft > 0)
+                {
+                    GameLogic.Instance.CurrentLevelData.availableInstructions.turnLeft--;
+                    updateInstructions = true;
+                }
+                break;
+
+            case Buttons.TurnRight:
+
+                if (GameLogic.Instance.CurrentLevelData.availableInstructions.turnRight > 0)
+                {
+                    GameLogic.Instance.CurrentLevelData.availableInstructions.turnRight--;
+                    updateInstructions = true;
+                }
+                break;
+        }
+        if (updateInstructions)
+        {
+            GameLogic.Instance.UpdateAvailableInstructions();
+        }
+        return updateInstructions;
     }
 
     private void DoCondition()
     {
-        //No se pueden poner ifs dentro de ifs
-        bool foundIf = false;
-        if (this.selectedIO != null)
+        if (EnoughNumberOfInstrucions(Buttons.Condition))
         {
-            List<RoadIO> processedIO = new List<RoadIO>();
-            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
-
-            foreach (RoadIO io in this.selectedIO.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+            //No se pueden poner ifs dentro de ifs
+            bool foundIf = false;
+            if (this.selectedIO != null)
             {
-                ioToProc.Push(io);
-            }
+                List<RoadIO> processedIO = new List<RoadIO>();
+                Stack<RoadIO> ioToProc = new Stack<RoadIO>();
 
-            while (ioToProc.Count > 0 && !foundIf)
-            {
-                RoadIO thisIO = ioToProc.Pop();
-                processedIO.Add(thisIO);
-                Debug.Log(thisIO.GetParentRoad().RoadIdentifier);
-                if (thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfIn"))
+                foreach (RoadIO io in this.selectedIO.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
                 {
-                    foundIf = true;
+                    ioToProc.Push(io);
                 }
-                else if (!thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfOut"))
+
+                while (ioToProc.Count > 0 && !foundIf)
                 {
-                    if (thisIO.ConnectedTo != null)
+                    RoadIO thisIO = ioToProc.Pop();
+                    processedIO.Add(thisIO);
+                    Debug.Log(thisIO.GetParentRoad().RoadIdentifier);
+                    if (thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfIn"))
                     {
-                        foreach (RoadIO io in thisIO.ConnectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+                        foundIf = true;
+                    }
+                    else if (!thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfOut"))
+                    {
+                        if (thisIO.ConnectedTo != null)
                         {
-                            if (!processedIO.Contains(io))
+                            foreach (RoadIO io in thisIO.ConnectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
                             {
-                                ioToProc.Push(io);
+                                if (!processedIO.Contains(io))
+                                {
+                                    ioToProc.Push(io);
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        if (!foundIf)
-        {
-            RoadIO selectedIOBack = this.selectedIO;
-            string[] ids = { "NodeIfIn", "NodeIfOut" };
-            Road[] spawnedRoad;
-            List<Road> extraRoads;
-            Dictionary<RoadIO, RoadIO> oldConnections;
-            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad, out extraRoads, out oldConnections))
+            if (!foundIf)
             {
-                NewActionOnStack(spawnedRoad, extraRoads, oldConnections, selectedIOBack);
+                RoadIO selectedIOBack = this.selectedIO;
+                string[] ids = { "NodeIfIn", "NodeIfOut" };
+                Road[] spawnedRoad;
+                List<Road> extraRoads;
+                Dictionary<RoadIO, RoadIO> oldConnections;
+                if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad, out extraRoads, out oldConnections))
+                {
+                    NewActionOnStack(spawnedRoad, extraRoads, oldConnections, selectedIOBack);
+                }
             }
         }
     }
 
     private void DoJump()
     {
-        SpawnVerticalButton(Buttons.Jump);
+        if (EnoughNumberOfInstrucions(Buttons.Jump))
+        {
+            SpawnVerticalButton(Buttons.Jump);
+        }
     }
 
     private void DoLoop()
     {
-        //No se pueden poner loops dentro de ifs
-        bool foundIf = false;
-        if (this.selectedIO != null)
+        if (EnoughNumberOfInstrucions(Buttons.Loop))
         {
-            List<RoadIO> processedIO = new List<RoadIO>();
-            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
-
-            foreach (RoadIO io in this.selectedIO.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+            //No se pueden poner loops dentro de ifs
+            bool foundIf = false;
+            if (this.selectedIO != null)
             {
-                ioToProc.Push(io);
-            }
+                List<RoadIO> processedIO = new List<RoadIO>();
+                Stack<RoadIO> ioToProc = new Stack<RoadIO>();
 
-            while (ioToProc.Count > 0 && !foundIf)
-            {
-                RoadIO thisIO = ioToProc.Pop();
-                processedIO.Add(thisIO);
-                Debug.Log(thisIO.GetParentRoad().RoadIdentifier);
-                if (thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfIn"))
+                foreach (RoadIO io in this.selectedIO.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
                 {
-                    foundIf = true;
+                    ioToProc.Push(io);
                 }
-                else if (!thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfOut"))
+
+                while (ioToProc.Count > 0 && !foundIf)
                 {
-                    if (thisIO.ConnectedTo != null)
+                    RoadIO thisIO = ioToProc.Pop();
+                    processedIO.Add(thisIO);
+                    Debug.Log(thisIO.GetParentRoad().RoadIdentifier);
+                    if (thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfIn"))
                     {
-                        foreach (RoadIO io in thisIO.ConnectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
+                        foundIf = true;
+                    }
+                    else if (!thisIO.GetParentRoad().RoadIdentifier.Contains("NodeIfOut"))
+                    {
+                        if (thisIO.ConnectedTo != null)
                         {
-                            if (!processedIO.Contains(io))
+                            foreach (RoadIO io in thisIO.ConnectedTo.GetParentRoad().GetRoadIOByDirection(IODirection.Back))
                             {
-                                ioToProc.Push(io);
+                                if (!processedIO.Contains(io))
+                                {
+                                    ioToProc.Push(io);
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        if (!foundIf)
-        {
-            RoadIO selectedIOBack = this.selectedIO;
-            string[] ids = { "NodeLoopIn", "NodeLoopOut" };
-            Road[] spawnedRoad;
-            List<Road> extraRoads;
-            Dictionary<RoadIO, RoadIO> oldConnections;
-            if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad, out extraRoads, out oldConnections))
+            if (!foundIf)
             {
-                NewActionOnStack(spawnedRoad, extraRoads, oldConnections, selectedIOBack);
+                RoadIO selectedIOBack = this.selectedIO;
+                string[] ids = { "NodeLoopIn", "NodeLoopOut" };
+                Road[] spawnedRoad;
+                List<Road> extraRoads;
+                Dictionary<RoadIO, RoadIO> oldConnections;
+                if (SpawnRoads(ids, IODirection.Forward, out spawnedRoad, out extraRoads, out oldConnections))
+                {
+                    NewActionOnStack(spawnedRoad, extraRoads, oldConnections, selectedIOBack);
+                }
             }
         }
     }
@@ -706,7 +802,10 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoMove()
     {
-        SpawnVerticalButton(Buttons.Move);
+        if (EnoughNumberOfInstrucions(Buttons.Move))
+        {
+            SpawnVerticalButton(Buttons.Move);
+        }
     }
 
     private Road GetLastRoad()
@@ -917,12 +1016,18 @@ public class RoadPlacementLogic : MonoBehaviour
 
     private void DoTurnLeft()
     {
-        SpawnVerticalButton(Buttons.TurnLeft);
+        if (EnoughNumberOfInstrucions(Buttons.TurnLeft))
+        {
+            SpawnVerticalButton(Buttons.TurnLeft);
+        }
     }
 
     private void DoTurnRight()
     {
-        SpawnVerticalButton(Buttons.TurnRight);
+        if (EnoughNumberOfInstrucions(Buttons.TurnRight))
+        {
+            SpawnVerticalButton(Buttons.TurnRight);
+        }
     }
 
     private void CorrectPositions(in float maxAcceptableDistance, RoadIO pivotIO)

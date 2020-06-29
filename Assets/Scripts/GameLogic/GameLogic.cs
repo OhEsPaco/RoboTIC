@@ -24,7 +24,6 @@ public class GameLogic : MonoBehaviour
     /// <summary>
     /// Gets the LevelData
     /// </summary>
-    public LevelData CurrentLevelData { get => currentLevelData; }
 
     private Item[] items;
     private LevelData clonedLevelData;
@@ -41,6 +40,8 @@ public class GameLogic : MonoBehaviour
     private MessageWarehouse msgWar;
     private GameObject bigCharater;
     private bool finishedMinibotMovement = false;
+    public bool FinishedMinibotMovement { get => finishedMinibotMovement; set => finishedMinibotMovement = value; }
+    public LevelData CurrentLevelData { get => currentLevelData; set => currentLevelData = value; }
 
     // Start is called before the first frame update
     /// <summary>
@@ -81,8 +82,6 @@ public class GameLogic : MonoBehaviour
             return gameLogic;
         }
     }
-
-    public bool FinishedMinibotMovement { get => finishedMinibotMovement; set => finishedMinibotMovement = value; }
 
     public void StartLevel(LevelData levelData, GameObject mapParent)
     {
@@ -214,6 +213,11 @@ public class GameLogic : MonoBehaviour
         msgWar = new MessageWarehouse(EventAggregator.Instance);
     }
 
+    public void UpdateAvailableInstructions()
+    {
+        EventAggregator.Instance.Publish<MsgSetAvInstructions>(new MsgSetAvInstructions(currentLevelData.availableInstructions));
+    }
+
     private IEnumerator RenderALevel()
     {
         this.loading = true;
@@ -226,7 +230,7 @@ public class GameLogic : MonoBehaviour
         currentLevelData = clonedLevelData.Clone();
 
         //Pedimos que se renderice el nivel
-        MsgRenderMapAndItems msg = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize, currentLevelData.goal);
+        MsgRenderMapAndItems msg = new MsgRenderMapAndItems(currentLevelData.mapAndItems, currentLevelData.levelSize, currentLevelData.goal, mapParent);
         LevelObject[] loadedLevel = null;
         msgWar.PublishMsgAndWaitForResponse<MsgRenderMapAndItems, LevelObject[]>(msg);
         yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMapAndItems, LevelObject[]>(msg, out loadedLevel));
@@ -235,47 +239,46 @@ public class GameLogic : MonoBehaviour
         {
             //Ponemos el numero de instrucciones en los botones
             EventAggregator.Instance.Publish<MsgSetAvInstructions>(new MsgSetAvInstructions(currentLevelData.availableInstructions));
-            MapContainer mcont = mapParent.GetComponent<MapContainer>();
+            // MapContainer mcont = mapParent.GetComponent<MapContainer>();
 
-            Vector3 lpos = placeableMap.transform.position;
-            Quaternion lrot = placeableMap.transform.rotation;
+            //Vector3 lpos = placeableMap.transform.position;
+            //Quaternion lrot = placeableMap.transform.rotation;
 
-            placeableMap.transform.position = new Vector3();
-            placeableMap.transform.rotation = new Quaternion();
+            //placeableMap.transform.position = new Vector3();
+            //placeableMap.transform.rotation = new Quaternion();
 
-            mapParent.transform.position = new Vector3();
-            mapParent.transform.rotation = new Quaternion();
+            //mapParent.transform.position = new Vector3();
+            // mapParent.transform.rotation = new Quaternion();
 
-            foreach (LevelObject obj in loadedLevel)
-            {
-                obj.gameObject.transform.parent = mapParent.transform;
-            }
+            /* foreach (LevelObject obj in loadedLevel)
+             {
+                 obj.gameObject.transform.parent = mapParent.transform;
+             }*/
 
-            mcont.UpdateMapCenter();
-            mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
+            //mcont.UpdateMapCenter();
+            //mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
             objectReferences = loadedLevel;
-
-            Vector3 playerPos;
-            //Podria dar fallo si el personaje esta mal colocado
-            GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
-         
 
             if (bigCharater == null)
             {
                 MsgRenderMainCharacter msgMain = new MsgRenderMainCharacter();
                 msgWar.PublishMsgAndWaitForResponse<MsgRenderMainCharacter, GameObject>(msgMain);
                 yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgRenderMainCharacter, GameObject>(msgMain, out bigCharater));
+                bigCharater.SetActive(true);
             }
-       
+
+            Vector3 playerPos;
+            //Podria dar fallo si el personaje esta mal colocado
+            GetBlockSurfacePoint(currentLevelData.playerPos[0], currentLevelData.playerPos[1] - 1, currentLevelData.playerPos[2], out playerPos);
 
             MsgPlaceCharacter msgLld = new MsgPlaceCharacter(playerPos, new Vector3(0, 90f * currentLevelData.playerOrientation, 0), mapParent.transform);
             msgWar.PublishMsgAndWaitForResponse<MsgPlaceCharacter, GameObject>(msgLld);
             yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgPlaceCharacter, GameObject>(msgLld, out bigCharater));
 
             bigCharater.SetActive(false);
-            
-            placeableMap.transform.position = lpos;
-            placeableMap.transform.rotation = lrot;
+
+            //placeableMap.transform.position = lpos;
+            //placeableMap.transform.rotation = lrot;
 
             bool doReturn = true;
             for (int y = 0; y < currentLevelData.levelSize[1]; y++)
@@ -295,7 +298,7 @@ public class GameLogic : MonoBehaviour
                         {
                             LevelObject lOb = GetBlock(currentLevelData, loadedLevel, x, y, z);
                             lOb.gameObject.SetActive(true);
-                         
+
                             if (lOb is Block)
                             {
                                 Block lOb2 = (Block)lOb;
@@ -307,7 +310,6 @@ public class GameLogic : MonoBehaviour
                         }
                         catch
                         {
-                          
                         }
                         if (doReturn)
                         {
