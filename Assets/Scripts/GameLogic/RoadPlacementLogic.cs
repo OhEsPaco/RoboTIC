@@ -168,7 +168,7 @@ public class RoadPlacementLogic : MonoBehaviour
     {
         if (Application.isEditor)
         {
-            //return true;
+            return true;
         }
         if (GameLogic.Instance.CurrentLevelData == null)
         {

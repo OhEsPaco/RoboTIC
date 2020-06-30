@@ -2200,7 +2200,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.85
   far clip plane: 1000
   field of view: 16
   orthographic: 0
@@ -26413,7 +26413,7 @@ MonoBehaviour:
   - {fileID: 4464486992319007364}
   - {fileID: 1323208481}
   - {fileID: 180642133}
-  time: 1
+  time: 0.5
 --- !u!1 &4464486992319007364
 GameObject:
   m_ObjectHideFlags: 0
