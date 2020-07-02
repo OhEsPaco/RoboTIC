@@ -16,7 +16,7 @@ public class RoadFactory : MonoBehaviour
     private void Start()
     {
         //Tomamos todas las carreteras
-        allRoads = GetComponentsInChildren<Road>();
+        allRoads = Resources.LoadAll<Road>("Prefabs/Roads");
         if (allRoads.Length == 0)
         {
             Debug.LogError("No roads found");

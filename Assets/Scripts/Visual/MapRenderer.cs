@@ -7,7 +7,7 @@ public class MapRenderer : MonoBehaviour
 {
     [SerializeField] private float blockLength = 1f;
     [SerializeField] private EventAggregator eventAggregator;
-    private LevelObjects levelObjects;
+    private LevelObjectFactory levelObjects;
     public float BlockLength { get => blockLength; }
 
     private static MapRenderer mapRenderer;
@@ -34,7 +34,7 @@ public class MapRenderer : MonoBehaviour
     {
         eventAggregator.Subscribe<MsgRenderMapAndItems>(RenderMapAndItems);
         eventAggregator.Subscribe<MsgBlockLength>(ServeBlockLength);
-        levelObjects = GetComponentInChildren<LevelObjects>();
+        levelObjects = GetComponentInChildren<LevelObjectFactory>();
     }
 
     private void ServeBlockLength(MsgBlockLength msg)

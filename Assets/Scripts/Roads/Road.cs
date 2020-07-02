@@ -23,6 +23,8 @@ public abstract class Road : MonoBehaviour
     //El container de los caminos
     private PathContainer pathContainer;
 
+    private bool awaked = false;
+
     //En este caso el identificador es el nombre del objeto
     public string RoadIdentifier
     {
@@ -37,6 +39,15 @@ public abstract class Road : MonoBehaviour
 
     public List<RoadIO> GetRoadIOByDirection(IODirection direction)
     {
+        if (!ioByDirection.ContainsKey(direction) && !awaked)
+        {
+            Awake();
+        }
+
+        if (!ioByDirection.ContainsKey(direction))
+        {
+            return null;
+        }
         return ioByDirection[direction];
     }
 
@@ -56,24 +67,28 @@ public abstract class Road : MonoBehaviour
 
     private void Awake()
     {
-        pathContainer = GetComponentInChildren<PathContainer>();
-
-        allIO = GetComponentsInChildren<RoadIO>();
-
-        foreach (IODirection direction in System.Enum.GetValues(typeof(IODirection)))
+        if (!awaked)
         {
-            List<RoadIO> listOfIO = new List<RoadIO>();
-            ioByDirection.Add(direction, listOfIO);
-        }
+            pathContainer = GetComponentInChildren<PathContainer>();
 
-        foreach (RoadIO thisIO in allIO)
-        {
-            List<RoadIO> listOfIO = ioByDirection[thisIO.Direction];
-            listOfIO.Add(thisIO);
-            if (!ioByID.ContainsKey(thisIO.IOIdentifier))
+            allIO = GetComponentsInChildren<RoadIO>();
+
+            foreach (IODirection direction in System.Enum.GetValues(typeof(IODirection)))
             {
-                ioByID.Add(thisIO.IOIdentifier, thisIO);
+                List<RoadIO> listOfIO = new List<RoadIO>();
+                ioByDirection.Add(direction, listOfIO);
             }
+
+            foreach (RoadIO thisIO in allIO)
+            {
+                List<RoadIO> listOfIO = ioByDirection[thisIO.Direction];
+                listOfIO.Add(thisIO);
+                if (!ioByID.ContainsKey(thisIO.IOIdentifier))
+                {
+                    ioByID.Add(thisIO.IOIdentifier, thisIO);
+                }
+            }
+            awaked = true;
         }
     }
 

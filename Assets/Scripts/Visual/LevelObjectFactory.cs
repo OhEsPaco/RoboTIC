@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using static LevelObject;
 
-public class LevelObjects : MonoBehaviour
+public class LevelObjectFactory : MonoBehaviour
 {
     private Block[] blocks;
     private Item[] items;

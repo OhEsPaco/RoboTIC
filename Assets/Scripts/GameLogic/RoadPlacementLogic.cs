@@ -430,8 +430,9 @@ public class RoadPlacementLogic : MonoBehaviour
         if (roadFactory.SpawnRoadByID(ids[0], out spw))
         {
             spawnedRoads[0] = Instantiate(spw, roadStart.transform.localPosition, roadStart.transform.rotation);
-
+            Vector3 localRotationOnSpawn = spawnedRoads[0].transform.eulerAngles;
             spawnedRoads[0].transform.parent = roadParent;
+            spawnedRoads[0].transform.eulerAngles = localRotationOnSpawn;
             spawnedRoads[0].GetRoadIOByDirection(RoadIO.GetOppositeDirection(direction))[0].MoveRoadTo(position);
         }
         else
@@ -449,8 +450,9 @@ public class RoadPlacementLogic : MonoBehaviour
             if (roadFactory.SpawnRoadByID(ids[i + 1], ioToMatch, out nextRoad, out connectionsR_C))
             {
                 spawnedRoads[i + 1] = Instantiate(nextRoad, roadStart.transform.localPosition, roadStart.transform.rotation);
-
+                Vector3 localRotationOnSpawn = spawnedRoads[i + 1].transform.eulerAngles;
                 spawnedRoads[i + 1].transform.parent = roadParent;
+                spawnedRoads[i + 1].transform.eulerAngles = localRotationOnSpawn;
                 if (!ConnectRoads(spawnedRoads[i], spawnedRoads[i + 1], connectionsR_C))
                 {
                     DestroyRoads(spawnedRoads);
