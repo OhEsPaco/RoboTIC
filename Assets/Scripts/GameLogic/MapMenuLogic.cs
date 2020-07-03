@@ -1,32 +1,101 @@
-﻿using System.Collections;
+﻿// MapMenuLogic.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// Esta clase <see cref="MapMenuLogic" /> contiene la lógica del menú de mapas del juego.
+/// </summary>
 public class MapMenuLogic : MonoBehaviour
 {
+    /// <summary>
+    /// Los niveles por defecto que incluye el juego.
+    /// </summary>
     [SerializeField] private TextAsset[] storyLevels = new TextAsset[0];
+
+    /// <summary>
+    /// La flecha de pasar los mapas hacia la izquierda.
+    /// </summary>
     [SerializeField] private SelectArrow leftArrow;
+
+    /// <summary>
+    /// La flecha de pasar los mapas hacia la derecha.
+    /// </summary>
     [SerializeField] private SelectArrow rightArrow;
+
+    /// <summary>
+    /// Botón para volver al menú principal.
+    /// </summary>
     [SerializeField] private GenericButton mainMenuButton;
+
+    /// <summary>
+    /// GameObject del escenario.
+    /// </summary>
     [SerializeField] private GameObject placeableMap;
+
+    /// <summary>
+    /// Botón para elegir mapa.
+    /// </summary>
     [SerializeField] private GenericButton mapBounds;
 
-    [Range(0, 100f)]
-    [SerializeField] private float arrowDistance = 0.3f;
-
-    // Start is called before the first frame update
+    /// <summary>
+    /// Instancia de la clase MessageWarehouse.
+    /// </summary>
     private MessageWarehouse msgWar;
 
+    /// <summary>
+    /// Diccionario que guarda referencias a los niveles cargados.
+    /// </summary>
     private Dictionary<LevelData, LevelObject[]> loadedLevels = new Dictionary<LevelData, LevelObject[]>();
+
+    /// <summary>
+    /// Los niveles del juego.
+    /// </summary>
     private List<LevelData> levels;
+
+    /// <summary>
+    /// Longitud del lado de un bloque.
+    /// </summary>
     private float blockLength;
 
+    /// <summary>
+    /// Numero del mapa en el que nos encontramos.
+    /// </summary>
+    private int indexC = 0;
+
+    /// <summary>
+    /// ¿Se han terminado todas las acciones?
+    /// </summary>
+    private bool allDone = true;
+
+    /// <summary>
+    /// ¿Primera iteración del método Update?
+    /// </summary>
+    private bool firstIt = false;
+
+    /// <summary>
+    /// ¿Se ha cargado el menú?
+    /// </summary>
+    private bool loaded = false;
+
+    /// <summary>
+    /// Velocidad a la que se ejecutan las acciones.
+    /// </summary>
     [Range(0f, 5000f)]
     public float speed = 1f;
 
+    /// <summary>
+    /// Instancia de la clase a la que pueden acceder otros objetos.
+    /// </summary>
     private static MapMenuLogic mapMenuLogic;
 
+    /// <summary>
+    /// Retorna la instancia de la clase.
+    /// </summary>
     public static MapMenuLogic Instance
     {
         get
@@ -45,6 +114,9 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Start.
+    /// </summary>
     private void Start()
     {
         msgWar = new MessageWarehouse(EventAggregator.Instance);
@@ -66,29 +138,13 @@ public class MapMenuLogic : MonoBehaviour
         }
 
         StartCoroutine(RenderAllLevels(storyLevelsLoaded));
-        //DirectoryInfo levelDirectoryPath = new DirectoryInfo(Application.streamingAssetsPath);
-        //Debug.Log(levelDirectoryPath.FullName);
-        //FileInfo[]fileInfo="ASDf".
-        /*foreach (string file in System.IO.Directory.GetFiles((System.IO.Directory.GetCurrentDirectory())))
-        {
-            Debug.Log(file);
-        }*/
-
-        /*List<LevelData> userLevelsLoaded = LoadImportedLevels(GetListOfImportedLevels());
-        foreach (LevelData level in userLevelsLoaded)
-        {
-            if (!loadedLevels.ContainsKey(level))
-            {
-                loadedLevels.Add(level, null);
-            }
-
-            StartCoroutine(RenderALevel(level));
-        }*/
-        //eventAggregator.Publish(new MsgRenderMapAndItems(userLevelsLoaded[0].mapAndItems, userLevelsLoaded[0].levelSize));
-
-        //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
     }
 
+    /// <summary>
+    /// Renderiza todos los niveles.
+    /// </summary>
+    /// <param name="storyLevelsLoaded">La lista de los niveles a cargar<see cref="List{LevelData}"/>.</param>
+    /// <returns><see cref="IEnumerator"/>.</returns>
     private IEnumerator RenderAllLevels(List<LevelData> storyLevelsLoaded)
     {
         MsgBlockLength msg = new MsgBlockLength();
@@ -107,6 +163,10 @@ public class MapMenuLogic : MonoBehaviour
         levels = storyLevelsLoaded;
     }
 
+    /// <summary>
+    /// Añade un nuevo nivel a la lista.
+    /// </summary>
+    /// <param name="newLevel">The newLevel<see cref="LevelData"/>.</param>
     public void AddNewLevel(LevelData newLevel)
     {
         levels.Add(newLevel);
@@ -114,6 +174,9 @@ public class MapMenuLogic : MonoBehaviour
         StartCoroutine(RenderALevel(newLevel));
     }
 
+    /// <summary>
+    /// Muestra el menú de niveles.
+    /// </summary>
     public void ShowMapMenu()
     {
         placeableMap.GetComponent<MapController>().EnableMenuControls();
@@ -131,6 +194,9 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Esconde el menú de niveles.
+    /// </summary>
     public void HideMapMenu()
     {
         if (loaded)
@@ -144,20 +210,17 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    private int indexC = 0;
-
-    private bool allDone = true;
-
-    private bool firstIt = false;
-
-    private bool loaded = false;
-
+    /// <summary>
+    /// El usuario ha hecho click en el botón de volver al menú principal.
+    /// </summary>
     private void UserClickedOnMainMenu()
     {
-        //SceneManager.LoadScene("Main");
+        //Do nothing
     }
 
+    /// <summary>
+    /// El jugador ha seleccionado un mapa.
+    /// </summary>
     private void UserClickedOnMap()
     {
         if (allDone && !firstIt && levels[indexC] != null)
@@ -174,6 +237,9 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update.
+    /// </summary>
     private void Update()
     {
         if (firstIt)
@@ -185,6 +251,9 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Mover los mapas hacia la izquierda.
+    /// </summary>
     private void InputLeft()
     {
         if (!firstIt && allDone)
@@ -195,6 +264,9 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Mover los mapas hacia la derecha.
+    /// </summary>
     private void InputRight()
     {
         if (!firstIt && allDone)
@@ -205,6 +277,11 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Centra el primer mapa.
+    /// </summary>
+    /// <param name="speed">Velocidad a la que aparece el mapa<see cref="float"/>.</param>
+    /// <returns><see cref="IEnumerator"/>.</returns>
     private IEnumerator CenterFirstMap(float speed)
     {
         //Pedimos el primer mapa
@@ -212,40 +289,14 @@ public class MapMenuLogic : MonoBehaviour
         yield return new WaitUntil(() => loadedLevels[centerObj] != null);
         GameObject centerParent = loadedLevels[centerObj][0].transform.parent.gameObject;
 
-        /* Vector3 lpos = placeableMap.transform.position;
-         Quaternion lrot = placeableMap.transform.rotation;
-
-         placeableMap.transform.position = new Vector3();
-         placeableMap.transform.rotation = new Quaternion();
-
-         centerParent.transform.position = new Vector3();
-         centerParent.transform.rotation = new Quaternion();*/
-
         //Lo hacemos hijo del escenario
-
         centerParent.transform.parent = placeableMap.transform;
         centerParent.transform.position = new Vector3();
         centerParent.transform.localRotation = new Quaternion();
 
         Vector3 mapCenter = placeableMap.GetComponent<MapController>().MapControllerCenter;
 
-        /*  Vector3 centerOffset = centerParent.GetComponent<MapContainer>().MapCenter;
-          mapCenter.x -= centerOffset.x;
-          mapCenter.y = placeableMap.transform.position.y + blockLength / 2;
-          mapCenter.z -= centerOffset.z;
-          centerParent.transform.position = mapCenter;*/
-
         centerParent.GetComponent<MapContainer>().MoveMapTo(mapCenter, placeableMap.transform.position.y, blockLength);
-        // placeableMap.transform.position = lpos;
-        // placeableMap.transform.rotation = lrot;
-
-        //Contiene el centro del mapa
-        //MapContainer mcont = centerParent.GetComponent<MapContainer>();
-
-        // mcont.MoveMapTo(placeableMap.GetComponent<MapController>().MapControllerCenter);
-        //Ponemos el escenario
-        //yield return new WaitUntil(() => SpaceCollectionManager.Instance.IsReady());
-        //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
 
         Vector3 mapScale = centerParent.transform.localScale;
 
@@ -266,6 +317,13 @@ public class MapMenuLogic : MonoBehaviour
         allDone = true;
     }
 
+    /// <summary>
+    /// Cambia el mapa en pantalla por otro de la lista.
+    /// </summary>
+    /// <param name="index">El indice del mapa actual<see cref="int"/>.</param>
+    /// <param name="nextIndex">El indice del mapa al que moverse<see cref="int"/>.</param>
+    /// <param name="speed">La velocidad del cambio<see cref="float"/>.</param>
+    /// <returns>The <see cref="IEnumerator"/>.</returns>
     private IEnumerator ShiftMap(int index, int nextIndex, float speed)
     {
         allDone = false;
@@ -284,11 +342,7 @@ public class MapMenuLogic : MonoBehaviour
         rightParent.SetActive(false);
 
         placeableMap.SetActive(false);
-        //Vector3 lpos = placeableMap.transform.position;
-        //Quaternion lrot = placeableMap.transform.rotation;
 
-        // placeableMap.transform.position = new Vector3();
-        //placeableMap.transform.rotation = new Quaternion();
         rightParent.transform.parent = placeableMap.transform;
 
         rightParent.transform.position = new Vector3();
@@ -296,11 +350,6 @@ public class MapMenuLogic : MonoBehaviour
         Vector3 mapCenter = placeableMap.GetComponent<MapController>().MapControllerCenter;
 
         rightParent.GetComponent<MapContainer>().MoveMapTo(mapCenter, placeableMap.transform.position.y, blockLength);
-
-        //Lo hacemos padre del escenario
-
-        // placeableMap.transform.position = lpos;
-        // placeableMap.transform.rotation = lrot;
 
         //Lo activamos
         placeableMap.SetActive(true);
@@ -341,6 +390,11 @@ public class MapMenuLogic : MonoBehaviour
         allDone = true;
     }
 
+    /// <summary>
+    /// Retorna el indice del mapa a la izquierda.
+    /// </summary>
+    /// <param name="index">El indice actual<see cref="int"/>.</param>
+    /// <returns>El indice del mapa a la izquierda <see cref="int"/>.</returns>
     private int GetIndexLeft(int index)
     {
         int indexLeft = index - 1;
@@ -351,6 +405,11 @@ public class MapMenuLogic : MonoBehaviour
         return indexLeft;
     }
 
+    /// <summary>
+    /// Retorna el indice del mapa a la derecha.
+    /// </summary>
+    /// <param name="index">El indice actual<see cref="int"/>.</param>
+    /// <returns>El indice del mapa a la derecha <see cref="int"/>.</returns>
     private int GetIndexRight(int index)
     {
         int indexRight = index + 1;
@@ -361,9 +420,13 @@ public class MapMenuLogic : MonoBehaviour
         return indexRight;
     }
 
+    /// <summary>
+    /// Toma la estructura de datos de un nivel y genera los objetos apropiados.
+    /// </summary>
+    /// <param name="level">La estructura del nivel<see cref="LevelData"/>.</param>
+    /// <returns><see cref="IEnumerator"/>.</returns>
     private IEnumerator RenderALevel(LevelData level)
     {
-        // eventAggregator.Publish(new ResponseWrapper<MsgRenderMapAndItems, LevelObject[]>(msg, objectReferences));
         GameObject parent = new GameObject();
         MsgRenderMapAndItems msg = new MsgRenderMapAndItems(level.mapAndItems, level.levelSize, level.goal, parent);
         LevelObject[] loadedLevel = null;
@@ -378,10 +441,6 @@ public class MapMenuLogic : MonoBehaviour
             parent.name = System.Guid.NewGuid().ToString();
 
             yield return null;
-            /* foreach (LevelObject obj in loadedLevel)
-             {
-                 obj.gameObject.transform.parent = parent.transform;
-             }*/
 
             if (loadedLevels.ContainsKey(level))
             {
@@ -400,6 +459,10 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Carga una lista con los nombres de archivo de los mapas creados por el usuario.
+    /// </summary>
+    /// <returns>La lista con los nombres de archivo <see cref="string[]"/>.</returns>
     private string[] GetListOfImportedLevels()
     {
         if (Application.isEditor)
@@ -424,6 +487,11 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Carga los niveles predefinidos.
+    /// </summary>
+    /// <param name="levels">Los niveles como strings<see cref="string[]"/>.</param>
+    /// <returns>Los niveles como LevelData <see cref="List{LevelData}"/>.</returns>
     private List<LevelData> LoadStoryLevels(string[] levels)
     {
         List<LevelData> loadedLevels = new List<LevelData>();
@@ -443,6 +511,11 @@ public class MapMenuLogic : MonoBehaviour
         return loadedLevels;
     }
 
+    /// <summary>
+    /// Carga los niveles del usuario.
+    /// </summary>
+    /// <param name="files">Los nombres de archivo de los niveles<see cref="string[]"/>.</param>
+    /// <returns>Los niveles cargados como LevelData <see cref="List{LevelData}"/>.</returns>
     private List<LevelData> LoadImportedLevels(string[] files)
     {
         List<LevelData> loadedLevels = new List<LevelData>();
@@ -463,12 +536,17 @@ public class MapMenuLogic : MonoBehaviour
         return loadedLevels;
     }
 
+    /// <summary>
+    /// Lee un archivo y lo retorna como un string.
+    /// </summary>
+    /// <param name="path">La ruta del archivo<see cref="string"/>.</param>
+    /// <returns>El archivo leído <see cref="string"/>.</returns>
     private string ReadFileAsString(in string path)
     {
         StreamReader sr = new StreamReader(new FileStream(path, FileMode.Open));
 
         string output = sr.ReadToEnd();
-       // sr.Close();
+
         return output;
     }
 }

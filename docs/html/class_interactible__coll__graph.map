@@ -1,5 +1,0 @@
-<map id="Interactible" name="Interactible">
-<area shape="rect" id="node1" title="The Interactible class flags a Game Object as being &quot;Interactible&quot;. Determines what happens when an I..." alt="" coords="95,95,181,121"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,116,32"/>
-<area shape="rect" id="node3" href="$class_interactible_parameters.html" title="Conveys the set of states available on an Interactible. In the inspector check the states to display ..." alt="" coords="141,5,293,32"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="LevelObject" name="LevelObject">
-<area shape="rect" id="node1" title=" " alt="" coords="25,80,115,107"/>
-<area shape="rect" id="node3" href="$class_block.html" title=" " alt="" coords="5,155,60,181"/>
-<area shape="rect" id="node4" href="$class_item.html" title=" " alt="" coords="84,155,131,181"/>
-<area shape="rect" id="node2" title=" " alt="" coords="15,5,125,32"/>
-</map>

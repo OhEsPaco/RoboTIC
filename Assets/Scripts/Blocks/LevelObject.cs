@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿// LevelObject.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
 
+using UnityEngine;
+
+/// <summary>
+/// Define la clase <see cref="LevelObject" /> que son los objetos del juego tales como items y bloques.
+/// </summary>
 public abstract class LevelObject : MonoBehaviour
 {
-    //Como guardo el nivel en un solo array, del 0 al 24 son bloques y del 25 al infinito items
-
+    /// <summary>
+    /// Identificadores de los bloques de juego.
+    /// </summary>
     public enum Blocks
     {
         NoBlock = 0,
@@ -15,6 +23,9 @@ public abstract class LevelObject : MonoBehaviour
         IceBlock = 6
     };
 
+    /// <summary>
+    /// Identificadores de los items.
+    /// </summary>
     public enum Items
     {
         PlankItem = 25,
@@ -24,6 +35,9 @@ public abstract class LevelObject : MonoBehaviour
         BombItem = 29
     }
 
+    /// <summary>
+    /// Identificadores de los efectos de un item.
+    /// </summary>
     public enum Effects
     {
         None,
@@ -32,14 +46,29 @@ public abstract class LevelObject : MonoBehaviour
         Activate
     };
 
+    /// <summary>
+    /// Animator de este bloque o item.
+    /// </summary>
     private Animator animator;
 
+    /// <summary>
+    /// Retorna el animator.
+    /// </summary>
     public Animator _Animator { get => animator; }
 
+    /// <summary>
+    /// Acción de colocar el bloque.
+    /// </summary>
     public abstract void Place();
 
+    /// <summary>
+    /// Acción de destruir el bloque.
+    /// </summary>
     public abstract void Destroy();
 
+    /// <summary>
+    /// Resetea el animator.
+    /// </summary>
     protected void RebindAnimator()
     {
         if (animator != null)
@@ -48,6 +77,10 @@ public abstract class LevelObject : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ejecuta un trigger en el animator del objeto.
+    /// </summary>
+    /// <param name="trigger">El trigger <see cref="string"/>.</param>
     public void SetAnimationTrigger(in string trigger)
     {
         if (animator != null)
@@ -56,6 +89,9 @@ public abstract class LevelObject : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Start.
+    /// </summary>
     public void Start()
     {
         animator = GetComponent<Animator>();
@@ -66,6 +102,10 @@ public abstract class LevelObject : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ¿Es un bloque?
+    /// </summary>
+    /// <returns>True si lo es, false si no <see cref="bool"/>.</returns>
     public bool IsBlock()
     {
         if (this.GetType() == typeof(Block))
@@ -75,6 +115,10 @@ public abstract class LevelObject : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// ¿Es un item?
+    /// </summary>
+    /// <returns>True si lo es, false si no <see cref="bool"/>.</returns>
     public bool IsItem()
     {
         if (this.GetType() == typeof(Item))
@@ -84,5 +128,8 @@ public abstract class LevelObject : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// ToString.
+    /// </summary>
     public abstract new string ToString { get; }
 }

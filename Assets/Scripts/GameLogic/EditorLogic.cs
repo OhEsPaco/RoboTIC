@@ -1,30 +1,87 @@
-﻿using System.Collections;
+﻿// EditorLogic.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using static LevelObject;
 
+/// <summary>
+/// Clase que contiene toda la lógica del editor de niveles <see cref="EditorLogic" />.
+/// </summary>
 public class EditorLogic : MonoBehaviour
 {
+    /// <summary>
+    /// Tamaño máximo del mapa en el eje X.
+    /// </summary>
     [SerializeField] private int mapSizeX = 8;
+
+    /// <summary>
+    /// Tamaño máximo del mapa en el eje Y.
+    /// </summary>
     [SerializeField] private int mapSizeY = 4;
+
+    /// <summary>
+    /// Tamaño máximo del mapa en el eje Z.
+    /// </summary>
     [SerializeField] private int mapSizeZ = 8;
+
+    /// <summary>
+    /// El objeto que contiene al escenario.
+    /// </summary>
     [SerializeField] private GameObject placeableMap;
-    [SerializeField] private float seconsWarningScreen = 3;
-    private EditorObject[] levelObjects;
+
+    /// <summary>
+    /// Segundos de duración de las pantallas de aviso.
+    /// </summary>
+    [SerializeField] private float secondsWarningScreen = 3;
+
+    /// <summary>
+    /// Referencias a los objetos del nivel.
+    /// </summary>
+    private EditorObject[] editorObjects;
+
+    /// <summary>
+    /// La herramienta seleccionada.
+    /// </summary>
     private SelectedTool selectedTool;
-    private LevelData newLevel;
+
+    /// <summary>
+    /// Estructura de datos para guardar el numero de instrucciones disponibles.
+    /// </summary>
     private AvailableInstructions availableInstructions;
+
+    /// <summary>
+    /// ¿Tiene bandera?
+    /// </summary>
     private bool hasFlag = false;
+
+    /// <summary>
+    /// ¿Tiene jugador?.
+    /// </summary>
     private bool hasPlayer = false;
 
+    /// <summary>
+    /// Enum con la clase de herramientas que podemos usar.
+    /// </summary>
     public enum EditorToolType
     {
-        Item, Block, Player, Eraser
+        Item,
+        Block,
+        Player,
+        Eraser
     }
 
+    /// <summary>
+    /// Instancia estática de la clase.
+    /// </summary>
     private static EditorLogic editorLogic;
 
+    /// <summary>
+    /// Devuelve la instancia de la clase.
+    /// </summary>
     public static EditorLogic Instance
     {
         get
@@ -43,6 +100,9 @@ public class EditorLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Awake.
+    /// </summary>
     private void Awake()
     {
         EventAggregator.Instance.Subscribe<MsgEditorMapSize>(ServeMapSize);
@@ -53,6 +113,10 @@ public class EditorLogic : MonoBehaviour
         EventAggregator.Instance.Subscribe<MsgEditorMenu>(ReturnToMainMenu);
     }
 
+    /// <summary>
+    /// Método que recibe el mensaje para volver al menú principal.
+    /// </summary>
+    /// <param name="msg">El mensaje<see cref="MsgEditorMenu"/>.</param>
     private void ReturnToMainMenu(MsgEditorMenu msg)
     {
         EventAggregator.Instance.Publish<MsgHideAllScreens>(new MsgHideAllScreens());
@@ -60,12 +124,19 @@ public class EditorLogic : MonoBehaviour
         MainMenuLogic.Instance.ShowMainMenu();
     }
 
+    /// <summary>
+    /// Método para mostrar el editor.
+    /// </summary>
     public void ShowEditor()
     {
         placeableMap.GetComponent<MapController>().EnableEditorControls();
         ResetEditor();
     }
 
+    /// <summary>
+    /// Recibe los mensajes para actualizar el número de instrucciones disponibles.
+    /// </summary>
+    /// <param name="msg">El mensaje<see cref="MsgEditorAvailableInstructionsChanged"/>.</param>
     private void ChangeAvailableInstructions(MsgEditorAvailableInstructionsChanged msg)
     {
         if (availableInstructions != null)
@@ -104,6 +175,10 @@ public class EditorLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Recibe el mensaje para cambiar de herramienta seleccionada.
+    /// </summary>
+    /// <param name="msg">El mensaje<see cref="MsgEditorToolSelected"/>.</param>
     private void ChangeSelectedTool(MsgEditorToolSelected msg)
     {
         if (selectedTool == null)
@@ -117,40 +192,29 @@ public class EditorLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Start.
+    /// </summary>
     private void Start()
     {
         ResetEditor();
-
-        // newLevel = new LevelData();
-        /*
-             public string levelName;
-    public List<int> levelSize;
-    public List<int> playerPos;
-    public int playerOrientation;
-    public List<int> goal;
-    public AvailableInstructions availableInstructions;
-    public List<int> mapAndItems;
-
-         */
-
-        //newLevel.levelName = Guid.NewGuid().ToString();
-        //newLevel.levelSize = new List<int>();
-        //newLevel.levelSize.Add(mapSizeX);
-        //newLevel.levelSize.Add(mapSizeY);
-        //newLevel.levelSize.Add(mapSizeZ);
     }
 
+    /// <summary>
+    /// Recibe el mensaje para guardar el mapa.
+    /// </summary>
+    /// <param name="msg">El mensaje<see cref="MsgEditorSaveMap"/>.</param>
     private void SaveMap(MsgEditorSaveMap msg)
     {
         if (!hasPlayer)
         {
-            EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("error_no_robot", seconsWarningScreen));
+            EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("error_no_robot", secondsWarningScreen));
             return;
         }
 
         if (!hasFlag)
         {
-            EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("error_no_flag", seconsWarningScreen));
+            EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("error_no_flag", secondsWarningScreen));
             return;
         }
         LevelData newLevel = GenerateLevel();
@@ -161,9 +225,14 @@ public class EditorLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Dado un mapa en formato LevelData lo guarda como un archivo .json.
+    /// </summary>
+    /// <param name="newLevel">El nivel a guardar<see cref="LevelData"/>.</param>
     private void SaveMap(LevelData newLevel)
     {
         string levelString = JsonUtility.ToJson(newLevel);
+
         if (Application.isEditor)
         {
             if (!Directory.Exists(System.IO.Directory.GetCurrentDirectory() + "/UserLevels"))
@@ -179,6 +248,10 @@ public class EditorLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Genera un nivel en formato LevelData si es posible.
+    /// </summary>
+    /// <returns>El nivel generado si ha tenido éxito <see cref="LevelData"/>.</returns>
     private LevelData GenerateLevel()
     {
         if (hasPlayer && hasFlag && availableInstructions != null)
@@ -186,10 +259,10 @@ public class EditorLogic : MonoBehaviour
             LevelData newLevel = new LevelData();
 
             newLevel.levelName = System.Guid.NewGuid().ToString();
-            int[] firstBlockPosition = GetFirstBlockPosition();
-            int[] lastBlockPosition = GetLastBlockPosition();
+            int[] firstBlockPosition = GetMinXYZ();
+            int[] lastBlockPosition = GetMaxXYZ();
 
-            //Si en la ultima capa hay un bloque y hay alguna instruccion de salto
+            //Si en la ultima capa hay un bloque y hay alguna instrucción de salto
             //ponemos una capa mas por si el jugador se pone encima
 
             if (availableInstructions.jump > 0)
@@ -281,7 +354,11 @@ public class EditorLogic : MonoBehaviour
         return null;
     }
 
-    private int[] GetFirstBlockPosition()
+    /// <summary>
+    /// Retorna la coordenada X,Y,Z mínimas del nivel que se está generando.
+    /// </summary>
+    /// <returns>[X,Y,Z] <see cref="int[]"/>.</returns>
+    private int[] GetMinXYZ()
     {
         int minX = mapSizeX - 1;
         int minY = mapSizeY - 1;
@@ -314,7 +391,11 @@ public class EditorLogic : MonoBehaviour
         return new int[] { minX, minY, minZ };
     }
 
-    private int[] GetLastBlockPosition()
+    /// <summary>
+    /// Retorna la coordenada X,Y,Z máximas del nivel que se está generando.
+    /// </summary>
+    /// <returns>[X,Y,Z] <see cref="int[]"/>.</returns>
+    private int[] GetMaxXYZ()
     {
         int maxX = 0;
         int maxY = 0;
@@ -347,6 +428,9 @@ public class EditorLogic : MonoBehaviour
         return new int[] { maxX, maxY, maxZ };
     }
 
+    /// <summary>
+    /// Devuelve el editor a su estado original.
+    /// </summary>
     private void ResetEditor()
     {
         EventAggregator.Instance.Publish<MsgEditorResetAllCounters>(new MsgEditorResetAllCounters());
@@ -354,14 +438,18 @@ public class EditorLogic : MonoBehaviour
         selectedTool = null;
         hasFlag = false;
         hasPlayer = false;
-        if (levelObjects != null)
+        if (editorObjects != null)
         {
-            StartCoroutine(DestroyOldObjectsInBackgroundCrt((EditorObject[])levelObjects.Clone()));
+            StartCoroutine(DestroyOldObjectsInBackgroundCrt((EditorObject[])editorObjects.Clone()));
         }
-        levelObjects = new EditorObject[mapSizeX * mapSizeY * mapSizeZ];
+        editorObjects = new EditorObject[mapSizeX * mapSizeY * mapSizeZ];
         availableInstructions = new AvailableInstructions();
     }
 
+    /// <summary>
+    /// Responde a los mensajes requiriendo el tamaño del nivel.
+    /// </summary>
+    /// <param name="msg">El mensaje<see cref="MsgEditorMapSize"/>.</param>
     private void ServeMapSize(MsgEditorMapSize msg)
     {
         List<int> mapSize = new List<int>();
@@ -371,26 +459,10 @@ public class EditorLogic : MonoBehaviour
         EventAggregator.Instance.Publish(new ResponseWrapper<MsgEditorMapSize, List<int>>(msg, mapSize));
     }
 
-    /*   public enum Blocks
-    {
-        NoBlock = 0,
-        WaterBlock = 1,
-        LavaBlock = 2,
-        SolidBlock = 3,
-        LiftBlock = 4,
-        SpikesBlock = 5,
-        IceBlock = 6
-    };
-
-    public enum Items
-    {
-        PlankItem = 25,
-        FanItem = 26,
-        FlagItem = 27,
-        ActivatorItem = 28,
-        BombItem = 29
-    }*/
-
+    /// <summary>
+    /// Recibe el mensaje de que se ha pulsado en la superficie del editor.
+    /// </summary>
+    /// <param name="msg">El mensaje<see cref="MsgEditorSurfaceTapped"/>.</param>
     private void EditorSurfaceTapped(MsgEditorSurfaceTapped msg)
     {
         if (selectedTool != null)
@@ -415,7 +487,7 @@ public class EditorLogic : MonoBehaviour
                     break;
 
                 case EditorToolType.Player:
-                    if (PlaceCharacter(selectedTool.ToolIdentifier, x, z, msg.TappedPoint))
+                    if (PlaceCharacter(x, z, msg.TappedPoint))
                     {
                         msg.TappedPoint.Up();
                     }
@@ -431,7 +503,14 @@ public class EditorLogic : MonoBehaviour
         }
     }
 
-    private bool PlaceCharacter(int orientation, int x, int z, EditorSurfacePoint TappedPoint)
+    /// <summary>
+    /// Coloca al robot en el sitio apropiado con la orientación requerida.
+    /// </summary>
+    /// <param name="x">La coordenada x<see cref="int"/>.</param>
+    /// <param name="z">La coordenada z<see cref="int"/>.</param>
+    /// <param name="TappedPoint">El punto donde se ha hecho tap<see cref="EditorSurfacePoint"/>.</param>
+    /// <returns>True si se ha podido colocar, false si no <see cref="bool"/>.</returns>
+    private bool PlaceCharacter(int x, int z, EditorSurfacePoint TappedPoint)
     {
         if (!hasPlayer)
         {
@@ -477,6 +556,14 @@ public class EditorLogic : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Coloca un bloque o un item donde se requiera.
+    /// </summary>
+    /// <param name="isBlock">¿Es un bloque?<see cref="bool"/>.</param>
+    /// <param name="x">Coordenada x<see cref="int"/>.</param>
+    /// <param name="z">Coordenada z<see cref="int"/>.</param>
+    /// <param name="TappedPoint">El punto donde se ha hecho tap<see cref="EditorSurfacePoint"/>.</param>
+    /// <returns>True si se ha podido colocar, false si no <see cref="bool"/>.</returns>
     private bool PlaceBlockOrItem(bool isBlock, int x, int z, EditorSurfacePoint TappedPoint)
     {
         int y = 0;
@@ -513,11 +600,6 @@ public class EditorLogic : MonoBehaviour
 
             if (validPos)
             {
-                /*if(selectedTool.ToolType==EditorToolType.Player && hasPlayer)
-                {
-                    return false;
-                }*/
-
                 //Comprobamos que no se pueda poner mas de una bandera
                 if (hasFlag && selectedTool.ToolType == EditorToolType.Item)
                 {
@@ -531,22 +613,12 @@ public class EditorLogic : MonoBehaviour
                 EditorObject newEditorObject = new EditorObject(spawned, selectedTool.ToolType, selectedTool.ToolIdentifier);
                 SetEditorObject(x, y, z, newEditorObject);
 
-                //Quaternion placeableMapRot = placeableMap.transform.rotation;
-                //placeableMap.transform.rotation = new Quaternion();
                 spawned.transform.parent = TappedPoint.EditorSurface;
                 spawned.transform.rotation = TappedPoint.transform.rotation * spawned.transform.rotation;
                 spawned.transform.position = new Vector3(TappedPoint.transform.position.x,
                     TappedPoint.EditorSurface.position.y + TappedPoint.BlockLength * y,
                     TappedPoint.transform.position.z);
 
-                // if (x + 1 == msg.Goal[0] && y + 1 == msg.Goal[1] - 1 && z + 1 == msg.Goal[2] + 1)
-
-                // placeableMap.transform.rotation = placeableMapRot;
-
-                /*if (newEditorObject.ObjectType == EditorToolType.Player)
-                {
-                    hasPlayer = true;
-                }*/
                 if (newEditorObject.ObjectType == EditorToolType.Item)
                 {
                     if (newEditorObject.ObjectIdentifier == (int)Items.FlagItem)
@@ -560,6 +632,12 @@ public class EditorLogic : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Borra el objeto más alto de la coordenada x, z.
+    /// </summary>
+    /// <param name="x">Coordenada x<see cref="int"/>.</param>
+    /// <param name="z">Coordenada z<see cref="int"/>.</param>
+    /// <returns>True si lo ha podido borrar, false si no <see cref="bool"/>.</returns>
     private bool Eraser(int x, int z)
     {
         int y = 0;
@@ -598,41 +676,43 @@ public class EditorLogic : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Retorna un EditorObject dadas las coordenadas X,Y,Z.
+    /// </summary>
+    /// <param name="x">Coordenada x<see cref="int"/>.</param>
+    /// <param name="y">Coordenada y<see cref="int"/>.</param>
+    /// <param name="z">Coordenada z<see cref="int"/>.</param>
+    /// <returns>El objeto de esa posición o null si no hay <see cref="EditorObject"/>.</returns>
     private EditorObject GetEditorObject(in int x, in int y, in int z)
     {
         if (x < 0 || x >= mapSizeX) return null;
         if (y < 0 || y >= mapSizeY) return null;
         if (z < 0 || z >= mapSizeZ) return null;
-        return levelObjects[x + z * mapSizeX + y * (mapSizeX * mapSizeZ)];
+        return editorObjects[x + z * mapSizeX + y * (mapSizeX * mapSizeZ)];
     }
 
-    private int[] GetEditorObjectPosition(in EditorObject editorObject)
-    {
-        for (int x = 0; x < mapSizeX; x++)
-        {
-            for (int y = 0; y < mapSizeY; y++)
-            {
-                for (int z = 0; z < mapSizeZ; z++)
-                {
-                    if (GetEditorObject(x, y, z) == editorObject)
-                    {
-                        return new int[] { x, y, z };
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
+    /// <summary>
+    /// Pone un EditorObject en la coordenada X,Y,Z apropiada.
+    /// </summary>
+    /// <param name="x">Coordenada x<see cref="int"/>.</param>
+    /// <param name="y">Coordenada y<see cref="int"/>.</param>
+    /// <param name="z">Coordenada z<see cref="int"/>.</param>
+    /// <param name="editorObject">El objeto a colocar<see cref="EditorObject"/>.</param>
+    /// <returns>True si se ha podido colocar, false si no <see cref="bool"/>.</returns>
     private bool SetEditorObject(in int x, in int y, in int z, in EditorObject editorObject)
     {
         if (x < 0 || x >= mapSizeX) return false;
         if (y < 0 || y >= mapSizeY) return false;
         if (z < 0 || z >= mapSizeZ) return false;
-        levelObjects[x + z * mapSizeX + y * (mapSizeX * mapSizeZ)] = editorObject;
+        editorObjects[x + z * mapSizeX + y * (mapSizeX * mapSizeZ)] = editorObject;
         return true;
     }
 
+    /// <summary>
+    /// Elimina los objetos de forma que no produce bajadas de rendimiento.
+    /// </summary>
+    /// <param name="editorObjects">Los objetos a borrar<see cref="EditorObject[]"/>.</param>
+    /// <returns><see cref="IEnumerator"/>.</returns>
     private IEnumerator DestroyOldObjectsInBackgroundCrt(EditorObject[] editorObjects)
     {
         if (editorObjects != null)
@@ -667,24 +747,40 @@ public class EditorLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Clase privada para mantener la herramienta seleccionada <see cref="SelectedTool" />.
+    /// </summary>
     private class SelectedTool
     {
+        /// <summary>
+        /// Tipo de herramienta.
+        /// </summary>
         private EditorToolType toolType;
+
+        /// <summary>
+        /// Parámetro opcional de la herramienta.
+        /// </summary>
         private int toolIdentifier;
 
+        /// <summary>
+        /// Retorna o cambia el tipo de la herramienta.
+        /// </summary>
         public EditorToolType ToolType { get => toolType; set => toolType = value; }
+
+        /// <summary>
+        /// Retorna o cambia el parámetro opcional.
+        /// </summary>
         public int ToolIdentifier { get => toolIdentifier; set => toolIdentifier = value; }
 
+        /// <summary>
+        /// Crea una nueva instancia de la clase <see cref="SelectedTool"/>.
+        /// </summary>
+        /// <param name="toolType">El toolType<see cref="EditorToolType"/>.</param>
+        /// <param name="toolIdentifier">El toolIdentifier<see cref="int"/>.</param>
         public SelectedTool(EditorToolType toolType, int toolIdentifier)
         {
             this.toolType = toolType;
             this.toolIdentifier = toolIdentifier;
-        }
-
-        public SelectedTool()
-        {
-            this.toolType = EditorToolType.Eraser;
-            this.toolIdentifier = -999;
         }
     }
 }

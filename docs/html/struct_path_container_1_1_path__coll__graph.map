@@ -1,7 +1,0 @@
-<map id="PathContainer.Path" name="PathContainer.Path">
-<area shape="rect" id="node1" title=" " alt="" coords="42,247,177,273"/>
-<area shape="rect" id="node2" href="$class_road_output.html" title=" " alt="" coords="5,157,96,184"/>
-<area shape="rect" id="node3" href="$class_road_i_o.html" title=" " alt="" coords="53,81,118,108"/>
-<area shape="rect" id="node5" href="$class_road_input.html" title=" " alt="" coords="120,157,200,184"/>
-<area shape="rect" id="node4" title=" " alt="" coords="30,5,141,32"/>
-</map>

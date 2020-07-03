@@ -1,18 +1,44 @@
-﻿using System.Collections.Generic;
+﻿// RoadFactory.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using System.Collections.Generic;
 using UnityEngine;
 using static RoadIO;
 
+/// <summary>
+/// Define la clase <see cref="RoadFactory" /> la cual genera carreteras de acuerdo a una serie de condiciones.
+/// </summary>
 public class RoadFactory : MonoBehaviour
 {
+    /// <summary>
+    /// Diccionario de carreteras por su id.
+    /// </summary>
     private Dictionary<string, Road> roadsByID = new Dictionary<string, Road>();
+
+    /// <summary>
+    /// Todas las carreteras.
+    /// </summary>
     private Road[] allRoads;
+
+    /// <summary>
+    /// Lista de carreteras de funcion.
+    /// </summary>
     private Road[] functionRoads;
+
+    /// <summary>
+    /// Lista de conectores.
+    /// </summary>
     private Road[] connectorRoads;
+
+    /// <summary>
+    /// Hueco maximo entre carreteras generadas.
+    /// </summary>
     [SerializeField] private float maxGapBetweenRoads = 0.3f;
 
-    public float MaxGapBetweenRoads { get => maxGapBetweenRoads; set => maxGapBetweenRoads = value; }
-
-    // Start is called before the first frame update
+    /// <summary>
+    /// Start.
+    /// </summary>
     private void Start()
     {
         //Tomamos todas las carreteras
@@ -22,6 +48,7 @@ public class RoadFactory : MonoBehaviour
             Debug.LogError("No roads found");
         }
 
+        //Las dividimos entre carreteras de función y de conexión
         List<Road> tmp_functionRoads = new List<Road>();
         List<Road> tmp_connectorRoads = new List<Road>();
 
@@ -44,13 +71,18 @@ public class RoadFactory : MonoBehaviour
             {
                 Debug.LogError("A road with this name is already added: " + r.RoadIdentifier);
             }
-          
         }
 
         functionRoads = tmp_functionRoads.ToArray();
         connectorRoads = tmp_connectorRoads.ToArray();
     }
 
+    /// <summary>
+    /// Devuelve una carretera usando su identificador.
+    /// </summary>
+    /// <param name="id">El id<see cref="string"/>.</param>
+    /// <param name="road">La carretera<see cref="Road"/>.</param>
+    /// <returns>True si se ha encontrado, false si no.</returns>
     public bool GetRoadByID(in string id, out Road road)
     {
         if (roadsByID.ContainsKey(id))
@@ -62,20 +94,14 @@ public class RoadFactory : MonoBehaviour
         return false;
     }
 
-    public bool SpawnRoadByID(in string id, out Road road)
-    {
-        Road roadToSpawn;
-        if (GetRoadByID(id, out roadToSpawn))
-        {
-            //road = Instantiate(roadToSpawn);
-            road = roadToSpawn;
-            return true;
-        }
-
-        road = null;
-        return false;
-    }
-
+    /// <summary>
+    /// Genera una carretera por su ID si encaja con la IO que se le pasa.
+    /// </summary>
+    /// <param name="id">El id<see cref="string"/> de la carretera a generar.</param>
+    /// <param name="ioToMatch">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
+    /// <param name="road">La carretera generada<see cref="Road"/>.</param>
+    /// <param name="connectionsR_C">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
+    /// <returns>True si ha funcionado, false si no <see cref="bool"/>.</returns>
     public bool SpawnRoadByID(in string id, in List<RoadIO> ioToMatch, out Road road, out Dictionary<string, string> connectionsR_C)
     {
         Road roadToSpawn;
@@ -93,6 +119,16 @@ public class RoadFactory : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Genera una carretera por su id si encaja en el hueco entre dos carreteras.
+    /// </summary>
+    /// <param name="id">El id<see cref="string"/> de la carretera a generar.</param>
+    /// <param name="ioToMatch">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
+    /// <param name="ioToMatch2">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
+    /// <param name="road">La carretera generada<see cref="Road"/>.</param>
+    /// <param name="connectionsR1_Connector">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
+    /// <param name="connectionsR2_Connector">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
+    /// <returns>True si ha funcionado, false si no <see cref="bool"/>.</returns>
     public bool SpawnRoadByID(in string id, in List<RoadIO> ioToMatch, in List<RoadIO> ioToMatch2, out Road road, out Dictionary<string, string> connectionsR1_Connector, out Dictionary<string, string> connectionsR2_Connector)
     {
         connectionsR1_Connector = null;
@@ -113,6 +149,15 @@ public class RoadFactory : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Dado un hueco entre dos carreteras lo rellena con el conector que encaje.
+    /// </summary>
+    /// <param name="ioToMatch">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
+    /// <param name="ioToMatch2">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
+    /// <param name="road">La carretera generada<see cref="Road"/>.</param>
+    /// <param name="connectionsR1_Connector">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
+    /// <param name="connectionsR2_Connector">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
+    /// <returns>True si ha funcionado, false si no <see cref="bool"/>.</returns>
     public bool FillGapWithConnector(in List<RoadIO> ioToMatch, in List<RoadIO> ioToMatch2, out Road road, out Dictionary<string, string> connectionsR1_Connector, out Dictionary<string, string> connectionsR2_Connector)
     {
         road = ConnectRoads(connectorRoads, ioToMatch, ioToMatch2, maxGapBetweenRoads, out connectionsR1_Connector, out connectionsR2_Connector);
@@ -125,9 +170,17 @@ public class RoadFactory : MonoBehaviour
         return false;
     }
 
-    //Dadas una lista de carreteras, una lista de io de la carretera a un lado de un hueco y una lista de io de la carretera al otro lado
-    //intenta conectarlas mediante una carretera de la lista anterior
-    //public bool SpawnAndConnectRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad)
+    /// <summary>
+    /// Dadas una lista de carreteras, una lista de io de la carretera a un lado de un hueco y una lista de io de la carretera al otro lado
+    /// intenta conectarlas mediante una carretera de la lista anterior.
+    /// </summary>
+    /// <param name="connectors">Lista de carreteras que se pueden usar<see cref="Road[]"/>.</param>
+    /// <param name="ioRoad1">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
+    /// <param name="ioRoad2">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
+    /// <param name="errorMargin">Margen de error al conectar las carreteras<see cref="float"/>.</param>
+    /// <param name="connectionsR1_Connector">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
+    /// <param name="connectionsR2_Connector">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
+    /// <returns>La carretera que ha satisfecho las condiciones <see cref="Road"/>.</returns>
     public Road ConnectRoads(in Road[] connectors, in List<RoadIO> ioRoad1, in List<RoadIO> ioRoad2, float errorMargin, out Dictionary<string, string> connectionsR1_Connector, out Dictionary<string, string> connectionsR2_Connector)
     {
         connectionsR1_Connector = null;
@@ -223,20 +276,15 @@ public class RoadFactory : MonoBehaviour
         return null;
     }
 
-    public bool SpawnAndConnectRoad(in string roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad, out Dictionary<string, string> connections)
-    {
-        Road r;
-        connections = null;
-        if (GetRoadByID(roadToSpawn, out r))
-        {
-            return SpawnRoad(r, ioToMatch, errorMargin, out spawnedRoad, out connections);
-        }
-
-        spawnedRoad = null;
-        return false;
-    }
-
-    //Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa
+    /// <summary>
+    /// Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa.
+    /// </summary>
+    /// <param name="roadToSpawn">La carretera a generar<see cref="Road"/>.</param>
+    /// <param name="ioToMatch">La lista de IO que satisfacer<see cref="List{RoadIO}"/>.</param>
+    /// <param name="errorMargin">El margen de error<see cref="float"/>.</param>
+    /// <param name="spawnedRoad">La carretera que se ha generado<see cref="Road"/>.</param>
+    /// <param name="connections">Lista de conexiones que se han llevado a cabo<see cref="Dictionary{string, string}"/>.</param>
+    /// <returns>True si ha funcionado, false si no <see cref="bool"/>.</returns>
     public bool SpawnRoad(in Road roadToSpawn, in List<RoadIO> ioToMatch, in float errorMargin, out Road spawnedRoad, out Dictionary<string, string> connections)
     {
         //Si alguna de las dos listas no tiene io no se pueden conectar
@@ -276,7 +324,7 @@ public class RoadFactory : MonoBehaviour
                 return false;
             }
 
-           // Road connector = Instantiate(roadToSpawn);
+            // Road connector = Instantiate(roadToSpawn);
 
             Road road1 = ioToMatch[0].GetParentRoad();
 
@@ -292,7 +340,15 @@ public class RoadFactory : MonoBehaviour
         return false;
     }
 
-    //Dada una lista de carreteras y una serie de io, devuelve una lista de carreteras que encajan ahi y un dictionario con las conexiones (id de ioToMatch, id de conector)
+    /// <summary>
+    /// Dada una lista de carreteras y una serie de IO, devuelve una lista de carreteras que encajan ahi y un dictionario con las conexiones (id de ioToMatch, id de conector)
+    /// </summary>
+    /// <param name="roadList">Lista de carreteras<see cref="Road[]"/>.</param>
+    /// <param name="ioToMatch">La lista de IO que satisfacer<see cref="List{RoadIO}"/>.</param>
+    /// <param name="errorMargin">El margen de error<see cref="float"/>.</param>
+    /// <param name="validRoads">Lista de carreteras validas<see cref="List{Road}"/>.</param>
+    /// <param name="connectionsDictionary">Las conexiones que se han hecho<see cref="List{Dictionary{string, string}}"/>.</param>
+    /// <returns>True si ha funcionado, false si no <see cref="bool"/>.</returns>
     public bool FindSuitableRoads(in Road[] roadList, in List<RoadIO> ioToMatch, in float errorMargin, out List<Road> validRoads, out List<Dictionary<string, string>> connectionsDictionary)
     {
         if (ioToMatch.Count > 0)
@@ -331,11 +387,18 @@ public class RoadFactory : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Comprueba si una serie de IO satisface a otra y devuelve las conexiones si ha funcionado
+    /// </summary>
+    /// <param name="ioToMatch">La lista de IO que satisfacer<see cref="List{RoadIO}"/>.</param>
+    /// <param name="candidateIO">La lista de IO candidata<see cref="List{RoadIO}"/>.</param>
+    /// <param name="errorMargin">El margen de error<see cref="float"/>.</param>
+    /// <param name="connections">Las conexiones generadas<see cref="Dictionary{string, string}"/>.</param>
+    /// <returns>The <see cref="bool"/>.</returns>
     private bool CheckIfValid(in List<RoadIO> ioToMatch, in List<RoadIO> candidateIO, in float errorMargin, out Dictionary<string, string> connections)
     {
         connections = new Dictionary<string, string>();
 
-        // if (ioToMatch.Count == 0 || candidateIO.Count == 0 || ioToMatch.Count != candidateIO.Count)
         if (ioToMatch.Count == 0 || candidateIO.Count == 0 || ioToMatch.Count != candidateIO.Count)
         {
             return false;

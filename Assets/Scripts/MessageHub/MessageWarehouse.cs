@@ -1,18 +1,31 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Clase <see cref="MessageWarehouse" /> que actua como un "almacen" de mensajes para poder recibirlos
+/// de forma diferida. Muy usado en corrutinas.
+/// </summary>
 public class MessageWarehouse
 {
-    //Manda un mensaje y espera un ResponseWrapper
-
+    /// <summary>
+    /// EventAggregator del que se recibiran los mensajes.
+    /// </summary>
     private EventAggregator eventAggregator;
 
-    //Guarda el mensaje enviado y la respuesta
+    /// <summary>
+    /// Guarda el mensaje enviado y la respuesta.
+    /// </summary>
     private Dictionary<object, object> receivedMessages;
 
-    //Guarda los tokens de subscripcion
+    /// <summary>
+    /// Guarda los tokens de suscripcion.
+    /// </summary>
     private Dictionary<object, object> subscriptionTokens;
 
+    /// <summary>
+    /// Crea una nueva instancia de la clase <see cref="MessageWarehouse"/>.
+    /// </summary>
+    /// <param name="eventAggregator">El eventAggregator<see cref="EventAggregator"/>.</param>
     public MessageWarehouse(EventAggregator eventAggregator)
     {
         this.eventAggregator = eventAggregator;
@@ -20,6 +33,14 @@ public class MessageWarehouse
         this.subscriptionTokens = new Dictionary<object, object>();
     }
 
+    /// <summary>
+    /// Comprueba si se ha recibido una respuesta a un mensaje.
+    /// </summary>
+    /// <typeparam name="MessageType">.</typeparam>
+    /// <typeparam name="ResponseType">.</typeparam>
+    /// <param name="msg">El mensaje<see cref="MessageType"/>.</param>
+    /// <param name="response">La respuesta<see cref="ResponseType"/>.</param>
+    /// <returns><see cref="bool"/> True si se ha recibido, false si no.</returns>
     public bool IsResponseReceived<MessageType, ResponseType>(in MessageType msg, out ResponseType response)
     {
         //Si hay alguna entrada de mensajes
@@ -42,6 +63,12 @@ public class MessageWarehouse
         return false;
     }
 
+    /// <summary>
+    /// Sirve para publicar un mensaje.
+    /// </summary>
+    /// <typeparam name="MessageType">.</typeparam>
+    /// <typeparam name="ResponseType">.</typeparam>
+    /// <param name="msg">El mensaje <see cref="MessageType"/>.</param>
     public void PublishMsgAndWaitForResponse<MessageType, ResponseType>(MessageType msg)
     {
         //Metemos el mensaje sin respuesta en el diccionario
@@ -64,6 +91,12 @@ public class MessageWarehouse
         }
     }
 
+    /// <summary>
+    /// Metodo interno que recibe los mensajes.
+    /// </summary>
+    /// <typeparam name="MessageType">.</typeparam>
+    /// <typeparam name="ResponseType">.</typeparam>
+    /// <param name="msg">El mensaje recibido<see cref="ResponseWrapper{MessageType, ResponseType}"/>.</param>
     private void EventReceiver<MessageType, ResponseType>(ResponseWrapper<MessageType, ResponseType> msg)
     {
         //Si el diccionario de mensajes recibidos contiene una entrada para esta peticion seguimos

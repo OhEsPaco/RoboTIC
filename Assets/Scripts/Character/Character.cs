@@ -1,11 +1,27 @@
-﻿using UnityEngine;
+﻿// Character.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
 
+using UnityEngine;
+
+/// <summary>
+/// Clase abstracta de la que descienden los robots.
+/// </summary>
 public abstract class Character : MonoBehaviour
 {
+    /// <summary>
+    /// El animator.
+    /// </summary>
     [SerializeField] private Animator animator;
 
-    public Animator _Animator { get => animator; }
+    /// <summary>
+    /// Retorna el animator.
+    /// </summary>
+    public Animator Animator { get => animator; }
 
+    /// <summary>
+    /// Resetea el animator.
+    /// </summary>
     public void RebindAnimator()
     {
         if (animator != null)
@@ -14,11 +30,10 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    public Animator GetAnimator()
-    {
-        return animator;
-    }
-
+    /// <summary>
+    /// Ejecuta un trigger de animación.
+    /// </summary>
+    /// <param name="trigger">El trigger.</param>
     protected void SetAnimationTrigger(in string trigger)
     {
         if (animator != null)

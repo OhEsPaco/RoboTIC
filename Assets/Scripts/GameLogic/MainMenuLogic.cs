@@ -1,13 +1,30 @@
-﻿using System;
+﻿// MainMenuLogic.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using System;
 using System.Collections;
 using UnityEngine;
 using static MessageScreenManager;
 
+/// <summary>
+/// La clase <see cref="MainMenuLogic" /> contiene la lógica del menú principal.
+/// </summary>
 public class MainMenuLogic : MonoBehaviour
 {
-    private static MainMenuLogic mainMenuLogic;
+    /// <summary>
+    /// El objeto que contiene al escenario.
+    /// </summary>
     [SerializeField] private GameObject placeableMap;
 
+    /// <summary>
+    /// Instancia de la clase a la que los demás objetos pueden acceder.
+    /// </summary>
+    private static MainMenuLogic mainMenuLogic;
+
+    /// <summary>
+    /// Retorna la instancia de la clase.
+    /// </summary>
     public static MainMenuLogic Instance
     {
         get
@@ -26,17 +43,21 @@ public class MainMenuLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Start.
+    /// </summary>
     private void Start()
     {
         placeableMap.GetComponent<MapController>().EnableMainMenuControls();
         EventAggregator.Instance.Publish<MsgFindingSpace>(new MsgFindingSpace(true));
         StartCoroutine(FindSpaceAndLaunchMenu());
-        //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
-
-        //yield return new WaitUntil(() => SpaceCollectionManager.Instance.IsReady());
-        //SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
     }
 
+    /// <summary>
+    /// Espera a que termine de encontrarse el espacio en el que se encuentra el jugador ¡
+    /// y lanza el menú principal.
+    /// </summary>
+    /// <returns>The <see cref="IEnumerator"/>.</returns>
     private IEnumerator FindSpaceAndLaunchMenu()
     {
         bool success = false;
@@ -47,10 +68,13 @@ public class MainMenuLogic : MonoBehaviour
         } while (!success);
 
         EventAggregator.Instance.Publish<MsgFindingSpace>(new MsgFindingSpace(false));
-       
-         ShowMainMenu();
+
+        ShowMainMenu();
     }
 
+    /// <summary>
+    /// Lanza el menú principal.
+    /// </summary>
     public void ShowMainMenu()
     {
         placeableMap.GetComponent<MapController>().EnableMainMenuControls();
@@ -60,18 +84,27 @@ public class MainMenuLogic : MonoBehaviour
             Tuple.Create<string, OnMessageScreenButtonPressed>("Editor", ShowEditor)}));
     }
 
+    /// <summary>
+    /// Lanza el menú de mapas.
+    /// </summary>
     public void ShowMapMenu()
     {
         EventAggregator.Instance.Publish<MsgHideAllScreens>(new MsgHideAllScreens());
         MapMenuLogic.Instance.ShowMapMenu();
     }
 
+    /// <summary>
+    /// Lanza el editor.
+    /// </summary>
     public void ShowEditor()
     {
         EventAggregator.Instance.Publish<MsgHideAllScreens>(new MsgHideAllScreens());
         EditorLogic.Instance.ShowEditor();
     }
 
+    /// <summary>
+    /// Sale del programa.
+    /// </summary>
     public void ExitProgram()
     {
         Application.Quit();

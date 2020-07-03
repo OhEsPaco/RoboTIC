@@ -1,36 +1,64 @@
-﻿using UnityEngine;
+﻿// RoadMovementLogic.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using UnityEngine;
 using static PathContainer;
 
+/// <summary>
+/// Esta clase <see cref="RoadMovementLogic" /> contiene la lógica para que el robot pequeño
+/// se mueva por la carretera.
+/// </summary>
 public class RoadMovementLogic : MonoBehaviour
 {
-    //El robot pequeño
+    /// <summary>
+    /// El robot pequeño.
+    /// </summary>
     [SerializeField] private MiniCharacter player;
 
-    //La velocidad de movimiento del robot
+    /// <summary>
+    /// La velocidad de movimiento del robot.
+    /// </summary>
     [SerializeField] private float speed = 20;
 
-    //Comprueba que se haya iniciado el movimiento
+    /// <summary>
+    /// Comprueba que se haya iniciado el movimiento.
+    /// </summary>
     private bool movementStarted = false;
 
-    //Output final de la carretera
+    /// <summary>
+    /// Output final de la carretera.
+    /// </summary>
     private RoadOutput finalOutput;
 
-    //Output de la pieza de carretera que estamos recorriendo
+    /// <summary>
+    /// Output de la pieza de carretera que estamos recorriendo.
+    /// </summary>
     private RoadOutput nextOutput;
 
-    //El camino en si
+    /// <summary>
+    /// El camino sobre el que se moverá el robot.
+    /// </summary>
     private LTSpline track;
 
-    //Descriptor del tween
+    /// <summary>
+    /// Descriptor del tween.
+    /// </summary>
     private LTDescr tweenDescr;
 
+    /// <summary>
+    /// Awake.
+    /// </summary>
     private void Awake()
     {
         EventAggregator.Instance.Subscribe<MsgStartRoadMovement>(StartMovement);
         EventAggregator.Instance.Subscribe<MsgStopMovement>(StopMovement);
     }
 
-    //Inicia el movimiento dado el input y el output de la carretera
+    /// <summary>
+    /// Recibe el mensaje de iniciar movimiento dado el input y el output de la carretera.
+    /// </summary>
+    /// <param name="msg">El mensaje<see cref="MsgStartRoadMovement"/>.</param>
     private void StartMovement(MsgStartRoadMovement msg)
     {
         //Resetemos todo
@@ -53,7 +81,12 @@ public class RoadMovementLogic : MonoBehaviour
         }
     }
 
-    //Busca el siguiente camino posible y crea una LTSpline combinando los puntos nuevos y los anteriores
+    /// <summary>
+    /// Busca el siguiente camino posible y crea una LTSpline combinando los puntos nuevos y los anteriores.
+    /// </summary>
+    /// <param name="input">El input<see cref="RoadInput"/>.</param>
+    /// <param name="ltDescr">El descriptor del tween como parametro de salida<see cref="LTDescr"/>.</param>
+    /// <returns>True si hay camino, false si no <see cref="bool"/>.</returns>
     private bool StartNewPath(RoadInput input, out LTDescr ltDescr)
     {
         Path path;
@@ -107,6 +140,10 @@ public class RoadMovementLogic : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Recibe el mensaje de parar el movimiento del robot.
+    /// </summary>
+    /// <param name="msg">El mensaje<see cref="MsgStopMovement"/>.</param>
     private void StopMovement(MsgStopMovement msg)
     {
         //Resetemos todo
@@ -120,6 +157,9 @@ public class RoadMovementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update.
+    /// </summary>
     private void Update()
     {
         if (movementStarted)

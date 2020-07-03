@@ -1,3 +1,4 @@
-﻿public class MsgBlockLength
+﻿
+public class MsgBlockLength
 {
 }

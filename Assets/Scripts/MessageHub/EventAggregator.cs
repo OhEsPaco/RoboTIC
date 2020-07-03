@@ -1,28 +1,29 @@
-﻿//https://www.c-sharpcorner.com/UploadFile/pranayamr/publisher-or-subscriber-pattern-with-event-or-delegate-and-e/
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 /// <summary>
-/// Defines the <see cref="EventAggregator" />.
+/// Clase <see cref="EventAggregator" /> usada como un punto central en el que los objetos del juego
+/// pueden públicar mensajes y suscribirse para recibir los tipos de mensajes que les interesen.
+/// Tomado y adaptado de 
+/// https://www.c-sharpcorner.com/UploadFile/pranayamr/publisher-or-subscriber-pattern-with-event-or-delegate-and-e/
 /// </summary>
 public class EventAggregator : MonoBehaviour
 {
     /// <summary>
-    /// Defines the subscriber.
+    /// Diccionario que contiene los diferentes subscriptores y al tipo de mensaje que están suscritos.
     /// </summary>
     private Dictionary<Type, IList> subscriber = new Dictionary<Type, IList>();
 
     /// <summary>
-    /// Defines the eventAgregator.
+    /// Instancia de la clase a los que los demás objetos pueden acceder.
     /// </summary>
     private static EventAggregator eventAgregator;
 
     /// <summary>
-    /// Gets the Instance.
+    /// Getter de la instancia de la clase.
     /// </summary>
     public static EventAggregator Instance
     {
@@ -43,10 +44,10 @@ public class EventAggregator : MonoBehaviour
     }
 
     /// <summary>
-    /// The Publish.
+    /// Método para públicar mensajes
     /// </summary>
     /// <typeparam name="TMessageType">.</typeparam>
-    /// <param name="message">The message<see cref="TMessageType"/>.</param>
+    /// <param name="message">El mensaje a publicar<see cref="TMessageType"/>.</param>
     public void Publish<TMessageType>(TMessageType message)
     {
         Type t = typeof(TMessageType);
@@ -70,11 +71,12 @@ public class EventAggregator : MonoBehaviour
     }
 
     /// <summary>
-    /// The Subscribe.
+    /// Procedimiento para suscribirse a los mensajes deseados.
     /// </summary>
     /// <typeparam name="TMessageType">.</typeparam>
-    /// <param name="action">The action<see cref="Action{TMessageType}"/>.</param>
-    /// <returns>The <see cref="Subscription{TMessageType}"/>.</returns>
+    /// <param name="action">Metodo al que se va a llamar cuando se reciba un mensaje
+    /// <see cref="Action{TMessageType}"/>.</param>
+    /// <returns>Token de suscripcion <see cref="Subscription{TMessageType}"/>.</returns>
     public Subscription<TMessageType> Subscribe<TMessageType>(Action<TMessageType> action)
     {
         Type t = typeof(TMessageType);
@@ -96,10 +98,10 @@ public class EventAggregator : MonoBehaviour
     }
 
     /// <summary>
-    /// The Unsubscribe.
+    /// Metodo para desuscribirse.
     /// </summary>
     /// <typeparam name="TMessageType">.</typeparam>
-    /// <param name="subscription">The subscription<see cref="Subscription{TMessageType}"/>.</param>
+    /// <param name="subscription">La suscripción <see cref="Subscription{TMessageType}"/>.</param>
     public void Unsubscribe<TMessageType>(Subscription<TMessageType> subscription)
     {
         Type t = typeof(TMessageType);

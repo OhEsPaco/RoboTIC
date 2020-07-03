@@ -1,24 +1,67 @@
-﻿using System;
+﻿// RoadPlacementLogic.cs 
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static LevelButtons;
 using static RoadIO;
 
+/// <summary>
+/// La clase <see cref="RoadPlacementLogic" /> se encarga de formar la carretera apropiada
+/// de acuerdo a las ordenes del usuario.
+/// </summary>
 public class RoadPlacementLogic : MonoBehaviour
 {
+    /// <summary>
+    /// Señala la posición donde debe ponerse la primera carretera.
+    /// </summary>
     [SerializeField] private Transform roadStartMarker;
+
+    /// <summary>
+    /// Flecha que marca qué carretera está seleccionada.
+    /// </summary>
     [SerializeField] private SelectedOutputMarker selectedOutputMarker;
+
+    /// <summary>
+    /// Indica dentro de qué objeto deberán ponerse las carreteras.
+    /// </summary>
     [SerializeField] private Transform roadParent;
+
+    /// <summary>
+    /// La carretera inicial.
+    /// </summary>
     [SerializeField] private Road roadStart;
+
+    /// <summary>
+    /// El robot que se mueve por las carreteras.
+    /// </summary>
     [SerializeField] private MiniCharacter minibot;
 
-    private Dictionary<Buttons, Action> buttonActionsDictionary;
-    private RoadFactory roadFactory;
+    /// <summary>
+    /// Instancia de la clase que genera carreteras.
+    /// </summary>
+    [SerializeField] private RoadFactory roadFactory;
 
+    /// <summary>
+    /// Relaciona los botones con las acciones a tomar en consecuencia.
+    /// </summary>
+    private Dictionary<Buttons, Action> buttonActionsDictionary;
+
+    /// <summary>
+    /// IO seleccionada.
+    /// </summary>
     private RoadIO selectedIO = null;
 
+    /// <summary>
+    /// Primer input de la carretera.
+    /// </summary>
     private RoadIO firstInput = null;
 
+    /// <summary>
+    /// Primer input de la carretera.
+    /// </summary>
     public RoadIO FirstInput
     {
         get
@@ -27,22 +70,30 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
-    //Para escala 1 funcionaba bien 0.3, asi que para escala 0.3 lo multiplico por ella
+    //Para escala 1 funcionaba bien 0.3, así que para escala 0.3 lo multiplico por ella
+    /// <summary>
+    /// La distancia máxima para no considerar un espacio entre dos carreteras como un hueco.
+    /// </summary>
     private const float MAX_ACCEPTABLE_DISTANCE = 0.3f * 0.3f;
 
-    [SerializeField] private GameObject placeableMap;
+    /// <summary>
+    /// IO seleccionada.
+    /// </summary>
     public RoadIO SelectedIO { get => selectedIO; set => selectedIO = value; }
+
+    /// <summary>
+    /// Stack de acciones para poder deshacer las entradas del usuario.
+    /// </summary>
     private Stack<RoadChanges> undoStack = new Stack<RoadChanges>();
 
-    private void Awake()
-    {
-        roadFactory = GetComponentInChildren<RoadFactory>();
-        //Mejor sin usar mensajes porque es imprescindible que la logica vaya sincronizada
-        //EventAggregator.Instance.Subscribe<MsgAddInputFromButtonRoadPlacement>(AddInputFromButton);
-    }
-
+    /// <summary>
+    /// Instancia de la clase.
+    /// </summary>
     private static RoadPlacementLogic roadPlacementLogic;
 
+    /// <summary>
+    /// Retorna la instancia de la clase.
+    /// </summary>
     public static RoadPlacementLogic Instance
     {
         get
@@ -61,6 +112,9 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Start.
+    /// </summary>
     private void Start()
     {
         selectedOutputMarker.transform.parent = roadParent;
@@ -90,45 +144,69 @@ public class RoadPlacementLogic : MonoBehaviour
         buttonActionsDictionary.Add(Buttons.MapMenu, MapMenu);
     }
 
+    /// <summary>
+    /// Vuelve al menú de mapas.
+    /// </summary>
     private void MapMenu()
     {
         ResetRoad();
         GameLogic.Instance.AddInputFromButton(Buttons.MapMenu);
     }
 
+    /// <summary>
+    /// La clase <see cref="RoadChanges" /> se usa para modelar los cambios en las carreteras.
+    /// </summary>
     private class RoadChanges
     {
+        /// <summary>
+        /// Carreteras añadidas en esta acción.
+        /// </summary>
         public List<Road> addedRoads = new List<Road>();
+
+        /// <summary>
+        /// Conexiones cambiadas en esta acción.
+        /// </summary>
         public Dictionary<RoadIO, RoadIO> connectionsChanged = new Dictionary<RoadIO, RoadIO>();
+
+        /// <summary>
+        /// Botones añadidos en esta acción.
+        /// </summary>
         public Tuple<NodeVerticalButton, VerticalButton> addedButton = null;
+
+        /// <summary>
+        /// IO seleccionada antes de esta acción.
+        /// </summary>
         public RoadIO selectedIOBack = null;
     }
 
+    /// <summary>
+    /// Deshace las acciones del usuario.
+    /// </summary>
     private void DoUndo()
     {
         if (undoStack.Count > 0)
         {
             RoadChanges thisChanges = undoStack.Pop();
-            //Delete added roads
+            //Borramos las carreteras añadidas
             foreach (Road r in thisChanges.addedRoads)
             {
                 Destroy(r.gameObject);
             }
 
-            //Revert connections
+            //Revertimos las conexiones
             foreach (KeyValuePair<RoadIO, RoadIO> entry in thisChanges.connectionsChanged)
             {
                 entry.Key.ConnectedTo = entry.Value;
                 // entry.Value.ConnectedTo = entry.Key;
             }
 
-            //Delete added buttons
+            //Borramos los botones añadidos
             if (thisChanges.addedButton != null)
             {
                 thisChanges.addedButton.Item1.DestroyButton(thisChanges.addedButton.Item2);
             }
 
-            //Move marker to nearby io
+            //Se mueve la flecha de selección de io a la correspondiente posición
             if (thisChanges.selectedIOBack)
             {
                 this.selectedIO = thisChanges.selectedIOBack;
@@ -139,23 +217,31 @@ public class RoadPlacementLogic : MonoBehaviour
                 selectedOutputMarker.FindAndSelectClosestIO();
             }
 
-            //Move roads to correct positions
+            //Corrige las posiciones de las carreteras
             CorrectPositions(MAX_ACCEPTABLE_DISTANCE, firstInput);
         }
     }
 
+    /// <summary>
+    /// Ejecuta la acción correspondiente a un botón.
+    /// </summary>
+    /// <param name="buttonIndex">El botón pulsado <see cref="Buttons"/>.</param>
     public void AddInputFromButton(Buttons buttonIndex)
     {
-        //try
-        //{
-        buttonActionsDictionary[buttonIndex]();
-        /*}
+        try
+        {
+            buttonActionsDictionary[buttonIndex]();
+
+        }
         catch
         {
             Debug.LogError("Unknown input: " + buttonIndex.ToString());
-        }*/
+        }
     }
 
+    /// <summary>
+    /// Lógica del botón de acción.
+    /// </summary>
     private void DoAction()
     {
         if (EnoughNumberOfInstrucions(Buttons.Action))
@@ -164,6 +250,12 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Comprueba que haya un número suficiente de instrucciones para llevar a cabo
+    /// una acción.
+    /// </summary>
+    /// <param name="button">El botón a comprobar <see cref="Buttons"/>.</param>
+    /// <returns>True si hay suficientes, false si no <see cref="bool"/>.</returns>
     private bool EnoughNumberOfInstrucions(Buttons button)
     {
         if (Application.isEditor)
@@ -249,6 +341,10 @@ public class RoadPlacementLogic : MonoBehaviour
         return updateInstructions;
     }
 
+    /// <summary>
+    /// Lógica del botón de condición. No se pueden poner 
+    /// condiciones dentro de condiciones.
+    /// </summary>
     private void DoCondition()
     {
         if (EnoughNumberOfInstrucions(Buttons.Condition))
@@ -305,6 +401,9 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Lógica del botón de salto.
+    /// </summary>
     private void DoJump()
     {
         if (EnoughNumberOfInstrucions(Buttons.Jump))
@@ -313,6 +412,9 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Lógica del botón de bucle. No se pueden poner bucles dentro de condiciones.
+    /// </summary>
     private void DoLoop()
     {
         if (EnoughNumberOfInstrucions(Buttons.Loop))
@@ -369,6 +471,13 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Conecta dos carreteras usando los ID de sus IOs.
+    /// </summary>
+    /// <param name="road1">La primera carretera <see cref="Road"/>.</param>
+    /// <param name="road2">La segunda carretera <see cref="Road"/>.</param>
+    /// <param name="ioR1_ioR2">Las conexiones a realizar <see cref="Dictionary{string, string}"/>.</param>
+    /// <returns>True si se puede conectar, false si no <see cref="bool"/>.</returns>
     private bool ConnectRoads(in Road road1, in Road road2, in Dictionary<string, string> ioR1_ioR2)
     {
         bool success = true;
@@ -415,7 +524,14 @@ public class RoadPlacementLogic : MonoBehaviour
         return success;
     }
 
-    //Genera y conecta una serie de carreteras
+    /// <summary>
+    /// Genera y conecta una serie de carreteras.
+    /// </summary>
+    /// <param name="ids">Lista con los IDs de las carreteras <see cref="string[]"/>.</param>
+    /// <param name="direction">Dirección en la que apunta la primera carretera <see cref="IODirection"/>.</param>
+    /// <param name="position">La posición en la que se tiene que colocar la primera carretera <see cref="Vector3"/>.</param>
+    /// <param name="spawnedRoads">Parámetro de salida que incluye las carreteras generadas <see cref="Road[]"/>.</param>
+    /// <returns>True si ha tenido éxito, false si no <see cref="bool"/>.</returns>
     private bool GenerateRoads(in string[] ids, in IODirection direction, in Vector3 position, out Road[] spawnedRoads)
     {
         spawnedRoads = new Road[ids.Length];
@@ -427,7 +543,7 @@ public class RoadPlacementLogic : MonoBehaviour
 
         //Generamos la primera
         Road spw;
-        if (roadFactory.SpawnRoadByID(ids[0], out spw))
+        if (roadFactory.GetRoadByID(ids[0], out spw))
         {
             spawnedRoads[0] = Instantiate(spw, roadStart.transform.localPosition, roadStart.transform.rotation);
             Vector3 localRotationOnSpawn = spawnedRoads[0].transform.eulerAngles;
@@ -479,6 +595,10 @@ public class RoadPlacementLogic : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Destruye una serie de carreteras.
+    /// </summary>
+    /// <param name="roads">Las carreteras a destruir <see cref="Road[]"/>.</param>
     private void DestroyRoads(Road[] roads)
     {
         for (int i = 0; i < roads.Length; i++)
@@ -490,6 +610,16 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Genera una serie de carreteras teniendo en cuenta de rellenar con conectores los huecos
+    /// que se puedan ir generando al crearlas.
+    /// </summary>
+    /// <param name="ids">Lista con los IDs de las carreteras <see cref="string[]"/>.</param>
+    /// <param name="direction">Dirección en la que apunta la primera carretera <see cref="IODirection"/>.</param>
+    /// <param name="spawnedRoads">Parámetro de salida que incluye las carreteras generadas <see cref="Road[]"/>.</param>
+    /// <param name="extraSpawnedRoads">Parámetro de salida que incluye las carreteras generadas rellenando huecos <see cref="List{Road}"/>.</param>
+    /// <param name="oldConnections">Las conexiones de las carreteras que se han roto al rellenar huecos<see cref="Dictionary{RoadIO, RoadIO}"/>.</param>
+    /// <returns>True si ha tenido éxito, false si no <see cref="bool"/>.</returns>
     private bool SpawnRoads(in string[] ids, in IODirection direction, out Road[] spawnedRoads, out List<Road> extraSpawnedRoads, out Dictionary<RoadIO, RoadIO> oldConnections)
     {
         Vector3 pos = this.selectedIO != null ? this.selectedIO.transform.position : roadStartMarker.position;
@@ -498,8 +628,7 @@ public class RoadPlacementLogic : MonoBehaviour
         extraSpawnedRoads = new List<Road>();
         if (this.selectedIO != null && this.selectedIO == firstInput)
         {
-            //AVISO DE QUE NO SE PUEDE PONER AHI
-            Debug.LogWarning("No se puede poner aqui");
+            //NO SE PUEDE PONER AHÍ
             return false;
         }
 
@@ -536,11 +665,11 @@ public class RoadPlacementLogic : MonoBehaviour
 
         //Hacer la magia
 
-        //Guardo la direccion en la que se ha puesto esta carretera
+        //Guardo la dirección en la que se ha puesto esta carretera
         IODirection newRoadDir = direction;
         IODirection oppositeDirection = RoadIO.GetOppositeDirection(newRoadDir);
-        //Cada vez que se pasa a una carretera por esa direccion, se suma un nivel
-        //En direccion contraria se resta
+        //Cada vez que se pasa a una carretera por esa dirección, se suma un nivel
+        //En dirección contraria se resta
         //Y en el resto se queda igual
 
         //Creo un diccionario de carreteras y el numero que tienen
@@ -597,7 +726,7 @@ public class RoadPlacementLogic : MonoBehaviour
                 //Si es menor que cero hemos encontrado un hueco
                 if (nextRoadLevel <= 0)
                 {
-                    //MAX_ACCEPTABLE_DISTANCE
+               
                     //Llenamos el hueco
                     List<RoadIO> currentRoadIO = new List<RoadIO>();
                     List<RoadIO> nextRoadIO = new List<RoadIO>();
@@ -614,16 +743,14 @@ public class RoadPlacementLogic : MonoBehaviour
                         if (currentRoadIO.Count > 0)
                         {
                             Road gap;
-                            //FillGapWithConnector(in List<RoadIO> ioToMatch, in List<RoadIO> ioToMatch2, out Road road, out Dictionary<string, string> connectionsR1_Connector, out Dictionary<string, string> connectionsR2_Connector)
+                           
                             Dictionary<string, string> connectionsR1_Connector;
                             Dictionary<string, string> connectionsR2_Connector;
-                            // GenerateRoads(in string[] ids, in IODirection direction, out Road[] spawnedRoads)
+                            
 
                             if (roadFactory.FillGapWithConnector(nextRoadIO, currentRoadIO, out gap, out connectionsR1_Connector, out connectionsR2_Connector))
                             {
-                                // processedRoads.Add(gap);
-                                // gap.transform.parent = roadParent;
-
+                              
                                 string[] idsGap = new string[numberOfPiecesGap];
                                 for (int i = 0; i < idsGap.Length; i++)
                                 {
@@ -642,11 +769,11 @@ public class RoadPlacementLogic : MonoBehaviour
                                     }
                                 }
 
-                                //nextRoadIO[0].ConnectedTo.MoveRoadTo(nextRoadIO[0].transform.position);
+                                
                             }
                         }
                     }
-                    //currentIO.GetParentRoad().GetRoadIOByDirection(currentIO.Direction);
+                    
                 }
                 else
                 {
@@ -656,14 +783,7 @@ public class RoadPlacementLogic : MonoBehaviour
                         //Si no contiene esta carretera, la añadimos
                         roadAndValue.Add(ConnectedTo.GetParentRoad(), nextRoadLevel);
                     }
-                    else
-                    {
-                        //Si la contiene, modificamos el valor de esta carretera si es menor que el que tiene
-                        /*if (roadAndValue[ConnectedTo.GetParentRoad()] > nextRoadLevel)
-                        {
-                            roadAndValue[ConnectedTo.GetParentRoad()] = nextRoadLevel;
-                        }*/
-                    }
+                  
 
                     //Movemos la nueva carretera a su posicion
                     if (!processedRoads.Contains(ConnectedTo.GetParentRoad()))
@@ -690,38 +810,16 @@ public class RoadPlacementLogic : MonoBehaviour
         return true;
     }
 
-    private RoadIO FindFartestInput(RoadIO pivot, RoadIO[] allIO)
-    {
-        RoadIO fartest = allIO[0];
-        foreach (RoadIO rIO in allIO)
-        {
-            if (fartest is RoadOutput && rIO is RoadInput && rIO.CanBeSelected)
-            {
-                fartest = rIO;
-            }
-            else if (rIO is RoadInput && rIO.CanBeSelected)
-            {
-                if (Vector3.Distance(pivot.transform.position, fartest.transform.position) < Vector3.Distance(pivot.transform.position, rIO.transform.position))
-                {
-                    fartest = rIO;
-                }
-            }
-        }
-
-        if (fartest is RoadOutput || !fartest.CanBeSelected)
-        {
-            return null;
-        }
-        return fartest;
-    }
-
+    /// <summary>
+    /// Crea una carretera con botón (o modifica una existente si hay hueco).
+    /// </summary>
+    /// <param name="button">El botón a generar <see cref="Buttons"/>.</param>
     private void SpawnVerticalButton(Buttons button)
     {
         bool placed = false;
 
         if (this.selectedIO != null)
         {
-            //Debug.LogError(this.selectedIO.IOIdentifier);
             VerticalButton addedButton;
             if (this.selectedIO.GetParentRoad() is NodeVerticalButton)
             {
@@ -738,7 +836,6 @@ public class RoadPlacementLogic : MonoBehaviour
             }
             if (!placed && this.selectedIO.ConnectedTo != null)
             {
-                //Debug.LogError(this.selectedIO.connectedTo.IOIdentifier);
                 if (this.selectedIO.ConnectedTo.GetParentRoad() is NodeVerticalButton)
                 {
                     NodeVerticalButton node1 = (NodeVerticalButton)this.selectedIO.ConnectedTo.GetParentRoad();
@@ -770,28 +867,35 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
-    private void NewActionOnStack(Road[] r, List<Road> rl, Dictionary<RoadIO, RoadIO> o, RoadIO selectedIOback)
+    /// <summary>
+    /// Añade una nueva acción al stack de acciones.
+    /// </summary>
+    /// <param name="addedRoads">Las carreteras añadidas <see cref="Road[]"/>.</param>
+    /// <param name="extraRoads">Las carreteras añadidas al cerrar huecos <see cref="List{Road}"/>.</param>
+    /// <param name="connections">Las conexiones que se han hecho durante esta acción <see cref="Dictionary{RoadIO, RoadIO}"/>.</param>
+    /// <param name="selectedIOback">La IO seleccionada antes de esta acción <see cref="RoadIO"/>.</param>
+    private void NewActionOnStack(Road[] addedRoads, List<Road> extraRoads, Dictionary<RoadIO, RoadIO> connections, RoadIO selectedIOback)
     {
         RoadChanges rChanges = new RoadChanges();
-        if (r != null)
+        if (addedRoads != null)
         {
-            foreach (Road rr in r)
+            foreach (Road rr in addedRoads)
             {
                 rChanges.addedRoads.Add(rr);
             }
         }
 
-        if (rl != null)
+        if (extraRoads != null)
         {
-            foreach (Road rrl in rl)
+            foreach (Road rrl in extraRoads)
             {
                 rChanges.addedRoads.Add(rrl);
             }
         }
 
-        if (o != null)
+        if (connections != null)
         {
-            foreach (KeyValuePair<RoadIO, RoadIO> entry in o)
+            foreach (KeyValuePair<RoadIO, RoadIO> entry in connections)
             {
                 rChanges.connectionsChanged.Add(entry.Key, entry.Value);
             }
@@ -802,6 +906,9 @@ public class RoadPlacementLogic : MonoBehaviour
         undoStack.Push(rChanges);
     }
 
+    /// <summary>
+    /// Lógica del botón move.
+    /// </summary>
     private void DoMove()
     {
         if (EnoughNumberOfInstrucions(Buttons.Move))
@@ -810,42 +917,9 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
-    private Road GetLastRoad()
-    {
-        List<Road> allRoads = new List<Road>();
-        Stack<Road> roadsToProccess = new Stack<Road>();
-        roadsToProccess.Push(firstInput.GetParentRoad());
-        while (roadsToProccess.Count > 0)
-        {
-            Road r = roadsToProccess.Pop();
-
-            foreach (RoadIO rIO in r.GetAllIO())
-            {
-                if (rIO.ConnectedTo != null)
-                {
-                    if (!allRoads.Contains(rIO.ConnectedTo.GetParentRoad()))
-                    {
-                        roadsToProccess.Push(rIO.ConnectedTo.GetParentRoad());
-                    }
-                }
-                else
-                {
-                    if (rIO is RoadOutput)
-                    {
-                        return rIO.GetParentRoad();
-                    }
-                }
-            }
-
-            if (!allRoads.Contains(r))
-            {
-                allRoads.Add(r);
-            }
-        }
-
-        return null;
-    }
-
+    /// <summary>
+    /// Lógica del botón play.
+    /// </summary>
     private void DoPlay()
     {
         if (selectedIO != null)
@@ -906,11 +980,11 @@ public class RoadPlacementLogic : MonoBehaviour
                     Debug.LogError(r.RoadIdentifier + " not ready");
                 }
             }
-            //Comprobar condiciones
+           
 
             if (!invalidRoad)
             {
-                //Lock all roads
+                //Bloquear las carreteras
                 string[] lockArgs = { "lock" };
                 foreach (Road r in allRoads)
                 {
@@ -930,63 +1004,26 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Imprime un mensaje de carretera invalida.
+    /// </summary>
     private void InvalidRoad()
     {
         Debug.LogError("Invalid Road");
     }
 
-    private List<RoadIO> GetUnconnectedIO(RoadIO startPoint)
-    {
-        List<RoadIO> result = new List<RoadIO>();
-        if (startPoint != null)
-        {
-            List<Road> processedRoads = new List<Road>();
-
-            Stack<RoadIO> ioToProc = new Stack<RoadIO>();
-
-            RoadIO[] tmpe = startPoint.GetParentRoad().GetAllIO();
-
-            foreach (RoadIO rio in tmpe)
-            {
-                ioToProc.Push(rio);
-            }
-
-            while (ioToProc.Count > 0)
-            {
-                RoadIO toProc = ioToProc.Pop();
-
-                processedRoads.Add(toProc.GetParentRoad());
-                RoadIO ConnectedTo = toProc.ConnectedTo;
-                if (ConnectedTo == null)
-                {
-                    if (!result.Contains(toProc))
-                    {
-                        result.Add(toProc);
-                    }
-                }
-                else
-                {
-                    Road nextRoad = ConnectedTo.GetParentRoad();
-                    if (!processedRoads.Contains(nextRoad))
-                    {
-                        tmpe = nextRoad.GetAllIO();
-                        foreach (RoadIO candidate in tmpe)
-                        {
-                            ioToProc.Push(candidate);
-                        }
-                    }
-                }
-            }
-        }
-        return result;
-    }
-
+    /// <summary>
+    /// Lógica del botón restart.
+    /// </summary>
     public void DoRestart()
     {
         ResetRoad();
         GameLogic.Instance.AddInputFromButton(Buttons.Restart);
     }
 
+    /// <summary>
+    /// Resetea la carretera a su estado original.
+    /// </summary>
     public void ResetRoad()
     {
         EventAggregator.Instance.Publish(new MsgEnableAllButtons());
@@ -1016,6 +1053,9 @@ public class RoadPlacementLogic : MonoBehaviour
         minibot.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Lógica del botón de girar a la izquierda.
+    /// </summary>
     private void DoTurnLeft()
     {
         if (EnoughNumberOfInstrucions(Buttons.TurnLeft))
@@ -1024,6 +1064,9 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Lógica del botón de girar a la derecha.
+    /// </summary>
     private void DoTurnRight()
     {
         if (EnoughNumberOfInstrucions(Buttons.TurnRight))
@@ -1032,6 +1075,11 @@ public class RoadPlacementLogic : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Corrige las posiciones de las carreteras.
+    /// </summary>
+    /// <param name="maxAcceptableDistance">La distancia máxima aceptable entre dos carreteras<see cref="float"/>.</param>
+    /// <param name="pivotIO">IO que se usa como pivote a la hora de hacer las comprobaciones <see cref="RoadIO"/>.</param>
     private void CorrectPositions(in float maxAcceptableDistance, RoadIO pivotIO)
     {
         if (pivotIO != null)
