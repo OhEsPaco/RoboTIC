@@ -11044,8 +11044,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcd3351db0d731428faa405953dc338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsBetweenUpdates: 0.5
-  maxArrowDistance: 0.05
   cubeMaterial: {fileID: 2100000, guid: a25dd465874dfa54799f6e094507ccff, type: 2}
 --- !u!1 &1700789561
 GameObject:
@@ -11504,7 +11502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34beeb1ed05572d42a3a701cd1d05350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventAggregator: {fileID: 1056709992}
   Action: {fileID: 529757426}
   Condition: {fileID: 834725196}
   Jump: {fileID: 508257401}
@@ -20094,7 +20091,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34beeb1ed05572d42a3a701cd1d05350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventAggregator: {fileID: 1056709992}
   Action: {fileID: 1555116332779709519}
   Condition: {fileID: 1555116333677303234}
   Jump: {fileID: 1555116332784628595}
@@ -25806,7 +25802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33299a3ec202a904dbadbdce664c3ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventAggregator: {fileID: 1056709992}
 --- !u!1 &8990084863012701933
 GameObject:
   m_ObjectHideFlags: 0

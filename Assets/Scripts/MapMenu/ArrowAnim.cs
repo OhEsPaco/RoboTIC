@@ -1,20 +1,46 @@
-﻿using System.Collections;
+﻿// ArrowAnim.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Clase que lleva a cabo la animación de las flechas del mapa.
+/// </summary>
 public class ArrowAnim : MonoBehaviour
 {
+    /// <summary>
+    /// Escala inicial.
+    /// </summary>
     private Vector3 originalScale;
+
+    /// <summary>
+    /// Escala final.
+    /// </summary>
     private Vector3 reducedScale;
 
+    /// <summary>
+    /// Porcentaje de tamaño que debe disminuir el objeto.
+    /// </summary>
     [Range(0.0f, 1.0f)]
     public float reducedPercent = 0.5f;
 
+    /// <summary>
+    /// Velocidad de la animación.
+    /// </summary>
     [Range(0.0f, 100.0f)]
     public float speed = 10f;
 
+    /// <summary>
+    /// Multiplicador de la escala.
+    /// </summary>
     [Range(0.0f, 100f)]
     public float scaleMultiplier = 20f;
 
+    /// <summary>
+    /// Start.
+    /// </summary>
     private void Start()
     {
         originalScale = new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
@@ -23,6 +49,9 @@ public class ArrowAnim : MonoBehaviour
         StartCoroutine(Minimize());
     }
 
+    /// <summary>
+    /// OnEnable.
+    /// </summary>
     private void OnEnable()
     {
         originalScale = new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
@@ -31,6 +60,10 @@ public class ArrowAnim : MonoBehaviour
         StartCoroutine(Minimize());
     }
 
+    /// <summary>
+    /// Minimiza el objeto.
+    /// </summary>
+    /// <returns>The <see cref="IEnumerator"/>.</returns>
     private IEnumerator Minimize()
     {
         float distance = Vector3.Distance(originalScale, reducedScale);
@@ -45,6 +78,10 @@ public class ArrowAnim : MonoBehaviour
         StartCoroutine(Maximize());
     }
 
+    /// <summary>
+    /// Maximiza el objeto.
+    /// </summary>
+    /// <returns>The <see cref="IEnumerator"/>.</returns>
     private IEnumerator Maximize()
     {
         float distance = Vector3.Distance(originalScale, reducedScale);

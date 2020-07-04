@@ -1,12 +1,29 @@
-﻿using UnityEngine;
+﻿// NodeIfIn.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using UnityEngine;
 using static PathContainer;
 
+/// <summary>
+/// Clase de entrada al if.
+/// </summary>
 public class NodeIfIn : Road
 {
+    /// <summary>
+    /// Entrada al if.
+    /// </summary>
     [SerializeField] private RoadInput inputIf;
-    [SerializeField] private ConditionCardPicker cPicker;
-    [SerializeField] private GameLogic gameLogic;
 
+    /// <summary>
+    /// Objeto para elegir cartas de condición.
+    /// </summary>
+    [SerializeField] private ConditionCardPicker cPicker;
+
+    /// <summary>
+    /// Ejecuta una acción en base a una lista de argumentos.
+    /// </summary>
+    /// <param name="args">Los argumentos.</param>
     public override void ExecuteAction(in string[] args)
     {
         if (args.Length > 0)
@@ -30,6 +47,13 @@ public class NodeIfIn : Road
         }
     }
 
+    /// <summary>
+    /// Dado un input retorna el camino que inicia en él y el output en el que termina.
+    /// </summary>
+    /// <param name="input">El input <see cref="RoadInput"/>.</param>
+    /// <param name="path">El camino <see cref="Path"/>.</param>
+    /// <param name="output">El output <see cref="RoadOutput"/>.</param>
+    /// <returns>True si hay camino, false si no.</returns>
     public override bool GetPathAndOutput(in RoadInput input, out Path path, out RoadOutput output)
     {
         if (input == inputIf)
@@ -52,9 +76,12 @@ public class NodeIfIn : Road
         return false;
     }
 
+    /// <summary>
+    /// Comprueba si se cumple la condición de la carta.
+    /// </summary>
+    /// <returns>True si se cumple, false si no.</returns>
     private bool IsConditionMet()
     {
-        //Comunicarse con la logica
-        return gameLogic.CheckNextBlockDownProperty(cPicker.GetCardProperty());
+        return GameLogic.Instance.CheckNextBlockDownProperty(cPicker.GetCardProperty());
     }
 }

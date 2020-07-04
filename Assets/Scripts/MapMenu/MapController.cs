@@ -1,31 +1,68 @@
-﻿using UnityEngine;
+﻿// MapController.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
 
+using UnityEngine;
+
+/// <summary>
+/// Contiene una serie de métodos utiles para activar los controles de las diferentes pantallas del juego.
+/// </summary>
 [RequireComponent(typeof(BoxCollider))]
 public class MapController : MonoBehaviour
 {
+    /// <summary>
+    /// Posición del mapa donde se instanciarán los niveles del juego.
+    /// </summary>
     [SerializeField] private Transform center;
+
+    /// <summary>
+    /// Flecha derecha del selector de mapas.
+    /// </summary>
     [SerializeField] private GameObject arrowR;
+
+    /// <summary>
+    /// Flecha izquierda del selector de mapas.
+    /// </summary>
     [SerializeField] private GameObject arrowL;
+
+    /// <summary>
+    /// Botones de selección de carretera.
+    /// </summary>
     [SerializeField] private GameObject levelButtons;
+
+    /// <summary>
+    /// Padre de las carreteras.
+    /// </summary>
     [SerializeField] private GameObject roadScaler;
+
+    /// <summary>
+    /// Superficie donde el usuario hará click para seleccionar un mapa.
+    /// </summary>
     [SerializeField] private GameObject mapBounds;
+
+    /// <summary>
+    /// Botones del editor de niveles.
+    /// </summary>
     [SerializeField] private GameObject editorButtons;
+
+    /// <summary>
+    /// Superficie del editor de niveles.
+    /// </summary>
     [SerializeField] private GameObject editorSurface;
+
+    /// <summary>
+    /// Botón de mover el escenario.
+    /// </summary>
     [SerializeField] private GameObject mapPlacer;
+
+    /// <summary>
+    /// ¿Mostrar el gizmo de las cajas de colisión?
+    /// </summary>
     [SerializeField] private bool drawCollidersGizmo;
-    /* private Vector3 arrowRPos;
-     private Vector3 arrowLPos;
-     private Vector3 levelButtonsPos;
-     private Vector3 roadScalerPos;*/
 
-    private void Start()
-    {
-        /*arrowLPos = arrowL.transform.localPosition;
-        arrowRPos = arrowR.transform.localPosition;
-        levelButtonsPos = levelButtons.transform.localPosition;
-        roadScalerPos = roadScaler.transform.localPosition;*/
-    }
-
+    /// <summary>
+    /// OnDrawGizmos.
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -47,13 +84,11 @@ public class MapController : MonoBehaviour
         Gizmos.DrawSphere(MapControllerCenter, 0.03f);
     }
 
-   
+    /// <summary>
+    /// Activa los controles del modo juego.
+    /// </summary>
     public void EnableGameControls()
     {
-        /*levelButtons.transform.localPosition = levelButtonsPos;
-        roadScaler.transform.localPosition = roadScalerPos;
-        arrowR.transform.position = new Vector3(10000, 10000, 10000);
-        arrowL.transform.position = new Vector3(10000, 10000, 10000);*/
         levelButtons.gameObject.SetActive(true);
         roadScaler.gameObject.SetActive(true);
         mapBounds.gameObject.SetActive(false);
@@ -64,12 +99,11 @@ public class MapController : MonoBehaviour
         mapPlacer.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Activa los controles del menú de mapas.
+    /// </summary>
     public void EnableMenuControls()
     {
-        /*arrowR.transform.localPosition = arrowRPos;
-        arrowL.transform.localPosition = arrowLPos;
-        levelButtons.transform.position = new Vector3(10000, 10000, 10000);
-        roadScaler.transform.position = new Vector3(10000, 10000, 10000);*/
         levelButtons.gameObject.SetActive(false);
         roadScaler.gameObject.SetActive(false);
         mapBounds.gameObject.SetActive(true);
@@ -80,6 +114,9 @@ public class MapController : MonoBehaviour
         mapPlacer.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Activa los controles de menú principal.
+    /// </summary>
     public void EnableMainMenuControls()
     {
         levelButtons.gameObject.SetActive(false);
@@ -92,6 +129,9 @@ public class MapController : MonoBehaviour
         mapPlacer.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Activa los controles del editor.
+    /// </summary>
     public void EnableEditorControls()
     {
         editorButtons.gameObject.SetActive(true);
@@ -104,6 +144,9 @@ public class MapController : MonoBehaviour
         mapPlacer.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Retorna el punto donde deben aparecer los mapas.
+    /// </summary>
     public Vector3 MapControllerCenter
     {
         get

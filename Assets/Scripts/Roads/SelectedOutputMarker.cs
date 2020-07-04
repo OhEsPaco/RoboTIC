@@ -1,21 +1,53 @@
-﻿using System.Collections.Generic;
+﻿// SelectedOutputMarker.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Clase de la flecha para seleccionar carretera.
+/// </summary>
 public class SelectedOutputMarker : MonoBehaviour
 {
+    /// <summary>
+    /// Offset del movimiento.
+    /// </summary>
     private Vector3 mOffset;
+
+    /// <summary>
+    /// Profundidad del movimiento.
+    /// </summary>
     private float mZCoord;
+
+    /// <summary>
+    /// Objeto que se muestra marcando la carretera seleccionada.
+    /// </summary>
     [SerializeField] private GameObject sphere;
+
+    /// <summary>
+    /// Lógica de posicionamiento de carreteras.
+    /// </summary>
     [SerializeField] private RoadPlacementLogic RoadPlacementLogic;
+
+    /// <summary>
+    /// ¿Se está usando la flecha?
+    /// </summary>
     private bool placing = false;
 
+    /// <summary>
+    /// Start.
+    /// </summary>
     private void Start()
     {
         EventAggregator.Instance.Subscribe<MsgSomethingTapped>(SomethingTapped);
     }
 
-    //Para mejorar la usabilidad el gesto de tap sirve para parar la colocación del marcador
-    //aunque no se haya hecho tap sobre el mismo
+    /// <summary>
+    /// Para mejorar la usabilidad el gesto de tap sirve para parar la colocación del marcador
+    /// aunque no se haya hecho tap directamente sobre el mismo.
+    /// </summary>
+    /// <param name="msg">The msg<see cref="MsgSomethingTapped"/>.</param>
     private void SomethingTapped(MsgSomethingTapped msg)
     {
         if (placing)
@@ -26,8 +58,14 @@ public class SelectedOutputMarker : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// True si se ha recibido un mensaje de tap.
+    /// </summary>
     private bool tappedMsg = false;
 
+    /// <summary>
+    /// OnSelect.
+    /// </summary>
     private void OnSelect()
     {
         if (!placing && !tappedMsg)
@@ -51,6 +89,9 @@ public class SelectedOutputMarker : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update.
+    /// </summary>
     private void Update()
     {
         if (placing)
@@ -59,34 +100,37 @@ public class SelectedOutputMarker : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Se activa cuando se arrastra con el ratón.
+    /// </summary>
     private void OnMouseDrag()
     {
         transform.position = GetMouseWorldPos() + mOffset;
-
-        /* if (transform.position.y < 0)
-         {
-             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-         }*/
-
-        //OPTIMIZAR
         sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
     }
 
+    /// <summary>
+    /// Convierte las coordenadas del ratón a coordenadas globales.
+    /// </summary>
+    /// <returns>Las coordenadas globlales.</returns>
     private Vector3 GetMouseWorldPos()
     {
-        //Coordenadas en pixeles
         Vector3 mousePoint = Input.mousePosition;
-
         mousePoint.z = mZCoord;
-
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
+    /// <summary>
+    /// OnMouseUp.
+    /// </summary>
     private void OnMouseUp()
     {
         FindAndSelectClosestIO();
     }
 
+    /// <summary>
+    /// Busca y selecciona la IO más cercana.
+    /// </summary>
     public void FindAndSelectClosestIO()
     {
         RoadIO pivotIO = RoadPlacementLogic.FirstInput;
@@ -99,15 +143,15 @@ public class SelectedOutputMarker : MonoBehaviour
                 RoadPlacementLogic.SelectedIO = closests;
                 gameObject.transform.position = closests.transform.position;
                 sphere.SetActive(false);
-                /*if(closests is RoadInput)
-                {
-                    Debug.Log("input");
-                    LevelManager.instance.RoadPlacementLogic.PivotIO = closests;
-                }*/
             }
         }
     }
 
+    /// <summary>
+    /// Busca la IO más cercana.
+    /// </summary>
+    /// <param name="pivotIO">IO por la que empezar a buscar.</param>
+    /// <returns>La IO más cercana.</returns>
     private RoadIO SearchClosestsIO(RoadIO pivotIO)
     {
         if (pivotIO != null)

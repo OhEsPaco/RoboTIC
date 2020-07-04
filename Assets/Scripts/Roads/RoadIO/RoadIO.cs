@@ -1,25 +1,60 @@
-﻿using UnityEngine;
+﻿// RoadIO.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
 
+using UnityEngine;
+
+/// <summary>
+/// Entradas y salidas de una carretera.
+/// </summary>
 public abstract class RoadIO : MonoBehaviour
 {
-    public enum IODirection { Forward = 0, Back = 1, Left = 2, Right = 3, Undefined };
+    /// <summary>
+    /// Dirección a la que apunta la instancia.
+    /// </summary>
+    public enum IODirection
+    {
+        Forward = 0,
+        Back = 1,
+        Left = 2,
+        Right = 3,
+        Undefined
+    };
 
+    /// <summary>
+    /// Retorna el color del gizmo.
+    /// </summary>
+    /// <returns><see cref="Color"/>.</returns>
     public abstract Color Color();
 
+    /// <summary>
+    /// Dirección a la que apunta la instancia.
+    /// </summary>
     [SerializeField] private IODirection pointsTo = IODirection.Forward;
+
+    /// <summary>
+    /// Retorna la dirección a la que apunta la instancia.
+    /// </summary>
     public IODirection Direction { get => pointsTo; }
 
-    //A qué está conectada
+    /// <summary>
+    /// A qué IO está conectada.
+    /// </summary>
     private RoadIO connectedTo;
 
-   
-
-    //Si se puede usar como io seleccionada
+    /// <summary>
+    /// Si se puede usar como IO seleccionada.
+    /// </summary>
     [SerializeField] private bool canBeSelected = true;
 
-    //Id, aleatorio y unico
+    /// <summary>
+    /// ID, aleatorio y único.
+    /// </summary>
     [UniqueIdentifier, SerializeField] private string id;
 
+    /// <summary>
+    /// Retorna el ID.
+    /// </summary>
     public string IOIdentifier
     {
         get
@@ -28,6 +63,9 @@ public abstract class RoadIO : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Retorna a qué está conectada esta IO o la conecta con otra.
+    /// </summary>
     public RoadIO ConnectedTo
     {
         get
@@ -53,8 +91,16 @@ public abstract class RoadIO : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Retorna si puede ser seleccionada.
+    /// </summary>
     public bool CanBeSelected { get => canBeSelected; }
 
+    /// <summary>
+    /// Calcula la dirección opuesta a otra.
+    /// </summary>
+    /// <param name="direction">La dirección de entrada.</param>
+    /// <returns>La <see cref="IODirection"/> de salida.</returns>
     public static IODirection GetOppositeDirection(IODirection direction)
     {
         switch (direction)
@@ -76,6 +122,9 @@ public abstract class RoadIO : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// OnDrawGizmos.
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color();
@@ -88,7 +137,7 @@ public abstract class RoadIO : MonoBehaviour
         switch (pointsTo)
         {
             case IODirection.Forward:
-                DrawArrow.ForGizmo(transform.position, Vector3.forward* 0.05f);
+                DrawArrow.ForGizmo(transform.position, Vector3.forward * 0.05f);
                 break;
 
             case IODirection.Back:
@@ -103,15 +152,24 @@ public abstract class RoadIO : MonoBehaviour
                 DrawArrow.ForGizmo(transform.position, Vector3.right * 0.05f);
                 break;
         }
-        // Handles.Label(transform.position, gameObject.name);
-        //Handles.Label(transform.position, id);
     }
 
+    /// <summary>
+    /// Mueve la carretera a un punto usando esta IO como centro.
+    /// </summary>
+    /// <param name="newPos">La nueva posición.</param>
     public void MoveRoadTo(in Vector3 newPos)
     {
         transform.parent.position = MoveRoadFromPoint(transform.position, newPos, transform.parent.position);
     }
 
+    /// <summary>
+    /// Mueve la carretera a un punto usando esta IO como centro.
+    /// </summary>
+    /// <param name="point">La posición de la IO.</param>
+    /// <param name="newPositionOfPoint">La nueva posición de la carretera.</param>
+    /// <param name="roadPosition">La posición de la carretera.</param>
+    /// <returns>Punto al que se debe poner la carretera.</returns>
     private Vector3 MoveRoadFromPoint(in Vector3 point, in Vector3 newPositionOfPoint, in Vector3 roadPosition)
     {
         /*
@@ -131,6 +189,10 @@ public abstract class RoadIO : MonoBehaviour
         return result;
     }
 
+    /// <summary>
+    /// Retorna la carretera padre.
+    /// </summary>
+    /// <returns>La carretera padre.</returns>
     public Road GetParentRoad()
     {
         return transform.parent.GetComponent<Road>();

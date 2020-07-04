@@ -1,40 +1,60 @@
-﻿using UnityEngine;
+﻿// SoundEngine.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
 
+using UnityEngine;
+
+/// <summary>
+/// Pequeña clase con métodos relativos al sonido.
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class SoundEngine : MonoBehaviour
 {
+    /// <summary>
+    /// AudioSource.
+    /// </summary>
     private AudioSource audioSource;
-    [SerializeField] private EventAggregator eventAggregator;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Awake.
+    /// </summary>
     private void Awake()
     {
-        if (eventAggregator != null)
-        {
-            audioSource = GetComponent<AudioSource>();
-            eventAggregator.Subscribe<MsgPlaySfx>(PlaySfx);
-            eventAggregator.Subscribe<MsgPlaySfxAtPoint>(PlaySfxAtPoint);
-        }
-        else
-        {
-            Debug.LogError("EventAggregator must be present to play sounds");
-        }
+        audioSource = GetComponent<AudioSource>();
+        EventAggregator.Instance.Subscribe<MsgPlaySfx>(PlaySfx);
+        EventAggregator.Instance.Subscribe<MsgPlaySfxAtPoint>(PlaySfxAtPoint);
     }
 
+    /// <summary>
+    /// Reproduce un SFX.
+    /// </summary>
+    /// <param name="msg">El mensaje <see cref="MsgPlaySfx"/>.</param>
     private void PlaySfx(MsgPlaySfx msg)
     {
         audioSource.PlayOneShot(msg.clip, msg.volume);
     }
 
+    /// <summary>
+    /// Reproduce un SFX en un punto.
+    /// </summary>
+    /// <param name="msg">El mensaje <see cref="MsgPlaySfxAtPoint"/>.</param>
     private void PlaySfxAtPoint(MsgPlaySfxAtPoint msg)
     {
         AudioSource.PlayClipAtPoint(msg.clip, msg.point, msg.volume);
     }
 
+    /// <summary>
+    /// Pusa un clip.
+    /// </summary>
+    /// <param name="clip">El clip.</param>
     private void PauseClip(AudioClip clip)
     {
     }
 
+    /// <summary>
+    /// Para un clip.
+    /// </summary>
+    /// <param name="clip">El clip.</param>
     private void StopClip(AudioClip clip)
     {
     }

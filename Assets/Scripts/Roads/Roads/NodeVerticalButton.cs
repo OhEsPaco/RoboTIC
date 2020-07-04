@@ -1,14 +1,40 @@
-﻿using System.Collections.Generic;
+﻿// NodeVerticalButton.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
 using UnityEngine;
 using static PathContainer;
 
+/// <summary>
+/// Clase de la carretera con botones.
+/// </summary>
 public class NodeVerticalButton : Road
 {
+    /// <summary>
+    /// Lista de botones.
+    /// </summary>
     [SerializeField] private VerticalButton[] buttonList = new VerticalButton[0];
+
+    /// <summary>
+    /// Input de la carretera.
+    /// </summary>
     [SerializeField] private RoadInput rInput;
+
+    /// <summary>
+    /// Output de la carretera.
+    /// </summary>
     [SerializeField] private RoadOutput rOutput;
+
+    /// <summary>
+    /// Botones en uso actualmente.
+    /// </summary>
     private VerticalButton[] currentButtons = new VerticalButton[3];
 
+    /// <summary>
+    /// Destruye un botón.
+    /// </summary>
+    /// <param name="button">El botón <see cref="VerticalButton"/>.</param>
+    /// <returns>True si ha podido destruirlo, false si no.</returns>
     public bool DestroyButton(in VerticalButton button)
     {
         for (int i = 0; i < currentButtons.Length; i++)
@@ -82,6 +108,13 @@ public class NodeVerticalButton : Road
         return false;
     }
 
+    /// <summary>
+    /// Crea un botón si es posible.
+    /// </summary>
+    /// <param name="buttonName">Nombre del botón.</param>
+    /// <param name="io">IO más cercana al botón.</param>
+    /// <param name="spwButton">El botón creado.</param>
+    /// <returns>True si lo ha podido crear, false si no.</returns>
     public bool AddButton(string buttonName, RoadIO io, out VerticalButton spwButton)
     {
         int numberOfButtons = NumberOfButtons();
@@ -112,15 +145,12 @@ public class NodeVerticalButton : Road
 
                 if (io == rInput)
                 {
-                    //Switch(currentButtons, 1, 2);
-
                     currentButtons[2] = currentButtons[1];
                     currentButtons[1] = null;
                     currentButtons[0] = spwButton;
                 }
                 else
                 {
-                    // Switch(currentButtons, 1, 0);
                     currentButtons[0] = currentButtons[1];
                     currentButtons[1] = null;
                     currentButtons[2] = spwButton;
@@ -153,13 +183,19 @@ public class NodeVerticalButton : Road
         return true;
     }
 
+    /// <summary>
+    /// Instancia un botón dado su nombre.
+    /// </summary>
+    /// <param name="bname">Nombre del botón.</param>
+    /// <param name="button">El botón creado.</param>
+    /// <returns>True si lo ha podido crear, false si no.</returns>
     private bool SpawnButton(in string bname, out VerticalButton button)
     {
         VerticalButton myButton = null;
         button = null;
         foreach (VerticalButton vbutton in buttonList)
         {
-            if (vbutton.ButtonName.Equals(bname))
+            if (vbutton.ButtonType.Equals(bname))
             {
                 myButton = vbutton;
                 break;
@@ -180,6 +216,10 @@ public class NodeVerticalButton : Road
         }
     }
 
+    /// <summary>
+    /// Número actual de botones.
+    /// </summary>
+    /// <returns>El número de botones.</returns>
     private int NumberOfButtons()
     {
         int n = 0;
@@ -196,14 +236,10 @@ public class NodeVerticalButton : Road
         return n;
     }
 
-    /*private void Start()
-    {
-        for (int i = 0; i < currentButtons.Length; i++)
-        {
-            currentButtons[i] = null;
-        }
-    }*/
-
+    /// <summary>
+    /// Ejecuta una acción en base a una lista de argumentos.
+    /// </summary>
+    /// <param name="args">Los argumentos.</param>
     public override void ExecuteAction(in string[] args)
     {
         if (args.Length > 0)
@@ -217,7 +253,7 @@ public class NodeVerticalButton : Road
                         bool foundButton = false;
                         foreach (VerticalButton vbutton in buttonList)
                         {
-                            if (vbutton.ButtonName.Equals(buttonName))
+                            if (vbutton.ButtonType.Equals(buttonName))
                             {
                                 vbutton.gameObject.SetActive(false);
 
@@ -272,6 +308,13 @@ public class NodeVerticalButton : Road
         }
     }
 
+    /// <summary>
+    /// Dado un input retorna el camino que inicia en él y el output en el que termina.
+    /// </summary>
+    /// <param name="input">El input <see cref="RoadInput"/>.</param>
+    /// <param name="path">El camino <see cref="Path"/>.</param>
+    /// <param name="output">El output <see cref="RoadOutput"/>.</param>
+    /// <returns>True si hay camino, false si no.</returns>
     public override bool GetPathAndOutput(in RoadInput input, out Path path, out RoadOutput output)
     {
         if (input == rInput)
@@ -284,12 +327,5 @@ public class NodeVerticalButton : Road
         path = new Path();
         output = null;
         return false;
-    }
-
-    public static void Switch<T>(IList<T> array, int index1, int index2)
-    {
-        var aux = array[index1];
-        array[index1] = array[index2];
-        array[index2] = aux;
     }
 }

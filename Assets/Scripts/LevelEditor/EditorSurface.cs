@@ -1,42 +1,65 @@
-﻿using System.Collections;
+﻿// EditorSurface.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Las instancias de esta clase se usan para generar una superficie en la que el usuario puede poner bloques y objetos.
+/// </summary>
 public class EditorSurface : MonoBehaviour
 {
+    /// <summary>
+    /// El MessageWarehouse de esta clase.
+    /// </summary>
     private MessageWarehouse msgWar;
+
+    /// <summary>
+    /// La longitud de los bloques.
+    /// </summary>
     private float blockLength;
+
+    /// <summary>
+    /// El tamaño del nivel x,y,z.
+    /// </summary>
     private List<int> levelSize;
+
+    /// <summary>
+    /// Array con los puntos sobre los que puede pulsar el usuario.
+    /// </summary>
     private EditorSurfacePoint[] points;
 
-    [Range(0f, 1f)]
-    [SerializeField] private float secondsBetweenUpdates;
-
-    public float maxArrowDistance = 0.2f;
-    private bool readyArrow = false;
+    /// <summary>
+    /// Material de los puntos sobre los que puede pulsar el usuario.
+    /// </summary>
     [SerializeField] private Material cubeMaterial;
+
+    /// <summary>
+    /// ¿Está esta superficie preparada?
+    /// </summary>
     private bool readySurface = false;
 
-    private void Update()
-    {
-        /* if (transform.localRotation.y != transform.parent.localRotation.y)
-         {
-             transform.localRotation = transform.parent.localRotation;
-         }*/
-        //Debug.Log(transform.parent.localRotation);
-    }
-
+    /// <summary>
+    /// Awake.
+    /// </summary>
     private void Awake()
     {
         EventAggregator.Instance.Subscribe<MsgResetEditorSurface>(ResetEditorSurface);
     }
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Start.
+    /// </summary>
     private void Start()
     {
         msgWar = new MessageWarehouse(EventAggregator.Instance);
     }
 
+    /// <summary>
+    /// OnEnable.
+    /// </summary>
     private void OnEnable()
     {
         if (!readySurface)
@@ -45,6 +68,10 @@ public class EditorSurface : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Corrutina que inicializa la superficie.
+    /// </summary>
+    /// <returns><see cref="IEnumerator"/>.</returns>
     private IEnumerator SetUpSurface()
     {
         readySurface = false;
@@ -73,10 +100,9 @@ public class EditorSurface : MonoBehaviour
                 objToSpawn.transform.localScale = new Vector3(objToSpawn.transform.localScale.x * (blockLength - 0.001f), 0.001f, objToSpawn.transform.localScale.z * (blockLength - 0.001f));
                 objToSpawn.transform.parent = transform;
 
-                //objToSpawn.transform.localRotation = transform.parent.localRotation;
                 objToSpawn.transform.position = new Vector3(transform.position.x + blockLength * x, transform.position.y - blockLength / 2, transform.position.z + blockLength * z);
                 objToSpawn.transform.RotateAround(transform.position, Vector3.up, transform.eulerAngles.y);
-                //objToSpawn.transform.position = new Vector3(blockLength * x, - blockLength / 2, blockLength * z);
+
                 editorSurfacePoint = objToSpawn.AddComponent<EditorSurfacePoint>();
                 editorSurfacePoint.EditorSurface = transform;
                 editorSurfacePoint.SetPosition(x, z);
@@ -87,9 +113,12 @@ public class EditorSurface : MonoBehaviour
             }
         }
         readySurface = true;
-        //centerOffset = new Vector3((levelSize[0] * blockLength) / 2, (levelSize[1] * blockLength) / 2, (levelSize[2] * blockLength) / 2);
     }
 
+    /// <summary>
+    /// Devuelve la superficie a su estado original.
+    /// </summary>
+    /// <param name="msg">El mensaje <see cref="MsgResetEditorSurface"/>.</param>
     private void ResetEditorSurface(MsgResetEditorSurface msg)
     {
         if (readySurface)
@@ -100,8 +129,6 @@ public class EditorSurface : MonoBehaviour
                 for (int z = 0; z < levelSize[2]; z++)
                 {
                     points[index].gameObject.transform.parent = transform;
-                    //points[index].gameObject.transform.rotation = transform.rotation;
-                    // points[index].gameObject.transform.position = new Vector3(transform.position.x + blockLength * x, transform.position.y + blockLength / 2, transform.position.z + blockLength * z);
                     points[index].ResetBox();
                     points[index].SetPosition(x, z);
                     points[index].BlockLength = blockLength;
@@ -110,33 +137,5 @@ public class EditorSurface : MonoBehaviour
                 }
             }
         }
-    }
-
-    public EditorSurfacePoint GetClosestSurfacePoint(Vector3 targetPosition, float maxDistance)
-    {
-        EditorSurfacePoint closest = null;
-        if (points != null && points.Length > 0)
-        {
-            float distanceBetweenClosestAndTarget = 0;
-            float currentDistance = 0;
-            closest = points[0];
-            distanceBetweenClosestAndTarget = Vector3.Distance(points[0].gameObject.transform.position, targetPosition);
-
-            foreach (EditorSurfacePoint point in points)
-            {
-                currentDistance = Vector3.Distance(point.gameObject.transform.position, targetPosition);
-                if (currentDistance < distanceBetweenClosestAndTarget)
-                {
-                    distanceBetweenClosestAndTarget = currentDistance;
-                    closest = point;
-                }
-            }
-
-            if (distanceBetweenClosestAndTarget > maxDistance)
-            {
-                closest = null;
-            }
-        }
-        return closest;
     }
 }

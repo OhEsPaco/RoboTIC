@@ -1,12 +1,34 @@
-﻿using UnityEngine;
+﻿// NodeLoopIn.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using UnityEngine;
 using static PathContainer;
 
+/// <summary>
+/// Clase de la carretera de entrada al bucle.
+/// </summary>
 public class NodeLoopIn : Road
 {
+    /// <summary>
+    /// Contador de iteraciones.
+    /// </summary>
     [SerializeField] private LoopCounter lCounter;
+
+    /// <summary>
+    /// Entrada por arriba.
+    /// </summary>
     [SerializeField] private RoadInput inputTop;
+
+    /// <summary>
+    /// Entrada por abajo.
+    /// </summary>
     [SerializeField] private RoadInput inputBottom;
 
+    /// <summary>
+    /// Ejecuta una acción en base a una lista de argumentos.
+    /// </summary>
+    /// <param name="args">Los argumentos.</param>
     public override void ExecuteAction(in string[] args)
     {
         if (args.Length > 0)
@@ -30,6 +52,13 @@ public class NodeLoopIn : Road
         }
     }
 
+    /// <summary>
+    /// Dado un input retorna el camino que inicia en él y el output en el que termina.
+    /// </summary>
+    /// <param name="input">El input <see cref="RoadInput"/>.</param>
+    /// <param name="path">El camino <see cref="Path"/>.</param>
+    /// <param name="output">El output <see cref="RoadOutput"/>.</param>
+    /// <returns>True si hay camino, false si no.</returns>
     public override bool GetPathAndOutput(in RoadInput input, out Path path, out RoadOutput output)
     {
         if (input == inputTop || input == inputBottom)
@@ -55,7 +84,6 @@ public class NodeLoopIn : Road
                 //mandarlos a outputyes
                 if (input == inputTop)
                 {
-
                     GetPathByName("TopToYes", out path);
                     lCounter.SetNumber(lCounter.ActualNumber() - 1);
                     output = path.ioEnd;

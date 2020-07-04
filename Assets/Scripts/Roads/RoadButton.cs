@@ -1,16 +1,43 @@
-﻿using UnityEngine;
+﻿// RoadButton.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using UnityEngine;
 using static LevelButtons;
 
+/// <summary>
+/// Botón para colocar una carretera.
+/// </summary>
 public class RoadButton : MonoBehaviour
 {
+    /// <summary>
+    /// Tipo del botón.
+    /// </summary>
     [SerializeField] private Buttons buttonIndex = Buttons.Undefined;
-    [SerializeField] private AudioClip buttonClick;
-    private EventAggregator eventAggregator;
 
+    /// <summary>
+    /// Click del botón.
+    /// </summary>
+    [SerializeField] private AudioClip buttonClick;
+
+    /// <summary>
+    /// Mesh del botón.
+    /// </summary>
     public GameObject mesh;
+
+    /// <summary>
+    /// Animación del botón.
+    /// </summary>
     private Animation anim;
+
+    /// <summary>
+    /// ¿Está el botón activo?
+    /// </summary>
     private bool enable = true;
 
+    /// <summary>
+    /// Retorna el tipo del botón.
+    /// </summary>
     public Buttons ButtonType
     {
         get
@@ -19,16 +46,20 @@ public class RoadButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Awake.
+    /// </summary>
     private void Awake()
     {
         if (mesh != null)
         {
             anim = mesh.GetComponent<Animation>();
         }
-
-        eventAggregator = EventAggregator.Instance;
     }
 
+    /// <summary>
+    /// OnSelect.
+    /// </summary>
     public void OnSelect()
     {
         if (enable)
@@ -48,18 +79,21 @@ public class RoadButton : MonoBehaviour
                 }
             }
 
-            if (eventAggregator != null)
-            {
-                eventAggregator.Publish<MsgPlaySfxAtPoint>(new MsgPlaySfxAtPoint(buttonClick, 1.0f, transform.position));
-            }
+            EventAggregator.Instance.Publish<MsgPlaySfxAtPoint>(new MsgPlaySfxAtPoint(buttonClick, 1.0f, transform.position));
         }
     }
 
+    /// <summary>
+    /// Desactiva el botón.
+    /// </summary>
     public void Disable()
     {
         enable = false;
     }
 
+    /// <summary>
+    /// Activa el botón.
+    /// </summary>
     public void Enable()
     {
         enable = true;

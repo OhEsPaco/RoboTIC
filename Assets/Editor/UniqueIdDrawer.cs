@@ -1,9 +1,11 @@
-﻿/*https://answers.unity.com/questions/487121/automatically-assigning-gameobjects-a-unique-and-c.html*/
+﻿using System;
 using UnityEditor;
 using UnityEngine;
-using System;
 
-// Place this file inside Assets/Editor
+/// <summary>
+/// Clase para el editor que genera automáticamente un identificador para un objeto.
+/// Extraído de https://answers.unity.com/questions/487121/automatically-assigning-gameobjects-a-unique-and-c.html
+/// </summary>
 [CustomPropertyDrawer(typeof(UniqueIdentifierAttribute))]
 public class UniqueIdentifierDrawer : PropertyDrawer
 {
@@ -22,7 +24,7 @@ public class UniqueIdentifierDrawer : PropertyDrawer
         DrawLabelField(textFieldPosition, prop, label);
     }
 
-    void DrawLabelField(Rect position, SerializedProperty prop, GUIContent label)
+    internal void DrawLabelField(Rect position, SerializedProperty prop, GUIContent label)
     {
         EditorGUI.LabelField(position, label, new GUIContent(prop.stringValue));
     }
