@@ -1,29 +1,37 @@
-﻿using UnityEngine;
+﻿// GenericButton.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
 
+using UnityEngine;
+
+/// <summary>
+/// Representa un botón genérico.
+/// </summary>
 public class GenericButton : MonoBehaviour
 {
+    /// <summary>
+    /// Declaración del delegado que se llamará cuando se haga tap.
+    /// </summary>
     public delegate void Clicked();
 
+    /// <summary>
+    /// Delegado al que se llamará cuando se haga tap.
+    /// </summary>
     private Clicked clickCalbacks;
-    [SerializeField] private AudioClip buttonClick;
-    private EventAggregator eventAggregator;
 
-    public GameObject mesh;
-    private Animation anim;
+    /// <summary>
+    /// ¿Está el botón activo?
+    /// </summary>
     private bool enable = true;
 
+    /// <summary>
+    /// Añade un callback.
+    /// </summary>
     public Clicked ClickCalbacks { get => clickCalbacks; set => clickCalbacks += value; }
 
-    private void Awake()
-    {
-        if (mesh != null)
-        {
-            anim = mesh.GetComponent<Animation>();
-        }
-
-        eventAggregator = EventAggregator.Instance;
-    }
-
+    /// <summary>
+    /// OnSelect.
+    /// </summary>
     public void OnSelect()
     {
         if (enable)
@@ -32,11 +40,17 @@ public class GenericButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Desactiva el botón.
+    /// </summary>
     public void Disable()
     {
         enable = false;
     }
 
+    /// <summary>
+    /// Activa el botón.
+    /// </summary>
     public void Enable()
     {
         enable = true;

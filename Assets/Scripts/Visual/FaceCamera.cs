@@ -1,31 +1,19 @@
-﻿using System.Collections;
+﻿// FaceCamera.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
 using UnityEngine;
 
+/// <summary>
+/// Hace que el objeto que lo tiene mire siempre a la cámara principal.
+/// </summary>
 public class FaceCamera : MonoBehaviour
 {
-    private Transform target;
-    private MessageWarehouse msgWar;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        msgWar = new MessageWarehouse(EventAggregator.Instance);
-        StartCoroutine(GetCameraTransform());
-    }
-
-    private IEnumerator GetCameraTransform()
-    {
-        MsgGetMainCameraTransform msg = new MsgGetMainCameraTransform();
-        msgWar.PublishMsgAndWaitForResponse<MsgGetMainCameraTransform, Transform>(msg);
-        yield return new WaitUntil(() => msgWar.IsResponseReceived<MsgGetMainCameraTransform, Transform>(msg, out target));
-    }
-
-    // Update is called once per frame
+    /// <summary>
+    /// Update.
+    /// </summary>
     private void Update()
     {
-        if (target != null)
-        {
-            transform.LookAt(target);
-        }
+        transform.LookAt(Camera.main.transform);
     }
 }

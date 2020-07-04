@@ -1,16 +1,47 @@
-﻿using UnityEngine;
+﻿// Counter.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
 
+using UnityEngine;
+
+/// <summary>
+/// Contador para el número de instrucciones restantes.
+/// </summary>
 public class Counter : MonoBehaviour
 {
+    /// <summary>
+    /// Número máximo.
+    /// </summary>
     public int maxNumber = 9;
+
+    /// <summary>
+    /// Número por defecto.
+    /// </summary>
     public int defaultNumber = 0;
+
+    /// <summary>
+    /// Padre de los números.
+    /// </summary>
     private GameObject numbersParent;
+
+    /// <summary>
+    /// Array con los números.
+    /// </summary>
     private GameObject[] numbers;
+
+    /// <summary>
+    /// Número actual.
+    /// </summary>
     private int actualNumber;
 
+    /// <summary>
+    /// Retorna el número actual.
+    /// </summary>
     public int ActualNumber { get => actualNumber; }
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Awake.
+    /// </summary>
     private void Awake()
     {
         numbersParent = transform.Find("Numbers").gameObject;
@@ -23,6 +54,12 @@ public class Counter : MonoBehaviour
         actualNumber = SetNumber(defaultNumber);
     }
 
+    /// <summary>
+    /// Pone un número en el contador. Si se pasa pone el número máximo y si es menor
+    /// que cero pone el cero.
+    /// </summary>
+    /// <param name="number">El número a poner.</param>
+    /// <returns>El número que se ha puesto realmente.</returns>
     public int SetNumber(in int number)
     {
         numbers[actualNumber].SetActive(false);

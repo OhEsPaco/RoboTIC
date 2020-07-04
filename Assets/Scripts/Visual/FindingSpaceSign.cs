@@ -1,18 +1,42 @@
-﻿using System.Collections;
+﻿// FindingSpaceSign.cs
+// Francisco Manuel García Sánchez - Belmonte
+// 2020
+
+using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Cartel que indica que se está buscando el espacio del jugador.
+/// </summary>
 public class FindingSpaceSign : MonoBehaviour
 {
+    /// <summary>
+    /// Puntos suspensivos.
+    /// </summary>
     [SerializeField] private GameObject[] points = new GameObject[0];
+
+    /// <summary>
+    /// Tiempo hasta que se pasa al siguiente punto.
+    /// </summary>
     [SerializeField] private float time = 1f;
 
+    /// <summary>
+    /// Referencia a la corrutina de animación.
+    /// </summary>
     private IEnumerator findingSpace = null;
 
+    /// <summary>
+    /// Awake.
+    /// </summary>
     private void Awake()
     {
         EventAggregator.Instance.Subscribe<MsgFindingSpace>(FindingSpace);
     }
 
+    /// <summary>
+    /// Activa la animación.
+    /// </summary>
+    /// <param name="msg">El mensaje <see cref="MsgFindingSpace"/>.</param>
     private void FindingSpace(MsgFindingSpace msg)
     {
         if (!msg.isFindingSpace)
@@ -42,6 +66,10 @@ public class FindingSpaceSign : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// La corrutina de la animación.
+    /// </summary>
+    /// <returns><see cref="IEnumerator"/>.</returns>
     private IEnumerator FindingSpaceCrt()
     {
         bool[] activePoints = new bool[points.Length];
@@ -72,6 +100,11 @@ public class FindingSpaceSign : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Dado un array de bool activa los puntos específicos.
+    /// </summary>
+    /// <param name="activePoints">True los que tienen que estar activos, false los que no.</param>
+    /// <param name="points">Los puntos.</param>
     private void EnableOrDisablePoints(bool[] activePoints, GameObject[] points)
     {
         for (int i = 0; i < activePoints.Length; i++)
@@ -85,10 +118,5 @@ public class FindingSpaceSign : MonoBehaviour
                 points[i].SetActive(false);
             }
         }
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
     }
 }
