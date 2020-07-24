@@ -399,8 +399,10 @@ public class RoadFactory : MonoBehaviour
     private bool CheckIfValid(in List<RoadIO> ioToMatch, in List<RoadIO> candidateIO, in float errorMargin, out Dictionary<string, string> connections)
     {
         connections = new Dictionary<string, string>();
-        Debug.Log("TOMATCH: " + ioToMatch.Count);
-        Debug.Log("CANDIDATE: " + candidateIO.Count);
+        if (ioToMatch == null || candidateIO == null)
+        {
+            return false;
+        }
         if (ioToMatch.Count == 0 || candidateIO.Count == 0 || ioToMatch.Count != candidateIO.Count)
         {
             return false;

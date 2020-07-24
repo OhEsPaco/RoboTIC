@@ -1,4 +1,4 @@
-﻿// RoadPlacementLogic.cs 
+﻿// RoadPlacementLogic.cs
 // Francisco Manuel García Sánchez - Belmonte
 // 2020
 
@@ -228,15 +228,14 @@ public class RoadPlacementLogic : MonoBehaviour
     /// <param name="buttonIndex">El botón pulsado <see cref="Buttons"/>.</param>
     public void AddInputFromButton(Buttons buttonIndex)
     {
-       // try
-        //{
+        try
+        {
             buttonActionsDictionary[buttonIndex]();
-
-        //}
-        //catch
-       // {
-         //   Debug.LogError("Unknown input: " + buttonIndex.ToString());
-       // }
+        }
+        catch
+        {
+            Debug.LogError("Unknown input: " + buttonIndex.ToString());
+        }
     }
 
     /// <summary>
@@ -342,7 +341,7 @@ public class RoadPlacementLogic : MonoBehaviour
     }
 
     /// <summary>
-    /// Lógica del botón de condición. No se pueden poner 
+    /// Lógica del botón de condición. No se pueden poner
     /// condiciones dentro de condiciones.
     /// </summary>
     private void DoCondition()
@@ -560,7 +559,6 @@ public class RoadPlacementLogic : MonoBehaviour
         {
             Road thisRoad = spawnedRoads[i];
             List<RoadIO> ioToMatch = thisRoad.GetRoadIOByDirection(direction);
-            Debug.Log("VASJDFKASJDFKJA "+ioToMatch.Count);
             Road nextRoad;
             Dictionary<string, string> connectionsR_C;
 
@@ -637,7 +635,7 @@ public class RoadPlacementLogic : MonoBehaviour
         {
             return false;
         }
-       
+
         RoadIO roadIOL = null;
         RoadIO roadIOR = null;
 
@@ -727,7 +725,6 @@ public class RoadPlacementLogic : MonoBehaviour
                 //Si es menor que cero hemos encontrado un hueco
                 if (nextRoadLevel <= 0)
                 {
-               
                     //Llenamos el hueco
                     List<RoadIO> currentRoadIO = new List<RoadIO>();
                     List<RoadIO> nextRoadIO = new List<RoadIO>();
@@ -744,14 +741,12 @@ public class RoadPlacementLogic : MonoBehaviour
                         if (currentRoadIO.Count > 0)
                         {
                             Road gap;
-                           
+
                             Dictionary<string, string> connectionsR1_Connector;
                             Dictionary<string, string> connectionsR2_Connector;
-                            
 
                             if (roadFactory.FillGapWithConnector(nextRoadIO, currentRoadIO, out gap, out connectionsR1_Connector, out connectionsR2_Connector))
                             {
-                              
                                 string[] idsGap = new string[numberOfPiecesGap];
                                 for (int i = 0; i < idsGap.Length; i++)
                                 {
@@ -769,12 +764,9 @@ public class RoadPlacementLogic : MonoBehaviour
                                         extraSpawnedRoads.Add(newR);
                                     }
                                 }
-
-                                
                             }
                         }
                     }
-                    
                 }
                 else
                 {
@@ -784,7 +776,6 @@ public class RoadPlacementLogic : MonoBehaviour
                         //Si no contiene esta carretera, la añadimos
                         roadAndValue.Add(ConnectedTo.GetParentRoad(), nextRoadLevel);
                     }
-                  
 
                     //Movemos la nueva carretera a su posicion
                     if (!processedRoads.Contains(ConnectedTo.GetParentRoad()))
@@ -981,7 +972,6 @@ public class RoadPlacementLogic : MonoBehaviour
                     Debug.LogError(r.RoadIdentifier + " not ready");
                 }
             }
-           
 
             if (!invalidRoad)
             {
