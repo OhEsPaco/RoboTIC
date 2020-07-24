@@ -48,9 +48,14 @@ public class BlockExploder : MonoBehaviour
     public float mass = 0.1f;
 
     /// <summary>
+    /// Audio de la explosión.
+    /// </summary>
+    [SerializeField] private AudioClip explosionSfx;
+
+    /// <summary>
     /// Material de las partículas.
     /// </summary>
-    private Material particleMaterial;
+    [SerializeField] private Material particleMaterial;
 
     /// <summary>
     /// Lista de partículas.
@@ -62,7 +67,7 @@ public class BlockExploder : MonoBehaviour
     /// </summary>
     internal void Start()
     {
-        Renderer r = GetComponent<Renderer>();
+       /* Renderer r = GetComponent<Renderer>();
         if (r != null)
         {
             Material m = r.material;
@@ -70,7 +75,7 @@ public class BlockExploder : MonoBehaviour
             {
                 particleMaterial = m;
             }
-        }
+        }*/
 
         pieces = new List<GameObject>();
     }
@@ -106,6 +111,11 @@ public class BlockExploder : MonoBehaviour
             {
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
             }
+        }
+
+        if (explosionSfx != null)
+        {
+            EventAggregator.Instance.Publish<MsgPlaySfxAtPoint>(new MsgPlaySfxAtPoint(explosionSfx, 0.7f, transform.position));
         }
 
         StartCoroutine(DestroyParticlesAndGameobject(pieces, particleDuration));

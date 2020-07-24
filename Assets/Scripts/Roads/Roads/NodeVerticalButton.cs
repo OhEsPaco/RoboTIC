@@ -13,7 +13,7 @@ public class NodeVerticalButton : Road
     /// <summary>
     /// Lista de botones.
     /// </summary>
-    [SerializeField] private VerticalButton[] buttonList = new VerticalButton[0];
+    private VerticalButton[] buttonList;
 
     /// <summary>
     /// Input de la carretera.
@@ -29,6 +29,23 @@ public class NodeVerticalButton : Road
     /// Botones en uso actualmente.
     /// </summary>
     private VerticalButton[] currentButtons = new VerticalButton[3];
+
+    /// <summary>
+    /// Start.
+    /// </summary>
+    private void Start()
+    {
+        buttonList = GetComponentsInChildren<VerticalButton>(true);
+        Debug.Log("Button list length: " + buttonList.Length);
+    }
+
+    private void OnEnable()
+    {
+        if (buttonList == null || buttonList.Length == 0)
+        {
+            buttonList = GetComponentsInChildren<VerticalButton>(true);
+        }
+    }
 
     /// <summary>
     /// Destruye un botón.
@@ -232,7 +249,7 @@ public class NodeVerticalButton : Road
             }
         }
 
-        Debug.Log("Number of buttons" + n);
+        Debug.Log("Number of buttons: " + n);
         return n;
     }
 
@@ -251,6 +268,11 @@ public class NodeVerticalButton : Road
                     {
                         string buttonName = args[1];
                         bool foundButton = false;
+                        if (buttonList == null || buttonList.Length == 0)
+                        {
+                            buttonList = GetComponentsInChildren<VerticalButton>(true);
+                        }
+
                         foreach (VerticalButton vbutton in buttonList)
                         {
                             if (vbutton.ButtonType.Equals(buttonName))

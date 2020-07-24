@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using Academy.HoloToolkit.Unity;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
 
-/// <summary>
-/// Enumeration containing the surfaces on which a GameObject
-/// can be placed.  For simplicity of this sample, only one
-/// surface type is allowed to be selected.
-/// </summary>
+using Academy.HoloToolkit.Unity;
+using System.Collections.Generic;
+using UnityEngine;
+
 public enum PlacementSurfaces
 {
     // Horizontal surface with an upward pointing normal.
@@ -17,14 +15,14 @@ public enum PlacementSurfaces
 }
 
 /// <summary>
-/// The Placeable class implements the logic used to determine if a GameObject
-/// can be placed on a target surface. Constraints for placement include:
-/// * No part of the GameObject's box collider impacts with another object in the scene
-/// * The object lays flat (within specified tolerances) against the surface
-/// * The object would not fall off of the surface if gravity were enabled.
-/// This class also provides the following visualizations.
-/// * A transparent cube representing the object's box collider.
-/// * Shadow on the target surface indicating whether or not placement is valid.
+/// La clase Placeable implementa la lógica usada para determinar si un GameObject
+/// puede ser colocado en una superficie. Las restricciones que deben tenerse en cuenta
+/// a la hora de colocar un objeto son:
+/// * Ninguna parte de su BoxCollider se solapa con otro objeto.
+/// * El objeto se coloca plano (dentro de las tolerancias especificadas) contra la superficie.
+/// * No se caeria de la superficie si la gravedad estuviera activada.
+/// Esta clase tambien provee un cubo transparente que representa el BoxCollider del objeto y
+/// una sombra indicando si la posición es válida o no.
 /// </summary>
 public class Placeable : MonoBehaviour
 {
@@ -47,11 +45,11 @@ public class Placeable : MonoBehaviour
     public List<GameObject> ChildrenToHide = new List<GameObject>();
 
     /// <summary>
-    /// Indicates if the object is in the process of being placed.
+    /// Indica si el objeto está en proceso de ser colocado.
     /// </summary>
     public bool IsPlacing { get; private set; }
 
-    // The most recent distance to the surface.  This is used to 
+    // The most recent distance to the surface.  This is used to
     // locate the object when the user's gaze does not intersect
     // with the Spatial Mapping mesh.
     private float lastDistance = 2.0f;
@@ -91,7 +89,7 @@ public class Placeable : MonoBehaviour
     private Vector3 targetPosition;
 
     /// <summary>
-    /// Called when the GameObject is created.
+    /// Se llama cuando el objeto es creado.
     /// </summary>
     private void Awake()
     {
@@ -119,12 +117,8 @@ public class Placeable : MonoBehaviour
         shadowAsset.SetActive(false);
     }
 
-
-    
     public void OnPlace()
     {
-        //Llamame desde el cursor
-
         if (!IsPlacing)
         {
             OnPlacementStart();
@@ -135,22 +129,16 @@ public class Placeable : MonoBehaviour
         }
     }
 
-
-
-  
     public void OnSelect()
     {
-        //codigo de seleccionar niveles
-
-   
-        if(IsPlacing)
+        if (IsPlacing)
         {
             OnPlacementStop();
         }
     }
 
     /// <summary>
-    /// Called once per frame.
+    /// Se llama una vez por frame
     /// </summary>
     private void Update()
     {
@@ -192,16 +180,16 @@ public class Placeable : MonoBehaviour
     }
 
     /// <summary>
-    /// Verify whether or not the object can be placed.
+    /// Verifica si el objeto puede ser o no colocado.
     /// </summary>
     /// <param name="position">
-    /// The target position on the surface.
+    /// La posición objetivo en la superficie.
     /// </param>
     /// <param name="surfaceNormal">
-    /// The normal of the surface on which the object is to be placed.
+    /// La normal de la superficie objetivo.
     /// </param>
     /// <returns>
-    /// True if the target position is valid for placing the object, otherwise false.
+    /// Verdadero si la posición es válida, falso si no.
     /// </returns>
     private bool ValidatePlacement(out Vector3 position, out Vector3 surfaceNormal)
     {
@@ -220,7 +208,7 @@ public class Placeable : MonoBehaviour
 
         Vector3[] facePoints = GetColliderFacePoints();
 
-        // The origin points we receive are in local space and we 
+        // The origin points we receive are in local space and we
         // need to raycast in world space.
         for (int i = 0; i < facePoints.Length; i++)
         {
@@ -271,15 +259,15 @@ public class Placeable : MonoBehaviour
     }
 
     /// <summary>
-    /// Determine the coordinates, in local space, of the box collider face that 
-    /// will be placed against the target surface.
+    /// Determina las coordenadas de la cara del BoxCollider que será colocado contra
+    /// la superficie.
     /// </summary>
     /// <returns>
-    /// Vector3 array with the center point of the face at index 0.
+    /// Un array de Vector3 con el centro de la cara en la posición 0.
     /// </returns>
     private Vector3[] GetColliderFacePoints()
     {
-        // Get the collider extents.  
+        // Get the collider extents.
         // The size values are twice the extents.
         Vector3 extents = boxCollider.size / 2;
 
@@ -320,11 +308,11 @@ public class Placeable : MonoBehaviour
     }
 
     /// <summary>
-    /// Put the object into placement mode.
+    /// Pone el objeto en modo de emplazamiento.
     /// </summary>
     public void OnPlacementStart()
     {
-        // If we are managing the collider, enable it. 
+        // If we are managing the collider, enable it.
         if (managingBoxCollider)
         {
             boxCollider.enabled = true;
@@ -345,13 +333,8 @@ public class Placeable : MonoBehaviour
     }
 
     /// <summary>
-    /// Take the object out of placement mode.
+    /// Saca al objeto del modo de emplazamiento.
     /// </summary>
-    /// <remarks>
-    /// This method will leave the object in placement mode if called while
-    /// the object is in an invalid location.  To determine whether or not
-    /// the object has been placed, check the value of the IsPlacing property.
-    /// </remarks>
     public void OnPlacementStop()
     {
         // ValidatePlacement requires a normal as an out parameter.
@@ -370,7 +353,7 @@ public class Placeable : MonoBehaviour
 
         OrientObject(true, surfaceNormal);
 
-        // If we are managing the collider, disable it. 
+        // If we are managing the collider, disable it.
         if (managingBoxCollider)
         {
             boxCollider.enabled = false;
@@ -385,11 +368,11 @@ public class Placeable : MonoBehaviour
     }
 
     /// <summary>
-    /// Positions the object along the surface toward which the user is gazing.
+    /// Posiciona el objeto sobre la superficie a la que mira el usuario.
     /// </summary>
     /// <remarks>
-    /// If the user's gaze does not intersect with a surface, the object
-    /// will remain at the most recently calculated distance.
+    /// Si en la dirección a la que mira el usuario no hay ningún plano entonces
+    /// el objeto se quedará en la ultima posición calculada.
     /// </remarks>
     private void Move()
     {
@@ -407,7 +390,7 @@ public class Placeable : MonoBehaviour
         {
             float offsetDistance = hoverDistance;
 
-            // Place the object a small distance away from the surface while keeping 
+            // Place the object a small distance away from the surface while keeping
             // the object from going behind the user.
             if (hitInfo.distance <= hoverDistance)
             {
@@ -437,20 +420,14 @@ public class Placeable : MonoBehaviour
     }
 
     /// <summary>
-    /// Orients the object so that it faces the user.
+    /// Orienta el objeto de forma que mira al usuario.
     /// </summary>
     /// <param name="alignToVerticalSurface">
-    /// If true and the object is to be placed on a vertical surface, 
-    /// orient parallel to the target surface.  If false, orient the object 
-    /// to face the user.
+    /// True si debe ser alineado a una superficie vertical.
     /// </param>
     /// <param name="surfaceNormal">
-    /// The target surface's normal vector.
+    /// Normal de la superficie.
     /// </param>
-    /// <remarks>
-    /// The alignToVerticalSurface parameter is ignored if the object
-    /// is to be placed on a horizontalSurface
-    /// </remarks>
     private void OrientObject(bool alignToVerticalSurface, Vector3 surfaceNormal)
     {
         Quaternion rotation = Camera.main.transform.localRotation;
@@ -477,10 +454,10 @@ public class Placeable : MonoBehaviour
     }
 
     /// <summary>
-    /// Displays the bounds asset.
+    /// Muestra los limites del objeto.
     /// </summary>
     /// <param name="canBePlaced">
-    /// Specifies if the object is in a valid placement location.
+    /// True si el objeto puede ser colocado y false si no.
     /// </param>
     private void DisplayBounds(bool canBePlaced)
     {
@@ -504,16 +481,16 @@ public class Placeable : MonoBehaviour
     }
 
     /// <summary>
-    /// Displays the placement shadow asset.
+    /// Muestra una sombra bajo el objeto.
     /// </summary>
     /// <param name="position">
-    /// The position at which to place the shadow asset.
+    /// Posición en la que se quiere colocar la sombra.
     /// </param>
     /// <param name="surfaceNormal">
-    /// The normal of the surface on which the asset will be placed
+    /// Normal del plano en la que se colocará el objeto.
     /// </param>
     /// <param name="canBePlaced">
-    /// Specifies if the object is in a valid placement location.
+    /// True si el objeto puede ser colocado, false si no.
     /// </param>
     private void DisplayShadow(Vector3 position,
                             Vector3 surfaceNormal,
@@ -558,27 +535,12 @@ public class Placeable : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Determines if two distance values should be considered equivalent. 
-    /// </summary>
-    /// <param name="d1">
-    /// Distance to compare.
-    /// </param>
-    /// <param name="d2">
-    /// Distance to compare.
-    /// </param>
-    /// <returns>
-    /// True if the distances are within the desired tolerance, otherwise false.
-    /// </returns>
     private bool IsEquivalentDistance(float d1, float d2)
     {
         float dist = Mathf.Abs(d1 - d2);
         return (dist <= distanceThreshold);
     }
 
-    /// <summary>
-    /// Called when the GameObject is unloaded.
-    /// </summary>
     private void OnDestroy()
     {
         // Unload objects we have created.

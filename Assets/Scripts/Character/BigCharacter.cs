@@ -47,6 +47,11 @@ public class BigCharacter : Character
     public float takeOff = 0.8f;
 
     /// <summary>
+    /// Audio de perder.
+    /// </summary>
+    [SerializeField] private AudioClip loseSfx;
+
+    /// <summary>
     /// Tiempo que dura la rotación.
     /// </summary>
     public float rotationTime = 1f;
@@ -275,6 +280,11 @@ public class BigCharacter : Character
     {
         NotifyStartOfAction();
         SetAnimationTrigger("Lose");
+        if (loseSfx != null)
+        {
+            EventAggregator.Instance.Publish<MsgPlaySfxAtPoint>(new MsgPlaySfxAtPoint(loseSfx, 1.0f, transform.position));
+        }
+
         yield return new WaitForSeconds(0.5f);
         gameObject.transform.localRotation = defaultLocalRotation;
         gameObject.transform.localPosition = defaultLocalPosition;

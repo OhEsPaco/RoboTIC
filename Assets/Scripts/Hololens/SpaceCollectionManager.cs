@@ -1,12 +1,15 @@
-﻿using Academy.HoloToolkit.Unity;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Academy.HoloToolkit.Unity;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Called by PlaySpaceManager after planes have been generated from the Spatial Mapping Mesh.
-/// This class will create a collection of prefab objects that have the 'Placeable' component and
-/// will attempt to set their initial location on planes that are close to the user.
+/// Llamado por PlaySpaceManager después de que los planos hayan sido generados a partir de un Spatial
+/// Mapping Mesh. Esta clase puede colocar objetos con el componente Placeable de forma que queden
+/// cercanos al usuario.
 /// </summary>
 public class SpaceCollectionManager : Singleton<SpaceCollectionManager>
 {
@@ -14,10 +17,10 @@ public class SpaceCollectionManager : Singleton<SpaceCollectionManager>
     private List<GameObject> verticalSurfaces;
 
     /// <summary>
-    /// Generates a collection of Placeable objects in the world and sets them on planes that match their affinity.
+    /// Genera una colección de Placeables en el mundo y los coloca en planos adecuados.
     /// </summary>
-    /// <param name="horizontalSurfaces">Horizontal surface planes (floors, tables).</param>
-    /// <param name="verticalSurfaces">Vertical surface planes (walls).</param>
+    /// <param name="horizontalSurfaces">Planos horizontales.</param>
+    /// <param name="verticalSurfaces">Planos verticales.</param>
     public void SetSurfaces(List<GameObject> horizontalSurfaces, List<GameObject> verticalSurfaces)
     {
         this.horizontalSurfaces = horizontalSurfaces;
@@ -36,6 +39,11 @@ public class SpaceCollectionManager : Singleton<SpaceCollectionManager>
         }
     }
 
+    /// <summary>
+    /// Intenta colocar un objeto en el escenario.
+    /// </summary>
+    /// <param name="spaceObjectPrefabs">Objeto a colocar.</param>
+    /// <returns>True si ha conseguido colocarlo, false si no.</returns>
     public bool PlaceItemInWorld(GameObject spaceObjectPrefabs)
     {
         List<GameObject> list = new List<GameObject>();
@@ -81,11 +89,11 @@ public class SpaceCollectionManager : Singleton<SpaceCollectionManager>
     }
 
     /// <summary>
-    /// Creates and positions a collection of Placeable space objects on SurfacePlanes in the environment.
+    /// Crea una colección de objetos Placeable y los coloca en SurfacePlanes.
     /// </summary>
-    /// <param name="spaceObjects">Collection of prefab GameObjects that have the Placeable component.</param>
-    /// <param name="surfaces">Collection of SurfacePlane objects in the world.</param>
-    /// <param name="surfaceType">Type of objects and planes that we are trying to match-up.</param>
+    /// <param name="spaceObjects">Lista de objetos que se quieren colocar.</param>
+    /// <param name="surfaces">Lista de superficies en el mundo.</param>
+    /// <param name="surfaceType">Tipo de las superficies (horizontal o vertical).</param>
     private void CreateSpaceObjects(List<GameObject> spaceObjects, List<GameObject> surfaces, PlacementSurfaces surfaceType)
     {
         List<int> UsedPlanes = new List<int>();
@@ -157,12 +165,12 @@ public class SpaceCollectionManager : Singleton<SpaceCollectionManager>
     }
 
     /// <summary>
-    /// Attempts to find a the closest plane to the user which is large enough to fit the object.
+    /// Busca el plano más cercano que es capaz de contener un objeto.
     /// </summary>
-    /// <param name="planes">List of planes to consider for object placement.</param>
-    /// <param name="minSize">Minimum size that the plane is required to be.</param>
-    /// <param name="startIndex">Index in the planes collection that we want to start at (to help avoid double-placement of objects).</param>
-    /// <param name="isVertical">True, if we are currently evaluating vertical surfaces.</param>
+    /// <param name="planes">Lista de planos.</param>
+    /// <param name="minSize">Tamaño mínimo del plano.</param>
+    /// <param name="startIndex">Indice de la lista de planos donde se empieza a buscar.</param>
+    /// <param name="isVertical">Verdadero si se buscan superficies verticales.</param>
     /// <returns></returns>
     private int FindNearestPlane(List<GameObject> planes, Vector3 minSize, List<int> usedPlanes, bool isVertical)
     {
@@ -194,10 +202,10 @@ public class SpaceCollectionManager : Singleton<SpaceCollectionManager>
     }
 
     /// <summary>
-    /// Adjusts the initial position of the object if it is being occluded by the spatial map.
+    /// Ajusta la posición inicial del objeto si está siendo ocluido.
     /// </summary>
-    /// <param name="position">Position of object to adjust.</param>
-    /// <param name="surfaceNormal">Normal of surface that the object is positioned against.</param>
+    /// <param name="position">Posición del objeto a ajustar.</param>
+    /// <param name="surfaceNormal">Normal del plano en la que está apoyado el objeto.</param>
     /// <returns></returns>
     private Vector3 AdjustPositionWithSpatialMap(Vector3 position, Vector3 surfaceNormal)
     {

@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 using Academy.HoloToolkit.Unity;
 
 /// <summary>
-/// The SurfaceManager class allows applications to scan the environment for a specified amount of time 
-/// and then process the Spatial Mapping Mesh (find planes, remove vertices) after that time has expired.
+/// La clase SurfaceManager permite a los programas escanear el espacio que rodea al usuario por 
+/// un tiempo especificado y después procesará el Spatial Mapping Mesh (encontrar planos, eliminar vértices)
+/// una vez que el tiempo acabó.
 /// </summary>
 public class PlaySpaceManager : Singleton<PlaySpaceManager>
 {
@@ -28,13 +32,10 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
     public uint minimumWalls = 1;
 
     /// <summary>
-    /// Indicates if processing of the surface meshes is complete.
+    /// Indica si se han terminado de procesar los meshes.
     /// </summary>
     private bool meshesProcessed = false;
 
-    /// <summary>
-    /// GameObject initialization.
-    /// </summary>
     private void Start()
     {
         // Update surfaceObserver and storedMeshes to use the same material during scanning.
@@ -44,9 +45,6 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
         SurfaceMeshesToPlanes.Instance.MakePlanesComplete += SurfaceMeshesToPlanes_MakePlanesComplete;
     }
 
-    /// <summary>
-    /// Called once per frame.
-    /// </summary>
     private void Update()
     {
         // Check to see if the spatial mapping data has been processed
@@ -89,10 +87,10 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
     }
 
     /// <summary>
-    /// Handler for the SurfaceMeshesToPlanes MakePlanesComplete event.
+    /// Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete.
     /// </summary>
-    /// <param name="source">Source of the event.</param>
-    /// <param name="args">Args for the event.</param>
+    /// <param name="source">Fuente del evento.</param>
+    /// <param name="args">Argumentos del evento.</param>
     private void SurfaceMeshesToPlanes_MakePlanesComplete(object source, System.EventArgs args)
     {
         /* TODO: 3.a DEVELOPER CODING EXERCISE 3.a */
@@ -153,7 +151,7 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
     }
 
     /// <summary>
-    /// Creates planes from the spatial mapping surfaces.
+    /// Crea planos a partir de las superficies identificadas.
     /// </summary>
     private void CreatePlanes()
     {
@@ -166,7 +164,7 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
     }
 
     /// <summary>
-    /// Removes triangles from the spatial mapping surfaces.
+    /// Elimina triángulos de las superficies.
     /// </summary>
     /// <param name="boundingObjects"></param>
     private void RemoveVertices(IEnumerable<GameObject> boundingObjects)
@@ -178,9 +176,6 @@ public class PlaySpaceManager : Singleton<PlaySpaceManager>
         }
     }
 
-    /// <summary>
-    /// Called when the GameObject is unloaded.
-    /// </summary>
     private void OnDestroy()
     {
         if (SurfaceMeshesToPlanes.Instance != null)

@@ -13,12 +13,12 @@ public class LevelObjectFactory : MonoBehaviour
     /// <summary>
     /// Los bloques que se pueden instanciar.
     /// </summary>
-    private Block[] blocks;
+    [SerializeField] private Block[] blocks = new Block[0];
 
     /// <summary>
     /// Los items que se pueden instanciar.
     /// </summary>
-    private Item[] items;
+    [SerializeField] private Item[] items = new Item[0];
 
     /// <summary>
     /// El robot que se mueve por los bloques.
@@ -35,8 +35,8 @@ public class LevelObjectFactory : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        blocks = Resources.LoadAll<Block>("Prefabs/Blocks");
-        items = Resources.LoadAll<Item>("Prefabs/Items");
+        //blocks = Resources.LoadAll<Block>("Prefabs/Blocks");
+        //items = Resources.LoadAll<Item>("Prefabs/Items");
 
         EventAggregator.Instance.Subscribe<MsgRenderMainCharacter>(GetMainCharacterInstance);
     }

@@ -31,12 +31,24 @@ public class MessageScreenButton : MonoBehaviour
     /// </summary>
     public string ButtonType { get => buttonType; set => buttonType = value; }
 
+    public AudioClip ClickSfx { get => clickSfx; set => clickSfx = value; }
+
+    /// <summary>
+    /// Audio de hacer click.
+    /// </summary>
+    [SerializeField] private AudioClip clickSfx;
+
     /// <summary>
     /// OnSelect.
     /// </summary>
     public void OnSelect()
     {
         informOnPressed?.Invoke();
+
+        if (clickSfx != null)
+        {
+            EventAggregator.Instance.Publish<MsgPlaySfxAtPoint>(new MsgPlaySfxAtPoint(clickSfx, 1.0f, transform.position));
+        }
     }
 
     /// <summary>

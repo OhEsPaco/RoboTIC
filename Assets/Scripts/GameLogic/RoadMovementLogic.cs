@@ -85,7 +85,7 @@ public class RoadMovementLogic : MonoBehaviour
     /// Busca el siguiente camino posible y crea una LTSpline combinando los puntos nuevos y los anteriores.
     /// </summary>
     /// <param name="input">El input<see cref="RoadInput"/>.</param>
-    /// <param name="ltDescr">El descriptor del tween como parametro de salida<see cref="LTDescr"/>.</param>
+    /// <param name="ltDescr">El descriptor del tween como parámetro de salida<see cref="LTDescr"/>.</param>
     /// <returns>True si hay camino, false si no <see cref="bool"/>.</returns>
     private bool StartNewPath(RoadInput input, out LTDescr ltDescr)
     {
@@ -104,7 +104,7 @@ public class RoadMovementLogic : MonoBehaviour
             A set of points that define the points the path will pass through (starting with starting
             control point, and ending with a control point)
             Note: The first and last item just define the angle of the end points, they are not actually
-            used in the spline path itself. If you do not care about the angle you can jus set the first
+            used in the spline path itself. If you do not care about the angle you can just set the first
             two items and last two items as the same value.*/
 
             Vector3[] rawPath = new Vector3[path.points.Length + 2];

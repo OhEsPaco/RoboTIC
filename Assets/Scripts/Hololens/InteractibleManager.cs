@@ -1,9 +1,12 @@
-﻿using Academy.HoloToolkit.Unity;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using Academy.HoloToolkit.Unity;
 using UnityEngine;
 
 /// <summary>
-/// InteractibleManager keeps tracks of which GameObject
-/// is currently in focus.
+/// InteractibleManager contiene el objeto al que el usuario está
+/// mirando.
 /// </summary>
 public class InteractibleManager : Singleton<InteractibleManager>
 {
@@ -11,12 +14,12 @@ public class InteractibleManager : Singleton<InteractibleManager>
 
     private GameObject oldFocusedGameObject = null;
 
-    void Start()
+    private void Start()
     {
         FocusedGameObject = null;
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         oldFocusedGameObject = FocusedGameObject;
 

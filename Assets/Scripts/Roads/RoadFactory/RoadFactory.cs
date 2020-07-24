@@ -19,10 +19,10 @@ public class RoadFactory : MonoBehaviour
     /// <summary>
     /// Todas las carreteras.
     /// </summary>
-    private Road[] allRoads;
+    [SerializeField] private Road[] allRoads = new Road[0];
 
     /// <summary>
-    /// Lista de carreteras de funcion.
+    /// Lista de carreteras de función.
     /// </summary>
     private Road[] functionRoads;
 
@@ -42,7 +42,8 @@ public class RoadFactory : MonoBehaviour
     private void Start()
     {
         //Tomamos todas las carreteras
-        allRoads = Resources.LoadAll<Road>("Prefabs/Roads");
+        //allRoads = Resources.LoadAll<Road>("Prefabs/Roads");
+        //allRoads = GetComponentsInChildren<Road>();
         if (allRoads.Length == 0)
         {
             Debug.LogError("No roads found");
@@ -54,7 +55,7 @@ public class RoadFactory : MonoBehaviour
 
         foreach (Road r in allRoads)
         {
-            Debug.Log("Added road: " + r.RoadIdentifier + " Connector: " + r.Connector);
+            Debug.Log("Added road: " + r.RoadIdentifier + " Connector: " + r.Connector + " IO: " + r.GetAllIO().Length);
             if (!roadsByID.ContainsKey(r.RoadIdentifier))
             {
                 roadsByID.Add(r.RoadIdentifier, r);
@@ -99,7 +100,7 @@ public class RoadFactory : MonoBehaviour
     /// </summary>
     /// <param name="id">El id<see cref="string"/> de la carretera a generar.</param>
     /// <param name="ioToMatch">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
-    /// <param name="road">La carretera generada<see cref="Road"/>.</param>
+    /// <param name="road">La carretera generada <see cref="Road"/>.</param>
     /// <param name="connectionsR_C">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
     /// <returns>True si ha funcionado, false si no <see cref="bool"/>.</returns>
     public bool SpawnRoadByID(in string id, in List<RoadIO> ioToMatch, out Road road, out Dictionary<string, string> connectionsR_C)
@@ -122,13 +123,13 @@ public class RoadFactory : MonoBehaviour
     /// <summary>
     /// Genera una carretera por su id si encaja en el hueco entre dos carreteras.
     /// </summary>
-    /// <param name="id">El id<see cref="string"/> de la carretera a generar.</param>
-    /// <param name="ioToMatch">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
-    /// <param name="ioToMatch2">Lista de IO que tiene que satisfacer la carretera<see cref="List{RoadIO}"/>.</param>
-    /// <param name="road">La carretera generada<see cref="Road"/>.</param>
-    /// <param name="connectionsR1_Connector">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
-    /// <param name="connectionsR2_Connector">Las conexiones que se han hecho<see cref="Dictionary{string, string}"/>.</param>
-    /// <returns>True si ha funcionado, false si no <see cref="bool"/>.</returns>
+    /// <param name="id">El id de la carretera a generar.</param>
+    /// <param name="ioToMatch">Lista de IO que tiene que satisfacer la carretera.</param>
+    /// <param name="ioToMatch2">Lista de IO que tiene que satisfacer la carretera.</param>
+    /// <param name="road">La carretera generada.</param>
+    /// <param name="connectionsR1_Connector">Las conexiones que se han hecho.</param>
+    /// <param name="connectionsR2_Connector">Las conexiones que se han hecho.</param>
+    /// <returns>True si ha funcionado, false si no.</returns>
     public bool SpawnRoadByID(in string id, in List<RoadIO> ioToMatch, in List<RoadIO> ioToMatch2, out Road road, out Dictionary<string, string> connectionsR1_Connector, out Dictionary<string, string> connectionsR2_Connector)
     {
         connectionsR1_Connector = null;
@@ -398,7 +399,8 @@ public class RoadFactory : MonoBehaviour
     private bool CheckIfValid(in List<RoadIO> ioToMatch, in List<RoadIO> candidateIO, in float errorMargin, out Dictionary<string, string> connections)
     {
         connections = new Dictionary<string, string>();
-
+        Debug.Log("TOMATCH: " + ioToMatch.Count);
+        Debug.Log("CANDIDATE: " + candidateIO.Count);
         if (ioToMatch.Count == 0 || candidateIO.Count == 0 || ioToMatch.Count != candidateIO.Count)
         {
             return false;

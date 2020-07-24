@@ -103,6 +103,10 @@ public abstract class Road : MonoBehaviour
     /// <returns>Array de IO.</returns>
     public RoadIO[] GetAllIO()
     {
+        if (!awaked)
+        {
+            Awake();
+        }
         return allIO;
     }
 

@@ -42,20 +42,4 @@ public class SoundEngine : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(msg.clip, msg.point, msg.volume);
     }
-
-    /// <summary>
-    /// Pusa un clip.
-    /// </summary>
-    /// <param name="clip">El clip.</param>
-    private void PauseClip(AudioClip clip)
-    {
-    }
-
-    /// <summary>
-    /// Para un clip.
-    /// </summary>
-    /// <param name="clip">El clip.</param>
-    private void StopClip(AudioClip clip)
-    {
-    }
 }

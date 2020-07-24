@@ -228,15 +228,15 @@ public class RoadPlacementLogic : MonoBehaviour
     /// <param name="buttonIndex">El botón pulsado <see cref="Buttons"/>.</param>
     public void AddInputFromButton(Buttons buttonIndex)
     {
-        try
-        {
+       // try
+        //{
             buttonActionsDictionary[buttonIndex]();
 
-        }
-        catch
-        {
-            Debug.LogError("Unknown input: " + buttonIndex.ToString());
-        }
+        //}
+        //catch
+       // {
+         //   Debug.LogError("Unknown input: " + buttonIndex.ToString());
+       // }
     }
 
     /// <summary>
@@ -560,6 +560,7 @@ public class RoadPlacementLogic : MonoBehaviour
         {
             Road thisRoad = spawnedRoads[i];
             List<RoadIO> ioToMatch = thisRoad.GetRoadIOByDirection(direction);
+            Debug.Log("VASJDFKASJDFKJA "+ioToMatch.Count);
             Road nextRoad;
             Dictionary<string, string> connectionsR_C;
 
@@ -636,7 +637,7 @@ public class RoadPlacementLogic : MonoBehaviour
         {
             return false;
         }
-
+       
         RoadIO roadIOL = null;
         RoadIO roadIOR = null;
 
@@ -813,7 +814,7 @@ public class RoadPlacementLogic : MonoBehaviour
     /// <summary>
     /// Crea una carretera con botón (o modifica una existente si hay hueco).
     /// </summary>
-    /// <param name="button">El botón a generar <see cref="Buttons"/>.</param>
+    /// <param name="button">El botón a generar.</param>
     private void SpawnVerticalButton(Buttons button)
     {
         bool placed = false;

@@ -23,6 +23,12 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private GameObject placeableMap;
 
     /// <summary>
+    /// Determina si se debe mostrar la pantalla de excepción cuando el
+    /// jugador pierde el nivel. 
+    /// </summary>
+    [SerializeField] public bool showExceptionScreen = false;
+
+    /// <summary>
     /// El padre de los objetos que componen el mapa.
     /// </summary>
     private GameObject mapParent;
@@ -85,7 +91,7 @@ public class GameLogic : MonoBehaviour
     /// <summary>
     /// Determina si el robot de las carreteras ha acabado de moverse.
     /// </summary>
-    public bool FinishedMinibotMovement { get => finishedMinibotMovement; set => finishedMinibotMovement = value; }
+    public bool FinishedMinibotMovement { get { return finishedMinibotMovement; } set { finishedMinibotMovement = value; CheckState(); } }
 
     /// <summary>
     /// Estructura de datos que contiene el nivel actual.
@@ -290,9 +296,18 @@ public class GameLogic : MonoBehaviour
 
         //Evitando así que la pantalla que pregunta al jugador si quiere reintentar el nivel se muestre antes de tiempo
         EventAggregator.Instance.Publish(new MsgBigRobotAction(MsgBigRobotAction.BigRobotActions.Lose, new Vector3()));
-        EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("lose", new Tuple<string, OnMessageScreenButtonPressed>[] {
+        if (showExceptionScreen)
+        {
+            EventAggregator.Instance.Publish<MsgShowScreen>(new MsgShowScreen("lose", new Tuple<string, OnMessageScreenButtonPressed>[] {
             Tuple.Create<string, OnMessageScreenButtonPressed>("Yes", YesButton),
             Tuple.Create<string, OnMessageScreenButtonPressed>("No", NoButton)}));
+        }
+        else
+        {
+            //Hacemos restart sin preguntar
+            yield return new WaitForSeconds(2f);
+            YesButton();
+        }
     }
 
     /// <summary>

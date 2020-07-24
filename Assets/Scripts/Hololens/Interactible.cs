@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
 
-/// <summary>
-/// Conveys the set of states available on an Interactible.
-/// In the inspector check the states to display on each Interactible.
-/// </summary>
+using UnityEngine;
+
 [System.Serializable]
 public class InteractibleParameters
 {
@@ -12,8 +11,8 @@ public class InteractibleParameters
 }
 
 /// <summary>
-/// The Interactible class flags a Game Object as being "Interactible".
-/// Determines what happens when an Interactible is being gazed at.
+/// Esta clase marca un objeto de tal forma que se pueda interactuar con el mismo
+/// cuando el usuario lo mira.
 /// </summary>
 public class Interactible : MonoBehaviour
 {
@@ -21,9 +20,10 @@ public class Interactible : MonoBehaviour
 
     [Tooltip("Audio clip to play when interacting with this hologram.")]
     public AudioClip TargetFeedbackSound;
+
     private AudioSource audioSource;
 
-    void Start()
+    private void Start()
     {
         // Add a BoxCollider if the interactible does not contain one.
         Collider collider = GetComponentInChildren<Collider>();
@@ -53,7 +53,7 @@ public class Interactible : MonoBehaviour
         }
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         Debug.ClearDeveloperConsole();
     }
