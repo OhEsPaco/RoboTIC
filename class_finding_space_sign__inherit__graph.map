@@ -1,0 +1,4 @@
+<map id="FindingSpaceSign" name="FindingSpaceSign">
+<area shape="rect" id="node1" title="Cartel que indica que se está buscando el espacio del jugador." alt="" coords="5,131,177,281"/>
+<area shape="rect" id="node2" title=" " alt="" coords="36,5,147,83"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Item" name="Item">
+<area shape="rect" id="node1" title="Define la clase Item." alt="" coords="5,373,177,773"/>
+<area shape="rect" id="node2" href="$class_level_object.html" title="Define la clase LevelObject que son los objetos del juego tales como items y bloques." alt="" coords="12,131,171,325"/>
+<area shape="rect" id="node3" title=" " alt="" coords="36,5,147,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="LevelButtons.DisableAllButtons" name="LevelButtons.DisableAllButtons">
+<area shape="rect" id="node1" title="Desactiva todos los botones." alt="" coords="5,5,208,32"/>
+<area shape="rect" id="node2" href="$class_road_button.html#ae02d5352cfd814d4be0631c80aeb2a7b" title="Desactiva el botón." alt="" coords="256,5,393,32"/>
+</map>

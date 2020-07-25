@@ -1,0 +1,7 @@
+<map id="Road.GetPathAndOutput" name="Road.GetPathAndOutput">
+<area shape="rect" id="node1" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="795,31,961,57"/>
+<area shape="rect" id="node2" href="$class_road_movement_logic.html#a7a87c1859d166175944d92a0b6e775e6" title="Busca el siguiente camino posible y crea una LTSpline combinando los puntos nuevos y los anteriores." alt="" coords="520,31,747,57"/>
+<area shape="rect" id="node3" href="$class_road_movement_logic.html#acc8bfbe5c3b2e8e0563de094b9e6f542" title="Recibe el mensaje de iniciar movimiento dado el input y el output de la carretera." alt="" coords="239,5,472,32"/>
+<area shape="rect" id="node5" href="$class_road_movement_logic.html#afe9ef2ea355cbfc6c890ec2ff26e0744" title="Update." alt="" coords="262,56,449,83"/>
+<area shape="rect" id="node4" href="$class_road_movement_logic.html#af1a4a5568a3b0217ee2a2502a3a0addb" title="Awake." alt="" coords="5,5,191,32"/>
+</map>

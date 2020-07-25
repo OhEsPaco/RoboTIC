@@ -1,0 +1,4 @@
+<map id="PathContainer" name="PathContainer">
+<area shape="rect" id="node1" title="Contiene caminos por los que se moverá el robot que son listas de puntos ordenados." alt="" coords="5,131,145,223"/>
+<area shape="rect" id="node2" title=" " alt="" coords="20,5,131,83"/>
+</map>

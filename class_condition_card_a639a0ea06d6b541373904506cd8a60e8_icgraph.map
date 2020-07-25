@@ -1,0 +1,4 @@
+<map id="ConditionCard.TappedFrame" name="ConditionCard.TappedFrame">
+<area shape="rect" id="node1" title="Se ha tocado la carta." alt="" coords="200,5,387,32"/>
+<area shape="rect" id="node2" href="$class_condition_card.html#ad7567c42f5437c44ca20862371e04194" title="Awake." alt="" coords="5,5,152,32"/>
+</map>

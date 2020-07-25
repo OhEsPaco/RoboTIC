@@ -1,0 +1,6 @@
+<map id="ConditionCard.HideCard" name="ConditionCard.HideCard">
+<area shape="rect" id="node1" title="Esconde la carta." alt="" coords="705,13,865,39"/>
+<area shape="rect" id="node2" href="$class_condition_card_picker.html#a7a47682d58b5174a7431fcb858d3847b" title="Corrutina para esconder las cartas." alt="" coords="487,5,657,47"/>
+<area shape="rect" id="node3" href="$class_condition_card_picker.html#ae005208648200f914e70e77c296a3512" title="Se ejecuta cuando se hace tap en una carta." alt="" coords="225,13,439,39"/>
+<area shape="rect" id="node4" href="$class_condition_card_picker.html#ad53167717d998ebf6c074ab8b1432364" title="Start." alt="" coords="5,13,177,39"/>
+</map>

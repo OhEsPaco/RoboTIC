@@ -1,0 +1,6 @@
+<map id="MapRenderer.SpawnBlock" name="MapRenderer.SpawnBlock">
+<area shape="rect" id="node1" title="Genera un bloque por su id." alt="" coords="5,46,180,73"/>
+<area shape="rect" id="node2" href="$class_level_object_factory.html#aa05bc2f181a452c37f2461675f4bf641" title="Genera la instancia de un objeto dado su ID." alt="" coords="228,39,421,80"/>
+<area shape="rect" id="node3" href="$class_level_object_factory.html#afd9dc46fb9438e3d4811a76253e74319" title="Busca la referencia a un objeto a partir de su ID." alt="" coords="469,5,669,47"/>
+<area shape="rect" id="node4" href="$class_level_object_factory.html#a17f7f3b982d4e236969c072da80834db" title="Instancia un objeto a partir de su referencia." alt="" coords="471,71,668,112"/>
+</map>

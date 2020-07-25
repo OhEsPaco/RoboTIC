@@ -1,0 +1,5 @@
+<map id="BigCharacter.ServeAllActionsFinished" name="BigCharacter.ServeAllActionsFinished">
+<area shape="rect" id="node1" title="Manda un mensaje cuando todas las acciones han acabado." alt="" coords="5,5,197,47"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a8d3011f1889b47495d14b1874e60b4cb" title="Corrutina para mandar un mensaje cuando todas las acciones han acabado." alt="" coords="245,5,437,47"/>
+<area shape="rect" id="node3" href="$class_big_character.html#a2e3e33ea40fe6dbb1e6108219ac3e312" title="Comprueba si han terminado todas las acciones del robot." alt="" coords="485,5,665,47"/>
+</map>

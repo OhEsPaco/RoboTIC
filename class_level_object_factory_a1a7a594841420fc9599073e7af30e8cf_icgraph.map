@@ -1,0 +1,4 @@
+<map id="LevelObjectFactory.GetMainCharacterInstance" name="LevelObjectFactory.GetMainCharacterInstance">
+<area shape="rect" id="node1" title="Retorna la instancia del robot principal." alt="" coords="229,5,416,47"/>
+<area shape="rect" id="node2" href="$class_level_object_factory.html#a8346247aba64a783f846d1dbc2898832" title="Awake." alt="" coords="5,13,181,39"/>
+</map>

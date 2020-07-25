@@ -1,0 +1,7 @@
+<map id="EditorSurfacePoint.SetPosition" name="EditorSurfacePoint.SetPosition">
+<area shape="rect" id="node1" title="Indica a qué posición x,z corresponde este objeto." alt="" coords="447,42,648,69"/>
+<area shape="rect" id="node2" href="$class_editor_surface.html#a6ed8a67811646771d2740eef3b32698b" title="Devuelve la superficie a su estado original." alt="" coords="221,5,393,47"/>
+<area shape="rect" id="node4" href="$class_editor_surface.html#a4425ce1a143c1918d645c69e204828f5" title="Corrutina que inicializa la superficie." alt="" coords="215,71,399,98"/>
+<area shape="rect" id="node3" href="$class_editor_surface.html#a07018e677df1dfb38535f33814178ceb" title="Awake." alt="" coords="15,13,157,39"/>
+<area shape="rect" id="node5" href="$class_editor_surface.html#a9a80dcf7bceda3214cbee59699982695" title="OnEnable." alt="" coords="5,71,167,98"/>
+</map>

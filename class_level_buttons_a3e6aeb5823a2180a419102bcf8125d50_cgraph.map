@@ -1,0 +1,11 @@
+<map id="LevelButtons.Awake" name="LevelButtons.Awake">
+<area shape="rect" id="node1" title="Awake." alt="" coords="5,81,144,108"/>
+<area shape="rect" id="node2" href="$class_level_buttons.html#a7d590159f560735e35db71845c9e06ea" title="Desactiva todos los botones." alt="" coords="192,5,395,32"/>
+<area shape="rect" id="node4" href="$class_level_buttons.html#a9d604f85a9489d5a1bef162a772b5be7" title="Activa todos los botones." alt="" coords="193,56,393,83"/>
+<area shape="rect" id="node6" href="$class_level_buttons.html#aa302d005abfdee3e2d9d98e39e5d80b2" title="Activa un botón concreto." alt="" coords="204,107,383,133"/>
+<area shape="rect" id="node7" href="$class_level_buttons.html#a1416e4f44988d1f7cea49dbc09175458" title="Cambia el contador de un botón al número apropiado." alt="" coords="204,158,383,199"/>
+<area shape="rect" id="node3" href="$class_road_button.html#ae02d5352cfd814d4be0631c80aeb2a7b" title="Desactiva el botón." alt="" coords="478,5,615,32"/>
+<area shape="rect" id="node5" href="$class_road_button.html#a2ff852e268e718b849995087586e074c" title="Activa el botón." alt="" coords="479,81,614,108"/>
+<area shape="rect" id="node8" href="$class_button_counter_script.html#a20c694be3e3a77cd8b45e527d2b71f36" title="Pone un número en ese contador." alt="" coords="443,165,651,192"/>
+<area shape="rect" id="node9" href="$class_counter.html#a16c887da7d165469a0a521827d1ae19a" title="Pone un número en el contador. Si se pasa pone el número máximo y si es menor que cero pone el cero." alt="" coords="699,165,835,192"/>
+</map>

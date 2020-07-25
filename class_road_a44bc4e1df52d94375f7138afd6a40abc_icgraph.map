@@ -1,0 +1,51 @@
+<map id="Road.Awake" name="Road.Awake">
+<area shape="rect" id="node1" title="Awake." alt="" coords="3301,341,3396,368"/>
+<area shape="rect" id="node2" href="$class_road.html#abd8ae4deb847e0774172e522bba49337" title="Retorna toda la IO." alt="" coords="2154,199,2259,225"/>
+<area shape="rect" id="node24" href="$class_road.html#a462771c26a07b1e20fba6e1a57e7bbc2" title="Retorna la IO por su dirección." alt="" coords="3067,499,3253,525"/>
+<area shape="rect" id="node3" href="$class_road_placement_logic.html#a361651d3ae04351a943f234e4e26afcb" title="Corrige las posiciones de las carreteras." alt="" coords="1851,191,2042,233"/>
+<area shape="rect" id="node6" href="$class_selected_output_marker.html#a1ed26952faf537b4bbb6ff9b1bc556cd" title="Busca la IO más cercana." alt="" coords="1848,126,2045,167"/>
+<area shape="rect" id="node14" href="$class_road_placement_logic.html#acae518e205d3319df0b0fa1fdbed60cc" title="Genera una serie de carreteras teniendo en cuenta de rellenar con conectores los huecos que se puedan..." alt="" coords="1853,415,2041,457"/>
+<area shape="rect" id="node23" href="$class_road_factory.html#a4a014f1163e74037e73543de9485f01a" title="Start." alt="" coords="1883,75,2011,101"/>
+<area shape="rect" id="node4" href="$class_road_placement_logic.html#a9ab68de1dca55fead0d96ea15847caad" title="Deshace las acciones del usuario." alt="" coords="1302,173,1497,200"/>
+<area shape="rect" id="node5" href="$class_road_placement_logic.html#acd1c4d044ecfd603c37b69210fff1b86" title="Start." alt="" coords="1057,493,1234,520"/>
+<area shape="rect" id="node7" href="$class_selected_output_marker.html#a79a46af5dcb382c02535db20a5f903df" title="Busca y selecciona la IO más cercana." alt="" coords="1590,107,1771,149"/>
+<area shape="rect" id="node9" href="$class_selected_output_marker.html#ac32cb8155f3a689a72be0c841486e692" title="OnSelect." alt="" coords="1294,5,1505,32"/>
+<area shape="rect" id="node12" href="$class_selected_output_marker.html#a52d8524ea49729628426557ec37fce26" title="Se activa cuando se arrastra con el ratón." alt="" coords="1561,224,1800,251"/>
+<area shape="rect" id="node8" href="$class_selected_output_marker.html#a58216a7778b6f151e1338b0eee7a4e2a" title="OnMouseUp." alt="" coords="1285,123,1513,149"/>
+<area shape="rect" id="node10" href="$class_selected_output_marker.html#a003b8fd46af739038db0cfe957e645be" title="Para mejorar la usabilidad el gesto de tap sirve para parar la colocación del marcador aunque no se h..." alt="" coords="1290,57,1509,98"/>
+<area shape="rect" id="node11" href="$class_selected_output_marker.html#aa54ccdb14f573b4946aedb38851fef63" title="Start." alt="" coords="1053,64,1237,91"/>
+<area shape="rect" id="node13" href="$class_selected_output_marker.html#aa4446d6769a2a8324dd9c248c6d72955" title="Update." alt="" coords="1301,224,1498,251"/>
+<area shape="rect" id="node15" href="$class_road_placement_logic.html#af60fb48ebb8dddc89feccd87da77d6ab" title="Lógica del botón de condición. No se pueden poner condiciones dentro de condiciones." alt="" coords="1571,275,1790,301"/>
+<area shape="rect" id="node16" href="$class_road_placement_logic.html#afdc7f387472ea87b5d40ec590ec5448c" title="Lógica del botón de bucle. No se pueden poner bucles dentro de condiciones." alt="" coords="1584,325,1777,352"/>
+<area shape="rect" id="node17" href="$class_road_placement_logic.html#ad6a9801681f828f8cd31473e02a08b2b" title="Crea una carretera con botón (o modifica una existente si hay hueco)." alt="" coords="1587,461,1775,502"/>
+<area shape="rect" id="node18" href="$class_road_placement_logic.html#ad3f5f0f683c26eec2b0d7272867e804c" title="Lógica del botón de acción." alt="" coords="1298,443,1501,469"/>
+<area shape="rect" id="node19" href="$class_road_placement_logic.html#a6f4b51662d037fc593a56c7c5c33510d" title="Lógica del botón de salto." alt="" coords="1301,493,1497,520"/>
+<area shape="rect" id="node20" href="$class_road_placement_logic.html#a40638553e31ba5087a69ed18ec235a77" title="Lógica del botón move." alt="" coords="1302,544,1497,571"/>
+<area shape="rect" id="node21" href="$class_road_placement_logic.html#acd1991e5b73bad88bc1ef431c4670509" title="Lógica del botón de girar a la izquierda." alt="" coords="1294,595,1505,621"/>
+<area shape="rect" id="node22" href="$class_road_placement_logic.html#a89cfe17859271d4eb24d65e40c5e4d91" title="Lógica del botón de girar a la derecha." alt="" coords="1304,377,1495,418"/>
+<area shape="rect" id="node25" href="$class_road_factory.html#a58923d70dd274577267702c93f88f8ba" title="Dada una lista de carreteras y una serie de IO, devuelve una lista de carreteras que encajan ahi y un..." alt="" coords="2847,462,3019,503"/>
+<area shape="rect" id="node31" href="$class_road_placement_logic.html#a6e56e737eb6a793977559f51a903dca7" title="Genera y conecta una serie de carreteras." alt="" coords="2105,474,2308,515"/>
+<area shape="rect" id="node32" href="$class_road_placement_logic.html#af842eed03cd2aef6cbe6c16f13069939" title="Resetea la carretera a su estado original." alt="" coords="1574,747,1787,773"/>
+<area shape="rect" id="node26" href="$class_road_factory.html#a9bcabd5b237f83862ceec44bb37084ee" title="Dadas una lista de carreteras, una lista de io de la carretera a un lado de un hueco y una lista de i..." alt="" coords="2613,427,2799,453"/>
+<area shape="rect" id="node29" href="$class_road_factory.html#a289ab802a461c9ff4a616fd3bbf3810c" title="Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa." alt="" coords="2621,477,2791,504"/>
+<area shape="rect" id="node27" href="$class_road_factory.html#ac805e3be2b8bc72dbb572a27d90480ef" title="Dado un hueco entre dos carreteras lo rellena con el conector que encaje." alt="" coords="2093,423,2320,449"/>
+<area shape="rect" id="node28" href="$class_road_factory.html#a2c40515734973f0b7cb62282d9f7f300" title="Genera una carretera por su id si encaja en el hueco entre dos carreteras." alt="" coords="2368,376,2565,403"/>
+<area shape="rect" id="node30" href="$class_road_factory.html#aa62706cca01dacab9e6b0721c8024d2d" title="Genera una carretera por su ID si encaja con la IO que se le pasa." alt="" coords="2368,477,2565,504"/>
+<area shape="rect" id="node33" href="$class_road_placement_logic.html#a86db0e02ccbd5a29576fb3fe4cf793cf" title="Lógica del botón restart." alt="" coords="1296,696,1503,723"/>
+<area shape="rect" id="node34" href="$class_road_placement_logic.html#acd9463ed74082456bada6a47ec479c61" title="Vuelve al menú de mapas." alt="" coords="1296,747,1503,773"/>
+<area shape="rect" id="node35" href="$class_game_logic.html#a68de21c18254193278458b9d44fca75d" title="Lógica del botón no." alt="" coords="1326,797,1473,824"/>
+<area shape="rect" id="node45" href="$class_game_logic.html#a9eec777370cd970dd6544c2c7ebd0adf" title="Lógica del botón yes." alt="" coords="211,848,365,875"/>
+<area shape="rect" id="node36" href="$class_game_logic.html#ac5d13f1585f61395def7fdd30e5e497f" title="Muestra la pantalla de lose cuando el robot termine sus acciones." alt="" coords="1074,797,1217,824"/>
+<area shape="rect" id="node46" href="$class_game_logic.html#a3ac2e76f5d25321c1cc3f427d291ae37" title="Muestra la pantalla de win cuando el robot termine sus acciones." alt="" coords="7,848,146,875"/>
+<area shape="rect" id="node37" href="$class_game_logic.html#aede6bc26c17e3def48910d7068ddc17a" title="Comprueba si se ha ganado o perdido la partida." alt="" coords="845,1076,1005,1103"/>
+<area shape="rect" id="node38" href="$class_game_logic.html#abe051e8707f472f3e5eab89420a2b298" title="Lógica del botón de acción." alt="" coords="639,1051,785,1077"/>
+<area shape="rect" id="node39" href="$class_game_logic.html#a33b454489cadf0e5e25873af0421dc60" title="Lógica del botón de condición." alt="" coords="631,1101,793,1128"/>
+<area shape="rect" id="node40" href="$class_game_logic.html#a190d7822ab400d45dd983235be2e326e" title="Lógica del botón de salto." alt="" coords="643,1203,781,1229"/>
+<area shape="rect" id="node41" href="$class_game_logic.html#ae4ac05e7e755f71636ee1222252328ac" title="Lógica del botón avanzar." alt="" coords="434,1228,573,1255"/>
+<area shape="rect" id="node42" href="$class_game_logic.html#ac2ddab566f95c0d86e75ab44ca402921" title="Lógica del botón de bucle." alt="" coords="644,1000,780,1027"/>
+<area shape="rect" id="node43" href="$class_game_logic.html#a725881c8deea267a4ac8e2fc58d51563" title="Genera los objetos del nivel actual." alt="" coords="627,1152,797,1179"/>
+<area shape="rect" id="node44" href="$class_game_logic.html#a96ab1276a6fcb95ff618065ca9fde9c8" title="Lógica del botón restart." alt="" coords="428,899,579,925"/>
+<area shape="rect" id="node47" href="$class_game_logic.html#a48ca5475fdcf02b520873a9d3eeb10ae" title="Da comienzo a un nivel del juego." alt="" coords="429,1152,578,1179"/>
+<area shape="rect" id="node48" href="$class_map_menu_logic.html#a9ed9eb0f3b5ff33beb00dbac030b5673" title="El jugador ha seleccionado un mapa." alt="" coords="196,1145,380,1186"/>
+<area shape="rect" id="node49" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,1152,148,1179"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="SelectedOutputMarker.Update" name="SelectedOutputMarker.Update">
+<area shape="rect" id="node1" title="Update." alt="" coords="5,46,203,73"/>
+<area shape="rect" id="node2" href="$class_selected_output_marker.html#a52d8524ea49729628426557ec37fce26" title="Se activa cuando se arrastra con el ratón." alt="" coords="251,46,489,73"/>
+<area shape="rect" id="node3" href="$class_selected_output_marker.html#ac2dab8d2a94f233d15da7c2911d98a4c" title="Convierte las coordenadas del ratón a coordenadas globales." alt="" coords="547,5,725,47"/>
+<area shape="rect" id="node4" href="$class_selected_output_marker.html#a1ed26952faf537b4bbb6ff9b1bc556cd" title="Busca la IO más cercana." alt="" coords="537,71,735,112"/>
+<area shape="rect" id="node5" href="$class_road.html#abd8ae4deb847e0774172e522bba49337" title="Retorna toda la IO." alt="" coords="809,53,915,79"/>
+<area shape="rect" id="node7" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="783,103,941,130"/>
+<area shape="rect" id="node6" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="989,53,1084,79"/>
+</map>

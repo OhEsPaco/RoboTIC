@@ -1,0 +1,4 @@
+<map id="MapMenuLogic.GetListOfImportedLevels" name="MapMenuLogic.GetListOfImportedLevels">
+<area shape="rect" id="node1" title="Carga una lista con los nombres de archivo de los mapas creados por el usuario." alt="" coords="196,5,415,47"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,13,148,39"/>
+</map>

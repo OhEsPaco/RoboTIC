@@ -1,0 +1,4 @@
+<map id="EditorInstructionButton.ResetCounter" name="EditorInstructionButton.ResetCounter">
+<area shape="rect" id="node1" title="Pone el contador a cero." alt="" coords="5,5,164,47"/>
+<area shape="rect" id="node2" href="$class_counter.html#a16c887da7d165469a0a521827d1ae19a" title="Pone un número en el contador. Si se pasa pone el número máximo y si es menor que cero pone el cero." alt="" coords="212,13,348,39"/>
+</map>

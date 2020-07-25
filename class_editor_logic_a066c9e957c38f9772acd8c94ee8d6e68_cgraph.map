@@ -1,0 +1,4 @@
+<map id="EditorLogic.GetMaxXYZ" name="EditorLogic.GetMaxXYZ">
+<area shape="rect" id="node1" title="Retorna la coordenada X,Y,Z máximas del nivel que se está generando." alt="" coords="5,5,165,32"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#accc3cfeba6480a7282551636ff7a3a1c" title="Retorna un EditorObject dadas las coordenadas X,Y,Z." alt="" coords="213,5,397,32"/>
+</map>

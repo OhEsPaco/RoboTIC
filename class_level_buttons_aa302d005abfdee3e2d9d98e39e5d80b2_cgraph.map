@@ -1,0 +1,4 @@
+<map id="LevelButtons.EnableButton" name="LevelButtons.EnableButton">
+<area shape="rect" id="node1" title="Activa un botón concreto." alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node2" href="$class_road_button.html#a2ff852e268e718b849995087586e074c" title="Activa el botón." alt="" coords="232,5,367,32"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="MainMenuLogic.ShowMainMenu" name="MainMenuLogic.ShowMainMenu">
+<area shape="rect" id="node1" title="Lanza el menú principal." alt="" coords="5,56,215,83"/>
+<area shape="rect" id="node2" href="$class_main_menu_logic.html#aff576c47381793870a6db9f1942f50ad" title="Sale del programa." alt="" coords="271,5,461,32"/>
+<area shape="rect" id="node3" href="$class_main_menu_logic.html#a197d6e40ecf5bf9a7649a3507c5df694" title="Lanza el editor." alt="" coords="275,56,457,83"/>
+<area shape="rect" id="node7" href="$class_main_menu_logic.html#a877a4b36428009a3f38b1290499dd7fe" title="Lanza el menú de mapas." alt="" coords="263,107,469,133"/>
+<area shape="rect" id="node4" href="$class_editor_logic.html#a85a4ce96b89c0f8dbc335f61abefabda" title="Método para mostrar el editor." alt="" coords="540,56,697,83"/>
+<area shape="rect" id="node5" href="$class_editor_logic.html#acffc81dfba112b959e60f847be80b54e" title="Devuelve el editor a su estado original." alt="" coords="768,56,927,83"/>
+<area shape="rect" id="node6" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="975,49,1176,90"/>
+<area shape="rect" id="node8" href="$class_map_menu_logic.html#abeca60b2ee602f9fe49f952cef7a1701" title="Muestra el menú de niveles." alt="" coords="517,107,720,133"/>
+</map>

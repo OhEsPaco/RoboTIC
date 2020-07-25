@@ -1,0 +1,6 @@
+<map id="MessageWarehouse" name="MessageWarehouse">
+<area shape="rect" id="node1" title="Clase MessageWarehouse que actua como un &quot;almacen&quot; de mensajes para poder recibirlos de forma diferid..." alt="" coords="5,329,235,509"/>
+<area shape="rect" id="node2" href="$class_event_aggregator.html" title="Clase EventAggregator usada como un punto central en el que los objetos del juego pueden públicar men..." alt="" coords="7,145,233,267"/>
+<area shape="rect" id="node3" title=" " alt="" coords="11,5,122,83"/>
+<area shape="rect" id="node4" title=" " alt="" coords="146,5,201,83"/>
+</map>

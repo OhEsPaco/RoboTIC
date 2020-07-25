@@ -1,0 +1,12 @@
+<map id="NodeIfIn.GetPathAndOutput" name="NodeIfIn.GetPathAndOutput">
+<area shape="rect" id="node1" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="5,37,188,64"/>
+<area shape="rect" id="node2" href="$class_road.html#adc5d65e42917097ad3d79110c4fa189b" title="Retorna un camino por su nombre." alt="" coords="238,9,393,36"/>
+<area shape="rect" id="node4" href="$class_node_if_in.html#a8ec436654ea1303c6371de3e372a5c36" title="Comprueba si se cumple la condición de la carta." alt="" coords="236,64,395,91"/>
+<area shape="rect" id="node3" href="$class_path_container.html#a0e983cb90956ee63c3427c9602463dc0" title="Retorna un camino por su nombre." alt="" coords="443,5,649,32"/>
+<area shape="rect" id="node5" href="$class_game_logic.html#ae15e3cbe93aadd0e202f89793058129b" title="Comprueba si el bloque de enfrente y abajo cumple una propiedad." alt="" coords="451,57,641,98"/>
+<area shape="rect" id="node10" href="$class_condition_card_picker.html#aa82a4a71b4b71e20f4474dbe8d48c687" title="Retorna la propiedad de la carta seleccionada." alt="" coords="450,122,642,163"/>
+<area shape="rect" id="node6" href="$class_game_logic.html#ad49799ab52d3785cf1d48042b89f9c17" title="Retorna las coordenadas del bloque al que avanza el jugador." alt="" coords="701,39,904,65"/>
+<area shape="rect" id="node7" href="$class_game_logic.html#a728854801c07a74599c649f7a6bdaca4" title="Dado un bloque comprueba si cumple una propiedad." alt="" coords="697,89,908,116"/>
+<area shape="rect" id="node8" href="$class_block.html#a6d9713d5845bc5decedd012819453978" title="Comprueba que el bloque cumpla una propiedad." alt="" coords="956,64,1101,91"/>
+<area shape="rect" id="node9" href="$class_level_object.html#a6337171c12dc5db5b366ad59d08c87e6" title="¿Es un bloque?" alt="" coords="961,115,1097,141"/>
+</map>

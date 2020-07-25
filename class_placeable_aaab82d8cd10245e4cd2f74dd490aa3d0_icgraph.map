@@ -1,0 +1,8 @@
+<map id="Placeable.GetColliderFacePoints" name="Placeable.GetColliderFacePoints">
+<area shape="rect" id="node1" title="Determina las coordenadas de la cara del BoxCollider que será colocado contra la superficie." alt="" coords="668,49,844,90"/>
+<area shape="rect" id="node2" href="$class_placeable.html#aa35fbd59a535d9e595ef9f50ab5dd781" title="Verifica si el objeto puede ser o no colocado." alt="" coords="428,56,620,83"/>
+<area shape="rect" id="node3" href="$class_placeable.html#a52c560a11636e0d491b826877cb757bd" title="Saca al objeto del modo de emplazamiento." alt="" coords="191,31,380,57"/>
+<area shape="rect" id="node6" href="$class_placeable.html#af3b49ab2ce3959d1b04c7f381a554278" title="Se llama una vez por frame" alt="" coords="223,81,347,108"/>
+<area shape="rect" id="node4" href="$class_placeable.html#a6b4b6ebfcbd2d7e2c76b283ae1c2ce4f" title=" " alt="" coords="7,5,141,32"/>
+<area shape="rect" id="node5" href="$class_placeable.html#a4369b7f944cf64800e4222a502201d38" title=" " alt="" coords="5,56,143,83"/>
+</map>

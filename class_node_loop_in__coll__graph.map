@@ -1,0 +1,11 @@
+<map id="NodeLoopIn" name="NodeLoopIn">
+<area shape="rect" id="node1" title="Clase de la carretera de entrada al bucle." alt="" coords="273,1468,425,1560"/>
+<area shape="rect" id="node2" href="$class_road.html" title="Clase padre de las carreteras." alt="" coords="85,1151,259,1419"/>
+<area shape="rect" id="node3" title=" " alt="" coords="41,5,151,83"/>
+<area shape="rect" id="node4" href="$class_road_i_o.html" title="Entradas y salidas de una carretera." alt="" coords="99,132,266,371"/>
+<area shape="rect" id="node5" href="$class_path_container.html" title="Contiene caminos por los que se moverá el robot que son listas de puntos ordenados." alt="" coords="155,996,295,1088"/>
+<area shape="rect" id="node9" href="$class_loop_counter.html" title="Contador del número de iteraciones de un loop." alt="" coords="387,395,511,633"/>
+<area shape="rect" id="node7" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="155,657,247,749"/>
+<area shape="rect" id="node8" href="$class_road_input.html" title="Marca un objeto como input de una carretera." alt="" coords="271,657,374,749"/>
+<area shape="rect" id="node6" href="$struct_path_container_1_1_path.html" title="Define un camino." alt="" coords="177,812,311,933"/>
+</map>

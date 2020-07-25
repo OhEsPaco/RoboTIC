@@ -1,0 +1,11 @@
+<map id="RoadPlacementLogic.DoUndo" name="RoadPlacementLogic.DoUndo">
+<area shape="rect" id="node1" title="Deshace las acciones del usuario." alt="" coords="5,46,200,73"/>
+<area shape="rect" id="node2" href="$class_road_placement_logic.html#a361651d3ae04351a943f234e4e26afcb" title="Corrige las posiciones de las carreteras." alt="" coords="481,71,671,112"/>
+<area shape="rect" id="node8" href="$class_selected_output_marker.html#a79a46af5dcb382c02535db20a5f903df" title="Busca y selecciona la IO más cercana." alt="" coords="248,8,429,49"/>
+<area shape="rect" id="node3" href="$class_road.html#abd8ae4deb847e0774172e522bba49337" title="Retorna toda la IO." alt="" coords="749,63,855,90"/>
+<area shape="rect" id="node5" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="723,13,881,39"/>
+<area shape="rect" id="node6" href="$class_road_i_o.html#af605969a2225e1cc21b6d1e252637938" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="731,114,873,141"/>
+<area shape="rect" id="node4" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="977,63,1071,90"/>
+<area shape="rect" id="node7" href="$class_road_i_o.html#adc5fcb069cc0edf24f7583dcdbfa0a9f" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="929,114,1119,141"/>
+<area shape="rect" id="node9" href="$class_selected_output_marker.html#a1ed26952faf537b4bbb6ff9b1bc556cd" title="Busca la IO más cercana." alt="" coords="477,5,675,47"/>
+</map>

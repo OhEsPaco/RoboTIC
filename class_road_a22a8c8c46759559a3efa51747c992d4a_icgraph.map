@@ -1,0 +1,11 @@
+<map id="Road.ExecuteAction" name="Road.ExecuteAction">
+<area shape="rect" id="node1" title="Ejecuta una acción en base a una lista de argumentos." alt="" coords="728,67,869,94"/>
+<area shape="rect" id="node2" href="$class_road_placement_logic.html#a71601b8916f71d149750926858541f7c" title="Lógica del botón play." alt="" coords="489,14,680,40"/>
+<area shape="rect" id="node4" href="$class_road_placement_logic.html#ad6a9801681f828f8cd31473e02a08b2b" title="Crea una carretera con botón (o modifica una existente si hay hueco)." alt="" coords="491,112,679,153"/>
+<area shape="rect" id="node3" href="$class_road_placement_logic.html#acd1c4d044ecfd603c37b69210fff1b86" title="Start." alt="" coords="5,116,183,143"/>
+<area shape="rect" id="node5" href="$class_road_placement_logic.html#ad3f5f0f683c26eec2b0d7272867e804c" title="Lógica del botón de acción." alt="" coords="235,40,437,67"/>
+<area shape="rect" id="node6" href="$class_road_placement_logic.html#a6f4b51662d037fc593a56c7c5c33510d" title="Lógica del botón de salto." alt="" coords="238,91,434,118"/>
+<area shape="rect" id="node7" href="$class_road_placement_logic.html#a40638553e31ba5087a69ed18ec235a77" title="Lógica del botón move." alt="" coords="239,142,433,168"/>
+<area shape="rect" id="node8" href="$class_road_placement_logic.html#acd1991e5b73bad88bc1ef431c4670509" title="Lógica del botón de girar a la izquierda." alt="" coords="231,192,441,219"/>
+<area shape="rect" id="node9" href="$class_road_placement_logic.html#a89cfe17859271d4eb24d65e40c5e4d91" title="Lógica del botón de girar a la derecha." alt="" coords="241,244,431,285"/>
+</map>

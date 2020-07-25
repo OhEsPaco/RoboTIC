@@ -1,0 +1,8 @@
+<map id="GameLogic.CheckLoseState" name="GameLogic.CheckLoseState">
+<area shape="rect" id="node1" title="Comprueba si se ha perdido la partida." alt="" coords="5,81,193,108"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#a728854801c07a74599c649f7a6bdaca4" title="Dado un bloque comprueba si cumple una propiedad." alt="" coords="241,31,452,57"/>
+<area shape="rect" id="node5" href="$class_game_logic.html#a93ade69c03e32f009520228db6377bb7" title="Comprueba si se ha ganado la partida." alt="" coords="255,81,438,108"/>
+<area shape="rect" id="node6" href="$class_game_logic.html#a7f015a094c3625c303cededcb7e646e3" title="Determina si una posición está dentro del mapa." alt="" coords="243,132,451,159"/>
+<area shape="rect" id="node3" href="$class_block.html#a6d9713d5845bc5decedd012819453978" title="Comprueba que el bloque cumpla una propiedad." alt="" coords="500,5,645,32"/>
+<area shape="rect" id="node4" href="$class_level_object.html#a6337171c12dc5db5b366ad59d08c87e6" title="¿Es un bloque?" alt="" coords="505,56,641,83"/>
+</map>

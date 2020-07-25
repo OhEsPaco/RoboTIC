@@ -1,0 +1,4 @@
+<map id="EditorSurface.SetUpSurface" name="EditorSurface.SetUpSurface">
+<area shape="rect" id="node1" title="Corrutina que inicializa la superficie." alt="" coords="5,5,189,32"/>
+<area shape="rect" id="node2" href="$class_editor_surface_point.html#ac78bfca1c16499b858bf44aa2637b41f" title="Indica a qué posición x,z corresponde este objeto." alt="" coords="237,5,439,32"/>
+</map>

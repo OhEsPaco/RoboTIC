@@ -1,0 +1,16 @@
+<map id="EditorLogic.EditorSurfaceTapped" name="EditorLogic.EditorSurfaceTapped">
+<area shape="rect" id="node1" title="Recibe el mensaje de que se ha pulsado en la superficie del editor." alt="" coords="5,99,175,141"/>
+<area shape="rect" id="node2" href="$class_editor_surface_point.html#a6382b89051855eecf00228f9d8ad6ee6" title="Baja la colisión." alt="" coords="237,5,404,32"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#ac2a17bd1a9be4ac5b3ad4ecdb887e5d2" title="Borra el objeto más alto de la coordenada x, z." alt="" coords="256,107,385,133"/>
+<area shape="rect" id="node6" href="$class_editor_logic.html#afea4b8114735c8b889e16339aa726569" title="Coloca un bloque o un item donde se requiera." alt="" coords="223,157,419,184"/>
+<area shape="rect" id="node11" href="$class_editor_logic.html#abf25f7a597d9b3e961ae617fee0b3a66" title="Coloca al robot en el sitio apropiado con la orientación requerida." alt="" coords="231,56,411,83"/>
+<area shape="rect" id="node14" href="$class_editor_surface_point.html#ab4d85cb3d0c9f7456fcc44f9f4f55419" title="Sube la colisión." alt="" coords="245,208,396,235"/>
+<area shape="rect" id="node4" href="$class_editor_logic.html#accc3cfeba6480a7282551636ff7a3a1c" title="Retorna un EditorObject dadas las coordenadas X,Y,Z." alt="" coords="489,81,673,108"/>
+<area shape="rect" id="node5" href="$class_editor_logic.html#a42cb286ba65cb56aa5707f9bdf85c95d" title="Pone un EditorObject en la coordenada X,Y,Z apropiada." alt="" coords="489,132,672,159"/>
+<area shape="rect" id="node7" href="$class_map_renderer.html#a2d19c33c2dd4e5401a1424add31e5e01" title="Genera un bloque por su id." alt="" coords="493,183,668,209"/>
+<area shape="rect" id="node8" href="$class_level_object_factory.html#aa05bc2f181a452c37f2461675f4bf641" title="Genera la instancia de un objeto dado su ID." alt="" coords="745,175,938,217"/>
+<area shape="rect" id="node9" href="$class_level_object_factory.html#afd9dc46fb9438e3d4811a76253e74319" title="Busca la referencia a un objeto a partir de su ID." alt="" coords="988,142,1188,183"/>
+<area shape="rect" id="node10" href="$class_level_object_factory.html#a17f7f3b982d4e236969c072da80834db" title="Instancia un objeto a partir de su referencia." alt="" coords="989,207,1187,249"/>
+<area shape="rect" id="node12" href="$class_map_renderer.html#ab0b072439a12055f44cedb7b972e7777" title="Genera el robot principal." alt="" coords="467,31,695,57"/>
+<area shape="rect" id="node13" href="$class_level_object_factory.html#adbfbbdf9b6a52dc7a4baa42bc385755e" title="Retorna la instancia del robot principal." alt="" coords="743,23,940,65"/>
+</map>

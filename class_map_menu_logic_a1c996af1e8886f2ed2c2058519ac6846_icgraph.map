@@ -1,0 +1,4 @@
+<map id="MapMenuLogic.UserClickedOnMainMenu" name="MapMenuLogic.UserClickedOnMainMenu">
+<area shape="rect" id="node1" title="El usuario ha hecho click en el botón de volver al menú principal." alt="" coords="196,5,380,47"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,13,148,39"/>
+</map>

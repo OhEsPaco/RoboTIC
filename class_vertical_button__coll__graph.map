@@ -1,0 +1,4 @@
+<map id="VerticalButton" name="VerticalButton">
+<area shape="rect" id="node1" title="Clase de los botones que activa el robot al moverse por las carreteras." alt="" coords="5,131,131,325"/>
+<area shape="rect" id="node2" title=" " alt="" coords="13,5,123,83"/>
+</map>

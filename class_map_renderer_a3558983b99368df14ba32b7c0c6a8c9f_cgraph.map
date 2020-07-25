@@ -1,0 +1,8 @@
+<map id="MapRenderer.RenderMapAndItems" name="MapRenderer.RenderMapAndItems">
+<area shape="rect" id="node1" title="Genera el mapa cuando se le pide." alt="" coords="5,27,197,69"/>
+<area shape="rect" id="node2" href="$class_map_renderer.html#a2de692bc47b8dc5641aaf7bbef72fd1b" title="Corrutina que genera el mapa y pública un mensaje para informar de que ha terminado su función." alt="" coords="245,27,437,69"/>
+<area shape="rect" id="node3" href="$class_map_renderer.html#a9a63f97ba10b3f1144cba7128bf8e49c" title="Dado una estructura con los objetos y unas coordenadas devuelve el id del objeto en esa posición." alt="" coords="520,5,644,32"/>
+<area shape="rect" id="node4" href="$class_level_object_factory.html#aa05bc2f181a452c37f2461675f4bf641" title="Genera la instancia de un objeto dado su ID." alt="" coords="485,57,679,98"/>
+<area shape="rect" id="node5" href="$class_level_object_factory.html#afd9dc46fb9438e3d4811a76253e74319" title="Busca la referencia a un objeto a partir de su ID." alt="" coords="727,23,927,65"/>
+<area shape="rect" id="node6" href="$class_level_object_factory.html#a17f7f3b982d4e236969c072da80834db" title="Instancia un objeto a partir de su referencia." alt="" coords="728,89,925,130"/>
+</map>

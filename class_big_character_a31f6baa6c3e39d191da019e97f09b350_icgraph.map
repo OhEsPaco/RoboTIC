@@ -1,0 +1,6 @@
+<map id="BigCharacter.WinCoroutine" name="BigCharacter.WinCoroutine">
+<area shape="rect" id="node1" title="Corrutina de la acción de ganar." alt="" coords="612,5,791,32"/>
+<area shape="rect" id="node2" href="$class_big_character.html#af17d335185f5418e443ab30236a551e6" title="Acción de ganar." alt="" coords="424,5,564,32"/>
+<area shape="rect" id="node3" href="$class_big_character.html#aafb59ced8540128e4dc8f9185bc58b65" title="Recibe mensajes para llevar a cabo acciones." alt="" coords="193,5,376,32"/>
+<area shape="rect" id="node4" href="$class_big_character.html#ad3ba2c60423e70f163f93c3a9ea65644" title="Awake." alt="" coords="5,5,145,32"/>
+</map>

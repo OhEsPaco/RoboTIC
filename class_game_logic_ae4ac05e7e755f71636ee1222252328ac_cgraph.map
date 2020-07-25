@@ -1,0 +1,46 @@
+<map id="GameLogic.DoMove" name="GameLogic.DoMove">
+<area shape="rect" id="node1" title="Lógica del botón avanzar." alt="" coords="5,536,144,563"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#ad49799ab52d3785cf1d48042b89f9c17" title="Retorna las coordenadas del bloque al que avanza el jugador." alt="" coords="379,460,581,487"/>
+<area shape="rect" id="node3" href="$class_game_logic.html#a728854801c07a74599c649f7a6bdaca4" title="Dado un bloque comprueba si cumple una propiedad." alt="" coords="865,460,1076,487"/>
+<area shape="rect" id="node6" href="$class_game_logic.html#aede6bc26c17e3def48910d7068ddc17a" title="Comprueba si se ha ganado o perdido la partida." alt="" coords="400,359,560,385"/>
+<area shape="rect" id="node9" href="$class_game_logic.html#a7f015a094c3625c303cededcb7e646e3" title="Determina si una posición está dentro del mapa." alt="" coords="867,612,1075,639"/>
+<area shape="rect" id="node33" href="$class_game_logic.html#af35aff0a12d7884e9f2b975e95bf71b6" title="Determina el punto apropiado de la superficie de un bloque para que el robot se mueva a este." alt="" coords="1652,630,1843,671"/>
+<area shape="rect" id="node42" href="$class_game_logic.html#ae9bcf64be781ba92289b684fa54e049a" title="Intenta coger un item si es posible." alt="" coords="1675,713,1820,740"/>
+<area shape="rect" id="node44" href="$class_game_logic.html#a190d7822ab400d45dd983235be2e326e" title="Lógica del botón de salto." alt="" coords="192,536,331,563"/>
+<area shape="rect" id="node4" href="$class_block.html#a6d9713d5845bc5decedd012819453978" title="Comprueba que el bloque cumpla una propiedad." alt="" coords="1158,435,1303,461"/>
+<area shape="rect" id="node5" href="$class_level_object.html#a6337171c12dc5db5b366ad59d08c87e6" title="¿Es un bloque?" alt="" coords="1163,485,1299,512"/>
+<area shape="rect" id="node7" href="$class_game_logic.html#ae934b5767d0162ccff855975ef940bd9" title="Comprueba si se ha perdido la partida." alt="" coords="629,409,817,436"/>
+<area shape="rect" id="node8" href="$class_game_logic.html#a93ade69c03e32f009520228db6377bb7" title="Comprueba si se ha ganado la partida." alt="" coords="879,384,1062,411"/>
+<area shape="rect" id="node10" href="$class_game_logic.html#ac5d13f1585f61395def7fdd30e5e497f" title="Muestra la pantalla de lose cuando el robot termine sus acciones." alt="" coords="652,207,795,233"/>
+<area shape="rect" id="node43" href="$class_game_logic.html#a3ac2e76f5d25321c1cc3f427d291ae37" title="Muestra la pantalla de win cuando el robot termine sus acciones." alt="" coords="654,257,793,284"/>
+<area shape="rect" id="node11" href="$class_game_logic.html#a68de21c18254193278458b9d44fca75d" title="Lógica del botón no." alt="" coords="897,207,1044,233"/>
+<area shape="rect" id="node27" href="$class_game_logic.html#a9eec777370cd970dd6544c2c7ebd0adf" title="Lógica del botón yes." alt="" coords="894,257,1047,284"/>
+<area shape="rect" id="node12" href="$class_game_logic.html#a9876216c4e1afe306ea0c8074ba94250" title="Retorna al menú principal." alt="" coords="1139,115,1322,141"/>
+<area shape="rect" id="node22" href="$class_road_placement_logic.html#af842eed03cd2aef6cbe6c16f13069939" title="Resetea la carretera a su estado original." alt="" coords="1124,207,1337,233"/>
+<area shape="rect" id="node13" href="$class_game_logic.html#ab9b5f1e70c69f43baa3800c6715a1553" title="Destruye los objetos de forma que no afecta al rendimiento." alt="" coords="1385,107,1596,149"/>
+<area shape="rect" id="node14" href="$class_main_menu_logic.html#aee63e2c9791879a003ef556068b69b73" title="Lanza el menú principal." alt="" coords="1386,56,1595,83"/>
+<area shape="rect" id="node15" href="$class_main_menu_logic.html#aff576c47381793870a6db9f1942f50ad" title="Sale del programa." alt="" coords="1653,5,1842,32"/>
+<area shape="rect" id="node16" href="$class_main_menu_logic.html#a197d6e40ecf5bf9a7649a3507c5df694" title="Lanza el editor." alt="" coords="1656,56,1839,83"/>
+<area shape="rect" id="node20" href="$class_main_menu_logic.html#a877a4b36428009a3f38b1290499dd7fe" title="Lanza el menú de mapas." alt="" coords="1644,107,1851,133"/>
+<area shape="rect" id="node17" href="$class_editor_logic.html#a85a4ce96b89c0f8dbc335f61abefabda" title="Método para mostrar el editor." alt="" coords="1921,56,2079,83"/>
+<area shape="rect" id="node18" href="$class_editor_logic.html#acffc81dfba112b959e60f847be80b54e" title="Devuelve el editor a su estado original." alt="" coords="2170,56,2329,83"/>
+<area shape="rect" id="node19" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="2397,49,2599,90"/>
+<area shape="rect" id="node21" href="$class_map_menu_logic.html#abeca60b2ee602f9fe49f952cef7a1701" title="Muestra el menú de niveles." alt="" coords="1899,107,2101,133"/>
+<area shape="rect" id="node23" href="$class_road.html#a462771c26a07b1e20fba6e1a57e7bbc2" title="Retorna la IO por su dirección." alt="" coords="1397,173,1584,200"/>
+<area shape="rect" id="node25" href="$class_road_i_o.html#af605969a2225e1cc21b6d1e252637938" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="1419,224,1562,251"/>
+<area shape="rect" id="node24" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="1700,173,1795,200"/>
+<area shape="rect" id="node26" href="$class_road_i_o.html#adc5fcb069cc0edf24f7583dcdbfa0a9f" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="1653,224,1842,251"/>
+<area shape="rect" id="node28" href="$class_game_logic.html#a96ab1276a6fcb95ff618065ca9fde9c8" title="Lógica del botón restart." alt="" coords="1155,257,1306,284"/>
+<area shape="rect" id="node29" href="$class_level_data.html#ab487e4cb95fe212e08ec89c9d1b0e194" title="Hace una copia profunda del objeto." alt="" coords="1690,275,1805,301"/>
+<area shape="rect" id="node31" href="$class_game_logic.html#a725881c8deea267a4ac8e2fc58d51563" title="Genera los objetos del nivel actual." alt="" coords="1405,427,1576,453"/>
+<area shape="rect" id="node30" href="$class_level_data.html#adfcd13a04979d4c3114575583b4b2106" title="Clona una lista de enteros." alt="" coords="1925,271,2075,297"/>
+<area shape="rect" id="node32" href="$class_game_logic.html#a49e33ea34aec9b64d4a03b2c1797c829" title="Retorna un bloque." alt="" coords="1927,515,2073,541"/>
+<area shape="rect" id="node34" href="$class_game_logic.html#a3f9e048a9b64d76a030f69501642451e" title="Retorna el tipo de un bloque." alt="" coords="1660,427,1835,453"/>
+<area shape="rect" id="node35" href="$class_level_object.html#a7e1a9a6602ff8844e3056a58b6e8e3b2" title="¿Es un item?" alt="" coords="1683,477,1811,504"/>
+<area shape="rect" id="node36" href="$class_game_logic.html#a42a3317c6bdfea7d4e894381d2f5b315" title="Pone un bloque en la estructura de objetos." alt="" coords="1675,528,1820,555"/>
+<area shape="rect" id="node37" href="$class_game_logic.html#a375f69c4aa6be717d02fd1640f720eb9" title="Modifica el tipo de un bloque." alt="" coords="1661,579,1834,605"/>
+<area shape="rect" id="node38" href="$class_map_renderer.html#a2d19c33c2dd4e5401a1424add31e5e01" title="Genera un bloque por su id." alt="" coords="1660,325,1835,352"/>
+<area shape="rect" id="node39" href="$class_level_object_factory.html#aa05bc2f181a452c37f2461675f4bf641" title="Genera la instancia de un objeto dado su ID." alt="" coords="1903,322,2097,363"/>
+<area shape="rect" id="node40" href="$class_level_object_factory.html#afd9dc46fb9438e3d4811a76253e74319" title="Busca la referencia a un objeto a partir de su ID." alt="" coords="2149,289,2349,330"/>
+<area shape="rect" id="node41" href="$class_level_object_factory.html#a17f7f3b982d4e236969c072da80834db" title="Instancia un objeto a partir de su referencia." alt="" coords="2151,354,2348,395"/>
+</map>

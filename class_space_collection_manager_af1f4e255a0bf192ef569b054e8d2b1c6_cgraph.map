@@ -1,0 +1,5 @@
+<map id="SpaceCollectionManager.CreateSpaceObjects" name="SpaceCollectionManager.CreateSpaceObjects">
+<area shape="rect" id="node1" title="Crea una colección de objetos Placeable y los coloca en SurfacePlanes." alt="" coords="5,39,213,80"/>
+<area shape="rect" id="node2" href="$class_space_collection_manager.html#a2ae26804decd5c9221c356aa8e79d907" title="Ajusta la posición inicial del objeto si está siendo ocluido." alt="" coords="261,5,468,47"/>
+<area shape="rect" id="node3" href="$class_space_collection_manager.html#a93d987da13f16f52521894e3142df26e" title="Busca el plano más cercano que es capaz de contener un objeto." alt="" coords="267,71,462,112"/>
+</map>

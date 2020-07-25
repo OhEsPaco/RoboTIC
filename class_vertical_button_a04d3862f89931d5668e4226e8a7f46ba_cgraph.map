@@ -1,0 +1,4 @@
+<map id="VerticalButton.OnTriggerEnter" name="VerticalButton.OnTriggerEnter">
+<area shape="rect" id="node1" title="Activa el botón cuando el robot entra en contacto con él." alt="" coords="5,5,169,47"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#a6c10f01a3a7c39bca8d1c8ce8936d967" title="Ejecuta las acciones apropiadas en respuesta a la pulsación de un botón." alt="" coords="217,13,428,39"/>
+</map>

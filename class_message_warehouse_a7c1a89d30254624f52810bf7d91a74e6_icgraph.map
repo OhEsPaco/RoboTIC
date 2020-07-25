@@ -1,0 +1,4 @@
+<map id="MessageWarehouse.EventReceiver&lt; MessageType, ResponseType &gt;" name="MessageWarehouse.EventReceiver&lt; MessageType, ResponseType &gt;">
+<area shape="rect" id="node1" title="Metodo interno que recibe los mensajes." alt="" coords="275,13,501,54"/>
+<area shape="rect" id="node2" href="$class_message_warehouse.html#a5d8459d6821d9abc30e8b7607224915d" title="Sirve para publicar un mensaje." alt="" coords="5,5,227,61"/>
+</map>

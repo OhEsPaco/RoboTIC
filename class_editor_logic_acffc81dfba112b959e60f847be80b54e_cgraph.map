@@ -1,0 +1,4 @@
+<map id="EditorLogic.ResetEditor" name="EditorLogic.ResetEditor">
+<area shape="rect" id="node1" title="Devuelve el editor a su estado original." alt="" coords="5,13,164,39"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="212,5,413,47"/>
+</map>

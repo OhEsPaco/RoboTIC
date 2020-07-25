@@ -1,0 +1,4 @@
+<map id="LoopCounter.Lock" name="LoopCounter.Lock">
+<area shape="rect" id="node1" title="Bloquea el contador." alt="" coords="232,5,359,32"/>
+<area shape="rect" id="node2" href="$class_node_loop_in.html#a05df502974ff3fec949f31a20addc0f2" title="Ejecuta una acción en base a una lista de argumentos." alt="" coords="5,5,184,32"/>
+</map>

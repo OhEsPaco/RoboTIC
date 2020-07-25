@@ -1,0 +1,8 @@
+<map id="BigCharacter.DoWin" name="BigCharacter.DoWin">
+<area shape="rect" id="node1" title="Acción de ganar." alt="" coords="5,53,145,79"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a70b61f211ba6e547fd572503d7df5ade" title="Añade una acción a la lista." alt="" coords="202,27,363,54"/>
+<area shape="rect" id="node3" href="$class_big_character.html#a31f6baa6c3e39d191da019e97f09b350" title="Corrutina de la acción de ganar." alt="" coords="193,78,372,105"/>
+<area shape="rect" id="node4" href="$class_big_character.html#a5f51c4a8441ba0f8ffa5e67c84a0d5b5" title="Notifica que se ha acabado una acción." alt="" coords="434,5,605,47"/>
+<area shape="rect" id="node5" href="$class_big_character.html#a03ea0cfe3450d4d8806fb0ffd9bf89ac" title="Notifica que se ha iniciado una acción." alt="" coords="438,71,601,112"/>
+<area shape="rect" id="node6" href="$class_character.html#a6677a7d9c5691fa40b3e9af789c70e4b" title="Ejecuta un trigger de animación." alt="" coords="420,137,619,163"/>
+</map>

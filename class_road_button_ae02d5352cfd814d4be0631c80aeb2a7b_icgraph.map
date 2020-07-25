@@ -1,0 +1,5 @@
+<map id="RoadButton.Disable" name="RoadButton.Disable">
+<area shape="rect" id="node1" title="Desactiva el botón." alt="" coords="443,5,580,32"/>
+<area shape="rect" id="node2" href="$class_level_buttons.html#a7d590159f560735e35db71845c9e06ea" title="Desactiva todos los botones." alt="" coords="192,5,395,32"/>
+<area shape="rect" id="node3" href="$class_level_buttons.html#a3e6aeb5823a2180a419102bcf8125d50" title="Awake." alt="" coords="5,5,144,32"/>
+</map>

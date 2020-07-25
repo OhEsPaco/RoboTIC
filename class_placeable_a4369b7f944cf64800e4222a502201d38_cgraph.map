@@ -1,0 +1,8 @@
+<map id="Placeable.OnSelect" name="Placeable.OnSelect">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,143,57"/>
+<area shape="rect" id="node2" href="$class_placeable.html#a52c560a11636e0d491b826877cb757bd" title="Saca al objeto del modo de emplazamiento." alt="" coords="191,31,380,57"/>
+<area shape="rect" id="node3" href="$class_placeable.html#a406190e44492827c5df46d5ad520ac31" title="Orienta el objeto de forma que mira al usuario." alt="" coords="446,5,602,32"/>
+<area shape="rect" id="node4" href="$class_placeable.html#aa35fbd59a535d9e595ef9f50ab5dd781" title="Verifica si el objeto puede ser o no colocado." alt="" coords="428,56,620,83"/>
+<area shape="rect" id="node5" href="$class_placeable.html#aaab82d8cd10245e4cd2f74dd490aa3d0" title="Determina las coordenadas de la cara del BoxCollider que será colocado contra la superficie." alt="" coords="681,19,857,61"/>
+<area shape="rect" id="node6" href="$class_placeable.html#a0407474b82b6c1d6d261bc5dafc7b5de" title=" " alt="" coords="668,85,871,112"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="MapMenuLogic.ShiftMap" name="MapMenuLogic.ShiftMap">
+<area shape="rect" id="node1" title="Cambia el mapa en pantalla por otro de la lista." alt="" coords="416,31,581,57"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#aaec41598cc72af78e4fa39eae0ac7caa" title="Mover los mapas hacia la izquierda." alt="" coords="201,5,363,32"/>
+<area shape="rect" id="node4" href="$class_map_menu_logic.html#a3bcaf7f1cd8858c1582d0b35629f0cbb" title="Mover los mapas hacia la derecha." alt="" coords="196,56,368,83"/>
+<area shape="rect" id="node3" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,31,148,57"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="ConditionCardPicker.ShowCards" name="ConditionCardPicker.ShowCards">
+<area shape="rect" id="node1" title="Corrutina para mostrar las cartas." alt="" coords="5,35,181,76"/>
+<area shape="rect" id="node2" href="$class_condition_card_picker.html#a60b1ecdd255033025155dcb0fcb711ea" title="¿Han terminado todas las acciones?" alt="" coords="229,5,432,47"/>
+<area shape="rect" id="node3" href="$class_condition_card.html#a4da799c4fcf6954a3f0581ff487c67c6" title="Despliega la carta." alt="" coords="247,71,414,98"/>
+<area shape="rect" id="node4" href="$class_condition_card.html#a8a3fe3dc12847d5b724ac1b90e15a503" title="Animación de mostrar la carta." alt="" coords="480,71,663,98"/>
+</map>

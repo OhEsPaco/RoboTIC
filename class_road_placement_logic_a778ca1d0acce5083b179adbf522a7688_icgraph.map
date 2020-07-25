@@ -1,0 +1,5 @@
+<map id="RoadPlacementLogic.InvalidRoad" name="RoadPlacementLogic.InvalidRoad">
+<area shape="rect" id="node1" title="Imprime un mensaje de carretera invalida." alt="" coords="469,5,684,32"/>
+<area shape="rect" id="node2" href="$class_road_placement_logic.html#a71601b8916f71d149750926858541f7c" title="Lógica del botón play." alt="" coords="231,5,421,32"/>
+<area shape="rect" id="node3" href="$class_road_placement_logic.html#acd1c4d044ecfd603c37b69210fff1b86" title="Start." alt="" coords="5,5,183,32"/>
+</map>

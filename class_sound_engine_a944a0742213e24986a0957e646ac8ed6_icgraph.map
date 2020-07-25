@@ -1,0 +1,4 @@
+<map id="SoundEngine.PlaySfx" name="SoundEngine.PlaySfx">
+<area shape="rect" id="node1" title="Reproduce un SFX." alt="" coords="196,5,344,32"/>
+<area shape="rect" id="node2" href="$class_sound_engine.html#ada3ccca830bf9986b791658af28b5411" title="Awake." alt="" coords="5,5,148,32"/>
+</map>

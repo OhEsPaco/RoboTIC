@@ -1,0 +1,7 @@
+<map id="SelectedOutputMarker.FindAndSelectClosestIO" name="SelectedOutputMarker.FindAndSelectClosestIO">
+<area shape="rect" id="node1" title="Busca y selecciona la IO más cercana." alt="" coords="5,23,187,65"/>
+<area shape="rect" id="node2" href="$class_selected_output_marker.html#a1ed26952faf537b4bbb6ff9b1bc556cd" title="Busca la IO más cercana." alt="" coords="235,23,432,65"/>
+<area shape="rect" id="node3" href="$class_road.html#abd8ae4deb847e0774172e522bba49337" title="Retorna toda la IO." alt="" coords="507,5,612,32"/>
+<area shape="rect" id="node5" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="480,56,639,83"/>
+<area shape="rect" id="node4" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="687,5,781,32"/>
+</map>

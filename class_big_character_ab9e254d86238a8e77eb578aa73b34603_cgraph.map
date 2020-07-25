@@ -1,0 +1,7 @@
+<map id="BigCharacter.DoTurnRight" name="BigCharacter.DoTurnRight">
+<area shape="rect" id="node1" title="Acción de girar a la derecha." alt="" coords="5,31,177,57"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a70b61f211ba6e547fd572503d7df5ade" title="Añade una acción a la lista." alt="" coords="235,5,397,32"/>
+<area shape="rect" id="node3" href="$class_big_character.html#a4832264a307ddee6143470d79492e34d" title="Corrutina de girar." alt="" coords="225,56,407,83"/>
+<area shape="rect" id="node4" href="$class_big_character.html#a5f51c4a8441ba0f8ffa5e67c84a0d5b5" title="Notifica que se ha acabado una acción." alt="" coords="455,15,625,57"/>
+<area shape="rect" id="node5" href="$class_big_character.html#a03ea0cfe3450d4d8806fb0ffd9bf89ac" title="Notifica que se ha iniciado una acción." alt="" coords="459,81,621,122"/>
+</map>

@@ -1,0 +1,18 @@
+<map id="MainMenuLogic.Start" name="MainMenuLogic.Start">
+<area shape="rect" id="node1" title="Start." alt="" coords="5,78,151,105"/>
+<area shape="rect" id="node2" href="$class_main_menu_logic.html#ac009b9d3356f61df19f40e666a5d3f8e" title="Espera a que termine de encontrarse el espacio en el que se encuentra el jugador ¡ y lanza el menú pr..." alt="" coords="199,71,401,112"/>
+<area shape="rect" id="node3" href="$class_space_collection_manager.html#aab32138a0dcb86acafb14bb330f66dbe" title=" " alt="" coords="464,5,644,47"/>
+<area shape="rect" id="node4" href="$class_space_collection_manager.html#a511c55ab4021cb3785a7846802b87aa3" title="Intenta colocar un objeto en el escenario." alt="" coords="453,71,655,112"/>
+<area shape="rect" id="node9" href="$class_main_menu_logic.html#aee63e2c9791879a003ef556068b69b73" title="Lanza el menú principal." alt="" coords="449,162,659,189"/>
+<area shape="rect" id="node5" href="$class_space_collection_manager.html#abbc7d1ae0609a75037b3ed1957280e81" title=" " alt="" coords="709,57,911,99"/>
+<area shape="rect" id="node6" href="$class_space_collection_manager.html#af1f4e255a0bf192ef569b054e8d2b1c6" title="Crea una colección de objetos Placeable y los coloca en SurfacePlanes." alt="" coords="961,57,1169,99"/>
+<area shape="rect" id="node7" href="$class_space_collection_manager.html#a2ae26804decd5c9221c356aa8e79d907" title="Ajusta la posición inicial del objeto si está siendo ocluido." alt="" coords="1217,17,1424,59"/>
+<area shape="rect" id="node8" href="$class_space_collection_manager.html#a93d987da13f16f52521894e3142df26e" title="Busca el plano más cercano que es capaz de contener un objeto." alt="" coords="1223,83,1418,124"/>
+<area shape="rect" id="node10" href="$class_main_menu_logic.html#aff576c47381793870a6db9f1942f50ad" title="Sale del programa." alt="" coords="715,123,905,150"/>
+<area shape="rect" id="node11" href="$class_main_menu_logic.html#a197d6e40ecf5bf9a7649a3507c5df694" title="Lanza el editor." alt="" coords="719,174,901,201"/>
+<area shape="rect" id="node15" href="$class_main_menu_logic.html#a877a4b36428009a3f38b1290499dd7fe" title="Lanza el menú de mapas." alt="" coords="707,225,913,251"/>
+<area shape="rect" id="node12" href="$class_editor_logic.html#a85a4ce96b89c0f8dbc335f61abefabda" title="Método para mostrar el editor." alt="" coords="987,174,1144,201"/>
+<area shape="rect" id="node13" href="$class_editor_logic.html#acffc81dfba112b959e60f847be80b54e" title="Devuelve el editor a su estado original." alt="" coords="1241,174,1400,201"/>
+<area shape="rect" id="node14" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="1472,167,1673,208"/>
+<area shape="rect" id="node16" href="$class_map_menu_logic.html#abeca60b2ee602f9fe49f952cef7a1701" title="Muestra el menú de niveles." alt="" coords="964,225,1167,251"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="EditorLogic.SaveMap" name="EditorLogic.SaveMap">
+<area shape="rect" id="node1" title="Recibe el mensaje para guardar el mapa." alt="" coords="184,5,328,32"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#ac9bb77f807c2c860221e46919ff9b454" title="Awake." alt="" coords="5,5,136,32"/>
+</map>

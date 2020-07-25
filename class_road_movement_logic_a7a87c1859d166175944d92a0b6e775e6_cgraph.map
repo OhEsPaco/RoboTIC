@@ -1,0 +1,5 @@
+<map id="RoadMovementLogic.StartNewPath" name="RoadMovementLogic.StartNewPath">
+<area shape="rect" id="node1" title="Busca el siguiente camino posible y crea una LTSpline combinando los puntos nuevos y los anteriores." alt="" coords="5,31,232,57"/>
+<area shape="rect" id="node2" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="284,5,443,32"/>
+<area shape="rect" id="node3" href="$class_road.html#a30e0b139e7665d526d77a8487cf9bc31" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="280,56,447,83"/>
+</map>

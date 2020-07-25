@@ -1,0 +1,4 @@
+<map id="MessageScreenManager.HideAllScreens" name="MessageScreenManager.HideAllScreens">
+<area shape="rect" id="node1" title="Esconde todas las pantallas de mensaje." alt="" coords="252,5,448,47"/>
+<area shape="rect" id="node2" href="$class_message_screen_manager.html#a995de0251b6297b05771a7c54846ce6c" title="Start." alt="" coords="5,13,204,39"/>
+</map>

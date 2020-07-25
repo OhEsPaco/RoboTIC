@@ -1,0 +1,4 @@
+<map id="GameLogic.GetBlockSurfacePoint" name="GameLogic.GetBlockSurfacePoint">
+<area shape="rect" id="node1" title="Determina el punto apropiado de la superficie de un bloque para que el robot se mueva a este." alt="" coords="5,5,196,47"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#a49e33ea34aec9b64d4a03b2c1797c829" title="Retorna un bloque." alt="" coords="244,13,391,39"/>
+</map>

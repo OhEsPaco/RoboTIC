@@ -1,0 +1,4 @@
+<map id="VerticalButton.Unlock" name="VerticalButton.Unlock">
+<area shape="rect" id="node1" title="Desbloquea el botón." alt="" coords="240,13,388,39"/>
+<area shape="rect" id="node2" href="$class_node_vertical_button.html#ae43ccfadc9f80963eb5b83fe0c3ade77" title="Ejecuta una acción en base a una lista de argumentos." alt="" coords="5,5,192,47"/>
+</map>

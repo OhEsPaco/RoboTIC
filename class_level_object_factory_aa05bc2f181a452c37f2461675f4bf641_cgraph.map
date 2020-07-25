@@ -1,0 +1,5 @@
+<map id="LevelObjectFactory.GetGameObjectInstance" name="LevelObjectFactory.GetGameObjectInstance">
+<area shape="rect" id="node1" title="Genera la instancia de un objeto dado su ID." alt="" coords="5,39,199,80"/>
+<area shape="rect" id="node2" href="$class_level_object_factory.html#afd9dc46fb9438e3d4811a76253e74319" title="Busca la referencia a un objeto a partir de su ID." alt="" coords="247,5,447,47"/>
+<area shape="rect" id="node3" href="$class_level_object_factory.html#a17f7f3b982d4e236969c072da80834db" title="Instancia un objeto a partir de su referencia." alt="" coords="248,71,445,112"/>
+</map>

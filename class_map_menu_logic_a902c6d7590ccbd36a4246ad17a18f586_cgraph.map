@@ -1,0 +1,4 @@
+<map id="MapMenuLogic.Update" name="MapMenuLogic.Update">
+<area shape="rect" id="node1" title="Update." alt="" coords="5,5,160,32"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#a72c3b7c43c84a4ebb725c815f5f860c3" title="Centra el primer mapa." alt="" coords="208,5,411,32"/>
+</map>

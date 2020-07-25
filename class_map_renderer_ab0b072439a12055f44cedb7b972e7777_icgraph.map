@@ -1,0 +1,6 @@
+<map id="MapRenderer.RenderMainCharacter" name="MapRenderer.RenderMainCharacter">
+<area shape="rect" id="node1" title="Genera el robot principal." alt="" coords="629,13,857,39"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#abf25f7a597d9b3e961ae617fee0b3a66" title="Coloca al robot en el sitio apropiado con la orientación requerida." alt="" coords="401,13,581,39"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#ad6b0e0fc671c43819133f2667634f533" title="Recibe el mensaje de que se ha pulsado en la superficie del editor." alt="" coords="184,5,353,47"/>
+<area shape="rect" id="node4" href="$class_editor_logic.html#ac9bb77f807c2c860221e46919ff9b454" title="Awake." alt="" coords="5,13,136,39"/>
+</map>

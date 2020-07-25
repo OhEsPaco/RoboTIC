@@ -1,0 +1,6 @@
+<map id="EditorSurface.Awake" name="EditorSurface.Awake">
+<area shape="rect" id="node1" title="Awake." alt="" coords="5,31,148,57"/>
+<area shape="rect" id="node2" href="$class_editor_surface.html#a6ed8a67811646771d2740eef3b32698b" title="Devuelve la superficie a su estado original." alt="" coords="196,23,368,65"/>
+<area shape="rect" id="node3" href="$class_editor_surface_point.html#a252981c7d36df289b11d5ead29b18e32" title="Resetea la colisión." alt="" coords="421,5,612,32"/>
+<area shape="rect" id="node4" href="$class_editor_surface_point.html#ac78bfca1c16499b858bf44aa2637b41f" title="Indica a qué posición x,z corresponde este objeto." alt="" coords="416,56,617,83"/>
+</map>

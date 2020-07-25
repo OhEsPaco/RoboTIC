@@ -1,0 +1,4 @@
+<map id="LoopCounter.Awake" name="LoopCounter.Awake">
+<area shape="rect" id="node1" title="Awake." alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node2" href="$class_loop_counter.html#a554585fecec0fb0a28a99b96d3c31ead" title="Pone el número que se le indica si es posible, aunque si es menor que cero se pone a cero y si es may..." alt="" coords="192,5,356,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="ConditionCard.Awake" name="ConditionCard.Awake">
+<area shape="rect" id="node1" title="Awake." alt="" coords="5,5,152,32"/>
+<area shape="rect" id="node2" href="$class_condition_card.html#a639a0ea06d6b541373904506cd8a60e8" title="Se ha tocado la carta." alt="" coords="200,5,387,32"/>
+</map>

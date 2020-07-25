@@ -1,0 +1,5 @@
+<map id="MessageScreenManager.DisableScreenOnSeconds" name="MessageScreenManager.DisableScreenOnSeconds">
+<area shape="rect" id="node1" title="Esconde una pantalla pasado un tiempo." alt="" coords="503,5,716,47"/>
+<area shape="rect" id="node2" href="$class_message_screen_manager.html#a692223e868ed8a6b39d0916fb2181caf" title="Muestra una pantalla concreta." alt="" coords="252,5,455,47"/>
+<area shape="rect" id="node3" href="$class_message_screen_manager.html#a995de0251b6297b05771a7c54846ce6c" title="Start." alt="" coords="5,13,204,39"/>
+</map>

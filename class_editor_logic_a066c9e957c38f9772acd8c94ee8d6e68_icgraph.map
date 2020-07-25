@@ -1,0 +1,6 @@
+<map id="EditorLogic.GetMaxXYZ" name="EditorLogic.GetMaxXYZ">
+<area shape="rect" id="node1" title="Retorna la coordenada X,Y,Z máximas del nivel que se está generando." alt="" coords="597,5,757,32"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#ad45619a44be7a64cd3520404e40f170f" title="Genera un nivel en formato LevelData si es posible." alt="" coords="376,5,549,32"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#a9928c4ef47df7d6a8d9652b13a007223" title="Recibe el mensaje para guardar el mapa." alt="" coords="184,5,328,32"/>
+<area shape="rect" id="node4" href="$class_editor_logic.html#ac9bb77f807c2c860221e46919ff9b454" title="Awake." alt="" coords="5,5,136,32"/>
+</map>

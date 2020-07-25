@@ -1,0 +1,4 @@
+<map id="RoadButton.OnSelect" name="RoadButton.OnSelect">
+<area shape="rect" id="node1" title="OnSelect." alt="" coords="5,13,153,39"/>
+<area shape="rect" id="node2" href="$class_road_placement_logic.html#a0ebc1bac512f3b4c3a2a56c03060d364" title="Ejecuta la acción correspondiente a un botón." alt="" coords="201,5,401,47"/>
+</map>

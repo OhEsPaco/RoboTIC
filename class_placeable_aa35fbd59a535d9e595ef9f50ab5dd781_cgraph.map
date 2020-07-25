@@ -1,0 +1,5 @@
+<map id="Placeable.ValidatePlacement" name="Placeable.ValidatePlacement">
+<area shape="rect" id="node1" title="Verifica si el objeto puede ser o no colocado." alt="" coords="5,42,197,69"/>
+<area shape="rect" id="node2" href="$class_placeable.html#aaab82d8cd10245e4cd2f74dd490aa3d0" title="Determina las coordenadas de la cara del BoxCollider que será colocado contra la superficie." alt="" coords="259,5,435,47"/>
+<area shape="rect" id="node3" href="$class_placeable.html#a0407474b82b6c1d6d261bc5dafc7b5de" title=" " alt="" coords="245,71,448,98"/>
+</map>

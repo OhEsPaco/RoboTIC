@@ -1,0 +1,6 @@
+<map id="BigCharacter.WinCoroutine" name="BigCharacter.WinCoroutine">
+<area shape="rect" id="node1" title="Corrutina de la acción de ganar." alt="" coords="5,78,184,105"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a5f51c4a8441ba0f8ffa5e67c84a0d5b5" title="Notifica que se ha acabado una acción." alt="" coords="246,5,417,47"/>
+<area shape="rect" id="node3" href="$class_big_character.html#a03ea0cfe3450d4d8806fb0ffd9bf89ac" title="Notifica que se ha iniciado una acción." alt="" coords="250,71,413,112"/>
+<area shape="rect" id="node4" href="$class_character.html#a6677a7d9c5691fa40b3e9af789c70e4b" title="Ejecuta un trigger de animación." alt="" coords="232,137,431,163"/>
+</map>

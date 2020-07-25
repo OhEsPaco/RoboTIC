@@ -1,0 +1,4 @@
+<map id="MainMenuLogic.FindSpaceAndLaunchMenu" name="MainMenuLogic.FindSpaceAndLaunchMenu">
+<area shape="rect" id="node1" title="Espera a que termine de encontrarse el espacio en el que se encuentra el jugador ¡ y lanza el menú pr..." alt="" coords="199,5,401,47"/>
+<area shape="rect" id="node2" href="$class_main_menu_logic.html#a466fff4517f5abecc3052c310b7a139f" title="Start." alt="" coords="5,13,151,39"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="LevelObject.IsBlock" name="LevelObject.IsBlock">
+<area shape="rect" id="node1" title="¿Es un bloque?" alt="" coords="1561,426,1697,453"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#a728854801c07a74599c649f7a6bdaca4" title="Dado un bloque comprueba si cumple una propiedad." alt="" coords="1303,211,1513,238"/>
+<area shape="rect" id="node5" href="$class_game_logic.html#abe051e8707f472f3e5eab89420a2b298" title="Lógica del botón de acción." alt="" coords="645,477,791,503"/>
+<area shape="rect" id="node21" href="$class_game_logic.html#a150cebb3a274b8878bbec2443c0689a8" title="Ejecuta un item sobre un bloque." alt="" coords="1303,426,1513,453"/>
+<area shape="rect" id="node3" href="$class_game_logic.html#ae934b5767d0162ccff855975ef940bd9" title="Comprueba si se ha perdido la partida." alt="" coords="1066,249,1254,275"/>
+<area shape="rect" id="node7" href="$class_game_logic.html#a190d7822ab400d45dd983235be2e326e" title="Lógica del botón de salto." alt="" coords="649,122,787,149"/>
+<area shape="rect" id="node8" href="$class_game_logic.html#ae4ac05e7e755f71636ee1222252328ac" title="Lógica del botón avanzar." alt="" coords="434,122,573,149"/>
+<area shape="rect" id="node18" href="$class_game_logic.html#ae15e3cbe93aadd0e202f89793058129b" title="Comprueba si el bloque de enfrente y abajo cumple una propiedad." alt="" coords="1065,5,1255,47"/>
+<area shape="rect" id="node4" href="$class_game_logic.html#aede6bc26c17e3def48910d7068ddc17a" title="Comprueba si se ha ganado o perdido la partida." alt="" coords="857,274,1017,301"/>
+<area shape="rect" id="node6" href="$class_game_logic.html#a33b454489cadf0e5e25873af0421dc60" title="Lógica del botón de condición." alt="" coords="637,223,799,250"/>
+<area shape="rect" id="node9" href="$class_game_logic.html#ac2ddab566f95c0d86e75ab44ca402921" title="Lógica del botón de bucle." alt="" coords="650,325,786,351"/>
+<area shape="rect" id="node10" href="$class_game_logic.html#a725881c8deea267a4ac8e2fc58d51563" title="Genera los objetos del nivel actual." alt="" coords="633,375,803,402"/>
+<area shape="rect" id="node11" href="$class_game_logic.html#a96ab1276a6fcb95ff618065ca9fde9c8" title="Lógica del botón restart." alt="" coords="428,383,579,410"/>
+<area shape="rect" id="node15" href="$class_game_logic.html#a48ca5475fdcf02b520873a9d3eeb10ae" title="Da comienzo a un nivel del juego." alt="" coords="429,329,578,355"/>
+<area shape="rect" id="node12" href="$class_game_logic.html#a9eec777370cd970dd6544c2c7ebd0adf" title="Lógica del botón yes." alt="" coords="211,386,365,413"/>
+<area shape="rect" id="node13" href="$class_game_logic.html#ac5d13f1585f61395def7fdd30e5e497f" title="Muestra la pantalla de lose cuando el robot termine sus acciones." alt="" coords="5,273,148,299"/>
+<area shape="rect" id="node14" href="$class_game_logic.html#a3ac2e76f5d25321c1cc3f427d291ae37" title="Muestra la pantalla de win cuando el robot termine sus acciones." alt="" coords="7,411,146,438"/>
+<area shape="rect" id="node16" href="$class_map_menu_logic.html#a9ed9eb0f3b5ff33beb00dbac030b5673" title="El jugador ha seleccionado un mapa." alt="" coords="196,320,380,361"/>
+<area shape="rect" id="node17" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,327,148,354"/>
+<area shape="rect" id="node19" href="$class_node_if_in.html#a8ec436654ea1303c6371de3e372a5c36" title="Comprueba si se cumple la condición de la carta." alt="" coords="858,13,1017,39"/>
+<area shape="rect" id="node20" href="$class_node_if_in.html#acfd366543a2cbaead9c3b402d95dda6b" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="627,13,809,39"/>
+</map>

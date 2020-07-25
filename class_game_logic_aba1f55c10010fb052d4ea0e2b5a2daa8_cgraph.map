@@ -1,0 +1,6 @@
+<map id="GameLogic.CheckBlockProperty" name="GameLogic.CheckBlockProperty">
+<area shape="rect" id="node1" title="Dado un bloque comprueba si cumple una propiedad." alt="" coords="5,56,216,83"/>
+<area shape="rect" id="node2" href="$class_block.html#a6d9713d5845bc5decedd012819453978" title="Comprueba que el bloque cumpla una propiedad." alt="" coords="265,5,410,32"/>
+<area shape="rect" id="node3" href="$class_game_logic.html#a49e33ea34aec9b64d4a03b2c1797c829" title="Retorna un bloque." alt="" coords="264,56,411,83"/>
+<area shape="rect" id="node4" href="$class_level_object.html#a6337171c12dc5db5b366ad59d08c87e6" title="¿Es un bloque?" alt="" coords="269,107,405,133"/>
+</map>

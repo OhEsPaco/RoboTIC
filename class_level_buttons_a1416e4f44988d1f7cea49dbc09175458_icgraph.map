@@ -1,0 +1,5 @@
+<map id="LevelButtons.SetNumberOfAvailableInstructions" name="LevelButtons.SetNumberOfAvailableInstructions">
+<area shape="rect" id="node1" title="Cambia el contador de un botón al número apropiado." alt="" coords="232,27,411,69"/>
+<area shape="rect" id="node2" href="$class_level_buttons.html#a3e6aeb5823a2180a419102bcf8125d50" title="Awake." alt="" coords="25,5,164,32"/>
+<area shape="rect" id="node3" href="$class_level_buttons.html#a7eb57a2df17c69f6dd19f486f1ed5c21" title="Cambia en número de instrucciones disponibles." alt="" coords="5,57,184,98"/>
+</map>

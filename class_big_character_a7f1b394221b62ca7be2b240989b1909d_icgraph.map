@@ -1,0 +1,4 @@
+<map id="BigCharacter.StartNextAction" name="BigCharacter.StartNextAction">
+<area shape="rect" id="node1" title="Inicia la primera acción de la lista." alt="" coords="196,5,389,32"/>
+<area shape="rect" id="node2" href="$class_big_character.html#af00dd270ec796d40d83f068a989c5253" title="Update." alt="" coords="5,5,148,32"/>
+</map>

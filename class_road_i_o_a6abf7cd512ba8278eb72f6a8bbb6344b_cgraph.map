@@ -1,0 +1,4 @@
+<map id="RoadIO.OnDrawGizmos" name="RoadIO.OnDrawGizmos">
+<area shape="rect" id="node1" title="OnDrawGizmos." alt="" coords="5,5,165,32"/>
+<area shape="rect" id="node2" href="$class_road_i_o.html#a20606556d70a7cff730ad9ed9e96b54b" title="Retorna el color del gizmo." alt="" coords="213,5,312,32"/>
+</map>

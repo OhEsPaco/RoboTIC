@@ -1,0 +1,12 @@
+<map id="Block.Awake" name="Block.Awake">
+<area shape="rect" id="node1" title="Awake." alt="" coords="5,107,104,133"/>
+<area shape="rect" id="node2" href="$class_block.html#a1a0a5cee568376fb772d869604549822" title="Acción de activar el bloque." alt="" coords="192,5,297,32"/>
+<area shape="rect" id="node3" href="$class_block.html#a8b33897bbebd56798b7abc0944bec4b7" title="Acción destruir." alt="" coords="193,56,297,83"/>
+<area shape="rect" id="node7" href="$class_block.html#a78b26d8948e2bcfc83559d4754a8d53e" title="Acción de colocar el bloque." alt="" coords="199,107,291,133"/>
+<area shape="rect" id="node8" href="$class_level_object.html#ab032b781dc35276f7a8af3c198cad165" title="Resetea el animator." alt="" coords="152,157,337,184"/>
+<area shape="rect" id="node9" href="$class_block.html#a991717f13157e416b88248d0e313641d" title="Acción usar." alt="" coords="203,208,286,235"/>
+<area shape="rect" id="node4" href="$class_block_exploder.html#ae17c86a0147452622f17a40dc905adc8" title="Hace explotar el bloque." alt="" coords="392,56,549,83"/>
+<area shape="rect" id="node5" href="$class_block_exploder.html#a4e81b0df50e30e01bb16d4ee03d12e68" title="Crea una partícula." alt="" coords="611,27,803,53"/>
+<area shape="rect" id="node6" href="$class_block_exploder.html#afa440b8fdd07088b3f1e9ca845893f2a" title="Corrutina para destruir las partículas pasado un tiempo." alt="" coords="604,78,811,119"/>
+<area shape="rect" id="node10" href="$class_level_object.html#a61dd043b7e6e02a2b44ba33eb3b0980e" title="Ejecuta un trigger en el animator del objeto." alt="" coords="385,201,556,242"/>
+</map>

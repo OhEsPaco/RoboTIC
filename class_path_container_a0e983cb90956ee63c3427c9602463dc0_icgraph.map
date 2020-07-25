@@ -1,0 +1,11 @@
+<map id="PathContainer.GetPathByName" name="PathContainer.GetPathByName">
+<area shape="rect" id="node1" title="Retorna un camino por su nombre." alt="" coords="471,187,677,214"/>
+<area shape="rect" id="node2" href="$class_road.html#adc5d65e42917097ad3d79110c4fa189b" title="Retorna un camino por su nombre." alt="" coords="268,187,423,214"/>
+<area shape="rect" id="node3" href="$class_connector_vertical.html#adec138b7ecb110e08a34c22409d4d4ae" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="24,5,201,47"/>
+<area shape="rect" id="node4" href="$class_connector_double.html#aa9b4f4fd53ffd56433c6d2a22e841e67" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="15,71,211,112"/>
+<area shape="rect" id="node5" href="$class_node_if_out.html#aad07c82ce92feabd13f1ecc99438e547" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="16,137,209,163"/>
+<area shape="rect" id="node6" href="$class_node_loop_out.html#a31b5dd6b5c399cd89c526a34eb2fbbc6" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="5,187,220,214"/>
+<area shape="rect" id="node7" href="$class_node_if_in.html#acfd366543a2cbaead9c3b402d95dda6b" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="21,238,204,265"/>
+<area shape="rect" id="node8" href="$class_node_loop_in.html#acdae87fb52d3062250a5619aca3e1fe1" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="11,289,215,315"/>
+<area shape="rect" id="node9" href="$class_node_vertical_button.html#a3ef8e6e15643f17a3042406f2338aef3" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="19,340,206,381"/>
+</map>

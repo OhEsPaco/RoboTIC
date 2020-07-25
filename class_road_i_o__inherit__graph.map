@@ -1,0 +1,6 @@
+<map id="RoadIO" name="RoadIO">
+<area shape="rect" id="node1" title="Entradas y salidas de una carretera." alt="" coords="33,131,200,384"/>
+<area shape="rect" id="node3" href="$class_road_input.html" title="Marca un objeto como input de una carretera." alt="" coords="5,432,108,524"/>
+<area shape="rect" id="node4" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="132,432,224,524"/>
+<area shape="rect" id="node2" title=" " alt="" coords="61,5,172,83"/>
+</map>

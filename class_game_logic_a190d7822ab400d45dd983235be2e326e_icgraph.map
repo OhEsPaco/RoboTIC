@@ -1,0 +1,4 @@
+<map id="GameLogic.DoJump" name="GameLogic.DoJump">
+<area shape="rect" id="node1" title="Lógica del botón de salto." alt="" coords="192,5,331,32"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#ae4ac05e7e755f71636ee1222252328ac" title="Lógica del botón avanzar." alt="" coords="5,5,144,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="BlockExploder.CreateParticle" name="BlockExploder.CreateParticle">
+<area shape="rect" id="node1" title="Crea una partícula." alt="" coords="509,5,701,32"/>
+<area shape="rect" id="node2" href="$class_block_exploder.html#ae17c86a0147452622f17a40dc905adc8" title="Hace explotar el bloque." alt="" coords="304,5,461,32"/>
+<area shape="rect" id="node3" href="$class_block.html#a8b33897bbebd56798b7abc0944bec4b7" title="Acción destruir." alt="" coords="152,5,256,32"/>
+<area shape="rect" id="node4" href="$class_block.html#a63762e4c6f3480e01c2e82271c59995d" title="Awake." alt="" coords="5,5,104,32"/>
+</map>

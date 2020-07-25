@@ -1,0 +1,4 @@
+<map id="Item.Use" name="Item.Use">
+<area shape="rect" id="node1" title="Acción de usar el item." alt="" coords="5,13,80,39"/>
+<area shape="rect" id="node2" href="$class_level_object.html#a61dd043b7e6e02a2b44ba33eb3b0980e" title="Ejecuta un trigger en el animator del objeto." alt="" coords="128,5,299,47"/>
+</map>

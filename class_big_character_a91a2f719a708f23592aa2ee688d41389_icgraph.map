@@ -1,0 +1,5 @@
+<map id="BigCharacter.DoTurnLeft" name="BigCharacter.DoTurnLeft">
+<area shape="rect" id="node1" title="Acción de girar a la izquierda." alt="" coords="424,5,587,32"/>
+<area shape="rect" id="node2" href="$class_big_character.html#aafb59ced8540128e4dc8f9185bc58b65" title="Recibe mensajes para llevar a cabo acciones." alt="" coords="193,5,376,32"/>
+<area shape="rect" id="node3" href="$class_big_character.html#ad3ba2c60423e70f163f93c3a9ea65644" title="Awake." alt="" coords="5,5,145,32"/>
+</map>

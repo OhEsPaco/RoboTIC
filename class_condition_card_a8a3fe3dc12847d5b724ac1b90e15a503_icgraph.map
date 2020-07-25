@@ -1,0 +1,7 @@
+<map id="ConditionCard.ShowCardCrt" name="ConditionCard.ShowCardCrt">
+<area shape="rect" id="node1" title="Animación de mostrar la carta." alt="" coords="925,13,1108,39"/>
+<area shape="rect" id="node2" href="$class_condition_card.html#a4da799c4fcf6954a3f0581ff487c67c6" title="Despliega la carta." alt="" coords="711,13,877,39"/>
+<area shape="rect" id="node3" href="$class_condition_card_picker.html#a71efc0376c1aae20e0bb1b6c9cb09773" title="Corrutina para mostrar las cartas." alt="" coords="487,5,663,47"/>
+<area shape="rect" id="node4" href="$class_condition_card_picker.html#ae005208648200f914e70e77c296a3512" title="Se ejecuta cuando se hace tap en una carta." alt="" coords="225,13,439,39"/>
+<area shape="rect" id="node5" href="$class_condition_card_picker.html#ad53167717d998ebf6c074ab8b1432364" title="Start." alt="" coords="5,13,177,39"/>
+</map>

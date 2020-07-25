@@ -1,0 +1,4 @@
+<map id="RoadMovementLogic.StopMovement" name="RoadMovementLogic.StopMovement">
+<area shape="rect" id="node1" title="Recibe el mensaje de parar el movimiento del robot." alt="" coords="239,5,471,32"/>
+<area shape="rect" id="node2" href="$class_road_movement_logic.html#af1a4a5568a3b0217ee2a2502a3a0addb" title="Awake." alt="" coords="5,5,191,32"/>
+</map>

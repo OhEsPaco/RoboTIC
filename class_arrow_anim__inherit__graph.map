@@ -1,0 +1,4 @@
+<map id="ArrowAnim" name="ArrowAnim">
+<area shape="rect" id="node1" title="Clase que lleva a cabo la animación de las flechas del mapa." alt="" coords="5,131,131,311"/>
+<area shape="rect" id="node2" title=" " alt="" coords="13,5,123,83"/>
+</map>

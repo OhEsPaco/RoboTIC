@@ -1,0 +1,4 @@
+<map id="RoadPlacementLogic.DoAction" name="RoadPlacementLogic.DoAction">
+<area shape="rect" id="node1" title="Lógica del botón de acción." alt="" coords="231,5,433,32"/>
+<area shape="rect" id="node2" href="$class_road_placement_logic.html#acd1c4d044ecfd603c37b69210fff1b86" title="Start." alt="" coords="5,5,183,32"/>
+</map>

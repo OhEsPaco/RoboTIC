@@ -1,0 +1,5 @@
+<map id="BlockExploder.Explode" name="BlockExploder.Explode">
+<area shape="rect" id="node1" title="Hace explotar el bloque." alt="" coords="5,35,163,61"/>
+<area shape="rect" id="node2" href="$class_block_exploder.html#a4e81b0df50e30e01bb16d4ee03d12e68" title="Crea una partícula." alt="" coords="218,5,410,32"/>
+<area shape="rect" id="node3" href="$class_block_exploder.html#afa440b8fdd07088b3f1e9ca845893f2a" title="Corrutina para destruir las partículas pasado un tiempo." alt="" coords="211,57,417,98"/>
+</map>

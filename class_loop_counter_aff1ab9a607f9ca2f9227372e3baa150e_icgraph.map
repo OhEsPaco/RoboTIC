@@ -1,0 +1,4 @@
+<map id="LoopCounter.ActualNumber" name="LoopCounter.ActualNumber">
+<area shape="rect" id="node1" title="Retorna el número actual." alt="" coords="257,5,439,32"/>
+<area shape="rect" id="node2" href="$class_node_loop_in.html#acdae87fb52d3062250a5619aca3e1fe1" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="5,5,209,32"/>
+</map>

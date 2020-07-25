@@ -1,0 +1,6 @@
+<map id="SelectedOutputMarker.GetMouseWorldPos" name="SelectedOutputMarker.GetMouseWorldPos">
+<area shape="rect" id="node1" title="Convierte las coordenadas del ratón a coordenadas globales." alt="" coords="537,23,715,65"/>
+<area shape="rect" id="node2" href="$class_selected_output_marker.html#a52d8524ea49729628426557ec37fce26" title="Se activa cuando se arrastra con el ratón." alt="" coords="251,5,489,32"/>
+<area shape="rect" id="node4" href="$class_selected_output_marker.html#ac32cb8155f3a689a72be0c841486e692" title="OnSelect." alt="" coords="265,56,475,83"/>
+<area shape="rect" id="node3" href="$class_selected_output_marker.html#aa4446d6769a2a8324dd9c248c6d72955" title="Update." alt="" coords="5,5,203,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="MessageScreenManager.ShowScreen" name="MessageScreenManager.ShowScreen">
+<area shape="rect" id="node1" title="Muestra una pantalla concreta." alt="" coords="5,39,208,80"/>
+<area shape="rect" id="node2" href="$class_message_screen.html#afa6014da820337f043dcce5ce3e5d57a" title="Hace que el botón con nombre bType llame al delegado bDelegate cuando se hace click en él." alt="" coords="265,5,460,47"/>
+<area shape="rect" id="node3" href="$class_message_screen_manager.html#a3c6962d743d71b3e22e579aefac8a464" title="Esconde una pantalla pasado un tiempo." alt="" coords="256,71,469,112"/>
+</map>

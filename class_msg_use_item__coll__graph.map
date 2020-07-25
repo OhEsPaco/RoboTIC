@@ -1,0 +1,8 @@
+<map id="MsgUseItem" name="MsgUseItem">
+<area shape="rect" id="node1" title="Mensaje que indica al robot que debe usar un item." alt="" coords="195,852,310,959"/>
+<area shape="rect" id="node2" href="$class_item.html" title="Define la clase Item." alt="" coords="365,389,537,789"/>
+<area shape="rect" id="node3" href="$class_level_object.html" title="Define la clase LevelObject que son los objetos del juego tales como items y bloques." alt="" coords="187,132,345,327"/>
+<area shape="rect" id="node5" href="$class_block.html" title="Define la clase Block." alt="" coords="5,433,204,745"/>
+<area shape="rect" id="node4" title=" " alt="" coords="211,5,321,83"/>
+<area shape="rect" id="node6" href="$class_block_1_1_effect_reaction.html" title="La clase EffectReaction modela las reacciones que pueden tener los items sobre este bloque." alt="" coords="20,147,163,312"/>
+</map>

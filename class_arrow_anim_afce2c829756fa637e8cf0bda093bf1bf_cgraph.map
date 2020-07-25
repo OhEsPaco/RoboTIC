@@ -1,0 +1,4 @@
+<map id="ArrowAnim.Maximize" name="ArrowAnim.Maximize">
+<area shape="rect" id="node1" title="Maximiza el objeto." alt="" coords="5,5,151,32"/>
+<area shape="rect" id="node2" href="$class_arrow_anim.html#a40d9080137dab980e0c4c935ca84f315" title="Minimiza el objeto." alt="" coords="199,5,340,32"/>
+</map>

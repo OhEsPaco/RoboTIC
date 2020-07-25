@@ -1,0 +1,7 @@
+<map id="RoadPlacementLogic.DoPlay" name="RoadPlacementLogic.DoPlay">
+<area shape="rect" id="node1" title="Lógica del botón play." alt="" coords="5,81,196,108"/>
+<area shape="rect" id="node2" href="$class_road.html#a22a8c8c46759559a3efa51747c992d4a" title="Ejecuta una acción en base a una lista de argumentos." alt="" coords="281,5,422,32"/>
+<area shape="rect" id="node3" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="272,56,431,83"/>
+<area shape="rect" id="node4" href="$class_road_placement_logic.html#a778ca1d0acce5083b179adbf522a7688" title="Imprime un mensaje de carretera invalida." alt="" coords="244,107,459,133"/>
+<area shape="rect" id="node5" href="$class_road.html#a0e438ba0cf866c512f37b6ff9bd18553" title="¿Está la carretera preparada?" alt="" coords="290,157,413,184"/>
+</map>

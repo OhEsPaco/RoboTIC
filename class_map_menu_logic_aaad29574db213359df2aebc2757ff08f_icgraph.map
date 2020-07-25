@@ -1,0 +1,8 @@
+<map id="MapMenuLogic.RenderALevel" name="MapMenuLogic.RenderALevel">
+<area shape="rect" id="node1" title="Toma la estructura de datos de un nivel y genera los objetos apropiados." alt="" coords="631,31,824,57"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#ac61a4b00fb9083e93099b22fd9f06fe6" title="Añade un nuevo nivel a la lista." alt="" coords="384,5,575,32"/>
+<area shape="rect" id="node5" href="$class_map_menu_logic.html#aa5e7b1addfcd035654aecd5b57c0caaf" title="Renderiza todos los niveles." alt="" coords="376,56,583,83"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#a9928c4ef47df7d6a8d9652b13a007223" title="Recibe el mensaje para guardar el mapa." alt="" coords="184,5,328,32"/>
+<area shape="rect" id="node4" href="$class_editor_logic.html#ac9bb77f807c2c860221e46919ff9b454" title="Awake." alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node6" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="185,56,327,83"/>
+</map>

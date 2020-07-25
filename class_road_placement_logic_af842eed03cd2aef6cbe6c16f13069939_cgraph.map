@@ -1,0 +1,7 @@
+<map id="RoadPlacementLogic.ResetRoad" name="RoadPlacementLogic.ResetRoad">
+<area shape="rect" id="node1" title="Resetea la carretera a su estado original." alt="" coords="5,31,219,57"/>
+<area shape="rect" id="node2" href="$class_road.html#a462771c26a07b1e20fba6e1a57e7bbc2" title="Retorna la IO por su dirección." alt="" coords="267,5,453,32"/>
+<area shape="rect" id="node4" href="$class_road_i_o.html#af605969a2225e1cc21b6d1e252637938" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="289,56,431,83"/>
+<area shape="rect" id="node3" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="549,5,643,32"/>
+<area shape="rect" id="node5" href="$class_road_i_o.html#adc5fcb069cc0edf24f7583dcdbfa0a9f" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="501,56,691,83"/>
+</map>

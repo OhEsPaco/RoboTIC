@@ -1,0 +1,5 @@
+<map id="NodeVerticalButton.GetPathAndOutput" name="NodeVerticalButton.GetPathAndOutput">
+<area shape="rect" id="node1" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="5,5,192,47"/>
+<area shape="rect" id="node2" href="$class_road.html#adc5d65e42917097ad3d79110c4fa189b" title="Retorna un camino por su nombre." alt="" coords="240,13,395,39"/>
+<area shape="rect" id="node3" href="$class_path_container.html#a0e983cb90956ee63c3427c9602463dc0" title="Retorna un camino por su nombre." alt="" coords="443,13,649,39"/>
+</map>

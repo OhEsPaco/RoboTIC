@@ -1,0 +1,4 @@
+<map id="ConditionCard.HideCard" name="ConditionCard.HideCard">
+<area shape="rect" id="node1" title="Esconde la carta." alt="" coords="5,5,165,32"/>
+<area shape="rect" id="node2" href="$class_condition_card.html#a51135571b970d2b7f95fc3961f378ab0" title="Animación de esconder la carta." alt="" coords="213,5,391,32"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="GameLogic" name="GameLogic">
+<area shape="rect" id="node1" title="La clase GameLogic contiene la lógica del robot que se mueve por el mapa y determina cuando se gana o..." alt="" coords="317,880,537,1353"/>
+<area shape="rect" id="node2" title=" " alt="" coords="155,5,266,83"/>
+<area shape="rect" id="node4" href="$class_level_object.html" title="Define la clase LevelObject que son los objetos del juego tales como items y bloques." alt="" coords="131,145,290,340"/>
+<area shape="rect" id="node6" href="$class_event_aggregator.html" title="Clase EventAggregator usada como un punto central en el que los objetos del juego pueden públicar men..." alt="" coords="445,182,672,303"/>
+<area shape="rect" id="node3" href="$class_item.html" title="Define la clase Item." alt="" coords="247,403,419,803"/>
+<area shape="rect" id="node5" href="$class_message_warehouse.html" title="Clase MessageWarehouse que actua como un &quot;almacen&quot; de mensajes para poder recibirlos de forma diferid..." alt="" coords="444,513,673,693"/>
+<area shape="rect" id="node7" title=" " alt="" coords="617,5,671,83"/>
+<area shape="rect" id="node8" href="$class_level_data.html" title="La clase LevelData es la estructura que contiene todos los datos de un nivel." alt="" coords="751,520,883,685"/>
+<area shape="rect" id="node9" href="$class_available_instructions.html" title="Guarda las instrucciones que tiene el jugador disponibles." alt="" coords="749,160,889,325"/>
+</map>

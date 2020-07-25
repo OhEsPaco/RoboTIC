@@ -1,0 +1,12 @@
+<map id="EditorLogic.GetEditorObject" name="EditorLogic.GetEditorObject">
+<area shape="rect" id="node1" title="Retorna un EditorObject dadas las coordenadas X,Y,Z." alt="" coords="841,132,1025,159"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#ac2a17bd1a9be4ac5b3ad4ecdb887e5d2" title="Borra el objeto más alto de la coordenada x, z." alt="" coords="631,5,760,32"/>
+<area shape="rect" id="node5" href="$class_editor_logic.html#ad45619a44be7a64cd3520404e40f170f" title="Genera un nivel en formato LevelData si es posible." alt="" coords="376,199,549,225"/>
+<area shape="rect" id="node7" href="$class_editor_logic.html#a066c9e957c38f9772acd8c94ee8d6e68" title="Retorna la coordenada X,Y,Z máximas del nivel que se está generando." alt="" coords="615,208,775,235"/>
+<area shape="rect" id="node8" href="$class_editor_logic.html#ac6ef4ab20733024a73c9232649e01545" title="Retorna la coordenada X,Y,Z mínimas del nivel que se está generando." alt="" coords="617,259,773,285"/>
+<area shape="rect" id="node9" href="$class_editor_logic.html#afea4b8114735c8b889e16339aa726569" title="Coloca un bloque o un item donde se requiera." alt="" coords="597,56,793,83"/>
+<area shape="rect" id="node10" href="$class_editor_logic.html#abf25f7a597d9b3e961ae617fee0b3a66" title="Coloca al robot en el sitio apropiado con la orientación requerida." alt="" coords="605,107,785,133"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#ad6b0e0fc671c43819133f2667634f533" title="Recibe el mensaje de que se ha pulsado en la superficie del editor." alt="" coords="378,74,547,115"/>
+<area shape="rect" id="node4" href="$class_editor_logic.html#ac9bb77f807c2c860221e46919ff9b454" title="Awake." alt="" coords="5,127,136,153"/>
+<area shape="rect" id="node6" href="$class_editor_logic.html#a9928c4ef47df7d6a8d9652b13a007223" title="Recibe el mensaje para guardar el mapa." alt="" coords="184,161,328,188"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="NodeVerticalButton.AddButton" name="NodeVerticalButton.AddButton">
+<area shape="rect" id="node1" title="Crea un botón si es posible." alt="" coords="5,46,204,73"/>
+<area shape="rect" id="node2" href="$class_node_vertical_button.html#af9d7092b0e3336ed46457fb5c2607017" title="Número actual de botones." alt="" coords="252,5,435,47"/>
+<area shape="rect" id="node3" href="$class_node_vertical_button.html#ad24fed44ed16896c2e716fda7ab0116c" title="Instancia un botón dado su nombre." alt="" coords="255,71,432,112"/>
+</map>

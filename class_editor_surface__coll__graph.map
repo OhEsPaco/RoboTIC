@@ -1,0 +1,8 @@
+<map id="EditorSurface" name="EditorSurface">
+<area shape="rect" id="node1" title="Las instancias de esta clase se usan para generar una superficie en la que el usuario puede poner blo..." alt="" coords="221,825,371,1005"/>
+<area shape="rect" id="node2" title=" " alt="" coords="241,5,351,83"/>
+<area shape="rect" id="node4" href="$class_event_aggregator.html" title="Clase EventAggregator usada como un punto central en el que los objetos del juego pueden públicar men..." alt="" coords="13,145,240,267"/>
+<area shape="rect" id="node6" href="$class_editor_surface_point.html" title="La clase EditorSurfacePoint representa al objeto físico en el que los usuarios harán click al tocar l..." alt="" coords="215,291,377,559"/>
+<area shape="rect" id="node3" href="$class_message_warehouse.html" title="Clase MessageWarehouse que actua como un &quot;almacen&quot; de mensajes para poder recibirlos de forma diferid..." alt="" coords="5,583,235,763"/>
+<area shape="rect" id="node5" title=" " alt="" coords="99,5,154,83"/>
+</map>

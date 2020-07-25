@@ -1,0 +1,4 @@
+<map id="MapRenderer.RenderMainCharacter" name="MapRenderer.RenderMainCharacter">
+<area shape="rect" id="node1" title="Genera el robot principal." alt="" coords="5,13,233,39"/>
+<area shape="rect" id="node2" href="$class_level_object_factory.html#adbfbbdf9b6a52dc7a4baa42bc385755e" title="Retorna la instancia del robot principal." alt="" coords="281,5,479,47"/>
+</map>

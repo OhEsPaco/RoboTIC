@@ -1,0 +1,5 @@
+<map id="MapRenderer.RenderMapAndItemsCoroutine" name="MapRenderer.RenderMapAndItemsCoroutine">
+<area shape="rect" id="node1" title="Corrutina que genera el mapa y pública un mensaje para informar de que ha terminado su función." alt="" coords="436,5,628,47"/>
+<area shape="rect" id="node2" href="$class_map_renderer.html#a3558983b99368df14ba32b7c0c6a8c9f" title="Genera el mapa cuando se le pide." alt="" coords="196,5,388,47"/>
+<area shape="rect" id="node3" href="$class_map_renderer.html#aeecbda82758d20f558a9d46af43638d8" title="Awake." alt="" coords="5,13,148,39"/>
+</map>

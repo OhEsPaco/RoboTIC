@@ -1,0 +1,4 @@
+<map id="NodeVerticalButton.DestroyButton" name="NodeVerticalButton.DestroyButton">
+<area shape="rect" id="node1" title="Destruye un botón." alt="" coords="5,5,188,47"/>
+<area shape="rect" id="node2" href="$class_node_vertical_button.html#af9d7092b0e3336ed46457fb5c2607017" title="Número actual de botones." alt="" coords="236,5,419,47"/>
+</map>

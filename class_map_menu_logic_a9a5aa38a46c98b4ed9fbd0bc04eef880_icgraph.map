@@ -1,0 +1,5 @@
+<map id="MapMenuLogic.ReadFileAsString" name="MapMenuLogic.ReadFileAsString">
+<area shape="rect" id="node1" title="Lee un archivo y lo retorna como un string." alt="" coords="436,13,651,39"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#a981f2eb3605a82afa1e8b891b18195b8" title="Carga los niveles del usuario." alt="" coords="196,5,388,47"/>
+<area shape="rect" id="node3" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,13,148,39"/>
+</map>

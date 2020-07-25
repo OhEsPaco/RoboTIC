@@ -1,0 +1,10 @@
+<map id="Placeable.Update" name="Placeable.Update">
+<area shape="rect" id="node1" title="Se llama una vez por frame" alt="" coords="5,81,129,108"/>
+<area shape="rect" id="node2" href="$class_placeable.html#ae26c1065e96e1e1d11d8294f8f7efbf4" title="Muestra los limites del objeto." alt="" coords="188,5,359,32"/>
+<area shape="rect" id="node3" href="$class_placeable.html#a4efe3f2e4c088c2a0ab2ba1f8c8f82a2" title="Muestra una sombra bajo el objeto." alt="" coords="187,56,359,83"/>
+<area shape="rect" id="node4" href="$class_placeable.html#a96cf2c07fffbeb3f6a3846ec31bb68c1" title="Posiciona el objeto sobre la superficie a la que mira el usuario." alt="" coords="217,107,330,133"/>
+<area shape="rect" id="node6" href="$class_placeable.html#aa35fbd59a535d9e595ef9f50ab5dd781" title="Verifica si el objeto puede ser o no colocado." alt="" coords="177,161,369,188"/>
+<area shape="rect" id="node5" href="$class_placeable.html#a406190e44492827c5df46d5ad520ac31" title="Orienta el objeto de forma que mira al usuario." alt="" coords="441,103,597,129"/>
+<area shape="rect" id="node7" href="$class_placeable.html#aaab82d8cd10245e4cd2f74dd490aa3d0" title="Determina las coordenadas de la cara del BoxCollider que será colocado contra la superficie." alt="" coords="431,154,607,195"/>
+<area shape="rect" id="node8" href="$class_placeable.html#a0407474b82b6c1d6d261bc5dafc7b5de" title=" " alt="" coords="417,220,620,247"/>
+</map>

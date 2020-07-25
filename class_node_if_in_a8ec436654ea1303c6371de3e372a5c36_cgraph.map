@@ -1,0 +1,9 @@
+<map id="NodeIfIn.IsConditionMet" name="NodeIfIn.IsConditionMet">
+<area shape="rect" id="node1" title="Comprueba si se cumple la condición de la carta." alt="" coords="5,64,164,91"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#ae15e3cbe93aadd0e202f89793058129b" title="Comprueba si el bloque de enfrente y abajo cumple una propiedad." alt="" coords="213,23,403,65"/>
+<area shape="rect" id="node7" href="$class_condition_card_picker.html#aa82a4a71b4b71e20f4474dbe8d48c687" title="Retorna la propiedad de la carta seleccionada." alt="" coords="212,89,404,130"/>
+<area shape="rect" id="node3" href="$class_game_logic.html#ad49799ab52d3785cf1d48042b89f9c17" title="Retorna las coordenadas del bloque al que avanza el jugador." alt="" coords="456,5,659,32"/>
+<area shape="rect" id="node4" href="$class_game_logic.html#a728854801c07a74599c649f7a6bdaca4" title="Dado un bloque comprueba si cumple una propiedad." alt="" coords="452,56,663,83"/>
+<area shape="rect" id="node5" href="$class_block.html#a6d9713d5845bc5decedd012819453978" title="Comprueba que el bloque cumpla una propiedad." alt="" coords="711,31,856,57"/>
+<area shape="rect" id="node6" href="$class_level_object.html#a6337171c12dc5db5b366ad59d08c87e6" title="¿Es un bloque?" alt="" coords="715,81,851,108"/>
+</map>

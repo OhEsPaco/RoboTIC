@@ -1,0 +1,4 @@
+<map id="GameLogic.ExecuteActionEffect" name="GameLogic.ExecuteActionEffect">
+<area shape="rect" id="node1" title="Ejecuta un item sobre un bloque." alt="" coords="199,5,409,32"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#abe051e8707f472f3e5eab89420a2b298" title="Lógica del botón de acción." alt="" coords="5,5,151,32"/>
+</map>

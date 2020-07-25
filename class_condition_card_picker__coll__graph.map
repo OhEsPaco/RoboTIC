@@ -1,0 +1,5 @@
+<map id="ConditionCardPicker" name="ConditionCardPicker">
+<area shape="rect" id="node1" title="Esta clase modela el objeto que permite elegir cartas de condición." alt="" coords="5,536,152,745"/>
+<area shape="rect" id="node2" title=" " alt="" coords="37,5,147,83"/>
+<area shape="rect" id="node3" href="$class_condition_card.html" title="Clase de las cartas de condición." alt="" coords="95,132,230,459"/>
+</map>

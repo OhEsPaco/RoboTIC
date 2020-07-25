@@ -1,0 +1,5 @@
+<map id="MapMenuLogic.AddNewLevel" name="MapMenuLogic.AddNewLevel">
+<area shape="rect" id="node1" title="Añade un nuevo nivel a la lista." alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#aaad29574db213359df2aebc2757ff08f" title="Toma la estructura de datos de un nivel y genera los objetos apropiados." alt="" coords="244,5,437,32"/>
+<area shape="rect" id="node3" href="$class_map_container.html#ac73a76e058eb949538b43efc7805ed3a" title="Actualiza el punto central del mapa." alt="" coords="485,5,696,32"/>
+</map>

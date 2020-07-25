@@ -1,0 +1,5 @@
+<map id="BigCharacter.ServeAllActionsFinishedCrt" name="BigCharacter.ServeAllActionsFinishedCrt">
+<area shape="rect" id="node1" title="Corrutina para mandar un mensaje cuando todas las acciones han acabado." alt="" coords="433,5,625,47"/>
+<area shape="rect" id="node2" href="$class_big_character.html#aa8d65e96a29fab3cc9f18ef66d932bd0" title="Manda un mensaje cuando todas las acciones han acabado." alt="" coords="193,5,385,47"/>
+<area shape="rect" id="node3" href="$class_big_character.html#ad3ba2c60423e70f163f93c3a9ea65644" title="Awake." alt="" coords="5,13,145,39"/>
+</map>

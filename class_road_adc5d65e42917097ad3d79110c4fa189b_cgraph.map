@@ -1,0 +1,4 @@
+<map id="Road.GetPathByName" name="Road.GetPathByName">
+<area shape="rect" id="node1" title="Retorna un camino por su nombre." alt="" coords="5,5,160,32"/>
+<area shape="rect" id="node2" href="$class_path_container.html#a0e983cb90956ee63c3427c9602463dc0" title="Retorna un camino por su nombre." alt="" coords="208,5,415,32"/>
+</map>

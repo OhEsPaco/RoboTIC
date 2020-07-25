@@ -1,0 +1,4 @@
+<map id="RoadPlacementLogic.EnoughNumberOfInstrucions" name="RoadPlacementLogic.EnoughNumberOfInstrucions">
+<area shape="rect" id="node1" title="Comprueba que haya un número suficiente de instrucciones para llevar a cabo una acción." alt="" coords="5,5,199,47"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#aa124d267c53ea38a08471745e7e00b43" title="Publica un mensaje para que los contadores de las instrucciones restantes actualicen su número." alt="" coords="247,5,431,47"/>
+</map>

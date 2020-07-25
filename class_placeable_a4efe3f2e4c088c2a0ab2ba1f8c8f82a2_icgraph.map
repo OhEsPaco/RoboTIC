@@ -1,0 +1,4 @@
+<map id="Placeable.DisplayShadow" name="Placeable.DisplayShadow">
+<area shape="rect" id="node1" title="Muestra una sombra bajo el objeto." alt="" coords="177,5,349,32"/>
+<area shape="rect" id="node2" href="$class_placeable.html#af3b49ab2ce3959d1b04c7f381a554278" title="Se llama una vez por frame" alt="" coords="5,5,129,32"/>
+</map>

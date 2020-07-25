@@ -1,0 +1,5 @@
+<map id="BigCharacter.JumpCoroutine" name="BigCharacter.JumpCoroutine">
+<area shape="rect" id="node1" title="Corrutina de salto." alt="" coords="5,46,192,73"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a5f51c4a8441ba0f8ffa5e67c84a0d5b5" title="Notifica que se ha acabado una acción." alt="" coords="240,5,411,47"/>
+<area shape="rect" id="node3" href="$class_big_character.html#a03ea0cfe3450d4d8806fb0ffd9bf89ac" title="Notifica que se ha iniciado una acción." alt="" coords="244,71,407,112"/>
+</map>

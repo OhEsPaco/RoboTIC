@@ -1,0 +1,5 @@
+<map id="PlaySpaceManager.SurfaceMeshesToPlanes_MakePlanesComplete" name="PlaySpaceManager.SurfaceMeshesToPlanes_MakePlanesComplete">
+<area shape="rect" id="node1" title="Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete." alt="" coords="5,27,261,69"/>
+<area shape="rect" id="node2" href="$class_play_space_manager.html#a351013b8123ab693a673389ce5ccbb65" title="Elimina triángulos de las superficies." alt="" coords="309,5,543,32"/>
+<area shape="rect" id="node3" href="$class_space_collection_manager.html#a2c3548a367b0a3dd5a9bd58fc7c806b3" title="Genera una colección de Placeables en el mundo y los coloca en planos adecuados." alt="" coords="331,57,521,98"/>
+</map>

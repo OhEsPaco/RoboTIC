@@ -1,0 +1,4 @@
+<map id="SelectArrow.InformMeOfClickedArrow" name="SelectArrow.InformMeOfClickedArrow">
+<area shape="rect" id="node1" title="Permite a otros objetos suscribirse a este para ejecutar el callback cuando se pulse." alt="" coords="196,5,401,47"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,13,148,39"/>
+</map>

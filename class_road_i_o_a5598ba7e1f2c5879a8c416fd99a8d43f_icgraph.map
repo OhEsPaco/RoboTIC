@@ -1,0 +1,34 @@
+<map id="RoadIO.GetParentRoad" name="RoadIO.GetParentRoad">
+<area shape="rect" id="node1" title="Retorna la carretera padre." alt="" coords="1832,276,1991,303"/>
+<area shape="rect" id="node2" href="$class_road_factory.html#a9bcabd5b237f83862ceec44bb37084ee" title="Dadas una lista de carreteras, una lista de io de la carretera a un lado de un hueco y una lista de i..." alt="" coords="1578,149,1763,176"/>
+<area shape="rect" id="node4" href="$class_road_placement_logic.html#acae518e205d3319df0b0fa1fdbed60cc" title="Genera una serie de carreteras teniendo en cuenta de rellenar con conectores los huecos que se puedan..." alt="" coords="757,155,945,197"/>
+<area shape="rect" id="node5" href="$class_road_placement_logic.html#af60fb48ebb8dddc89feccd87da77d6ab" title="Lógica del botón de condición. No se pueden poner condiciones dentro de condiciones." alt="" coords="489,91,708,117"/>
+<area shape="rect" id="node7" href="$class_road_placement_logic.html#afdc7f387472ea87b5d40ec590ec5448c" title="Lógica del botón de bucle. No se pueden poner bucles dentro de condiciones." alt="" coords="502,141,695,168"/>
+<area shape="rect" id="node8" href="$class_road_placement_logic.html#ad6a9801681f828f8cd31473e02a08b2b" title="Crea una carretera con botón (o modifica una existente si hay hueco)." alt="" coords="505,286,693,327"/>
+<area shape="rect" id="node15" href="$class_road_placement_logic.html#a361651d3ae04351a943f234e4e26afcb" title="Corrige las posiciones de las carreteras." alt="" coords="1575,546,1766,587"/>
+<area shape="rect" id="node17" href="$class_road_placement_logic.html#a71601b8916f71d149750926858541f7c" title="Lógica del botón play." alt="" coords="756,407,947,433"/>
+<area shape="rect" id="node18" href="$class_selected_output_marker.html#a1ed26952faf537b4bbb6ff9b1bc556cd" title="Busca la IO más cercana." alt="" coords="1572,425,1769,466"/>
+<area shape="rect" id="node26" href="$class_road_factory.html#a289ab802a461c9ff4a616fd3bbf3810c" title="Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa." alt="" coords="1586,251,1755,277"/>
+<area shape="rect" id="node29" href="$class_road_movement_logic.html#a7a87c1859d166175944d92a0b6e775e6" title="Busca el siguiente camino posible y crea una LTSpline combinando los puntos nuevos y los anteriores." alt="" coords="1557,659,1784,685"/>
+<area shape="rect" id="node3" href="$class_road_factory.html#ac805e3be2b8bc72dbb572a27d90480ef" title="Dado un hueco entre dos carreteras lo rellena con el conector que encaje." alt="" coords="1277,149,1503,176"/>
+<area shape="rect" id="node14" href="$class_road_factory.html#a2c40515734973f0b7cb62282d9f7f300" title="Genera una carretera por su id si encaja en el hueco entre dos carreteras." alt="" coords="1291,99,1489,125"/>
+<area shape="rect" id="node6" href="$class_road_placement_logic.html#acd1c4d044ecfd603c37b69210fff1b86" title="Start." alt="" coords="5,293,183,320"/>
+<area shape="rect" id="node9" href="$class_road_placement_logic.html#ad3f5f0f683c26eec2b0d7272867e804c" title="Lógica del botón de acción." alt="" coords="235,411,437,437"/>
+<area shape="rect" id="node10" href="$class_road_placement_logic.html#a6f4b51662d037fc593a56c7c5c33510d" title="Lógica del botón de salto." alt="" coords="238,192,434,219"/>
+<area shape="rect" id="node11" href="$class_road_placement_logic.html#a40638553e31ba5087a69ed18ec235a77" title="Lógica del botón move." alt="" coords="239,243,433,269"/>
+<area shape="rect" id="node12" href="$class_road_placement_logic.html#acd1991e5b73bad88bc1ef431c4670509" title="Lógica del botón de girar a la izquierda." alt="" coords="231,293,441,320"/>
+<area shape="rect" id="node13" href="$class_road_placement_logic.html#a89cfe17859271d4eb24d65e40c5e4d91" title="Lógica del botón de girar a la derecha." alt="" coords="241,345,431,386"/>
+<area shape="rect" id="node16" href="$class_road_placement_logic.html#a9ab68de1dca55fead0d96ea15847caad" title="Deshace las acciones del usuario." alt="" coords="1011,621,1206,648"/>
+<area shape="rect" id="node19" href="$class_selected_output_marker.html#a79a46af5dcb382c02535db20a5f903df" title="Busca y selecciona la IO más cercana." alt="" coords="1299,505,1481,546"/>
+<area shape="rect" id="node21" href="$class_selected_output_marker.html#ac32cb8155f3a689a72be0c841486e692" title="OnSelect." alt="" coords="1003,453,1214,480"/>
+<area shape="rect" id="node24" href="$class_selected_output_marker.html#a52d8524ea49729628426557ec37fce26" title="Se activa cuando se arrastra con el ratón." alt="" coords="1271,403,1509,429"/>
+<area shape="rect" id="node20" href="$class_selected_output_marker.html#a58216a7778b6f151e1338b0eee7a4e2a" title="OnMouseUp." alt="" coords="995,504,1223,531"/>
+<area shape="rect" id="node22" href="$class_selected_output_marker.html#a003b8fd46af739038db0cfe957e645be" title="Para mejorar la usabilidad el gesto de tap sirve para parar la colocación del marcador aunque no se h..." alt="" coords="999,555,1218,597"/>
+<area shape="rect" id="node23" href="$class_selected_output_marker.html#aa54ccdb14f573b4946aedb38851fef63" title="Start." alt="" coords="759,563,943,589"/>
+<area shape="rect" id="node25" href="$class_selected_output_marker.html#aa4446d6769a2a8324dd9c248c6d72955" title="Update." alt="" coords="1010,403,1207,429"/>
+<area shape="rect" id="node27" href="$class_road_factory.html#aa62706cca01dacab9e6b0721c8024d2d" title="Genera una carretera por su ID si encaja con la IO que se le pasa." alt="" coords="1291,251,1489,277"/>
+<area shape="rect" id="node28" href="$class_road_placement_logic.html#a6e56e737eb6a793977559f51a903dca7" title="Genera y conecta una serie de carreteras." alt="" coords="1007,235,1210,277"/>
+<area shape="rect" id="node30" href="$class_road_movement_logic.html#acc8bfbe5c3b2e8e0563de094b9e6f542" title="Recibe el mensaje de iniciar movimiento dado el input y el output de la carretera." alt="" coords="1273,659,1507,685"/>
+<area shape="rect" id="node32" href="$class_road_movement_logic.html#afe9ef2ea355cbfc6c890ec2ff26e0744" title="Update." alt="" coords="1297,709,1483,736"/>
+<area shape="rect" id="node31" href="$class_road_movement_logic.html#af1a4a5568a3b0217ee2a2502a3a0addb" title="Awake." alt="" coords="1016,672,1201,699"/>
+</map>

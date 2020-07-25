@@ -1,0 +1,5 @@
+<map id="EditorSurfacePoint.Up" name="EditorSurfacePoint.Up">
+<area shape="rect" id="node1" title="Sube la colisión." alt="" coords="401,13,552,39"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#ad6b0e0fc671c43819133f2667634f533" title="Recibe el mensaje de que se ha pulsado en la superficie del editor." alt="" coords="184,5,353,47"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#ac9bb77f807c2c860221e46919ff9b454" title="Awake." alt="" coords="5,13,136,39"/>
+</map>

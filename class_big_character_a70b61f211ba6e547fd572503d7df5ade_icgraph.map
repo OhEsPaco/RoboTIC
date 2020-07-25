@@ -1,0 +1,13 @@
+<map id="BigCharacter.AddAction" name="BigCharacter.AddAction">
+<area shape="rect" id="node1" title="Añade una acción a la lista." alt="" coords="644,183,805,209"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a678fcaf5a82c9ff93b819641b6c50643" title="Acción de saltar." alt="" coords="436,5,584,32"/>
+<area shape="rect" id="node5" href="$class_big_character.html#af6eed53aaca6ff62af65e467d39dc809" title="Acción de perder." alt="" coords="437,56,583,83"/>
+<area shape="rect" id="node6" href="$class_big_character.html#a6bdbd8b9fb6d946357d835eb66f83537" title="Acción de moverse." alt="" coords="437,107,583,133"/>
+<area shape="rect" id="node7" href="$class_big_character.html#a91a2f719a708f23592aa2ee688d41389" title="Acción de girar a la izquierda." alt="" coords="429,157,591,184"/>
+<area shape="rect" id="node8" href="$class_big_character.html#ab9e254d86238a8e77eb578aa73b34603" title="Acción de girar a la derecha." alt="" coords="424,208,596,235"/>
+<area shape="rect" id="node9" href="$class_big_character.html#af17d335185f5418e443ab30236a551e6" title="Acción de ganar." alt="" coords="440,259,580,285"/>
+<area shape="rect" id="node10" href="$class_big_character.html#a82177501f83817adebb62149f5be594e" title="Acción de tomar un item." alt="" coords="207,309,362,336"/>
+<area shape="rect" id="node11" href="$class_big_character.html#a652c41bce5611895ac2e2296be3fa410" title="Acción de usar item" alt="" coords="210,360,359,387"/>
+<area shape="rect" id="node3" href="$class_big_character.html#aafb59ced8540128e4dc8f9185bc58b65" title="Recibe mensajes para llevar a cabo acciones." alt="" coords="193,157,376,184"/>
+<area shape="rect" id="node4" href="$class_big_character.html#ad3ba2c60423e70f163f93c3a9ea65644" title="Awake." alt="" coords="5,309,145,336"/>
+</map>

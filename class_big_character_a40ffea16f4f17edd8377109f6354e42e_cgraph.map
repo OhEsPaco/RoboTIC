@@ -1,0 +1,4 @@
+<map id="BigCharacter.Start" name="BigCharacter.Start">
+<area shape="rect" id="node1" title="Start" alt="" coords="5,5,135,32"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a31af1132f4154caf77ea5c388658bed1" title="Inicialización de variables." alt="" coords="183,5,329,32"/>
+</map>

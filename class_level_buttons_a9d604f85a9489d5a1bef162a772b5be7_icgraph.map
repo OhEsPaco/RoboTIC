@@ -1,0 +1,4 @@
+<map id="LevelButtons.EnableAllButtons" name="LevelButtons.EnableAllButtons">
+<area shape="rect" id="node1" title="Activa todos los botones." alt="" coords="192,5,392,32"/>
+<area shape="rect" id="node2" href="$class_level_buttons.html#a3e6aeb5823a2180a419102bcf8125d50" title="Awake." alt="" coords="5,5,144,32"/>
+</map>

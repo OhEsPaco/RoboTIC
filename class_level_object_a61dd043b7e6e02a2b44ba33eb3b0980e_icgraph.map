@@ -1,0 +1,9 @@
+<map id="LevelObject.SetAnimationTrigger" name="LevelObject.SetAnimationTrigger">
+<area shape="rect" id="node1" title="Ejecuta un trigger en el animator del objeto." alt="" coords="773,23,944,65"/>
+<area shape="rect" id="node2" href="$class_item.html#a49f580ba3c8f034b87274b6689248d48" title="Acción de usar el item." alt="" coords="647,5,721,32"/>
+<area shape="rect" id="node6" href="$class_block.html#a991717f13157e416b88248d0e313641d" title="Acción usar." alt="" coords="643,56,725,83"/>
+<area shape="rect" id="node3" href="$class_big_character.html#ad1a4ce0fdb89a63ef551984b8e6a0801" title="Corrutina de usar item." alt="" coords="391,5,595,32"/>
+<area shape="rect" id="node4" href="$class_big_character.html#a652c41bce5611895ac2e2296be3fa410" title="Acción de usar item" alt="" coords="193,5,343,32"/>
+<area shape="rect" id="node5" href="$class_big_character.html#ad3ba2c60423e70f163f93c3a9ea65644" title="Awake." alt="" coords="5,5,145,32"/>
+<area shape="rect" id="node7" href="$class_block.html#a63762e4c6f3480e01c2e82271c59995d" title="Awake." alt="" coords="443,56,542,83"/>
+</map>

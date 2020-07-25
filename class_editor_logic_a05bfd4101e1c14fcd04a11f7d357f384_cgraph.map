@@ -1,0 +1,5 @@
+<map id="EditorLogic.Start" name="EditorLogic.Start">
+<area shape="rect" id="node1" title="Start." alt="" coords="5,13,124,39"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#acffc81dfba112b959e60f847be80b54e" title="Devuelve el editor a su estado original." alt="" coords="172,13,331,39"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="379,5,580,47"/>
+</map>

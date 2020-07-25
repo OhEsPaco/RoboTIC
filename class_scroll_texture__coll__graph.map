@@ -1,0 +1,4 @@
+<map id="ScrollTexture" name="ScrollTexture">
+<area shape="rect" id="node1" title="Hace scroll continuo a una textura." alt="" coords="11,131,110,223"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,116,83"/>
+</map>

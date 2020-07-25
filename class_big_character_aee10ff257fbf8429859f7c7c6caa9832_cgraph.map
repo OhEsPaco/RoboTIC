@@ -1,0 +1,6 @@
+<map id="BigCharacter.LoseCoroutine" name="BigCharacter.LoseCoroutine">
+<area shape="rect" id="node1" title="Corrutina de la acción de perder." alt="" coords="5,78,189,105"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a5f51c4a8441ba0f8ffa5e67c84a0d5b5" title="Notifica que se ha acabado una acción." alt="" coords="251,5,422,47"/>
+<area shape="rect" id="node3" href="$class_big_character.html#a03ea0cfe3450d4d8806fb0ffd9bf89ac" title="Notifica que se ha iniciado una acción." alt="" coords="255,71,418,112"/>
+<area shape="rect" id="node4" href="$class_character.html#a6677a7d9c5691fa40b3e9af789c70e4b" title="Ejecuta un trigger de animación." alt="" coords="237,137,436,163"/>
+</map>

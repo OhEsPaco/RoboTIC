@@ -1,0 +1,4 @@
+<map id="MessageScreenButton.ResetDelegates" name="MessageScreenButton.ResetDelegates">
+<area shape="rect" id="node1" title="Pone el delegado a null." alt="" coords="268,5,460,47"/>
+<area shape="rect" id="node2" href="$class_message_screen.html#ae4307b6e79ad604d4549ae4cdb82bfd3" title="Resetea los delegados de los botones." alt="" coords="5,13,220,39"/>
+</map>

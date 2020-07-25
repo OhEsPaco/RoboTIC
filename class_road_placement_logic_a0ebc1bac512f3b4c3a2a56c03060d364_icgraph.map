@@ -1,0 +1,4 @@
+<map id="RoadPlacementLogic.AddInputFromButton" name="RoadPlacementLogic.AddInputFromButton">
+<area shape="rect" id="node1" title="Ejecuta la acción correspondiente a un botón." alt="" coords="201,5,401,47"/>
+<area shape="rect" id="node2" href="$class_road_button.html#a7f583084fbecf7b41bbb9b71149734d8" title="OnSelect." alt="" coords="5,13,153,39"/>
+</map>

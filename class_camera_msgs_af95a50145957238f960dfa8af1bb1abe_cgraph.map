@@ -1,0 +1,4 @@
+<map id="CameraMsgs.Awake" name="CameraMsgs.Awake">
+<area shape="rect" id="node1" title="Awake." alt="" coords="5,5,148,32"/>
+<area shape="rect" id="node2" href="$class_camera_msgs.html#aa55239c8678576e6b9295fb4e07c756a" title="Responde a las peticiones de enviar el objeto Transform de la cámara." alt="" coords="196,5,433,32"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="PathContainer.Path" name="PathContainer.Path">
+<area shape="rect" id="node1" title="Define un camino." alt="" coords="49,575,184,696"/>
+<area shape="rect" id="node2" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="5,420,97,512"/>
+<area shape="rect" id="node3" href="$class_road_i_o.html" title="Entradas y salidas de una carretera." alt="" coords="5,132,172,371"/>
+<area shape="rect" id="node5" href="$class_road_input.html" title="Marca un objeto como input de una carretera." alt="" coords="121,420,224,512"/>
+<area shape="rect" id="node4" title=" " alt="" coords="33,5,144,83"/>
+</map>

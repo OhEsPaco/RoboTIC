@@ -1,0 +1,12 @@
+<map id="NodeIfIn" name="NodeIfIn">
+<area shape="rect" id="node1" title="Clase de entrada al if." alt="" coords="241,1464,393,1571"/>
+<area shape="rect" id="node2" href="$class_road.html" title="Clase padre de las carreteras." alt="" coords="27,1147,201,1415"/>
+<area shape="rect" id="node3" title=" " alt="" coords="311,5,421,83"/>
+<area shape="rect" id="node4" href="$class_road_i_o.html" title="Entradas y salidas de una carretera." alt="" coords="55,176,221,415"/>
+<area shape="rect" id="node5" href="$class_path_container.html" title="Contiene caminos por los que se moverá el robot que son listas de puntos ordenados." alt="" coords="128,992,268,1084"/>
+<area shape="rect" id="node9" href="$class_condition_card_picker.html" title="Esta clase modela el objeto que permite elegir cartas de condición." alt="" coords="403,536,550,745"/>
+<area shape="rect" id="node10" href="$class_condition_card.html" title="Clase de las cartas de condición." alt="" coords="455,132,589,459"/>
+<area shape="rect" id="node7" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="109,595,201,687"/>
+<area shape="rect" id="node8" href="$class_road_input.html" title="Marca un objeto como input de una carretera." alt="" coords="225,595,328,687"/>
+<area shape="rect" id="node6" href="$struct_path_container_1_1_path.html" title="Define un camino." alt="" coords="131,808,265,929"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="MainMenuLogic.ShowEditor" name="MainMenuLogic.ShowEditor">
+<area shape="rect" id="node1" title="Lanza el editor." alt="" coords="5,13,188,39"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#a85a4ce96b89c0f8dbc335f61abefabda" title="Método para mostrar el editor." alt="" coords="236,13,393,39"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#acffc81dfba112b959e60f847be80b54e" title="Devuelve el editor a su estado original." alt="" coords="441,13,600,39"/>
+<area shape="rect" id="node4" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="648,5,849,47"/>
+</map>

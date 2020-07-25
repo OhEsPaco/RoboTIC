@@ -1,0 +1,9 @@
+<map id="GameLogic.BlockToAdvanceTo" name="GameLogic.BlockToAdvanceTo">
+<area shape="rect" id="node1" title="Retorna las coordenadas del bloque al que avanza el jugador." alt="" coords="680,97,883,123"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#ae15e3cbe93aadd0e202f89793058129b" title="Comprueba si el bloque de enfrente y abajo cumple una propiedad." alt="" coords="443,5,632,47"/>
+<area shape="rect" id="node5" href="$class_game_logic.html#abe051e8707f472f3e5eab89420a2b298" title="Lógica del botón de acción." alt="" coords="465,71,610,98"/>
+<area shape="rect" id="node6" href="$class_game_logic.html#a190d7822ab400d45dd983235be2e326e" title="Lógica del botón de salto." alt="" coords="468,122,607,149"/>
+<area shape="rect" id="node7" href="$class_game_logic.html#ae4ac05e7e755f71636ee1222252328ac" title="Lógica del botón avanzar." alt="" coords="246,147,385,174"/>
+<area shape="rect" id="node3" href="$class_node_if_in.html#a8ec436654ea1303c6371de3e372a5c36" title="Comprueba si se cumple la condición de la carta." alt="" coords="236,13,395,39"/>
+<area shape="rect" id="node4" href="$class_node_if_in.html#acfd366543a2cbaead9c3b402d95dda6b" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="5,13,188,39"/>
+</map>

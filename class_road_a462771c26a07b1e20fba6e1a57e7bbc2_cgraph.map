@@ -1,0 +1,4 @@
+<map id="Road.GetRoadIOByDirection" name="Road.GetRoadIOByDirection">
+<area shape="rect" id="node1" title="Retorna la IO por su dirección." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node2" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="240,5,335,32"/>
+</map>

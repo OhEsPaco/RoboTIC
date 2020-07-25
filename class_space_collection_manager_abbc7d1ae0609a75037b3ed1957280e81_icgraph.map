@@ -1,0 +1,6 @@
+<map id="SpaceCollectionManager.PlaceItemsInWorld" name="SpaceCollectionManager.PlaceItemsInWorld">
+<area shape="rect" id="node1" title=" " alt="" coords="700,5,903,47"/>
+<area shape="rect" id="node2" href="$class_space_collection_manager.html#a511c55ab4021cb3785a7846802b87aa3" title="Intenta colocar un objeto en el escenario." alt="" coords="449,5,652,47"/>
+<area shape="rect" id="node3" href="$class_main_menu_logic.html#ac009b9d3356f61df19f40e666a5d3f8e" title="Espera a que termine de encontrarse el espacio en el que se encuentra el jugador ¡ y lanza el menú pr..." alt="" coords="199,5,401,47"/>
+<area shape="rect" id="node4" href="$class_main_menu_logic.html#a466fff4517f5abecc3052c310b7a139f" title="Start." alt="" coords="5,13,151,39"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="LoopCounter.SetNumber" name="LoopCounter.SetNumber">
+<area shape="rect" id="node1" title="Pone el número que se le indica si es posible, aunque si es menor que cero se pone a cero y si es may..." alt="" coords="257,56,421,83"/>
+<area shape="rect" id="node2" href="$class_loop_counter.html#a2faa6b0dcf0e43fbfa8f6ae8f7fd9cc4" title="Awake." alt="" coords="38,5,177,32"/>
+<area shape="rect" id="node3" href="$class_node_loop_in.html#acdae87fb52d3062250a5619aca3e1fe1" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="5,56,209,83"/>
+<area shape="rect" id="node4" href="$class_loop_counter.html#aced726ce82a76b370f5195d9c38dc23c" title="OnSelect." alt="" coords="31,107,184,133"/>
+</map>

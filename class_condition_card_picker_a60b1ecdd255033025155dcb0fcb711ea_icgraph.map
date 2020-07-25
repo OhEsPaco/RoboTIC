@@ -1,0 +1,7 @@
+<map id="ConditionCardPicker.AllActionsFinished" name="ConditionCardPicker.AllActionsFinished">
+<area shape="rect" id="node1" title="¿Han terminado todas las acciones?" alt="" coords="711,39,913,80"/>
+<area shape="rect" id="node2" href="$class_condition_card_picker.html#a7a47682d58b5174a7431fcb858d3847b" title="Corrutina para esconder las cartas." alt="" coords="489,5,660,47"/>
+<area shape="rect" id="node5" href="$class_condition_card_picker.html#a71efc0376c1aae20e0bb1b6c9cb09773" title="Corrutina para mostrar las cartas." alt="" coords="487,71,663,112"/>
+<area shape="rect" id="node3" href="$class_condition_card_picker.html#ae005208648200f914e70e77c296a3512" title="Se ejecuta cuando se hace tap en una carta." alt="" coords="225,46,439,73"/>
+<area shape="rect" id="node4" href="$class_condition_card_picker.html#ad53167717d998ebf6c074ab8b1432364" title="Start." alt="" coords="5,46,177,73"/>
+</map>

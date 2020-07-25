@@ -1,0 +1,5 @@
+<map id="MessageScreen" name="MessageScreen">
+<area shape="rect" id="node1" title="La clase MessageScreen representa una pantalla para mostrar mensajes al usuario." alt="" coords="5,360,173,511"/>
+<area shape="rect" id="node2" title=" " alt="" coords="49,5,159,83"/>
+<area shape="rect" id="node3" href="$class_message_screen_button.html" title="Clase para los botones de &lt;see cref=&quot;MessageScreen&quot;." alt="" coords="105,132,260,297"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="NodeLoopIn.GetPathAndOutput" name="NodeLoopIn.GetPathAndOutput">
+<area shape="rect" id="node1" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="5,56,209,83"/>
+<area shape="rect" id="node2" href="$class_loop_counter.html#aff1ab9a607f9ca2f9227372e3baa150e" title="Retorna el número actual." alt="" coords="257,5,439,32"/>
+<area shape="rect" id="node3" href="$class_road.html#adc5d65e42917097ad3d79110c4fa189b" title="Retorna un camino por su nombre." alt="" coords="271,56,425,83"/>
+<area shape="rect" id="node5" href="$class_loop_counter.html#a554585fecec0fb0a28a99b96d3c31ead" title="Pone el número que se le indica si es posible, aunque si es menor que cero se pone a cero y si es may..." alt="" coords="266,107,430,133"/>
+<area shape="rect" id="node4" href="$class_path_container.html#a0e983cb90956ee63c3427c9602463dc0" title="Retorna un camino por su nombre." alt="" coords="487,56,693,83"/>
+</map>

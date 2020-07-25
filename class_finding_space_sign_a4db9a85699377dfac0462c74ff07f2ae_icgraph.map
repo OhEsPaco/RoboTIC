@@ -1,0 +1,6 @@
+<map id="FindingSpaceSign.EnableOrDisablePoints" name="FindingSpaceSign.EnableOrDisablePoints">
+<area shape="rect" id="node1" title="Dado un array de bool activa los puntos específicos." alt="" coords="667,5,852,47"/>
+<area shape="rect" id="node2" href="$class_finding_space_sign.html#a21df4db4db36b4faaa18c7e06504b6e9" title="La corrutina de la animación." alt="" coords="445,5,619,47"/>
+<area shape="rect" id="node3" href="$class_finding_space_sign.html#afe062b9d4e1ef0ce86d598a47e4c781c" title="Activa la animación." alt="" coords="224,5,397,47"/>
+<area shape="rect" id="node4" href="$class_finding_space_sign.html#a09f672bbd8ef39779e30569adca67cc8" title="Awake." alt="" coords="5,13,176,39"/>
+</map>

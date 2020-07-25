@@ -1,0 +1,16 @@
+<map id="RoadPlacementLogic.GenerateRoads" name="RoadPlacementLogic.GenerateRoads">
+<area shape="rect" id="node1" title="Genera y conecta una serie de carreteras." alt="" coords="5,188,208,229"/>
+<area shape="rect" id="node2" href="$class_road_placement_logic.html#a3963e192457627dd414a943bb0810f15" title="Conecta dos carreteras usando los ID de sus IOs." alt="" coords="256,5,453,47"/>
+<area shape="rect" id="node3" href="$class_road_placement_logic.html#a6940b67d2815010d47d1708c5d561708" title="Destruye una serie de carreteras." alt="" coords="257,71,452,112"/>
+<area shape="rect" id="node4" href="$class_road_i_o.html#aa2aced1e703d9180a4fbddc0ee1762a6" title="Calcula la dirección opuesta a otra." alt="" coords="959,141,1152,167"/>
+<area shape="rect" id="node5" href="$class_road_factory.html#a93cb40fbb73d73e0cd5614fe8adbed88" title="Devuelve una carretera usando su identificador." alt="" coords="507,246,685,273"/>
+<area shape="rect" id="node6" href="$class_road.html#a462771c26a07b1e20fba6e1a57e7bbc2" title="Retorna la IO por su dirección." alt="" coords="962,275,1149,302"/>
+<area shape="rect" id="node8" href="$class_road_i_o.html#af605969a2225e1cc21b6d1e252637938" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="283,355,426,382"/>
+<area shape="rect" id="node10" href="$class_road_factory.html#aa62706cca01dacab9e6b0721c8024d2d" title="Genera una carretera por su ID si encaja con la IO que se le pasa." alt="" coords="256,195,453,222"/>
+<area shape="rect" id="node7" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="1200,275,1295,302"/>
+<area shape="rect" id="node9" href="$class_road_i_o.html#adc5fcb069cc0edf24f7583dcdbfa0a9f" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="501,355,691,382"/>
+<area shape="rect" id="node11" href="$class_road_factory.html#a289ab802a461c9ff4a616fd3bbf3810c" title="Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa." alt="" coords="511,195,681,222"/>
+<area shape="rect" id="node12" href="$class_road_factory.html#a58923d70dd274577267702c93f88f8ba" title="Dada una lista de carreteras y una serie de IO, devuelve una lista de carreteras que encajan ahi y un..." alt="" coords="739,188,911,229"/>
+<area shape="rect" id="node14" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="745,254,904,281"/>
+<area shape="rect" id="node13" href="$class_road_factory.html#a077119a3be7e90c8952adbf461317125" title="Comprueba si una serie de IO satisface a otra y devuelve las conexiones si ha funcionado" alt="" coords="969,195,1141,222"/>
+</map>

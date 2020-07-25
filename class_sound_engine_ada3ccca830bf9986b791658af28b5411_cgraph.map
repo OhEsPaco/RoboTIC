@@ -1,0 +1,5 @@
+<map id="SoundEngine.Awake" name="SoundEngine.Awake">
+<area shape="rect" id="node1" title="Awake." alt="" coords="5,31,148,57"/>
+<area shape="rect" id="node2" href="$class_sound_engine.html#a944a0742213e24986a0957e646ac8ed6" title="Reproduce un SFX." alt="" coords="217,5,365,32"/>
+<area shape="rect" id="node3" href="$class_sound_engine.html#a5e61c45dded25281e8aee115dd06eded" title="Reproduce un SFX en un punto." alt="" coords="196,56,387,83"/>
+</map>

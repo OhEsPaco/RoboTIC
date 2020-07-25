@@ -1,0 +1,4 @@
+<map id="MapMenuLogic.LoadImportedLevels" name="MapMenuLogic.LoadImportedLevels">
+<area shape="rect" id="node1" title="Carga los niveles del usuario." alt="" coords="5,5,197,47"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#a9a5aa38a46c98b4ed9fbd0bc04eef880" title="Lee un archivo y lo retorna como un string." alt="" coords="245,13,460,39"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="EditorSurfacePoint.ResetBox" name="EditorSurfacePoint.ResetBox">
+<area shape="rect" id="node1" title="Resetea la colisión." alt="" coords="416,13,607,39"/>
+<area shape="rect" id="node2" href="$class_editor_surface.html#a6ed8a67811646771d2740eef3b32698b" title="Devuelve la superficie a su estado original." alt="" coords="196,5,368,47"/>
+<area shape="rect" id="node3" href="$class_editor_surface.html#a07018e677df1dfb38535f33814178ceb" title="Awake." alt="" coords="5,13,148,39"/>
+</map>

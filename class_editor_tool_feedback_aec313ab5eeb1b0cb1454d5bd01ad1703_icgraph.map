@@ -1,0 +1,4 @@
+<map id="EditorToolFeedback.Animate" name="EditorToolFeedback.Animate">
+<area shape="rect" id="node1" title="Corrutina que lleva a cabo la animación." alt="" coords="248,5,437,32"/>
+<area shape="rect" id="node2" href="$class_editor_tool_feedback.html#a226a863fba9130123e9bb7d0865bbf6d" title="Ejecuta la animación cuando el usuario hace tap." alt="" coords="5,5,200,32"/>
+</map>

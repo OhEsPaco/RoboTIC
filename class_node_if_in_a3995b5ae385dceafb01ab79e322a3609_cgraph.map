@@ -1,0 +1,5 @@
+<map id="NodeIfIn.ExecuteAction" name="NodeIfIn.ExecuteAction">
+<area shape="rect" id="node1" title="Ejecuta una acción en base a una lista de argumentos." alt="" coords="5,31,163,57"/>
+<area shape="rect" id="node2" href="$class_condition_card_picker.html#aee9839b2f253605de8ef0287b2553f44" title="Bloquea el picker para que no responda a las acciónes del usuario." alt="" coords="217,5,389,32"/>
+<area shape="rect" id="node3" href="$class_condition_card_picker.html#aac60eb6a4c3df01e7004b939bfd2acd8" title="Desbloquea el picker para que responda a las acciónes del usuario." alt="" coords="211,56,395,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="BigCharacter.IsRobotIdle" name="BigCharacter.IsRobotIdle">
+<area shape="rect" id="node1" title="¿Está el robot parado?" alt="" coords="5,13,171,39"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a2e3e33ea40fe6dbb1e6108219ac3e312" title="Comprueba si han terminado todas las acciones del robot." alt="" coords="219,5,399,47"/>
+</map>

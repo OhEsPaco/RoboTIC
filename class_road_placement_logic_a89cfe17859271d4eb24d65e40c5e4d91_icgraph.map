@@ -1,0 +1,4 @@
+<map id="RoadPlacementLogic.DoTurnRight" name="RoadPlacementLogic.DoTurnRight">
+<area shape="rect" id="node1" title="Lógica del botón de girar a la derecha." alt="" coords="231,5,421,47"/>
+<area shape="rect" id="node2" href="$class_road_placement_logic.html#acd1c4d044ecfd603c37b69210fff1b86" title="Start." alt="" coords="5,13,183,39"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Placeable.DisplayBounds" name="Placeable.DisplayBounds">
+<area shape="rect" id="node1" title="Muestra los limites del objeto." alt="" coords="177,5,348,32"/>
+<area shape="rect" id="node2" href="$class_placeable.html#af3b49ab2ce3959d1b04c7f381a554278" title="Se llama una vez por frame" alt="" coords="5,5,129,32"/>
+</map>

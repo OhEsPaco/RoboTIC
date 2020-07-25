@@ -1,0 +1,5 @@
+<map id="EditorLogic.ShowEditor" name="EditorLogic.ShowEditor">
+<area shape="rect" id="node1" title="Método para mostrar el editor." alt="" coords="5,13,163,39"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#acffc81dfba112b959e60f847be80b54e" title="Devuelve el editor a su estado original." alt="" coords="211,13,369,39"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="417,5,619,47"/>
+</map>

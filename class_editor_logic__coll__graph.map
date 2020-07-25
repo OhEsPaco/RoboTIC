@@ -1,0 +1,8 @@
+<map id="EditorLogic" name="EditorLogic">
+<area shape="rect" id="node1" title="Clase que contiene toda la lógica del editor de niveles EditorLogic." alt="" coords="303,233,503,575"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,49,116,127"/>
+<area shape="rect" id="node3" href="$class_editor_object.html" title="Las instancias de esta forman los objetos que guarda el editor de niveles." alt="" coords="140,13,309,163"/>
+<area shape="rect" id="node4" href="$class_available_instructions.html" title="Guarda las instrucciones que tiene el jugador disponibles." alt="" coords="333,5,473,171"/>
+<area shape="rect" id="node5" href="$class_editor_logic_1_1_selected_tool.html" title="Clase privada para mantener la herramienta seleccionada SelectedTool." alt="" coords="497,27,664,149"/>
+<area shape="rect" id="node6" title=" " alt="" coords="688,49,743,127"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="RoadFactory.SpawnRoadByID" name="RoadFactory.SpawnRoadByID">
+<area shape="rect" id="node1" title="Genera una carretera por su ID si encaja con la IO que se le pasa." alt="" coords="5,60,203,87"/>
+<area shape="rect" id="node2" href="$class_road_factory.html#a93cb40fbb73d73e0cd5614fe8adbed88" title="Devuelve una carretera usando su identificador." alt="" coords="251,35,429,61"/>
+<area shape="rect" id="node3" href="$class_road_factory.html#a289ab802a461c9ff4a616fd3bbf3810c" title="Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa." alt="" coords="255,85,425,112"/>
+<area shape="rect" id="node4" href="$class_road_factory.html#a58923d70dd274577267702c93f88f8ba" title="Dada una lista de carreteras y una serie de IO, devuelve una lista de carreteras que encajan ahi y un..." alt="" coords="477,49,649,90"/>
+<area shape="rect" id="node9" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="484,115,643,141"/>
+<area shape="rect" id="node5" href="$class_road_factory.html#a077119a3be7e90c8952adbf461317125" title="Comprueba si una serie de IO satisface a otra y devuelve las conexiones si ha funcionado" alt="" coords="708,5,880,32"/>
+<area shape="rect" id="node6" href="$class_road_i_o.html#aa2aced1e703d9180a4fbddc0ee1762a6" title="Calcula la dirección opuesta a otra." alt="" coords="697,56,891,83"/>
+<area shape="rect" id="node7" href="$class_road.html#a462771c26a07b1e20fba6e1a57e7bbc2" title="Retorna la IO por su dirección." alt="" coords="701,107,887,133"/>
+<area shape="rect" id="node8" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="939,107,1033,133"/>
+</map>

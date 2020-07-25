@@ -1,0 +1,47 @@
+<map id="RoadPlacementLogic.Start" name="RoadPlacementLogic.Start">
+<area shape="rect" id="node1" title="Start." alt="" coords="5,916,183,943"/>
+<area shape="rect" id="node2" href="$class_road_placement_logic.html#ad3f5f0f683c26eec2b0d7272867e804c" title="Lógica del botón de acción." alt="" coords="235,866,437,892"/>
+<area shape="rect" id="node19" href="$class_road.html#a462771c26a07b1e20fba6e1a57e7bbc2" title="Retorna la IO por su dirección." alt="" coords="1999,872,2186,899"/>
+<area shape="rect" id="node24" href="$class_road_i_o.html#af605969a2225e1cc21b6d1e252637938" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="1321,858,1463,884"/>
+<area shape="rect" id="node29" href="$class_road_placement_logic.html#af60fb48ebb8dddc89feccd87da77d6ab" title="Lógica del botón de condición. No se pueden poner condiciones dentro de condiciones." alt="" coords="489,596,708,623"/>
+<area shape="rect" id="node30" href="$class_road_placement_logic.html#a6f4b51662d037fc593a56c7c5c33510d" title="Lógica del botón de salto." alt="" coords="238,815,434,842"/>
+<area shape="rect" id="node31" href="$class_road_placement_logic.html#afdc7f387472ea87b5d40ec590ec5448c" title="Lógica del botón de bucle. No se pueden poner bucles dentro de condiciones." alt="" coords="502,535,695,562"/>
+<area shape="rect" id="node32" href="$class_road_placement_logic.html#a40638553e31ba5087a69ed18ec235a77" title="Lógica del botón move." alt="" coords="239,916,433,943"/>
+<area shape="rect" id="node33" href="$class_road_placement_logic.html#a71601b8916f71d149750926858541f7c" title="Lógica del botón play." alt="" coords="503,1111,694,1138"/>
+<area shape="rect" id="node36" href="$class_road_placement_logic.html#a86db0e02ccbd5a29576fb3fe4cf793cf" title="Lógica del botón restart." alt="" coords="233,1234,439,1260"/>
+<area shape="rect" id="node39" href="$class_road_placement_logic.html#acd1991e5b73bad88bc1ef431c4670509" title="Lógica del botón de girar a la izquierda." alt="" coords="231,698,441,724"/>
+<area shape="rect" id="node40" href="$class_road_placement_logic.html#a89cfe17859271d4eb24d65e40c5e4d91" title="Lógica del botón de girar a la derecha." alt="" coords="241,749,431,790"/>
+<area shape="rect" id="node41" href="$class_road_placement_logic.html#a9ab68de1dca55fead0d96ea15847caad" title="Deshace las acciones del usuario." alt="" coords="766,959,961,986"/>
+<area shape="rect" id="node45" href="$class_road_placement_logic.html#acd9463ed74082456bada6a47ec479c61" title="Vuelve al menú de mapas." alt="" coords="233,1183,439,1210"/>
+<area shape="rect" id="node3" href="$class_road_placement_logic.html#a87dbf7f98fb62e2dc12efdbe55e84116" title="Comprueba que haya un número suficiente de instrucciones para llevar a cabo una acción." alt="" coords="767,741,960,782"/>
+<area shape="rect" id="node5" href="$class_road_placement_logic.html#ad6a9801681f828f8cd31473e02a08b2b" title="Crea una carretera con botón (o modifica una existente si hay hueco)." alt="" coords="505,800,693,841"/>
+<area shape="rect" id="node4" href="$class_game_logic.html#aa124d267c53ea38a08471745e7e00b43" title="Publica un mensaje para que los contadores de las instrucciones restantes actualicen su número." alt="" coords="1040,741,1224,782"/>
+<area shape="rect" id="node6" href="$class_node_vertical_button.html#ac59a44e9f6d2248ac1f7fc2172459de6" title="Crea un botón si es posible." alt="" coords="764,908,963,935"/>
+<area shape="rect" id="node9" href="$class_road.html#a22a8c8c46759559a3efa51747c992d4a" title="Ejecuta una acción en base a una lista de argumentos." alt="" coords="793,1060,934,1087"/>
+<area shape="rect" id="node10" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="1783,706,1941,732"/>
+<area shape="rect" id="node11" href="$class_road_placement_logic.html#ad3a708127902d2a836b1b27e4def6d77" title="Añade una nueva acción al stack de acciones." alt="" coords="758,490,969,532"/>
+<area shape="rect" id="node12" href="$class_road_placement_logic.html#acae518e205d3319df0b0fa1fdbed60cc" title="Genera una serie de carreteras teniendo en cuenta de rellenar con conectores los huecos que se puedan..." alt="" coords="769,556,957,597"/>
+<area shape="rect" id="node7" href="$class_node_vertical_button.html#af9d7092b0e3336ed46457fb5c2607017" title="Número actual de botones." alt="" coords="1041,974,1223,1016"/>
+<area shape="rect" id="node8" href="$class_node_vertical_button.html#ad24fed44ed16896c2e716fda7ab0116c" title="Instancia un botón dado su nombre." alt="" coords="1043,909,1221,950"/>
+<area shape="rect" id="node13" href="$class_road_placement_logic.html#a3963e192457627dd414a943bb0810f15" title="Conecta dos carreteras usando los ID de sus IOs." alt="" coords="1293,589,1491,630"/>
+<area shape="rect" id="node14" href="$class_road_factory.html#ac805e3be2b8bc72dbb572a27d90480ef" title="Dado un hueco entre dos carreteras lo rellena con el conector que encaje." alt="" coords="1019,219,1245,246"/>
+<area shape="rect" id="node18" href="$class_road_i_o.html#aa2aced1e703d9180a4fbddc0ee1762a6" title="Calcula la dirección opuesta a otra." alt="" coords="1996,194,2189,220"/>
+<area shape="rect" id="node21" href="$class_road_placement_logic.html#a6e56e737eb6a793977559f51a903dca7" title="Genera y conecta una serie de carreteras." alt="" coords="1031,421,1233,462"/>
+<area shape="rect" id="node28" href="$class_road.html#abd8ae4deb847e0774172e522bba49337" title="Retorna toda la IO." alt="" coords="1581,1048,1686,1075"/>
+<area shape="rect" id="node15" href="$class_road_factory.html#a9bcabd5b237f83862ceec44bb37084ee" title="Dadas una lista de carreteras, una lista de io de la carretera a un lado de un hueco y una lista de i..." alt="" coords="1541,219,1726,246"/>
+<area shape="rect" id="node16" href="$class_road_factory.html#a58923d70dd274577267702c93f88f8ba" title="Dada una lista de carreteras y una serie de IO, devuelve una lista de carreteras que encajan ahi y un..." alt="" coords="1776,270,1948,312"/>
+<area shape="rect" id="node17" href="$class_road_factory.html#a077119a3be7e90c8952adbf461317125" title="Comprueba si una serie de IO satisface a otra y devuelve las conexiones si ha funcionado" alt="" coords="2007,278,2179,304"/>
+<area shape="rect" id="node20" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="2237,1148,2332,1175"/>
+<area shape="rect" id="node22" href="$class_road_placement_logic.html#a6940b67d2815010d47d1708c5d561708" title="Destruye una serie de carreteras." alt="" coords="1295,524,1489,565"/>
+<area shape="rect" id="node23" href="$class_road_factory.html#a93cb40fbb73d73e0cd5614fe8adbed88" title="Devuelve una carretera usando su identificador." alt="" coords="1544,422,1723,448"/>
+<area shape="rect" id="node26" href="$class_road_factory.html#aa62706cca01dacab9e6b0721c8024d2d" title="Genera una carretera por su ID si encaja con la IO que se le pasa." alt="" coords="1293,371,1491,398"/>
+<area shape="rect" id="node25" href="$class_road_i_o.html#adc5fcb069cc0edf24f7583dcdbfa0a9f" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="1539,858,1728,884"/>
+<area shape="rect" id="node27" href="$class_road_factory.html#a289ab802a461c9ff4a616fd3bbf3810c" title="Intenta spawnear la carretera que se le pide en el conjunto de io que se le pasa." alt="" coords="1549,371,1718,398"/>
+<area shape="rect" id="node34" href="$class_road_placement_logic.html#a778ca1d0acce5083b179adbf522a7688" title="Imprime un mensaje de carretera invalida." alt="" coords="756,1111,971,1138"/>
+<area shape="rect" id="node35" href="$class_road.html#a0e438ba0cf866c512f37b6ff9bd18553" title="¿Está la carretera preparada?" alt="" coords="802,1162,925,1188"/>
+<area shape="rect" id="node37" href="$class_game_logic.html#a6c10f01a3a7c39bca8d1c8ce8936d967" title="Ejecuta las acciones apropiadas en respuesta a la pulsación de un botón." alt="" coords="493,1270,704,1296"/>
+<area shape="rect" id="node38" href="$class_road_placement_logic.html#af842eed03cd2aef6cbe6c16f13069939" title="Resetea la carretera a su estado original." alt="" coords="492,1219,705,1246"/>
+<area shape="rect" id="node42" href="$class_road_placement_logic.html#a361651d3ae04351a943f234e4e26afcb" title="Corrige las posiciones de las carreteras." alt="" coords="1037,1040,1227,1081"/>
+<area shape="rect" id="node43" href="$class_selected_output_marker.html#a79a46af5dcb382c02535db20a5f903df" title="Busca y selecciona la IO más cercana." alt="" coords="1041,1105,1223,1146"/>
+<area shape="rect" id="node44" href="$class_selected_output_marker.html#a1ed26952faf537b4bbb6ff9b1bc556cd" title="Busca la IO más cercana." alt="" coords="1293,1098,1491,1140"/>
+</map>

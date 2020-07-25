@@ -1,0 +1,4 @@
+<map id="CameraMsgs.ServeCameraTransform" name="CameraMsgs.ServeCameraTransform">
+<area shape="rect" id="node1" title="Responde a las peticiones de enviar el objeto Transform de la cámara." alt="" coords="196,5,433,32"/>
+<area shape="rect" id="node2" href="$class_camera_msgs.html#af95a50145957238f960dfa8af1bb1abe" title="Awake." alt="" coords="5,5,148,32"/>
+</map>

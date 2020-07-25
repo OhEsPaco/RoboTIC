@@ -1,0 +1,4 @@
+<map id="LevelData.Clone" name="LevelData.Clone">
+<area shape="rect" id="node1" title="Hace una copia profunda del objeto." alt="" coords="5,5,120,32"/>
+<area shape="rect" id="node2" href="$class_level_data.html#adfcd13a04979d4c3114575583b4b2106" title="Clona una lista de enteros." alt="" coords="168,5,319,32"/>
+</map>

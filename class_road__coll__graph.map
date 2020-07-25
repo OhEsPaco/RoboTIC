@@ -1,0 +1,9 @@
+<map id="Road" name="Road">
+<area shape="rect" id="node1" title="Clase padre de las carreteras." alt="" coords="5,913,179,1181"/>
+<area shape="rect" id="node2" title=" " alt="" coords="103,5,214,83"/>
+<area shape="rect" id="node3" href="$class_road_i_o.html" title="Entradas y salidas de una carretera." alt="" coords="75,132,242,371"/>
+<area shape="rect" id="node4" href="$class_path_container.html" title="Contiene caminos por los que se moverá el robot que son listas de puntos ordenados." alt="" coords="181,759,321,851"/>
+<area shape="rect" id="node6" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="130,420,222,512"/>
+<area shape="rect" id="node7" href="$class_road_input.html" title="Marca un objeto como input de una carretera." alt="" coords="246,420,349,512"/>
+<area shape="rect" id="node5" href="$struct_path_container_1_1_path.html" title="Define un camino." alt="" coords="183,575,318,696"/>
+</map>

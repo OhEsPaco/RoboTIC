@@ -1,0 +1,4 @@
+<map id="EditorLogic.GetMinXYZ" name="EditorLogic.GetMinXYZ">
+<area shape="rect" id="node1" title="Retorna la coordenada X,Y,Z mínimas del nivel que se está generando." alt="" coords="5,5,161,32"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#accc3cfeba6480a7282551636ff7a3a1c" title="Retorna un EditorObject dadas las coordenadas X,Y,Z." alt="" coords="209,5,393,32"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="MapRenderer" name="MapRenderer">
+<area shape="rect" id="node1" title="La clase MapRenderer genera el mapa a partir de los datos que se le pasen." alt="" coords="55,1095,269,1289"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,116,83"/>
+<area shape="rect" id="node3" href="$class_level_object_factory.html" title="Define la clase LevelObjectFactory que instancia robots, bloques y objetos." alt="" coords="67,852,263,1032"/>
+<area shape="rect" id="node5" href="$class_level_object.html" title="Define la clase LevelObject que son los objetos del juego tales como items y bloques." alt="" coords="105,132,264,327"/>
+<area shape="rect" id="node4" href="$class_item.html" title="Define la clase Item." alt="" coords="99,389,271,789"/>
+<area shape="rect" id="node6" href="$class_block.html" title="Define la clase Block." alt="" coords="295,433,493,745"/>
+<area shape="rect" id="node7" href="$class_block_1_1_effect_reaction.html" title="La clase EffectReaction modela las reacciones que pueden tener los items sobre este bloque." alt="" coords="323,147,465,312"/>
+<area shape="rect" id="node8" title=" " alt="" coords="288,903,343,981"/>
+</map>

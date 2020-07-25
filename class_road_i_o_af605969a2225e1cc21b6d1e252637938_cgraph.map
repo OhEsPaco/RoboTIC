@@ -1,0 +1,4 @@
+<map id="RoadIO.MoveRoadTo" name="RoadIO.MoveRoadTo">
+<area shape="rect" id="node1" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="5,5,148,32"/>
+<area shape="rect" id="node2" href="$class_road_i_o.html#adc5fcb069cc0edf24f7583dcdbfa0a9f" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="196,5,385,32"/>
+</map>

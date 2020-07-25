@@ -1,0 +1,5 @@
+<map id="RoadInput" name="RoadInput">
+<area shape="rect" id="node1" title="Marca un objeto como input de una carretera." alt="" coords="37,432,140,524"/>
+<area shape="rect" id="node2" href="$class_road_i_o.html" title="Entradas y salidas de una carretera." alt="" coords="5,131,172,384"/>
+<area shape="rect" id="node3" title=" " alt="" coords="33,5,144,83"/>
+</map>

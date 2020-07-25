@@ -1,0 +1,7 @@
+<map id="LevelButtons" name="LevelButtons">
+<area shape="rect" id="node1" title="Manager de los botones de colocar carreteras." alt="" coords="5,783,240,948"/>
+<area shape="rect" id="node2" title=" " alt="" coords="119,5,230,83"/>
+<area shape="rect" id="node3" href="$class_road_button.html" title="Botón para colocar una carretera." alt="" coords="85,321,185,516"/>
+<area shape="rect" id="node4" href="$class_button_counter_script.html" title="Actúa como intermediario con el contador de un botón." alt="" coords="244,540,383,632"/>
+<area shape="rect" id="node5" href="$class_counter.html" title="Contador para el número de instrucciones restantes." alt="" coords="251,132,370,297"/>
+</map>

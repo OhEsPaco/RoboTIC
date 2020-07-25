@@ -1,0 +1,4 @@
+<map id="MapMenuLogic.RenderALevel" name="MapMenuLogic.RenderALevel">
+<area shape="rect" id="node1" title="Toma la estructura de datos de un nivel y genera los objetos apropiados." alt="" coords="5,5,199,32"/>
+<area shape="rect" id="node2" href="$class_map_container.html#ac73a76e058eb949538b43efc7805ed3a" title="Actualiza el punto central del mapa." alt="" coords="247,5,457,32"/>
+</map>

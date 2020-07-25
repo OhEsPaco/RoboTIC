@@ -1,0 +1,4 @@
+<map id="MsgSetAvInstructions" name="MsgSetAvInstructions">
+<area shape="rect" id="node1" title="Cambia los contadores de instrucciones restantes." alt="" coords="5,233,173,311"/>
+<area shape="rect" id="node2" href="$class_available_instructions.html" title="Guarda las instrucciones que tiene el jugador disponibles." alt="" coords="19,5,159,171"/>
+</map>

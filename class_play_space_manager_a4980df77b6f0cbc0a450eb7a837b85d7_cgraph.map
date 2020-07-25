@@ -1,0 +1,6 @@
+<map id="PlaySpaceManager.Start" name="PlaySpaceManager.Start">
+<area shape="rect" id="node1" title=" " alt="" coords="5,35,172,61"/>
+<area shape="rect" id="node2" href="$class_play_space_manager.html#a71d008ce2822bb428afefffcefaae4c9" title="Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete." alt="" coords="220,27,476,69"/>
+<area shape="rect" id="node3" href="$class_play_space_manager.html#a351013b8123ab693a673389ce5ccbb65" title="Elimina triángulos de las superficies." alt="" coords="524,5,757,32"/>
+<area shape="rect" id="node4" href="$class_space_collection_manager.html#a2c3548a367b0a3dd5a9bd58fc7c806b3" title="Genera una colección de Placeables en el mundo y los coloca en planos adecuados." alt="" coords="545,57,736,98"/>
+</map>

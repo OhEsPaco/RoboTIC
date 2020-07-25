@@ -1,0 +1,8 @@
+<map id="RoadMovementLogic" name="RoadMovementLogic">
+<area shape="rect" id="node1" title="Esta clase RoadMovementLogic contiene la lógica para que el robot pequeño se mueva por la carretera." alt="" coords="59,589,202,769"/>
+<area shape="rect" id="node2" title=" " alt="" coords="75,5,186,83"/>
+<area shape="rect" id="node4" href="$class_road_i_o.html" title="Entradas y salidas de una carretera." alt="" coords="47,132,214,371"/>
+<area shape="rect" id="node6" href="$class_character.html" title="Clase abstracta de la que descienden los robots." alt="" coords="344,198,503,305"/>
+<area shape="rect" id="node3" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="84,420,176,512"/>
+<area shape="rect" id="node5" href="$class_mini_character.html" title="Define la clase MiniCharacter del robot que se mueve por las carreteras." alt="" coords="286,427,388,505"/>
+</map>

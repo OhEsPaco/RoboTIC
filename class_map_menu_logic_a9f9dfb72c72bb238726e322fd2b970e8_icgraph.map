@@ -1,0 +1,5 @@
+<map id="MapMenuLogic.GetIndexLeft" name="MapMenuLogic.GetIndexLeft">
+<area shape="rect" id="node1" title="Retorna el indice del mapa a la izquierda." alt="" coords="416,5,603,32"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#a3bcaf7f1cd8858c1582d0b35629f0cbb" title="Mover los mapas hacia la derecha." alt="" coords="196,5,368,32"/>
+<area shape="rect" id="node3" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,5,148,32"/>
+</map>

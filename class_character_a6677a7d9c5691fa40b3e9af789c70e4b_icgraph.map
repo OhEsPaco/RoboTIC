@@ -1,0 +1,11 @@
+<map id="Character.SetAnimationTrigger" name="Character.SetAnimationTrigger">
+<area shape="rect" id="node1" title="Ejecuta un trigger de animación." alt="" coords="908,56,1107,83"/>
+<area shape="rect" id="node2" href="$class_big_character.html#aee10ff257fbf8429859f7c7c6caa9832" title="Corrutina de la acción de perder." alt="" coords="676,56,860,83"/>
+<area shape="rect" id="node6" href="$class_big_character.html#ad1a4ce0fdb89a63ef551984b8e6a0801" title="Corrutina de usar item." alt="" coords="424,107,628,133"/>
+<area shape="rect" id="node8" href="$class_big_character.html#a31f6baa6c3e39d191da019e97f09b350" title="Corrutina de la acción de ganar." alt="" coords="679,5,857,32"/>
+<area shape="rect" id="node3" href="$class_big_character.html#af6eed53aaca6ff62af65e467d39dc809" title="Acción de perder." alt="" coords="453,56,599,83"/>
+<area shape="rect" id="node4" href="$class_big_character.html#aafb59ced8540128e4dc8f9185bc58b65" title="Recibe mensajes para llevar a cabo acciones." alt="" coords="193,56,376,83"/>
+<area shape="rect" id="node5" href="$class_big_character.html#ad3ba2c60423e70f163f93c3a9ea65644" title="Awake." alt="" coords="5,81,145,108"/>
+<area shape="rect" id="node7" href="$class_big_character.html#a652c41bce5611895ac2e2296be3fa410" title="Acción de usar item" alt="" coords="210,107,359,133"/>
+<area shape="rect" id="node9" href="$class_big_character.html#af17d335185f5418e443ab30236a551e6" title="Acción de ganar." alt="" coords="456,5,596,32"/>
+</map>

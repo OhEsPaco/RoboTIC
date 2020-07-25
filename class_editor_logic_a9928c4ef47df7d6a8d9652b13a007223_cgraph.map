@@ -1,0 +1,10 @@
+<map id="EditorLogic.SaveMap" name="EditorLogic.SaveMap">
+<area shape="rect" id="node1" title="Recibe el mensaje para guardar el mapa." alt="" coords="5,57,149,84"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#ac61a4b00fb9083e93099b22fd9f06fe6" title="Añade un nuevo nivel a la lista." alt="" coords="197,19,388,45"/>
+<area shape="rect" id="node5" href="$class_editor_logic.html#ad45619a44be7a64cd3520404e40f170f" title="Genera un nivel en formato LevelData si es posible." alt="" coords="206,95,379,121"/>
+<area shape="rect" id="node3" href="$class_map_menu_logic.html#aaad29574db213359df2aebc2757ff08f" title="Toma la estructura de datos de un nivel y genera los objetos apropiados." alt="" coords="436,5,629,32"/>
+<area shape="rect" id="node4" href="$class_map_container.html#ac73a76e058eb949538b43efc7805ed3a" title="Actualiza el punto central del mapa." alt="" coords="677,5,888,32"/>
+<area shape="rect" id="node6" href="$class_editor_logic.html#accc3cfeba6480a7282551636ff7a3a1c" title="Retorna un EditorObject dadas las coordenadas X,Y,Z." alt="" coords="691,107,875,133"/>
+<area shape="rect" id="node7" href="$class_editor_logic.html#a066c9e957c38f9772acd8c94ee8d6e68" title="Retorna la coordenada X,Y,Z máximas del nivel que se está generando." alt="" coords="453,107,613,133"/>
+<area shape="rect" id="node8" href="$class_editor_logic.html#ac6ef4ab20733024a73c9232649e01545" title="Retorna la coordenada X,Y,Z mínimas del nivel que se está generando." alt="" coords="455,157,611,184"/>
+</map>

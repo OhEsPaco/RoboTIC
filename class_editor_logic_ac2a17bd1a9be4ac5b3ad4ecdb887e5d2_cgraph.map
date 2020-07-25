@@ -1,0 +1,5 @@
+<map id="EditorLogic.Eraser" name="EditorLogic.Eraser">
+<area shape="rect" id="node1" title="Borra el objeto más alto de la coordenada x, z." alt="" coords="5,31,135,57"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#accc3cfeba6480a7282551636ff7a3a1c" title="Retorna un EditorObject dadas las coordenadas X,Y,Z." alt="" coords="183,5,367,32"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#a42cb286ba65cb56aa5707f9bdf85c95d" title="Pone un EditorObject en la coordenada X,Y,Z apropiada." alt="" coords="183,56,366,83"/>
+</map>

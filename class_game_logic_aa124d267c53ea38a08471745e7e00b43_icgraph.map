@@ -1,0 +1,12 @@
+<map id="GameLogic.UpdateAvailableInstructions" name="GameLogic.UpdateAvailableInstructions">
+<area shape="rect" id="node1" title="Publica un mensaje para que los contadores de las instrucciones restantes actualicen su número." alt="" coords="739,150,923,191"/>
+<area shape="rect" id="node2" href="$class_road_placement_logic.html#a87dbf7f98fb62e2dc12efdbe55e84116" title="Comprueba que haya un número suficiente de instrucciones para llevar a cabo una acción." alt="" coords="497,150,691,191"/>
+<area shape="rect" id="node3" href="$class_road_placement_logic.html#ad3f5f0f683c26eec2b0d7272867e804c" title="Lógica del botón de acción." alt="" coords="239,5,441,32"/>
+<area shape="rect" id="node5" href="$class_road_placement_logic.html#af60fb48ebb8dddc89feccd87da77d6ab" title="Lógica del botón de condición. No se pueden poner condiciones dentro de condiciones." alt="" coords="231,56,449,83"/>
+<area shape="rect" id="node6" href="$class_road_placement_logic.html#a6f4b51662d037fc593a56c7c5c33510d" title="Lógica del botón de salto." alt="" coords="242,107,438,133"/>
+<area shape="rect" id="node7" href="$class_road_placement_logic.html#afdc7f387472ea87b5d40ec590ec5448c" title="Lógica del botón de bucle. No se pueden poner bucles dentro de condiciones." alt="" coords="243,157,437,184"/>
+<area shape="rect" id="node8" href="$class_road_placement_logic.html#a40638553e31ba5087a69ed18ec235a77" title="Lógica del botón move." alt="" coords="243,208,437,235"/>
+<area shape="rect" id="node9" href="$class_road_placement_logic.html#acd1991e5b73bad88bc1ef431c4670509" title="Lógica del botón de girar a la izquierda." alt="" coords="235,259,445,285"/>
+<area shape="rect" id="node10" href="$class_road_placement_logic.html#a89cfe17859271d4eb24d65e40c5e4d91" title="Lógica del botón de girar a la derecha." alt="" coords="245,310,435,351"/>
+<area shape="rect" id="node4" href="$class_road_placement_logic.html#acd1c4d044ecfd603c37b69210fff1b86" title="Start." alt="" coords="5,157,183,184"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="NodeLoopIn" name="NodeLoopIn">
+<area shape="rect" id="node1" title="Clase de la carretera de entrada al bucle." alt="" coords="16,476,168,597"/>
+<area shape="rect" id="node2" href="$class_road.html" title="Clase padre de las carreteras." alt="" coords="5,131,179,428"/>
+<area shape="rect" id="node3" title=" " alt="" coords="37,5,147,83"/>
+</map>

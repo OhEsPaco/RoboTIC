@@ -1,0 +1,5 @@
+<map id="GameLogic.StartLevel" name="GameLogic.StartLevel">
+<area shape="rect" id="node1" title="Da comienzo a un nivel del juego." alt="" coords="428,13,577,39"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#a9ed9eb0f3b5ff33beb00dbac030b5673" title="El jugador ha seleccionado un mapa." alt="" coords="196,5,380,47"/>
+<area shape="rect" id="node3" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,13,148,39"/>
+</map>

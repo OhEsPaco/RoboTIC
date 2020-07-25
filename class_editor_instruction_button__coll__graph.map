@@ -1,0 +1,5 @@
+<map id="EditorInstructionButton" name="EditorInstructionButton">
+<area shape="rect" id="node1" title="Clase usada en los botones de instrucciones del editor de niveles." alt="" coords="5,360,160,525"/>
+<area shape="rect" id="node2" title=" " alt="" coords="38,5,149,83"/>
+<area shape="rect" id="node3" href="$class_counter.html" title="Contador para el número de instrucciones restantes." alt="" coords="99,132,218,297"/>
+</map>

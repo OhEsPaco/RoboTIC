@@ -1,0 +1,4 @@
+<map id="PlaySpaceManager.CreatePlanes" name="PlaySpaceManager.CreatePlanes">
+<area shape="rect" id="node1" title="Crea planos a partir de las superficies identificadas." alt="" coords="233,5,451,32"/>
+<area shape="rect" id="node2" href="$class_play_space_manager.html#aad20db57e6ce9d42457570f5e970d740" title=" " alt="" coords="5,5,185,32"/>
+</map>

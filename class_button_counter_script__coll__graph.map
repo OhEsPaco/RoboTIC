@@ -1,0 +1,5 @@
+<map id="ButtonCounterScript" name="ButtonCounterScript">
+<area shape="rect" id="node1" title="Actúa como intermediario con el contador de un botón." alt="" coords="5,360,144,452"/>
+<area shape="rect" id="node2" title=" " alt="" coords="30,5,141,83"/>
+<area shape="rect" id="node3" href="$class_counter.html" title="Contador para el número de instrucciones restantes." alt="" coords="91,132,210,297"/>
+</map>

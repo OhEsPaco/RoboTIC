@@ -1,0 +1,9 @@
+<map id="MapMenuLogic" name="MapMenuLogic">
+<area shape="rect" id="node1" title="Esta clase MapMenuLogic contiene la lógica del menú de mapas del juego." alt="" coords="241,708,426,1123"/>
+<area shape="rect" id="node2" title=" " alt="" coords="237,5,347,83"/>
+<area shape="rect" id="node4" href="$class_event_aggregator.html" title="Clase EventAggregator usada como un punto central en el que los objetos del juego pueden públicar men..." alt="" coords="372,145,599,267"/>
+<area shape="rect" id="node6" href="$class_generic_button.html" title="Representa un botón genérico." alt="" coords="5,291,123,441"/>
+<area shape="rect" id="node7" href="$class_select_arrow.html" title="Clase de las flechas de selección de nivel." alt="" coords="129,313,313,419"/>
+<area shape="rect" id="node3" href="$class_message_warehouse.html" title="Clase MessageWarehouse que actua como un &quot;almacen&quot; de mensajes para poder recibirlos de forma diferid..." alt="" coords="371,465,600,645"/>
+<area shape="rect" id="node5" title=" " alt="" coords="543,5,598,83"/>
+</map>

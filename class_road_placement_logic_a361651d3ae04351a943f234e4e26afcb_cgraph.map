@@ -1,0 +1,8 @@
+<map id="RoadPlacementLogic.CorrectPositions" name="RoadPlacementLogic.CorrectPositions">
+<area shape="rect" id="node1" title="Corrige las posiciones de las carreteras." alt="" coords="5,49,196,90"/>
+<area shape="rect" id="node2" href="$class_road.html#abd8ae4deb847e0774172e522bba49337" title="Retorna toda la IO." alt="" coords="271,5,376,32"/>
+<area shape="rect" id="node4" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="244,56,403,83"/>
+<area shape="rect" id="node5" href="$class_road_i_o.html#af605969a2225e1cc21b6d1e252637938" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="252,107,395,133"/>
+<area shape="rect" id="node3" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="498,5,593,32"/>
+<area shape="rect" id="node6" href="$class_road_i_o.html#adc5fcb069cc0edf24f7583dcdbfa0a9f" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="451,107,640,133"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="EditorLogic.GenerateLevel" name="EditorLogic.GenerateLevel">
+<area shape="rect" id="node1" title="Genera un nivel en formato LevelData si es posible." alt="" coords="5,22,179,49"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#accc3cfeba6480a7282551636ff7a3a1c" title="Retorna un EditorObject dadas las coordenadas X,Y,Z." alt="" coords="435,22,619,49"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#a066c9e957c38f9772acd8c94ee8d6e68" title="Retorna la coordenada X,Y,Z máximas del nivel que se está generando." alt="" coords="227,22,387,49"/>
+<area shape="rect" id="node4" href="$class_editor_logic.html#ac6ef4ab20733024a73c9232649e01545" title="Retorna la coordenada X,Y,Z mínimas del nivel que se está generando." alt="" coords="229,73,385,100"/>
+</map>

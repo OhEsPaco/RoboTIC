@@ -1,0 +1,4 @@
+<map id="ConditionCard.ShowCard" name="ConditionCard.ShowCard">
+<area shape="rect" id="node1" title="Despliega la carta." alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node2" href="$class_condition_card.html#a8a3fe3dc12847d5b724ac1b90e15a503" title="Animación de mostrar la carta." alt="" coords="220,5,403,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="LevelData" name="LevelData">
+<area shape="rect" id="node1" title="La clase LevelData es la estructura que contiene todos los datos de un nivel." alt="" coords="9,233,141,399"/>
+<area shape="rect" id="node2" href="$class_available_instructions.html" title="Guarda las instrucciones que tiene el jugador disponibles." alt="" coords="5,5,145,171"/>
+</map>

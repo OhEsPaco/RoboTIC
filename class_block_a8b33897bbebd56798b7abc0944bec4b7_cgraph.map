@@ -1,0 +1,6 @@
+<map id="Block.Destroy" name="Block.Destroy">
+<area shape="rect" id="node1" title="Acción destruir." alt="" coords="5,35,109,61"/>
+<area shape="rect" id="node2" href="$class_block_exploder.html#ae17c86a0147452622f17a40dc905adc8" title="Hace explotar el bloque." alt="" coords="157,35,315,61"/>
+<area shape="rect" id="node3" href="$class_block_exploder.html#a4e81b0df50e30e01bb16d4ee03d12e68" title="Crea una partícula." alt="" coords="370,5,562,32"/>
+<area shape="rect" id="node4" href="$class_block_exploder.html#afa440b8fdd07088b3f1e9ca845893f2a" title="Corrutina para destruir las partículas pasado un tiempo." alt="" coords="363,57,569,98"/>
+</map>

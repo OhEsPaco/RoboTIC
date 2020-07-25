@@ -1,0 +1,4 @@
+<map id="MainMenuLogic.ShowMapMenu" name="MainMenuLogic.ShowMapMenu">
+<area shape="rect" id="node1" title="Lanza el menú de mapas." alt="" coords="5,5,212,32"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#abeca60b2ee602f9fe49f952cef7a1701" title="Muestra el menú de niveles." alt="" coords="260,5,463,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="Block" name="Block">
+<area shape="rect" id="node1" title="Define la clase Block." alt="" coords="116,389,315,701"/>
+<area shape="rect" id="node2" href="$class_level_object.html" title="Define la clase LevelObject que son los objetos del juego tales como items y bloques." alt="" coords="5,132,164,327"/>
+<area shape="rect" id="node3" title=" " alt="" coords="29,5,140,83"/>
+<area shape="rect" id="node4" href="$class_block_1_1_effect_reaction.html" title="La clase EffectReaction modela las reacciones que pueden tener los items sobre este bloque." alt="" coords="188,147,331,312"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="MapRenderer.ServeBlockLength" name="MapRenderer.ServeBlockLength">
+<area shape="rect" id="node1" title="Retorna la longitud de los bloques en respuesta al mensaje apropiado." alt="" coords="196,5,403,32"/>
+<area shape="rect" id="node2" href="$class_map_renderer.html#aeecbda82758d20f558a9d46af43638d8" title="Awake." alt="" coords="5,5,148,32"/>
+</map>

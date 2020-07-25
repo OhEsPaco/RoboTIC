@@ -1,0 +1,7 @@
+<map id="BigCharacter.TurnCoroutine" name="BigCharacter.TurnCoroutine">
+<area shape="rect" id="node1" title="Corrutina de girar." alt="" coords="644,31,825,57"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a91a2f719a708f23592aa2ee688d41389" title="Acción de girar a la izquierda." alt="" coords="429,5,591,32"/>
+<area shape="rect" id="node5" href="$class_big_character.html#ab9e254d86238a8e77eb578aa73b34603" title="Acción de girar a la derecha." alt="" coords="424,56,596,83"/>
+<area shape="rect" id="node3" href="$class_big_character.html#aafb59ced8540128e4dc8f9185bc58b65" title="Recibe mensajes para llevar a cabo acciones." alt="" coords="193,31,376,57"/>
+<area shape="rect" id="node4" href="$class_big_character.html#ad3ba2c60423e70f163f93c3a9ea65644" title="Awake." alt="" coords="5,31,145,57"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="ConditionCardPicker.GetCardProperty" name="ConditionCardPicker.GetCardProperty">
+<area shape="rect" id="node1" title="Retorna la propiedad de la carta seleccionada." alt="" coords="443,5,635,47"/>
+<area shape="rect" id="node2" href="$class_node_if_in.html#a8ec436654ea1303c6371de3e372a5c36" title="Comprueba si se cumple la condición de la carta." alt="" coords="236,13,395,39"/>
+<area shape="rect" id="node3" href="$class_node_if_in.html#acfd366543a2cbaead9c3b402d95dda6b" title="Dado un input retorna el camino que inicia en él y el output en el que termina." alt="" coords="5,13,188,39"/>
+</map>

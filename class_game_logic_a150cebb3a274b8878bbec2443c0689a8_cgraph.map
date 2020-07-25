@@ -1,0 +1,8 @@
+<map id="GameLogic.ExecuteActionEffect" name="GameLogic.ExecuteActionEffect">
+<area shape="rect" id="node1" title="Ejecuta un item sobre un bloque." alt="" coords="5,31,216,57"/>
+<area shape="rect" id="node2" href="$class_level_object.html#a6337171c12dc5db5b366ad59d08c87e6" title="¿Es un bloque?" alt="" coords="283,5,419,32"/>
+<area shape="rect" id="node3" href="$class_map_renderer.html#a2d19c33c2dd4e5401a1424add31e5e01" title="Genera un bloque por su id." alt="" coords="264,56,439,83"/>
+<area shape="rect" id="node4" href="$class_level_object_factory.html#aa05bc2f181a452c37f2461675f4bf641" title="Genera la instancia de un objeto dado su ID." alt="" coords="487,49,680,90"/>
+<area shape="rect" id="node5" href="$class_level_object_factory.html#afd9dc46fb9438e3d4811a76253e74319" title="Busca la referencia a un objeto a partir de su ID." alt="" coords="728,15,928,57"/>
+<area shape="rect" id="node6" href="$class_level_object_factory.html#a17f7f3b982d4e236969c072da80834db" title="Instancia un objeto a partir de su referencia." alt="" coords="729,81,927,122"/>
+</map>

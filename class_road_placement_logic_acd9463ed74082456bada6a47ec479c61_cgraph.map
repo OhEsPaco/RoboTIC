@@ -1,0 +1,9 @@
+<map id="RoadPlacementLogic.MapMenu" name="RoadPlacementLogic.MapMenu">
+<area shape="rect" id="node1" title="Vuelve al menú de mapas." alt="" coords="5,31,212,57"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#a6c10f01a3a7c39bca8d1c8ce8936d967" title="Ejecuta las acciones apropiadas en respuesta a la pulsación de un botón." alt="" coords="261,5,472,32"/>
+<area shape="rect" id="node3" href="$class_road_placement_logic.html#af842eed03cd2aef6cbe6c16f13069939" title="Resetea la carretera a su estado original." alt="" coords="260,56,473,83"/>
+<area shape="rect" id="node4" href="$class_road.html#a462771c26a07b1e20fba6e1a57e7bbc2" title="Retorna la IO por su dirección." alt="" coords="521,31,708,57"/>
+<area shape="rect" id="node6" href="$class_road_i_o.html#af605969a2225e1cc21b6d1e252637938" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="543,81,686,108"/>
+<area shape="rect" id="node5" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="803,31,898,57"/>
+<area shape="rect" id="node7" href="$class_road_i_o.html#adc5fcb069cc0edf24f7583dcdbfa0a9f" title="Mueve la carretera a un punto usando esta IO como centro." alt="" coords="756,81,945,108"/>
+</map>

@@ -1,0 +1,26 @@
+<map id="LevelObjectFactory.InstantiateObject" name="LevelObjectFactory.InstantiateObject">
+<area shape="rect" id="node1" title="Instancia un objeto a partir de su referencia." alt="" coords="2027,63,2224,104"/>
+<area shape="rect" id="node2" href="$class_level_object_factory.html#aa05bc2f181a452c37f2461675f4bf641" title="Genera la instancia de un objeto dado su ID." alt="" coords="1785,63,1979,104"/>
+<area shape="rect" id="node3" href="$class_map_renderer.html#a2de692bc47b8dc5641aaf7bbef72fd1b" title="Corrutina que genera el mapa y pública un mensaje para informar de que ha terminado su función." alt="" coords="1545,20,1737,61"/>
+<area shape="rect" id="node6" href="$class_map_renderer.html#a2d19c33c2dd4e5401a1424add31e5e01" title="Genera un bloque por su id." alt="" coords="1554,113,1729,139"/>
+<area shape="rect" id="node4" href="$class_map_renderer.html#a3558983b99368df14ba32b7c0c6a8c9f" title="Genera el mapa cuando se le pide." alt="" coords="1303,5,1495,47"/>
+<area shape="rect" id="node5" href="$class_map_renderer.html#aeecbda82758d20f558a9d46af43638d8" title="Awake." alt="" coords="1097,13,1240,39"/>
+<area shape="rect" id="node7" href="$class_game_logic.html#a150cebb3a274b8878bbec2443c0689a8" title="Ejecuta un item sobre un bloque." alt="" coords="403,77,613,103"/>
+<area shape="rect" id="node9" href="$class_editor_logic.html#afea4b8114735c8b889e16339aa726569" title="Coloca un bloque o un item donde se requiera." alt="" coords="1301,126,1497,153"/>
+<area shape="rect" id="node12" href="$class_game_logic.html#a725881c8deea267a4ac8e2fc58d51563" title="Genera los objetos del nivel actual." alt="" coords="1314,214,1485,241"/>
+<area shape="rect" id="node8" href="$class_game_logic.html#abe051e8707f472f3e5eab89420a2b298" title="Lógica del botón de acción." alt="" coords="201,79,346,106"/>
+<area shape="rect" id="node10" href="$class_editor_logic.html#ad6b0e0fc671c43819133f2667634f533" title="Recibe el mensaje de que se ha pulsado en la superficie del editor." alt="" coords="1084,123,1253,164"/>
+<area shape="rect" id="node11" href="$class_editor_logic.html#ac9bb77f807c2c860221e46919ff9b454" title="Awake." alt="" coords="879,130,1009,157"/>
+<area shape="rect" id="node13" href="$class_game_logic.html#a96ab1276a6fcb95ff618065ca9fde9c8" title="Lógica del botón restart." alt="" coords="1093,189,1244,215"/>
+<area shape="rect" id="node22" href="$class_game_logic.html#a48ca5475fdcf02b520873a9d3eeb10ae" title="Da comienzo a un nivel del juego." alt="" coords="1094,239,1243,266"/>
+<area shape="rect" id="node14" href="$class_game_logic.html#a9eec777370cd970dd6544c2c7ebd0adf" title="Lógica del botón yes." alt="" coords="867,181,1021,207"/>
+<area shape="rect" id="node15" href="$class_game_logic.html#ac5d13f1585f61395def7fdd30e5e497f" title="Muestra la pantalla de lose cuando el robot termine sus acciones." alt="" coords="661,134,804,161"/>
+<area shape="rect" id="node21" href="$class_game_logic.html#a3ac2e76f5d25321c1cc3f427d291ae37" title="Muestra la pantalla de win cuando el robot termine sus acciones." alt="" coords="663,185,802,211"/>
+<area shape="rect" id="node16" href="$class_game_logic.html#aede6bc26c17e3def48910d7068ddc17a" title="Comprueba si se ha ganado o perdido la partida." alt="" coords="428,183,588,210"/>
+<area shape="rect" id="node17" href="$class_game_logic.html#a33b454489cadf0e5e25873af0421dc60" title="Lógica del botón de condición." alt="" coords="192,131,355,158"/>
+<area shape="rect" id="node18" href="$class_game_logic.html#a190d7822ab400d45dd983235be2e326e" title="Lógica del botón de salto." alt="" coords="204,182,343,209"/>
+<area shape="rect" id="node19" href="$class_game_logic.html#ae4ac05e7e755f71636ee1222252328ac" title="Lógica del botón avanzar." alt="" coords="5,207,144,234"/>
+<area shape="rect" id="node20" href="$class_game_logic.html#ac2ddab566f95c0d86e75ab44ca402921" title="Lógica del botón de bucle." alt="" coords="205,283,341,310"/>
+<area shape="rect" id="node23" href="$class_map_menu_logic.html#a9ed9eb0f3b5ff33beb00dbac030b5673" title="El jugador ha seleccionado un mapa." alt="" coords="852,232,1036,273"/>
+<area shape="rect" id="node24" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="661,239,804,266"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="GameLogic.CheckNextBlockDownProperty" name="GameLogic.CheckNextBlockDownProperty">
+<area shape="rect" id="node1" title="Comprueba si el bloque de enfrente y abajo cumple una propiedad." alt="" coords="5,23,195,65"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#ad49799ab52d3785cf1d48042b89f9c17" title="Retorna las coordenadas del bloque al que avanza el jugador." alt="" coords="247,5,449,32"/>
+<area shape="rect" id="node3" href="$class_game_logic.html#a728854801c07a74599c649f7a6bdaca4" title="Dado un bloque comprueba si cumple una propiedad." alt="" coords="243,56,453,83"/>
+<area shape="rect" id="node4" href="$class_block.html#a6d9713d5845bc5decedd012819453978" title="Comprueba que el bloque cumpla una propiedad." alt="" coords="501,31,647,57"/>
+<area shape="rect" id="node5" href="$class_level_object.html#a6337171c12dc5db5b366ad59d08c87e6" title="¿Es un bloque?" alt="" coords="506,81,642,108"/>
+</map>

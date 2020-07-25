@@ -1,0 +1,11 @@
+<map id="Counter.SetNumber" name="Counter.SetNumber">
+<area shape="rect" id="node1" title="Pone un número en el contador. Si se pasa pone el número máximo y si es menor que cero pone el cero." alt="" coords="715,97,851,124"/>
+<area shape="rect" id="node2" href="$class_counter.html#accb01b24fcc150033d788938efa4ad0e" title="Awake." alt="" coords="507,5,618,32"/>
+<area shape="rect" id="node3" href="$class_editor_instruction_button.html#ab815f74c2e95b733ed4e8bca121c7f17" title="Ejecuta la acción del botón cuando el usuario hace tap." alt="" coords="483,57,642,98"/>
+<area shape="rect" id="node4" href="$class_editor_instruction_button.html#a000610bad1d4b566d0ecbbccf355d6fa" title="Pone el contador a cero." alt="" coords="483,122,642,163"/>
+<area shape="rect" id="node6" href="$class_button_counter_script.html#a20c694be3e3a77cd8b45e527d2b71f36" title="Pone un número en ese contador." alt="" coords="459,189,667,216"/>
+<area shape="rect" id="node5" href="$class_editor_instruction_button.html#aa204d27331f0ffe3f6884473e5d9cea5" title="Awake." alt="" coords="242,119,401,161"/>
+<area shape="rect" id="node7" href="$class_level_buttons.html#a1416e4f44988d1f7cea49dbc09175458" title="Cambia el contador de un botón al número apropiado." alt="" coords="232,185,411,226"/>
+<area shape="rect" id="node8" href="$class_level_buttons.html#a3e6aeb5823a2180a419102bcf8125d50" title="Awake." alt="" coords="25,163,164,189"/>
+<area shape="rect" id="node9" href="$class_level_buttons.html#a7eb57a2df17c69f6dd19f486f1ed5c21" title="Cambia en número de instrucciones disponibles." alt="" coords="5,214,184,255"/>
+</map>

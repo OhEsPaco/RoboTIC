@@ -1,0 +1,11 @@
+<map id="EditorLogic.ReturnToMainMenu" name="EditorLogic.ReturnToMainMenu">
+<area shape="rect" id="node1" title="Método que recibe el mensaje para volver al menú principal." alt="" coords="5,5,208,32"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#acffc81dfba112b959e60f847be80b54e" title="Devuelve el editor a su estado original." alt="" coords="1019,19,1177,45"/>
+<area shape="rect" id="node4" href="$class_main_menu_logic.html#aee63e2c9791879a003ef556068b69b73" title="Lanza el menú principal." alt="" coords="256,56,465,83"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="1225,11,1427,53"/>
+<area shape="rect" id="node5" href="$class_main_menu_logic.html#aff576c47381793870a6db9f1942f50ad" title="Sale del programa." alt="" coords="522,31,711,57"/>
+<area shape="rect" id="node6" href="$class_main_menu_logic.html#a197d6e40ecf5bf9a7649a3507c5df694" title="Lanza el editor." alt="" coords="525,81,708,108"/>
+<area shape="rect" id="node8" href="$class_main_menu_logic.html#a877a4b36428009a3f38b1290499dd7fe" title="Lanza el menú de mapas." alt="" coords="513,132,720,159"/>
+<area shape="rect" id="node7" href="$class_editor_logic.html#a85a4ce96b89c0f8dbc335f61abefabda" title="Método para mostrar el editor." alt="" coords="791,56,948,83"/>
+<area shape="rect" id="node9" href="$class_map_menu_logic.html#abeca60b2ee602f9fe49f952cef7a1701" title="Muestra el menú de niveles." alt="" coords="768,132,971,159"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="GameLogic.GoToMainMenu" name="GameLogic.GoToMainMenu">
+<area shape="rect" id="node1" title="Retorna al menú principal." alt="" coords="5,42,188,69"/>
+<area shape="rect" id="node2" href="$class_game_logic.html#ab9b5f1e70c69f43baa3800c6715a1553" title="Destruye los objetos de forma que no afecta al rendimiento." alt="" coords="236,5,447,47"/>
+<area shape="rect" id="node3" href="$class_main_menu_logic.html#aee63e2c9791879a003ef556068b69b73" title="Lanza el menú principal." alt="" coords="237,71,446,98"/>
+<area shape="rect" id="node4" href="$class_main_menu_logic.html#aff576c47381793870a6db9f1942f50ad" title="Sale del programa." alt="" coords="503,21,693,47"/>
+<area shape="rect" id="node5" href="$class_main_menu_logic.html#a197d6e40ecf5bf9a7649a3507c5df694" title="Lanza el editor." alt="" coords="507,71,689,98"/>
+<area shape="rect" id="node9" href="$class_main_menu_logic.html#a877a4b36428009a3f38b1290499dd7fe" title="Lanza el menú de mapas." alt="" coords="495,122,701,149"/>
+<area shape="rect" id="node6" href="$class_editor_logic.html#a85a4ce96b89c0f8dbc335f61abefabda" title="Método para mostrar el editor." alt="" coords="772,71,929,98"/>
+<area shape="rect" id="node7" href="$class_editor_logic.html#acffc81dfba112b959e60f847be80b54e" title="Devuelve el editor a su estado original." alt="" coords="1000,71,1159,98"/>
+<area shape="rect" id="node8" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="1207,64,1408,105"/>
+<area shape="rect" id="node10" href="$class_map_menu_logic.html#abeca60b2ee602f9fe49f952cef7a1701" title="Muestra el menú de niveles." alt="" coords="749,122,952,149"/>
+</map>

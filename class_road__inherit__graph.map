@@ -1,0 +1,11 @@
+<map id="Road" name="Road">
+<area shape="rect" id="node1" title="Clase padre de las carreteras." alt="" coords="523,131,696,428"/>
+<area shape="rect" id="node3" href="$class_connector_double.html" title="Conector doble." alt="" coords="5,535,157,641"/>
+<area shape="rect" id="node4" href="$class_connector_vertical.html" title="Conector vertical." alt="" coords="181,542,333,634"/>
+<area shape="rect" id="node5" href="$class_node_if_in.html" title="Clase de entrada al if." alt="" coords="357,527,509,649"/>
+<area shape="rect" id="node6" href="$class_node_if_out.html" title="Clase de la carretera de salida de un if." alt="" coords="533,535,685,641"/>
+<area shape="rect" id="node7" href="$class_node_loop_in.html" title="Clase de la carretera de entrada al bucle." alt="" coords="709,527,861,649"/>
+<area shape="rect" id="node8" href="$class_node_loop_out.html" title="Clase de la carretera de entrada al bucle." alt="" coords="885,535,1037,641"/>
+<area shape="rect" id="node9" href="$class_node_vertical_button.html" title="Clase de la carretera con botones." alt="" coords="1061,476,1213,700"/>
+<area shape="rect" id="node2" title=" " alt="" coords="554,5,665,83"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="PathContainer" name="PathContainer">
+<area shape="rect" id="node1" title="Contiene caminos por los que se moverá el robot que son listas de puntos ordenados." alt="" coords="5,759,145,851"/>
+<area shape="rect" id="node2" title=" " alt="" coords="21,5,132,83"/>
+<area shape="rect" id="node5" href="$class_road_i_o.html" title="Entradas y salidas de una carretera." alt="" coords="76,132,243,371"/>
+<area shape="rect" id="node3" href="$struct_path_container_1_1_path.html" title="Define un camino." alt="" coords="76,575,211,696"/>
+<area shape="rect" id="node4" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="77,420,169,512"/>
+<area shape="rect" id="node6" href="$class_road_input.html" title="Marca un objeto como input de una carretera." alt="" coords="193,420,296,512"/>
+</map>

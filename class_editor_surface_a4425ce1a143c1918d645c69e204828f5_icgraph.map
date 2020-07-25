@@ -1,0 +1,4 @@
+<map id="EditorSurface.SetUpSurface" name="EditorSurface.SetUpSurface">
+<area shape="rect" id="node1" title="Corrutina que inicializa la superficie." alt="" coords="215,5,399,32"/>
+<area shape="rect" id="node2" href="$class_editor_surface.html#a9a80dcf7bceda3214cbee59699982695" title="OnEnable." alt="" coords="5,5,167,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="NodeLoopIn.ExecuteAction" name="NodeLoopIn.ExecuteAction">
+<area shape="rect" id="node1" title="Ejecuta una acción en base a una lista de argumentos." alt="" coords="5,31,184,57"/>
+<area shape="rect" id="node2" href="$class_loop_counter.html#a7456582c1ef97d1a654ad1bfe53c5904" title="Bloquea el contador." alt="" coords="238,5,365,32"/>
+<area shape="rect" id="node3" href="$class_loop_counter.html#acfa8d802ce4c5b91b42e7adea365f337" title="Desbloquea el contador." alt="" coords="232,56,371,83"/>
+</map>

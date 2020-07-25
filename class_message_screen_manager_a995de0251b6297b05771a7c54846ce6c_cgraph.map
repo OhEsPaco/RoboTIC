@@ -1,0 +1,7 @@
+<map id="MessageScreenManager.Start" name="MessageScreenManager.Start">
+<area shape="rect" id="node1" title="Start." alt="" coords="5,46,204,73"/>
+<area shape="rect" id="node2" href="$class_message_screen_manager.html#a3a11d4a461676d62191df59e3cb36141" title="Esconde todas las pantallas de mensaje." alt="" coords="255,5,451,47"/>
+<area shape="rect" id="node3" href="$class_message_screen_manager.html#a692223e868ed8a6b39d0916fb2181caf" title="Muestra una pantalla concreta." alt="" coords="252,71,455,112"/>
+<area shape="rect" id="node4" href="$class_message_screen.html#afa6014da820337f043dcce5ce3e5d57a" title="Hace que el botón con nombre bType llame al delegado bDelegate cuando se hace click en él." alt="" coords="512,37,707,79"/>
+<area shape="rect" id="node5" href="$class_message_screen_manager.html#a3c6962d743d71b3e22e579aefac8a464" title="Esconde una pantalla pasado un tiempo." alt="" coords="503,103,716,144"/>
+</map>

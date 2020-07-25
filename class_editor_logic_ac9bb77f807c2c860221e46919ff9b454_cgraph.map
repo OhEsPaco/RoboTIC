@@ -1,0 +1,36 @@
+<map id="EditorLogic.Awake" name="EditorLogic.Awake">
+<area shape="rect" id="node1" title="Awake." alt="" coords="5,393,136,419"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#aac203a65edcb16a42f42b4147b079a63" title="Recibe los mensajes para actualizar el número de instrucciones disponibles." alt="" coords="196,251,383,292"/>
+<area shape="rect" id="node3" href="$class_editor_logic.html#a94375bb0d09cf221d70251bd29a6703b" title="Recibe el mensaje para cambiar de herramienta seleccionada." alt="" coords="184,317,395,343"/>
+<area shape="rect" id="node4" href="$class_editor_logic.html#ad6b0e0fc671c43819133f2667634f533" title="Recibe el mensaje de que se ha pulsado en la superficie del editor." alt="" coords="463,132,632,173"/>
+<area shape="rect" id="node18" href="$class_editor_logic.html#ad51cbdd198b9ca47706b4e86276501da" title="Método que recibe el mensaje para volver al menú principal." alt="" coords="188,494,391,521"/>
+<area shape="rect" id="node27" href="$class_editor_logic.html#a9928c4ef47df7d6a8d9652b13a007223" title="Recibe el mensaje para guardar el mapa." alt="" coords="217,418,361,445"/>
+<area shape="rect" id="node34" href="$class_editor_logic.html#ac3b600eff6bbd2dc1fee8a2900c2d66d" title="Responde a los mensajes requiriendo el tamaño del nivel." alt="" coords="202,545,377,571"/>
+<area shape="rect" id="node5" href="$class_editor_surface_point.html#a6382b89051855eecf00228f9d8ad6ee6" title="Baja la colisión." alt="" coords="720,215,887,242"/>
+<area shape="rect" id="node6" href="$class_editor_logic.html#ac2a17bd1a9be4ac5b3ad4ecdb887e5d2" title="Borra el objeto más alto de la coordenada x, z." alt="" coords="739,63,868,90"/>
+<area shape="rect" id="node9" href="$class_editor_logic.html#afea4b8114735c8b889e16339aa726569" title="Coloca un bloque o un item donde se requiera." alt="" coords="705,114,901,141"/>
+<area shape="rect" id="node14" href="$class_editor_logic.html#abf25f7a597d9b3e961ae617fee0b3a66" title="Coloca al robot en el sitio apropiado con la orientación requerida." alt="" coords="713,13,893,39"/>
+<area shape="rect" id="node17" href="$class_editor_surface_point.html#ab4d85cb3d0c9f7456fcc44f9f4f55419" title="Sube la colisión." alt="" coords="728,165,879,191"/>
+<area shape="rect" id="node7" href="$class_editor_logic.html#accc3cfeba6480a7282551636ff7a3a1c" title="Retorna un EditorObject dadas las coordenadas X,Y,Z." alt="" coords="977,215,1161,242"/>
+<area shape="rect" id="node8" href="$class_editor_logic.html#a42cb286ba65cb56aa5707f9bdf85c95d" title="Pone un EditorObject en la coordenada X,Y,Z apropiada." alt="" coords="977,63,1160,90"/>
+<area shape="rect" id="node10" href="$class_map_renderer.html#a2d19c33c2dd4e5401a1424add31e5e01" title="Genera un bloque por su id." alt="" coords="981,114,1156,141"/>
+<area shape="rect" id="node11" href="$class_level_object_factory.html#aa05bc2f181a452c37f2461675f4bf641" title="Genera la instancia de un objeto dado su ID." alt="" coords="1233,107,1426,148"/>
+<area shape="rect" id="node12" href="$class_level_object_factory.html#afd9dc46fb9438e3d4811a76253e74319" title="Busca la referencia a un objeto a partir de su ID." alt="" coords="1477,140,1677,181"/>
+<area shape="rect" id="node13" href="$class_level_object_factory.html#a17f7f3b982d4e236969c072da80834db" title="Instancia un objeto a partir de su referencia." alt="" coords="1478,75,1675,116"/>
+<area shape="rect" id="node15" href="$class_map_renderer.html#ab0b072439a12055f44cedb7b972e7777" title="Genera el robot principal." alt="" coords="955,13,1183,39"/>
+<area shape="rect" id="node16" href="$class_level_object_factory.html#adbfbbdf9b6a52dc7a4baa42bc385755e" title="Retorna la instancia del robot principal." alt="" coords="1231,5,1428,47"/>
+<area shape="rect" id="node19" href="$class_editor_logic.html#acffc81dfba112b959e60f847be80b54e" title="Devuelve el editor a su estado original." alt="" coords="1250,595,1409,622"/>
+<area shape="rect" id="node21" href="$class_main_menu_logic.html#aee63e2c9791879a003ef556068b69b73" title="Lanza el menú principal." alt="" coords="443,507,652,534"/>
+<area shape="rect" id="node20" href="$class_editor_logic.html#a24a27fe851f7e8aff7fe4dc3b00adc61" title="Elimina los objetos de forma que no produce bajadas de rendimiento." alt="" coords="1476,588,1677,629"/>
+<area shape="rect" id="node22" href="$class_main_menu_logic.html#aff576c47381793870a6db9f1942f50ad" title="Sale del programa." alt="" coords="709,469,898,495"/>
+<area shape="rect" id="node23" href="$class_main_menu_logic.html#a197d6e40ecf5bf9a7649a3507c5df694" title="Lanza el editor." alt="" coords="712,570,895,597"/>
+<area shape="rect" id="node25" href="$class_main_menu_logic.html#a877a4b36428009a3f38b1290499dd7fe" title="Lanza el menú de mapas." alt="" coords="700,519,907,546"/>
+<area shape="rect" id="node24" href="$class_editor_logic.html#a85a4ce96b89c0f8dbc335f61abefabda" title="Método para mostrar el editor." alt="" coords="990,570,1147,597"/>
+<area shape="rect" id="node26" href="$class_map_menu_logic.html#abeca60b2ee602f9fe49f952cef7a1701" title="Muestra el menú de niveles." alt="" coords="967,519,1170,546"/>
+<area shape="rect" id="node28" href="$class_map_menu_logic.html#ac61a4b00fb9083e93099b22fd9f06fe6" title="Añade un nuevo nivel a la lista." alt="" coords="452,418,643,445"/>
+<area shape="rect" id="node31" href="$class_editor_logic.html#ad45619a44be7a64cd3520404e40f170f" title="Genera un nivel en formato LevelData si es posible." alt="" coords="461,342,634,369"/>
+<area shape="rect" id="node29" href="$class_map_menu_logic.html#aaad29574db213359df2aebc2757ff08f" title="Toma la estructura de datos de un nivel y genera los objetos apropiados." alt="" coords="707,418,900,445"/>
+<area shape="rect" id="node30" href="$class_map_container.html#ac73a76e058eb949538b43efc7805ed3a" title="Actualiza el punto central del mapa." alt="" coords="963,418,1174,445"/>
+<area shape="rect" id="node32" href="$class_editor_logic.html#a066c9e957c38f9772acd8c94ee8d6e68" title="Retorna la coordenada X,Y,Z máximas del nivel que se está generando." alt="" coords="723,317,883,343"/>
+<area shape="rect" id="node33" href="$class_editor_logic.html#ac6ef4ab20733024a73c9232649e01545" title="Retorna la coordenada X,Y,Z mínimas del nivel que se está generando." alt="" coords="725,367,881,394"/>
+</map>

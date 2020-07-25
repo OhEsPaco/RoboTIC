@@ -1,0 +1,4 @@
+<map id="MessageWarehouse.PublishMsgAndWaitForResponse&lt; MessageType, ResponseType &gt;" name="MessageWarehouse.PublishMsgAndWaitForResponse&lt; MessageType, ResponseType &gt;">
+<area shape="rect" id="node1" title="Sirve para publicar un mensaje." alt="" coords="5,5,227,61"/>
+<area shape="rect" id="node2" href="$class_message_warehouse.html#a7c1a89d30254624f52810bf7d91a74e6" title="Metodo interno que recibe los mensajes." alt="" coords="275,13,501,54"/>
+</map>

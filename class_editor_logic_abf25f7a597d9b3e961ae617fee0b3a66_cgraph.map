@@ -1,0 +1,7 @@
+<map id="EditorLogic.PlaceCharacter" name="EditorLogic.PlaceCharacter">
+<area shape="rect" id="node1" title="Coloca al robot en el sitio apropiado con la orientación requerida." alt="" coords="5,56,185,83"/>
+<area shape="rect" id="node2" href="$class_editor_logic.html#accc3cfeba6480a7282551636ff7a3a1c" title="Retorna un EditorObject dadas las coordenadas X,Y,Z." alt="" coords="255,5,439,32"/>
+<area shape="rect" id="node3" href="$class_map_renderer.html#ab0b072439a12055f44cedb7b972e7777" title="Genera el robot principal." alt="" coords="233,56,461,83"/>
+<area shape="rect" id="node5" href="$class_editor_logic.html#a42cb286ba65cb56aa5707f9bdf85c95d" title="Pone un EditorObject en la coordenada X,Y,Z apropiada." alt="" coords="256,107,439,133"/>
+<area shape="rect" id="node4" href="$class_level_object_factory.html#adbfbbdf9b6a52dc7a4baa42bc385755e" title="Retorna la instancia del robot principal." alt="" coords="509,49,707,90"/>
+</map>

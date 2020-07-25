@@ -1,0 +1,6 @@
+<map id="RoadButton.Enable" name="RoadButton.Enable">
+<area shape="rect" id="node1" title="Activa el botón." alt="" coords="440,31,575,57"/>
+<area shape="rect" id="node2" href="$class_level_buttons.html#a9d604f85a9489d5a1bef162a772b5be7" title="Activa todos los botones." alt="" coords="192,5,392,32"/>
+<area shape="rect" id="node4" href="$class_level_buttons.html#aa302d005abfdee3e2d9d98e39e5d80b2" title="Activa un botón concreto." alt="" coords="203,56,381,83"/>
+<area shape="rect" id="node3" href="$class_level_buttons.html#a3e6aeb5823a2180a419102bcf8125d50" title="Awake." alt="" coords="5,31,144,57"/>
+</map>

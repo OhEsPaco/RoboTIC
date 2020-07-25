@@ -1,0 +1,5 @@
+<map id="MsgEditorSurfaceTapped" name="MsgEditorSurfaceTapped">
+<area shape="rect" id="node1" title="Mensaje para avisar de que se ha tocado en la superficie del editor." alt="" coords="5,463,192,540"/>
+<area shape="rect" id="node2" href="$class_editor_surface_point.html" title="La clase EditorSurfacePoint representa al objeto físico en el que los usuarios harán click al tocar l..." alt="" coords="17,132,180,400"/>
+<area shape="rect" id="node3" title=" " alt="" coords="43,5,154,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="MapMenuLogic.InputLeft" name="MapMenuLogic.InputLeft">
+<area shape="rect" id="node1" title="Mover los mapas hacia la izquierda." alt="" coords="196,5,359,32"/>
+<area shape="rect" id="node2" href="$class_map_menu_logic.html#a4b590db8f9530a70f716646d09b12ce6" title="Start." alt="" coords="5,5,148,32"/>
+</map>

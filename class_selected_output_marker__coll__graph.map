@@ -1,0 +1,15 @@
+<map id="SelectedOutputMarker" name="SelectedOutputMarker">
+<area shape="rect" id="node1" title="Clase de la flecha para seleccionar carretera." alt="" coords="99,132,283,385"/>
+<area shape="rect" id="node3" href="$class_road_placement_logic.html" title="La clase RoadPlacementLogic se encarga de formar la carretera apropiada de acuerdo a las ordenes del ..." alt="" coords="445,1623,667,1993"/>
+<area shape="rect" id="node2" title=" " alt="" coords="406,5,517,83"/>
+<area shape="rect" id="node4" href="$class_road_i_o.html" title="Entradas y salidas de una carretera." alt="" coords="589,139,755,378"/>
+<area shape="rect" id="node5" href="$class_road_factory.html" title="Define la clase RoadFactory la cual genera carreteras de acuerdo a una serie de condiciones." alt="" coords="589,1351,758,1560"/>
+<area shape="rect" id="node6" href="$class_road.html" title="Clase padre de las carreteras." alt="" coords="444,991,617,1259"/>
+<area shape="rect" id="node7" href="$class_path_container.html" title="Contiene caminos por los que se moverá el robot que son listas de puntos ordenados." alt="" coords="461,836,601,928"/>
+<area shape="rect" id="node13" href="$class_character.html" title="Clase abstracta de la que descienden los robots." alt="" coords="942,205,1101,312"/>
+<area shape="rect" id="node9" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="626,435,718,527"/>
+<area shape="rect" id="node10" href="$class_road_input.html" title="Marca un objeto como input de una carretera." alt="" coords="499,435,602,527"/>
+<area shape="rect" id="node8" href="$struct_path_container_1_1_path.html" title="Define un camino." alt="" coords="499,652,634,773"/>
+<area shape="rect" id="node11" title=" " alt="" coords="834,1417,889,1494"/>
+<area shape="rect" id="node12" href="$class_mini_character.html" title="Define la clase MiniCharacter del robot que se mueve por las carreteras." alt="" coords="966,551,1069,628"/>
+</map>

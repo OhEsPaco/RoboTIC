@@ -1,0 +1,4 @@
+<map id="ConditionCardPicker.TappedCard" name="ConditionCardPicker.TappedCard">
+<area shape="rect" id="node1" title="Se ejecuta cuando se hace tap en una carta." alt="" coords="225,5,439,32"/>
+<area shape="rect" id="node2" href="$class_condition_card_picker.html#ad53167717d998ebf6c074ab8b1432364" title="Start." alt="" coords="5,5,177,32"/>
+</map>

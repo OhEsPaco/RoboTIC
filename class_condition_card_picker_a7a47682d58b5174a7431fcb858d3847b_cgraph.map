@@ -1,0 +1,6 @@
+<map id="ConditionCardPicker.HideCards" name="ConditionCardPicker.HideCards">
+<area shape="rect" id="node1" title="Corrutina para esconder las cartas." alt="" coords="5,35,176,76"/>
+<area shape="rect" id="node2" href="$class_condition_card_picker.html#a60b1ecdd255033025155dcb0fcb711ea" title="¿Han terminado todas las acciones?" alt="" coords="224,5,427,47"/>
+<area shape="rect" id="node3" href="$class_condition_card.html#a15259b99935b5c6ec358bbcabd5c45a1" title="Esconde la carta." alt="" coords="245,71,405,98"/>
+<area shape="rect" id="node4" href="$class_condition_card.html#a51135571b970d2b7f95fc3961f378ab0" title="Animación de esconder la carta." alt="" coords="475,71,652,98"/>
+</map>

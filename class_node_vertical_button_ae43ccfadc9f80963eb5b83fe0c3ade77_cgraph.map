@@ -1,0 +1,7 @@
+<map id="NodeVerticalButton.ExecuteAction" name="NodeVerticalButton.ExecuteAction">
+<area shape="rect" id="node1" title="Ejecuta una acción en base a una lista de argumentos." alt="" coords="5,90,192,131"/>
+<area shape="rect" id="node2" href="$class_vertical_button.html#a2c44502bbcb5a5e10ac27e7d061d2993" title="Bloquea el botón." alt="" coords="263,5,399,32"/>
+<area shape="rect" id="node3" href="$class_node_vertical_button.html#af9d7092b0e3336ed46457fb5c2607017" title="Número actual de botones." alt="" coords="240,57,423,98"/>
+<area shape="rect" id="node4" href="$class_node_vertical_button.html#ad24fed44ed16896c2e716fda7ab0116c" title="Instancia un botón dado su nombre." alt="" coords="243,122,420,163"/>
+<area shape="rect" id="node5" href="$class_vertical_button.html#a15e7e59f4004cf566d2d0c461c1f050d" title="Desbloquea el botón." alt="" coords="257,188,405,215"/>
+</map>

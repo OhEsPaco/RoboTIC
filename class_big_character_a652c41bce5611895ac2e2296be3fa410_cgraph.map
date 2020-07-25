@@ -1,0 +1,12 @@
+<map id="BigCharacter.UseItem" name="BigCharacter.UseItem">
+<area shape="rect" id="node1" title="Acción de usar item" alt="" coords="5,133,155,160"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a70b61f211ba6e547fd572503d7df5ade" title="Añade una acción a la lista." alt="" coords="224,108,385,135"/>
+<area shape="rect" id="node3" href="$class_big_character.html#ad1a4ce0fdb89a63ef551984b8e6a0801" title="Corrutina de usar item." alt="" coords="203,159,407,185"/>
+<area shape="rect" id="node4" href="$class_block.html#a536e884fefd812debd5c016ef2756262" title="Ejecuta una acción." alt="" coords="482,5,626,32"/>
+<area shape="rect" id="node5" href="$class_big_character.html#a5f51c4a8441ba0f8ffa5e67c84a0d5b5" title="Notifica que se ha acabado una acción." alt="" coords="469,57,639,98"/>
+<area shape="rect" id="node6" href="$class_big_character.html#a03ea0cfe3450d4d8806fb0ffd9bf89ac" title="Notifica que se ha iniciado una acción." alt="" coords="473,122,635,163"/>
+<area shape="rect" id="node7" href="$class_character.html#a6677a7d9c5691fa40b3e9af789c70e4b" title="Ejecuta un trigger de animación." alt="" coords="455,188,653,215"/>
+<area shape="rect" id="node8" href="$class_big_character.html#a52ce9a53e66d1c902dbd516276b29d2f" title="Actualiza la posición de los items en el inventario." alt="" coords="455,239,653,265"/>
+<area shape="rect" id="node9" href="$class_item.html#a49f580ba3c8f034b87274b6689248d48" title="Acción de usar el item." alt="" coords="517,289,591,316"/>
+<area shape="rect" id="node10" href="$class_level_object.html#a61dd043b7e6e02a2b44ba33eb3b0980e" title="Ejecuta un trigger en el animator del objeto." alt="" coords="701,282,872,323"/>
+</map>

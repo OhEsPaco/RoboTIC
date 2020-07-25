@@ -1,0 +1,4 @@
+<map id="EditorInstructionButton.ResetCounter" name="EditorInstructionButton.ResetCounter">
+<area shape="rect" id="node1" title="Pone el contador a cero." alt="" coords="212,5,371,47"/>
+<area shape="rect" id="node2" href="$class_editor_instruction_button.html#aa204d27331f0ffe3f6884473e5d9cea5" title="Awake." alt="" coords="5,5,164,47"/>
+</map>

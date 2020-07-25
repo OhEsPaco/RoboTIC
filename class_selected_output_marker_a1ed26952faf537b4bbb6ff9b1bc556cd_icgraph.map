@@ -1,0 +1,12 @@
+<map id="SelectedOutputMarker.SearchClosestsIO" name="SelectedOutputMarker.SearchClosestsIO">
+<area shape="rect" id="node1" title="Busca la IO más cercana." alt="" coords="800,166,997,207"/>
+<area shape="rect" id="node2" href="$class_selected_output_marker.html#a79a46af5dcb382c02535db20a5f903df" title="Busca y selecciona la IO más cercana." alt="" coords="542,107,723,149"/>
+<area shape="rect" id="node6" href="$class_selected_output_marker.html#ac32cb8155f3a689a72be0c841486e692" title="OnSelect." alt="" coords="246,173,457,200"/>
+<area shape="rect" id="node9" href="$class_selected_output_marker.html#a52d8524ea49729628426557ec37fce26" title="Se activa cuando se arrastra con el ratón." alt="" coords="513,224,752,251"/>
+<area shape="rect" id="node3" href="$class_road_placement_logic.html#a9ab68de1dca55fead0d96ea15847caad" title="Deshace las acciones del usuario." alt="" coords="254,5,449,32"/>
+<area shape="rect" id="node5" href="$class_selected_output_marker.html#a58216a7778b6f151e1338b0eee7a4e2a" title="OnMouseUp." alt="" coords="237,56,465,83"/>
+<area shape="rect" id="node7" href="$class_selected_output_marker.html#a003b8fd46af739038db0cfe957e645be" title="Para mejorar la usabilidad el gesto de tap sirve para parar la colocación del marcador aunque no se h..." alt="" coords="242,107,461,149"/>
+<area shape="rect" id="node4" href="$class_road_placement_logic.html#acd1c4d044ecfd603c37b69210fff1b86" title="Start." alt="" coords="9,5,186,32"/>
+<area shape="rect" id="node8" href="$class_selected_output_marker.html#aa54ccdb14f573b4946aedb38851fef63" title="Start." alt="" coords="5,115,189,141"/>
+<area shape="rect" id="node10" href="$class_selected_output_marker.html#aa4446d6769a2a8324dd9c248c6d72955" title="Update." alt="" coords="253,224,450,251"/>
+</map>

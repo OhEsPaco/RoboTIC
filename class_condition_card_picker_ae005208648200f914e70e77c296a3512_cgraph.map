@@ -1,0 +1,10 @@
+<map id="ConditionCardPicker.TappedCard" name="ConditionCardPicker.TappedCard">
+<area shape="rect" id="node1" title="Se ejecuta cuando se hace tap en una carta." alt="" coords="5,65,219,92"/>
+<area shape="rect" id="node2" href="$class_condition_card_picker.html#a7a47682d58b5174a7431fcb858d3847b" title="Corrutina para esconder las cartas." alt="" coords="269,25,440,66"/>
+<area shape="rect" id="node6" href="$class_condition_card_picker.html#a71efc0376c1aae20e0bb1b6c9cb09773" title="Corrutina para mostrar las cartas." alt="" coords="267,90,443,131"/>
+<area shape="rect" id="node3" href="$class_condition_card_picker.html#a60b1ecdd255033025155dcb0fcb711ea" title="¿Han terminado todas las acciones?" alt="" coords="491,57,693,98"/>
+<area shape="rect" id="node4" href="$class_condition_card.html#a15259b99935b5c6ec358bbcabd5c45a1" title="Esconde la carta." alt="" coords="512,5,672,32"/>
+<area shape="rect" id="node5" href="$class_condition_card.html#a51135571b970d2b7f95fc3961f378ab0" title="Animación de esconder la carta." alt="" coords="744,5,921,32"/>
+<area shape="rect" id="node7" href="$class_condition_card.html#a4da799c4fcf6954a3f0581ff487c67c6" title="Despliega la carta." alt="" coords="509,123,675,149"/>
+<area shape="rect" id="node8" href="$class_condition_card.html#a8a3fe3dc12847d5b724ac1b90e15a503" title="Animación de mostrar la carta." alt="" coords="741,123,924,149"/>
+</map>

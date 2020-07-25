@@ -1,0 +1,6 @@
+<map id="BigCharacter.TakeItemCoroutine" name="BigCharacter.TakeItemCoroutine">
+<area shape="rect" id="node1" title="Corrutina de tomar item." alt="" coords="5,78,215,105"/>
+<area shape="rect" id="node2" href="$class_big_character.html#a5f51c4a8441ba0f8ffa5e67c84a0d5b5" title="Notifica que se ha acabado una acción." alt="" coords="263,5,433,47"/>
+<area shape="rect" id="node3" href="$class_big_character.html#a03ea0cfe3450d4d8806fb0ffd9bf89ac" title="Notifica que se ha iniciado una acción." alt="" coords="267,71,429,112"/>
+<area shape="rect" id="node4" href="$class_item.html#a9e8fbdebefbbed8bf794f770d891cb41" title="Acción de tomar el item." alt="" coords="309,137,387,163"/>
+</map>

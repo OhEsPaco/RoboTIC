@@ -1,0 +1,5 @@
+<map id="EditorSurface.ResetEditorSurface" name="EditorSurface.ResetEditorSurface">
+<area shape="rect" id="node1" title="Devuelve la superficie a su estado original." alt="" coords="5,23,177,65"/>
+<area shape="rect" id="node2" href="$class_editor_surface_point.html#a252981c7d36df289b11d5ead29b18e32" title="Resetea la colisión." alt="" coords="231,5,421,32"/>
+<area shape="rect" id="node3" href="$class_editor_surface_point.html#ac78bfca1c16499b858bf44aa2637b41f" title="Indica a qué posición x,z corresponde este objeto." alt="" coords="225,56,427,83"/>
+</map>

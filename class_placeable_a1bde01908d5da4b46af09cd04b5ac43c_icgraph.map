@@ -1,0 +1,4 @@
+<map id="Placeable.OnPlacementStart" name="Placeable.OnPlacementStart">
+<area shape="rect" id="node1" title="Pone el objeto en modo de emplazamiento." alt="" coords="187,5,377,32"/>
+<area shape="rect" id="node2" href="$class_placeable.html#a6b4b6ebfcbd2d7e2c76b283ae1c2ce4f" title=" " alt="" coords="5,5,139,32"/>
+</map>

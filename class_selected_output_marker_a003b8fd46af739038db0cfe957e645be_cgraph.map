@@ -1,0 +1,8 @@
+<map id="SelectedOutputMarker.SomethingTapped" name="SelectedOutputMarker.SomethingTapped">
+<area shape="rect" id="node1" title="Para mejorar la usabilidad el gesto de tap sirve para parar la colocación del marcador aunque no se h..." alt="" coords="5,23,224,65"/>
+<area shape="rect" id="node2" href="$class_selected_output_marker.html#a79a46af5dcb382c02535db20a5f903df" title="Busca y selecciona la IO más cercana." alt="" coords="272,23,453,65"/>
+<area shape="rect" id="node3" href="$class_selected_output_marker.html#a1ed26952faf537b4bbb6ff9b1bc556cd" title="Busca la IO más cercana." alt="" coords="501,23,699,65"/>
+<area shape="rect" id="node4" href="$class_road.html#abd8ae4deb847e0774172e522bba49337" title="Retorna toda la IO." alt="" coords="773,5,879,32"/>
+<area shape="rect" id="node6" href="$class_road_i_o.html#a5598ba7e1f2c5879a8c416fd99a8d43f" title="Retorna la carretera padre." alt="" coords="747,56,905,83"/>
+<area shape="rect" id="node5" href="$class_road.html#a44bc4e1df52d94375f7138afd6a40abc" title="Awake." alt="" coords="953,5,1048,32"/>
+</map>
