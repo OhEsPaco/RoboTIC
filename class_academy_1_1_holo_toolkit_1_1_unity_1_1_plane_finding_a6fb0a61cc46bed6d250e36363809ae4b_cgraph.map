@@ -1,0 +1,10 @@
+<map id="Academy.HoloToolkit.Unity.PlaneFinding.FindSubPlanes" name="Academy.HoloToolkit.Unity.PlaneFinding.FindSubPlanes">
+<area shape="rect" id="node1" title="Finds small planar patches that are contained within individual meshes. The output of this API can th..." alt="" coords="5,159,195,201"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_d_l_l_imports.html#a885179d0a411311eeef63a2ccdb882ab" title=" " alt="" coords="265,5,484,61"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a78d25e4991199d0294241a563f97b4b9" title="Cleanup after finishing a PlaneFinding API call by unpinning any memory that was pinned for the call ..." alt="" coords="269,86,480,127"/>
+<area shape="rect" id="node5" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a1d386c450b8fa3e0a570244e64289297" title="Marshals BoundedPlane data returned from a DLL API call into a managed BoundedPlane array and then fr..." alt="" coords="255,152,494,208"/>
+<area shape="rect" id="node6" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#ac9a67df518579389259b22e5d532133b" title="Copies the supplied mesh data into the reusedMeshesForMarhsalling array. All managed arrays are pinne..." alt="" coords="243,233,507,274"/>
+<area shape="rect" id="node8" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#adb5af5beea12826496245d2b5cc5faa0" title="Validate that no other PlaneFinding API call is currently in progress. As a performance optimization ..." alt="" coords="273,298,477,339"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a826186a44df12d7955642a2f047dbcb6" title="Unpins all of the memory previously pinned by calls to PinObject()." alt="" coords="555,86,749,127"/>
+<area shape="rect" id="node7" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a173c1f073f5053a28e2cfa30d16eaeed" title="Pins the specified object so that the backing memory can not be relocated, adds the pinned memory han..." alt="" coords="561,233,743,274"/>
+</map>

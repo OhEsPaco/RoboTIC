@@ -1,0 +1,6 @@
+<map id="Academy.HoloToolkit.Unity.RemoveSurfaceVertices.RemoveSurfaceVerticesWithinBoundsRoutine" name="Academy.HoloToolkit.Unity.RemoveSurfaceVertices.RemoveSurfaceVerticesWithinBoundsRoutine">
+<area shape="rect" id="node1" title="Iterator block, analyzes surface meshes to find vertices existing within the bounds of any boundingOb..." alt="" coords="5,31,260,87"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#af9436c74e71aca362fab09ef492d8b78" title="Delegate which is called when the RemoveVerticesComplete event is triggered." alt="" coords="315,5,555,47"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a7a07d24c5c358a8851afe32f4044871c" title="Gets all Mesh Filter objects associated with the Spatial Mapping mesh." alt="" coords="308,71,563,112"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#ac04241aa16c8808644ff691249f12d8a" title="Gets all mesh filters that have a valid mesh." alt="" coords="611,71,856,112"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingManager.SetSurfaceMaterial" name="Academy.HoloToolkit.Unity.SpatialMappingManager.SetSurfaceMaterial">
+<area shape="rect" id="node1" title="Sets the material used by all Spatial Mapping meshes." alt="" coords="5,5,235,61"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a363300b7e38104ff2389f6fdf695e208" title="Gets all mesh renderers that have been created." alt="" coords="283,13,551,54"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingSource.UpdateSurfaceObject" name="Academy.HoloToolkit.Unity.SpatialMappingSource.UpdateSurfaceObject">
+<area shape="rect" id="node1" title="Updates an existing surface object." alt="" coords="797,5,1039,61"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a7d6fd0cd068e3939734902c03a89ab8a" title=" " alt="" coords="519,5,749,61"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a75ebf5d445a58257678741656f120193" title="Handles the SurfaceObserver&#39;s OnSurfaceChanged event." alt="" coords="260,5,471,61"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#ad9a8b1c13ba894fb60755a616274f891" title="Called once per frame." alt="" coords="5,13,212,54"/>
+</map>

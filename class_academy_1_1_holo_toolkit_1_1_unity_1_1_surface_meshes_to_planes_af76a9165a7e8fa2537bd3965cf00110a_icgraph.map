@@ -1,0 +1,6 @@
+<map id="Academy.HoloToolkit.Unity.SurfaceMeshesToPlanes.MakePlanesRoutine" name="Academy.HoloToolkit.Unity.SurfaceMeshesToPlanes.MakePlanesRoutine">
+<area shape="rect" id="node1" title="Iterator block, analyzes surface meshes to find planes and create new 3D cubes to represent each plan..." alt="" coords="789,5,1032,61"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_meshes_to_planes.html#aeea4b1e5f8601fec9c41eebfc3afc6d6" title="Creates planes based on meshes gathered by the SpatialMappingManager&#39;s SurfaceObserver." alt="" coords="499,13,741,54"/>
+<area shape="rect" id="node3" href="$class_play_space_manager.html#aef47da66cd669b1f44d37931cbc88e50" title="Crea planos a partir de las superficies identificadas." alt="" coords="233,20,451,47"/>
+<area shape="rect" id="node4" href="$class_play_space_manager.html#aad20db57e6ce9d42457570f5e970d740" title=" " alt="" coords="5,20,185,47"/>
+</map>

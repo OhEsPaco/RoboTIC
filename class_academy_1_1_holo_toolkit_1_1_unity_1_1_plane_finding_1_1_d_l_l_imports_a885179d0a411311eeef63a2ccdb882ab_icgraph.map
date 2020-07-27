@@ -1,0 +1,4 @@
+<map id="Academy.HoloToolkit.Unity.PlaneFinding.DLLImports.FindSubPlanes" name="Academy.HoloToolkit.Unity.PlaneFinding.DLLImports.FindSubPlanes">
+<area shape="rect" id="node1" title=" " alt="" coords="243,5,461,61"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a6fb0a61cc46bed6d250e36363809ae4b" title="Finds small planar patches that are contained within individual meshes. The output of this API can th..." alt="" coords="5,13,195,54"/>
+</map>

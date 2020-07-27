@@ -1,0 +1,5 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingSource.Cleanup" name="Academy.HoloToolkit.Unity.SpatialMappingSource.Cleanup">
+<area shape="rect" id="node1" title="Cleans up references to objects that we have created." alt="" coords="475,5,677,47"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html#a73d8ea5d168674e386eb9f0945f87d09" title="Loads the SpatialMapping mesh from the specified room object." alt="" coords="240,5,427,47"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html#ae357c1efe2f7fdd633ba086753c67a0a" title=" " alt="" coords="5,5,192,47"/>
+</map>

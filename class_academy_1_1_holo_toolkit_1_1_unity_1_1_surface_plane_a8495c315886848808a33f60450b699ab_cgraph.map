@@ -1,0 +1,7 @@
+<map id="Academy.HoloToolkit.Unity.SurfacePlane.Start" name="Academy.HoloToolkit.Unity.SurfacePlane.Start">
+<area shape="rect" id="node1" title=" " alt="" coords="5,71,188,112"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_plane.html#a8021fd745f3dc4be7044527ab5106064" title="Updates the SurfacePlane object to have the same configuration of the BoundingPlane object...." alt="" coords="236,71,457,112"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_plane.html#a797b8fb706233cb9436b27d80246473a" title="Updates the plane geometry to match the bounded plane found by SurfaceMeshesToPlanes." alt="" coords="522,5,735,47"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_plane.html#a5bf57d4ea7422fd74793a3be9f193215" title="Sets the renderer material to match the object&#39;s plane type." alt="" coords="505,71,752,112"/>
+<area shape="rect" id="node5" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_plane.html#af247ba57ed527ccb3cb1ff005570a3f5" title="Classifies the surface as a floor, wall, ceiling, table, etc." alt="" coords="537,136,721,177"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingManager.UpdateRendering" name="Academy.HoloToolkit.Unity.SpatialMappingManager.UpdateRendering">
+<area shape="rect" id="node1" title="Updates the rendering state on the currently enabled surfaces. Updates the material and shadow castin..." alt="" coords="5,5,269,47"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a363300b7e38104ff2389f6fdf695e208" title="Gets all mesh renderers that have been created." alt="" coords="317,5,585,47"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Academy.HoloToolkit.Unity.ObjectSurfaceObserver.Load" name="Academy.HoloToolkit.Unity.ObjectSurfaceObserver.Load">
+<area shape="rect" id="node1" title="Loads the SpatialMapping mesh from the specified room object." alt="" coords="5,50,192,91"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a1350f11e12906750a7cb5a7256686699" title="Creates a new surface game object." alt="" coords="240,5,463,61"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a3f8cedecf0a25262ec752b261b9620f0" title="Cleans up references to objects that we have created." alt="" coords="250,86,453,127"/>
+</map>

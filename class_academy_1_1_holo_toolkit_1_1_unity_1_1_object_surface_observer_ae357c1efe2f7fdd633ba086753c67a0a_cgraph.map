@@ -1,0 +1,10 @@
+<map id="Academy.HoloToolkit.Unity.ObjectSurfaceObserver.Start" name="Academy.HoloToolkit.Unity.ObjectSurfaceObserver.Start">
+<area shape="rect" id="node1" title=" " alt="" coords="5,82,192,123"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#ac04241aa16c8808644ff691249f12d8a" title="Gets all mesh filters that have a valid mesh." alt="" coords="240,17,485,58"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html#a73d8ea5d168674e386eb9f0945f87d09" title="Loads the SpatialMapping mesh from the specified room object." alt="" coords="269,82,456,123"/>
+<area shape="rect" id="node6" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#afc94e31b375cc2c6520099c9f2b10bd2" title="Sets the source of surface information." alt="" coords="250,148,475,204"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a1350f11e12906750a7cb5a7256686699" title="Creates a new surface game object." alt="" coords="554,5,777,61"/>
+<area shape="rect" id="node5" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a3f8cedecf0a25262ec752b261b9620f0" title="Cleans up references to objects that we have created." alt="" coords="564,86,767,127"/>
+<area shape="rect" id="node7" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aad50fcc97d4013419f46f9ebee17c12f" title="Updates the rendering state on the currently enabled surfaces. Updates the material and shadow castin..." alt="" coords="533,155,797,197"/>
+<area shape="rect" id="node8" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a363300b7e38104ff2389f6fdf695e208" title="Gets all mesh renderers that have been created." alt="" coords="845,155,1113,197"/>
+</map>

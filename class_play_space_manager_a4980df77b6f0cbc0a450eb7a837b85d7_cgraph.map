@@ -1,6 +1,18 @@
 <map id="PlaySpaceManager.Start" name="PlaySpaceManager.Start">
-<area shape="rect" id="node1" title=" " alt="" coords="5,35,172,61"/>
-<area shape="rect" id="node2" href="$class_play_space_manager.html#a71d008ce2822bb428afefffcefaae4c9" title="Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete." alt="" coords="220,27,476,69"/>
-<area shape="rect" id="node3" href="$class_play_space_manager.html#a351013b8123ab693a673389ce5ccbb65" title="Elimina triángulos de las superficies." alt="" coords="524,5,757,32"/>
-<area shape="rect" id="node4" href="$class_space_collection_manager.html#a2c3548a367b0a3dd5a9bd58fc7c806b3" title="Genera una colección de Placeables en el mundo y los coloca en planos adecuados." alt="" coords="545,57,736,98"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,93,172,120"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aeeb0015d32bc37e8d0b177efeb98ccd2" title="Sets the material used by all Spatial Mapping meshes." alt="" coords="531,5,761,61"/>
+<area shape="rect" id="node4" href="$class_play_space_manager.html#a71d008ce2822bb428afefffcefaae4c9" title="Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete." alt="" coords="220,137,476,178"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a363300b7e38104ff2389f6fdf695e208" title="Gets all mesh renderers that have been created." alt="" coords="816,13,1084,54"/>
+<area shape="rect" id="node5" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_meshes_to_planes.html#ab3bd33143d8befe84b35395dc73cc70d" title="Gets all active planes of the specified type(s)." alt="" coords="533,85,759,141"/>
+<area shape="rect" id="node6" href="$class_play_space_manager.html#a351013b8123ab693a673389ce5ccbb65" title="Elimina triángulos de las superficies." alt="" coords="529,165,763,192"/>
+<area shape="rect" id="node13" href="$class_space_collection_manager.html#a2c3548a367b0a3dd5a9bd58fc7c806b3" title="Genera una colección de Placeables en el mundo y los coloca en planos adecuados." alt="" coords="551,217,741,258"/>
+<area shape="rect" id="node14" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh." alt="" coords="524,282,768,323"/>
+<area shape="rect" id="node7" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#aa7f4cd92550325cc8fb709912b7a40b8" title="Removes portions of the surface mesh that exist within the bounds of the boundingObjects." alt="" coords="823,151,1077,207"/>
+<area shape="rect" id="node8" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#a563aa3d0865346dc3df2b549ab8ad0d2" title="Adds new bounding objects to the end of the Queue." alt="" coords="1139,111,1380,167"/>
+<area shape="rect" id="node9" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#a2f923d94f810081c90294329c15eb11c" title="Iterator block, analyzes surface meshes to find vertices existing within the bounds of any boundingOb..." alt="" coords="1132,191,1387,247"/>
+<area shape="rect" id="node10" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#af9436c74e71aca362fab09ef492d8b78" title="Delegate which is called when the RemoveVerticesComplete event is triggered." alt="" coords="1442,165,1682,206"/>
+<area shape="rect" id="node11" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a7a07d24c5c358a8851afe32f4044871c" title="Gets all Mesh Filter objects associated with the Spatial Mapping mesh." alt="" coords="1435,230,1689,271"/>
+<area shape="rect" id="node12" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#ac04241aa16c8808644ff691249f12d8a" title="Gets all mesh filters that have a valid mesh." alt="" coords="1737,230,1983,271"/>
+<area shape="rect" id="node15" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ab62073cef1af6d4ca02846076ab17355" title="Checks to see if the SurfaceObserver is currently running." alt="" coords="837,252,1063,308"/>
+<area shape="rect" id="node16" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a0c51b9288792238d1cf5bee175378821" title="Starts the Surface Observer." alt="" coords="825,333,1075,374"/>
 </map>

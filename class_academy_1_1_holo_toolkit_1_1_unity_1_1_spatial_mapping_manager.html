@@ -1,0 +1,953 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RoboTIC: Referencia de la Clase Academy.HoloToolkit.Unity.SpatialMappingManager</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">RoboTIC
+   &#160;<span id="projectnumber">Prototype 4</span>
+   </div>
+   <div id="projectbrief">RoboTIC: a serious game based on augmented reality for learning programming.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="#pub-attribs">Atributos públicos</a> &#124;
+<a href="#pro-methods">Métodos protegidos</a> &#124;
+<a href="#properties">Propiedades</a> &#124;
+<a href="#pri-methods">Métodos privados</a> &#124;
+<a href="#pri-attribs">Atributos privados</a> &#124;
+<a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager-members.html">Lista de todos los miembros</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia de la Clase Academy.HoloToolkit.Unity.SpatialMappingManager</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>The <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html" title="The SpatialMappingManager class allows applications to use a SurfaceObserver or a stored Spatial Mapp...">SpatialMappingManager</a> class allows applications to use a SurfaceObserver or a stored Spatial Mapping mesh (loaded from a file). When an application loads a mesh file, the SurfaceObserver is stopped. Calling <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh.">StartObserver()</a> clears the stored mesh and enables real-time SpatialMapping updates.  
+ <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#details">Más...</a></p>
+<div class="dynheader">
+Diagrama de herencias de Academy.HoloToolkit.Unity.SpatialMappingManager</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager__inherit__graph.png" border="0" usemap="#_academy_8_holo_toolkit_8_unity_8_spatial_mapping_manager_inherit__map" alt="Inheritance graph"/></div>
+<map name="_academy_8_holo_toolkit_8_unity_8_spatial_mapping_manager_inherit__map" id="_academy_8_holo_toolkit_8_unity_8_spatial_mapping_manager_inherit__map">
+<area shape="rect" title="The SpatialMappingManager class allows applications to use a SurfaceObserver or a stored Spatial Mapp..." alt="" coords="5,145,197,575"/>
+<area shape="rect" title=" " alt="" coords="13,5,190,97"/>
+</map>
+</div>
+<div class="dynheader">
+Diagrama de colaboración para Academy.HoloToolkit.Unity.SpatialMappingManager:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager__coll__graph.png" border="0" usemap="#_academy_8_holo_toolkit_8_unity_8_spatial_mapping_manager_coll__map" alt="Collaboration graph"/></div>
+<map name="_academy_8_holo_toolkit_8_unity_8_spatial_mapping_manager_coll__map" id="_academy_8_holo_toolkit_8_unity_8_spatial_mapping_manager_coll__map">
+<area shape="rect" title="The SpatialMappingManager class allows applications to use a SurfaceObserver or a stored Spatial Mapp..." alt="" coords="65,883,257,1297"/>
+<area shape="rect" title=" " alt="" coords="5,552,183,644"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html" title="The SpatialMappingObserver class encapsulates the SurfaceObserver into an easy to use object that han..." alt="" coords="207,376,429,820"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html" title=" " alt="" coords="193,132,443,327"/>
+<area shape="rect" title=" " alt="" coords="263,5,373,83"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:afc94e31b375cc2c6520099c9f2b10bd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#afc94e31b375cc2c6520099c9f2b10bd2">SetSpatialMappingSource</a> (<a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html">SpatialMappingSource</a> mappingSource)</td></tr>
+<tr class="memdesc:afc94e31b375cc2c6520099c9f2b10bd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the source of surface information.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#afc94e31b375cc2c6520099c9f2b10bd2">Más...</a><br /></td></tr>
+<tr class="separator:afc94e31b375cc2c6520099c9f2b10bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeb0015d32bc37e8d0b177efeb98ccd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aeeb0015d32bc37e8d0b177efeb98ccd2">SetSurfaceMaterial</a> (Material <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a91a3e774d09d586150f791bd6ba1f862">surfaceMaterial</a>)</td></tr>
+<tr class="memdesc:aeeb0015d32bc37e8d0b177efeb98ccd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the material used by all Spatial Mapping meshes.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aeeb0015d32bc37e8d0b177efeb98ccd2">Más...</a><br /></td></tr>
+<tr class="separator:aeeb0015d32bc37e8d0b177efeb98ccd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab62073cef1af6d4ca02846076ab17355"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ab62073cef1af6d4ca02846076ab17355">IsObserverRunning</a> ()</td></tr>
+<tr class="memdesc:ab62073cef1af6d4ca02846076ab17355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the SurfaceObserver is currently running.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ab62073cef1af6d4ca02846076ab17355">Más...</a><br /></td></tr>
+<tr class="separator:ab62073cef1af6d4ca02846076ab17355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50f45fe259cafd25222f43cd01c44c1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c">StartObserver</a> ()</td></tr>
+<tr class="memdesc:a50f45fe259cafd25222f43cd01c44c1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs the SurfaceObserver to start updating the SpatialMapping mesh.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c">Más...</a><br /></td></tr>
+<tr class="separator:a50f45fe259cafd25222f43cd01c44c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f90f748d15a4ca276f249b0cee5f48e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a9f90f748d15a4ca276f249b0cee5f48e">StopObserver</a> ()</td></tr>
+<tr class="memdesc:a9f90f748d15a4ca276f249b0cee5f48e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs the SurfaceObserver to stop updating the SpatialMapping mesh.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a9f90f748d15a4ca276f249b0cee5f48e">Más...</a><br /></td></tr>
+<tr class="separator:a9f90f748d15a4ca276f249b0cee5f48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b89202c8c078a49cdeab28416ecb910"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a3b89202c8c078a49cdeab28416ecb910">CleanupObserver</a> ()</td></tr>
+<tr class="memdesc:a3b89202c8c078a49cdeab28416ecb910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs the SurfaceObserver to stop and cleanup all meshes.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a3b89202c8c078a49cdeab28416ecb910">Más...</a><br /></td></tr>
+<tr class="separator:a3b89202c8c078a49cdeab28416ecb910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a164586b31a9d2d91def1689578260187"><td class="memItemLeft" align="right" valign="top">List&lt; Mesh &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a164586b31a9d2d91def1689578260187">GetMeshes</a> ()</td></tr>
+<tr class="memdesc:a164586b31a9d2d91def1689578260187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all meshes that are associated with the SpatialMapping mesh.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a164586b31a9d2d91def1689578260187">Más...</a><br /></td></tr>
+<tr class="separator:a164586b31a9d2d91def1689578260187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0ec69fa88cb27bffbb828d64ade41b6"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source_1_1_surface_object.html">SpatialMappingSource.SurfaceObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ac0ec69fa88cb27bffbb828d64ade41b6">GetSurfaceObjects</a> ()</td></tr>
+<tr class="memdesc:ac0ec69fa88cb27bffbb828d64ade41b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the surface objects associated with the Spatial Mapping mesh.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ac0ec69fa88cb27bffbb828d64ade41b6">Más...</a><br /></td></tr>
+<tr class="separator:ac0ec69fa88cb27bffbb828d64ade41b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a07d24c5c358a8851afe32f4044871c"><td class="memItemLeft" align="right" valign="top">List&lt; MeshFilter &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a7a07d24c5c358a8851afe32f4044871c">GetMeshFilters</a> ()</td></tr>
+<tr class="memdesc:a7a07d24c5c358a8851afe32f4044871c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all Mesh Filter objects associated with the Spatial Mapping mesh.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a7a07d24c5c358a8851afe32f4044871c">Más...</a><br /></td></tr>
+<tr class="separator:a7a07d24c5c358a8851afe32f4044871c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Atributos públicos</h2></td></tr>
+<tr class="memitem:a78d0eaeef5d43fcfb0cdcedaf3108d3e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a78d0eaeef5d43fcfb0cdcedaf3108d3e">PhysicsLayer</a> = 31</td></tr>
+<tr class="separator:a78d0eaeef5d43fcfb0cdcedaf3108d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91a3e774d09d586150f791bd6ba1f862"><td class="memItemLeft" align="right" valign="top">Material&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a91a3e774d09d586150f791bd6ba1f862">surfaceMaterial</a></td></tr>
+<tr class="separator:a91a3e774d09d586150f791bd6ba1f862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ecb50ab1feca0f905cc13d0aba54fd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a1ecb50ab1feca0f905cc13d0aba54fd6">drawVisualMeshes</a> = false</td></tr>
+<tr class="separator:a1ecb50ab1feca0f905cc13d0aba54fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acec0226ede054007e9d9919d4da71ef1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#acec0226ede054007e9d9919d4da71ef1">castShadows</a> = false</td></tr>
+<tr class="separator:acec0226ede054007e9d9919d4da71ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf0c34ee12986f63d720bd25585aa9af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#adf0c34ee12986f63d720bd25585aa9af">autoStartObserver</a> = true</td></tr>
+<tr class="separator:adf0c34ee12986f63d720bd25585aa9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Métodos protegidos</h2></td></tr>
+<tr class="memitem:a31134e97e18fc180ffe5686e34eea937"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a31134e97e18fc180ffe5686e34eea937">Awake</a> ()</td></tr>
+<tr class="separator:a31134e97e18fc180ffe5686e34eea937"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Propiedades</h2></td></tr>
+<tr class="memitem:a96a213c9cc74e3561f7d75a70bf93782"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a96a213c9cc74e3561f7d75a70bf93782">StartTime</a><code> [get, private set]</code></td></tr>
+<tr class="memdesc:a96a213c9cc74e3561f7d75a70bf93782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time when <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh.">StartObserver()</a> was called.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a96a213c9cc74e3561f7d75a70bf93782">Más...</a><br /></td></tr>
+<tr class="separator:a96a213c9cc74e3561f7d75a70bf93782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae84f4fee4ad2e7ef6e6de5718aebe2fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html">SpatialMappingSource</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ae84f4fee4ad2e7ef6e6de5718aebe2fb">Source</a><code> [get, private set]</code></td></tr>
+<tr class="memdesc:ae84f4fee4ad2e7ef6e6de5718aebe2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current source of spatial mapping data.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ae84f4fee4ad2e7ef6e6de5718aebe2fb">Más...</a><br /></td></tr>
+<tr class="separator:ae84f4fee4ad2e7ef6e6de5718aebe2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c5b9a99e9ce8cb763f4b7356b464add"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a4c5b9a99e9ce8cb763f4b7356b464add">LayerMask</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4c5b9a99e9ce8cb763f4b7356b464add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the layer as a bit mask.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a4c5b9a99e9ce8cb763f4b7356b464add">Más...</a><br /></td></tr>
+<tr class="separator:a4c5b9a99e9ce8cb763f4b7356b464add"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a191bbd0bc2ad6ce39f0e7afe1b1c084b"><td class="memItemLeft" align="right" valign="top">Material&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a191bbd0bc2ad6ce39f0e7afe1b1c084b">SurfaceMaterial</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a191bbd0bc2ad6ce39f0e7afe1b1c084b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The material to use when rendering surfaces.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a191bbd0bc2ad6ce39f0e7afe1b1c084b">Más...</a><br /></td></tr>
+<tr class="separator:a191bbd0bc2ad6ce39f0e7afe1b1c084b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc36dd8ead43bc4d8f814a9d28b1983"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a7cc36dd8ead43bc4d8f814a9d28b1983">DrawVisualMeshes</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a7cc36dd8ead43bc4d8f814a9d28b1983"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies whether or not the SpatialMapping meshes are to be rendered.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a7cc36dd8ead43bc4d8f814a9d28b1983">Más...</a><br /></td></tr>
+<tr class="separator:a7cc36dd8ead43bc4d8f814a9d28b1983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52a13490fcfaafbff66ec1c9252ef1c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a52a13490fcfaafbff66ec1c9252ef1c3">CastShadows</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a52a13490fcfaafbff66ec1c9252ef1c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies whether or not the SpatialMapping meshes can cast shadows.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a52a13490fcfaafbff66ec1c9252ef1c3">Más...</a><br /></td></tr>
+<tr class="separator:a52a13490fcfaafbff66ec1c9252ef1c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Métodos privados</h2></td></tr>
+<tr class="memitem:a3ad021db790110c57ce56c6caedb66ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a3ad021db790110c57ce56c6caedb66ce">Start</a> ()</td></tr>
+<tr class="separator:a3ad021db790110c57ce56c6caedb66ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae2e85a28c9a77c203fbd2ed66c076a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aae2e85a28c9a77c203fbd2ed66c076a1">SetShadowCasting</a> (bool <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#acec0226ede054007e9d9919d4da71ef1">castShadows</a>)</td></tr>
+<tr class="memdesc:aae2e85a28c9a77c203fbd2ed66c076a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Cast Shadows property for each Spatial Mapping mesh renderer.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aae2e85a28c9a77c203fbd2ed66c076a1">Más...</a><br /></td></tr>
+<tr class="separator:aae2e85a28c9a77c203fbd2ed66c076a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad50fcc97d4013419f46f9ebee17c12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aad50fcc97d4013419f46f9ebee17c12f">UpdateRendering</a> (bool Enable)</td></tr>
+<tr class="memdesc:aad50fcc97d4013419f46f9ebee17c12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the rendering state on the currently enabled surfaces. Updates the material and shadow casting mode for each renderer.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aad50fcc97d4013419f46f9ebee17c12f">Más...</a><br /></td></tr>
+<tr class="separator:aad50fcc97d4013419f46f9ebee17c12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Atributos privados</h2></td></tr>
+<tr class="memitem:a13b882cb5d7e12817942257e9abcd23a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html">SpatialMappingObserver</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a13b882cb5d7e12817942257e9abcd23a">surfaceObserver</a></td></tr>
+<tr class="memdesc:a13b882cb5d7e12817942257e9abcd23a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for gathering real-time Spatial Mapping data on the HoloLens.  <a href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a13b882cb5d7e12817942257e9abcd23a">Más...</a><br /></td></tr>
+<tr class="separator:a13b882cb5d7e12817942257e9abcd23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>The <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html" title="The SpatialMappingManager class allows applications to use a SurfaceObserver or a stored Spatial Mapp...">SpatialMappingManager</a> class allows applications to use a SurfaceObserver or a stored Spatial Mapping mesh (loaded from a file). When an application loads a mesh file, the SurfaceObserver is stopped. Calling <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh.">StartObserver()</a> clears the stored mesh and enables real-time SpatialMapping updates. </p>
+</div><h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a id="a31134e97e18fc180ffe5686e34eea937"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31134e97e18fc180ffe5686e34eea937">&#9670;&nbsp;</a></span>Awake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Academy.HoloToolkit.Unity.SpatialMappingManager.Awake </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b89202c8c078a49cdeab28416ecb910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b89202c8c078a49cdeab28416ecb910">&#9670;&nbsp;</a></span>CleanupObserver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Academy.HoloToolkit.Unity.SpatialMappingManager.CleanupObserver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instructs the SurfaceObserver to stop and cleanup all meshes. </p>
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a3b89202c8c078a49cdeab28416ecb910_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a3b89202c8c078a49cdeab28416ecb910_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a3b89202c8c078a49cdeab28416ecb910_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a3b89202c8c078a49cdeab28416ecb910_cgraph">
+<area shape="rect" title="Instructs the SurfaceObserver to stop and cleanup all meshes." alt="" coords="5,86,268,127"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a698ee7552a66ab59a8483eaf50e7e488" title="Cleans up all memory and objects associated with the observer." alt="" coords="316,79,529,135"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a6192d1ac3b01cea25270e1a959c6b05f" title=" " alt="" coords="596,5,809,61"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#ac04241aa16c8808644ff691249f12d8a" title="Gets all mesh filters that have a valid mesh." alt="" coords="580,86,825,127"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#ad86f9272c985fab879e989df04f25986" title="Stops the Surface Observer." alt="" coords="577,151,828,193"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#ab2663e72928d5244fc73c0b810c64206" title=" " alt="" coords="876,5,1089,61"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a164586b31a9d2d91def1689578260187"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a164586b31a9d2d91def1689578260187">&#9670;&nbsp;</a></span>GetMeshes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;Mesh&gt; Academy.HoloToolkit.Unity.SpatialMappingManager.GetMeshes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets all meshes that are associated with the SpatialMapping mesh. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Collection of Mesh objects representing the SpatialMapping mesh. </dd></dl>
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a164586b31a9d2d91def1689578260187_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a164586b31a9d2d91def1689578260187_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a164586b31a9d2d91def1689578260187_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a164586b31a9d2d91def1689578260187_cgraph">
+<area shape="rect" title="Gets all meshes that are associated with the SpatialMapping mesh." alt="" coords="5,5,237,47"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a7a07d24c5c358a8851afe32f4044871c" title="Gets all Mesh Filter objects associated with the Spatial Mapping mesh." alt="" coords="285,5,540,47"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#ac04241aa16c8808644ff691249f12d8a" title="Gets all mesh filters that have a valid mesh." alt="" coords="588,5,833,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7a07d24c5c358a8851afe32f4044871c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a07d24c5c358a8851afe32f4044871c">&#9670;&nbsp;</a></span>GetMeshFilters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;MeshFilter&gt; Academy.HoloToolkit.Unity.SpatialMappingManager.GetMeshFilters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets all Mesh Filter objects associated with the Spatial Mapping mesh. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Collection of Mesh Filter objects.</dd></dl>
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a7a07d24c5c358a8851afe32f4044871c_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a7a07d24c5c358a8851afe32f4044871c_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a7a07d24c5c358a8851afe32f4044871c_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a7a07d24c5c358a8851afe32f4044871c_cgraph">
+<area shape="rect" title="Gets all Mesh Filter objects associated with the Spatial Mapping mesh." alt="" coords="5,5,260,47"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#ac04241aa16c8808644ff691249f12d8a" title="Gets all mesh filters that have a valid mesh." alt="" coords="308,5,553,47"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a7a07d24c5c358a8851afe32f4044871c_icgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a7a07d24c5c358a8851afe32f4044871c_icgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a7a07d24c5c358a8851afe32f4044871c_icgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a7a07d24c5c358a8851afe32f4044871c_icgraph">
+<area shape="rect" title="Gets all Mesh Filter objects associated with the Spatial Mapping mesh." alt="" coords="1445,79,1700,120"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a164586b31a9d2d91def1689578260187" title="Gets all meshes that are associated with the SpatialMapping mesh." alt="" coords="1154,5,1386,47"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_meshes_to_planes.html#af76a9165a7e8fa2537bd3965cf00110a" title="Iterator block, analyzes surface meshes to find planes and create new 3D cubes to represent each plan..." alt="" coords="1149,71,1391,127"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#a2f923d94f810081c90294329c15eb11c" title="Iterator block, analyzes surface meshes to find vertices existing within the bounds of any boundingOb..." alt="" coords="1143,151,1397,207"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_meshes_to_planes.html#aeea4b1e5f8601fec9c41eebfc3afc6d6" title="Creates planes based on meshes gathered by the SpatialMappingManager&#39;s SurfaceObserver." alt="" coords="846,79,1089,120"/>
+<area shape="rect" href="class_play_space_manager.html#aef47da66cd669b1f44d37931cbc88e50" title="Crea planos a partir de las superficies identificadas." alt="" coords="567,86,784,113"/>
+<area shape="rect" href="class_play_space_manager.html#aad20db57e6ce9d42457570f5e970d740" title=" " alt="" coords="293,86,473,113"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#aa7f4cd92550325cc8fb709912b7a40b8" title="Removes portions of the surface mesh that exist within the bounds of the boundingObjects." alt="" coords="840,151,1095,207"/>
+<area shape="rect" href="class_play_space_manager.html#a351013b8123ab693a673389ce5ccbb65" title="Elimina triángulos de las superficies." alt="" coords="559,166,792,193"/>
+<area shape="rect" href="class_play_space_manager.html#a71d008ce2822bb428afefffcefaae4c9" title="Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete." alt="" coords="255,159,511,200"/>
+<area shape="rect" href="class_play_space_manager.html#a01445ca038650766a760213710f67d48" title=" " alt="" coords="5,141,207,167"/>
+<area shape="rect" href="class_play_space_manager.html#a4980df77b6f0cbc0a450eb7a837b85d7" title=" " alt="" coords="23,191,189,218"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac0ec69fa88cb27bffbb828d64ade41b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0ec69fa88cb27bffbb828d64ade41b6">&#9670;&nbsp;</a></span>GetSurfaceObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source_1_1_surface_object.html">SpatialMappingSource.SurfaceObject</a>&gt; Academy.HoloToolkit.Unity.SpatialMappingManager.GetSurfaceObjects </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets all the surface objects associated with the Spatial Mapping mesh. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Collection of SurfaceObjects.</dd></dl>
+
+</div>
+</div>
+<a id="ab62073cef1af6d4ca02846076ab17355"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab62073cef1af6d4ca02846076ab17355">&#9670;&nbsp;</a></span>IsObserverRunning()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Academy.HoloToolkit.Unity.SpatialMappingManager.IsObserverRunning </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks to see if the SurfaceObserver is currently running. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>True, if the observer state is running.</dd></dl>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_ab62073cef1af6d4ca02846076ab17355_icgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_ab62073cef1af6d4ca02846076ab17355_icgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_ab62073cef1af6d4ca02846076ab17355_icgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_ab62073cef1af6d4ca02846076ab17355_icgraph">
+<area shape="rect" title="Checks to see if the SurfaceObserver is currently running." alt="" coords="851,93,1077,149"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh." alt="" coords="559,35,803,76"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a9f90f748d15a4ca276f249b0cee5f48e" title="Instructs the SurfaceObserver to stop updating the SpatialMapping mesh." alt="" coords="559,100,802,141"/>
+<area shape="rect" href="class_play_space_manager.html#aad20db57e6ce9d42457570f5e970d740" title=" " alt="" coords="293,151,473,178"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a3ad021db790110c57ce56c6caedb66ce" title=" " alt="" coords="286,5,479,47"/>
+<area shape="rect" href="class_play_space_manager.html#a71d008ce2822bb428afefffcefaae4c9" title="Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete." alt="" coords="255,71,511,112"/>
+<area shape="rect" href="class_play_space_manager.html#a01445ca038650766a760213710f67d48" title=" " alt="" coords="5,53,207,79"/>
+<area shape="rect" href="class_play_space_manager.html#a4980df77b6f0cbc0a450eb7a837b85d7" title=" " alt="" coords="23,103,189,130"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aae2e85a28c9a77c203fbd2ed66c076a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae2e85a28c9a77c203fbd2ed66c076a1">&#9670;&nbsp;</a></span>SetShadowCasting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Academy.HoloToolkit.Unity.SpatialMappingManager.SetShadowCasting </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>castShadows</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the Cast Shadows property for each Spatial Mapping mesh renderer. </p>
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aae2e85a28c9a77c203fbd2ed66c076a1_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aae2e85a28c9a77c203fbd2ed66c076a1_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aae2e85a28c9a77c203fbd2ed66c076a1_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aae2e85a28c9a77c203fbd2ed66c076a1_cgraph">
+<area shape="rect" title="Sets the Cast Shadows property for each Spatial Mapping mesh renderer." alt="" coords="5,5,236,61"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a363300b7e38104ff2389f6fdf695e208" title="Gets all mesh renderers that have been created." alt="" coords="284,13,552,54"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afc94e31b375cc2c6520099c9f2b10bd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc94e31b375cc2c6520099c9f2b10bd2">&#9670;&nbsp;</a></span>SetSpatialMappingSource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Academy.HoloToolkit.Unity.SpatialMappingManager.SetSpatialMappingSource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html">SpatialMappingSource</a>&#160;</td>
+          <td class="paramname"><em>mappingSource</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the source of surface information. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mappingSource</td><td>The source to switch to. Null means return to the live stream if possible.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_afc94e31b375cc2c6520099c9f2b10bd2_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_afc94e31b375cc2c6520099c9f2b10bd2_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_afc94e31b375cc2c6520099c9f2b10bd2_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_afc94e31b375cc2c6520099c9f2b10bd2_cgraph">
+<area shape="rect" title="Sets the source of surface information." alt="" coords="5,5,231,61"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aad50fcc97d4013419f46f9ebee17c12f" title="Updates the rendering state on the currently enabled surfaces. Updates the material and shadow castin..." alt="" coords="279,13,543,54"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a363300b7e38104ff2389f6fdf695e208" title="Gets all mesh renderers that have been created." alt="" coords="591,13,859,54"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_afc94e31b375cc2c6520099c9f2b10bd2_icgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_afc94e31b375cc2c6520099c9f2b10bd2_icgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_afc94e31b375cc2c6520099c9f2b10bd2_icgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_afc94e31b375cc2c6520099c9f2b10bd2_icgraph">
+<area shape="rect" title="Sets the source of surface information." alt="" coords="240,5,465,61"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html#ae357c1efe2f7fdd633ba086753c67a0a" title=" " alt="" coords="5,13,192,54"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aeeb0015d32bc37e8d0b177efeb98ccd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeb0015d32bc37e8d0b177efeb98ccd2">&#9670;&nbsp;</a></span>SetSurfaceMaterial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Academy.HoloToolkit.Unity.SpatialMappingManager.SetSurfaceMaterial </td>
+          <td>(</td>
+          <td class="paramtype">Material&#160;</td>
+          <td class="paramname"><em>surfaceMaterial</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the material used by all Spatial Mapping meshes. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">surfaceMaterial</td><td>New material to apply.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aeeb0015d32bc37e8d0b177efeb98ccd2_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aeeb0015d32bc37e8d0b177efeb98ccd2_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aeeb0015d32bc37e8d0b177efeb98ccd2_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aeeb0015d32bc37e8d0b177efeb98ccd2_cgraph">
+<area shape="rect" title="Sets the material used by all Spatial Mapping meshes." alt="" coords="5,5,235,61"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a363300b7e38104ff2389f6fdf695e208" title="Gets all mesh renderers that have been created." alt="" coords="283,13,551,54"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aeeb0015d32bc37e8d0b177efeb98ccd2_icgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aeeb0015d32bc37e8d0b177efeb98ccd2_icgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aeeb0015d32bc37e8d0b177efeb98ccd2_icgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aeeb0015d32bc37e8d0b177efeb98ccd2_icgraph">
+<area shape="rect" title="Sets the material used by all Spatial Mapping meshes." alt="" coords="559,16,788,72"/>
+<area shape="rect" href="class_play_space_manager.html#a4980df77b6f0cbc0a450eb7a837b85d7" title=" " alt="" coords="23,5,189,32"/>
+<area shape="rect" href="class_play_space_manager.html#a71d008ce2822bb428afefffcefaae4c9" title="Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete." alt="" coords="255,53,511,94"/>
+<area shape="rect" href="class_play_space_manager.html#a01445ca038650766a760213710f67d48" title=" " alt="" coords="5,60,207,87"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3ad021db790110c57ce56c6caedb66ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ad021db790110c57ce56c6caedb66ce">&#9670;&nbsp;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Academy.HoloToolkit.Unity.SpatialMappingManager.Start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a3ad021db790110c57ce56c6caedb66ce_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a3ad021db790110c57ce56c6caedb66ce_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a3ad021db790110c57ce56c6caedb66ce_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a3ad021db790110c57ce56c6caedb66ce_cgraph">
+<area shape="rect" title=" " alt="" coords="5,50,199,91"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh." alt="" coords="247,50,491,91"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ab62073cef1af6d4ca02846076ab17355" title="Checks to see if the SurfaceObserver is currently running." alt="" coords="551,5,777,61"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a0c51b9288792238d1cf5bee175378821" title="Starts the Surface Observer." alt="" coords="539,86,789,127"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a50f45fe259cafd25222f43cd01c44c1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50f45fe259cafd25222f43cd01c44c1c">&#9670;&nbsp;</a></span>StartObserver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Academy.HoloToolkit.Unity.SpatialMappingManager.StartObserver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instructs the SurfaceObserver to start updating the SpatialMapping mesh. </p>
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a50f45fe259cafd25222f43cd01c44c1c_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a50f45fe259cafd25222f43cd01c44c1c_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a50f45fe259cafd25222f43cd01c44c1c_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a50f45fe259cafd25222f43cd01c44c1c_cgraph">
+<area shape="rect" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh." alt="" coords="5,50,249,91"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ab62073cef1af6d4ca02846076ab17355" title="Checks to see if the SurfaceObserver is currently running." alt="" coords="309,5,536,61"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a0c51b9288792238d1cf5bee175378821" title="Starts the Surface Observer." alt="" coords="297,86,548,127"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a50f45fe259cafd25222f43cd01c44c1c_icgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a50f45fe259cafd25222f43cd01c44c1c_icgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a50f45fe259cafd25222f43cd01c44c1c_icgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a50f45fe259cafd25222f43cd01c44c1c_icgraph">
+<area shape="rect" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh." alt="" coords="559,39,803,80"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a3ad021db790110c57ce56c6caedb66ce" title=" " alt="" coords="286,5,479,47"/>
+<area shape="rect" href="class_play_space_manager.html#a71d008ce2822bb428afefffcefaae4c9" title="Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete." alt="" coords="255,71,511,112"/>
+<area shape="rect" href="class_play_space_manager.html#a01445ca038650766a760213710f67d48" title=" " alt="" coords="5,53,207,79"/>
+<area shape="rect" href="class_play_space_manager.html#a4980df77b6f0cbc0a450eb7a837b85d7" title=" " alt="" coords="23,103,189,130"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9f90f748d15a4ca276f249b0cee5f48e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f90f748d15a4ca276f249b0cee5f48e">&#9670;&nbsp;</a></span>StopObserver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Academy.HoloToolkit.Unity.SpatialMappingManager.StopObserver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instructs the SurfaceObserver to stop updating the SpatialMapping mesh. </p>
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a9f90f748d15a4ca276f249b0cee5f48e_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a9f90f748d15a4ca276f249b0cee5f48e_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a9f90f748d15a4ca276f249b0cee5f48e_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a9f90f748d15a4ca276f249b0cee5f48e_cgraph">
+<area shape="rect" title="Instructs the SurfaceObserver to stop updating the SpatialMapping mesh." alt="" coords="5,50,248,91"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ab62073cef1af6d4ca02846076ab17355" title="Checks to see if the SurfaceObserver is currently running." alt="" coords="308,5,535,61"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#ad86f9272c985fab879e989df04f25986" title="Stops the Surface Observer." alt="" coords="296,86,547,127"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a9f90f748d15a4ca276f249b0cee5f48e_icgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a9f90f748d15a4ca276f249b0cee5f48e_icgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a9f90f748d15a4ca276f249b0cee5f48e_icgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_a9f90f748d15a4ca276f249b0cee5f48e_icgraph">
+<area shape="rect" title="Instructs the SurfaceObserver to stop updating the SpatialMapping mesh." alt="" coords="233,5,476,47"/>
+<area shape="rect" href="class_play_space_manager.html#aad20db57e6ce9d42457570f5e970d740" title=" " alt="" coords="5,13,185,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aad50fcc97d4013419f46f9ebee17c12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad50fcc97d4013419f46f9ebee17c12f">&#9670;&nbsp;</a></span>UpdateRendering()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Academy.HoloToolkit.Unity.SpatialMappingManager.UpdateRendering </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates the rendering state on the currently enabled surfaces. Updates the material and shadow casting mode for each renderer. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Enable</td><td>True, if meshes should be rendered.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Gráfico de llamadas para esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aad50fcc97d4013419f46f9ebee17c12f_cgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aad50fcc97d4013419f46f9ebee17c12f_cgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aad50fcc97d4013419f46f9ebee17c12f_cgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aad50fcc97d4013419f46f9ebee17c12f_cgraph">
+<area shape="rect" title="Updates the rendering state on the currently enabled surfaces. Updates the material and shadow castin..." alt="" coords="5,5,269,47"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a363300b7e38104ff2389f6fdf695e208" title="Gets all mesh renderers that have been created." alt="" coords="317,5,585,47"/>
+</map>
+</div>
+<div class="dynheader">
+Gráfico de llamadas a esta función:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aad50fcc97d4013419f46f9ebee17c12f_icgraph.png" border="0" usemap="#class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aad50fcc97d4013419f46f9ebee17c12f_icgraph" alt=""/></div>
+<map name="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aad50fcc97d4013419f46f9ebee17c12f_icgraph" id="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager_aad50fcc97d4013419f46f9ebee17c12f_icgraph">
+<area shape="rect" title="Updates the rendering state on the currently enabled surfaces. Updates the material and shadow castin..." alt="" coords="513,13,777,54"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#afc94e31b375cc2c6520099c9f2b10bd2" title="Sets the source of surface information." alt="" coords="240,5,465,61"/>
+<area shape="rect" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html#ae357c1efe2f7fdd633ba086753c67a0a" title=" " alt="" coords="5,13,192,54"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de los datos miembro</h2>
+<a id="adf0c34ee12986f63d720bd25585aa9af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf0c34ee12986f63d720bd25585aa9af">&#9670;&nbsp;</a></span>autoStartObserver</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Academy.HoloToolkit.Unity.SpatialMappingManager.autoStartObserver = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acec0226ede054007e9d9919d4da71ef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acec0226ede054007e9d9919d4da71ef1">&#9670;&nbsp;</a></span>castShadows</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Academy.HoloToolkit.Unity.SpatialMappingManager.castShadows = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ecb50ab1feca0f905cc13d0aba54fd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ecb50ab1feca0f905cc13d0aba54fd6">&#9670;&nbsp;</a></span>drawVisualMeshes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Academy.HoloToolkit.Unity.SpatialMappingManager.drawVisualMeshes = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78d0eaeef5d43fcfb0cdcedaf3108d3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78d0eaeef5d43fcfb0cdcedaf3108d3e">&#9670;&nbsp;</a></span>PhysicsLayer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Academy.HoloToolkit.Unity.SpatialMappingManager.PhysicsLayer = 31</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91a3e774d09d586150f791bd6ba1f862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91a3e774d09d586150f791bd6ba1f862">&#9670;&nbsp;</a></span>surfaceMaterial</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Material Academy.HoloToolkit.Unity.SpatialMappingManager.surfaceMaterial</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13b882cb5d7e12817942257e9abcd23a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13b882cb5d7e12817942257e9abcd23a">&#9670;&nbsp;</a></span>surfaceObserver</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html">SpatialMappingObserver</a> Academy.HoloToolkit.Unity.SpatialMappingManager.surfaceObserver</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used for gathering real-time Spatial Mapping data on the HoloLens. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de propiedades</h2>
+<a id="a52a13490fcfaafbff66ec1c9252ef1c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52a13490fcfaafbff66ec1c9252ef1c3">&#9670;&nbsp;</a></span>CastShadows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Academy.HoloToolkit.Unity.SpatialMappingManager.CastShadows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specifies whether or not the SpatialMapping meshes can cast shadows. </p>
+
+</div>
+</div>
+<a id="a7cc36dd8ead43bc4d8f814a9d28b1983"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cc36dd8ead43bc4d8f814a9d28b1983">&#9670;&nbsp;</a></span>DrawVisualMeshes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Academy.HoloToolkit.Unity.SpatialMappingManager.DrawVisualMeshes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specifies whether or not the SpatialMapping meshes are to be rendered. </p>
+
+</div>
+</div>
+<a id="a4c5b9a99e9ce8cb763f4b7356b464add"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c5b9a99e9ce8cb763f4b7356b464add">&#9670;&nbsp;</a></span>LayerMask</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Academy.HoloToolkit.Unity.SpatialMappingManager.LayerMask</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the layer as a bit mask. </p>
+
+</div>
+</div>
+<a id="ae84f4fee4ad2e7ef6e6de5718aebe2fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae84f4fee4ad2e7ef6e6de5718aebe2fb">&#9670;&nbsp;</a></span>Source</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html">SpatialMappingSource</a> Academy.HoloToolkit.Unity.SpatialMappingManager.Source</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">private set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The current source of spatial mapping data. </p>
+
+</div>
+</div>
+<a id="a96a213c9cc74e3561f7d75a70bf93782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96a213c9cc74e3561f7d75a70bf93782">&#9670;&nbsp;</a></span>StartTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Academy.HoloToolkit.Unity.SpatialMappingManager.StartTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">private set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time when <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh.">StartObserver()</a> was called. </p>
+
+</div>
+</div>
+<a id="a191bbd0bc2ad6ce39f0e7afe1b1c084b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a191bbd0bc2ad6ce39f0e7afe1b1c084b">&#9670;&nbsp;</a></span>SurfaceMaterial</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Material Academy.HoloToolkit.Unity.SpatialMappingManager.SurfaceMaterial</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The material to use when rendering surfaces. </p>
+
+</div>
+</div>
+<hr/>La documentación para esta clase fue generada a partir del siguiente fichero:<ul>
+<li>Assets/HoloToolkit-SpatialMapping-230/SpatialMapping/Scripts/<a class="el" href="_spatial_mapping_manager_8cs.html">SpatialMappingManager.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_academy.html">Academy</a></li><li class="navelem"><a class="el" href="namespace_academy_1_1_holo_toolkit.html">HoloToolkit</a></li><li class="navelem"><a class="el" href="namespace_academy_1_1_holo_toolkit_1_1_unity.html">Unity</a></li><li class="navelem"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html">SpatialMappingManager</a></li>
+    <li class="footer">Generado por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -25,6 +25,13 @@
 var NAVTREE =
 [
   [ "RoboTIC", "index.html", [
+    [ "Paquetes", "namespaces.html", [
+      [ "Paquetes", "namespaces.html", "namespaces_dup" ],
+      [ "Funciones del 'package'", "namespacemembers.html", [
+        [ "Todo", "namespacemembers.html", null ],
+        [ "Enumeraciones", "namespacemembers_enum.html", null ]
+      ] ]
+    ] ],
     [ "Clases", "annotated.html", [
       [ "Lista de clases", "annotated.html", "annotated_dup" ],
       [ "Índice de clases", "classes.html", null ],
@@ -34,7 +41,8 @@ var NAVTREE =
         [ "Funciones", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Enumeraciones", "functions_enum.html", null ],
-        [ "Propiedades", "functions_prop.html", null ]
+        [ "Propiedades", "functions_prop.html", null ],
+        [ "Eventos", "functions_evnt.html", null ]
       ] ]
     ] ],
     [ "Archivos", "files.html", [
@@ -50,10 +58,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_arrow_anim_8cs.html",
-"class_condition_card.html#a51135571b970d2b7f95fc3961f378ab0",
-"class_item.html#a3d8830fa0bb6c127c0f3a3e8a6292432",
-"class_msg_editor_available_instructions_changed.html#af49d0ce5a8c28e4ec0cdb4927559627f",
-"class_road_output.html"
+"class_arrow_anim.html#a44a7f776772727001c27812007debf90",
+"class_editor_save_button.html",
+"class_loop_counter.html#ab2702612c3e49ce317dc6c2330c4fe06",
+"class_node_vertical_button.html#af9d7092b0e3336ed46457fb5c2607017",
+"dir_53abf2a62f5d3c300a9060aa2d8d74b0.html"
 ];
 
 var SYNCONMSG = 'click en deshabilitar sincronización';

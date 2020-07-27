@@ -1,0 +1,5 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingObserver.GetSurfaceObject" name="Academy.HoloToolkit.Unity.SpatialMappingObserver.GetSurfaceObject">
+<area shape="rect" id="node1" title=" " alt="" coords="5,45,236,101"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a1350f11e12906750a7cb5a7256686699" title="Creates a new surface game object." alt="" coords="293,5,516,61"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#ae863261b6066d61005937d2d8c9567c7" title="Updates an existing surface object." alt="" coords="284,85,525,141"/>
+</map>

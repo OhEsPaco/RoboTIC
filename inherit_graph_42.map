@@ -1,4 +1,3 @@
 <map id="Representación gráfica de la clase" name="Representación gráfica de la clase">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node2" href="$class_subscription.html" title="Clase Subscription&lt;Tmessage&gt; que simboliza la subscripción de una acción a un EventAggregator...." alt="" coords="143,5,321,32"/>
+<area shape="rect" id="node1" href="$class_msg_start_road_movement.html" title="Mensaje para que el robot pequeño empiece a moverse." alt="" coords="5,5,169,32"/>
 </map>

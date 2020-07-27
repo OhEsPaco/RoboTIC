@@ -1,0 +1,10 @@
+<map id="Academy.HoloToolkit.Unity.PlaneFinding.MarshalBoundedPlanesFromIntPtr" name="Academy.HoloToolkit.Unity.PlaneFinding.MarshalBoundedPlanesFromIntPtr">
+<area shape="rect" id="node1" title="Marshals BoundedPlane data returned from a DLL API call into a managed BoundedPlane array and then fr..." alt="" coords="1328,71,1567,127"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#ae0f36e084a90b862f98a54b688361b9f" title="Convenience wrapper that executes FindSubPlanes followed by MergeSubPlanes via a single call into nat..." alt="" coords="1089,13,1271,54"/>
+<area shape="rect" id="node7" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a6fb0a61cc46bed6d250e36363809ae4b" title="Finds small planar patches that are contained within individual meshes. The output of this API can th..." alt="" coords="1085,78,1275,119"/>
+<area shape="rect" id="node8" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#af9ae9fadb69d8b60ab2cf62b99c0e0d6" title="Takes the subplanes returned by one or more previous calls to FindSubPlanes() and merges them togethe..." alt="" coords="1080,143,1280,185"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_meshes_to_planes.html#af76a9165a7e8fa2537bd3965cf00110a" title="Iterator block, analyzes surface meshes to find planes and create new 3D cubes to represent each plan..." alt="" coords="789,5,1032,61"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_meshes_to_planes.html#aeea4b1e5f8601fec9c41eebfc3afc6d6" title="Creates planes based on meshes gathered by the SpatialMappingManager&#39;s SurfaceObserver." alt="" coords="499,13,741,54"/>
+<area shape="rect" id="node5" href="$class_play_space_manager.html#aef47da66cd669b1f44d37931cbc88e50" title="Crea planos a partir de las superficies identificadas." alt="" coords="233,20,451,47"/>
+<area shape="rect" id="node6" href="$class_play_space_manager.html#aad20db57e6ce9d42457570f5e970d740" title=" " alt="" coords="5,20,185,47"/>
+</map>

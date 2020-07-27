@@ -1,0 +1,9 @@
+<map id="PlaySpaceManager.RemoveVertices" name="PlaySpaceManager.RemoveVertices">
+<area shape="rect" id="node1" title="Elimina triángulos de las superficies." alt="" coords="5,60,239,87"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#aa7f4cd92550325cc8fb709912b7a40b8" title="Removes portions of the surface mesh that exist within the bounds of the boundingObjects." alt="" coords="287,45,541,101"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#a563aa3d0865346dc3df2b549ab8ad0d2" title="Adds new bounding objects to the end of the Queue." alt="" coords="596,5,837,61"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#a2f923d94f810081c90294329c15eb11c" title="Iterator block, analyzes surface meshes to find vertices existing within the bounds of any boundingOb..." alt="" coords="589,85,844,141"/>
+<area shape="rect" id="node5" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#af9436c74e71aca362fab09ef492d8b78" title="Delegate which is called when the RemoveVerticesComplete event is triggered." alt="" coords="899,59,1139,101"/>
+<area shape="rect" id="node6" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a7a07d24c5c358a8851afe32f4044871c" title="Gets all Mesh Filter objects associated with the Spatial Mapping mesh." alt="" coords="892,125,1147,166"/>
+<area shape="rect" id="node7" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#ac04241aa16c8808644ff691249f12d8a" title="Gets all mesh filters that have a valid mesh." alt="" coords="1195,125,1440,166"/>
+</map>

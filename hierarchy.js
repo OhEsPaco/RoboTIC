@@ -1,6 +1,8 @@
 var hierarchy =
 [
     [ "AvailableInstructions", "class_available_instructions.html", null ],
+    [ "Academy.HoloToolkit.Unity.BoundedPlane", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_bounded_plane.html", null ],
+    [ "Academy.HoloToolkit.Unity.PlaneFinding.DLLImports", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_d_l_l_imports.html", null ],
     [ "EditorObject", "class_editor_object.html", null ],
     [ "Block.EffectReaction", "class_block_1_1_effect_reaction.html", null ],
     [ "IDisposable", null, [
@@ -8,8 +10,15 @@ var hierarchy =
     ] ],
     [ "InteractibleParameters", "class_interactible_parameters.html", null ],
     [ "LevelData", "class_level_data.html", null ],
+    [ "Academy.HoloToolkit.Unity.PlaneFinding.MeshData", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html", null ],
+    [ "Academy.HoloToolkit.Unity.PlaneFinding.DLLImports.MeshData", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_d_l_l_imports_1_1_mesh_data.html", null ],
     [ "MessageWarehouse", "class_message_warehouse.html", null ],
     [ "MonoBehaviour", null, [
+      [ "Academy.HoloToolkit.Unity.SpatialMappingSource", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html", [
+        [ "Academy.HoloToolkit.Unity.ObjectSurfaceObserver", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html", null ],
+        [ "Academy.HoloToolkit.Unity.SpatialMappingObserver", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html", null ]
+      ] ],
+      [ "Academy.HoloToolkit.Unity.SurfacePlane", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_plane.html", null ],
       [ "ArrowAnim", "class_arrow_anim.html", null ],
       [ "BlockExploder", "class_block_exploder.html", null ],
       [ "ButtonCounterScript", "class_button_counter_script.html", null ],
@@ -108,7 +117,9 @@ var hierarchy =
     [ "MsgStopMovement", "class_msg_stop_movement.html", null ],
     [ "MsgTakeItem", "class_msg_take_item.html", null ],
     [ "MsgUseItem", "class_msg_use_item.html", null ],
+    [ "Academy.HoloToolkit.Unity.OrientedBoundingBox", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_oriented_bounding_box.html", null ],
     [ "PathContainer.Path", "struct_path_container_1_1_path.html", null ],
+    [ "Academy.HoloToolkit.Unity.PlaneFinding", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html", null ],
     [ "PropertyAttribute", null, [
       [ "UniqueIdentifierAttribute", "class_unique_identifier_attribute.html", null ]
     ] ],
@@ -116,8 +127,12 @@ var hierarchy =
     [ "RoadPlacementLogic.RoadChanges", "class_road_placement_logic_1_1_road_changes.html", null ],
     [ "EditorLogic.SelectedTool", "class_editor_logic_1_1_selected_tool.html", null ],
     [ "Singleton", null, [
+      [ "Academy.HoloToolkit.Unity.RemoveSurfaceVertices", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html", null ],
+      [ "Academy.HoloToolkit.Unity.SpatialMappingManager", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html", null ],
+      [ "Academy.HoloToolkit.Unity.SurfaceMeshesToPlanes", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_meshes_to_planes.html", null ],
       [ "InteractibleManager", "class_interactible_manager.html", null ],
       [ "PlaySpaceManager", "class_play_space_manager.html", null ],
       [ "SpaceCollectionManager", "class_space_collection_manager.html", null ]
-    ] ]
+    ] ],
+    [ "Academy.HoloToolkit.Unity.SpatialMappingSource.SurfaceObject", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source_1_1_surface_object.html", null ]
 ];

@@ -1,0 +1,8 @@
+<map id="Academy.HoloToolkit.Unity.RemoveSurfaceVertices.RemoveSurfaceVerticesWithinBoundsRoutine" name="Academy.HoloToolkit.Unity.RemoveSurfaceVertices.RemoveSurfaceVerticesWithinBoundsRoutine">
+<area shape="rect" id="node1" title="Iterator block, analyzes surface meshes to find vertices existing within the bounds of any boundingOb..." alt="" coords="1143,16,1397,72"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html#aa7f4cd92550325cc8fb709912b7a40b8" title="Removes portions of the surface mesh that exist within the bounds of the boundingObjects." alt="" coords="840,16,1095,72"/>
+<area shape="rect" id="node3" href="$class_play_space_manager.html#a351013b8123ab693a673389ce5ccbb65" title="Elimina triángulos de las superficies." alt="" coords="559,31,792,57"/>
+<area shape="rect" id="node4" href="$class_play_space_manager.html#a71d008ce2822bb428afefffcefaae4c9" title="Recibe el evento SurfaceMeshesToPlanes MakePlanesComplete." alt="" coords="255,23,511,65"/>
+<area shape="rect" id="node5" href="$class_play_space_manager.html#a01445ca038650766a760213710f67d48" title=" " alt="" coords="5,5,207,32"/>
+<area shape="rect" id="node6" href="$class_play_space_manager.html#a4980df77b6f0cbc0a450eb7a837b85d7" title=" " alt="" coords="23,56,189,83"/>
+</map>

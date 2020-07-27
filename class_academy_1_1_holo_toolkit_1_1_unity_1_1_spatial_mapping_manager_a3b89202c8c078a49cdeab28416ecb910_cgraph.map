@@ -1,0 +1,8 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingManager.CleanupObserver" name="Academy.HoloToolkit.Unity.SpatialMappingManager.CleanupObserver">
+<area shape="rect" id="node1" title="Instructs the SurfaceObserver to stop and cleanup all meshes." alt="" coords="5,86,268,127"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a698ee7552a66ab59a8483eaf50e7e488" title="Cleans up all memory and objects associated with the observer." alt="" coords="316,79,529,135"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a6192d1ac3b01cea25270e1a959c6b05f" title=" " alt="" coords="596,5,809,61"/>
+<area shape="rect" id="node5" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#ac04241aa16c8808644ff691249f12d8a" title="Gets all mesh filters that have a valid mesh." alt="" coords="580,86,825,127"/>
+<area shape="rect" id="node6" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#ad86f9272c985fab879e989df04f25986" title="Stops the Surface Observer." alt="" coords="577,151,828,193"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#ab2663e72928d5244fc73c0b810c64206" title=" " alt="" coords="876,5,1089,61"/>
+</map>

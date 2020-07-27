@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "Academy", "namespace_academy.html", "namespace_academy" ],
     [ "ArrowAnim", "class_arrow_anim.html", "class_arrow_anim" ],
     [ "AvailableInstructions", "class_available_instructions.html", "class_available_instructions" ],
     [ "BigCharacter", "class_big_character.html", "class_big_character" ],

@@ -1,0 +1,5 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingManager.SetSpatialMappingSource" name="Academy.HoloToolkit.Unity.SpatialMappingManager.SetSpatialMappingSource">
+<area shape="rect" id="node1" title="Sets the source of surface information." alt="" coords="5,5,231,61"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#aad50fcc97d4013419f46f9ebee17c12f" title="Updates the rendering state on the currently enabled surfaces. Updates the material and shadow castin..." alt="" coords="279,13,543,54"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#a363300b7e38104ff2389f6fdf695e208" title="Gets all mesh renderers that have been created." alt="" coords="591,13,859,54"/>
+</map>

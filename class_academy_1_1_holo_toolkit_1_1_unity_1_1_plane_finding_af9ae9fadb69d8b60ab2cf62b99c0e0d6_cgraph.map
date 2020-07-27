@@ -1,0 +1,9 @@
+<map id="Academy.HoloToolkit.Unity.PlaneFinding.MergeSubPlanes" name="Academy.HoloToolkit.Unity.PlaneFinding.MergeSubPlanes">
+<area shape="rect" id="node1" title="Takes the subplanes returned by one or more previous calls to FindSubPlanes() and merges them togethe..." alt="" coords="5,159,205,200"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a78d25e4991199d0294241a563f97b4b9" title="Cleanup after finishing a PlaneFinding API call by unpinning any memory that was pinned for the call ..." alt="" coords="267,5,478,47"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a1d386c450b8fa3e0a570244e64289297" title="Marshals BoundedPlane data returned from a DLL API call into a managed BoundedPlane array and then fr..." alt="" coords="253,71,492,127"/>
+<area shape="rect" id="node5" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_d_l_l_imports.html#a9ec42ba73e9901e7f026bf4a17940a44" title=" " alt="" coords="257,151,488,207"/>
+<area shape="rect" id="node6" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a173c1f073f5053a28e2cfa30d16eaeed" title="Pins the specified object so that the backing memory can not be relocated, adds the pinned memory han..." alt="" coords="281,232,464,273"/>
+<area shape="rect" id="node7" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#adb5af5beea12826496245d2b5cc5faa0" title="Validate that no other PlaneFinding API call is currently in progress. As a performance optimization ..." alt="" coords="271,297,475,339"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a826186a44df12d7955642a2f047dbcb6" title="Unpins all of the memory previously pinned by calls to PinObject()." alt="" coords="540,5,735,47"/>
+</map>

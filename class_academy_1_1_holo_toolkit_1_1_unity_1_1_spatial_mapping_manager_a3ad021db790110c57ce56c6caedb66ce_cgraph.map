@@ -1,0 +1,6 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingManager.Start" name="Academy.HoloToolkit.Unity.SpatialMappingManager.Start">
+<area shape="rect" id="node1" title=" " alt="" coords="5,50,199,91"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a50f45fe259cafd25222f43cd01c44c1c" title="Instructs the SurfaceObserver to start updating the SpatialMapping mesh." alt="" coords="247,50,491,91"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ab62073cef1af6d4ca02846076ab17355" title="Checks to see if the SurfaceObserver is currently running." alt="" coords="551,5,777,61"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a0c51b9288792238d1cf5bee175378821" title="Starts the Surface Observer." alt="" coords="539,86,789,127"/>
+</map>

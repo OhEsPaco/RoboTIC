@@ -1,0 +1,3 @@
+<map id="Academy.HoloToolkit.Unity.PlaneFinding.MeshData" name="Academy.HoloToolkit.Unity.PlaneFinding.MeshData">
+<area shape="rect" id="node1" title="PlaneFinding is an expensive task that should not be run from Unity&#39;s main thread as it will stall th..." alt="" coords="5,5,188,141"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingManager" name="Academy.HoloToolkit.Unity.SpatialMappingManager">
+<area shape="rect" id="node1" title="The SpatialMappingManager class allows applications to use a SurfaceObserver or a stored Spatial Mapp..." alt="" coords="65,883,257,1297"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,552,183,644"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html" title="The SpatialMappingObserver class encapsulates the SurfaceObserver into an easy to use object that han..." alt="" coords="207,376,429,820"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html" title=" " alt="" coords="193,132,443,327"/>
+<area shape="rect" id="node5" title=" " alt="" coords="263,5,373,83"/>
+</map>

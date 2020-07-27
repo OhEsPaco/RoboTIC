@@ -1,0 +1,4 @@
+<map id="Academy.HoloToolkit.Unity.PlaneFinding.DLLImports.MergeSubPlanes" name="Academy.HoloToolkit.Unity.PlaneFinding.DLLImports.MergeSubPlanes">
+<area shape="rect" id="node1" title=" " alt="" coords="253,5,484,61"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#af9ae9fadb69d8b60ab2cf62b99c0e0d6" title="Takes the subplanes returned by one or more previous calls to FindSubPlanes() and merges them togethe..." alt="" coords="5,13,205,54"/>
+</map>

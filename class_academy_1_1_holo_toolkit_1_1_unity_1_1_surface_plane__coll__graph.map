@@ -1,0 +1,6 @@
+<map id="Academy.HoloToolkit.Unity.SurfacePlane" name="Academy.HoloToolkit.Unity.SurfacePlane">
+<area shape="rect" id="node1" title="The SurfacePlane class is used by SurfaceMeshesToPlanes to create different types of planes (walls,..." alt="" coords="23,359,205,700"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,204,116,281"/>
+<area shape="rect" id="node3" href="$struct_academy_1_1_holo_toolkit_1_1_unity_1_1_bounded_plane.html" title=" " alt="" coords="140,189,323,296"/>
+<area shape="rect" id="node4" href="$struct_academy_1_1_holo_toolkit_1_1_unity_1_1_oriented_bounding_box.html" title=" " alt="" coords="140,5,323,127"/>
+</map>

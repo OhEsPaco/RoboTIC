@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RoboTIC: Referencia de la Estructura Academy.HoloToolkit.Unity.PlaneFinding.MeshData</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">RoboTIC
+   &#160;<span id="projectnumber">Prototype 4</span>
+   </div>
+   <div id="projectbrief">RoboTIC: a serious game based on augmented reality for learning programming.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="#pub-attribs">Atributos públicos</a> &#124;
+<a href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data-members.html">Lista de todos los miembros</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia de la Estructura Academy.HoloToolkit.Unity.PlaneFinding.MeshData</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html">PlaneFinding</a> is an expensive task that should not be run from <a class="el" href="namespace_academy_1_1_holo_toolkit_1_1_unity.html">Unity</a>'s main thread as it will stall the thread and cause a frame rate dip. Instead, the <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html">PlaneFinding</a> APIs should be exclusively called from background threads. Unfortunately, <a class="el" href="namespace_academy_1_1_holo_toolkit_1_1_unity.html">Unity</a>'s built-in data types (such as MeshFilter) are not thread safe and cannot be accessed from background threads. The <a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html" title="PlaneFinding is an expensive task that should not be run from Unity&#39;s main thread as it will stall th...">MeshData</a> struct exists to work-around this limitation. When you want to find planes in a collection of MeshFilter objects, start by constructing a list of <a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html" title="PlaneFinding is an expensive task that should not be run from Unity&#39;s main thread as it will stall th...">MeshData</a> structs from those MeshFilters. You can then take the resulting list of <a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html" title="PlaneFinding is an expensive task that should not be run from Unity&#39;s main thread as it will stall th...">MeshData</a> structs, and safely pass it to the <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#ae0f36e084a90b862f98a54b688361b9f" title="Convenience wrapper that executes FindSubPlanes followed by MergeSubPlanes via a single call into nat...">FindPlanes()</a> API from a background thread.  
+ <a href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html#details">Más...</a></p>
+<div class="dynheader">
+Diagrama de colaboración para Academy.HoloToolkit.Unity.PlaneFinding.MeshData:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data__coll__graph.png" border="0" usemap="#_academy_8_holo_toolkit_8_unity_8_plane_finding_8_mesh_data_coll__map" alt="Collaboration graph"/></div>
+<map name="_academy_8_holo_toolkit_8_unity_8_plane_finding_8_mesh_data_coll__map" id="_academy_8_holo_toolkit_8_unity_8_plane_finding_8_mesh_data_coll__map">
+<area shape="rect" title="PlaneFinding is an expensive task that should not be run from Unity&#39;s main thread as it will stall th..." alt="" coords="5,5,188,141"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:a8cbbe78441f374cf455ec84ee38242db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html#a8cbbe78441f374cf455ec84ee38242db">MeshData</a> (MeshFilter meshFilter)</td></tr>
+<tr class="separator:a8cbbe78441f374cf455ec84ee38242db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Atributos públicos</h2></td></tr>
+<tr class="memitem:a19f812b8ae93a7966840e90f4a264c85"><td class="memItemLeft" align="right" valign="top">Matrix4x4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html#a19f812b8ae93a7966840e90f4a264c85">Transform</a></td></tr>
+<tr class="separator:a19f812b8ae93a7966840e90f4a264c85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f6bb157952364ec71ff5580f96708f"><td class="memItemLeft" align="right" valign="top">Vector3[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html#ae6f6bb157952364ec71ff5580f96708f">Verts</a></td></tr>
+<tr class="separator:ae6f6bb157952364ec71ff5580f96708f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64b0833280e46d345fb1b8d481deffb6"><td class="memItemLeft" align="right" valign="top">Vector3[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html#a64b0833280e46d345fb1b8d481deffb6">Normals</a></td></tr>
+<tr class="separator:a64b0833280e46d345fb1b8d481deffb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00290bf941852e04c041d8757c0b478a"><td class="memItemLeft" align="right" valign="top">Int32[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html#a00290bf941852e04c041d8757c0b478a">Indices</a></td></tr>
+<tr class="separator:a00290bf941852e04c041d8757c0b478a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html">PlaneFinding</a> is an expensive task that should not be run from <a class="el" href="namespace_academy_1_1_holo_toolkit_1_1_unity.html">Unity</a>'s main thread as it will stall the thread and cause a frame rate dip. Instead, the <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html">PlaneFinding</a> APIs should be exclusively called from background threads. Unfortunately, <a class="el" href="namespace_academy_1_1_holo_toolkit_1_1_unity.html">Unity</a>'s built-in data types (such as MeshFilter) are not thread safe and cannot be accessed from background threads. The <a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html" title="PlaneFinding is an expensive task that should not be run from Unity&#39;s main thread as it will stall th...">MeshData</a> struct exists to work-around this limitation. When you want to find planes in a collection of MeshFilter objects, start by constructing a list of <a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html" title="PlaneFinding is an expensive task that should not be run from Unity&#39;s main thread as it will stall th...">MeshData</a> structs from those MeshFilters. You can then take the resulting list of <a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html" title="PlaneFinding is an expensive task that should not be run from Unity&#39;s main thread as it will stall th...">MeshData</a> structs, and safely pass it to the <a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#ae0f36e084a90b862f98a54b688361b9f" title="Convenience wrapper that executes FindSubPlanes followed by MergeSubPlanes via a single call into nat...">FindPlanes()</a> API from a background thread. </p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a id="a8cbbe78441f374cf455ec84ee38242db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cbbe78441f374cf455ec84ee38242db">&#9670;&nbsp;</a></span>MeshData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Academy.HoloToolkit.Unity.PlaneFinding.MeshData.MeshData </td>
+          <td>(</td>
+          <td class="paramtype">MeshFilter&#160;</td>
+          <td class="paramname"><em>meshFilter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de los datos miembro</h2>
+<a id="a00290bf941852e04c041d8757c0b478a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00290bf941852e04c041d8757c0b478a">&#9670;&nbsp;</a></span>Indices</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Int32 [] Academy.HoloToolkit.Unity.PlaneFinding.MeshData.Indices</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a64b0833280e46d345fb1b8d481deffb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64b0833280e46d345fb1b8d481deffb6">&#9670;&nbsp;</a></span>Normals</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 [] Academy.HoloToolkit.Unity.PlaneFinding.MeshData.Normals</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19f812b8ae93a7966840e90f4a264c85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19f812b8ae93a7966840e90f4a264c85">&#9670;&nbsp;</a></span>Transform</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix4x4 Academy.HoloToolkit.Unity.PlaneFinding.MeshData.Transform</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae6f6bb157952364ec71ff5580f96708f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6f6bb157952364ec71ff5580f96708f">&#9670;&nbsp;</a></span>Verts</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 [] Academy.HoloToolkit.Unity.PlaneFinding.MeshData.Verts</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>La documentación para esta estructura fue generada a partir del siguiente fichero:<ul>
+<li>Assets/HoloToolkit-SpatialMapping-230/SpatialMapping/Scripts/<a class="el" href="_plane_finding_8cs.html">PlaneFinding.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_academy.html">Academy</a></li><li class="navelem"><a class="el" href="namespace_academy_1_1_holo_toolkit.html">HoloToolkit</a></li><li class="navelem"><a class="el" href="namespace_academy_1_1_holo_toolkit_1_1_unity.html">Unity</a></li><li class="navelem"><a class="el" href="class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html">PlaneFinding</a></li><li class="navelem"><a class="el" href="struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_mesh_data.html">MeshData</a></li>
+    <li class="footer">Generado por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
+  </ul>
+</div>
+</body>
+</html>

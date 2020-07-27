@@ -1,0 +1,4 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingManager.StopObserver" name="Academy.HoloToolkit.Unity.SpatialMappingManager.StopObserver">
+<area shape="rect" id="node1" title="Instructs the SurfaceObserver to stop updating the SpatialMapping mesh." alt="" coords="233,5,476,47"/>
+<area shape="rect" id="node2" href="$class_play_space_manager.html#aad20db57e6ce9d42457570f5e970d740" title=" " alt="" coords="5,13,185,39"/>
+</map>

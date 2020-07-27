@@ -1,0 +1,8 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingObserver.StopObserving" name="Academy.HoloToolkit.Unity.SpatialMappingObserver.StopObserving">
+<area shape="rect" id="node1" title="Stops the Surface Observer." alt="" coords="607,78,857,119"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a698ee7552a66ab59a8483eaf50e7e488" title="Cleans up all memory and objects associated with the observer." alt="" coords="331,5,544,61"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#ad95d9324ee9caf66c55f60f2d6a9e195" title="Called when the GameObject is unloaded." alt="" coords="23,78,251,119"/>
+<area shape="rect" id="node5" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a9f90f748d15a4ca276f249b0cee5f48e" title="Instructs the SurfaceObserver to stop updating the SpatialMapping mesh." alt="" coords="316,137,559,178"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a3b89202c8c078a49cdeab28416ecb910" title="Instructs the SurfaceObserver to stop and cleanup all meshes." alt="" coords="5,13,268,54"/>
+<area shape="rect" id="node6" href="$class_play_space_manager.html#aad20db57e6ce9d42457570f5e970d740" title=" " alt="" coords="47,144,227,171"/>
+</map>

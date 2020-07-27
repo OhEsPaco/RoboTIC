@@ -1,0 +1,8 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingSource.AddSurfaceObject" name="Academy.HoloToolkit.Unity.SpatialMappingSource.AddSurfaceObject">
+<area shape="rect" id="node1" title="Creates a new surface game object." alt="" coords="797,43,1020,99"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a7d6fd0cd068e3939734902c03a89ab8a" title=" " alt="" coords="519,5,749,61"/>
+<area shape="rect" id="node5" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html#a73d8ea5d168674e386eb9f0945f87d09" title="Loads the SpatialMapping mesh from the specified room object." alt="" coords="541,86,727,127"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a75ebf5d445a58257678741656f120193" title="Handles the SurfaceObserver&#39;s OnSurfaceChanged event." alt="" coords="260,5,471,61"/>
+<area shape="rect" id="node4" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#ad9a8b1c13ba894fb60755a616274f891" title="Called once per frame." alt="" coords="5,13,212,54"/>
+<area shape="rect" id="node6" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html#ae357c1efe2f7fdd633ba086753c67a0a" title=" " alt="" coords="272,86,459,127"/>
+</map>

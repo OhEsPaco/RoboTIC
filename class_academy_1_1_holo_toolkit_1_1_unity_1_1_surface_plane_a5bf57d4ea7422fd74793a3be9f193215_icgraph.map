@@ -1,0 +1,5 @@
+<map id="Academy.HoloToolkit.Unity.SurfacePlane.SetPlaneMaterialByType" name="Academy.HoloToolkit.Unity.SurfacePlane.SetPlaneMaterialByType">
+<area shape="rect" id="node1" title="Sets the renderer material to match the object&#39;s plane type." alt="" coords="505,5,752,47"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_plane.html#a8021fd745f3dc4be7044527ab5106064" title="Updates the SurfacePlane object to have the same configuration of the BoundingPlane object...." alt="" coords="236,5,457,47"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_plane.html#a8495c315886848808a33f60450b699ab" title=" " alt="" coords="5,5,188,47"/>
+</map>

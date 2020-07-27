@@ -1,0 +1,5 @@
+<map id="Academy.HoloToolkit.Unity.SpatialMappingObserver.QueueSurfaceDataRequest" name="Academy.HoloToolkit.Unity.SpatialMappingObserver.QueueSurfaceDataRequest">
+<area shape="rect" id="node1" title="Calls GetMeshAsync to update the SurfaceData and re&#45;activate the surface object when ready." alt="" coords="519,5,767,61"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#a75ebf5d445a58257678741656f120193" title="Handles the SurfaceObserver&#39;s OnSurfaceChanged event." alt="" coords="260,5,471,61"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html#ad9a8b1c13ba894fb60755a616274f891" title="Called once per frame." alt="" coords="5,13,212,54"/>
+</map>

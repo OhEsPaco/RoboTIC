@@ -24,6 +24,11 @@
 */
 var menudata={children:[
 {text:"Página principal",url:"index.html"},
+{text:"Paquetes",url:"namespaces.html",children:[
+{text:"Paquetes",url:"namespaces.html"},
+{text:"Funciones del 'package'",url:"namespacemembers.html",children:[
+{text:"Todo",url:"namespacemembers.html"},
+{text:"Enumeraciones",url:"namespacemembers_enum.html"}]}]},
 {text:"Clases",url:"annotated.html",children:[
 {text:"Lista de clases",url:"annotated.html"},
 {text:"Índice de clases",url:"classes.html"},
@@ -46,6 +51,7 @@ var menudata={children:[
 {text:"n",url:"functions_n.html#index_n"},
 {text:"o",url:"functions_o.html#index_o"},
 {text:"p",url:"functions_p.html#index_p"},
+{text:"q",url:"functions_q.html#index_q"},
 {text:"r",url:"functions_r.html#index_r"},
 {text:"s",url:"functions_s.html#index_s"},
 {text:"t",url:"functions_t.html#index_t"},
@@ -70,6 +76,7 @@ var menudata={children:[
 {text:"n",url:"functions_func_n.html#index_n"},
 {text:"o",url:"functions_func_o.html#index_o"},
 {text:"p",url:"functions_func_p.html#index_p"},
+{text:"q",url:"functions_func_q.html#index_q"},
 {text:"r",url:"functions_func_r.html#index_r"},
 {text:"s",url:"functions_func_s.html#index_s"},
 {text:"t",url:"functions_func_t.html#index_t"},
@@ -98,7 +105,8 @@ var menudata={children:[
 {text:"s",url:"functions_vars_s.html#index_s"},
 {text:"t",url:"functions_vars_t.html#index_t"},
 {text:"u",url:"functions_vars_u.html#index_u"},
-{text:"v",url:"functions_vars_v.html#index_v"}]},
+{text:"v",url:"functions_vars_v.html#index_v"},
+{text:"w",url:"functions_vars_w.html#index_w"}]},
 {text:"Enumeraciones",url:"functions_enum.html"},
 {text:"Propiedades",url:"functions_prop.html",children:[
 {text:"_",url:"functions_prop.html#index__5F"},
@@ -118,7 +126,8 @@ var menudata={children:[
 {text:"r",url:"functions_prop.html#index_r"},
 {text:"s",url:"functions_prop.html#index_s"},
 {text:"t",url:"functions_prop.html#index_t"},
-{text:"u",url:"functions_prop.html#index_u"}]}]}]},
+{text:"u",url:"functions_prop.html#index_u"}]},
+{text:"Eventos",url:"functions_evnt.html"}]}]},
 {text:"Archivos",url:"files.html",children:[
 {text:"Lista de archivos",url:"files.html"},
 {text:"Miembros de los ficheros",url:"globals.html",children:[

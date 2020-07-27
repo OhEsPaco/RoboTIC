@@ -1,0 +1,4 @@
+<map id="Academy.HoloToolkit.Unity.PlaneFinding.PinMeshDataForMarshalling" name="Academy.HoloToolkit.Unity.PlaneFinding.PinMeshDataForMarshalling">
+<area shape="rect" id="node1" title="Copies the supplied mesh data into the reusedMeshesForMarhsalling array. All managed arrays are pinne..." alt="" coords="5,5,269,47"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html#a173c1f073f5053a28e2cfa30d16eaeed" title="Pins the specified object so that the backing memory can not be relocated, adds the pinned memory han..." alt="" coords="317,5,500,47"/>
+</map>
