@@ -47,6 +47,14 @@ public class VerticalButton : MonoBehaviour
     }
 
     /// <summary>
+    /// Retorna el tipo del botón.
+    /// </summary>
+    public Buttons ButtonTypeE
+    {
+        get { return buttonType; }
+    }
+
+    /// <summary>
     /// Awake.
     /// </summary>
     private void Awake()

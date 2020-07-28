@@ -187,6 +187,16 @@ public class RoadPlacementLogic : MonoBehaviour
         if (undoStack.Count > 0)
         {
             RoadChanges thisChanges = undoStack.Pop();
+
+            //Devolvemos al jugador las instrucciones correspondientes
+            List<VerticalButton> addedButtons = new List<VerticalButton>();
+            if (thisChanges.addedButton != null)
+            {
+                addedButtons.Add(thisChanges.addedButton.Item2);
+            }
+
+            RestoreInstructions(thisChanges.addedRoads, addedButtons);
+
             //Borramos las carreteras añadidas
             foreach (Road r in thisChanges.addedRoads)
             {
@@ -232,9 +242,9 @@ public class RoadPlacementLogic : MonoBehaviour
         {
             buttonActionsDictionary[buttonIndex]();
         }
-        catch
+        catch (Exception e)
         {
-            Debug.LogError("Unknown input: " + buttonIndex.ToString());
+            Debug.LogError(e);
         }
     }
 
@@ -257,10 +267,10 @@ public class RoadPlacementLogic : MonoBehaviour
     /// <returns>True si hay suficientes, false si no <see cref="bool"/>.</returns>
     private bool EnoughNumberOfInstrucions(Buttons button)
     {
-        if (Application.isEditor)
+        /*if (Application.isEditor)
         {
             return true;
-        }
+        }*/
         if (GameLogic.Instance.CurrentLevelData == null)
         {
             return false;
@@ -338,6 +348,107 @@ public class RoadPlacementLogic : MonoBehaviour
             GameLogic.Instance.UpdateAvailableInstructions();
         }
         return updateInstructions;
+    }
+
+    /// <summary>
+    /// Restable el número de instrucciones a un estado anterior.
+    /// </summary>
+    /// <param name="roads">Carreteras añadidas.</param>
+    /// <param name="addedButton">Botón añadido.</param>
+    private void RestoreInstructions(List<Road> roads, List<VerticalButton> addedButtons)
+    {
+        /*if (Application.isEditor)
+        {
+            return;
+        }*/
+        if (GameLogic.Instance.CurrentLevelData == null)
+        {
+            return;
+        }
+
+        bool updateInstructions = false;
+        if (roads != null)
+        {
+            foreach (Road r in roads)
+            {
+                if (r is NodeIfIn)
+                {
+                    GameLogic.Instance.CurrentLevelData.availableInstructions.condition++;
+                    updateInstructions = true;
+                }
+                if (r is NodeLoopIn)
+                {
+                    GameLogic.Instance.CurrentLevelData.availableInstructions.loop++;
+                    updateInstructions = true;
+                }
+                if (r is NodeVerticalButton)
+                {
+                    NodeVerticalButton rVertical = (NodeVerticalButton)r;
+                    VerticalButton[] currentButtons = rVertical.CurrentButtons;
+                    if (currentButtons != null)
+                    {
+                        if (addedButtons == null)
+                        {
+                            addedButtons = new List<VerticalButton>();
+                        }
+                        foreach (VerticalButton vButton in currentButtons)
+                        {
+                            if (vButton != null)
+                            {
+                                addedButtons.Add(vButton);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (addedButtons != null)
+        {
+            foreach (VerticalButton addedButton in addedButtons)
+            {
+                switch (addedButton.ButtonTypeE)
+                {
+                    case Buttons.Action:
+
+                        GameLogic.Instance.CurrentLevelData.availableInstructions.action++;
+                        updateInstructions = true;
+
+                        break;
+
+                    case Buttons.Jump:
+
+                        GameLogic.Instance.CurrentLevelData.availableInstructions.jump++;
+                        updateInstructions = true;
+
+                        break;
+
+                    case Buttons.Move:
+
+                        GameLogic.Instance.CurrentLevelData.availableInstructions.move++;
+                        updateInstructions = true;
+
+                        break;
+
+                    case Buttons.TurnLeft:
+
+                        GameLogic.Instance.CurrentLevelData.availableInstructions.turnLeft++;
+                        updateInstructions = true;
+
+                        break;
+
+                    case Buttons.TurnRight:
+
+                        GameLogic.Instance.CurrentLevelData.availableInstructions.turnRight++;
+                        updateInstructions = true;
+
+                        break;
+                }
+            }
+        }
+        if (updateInstructions)
+        {
+            GameLogic.Instance.UpdateAvailableInstructions();
+        }
     }
 
     /// <summary>

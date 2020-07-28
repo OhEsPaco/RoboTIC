@@ -30,6 +30,8 @@ public class NodeVerticalButton : Road
     /// </summary>
     private VerticalButton[] currentButtons = new VerticalButton[3];
 
+    public VerticalButton[] CurrentButtons { get => currentButtons; }
+
     /// <summary>
     /// Start.
     /// </summary>
