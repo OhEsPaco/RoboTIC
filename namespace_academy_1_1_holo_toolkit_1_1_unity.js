@@ -1,6 +1,10 @@
 var namespace_academy_1_1_holo_toolkit_1_1_unity =
 [
+    [ "BasicCursor", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_basic_cursor.html", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_basic_cursor" ],
     [ "BoundedPlane", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_bounded_plane.html", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_bounded_plane" ],
+    [ "GazeManager", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_gaze_manager.html", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_gaze_manager" ],
+    [ "GestureManager", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_gesture_manager.html", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_gesture_manager" ],
+    [ "HandsManager", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_hands_manager.html", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_hands_manager" ],
     [ "ObjectSurfaceObserver", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer" ],
     [ "OrientedBoundingBox", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_oriented_bounding_box.html", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_oriented_bounding_box" ],
     [ "PlaneFinding", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding.html", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding" ],

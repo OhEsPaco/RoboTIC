@@ -21,6 +21,7 @@ var class_road_placement_logic =
     [ "MapMenu", "class_road_placement_logic.html#acd9463ed74082456bada6a47ec479c61", null ],
     [ "NewActionOnStack", "class_road_placement_logic.html#ad3a708127902d2a836b1b27e4def6d77", null ],
     [ "ResetRoad", "class_road_placement_logic.html#af842eed03cd2aef6cbe6c16f13069939", null ],
+    [ "RestoreInstructions", "class_road_placement_logic.html#ab5ee5df0af0bf7ce72fa5dbb5366436d", null ],
     [ "SpawnRoads", "class_road_placement_logic.html#acae518e205d3319df0b0fa1fdbed60cc", null ],
     [ "SpawnVerticalButton", "class_road_placement_logic.html#ad6a9801681f828f8cd31473e02a08b2b", null ],
     [ "Start", "class_road_placement_logic.html#acd1c4d044ecfd603c37b69210fff1b86", null ],

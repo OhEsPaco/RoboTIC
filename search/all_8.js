@@ -1,15 +1,20 @@
 var searchData=
 [
-  ['haltexecution_319',['haltExecution',['../class_game_logic.html#a9c84aa4d7f89ead5088f4e017d607c60',1,'GameLogic']]],
-  ['hasflag_320',['hasFlag',['../class_editor_logic.html#a90d0a34d16c3d738cb584ed00042d5a9',1,'EditorLogic']]],
-  ['hasplayer_321',['hasPlayer',['../class_editor_logic.html#a59eb170a5f72afffc66629d8ecfa0f77',1,'EditorLogic']]],
-  ['hideallscreens_322',['HideAllScreens',['../class_message_screen_manager.html#a3a11d4a461676d62191df59e3cb36141',1,'MessageScreenManager']]],
-  ['hidecard_323',['HideCard',['../class_condition_card.html#a15259b99935b5c6ec358bbcabd5c45a1',1,'ConditionCard']]],
-  ['hidecardcrt_324',['HideCardCrt',['../class_condition_card.html#a51135571b970d2b7f95fc3961f378ab0',1,'ConditionCard']]],
-  ['hidecards_325',['HideCards',['../class_condition_card_picker.html#a7a47682d58b5174a7431fcb858d3847b',1,'ConditionCardPicker']]],
-  ['hidedcards_326',['hidedCards',['../class_condition_card_picker.html#a94dd4d16b3a3aaab933c4e410f524c16',1,'ConditionCardPicker']]],
-  ['hidemapmenu_327',['HideMapMenu',['../class_map_menu_logic.html#afa2ec8a6a9bcc443f0108b3fb1cb7fc1',1,'MapMenuLogic']]],
-  ['horizontal_328',['Horizontal',['../_placeable_8cs.html#a1f8881de6baf2f5f9fca2500f7214380ac1b5fa03ecdb95d4a45dd1c40b02527f',1,'Placeable.cs']]],
-  ['horizontalsurfaces_329',['horizontalSurfaces',['../class_space_collection_manager.html#ad7e0061198efe0a58bb1b2c3fa383361',1,'SpaceCollectionManager']]],
-  ['hoverdistance_330',['hoverDistance',['../class_placeable.html#a0c5e97da3a8936d55ead771b289db276',1,'Placeable']]]
+  ['haltexecution_333',['haltExecution',['../class_game_logic.html#a9c84aa4d7f89ead5088f4e017d607c60',1,'GameLogic']]],
+  ['handdetected_334',['HandDetected',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_hands_manager.html#a1b6aa998ad3f7142f9e53a41fd7f082c',1,'Academy::HoloToolkit::Unity::HandsManager']]],
+  ['handsmanager_335',['HandsManager',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_hands_manager.html',1,'Academy::HoloToolkit::Unity']]],
+  ['handsmanager_2ecs_336',['HandsManager.cs',['../_hands_manager_8cs.html',1,'']]],
+  ['hasflag_337',['hasFlag',['../class_editor_logic.html#a90d0a34d16c3d738cb584ed00042d5a9',1,'EditorLogic']]],
+  ['hasplayer_338',['hasPlayer',['../class_editor_logic.html#a59eb170a5f72afffc66629d8ecfa0f77',1,'EditorLogic']]],
+  ['hideallscreens_339',['HideAllScreens',['../class_message_screen_manager.html#a3a11d4a461676d62191df59e3cb36141',1,'MessageScreenManager']]],
+  ['hidecard_340',['HideCard',['../class_condition_card.html#a15259b99935b5c6ec358bbcabd5c45a1',1,'ConditionCard']]],
+  ['hidecardcrt_341',['HideCardCrt',['../class_condition_card.html#a51135571b970d2b7f95fc3961f378ab0',1,'ConditionCard']]],
+  ['hidecards_342',['HideCards',['../class_condition_card_picker.html#a7a47682d58b5174a7431fcb858d3847b',1,'ConditionCardPicker']]],
+  ['hidedcards_343',['hidedCards',['../class_condition_card_picker.html#a94dd4d16b3a3aaab933c4e410f524c16',1,'ConditionCardPicker']]],
+  ['hidemapmenu_344',['HideMapMenu',['../class_map_menu_logic.html#afa2ec8a6a9bcc443f0108b3fb1cb7fc1',1,'MapMenuLogic']]],
+  ['hit_345',['Hit',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_gaze_manager.html#aeec055f4c8bf6ac215ec56a17cc3cff8',1,'Academy::HoloToolkit::Unity::GazeManager']]],
+  ['hitinfo_346',['HitInfo',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_gaze_manager.html#ae5d2f35094d3ba38c81eade6e180ef72',1,'Academy::HoloToolkit::Unity::GazeManager']]],
+  ['horizontal_347',['Horizontal',['../_placeable_8cs.html#a1f8881de6baf2f5f9fca2500f7214380ac1b5fa03ecdb95d4a45dd1c40b02527f',1,'Placeable.cs']]],
+  ['horizontalsurfaces_348',['horizontalSurfaces',['../class_space_collection_manager.html#ad7e0061198efe0a58bb1b2c3fa383361',1,'SpaceCollectionManager']]],
+  ['hoverdistance_349',['hoverDistance',['../class_placeable.html#a0c5e97da3a8936d55ead771b289db276',1,'Placeable']]]
 ];

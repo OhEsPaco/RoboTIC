@@ -1,6 +1,6 @@
 <map id="Character" name="Character">
 <area shape="rect" id="node1" title="Clase abstracta de la que descienden los robots." alt="" coords="110,131,269,237"/>
-<area shape="rect" id="node3" href="$class_big_character.html" title="La clase BigCharacter contiene ." alt="" coords="5,285,200,744"/>
+<area shape="rect" id="node3" href="$class_big_character.html" title="La clase BigCharacter contiene los procedimientos para mover al personaje principal." alt="" coords="5,285,200,744"/>
 <area shape="rect" id="node4" href="$class_mini_character.html" title="Define la clase MiniCharacter del robot que se mueve por las carreteras." alt="" coords="225,476,327,553"/>
 <area shape="rect" id="node2" title=" " alt="" coords="134,5,245,83"/>
 </map>

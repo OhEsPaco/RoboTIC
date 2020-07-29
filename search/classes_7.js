@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['interactible_965',['Interactible',['../class_interactible.html',1,'']]],
-  ['interactiblemanager_966',['InteractibleManager',['../class_interactible_manager.html',1,'']]],
-  ['interactibleparameters_967',['InteractibleParameters',['../class_interactible_parameters.html',1,'']]],
-  ['item_968',['Item',['../class_item.html',1,'']]]
+  ['handsmanager_1002',['HandsManager',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_hands_manager.html',1,'Academy::HoloToolkit::Unity']]]
 ];

@@ -1,0 +1,4 @@
+<map id="Academy.HoloToolkit.Unity.HandsManager" name="Academy.HoloToolkit.Unity.HandsManager">
+<area shape="rect" id="node1" title="HandsDetected determines if the hand is currently detected or not." alt="" coords="5,131,196,311"/>
+<area shape="rect" id="node2" title=" " alt="" coords="7,5,194,83"/>
+</map>

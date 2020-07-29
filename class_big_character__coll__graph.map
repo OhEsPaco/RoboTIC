@@ -1,5 +1,5 @@
 <map id="BigCharacter" name="BigCharacter">
-<area shape="rect" id="node1" title="La clase BigCharacter contiene ." alt="" coords="35,664,230,1108"/>
+<area shape="rect" id="node1" title="La clase BigCharacter contiene los procedimientos para mover al personaje principal." alt="" coords="35,664,230,1108"/>
 <area shape="rect" id="node2" href="$class_character.html" title="Clase abstracta de la que descienden los robots." alt="" coords="5,291,164,397"/>
 <area shape="rect" id="node3" title=" " alt="" coords="53,5,164,83"/>
 <area shape="rect" id="node5" href="$class_event_aggregator.html" title="Clase EventAggregator usada como un punto central en el que los objetos del juego pueden públicar men..." alt="" coords="122,145,349,267"/>

@@ -117,6 +117,7 @@ var menudata={children:[
 {text:"e",url:"functions_prop.html#index_e"},
 {text:"f",url:"functions_prop.html#index_f"},
 {text:"g",url:"functions_prop.html#index_g"},
+{text:"h",url:"functions_prop.html#index_h"},
 {text:"i",url:"functions_prop.html#index_i"},
 {text:"l",url:"functions_prop.html#index_l"},
 {text:"m",url:"functions_prop.html#index_m"},

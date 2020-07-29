@@ -11,5 +11,6 @@ var class_node_vertical_button =
     [ "buttonList", "class_node_vertical_button.html#a5f5fbfc675250aa84dbf3540a8b9f65d", null ],
     [ "currentButtons", "class_node_vertical_button.html#a1ee413e0a74c81411561a2b79b4f4268", null ],
     [ "rInput", "class_node_vertical_button.html#ae8811c3b7eef4cf9044e4b114d0f54b8", null ],
-    [ "rOutput", "class_node_vertical_button.html#a3344bd1c1a0b692b154f700eeb3c7648", null ]
+    [ "rOutput", "class_node_vertical_button.html#a3344bd1c1a0b692b154f700eeb3c7648", null ],
+    [ "CurrentButtons", "class_node_vertical_button.html#a7308e20ff2a95d020b7334d80e00b04f", null ]
 ];

@@ -1,8 +1,13 @@
 var searchData=
 [
-  ['tappedpoint_1978',['TappedPoint',['../class_msg_editor_surface_tapped.html#ada1741d9d03c5c51d1ba2fba2fec6f3a',1,'MsgEditorSurfaceTapped']]],
-  ['target_1979',['Target',['../class_msg_big_robot_action.html#aaa51e551bfc5365487139c22cd9d3a8d',1,'MsgBigRobotAction']]],
-  ['toolidentifier_1980',['ToolIdentifier',['../class_editor_logic_1_1_selected_tool.html#a07272647422f28db648489d567edaee6',1,'EditorLogic.SelectedTool.ToolIdentifier()'],['../class_msg_editor_tool_selected.html#a522576c67a7d679c079a9e46fec491be',1,'MsgEditorToolSelected.ToolIdentifier()']]],
-  ['tooltype_1981',['ToolType',['../class_editor_logic_1_1_selected_tool.html#a2aa60072d1dad70d6ef9af5b28753a8c',1,'EditorLogic.SelectedTool.ToolType()'],['../class_msg_editor_tool_selected.html#aa2b4cc2f29d41df6b0654057c15e71d7',1,'MsgEditorToolSelected.ToolType()']]],
-  ['tostring_1982',['ToString',['../class_block.html#a9cc10bdab66bde18e1c186ba7915f07b',1,'Block.ToString()'],['../class_item.html#aedbfa5ab42d6b6a9285661d765cee521',1,'Item.ToString()'],['../class_level_object.html#ae76608fc7056fb014535aca07e614233',1,'LevelObject.ToString()']]]
+  ['screenname_2038',['ScreenName',['../class_message_screen.html#adae2fb5bd4212d16e2c72c0b4e149c10',1,'MessageScreen']]],
+  ['selectedio_2039',['SelectedIO',['../class_road_placement_logic.html#aadebab389bcab39c5b778983ba8e45ed',1,'RoadPlacementLogic']]],
+  ['source_2040',['Source',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#ae84f4fee4ad2e7ef6e6de5718aebe2fb',1,'Academy::HoloToolkit::Unity::SpatialMappingManager']]],
+  ['starttime_2041',['StartTime',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a96a213c9cc74e3561f7d75a70bf93782',1,'Academy::HoloToolkit::Unity::SpatialMappingManager']]],
+  ['surfacematerial_2042',['SurfaceMaterial',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html#a191bbd0bc2ad6ce39f0e7afe1b1c084b',1,'Academy::HoloToolkit::Unity::SpatialMappingManager']]],
+  ['surfacenormal_2043',['SurfaceNormal',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_plane.html#add8111c242c2810bc7accf149ec5730a',1,'Academy::HoloToolkit::Unity::SurfacePlane']]],
+  ['surfaceobjects_2044',['SurfaceObjects',['../class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html#afbc453d9d1887f63369b64a802e869f7',1,'Academy::HoloToolkit::Unity::SpatialMappingSource']]],
+  ['surfacepoint_2045',['SurfacePoint',['../class_block.html#a17f9c205f0a4c59f9cec95fc02c24246',1,'Block']]],
+  ['surfacepointpositionx_2046',['SurfacePointPositionX',['../class_editor_surface_point.html#aba7387f6c4fa15c8ca6b2ebe3d10c2d1',1,'EditorSurfacePoint']]],
+  ['surfacepointpositionz_2047',['SurfacePointPositionZ',['../class_editor_surface_point.html#aec5137f1af070aadc2e2816ac36dfb5d',1,'EditorSurfacePoint']]]
 ];

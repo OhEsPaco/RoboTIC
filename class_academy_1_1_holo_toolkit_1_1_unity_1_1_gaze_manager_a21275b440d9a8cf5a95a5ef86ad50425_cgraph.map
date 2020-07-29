@@ -1,0 +1,5 @@
+<map id="Academy.HoloToolkit.Unity.GazeManager.Update" name="Academy.HoloToolkit.Unity.GazeManager.Update">
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,188,80"/>
+<area shape="rect" id="node2" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_gaze_manager.html#a769284bf97ae0f8e5504bb217029e962" title="Calculates the Raycast hit position and normal." alt="" coords="264,5,460,47"/>
+<area shape="rect" id="node3" href="$class_academy_1_1_holo_toolkit_1_1_unity_1_1_gaze_manager.html#a3d8025c0a1c8f453a9515963b181c7c7" title="Updates the focus point for every frame." alt="" coords="236,71,488,112"/>
+</map>

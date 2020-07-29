@@ -9,5 +9,6 @@ var class_vertical_button =
     [ "locked", "class_vertical_button.html#ad527245c2e3fe9cdd5348dc721433823", null ],
     [ "mesh", "class_vertical_button.html#aac7acff40bfdfa8c73cdf2f67b664419", null ],
     [ "ButtonType", "class_vertical_button.html#a8c218b87c5044a7072c2ab6a5d87983b", null ],
+    [ "ButtonTypeE", "class_vertical_button.html#af4cde3a55a5cffc656419db2bc9aef91", null ],
     [ "Locked", "class_vertical_button.html#a6fb2dd2cc425a81292b0f1e58bd9348e", null ]
 ];

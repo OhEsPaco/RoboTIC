@@ -1,11 +1,11 @@
 <map id="NodeVerticalButton" name="NodeVerticalButton">
-<area shape="rect" id="node1" title="Clase de la carretera con botones." alt="" coords="272,1439,424,1619"/>
-<area shape="rect" id="node2" href="$class_road.html" title="Clase padre de las carreteras." alt="" coords="5,1121,179,1389"/>
+<area shape="rect" id="node1" title="Clase de la carretera con botones." alt="" coords="272,1453,424,1633"/>
+<area shape="rect" id="node2" href="$class_road.html" title="Clase padre de las carreteras." alt="" coords="5,1136,179,1404"/>
 <area shape="rect" id="node3" title=" " alt="" coords="365,5,475,83"/>
 <area shape="rect" id="node4" href="$class_road_i_o.html" title="Entradas y salidas de una carretera." alt="" coords="170,132,337,371"/>
-<area shape="rect" id="node5" href="$class_path_container.html" title="Contiene caminos por los que se moverá el robot que son listas de puntos ordenados." alt="" coords="293,967,433,1059"/>
-<area shape="rect" id="node9" href="$class_vertical_button.html" title="Clase de los botones que activa el robot al moverse por las carreteras." alt="" coords="508,395,633,589"/>
-<area shape="rect" id="node7" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="187,613,279,705"/>
-<area shape="rect" id="node8" href="$class_road_input.html" title="Marca un objeto como input de una carretera." alt="" coords="303,613,406,705"/>
-<area shape="rect" id="node6" href="$struct_path_container_1_1_path.html" title="Define un camino." alt="" coords="265,768,399,889"/>
+<area shape="rect" id="node5" href="$class_path_container.html" title="Contiene caminos por los que se moverá el robot que son listas de puntos ordenados." alt="" coords="293,981,433,1073"/>
+<area shape="rect" id="node9" href="$class_vertical_button.html" title="Clase de los botones que activa el robot al moverse por las carreteras." alt="" coords="508,395,633,604"/>
+<area shape="rect" id="node7" href="$class_road_output.html" title="Marca un objeto como output de una carretera." alt="" coords="187,628,279,720"/>
+<area shape="rect" id="node8" href="$class_road_input.html" title="Marca un objeto como input de una carretera." alt="" coords="303,628,406,720"/>
+<area shape="rect" id="node6" href="$struct_path_container_1_1_path.html" title="Define un camino." alt="" coords="265,783,399,904"/>
 </map>

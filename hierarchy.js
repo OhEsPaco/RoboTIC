@@ -14,6 +14,7 @@ var hierarchy =
     [ "Academy.HoloToolkit.Unity.PlaneFinding.DLLImports.MeshData", "struct_academy_1_1_holo_toolkit_1_1_unity_1_1_plane_finding_1_1_d_l_l_imports_1_1_mesh_data.html", null ],
     [ "MessageWarehouse", "class_message_warehouse.html", null ],
     [ "MonoBehaviour", null, [
+      [ "Academy.HoloToolkit.Unity.BasicCursor", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_basic_cursor.html", null ],
       [ "Academy.HoloToolkit.Unity.SpatialMappingSource", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_source.html", [
         [ "Academy.HoloToolkit.Unity.ObjectSurfaceObserver", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_object_surface_observer.html", null ],
         [ "Academy.HoloToolkit.Unity.SpatialMappingObserver", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_observer.html", null ]
@@ -127,6 +128,9 @@ var hierarchy =
     [ "RoadPlacementLogic.RoadChanges", "class_road_placement_logic_1_1_road_changes.html", null ],
     [ "EditorLogic.SelectedTool", "class_editor_logic_1_1_selected_tool.html", null ],
     [ "Singleton", null, [
+      [ "Academy.HoloToolkit.Unity.GazeManager", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_gaze_manager.html", null ],
+      [ "Academy.HoloToolkit.Unity.GestureManager", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_gesture_manager.html", null ],
+      [ "Academy.HoloToolkit.Unity.HandsManager", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_hands_manager.html", null ],
       [ "Academy.HoloToolkit.Unity.RemoveSurfaceVertices", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_remove_surface_vertices.html", null ],
       [ "Academy.HoloToolkit.Unity.SpatialMappingManager", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_spatial_mapping_manager.html", null ],
       [ "Academy.HoloToolkit.Unity.SurfaceMeshesToPlanes", "class_academy_1_1_holo_toolkit_1_1_unity_1_1_surface_meshes_to_planes.html", null ],

@@ -1,5 +1,5 @@
 <map id="BigCharacter" name="BigCharacter">
-<area shape="rect" id="node1" title="La clase BigCharacter contiene ." alt="" coords="5,285,200,744"/>
+<area shape="rect" id="node1" title="La clase BigCharacter contiene los procedimientos para mover al personaje principal." alt="" coords="5,285,200,744"/>
 <area shape="rect" id="node2" href="$class_character.html" title="Clase abstracta de la que descienden los robots." alt="" coords="23,131,182,237"/>
 <area shape="rect" id="node3" title=" " alt="" coords="47,5,158,83"/>
 </map>
