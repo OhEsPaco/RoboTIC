@@ -23,7 +23,7 @@ public class ConditionCardFrame : MonoBehaviour
     /// <summary>
     /// Se ejecuta si el usuario hace tap sobre la carta.
     /// </summary>
-    private void OnSelect()
+    public void OnSelect()
     {
         tappedFrameDelegate();
     }

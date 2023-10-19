@@ -66,7 +66,7 @@ public class SelectedOutputMarker : MonoBehaviour
     /// <summary>
     /// OnSelect.
     /// </summary>
-    private void OnSelect()
+    public void OnSelect()
     {
         if (!placing && !tappedMsg)
         {

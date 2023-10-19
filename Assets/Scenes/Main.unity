@@ -460,6 +460,7 @@ GameObject:
   - component: {fileID: 20198083}
   - component: {fileID: 20198082}
   - component: {fileID: 20198081}
+  - component: {fileID: 20198087}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -591,6 +592,47 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20198079}
   m_Mesh: {fileID: 4300002, guid: b5fc645bcc4c7804f8298da8cc100d8a, type: 3}
+--- !u!114 &20198087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20198079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 20198082}
+        m_TargetAssemblyTypeName: EditorMenuButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &26546189
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +1028,7 @@ GameObject:
   - component: {fileID: 118549962}
   - component: {fileID: 118549961}
   - component: {fileID: 118549960}
+  - component: {fileID: 118549963}
   m_Layer: 0
   m_Name: Move
   m_TagString: Untagged
@@ -1059,6 +1102,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e8574b6ecef2644a41b911f9d99d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &118549963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118549958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 118549960}
+        m_TargetAssemblyTypeName: EditorInstructionButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1001 &118754845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1130,7 +1214,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1184940271748656403, guid: dc691144b7a70504f957350653f42708,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1997435815}
+    - targetCorrespondingSourceObject: {fileID: 1184940272723005815, guid: dc691144b7a70504f957350653f42708,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 239562065}
+    - targetCorrespondingSourceObject: {fileID: 1184940271545109455, guid: dc691144b7a70504f957350653f42708,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 987567762}
+    - targetCorrespondingSourceObject: {fileID: 1184940271416286515, guid: dc691144b7a70504f957350653f42708,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 688899030}
+    - targetCorrespondingSourceObject: {fileID: 1184940272022058696, guid: dc691144b7a70504f957350653f42708,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1309094187}
   m_SourcePrefab: {fileID: 100100000, guid: dc691144b7a70504f957350653f42708, type: 3}
 --- !u!4 &118754846 stripped
 Transform:
@@ -1826,6 +1930,7 @@ GameObject:
   - component: {fileID: 193517570}
   - component: {fileID: 193517569}
   - component: {fileID: 193517568}
+  - component: {fileID: 193517571}
   m_Layer: 0
   m_Name: TurnLeft
   m_TagString: Untagged
@@ -1899,6 +2004,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e8574b6ecef2644a41b911f9d99d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &193517571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193517566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 193517568}
+        m_TargetAssemblyTypeName: EditorInstructionButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &206001860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,6 +2258,65 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235936297}
   m_Mesh: {fileID: 4300006, guid: f72fd92ec7b85a64da6bd1b9a2e461bc, type: 3}
+--- !u!1 &239562059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1184940272723005815, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &239562061 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1184940272723005813, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239562059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96aeb71b2f33064f9c4aba958236988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &239562065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239562059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 239562061}
+        m_TargetAssemblyTypeName: ConditionCardFrame, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &240837306
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,6 +3272,7 @@ GameObject:
   - component: {fileID: 433740494}
   - component: {fileID: 433740493}
   - component: {fileID: 433740498}
+  - component: {fileID: 433740499}
   m_Layer: 12
   m_Name: Ice
   m_TagString: Untagged
@@ -3209,6 +3415,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &433740499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433740491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 433740493}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &441551059
 GameObject:
   m_ObjectHideFlags: 0
@@ -3592,6 +3839,7 @@ GameObject:
   - component: {fileID: 508257401}
   - component: {fileID: 508257400}
   - component: {fileID: 508257399}
+  - component: {fileID: 508257402}
   m_Layer: 0
   m_Name: Jump
   m_TagString: Untagged
@@ -3665,6 +3913,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e8574b6ecef2644a41b911f9d99d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &508257402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508257397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 508257399}
+        m_TargetAssemblyTypeName: EditorInstructionButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &519271656
 GameObject:
   m_ObjectHideFlags: 0
@@ -3760,6 +4049,7 @@ GameObject:
   - component: {fileID: 529757426}
   - component: {fileID: 529757425}
   - component: {fileID: 529757424}
+  - component: {fileID: 529757427}
   m_Layer: 0
   m_Name: Action
   m_TagString: Untagged
@@ -3833,6 +4123,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e8574b6ecef2644a41b911f9d99d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &529757427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529757422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 529757424}
+        m_TargetAssemblyTypeName: EditorInstructionButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &533856976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4469,6 +4800,7 @@ GameObject:
   - component: {fileID: 644530045}
   - component: {fileID: 644530044}
   - component: {fileID: 644530046}
+  - component: {fileID: 644530047}
   m_Layer: 0
   m_Name: Fan
   m_TagString: Untagged
@@ -4542,6 +4874,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &644530047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644530042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 644530044}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &661829548
 GameObject:
   m_ObjectHideFlags: 0
@@ -4554,6 +4927,7 @@ GameObject:
   - component: {fileID: 661829551}
   - component: {fileID: 661829550}
   - component: {fileID: 661829552}
+  - component: {fileID: 661829553}
   m_Layer: 12
   m_Name: P0
   m_TagString: Untagged
@@ -4626,6 +5000,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &661829553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661829548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 661829550}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &671870188
 GameObject:
   m_ObjectHideFlags: 0
@@ -4721,6 +5136,7 @@ GameObject:
   - component: {fileID: 673325542}
   - component: {fileID: 673325541}
   - component: {fileID: 673325543}
+  - component: {fileID: 673325544}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -4793,6 +5209,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &673325544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673325539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 673325541}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &678122472
 GameObject:
   m_ObjectHideFlags: 0
@@ -5042,6 +5499,65 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 687295721}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &688899024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1184940271416286515, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &688899026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1184940271416286513, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688899024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96aeb71b2f33064f9c4aba958236988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &688899030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688899024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 688899026}
+        m_TargetAssemblyTypeName: ConditionCardFrame, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &697255908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5807,6 +6323,7 @@ GameObject:
   - component: {fileID: 834725196}
   - component: {fileID: 834725195}
   - component: {fileID: 834725194}
+  - component: {fileID: 834725197}
   m_Layer: 0
   m_Name: Condition
   m_TagString: Untagged
@@ -5880,6 +6397,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e8574b6ecef2644a41b911f9d99d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &834725197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834725192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 834725194}
+        m_TargetAssemblyTypeName: EditorInstructionButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &836517672
 GameObject:
   m_ObjectHideFlags: 0
@@ -6587,6 +7145,7 @@ GameObject:
   - component: {fileID: 954429502}
   - component: {fileID: 954429501}
   - component: {fileID: 954429506}
+  - component: {fileID: 954429507}
   m_Layer: 12
   m_Name: Lift
   m_TagString: Untagged
@@ -6730,6 +7289,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &954429507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954429499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 954429501}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &956386893
 GameObject:
   m_ObjectHideFlags: 0
@@ -6742,6 +7342,7 @@ GameObject:
   - component: {fileID: 956386896}
   - component: {fileID: 956386895}
   - component: {fileID: 956386897}
+  - component: {fileID: 956386898}
   m_Layer: 0
   m_Name: Activator
   m_TagString: Untagged
@@ -6814,6 +7415,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &956386898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956386893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 956386895}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &961522264
 GameObject:
   m_ObjectHideFlags: 0
@@ -7193,6 +7835,65 @@ MonoBehaviour:
   reducedPercent: 0.7
   speed: 1
   scaleMultiplier: 1
+--- !u!1 &987567756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1184940271545109455, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &987567758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1184940271545109453, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987567756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96aeb71b2f33064f9c4aba958236988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &987567762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987567756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 987567758}
+        m_TargetAssemblyTypeName: ConditionCardFrame, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &989716447
 GameObject:
   m_ObjectHideFlags: 0
@@ -7640,6 +8341,7 @@ GameObject:
   - component: {fileID: 1082280847}
   - component: {fileID: 1082280846}
   - component: {fileID: 1082280845}
+  - component: {fileID: 1082280848}
   m_Layer: 0
   m_Name: Loop
   m_TagString: Untagged
@@ -7713,6 +8415,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e8574b6ecef2644a41b911f9d99d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1082280848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082280843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1082280845}
+        m_TargetAssemblyTypeName: EditorInstructionButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1102820904
 GameObject:
   m_ObjectHideFlags: 0
@@ -7742,7 +8485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d9acc7968244a8886f3af591305bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeProfile: {fileID: 11400000, guid: 31a611a779d3499e8e35f1a2018ca841, type: 2}
+  activeProfile: {fileID: 11400000, guid: e5556a58dd35f2442afb808524c03c38, type: 2}
 --- !u!4 &1102820906
 Transform:
   m_ObjectHideFlags: 0
@@ -7770,6 +8513,7 @@ GameObject:
   - component: {fileID: 1108787329}
   - component: {fileID: 1108787328}
   - component: {fileID: 1108787330}
+  - component: {fileID: 1108787331}
   m_Layer: 0
   m_Name: Planks
   m_TagString: Untagged
@@ -7842,6 +8586,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &1108787331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108787326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1108787328}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1109661154
 GameObject:
   m_ObjectHideFlags: 0
@@ -8236,6 +9021,7 @@ GameObject:
   - component: {fileID: 1180141383}
   - component: {fileID: 1180141384}
   - component: {fileID: 1180141385}
+  - component: {fileID: 1180141386}
   m_Layer: 0
   m_Name: MoveMap
   m_TagString: Untagged
@@ -8295,6 +9081,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98e4a82021a35247ac20b3c74565ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1180141386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180141382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1180141385}
+        m_TargetAssemblyTypeName: MoveCursor, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1181933996
 GameObject:
   m_ObjectHideFlags: 0
@@ -8391,6 +9218,50 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00044322014, y: 1.0421942, z: -0.0647226}
     m_Extent: {x: 1.0406365, y: 1.317931, z: 0.6244961}
   m_DirtyAABB: 0
+--- !u!1 &1191570656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1191570658}
+  - component: {fileID: 1191570657}
+  m_Layer: 0
+  m_Name: SceneUnderstandingLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1191570657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191570656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e9fa94600f53548aeba907a79a4a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1191570658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191570656}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03682819, y: -0.08571708, z: 1.506119}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1193763933
 GameObject:
   m_ObjectHideFlags: 0
@@ -8403,6 +9274,7 @@ GameObject:
   - component: {fileID: 1193763936}
   - component: {fileID: 1193763935}
   - component: {fileID: 1193763937}
+  - component: {fileID: 1193763938}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -8475,6 +9347,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &1193763938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193763933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1193763935}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1202076011
 GameObject:
   m_ObjectHideFlags: 0
@@ -8869,6 +9782,7 @@ GameObject:
   - component: {fileID: 1274832229}
   - component: {fileID: 1274832228}
   - component: {fileID: 1274832230}
+  - component: {fileID: 1274832231}
   m_Layer: 12
   m_Name: P2
   m_TagString: Untagged
@@ -8941,6 +9855,106 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &1274832231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274832226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1274832228}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
+--- !u!1 &1275730185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5743841382077459303, guid: a0902b98a380b0249891e5804d310dd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1820539830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1275730187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5743841382077459306, guid: a0902b98a380b0249891e5804d310dd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1820539830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275730185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7deddc0e0e2ed64589d7fb6ee65bf6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1275730189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275730185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1275730187}
+        m_TargetAssemblyTypeName: LoopCounter, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1294289291
 GameObject:
   m_ObjectHideFlags: 0
@@ -9109,6 +10123,65 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305007867}
   m_Mesh: {fileID: 4300000, guid: 7c99e9ba37770e04084d76ed54ea0c83, type: 3}
+--- !u!1 &1309094181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1184940272022058696, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1309094183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1184940272022058702, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309094181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96aeb71b2f33064f9c4aba958236988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1309094187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309094181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1309094183}
+        m_TargetAssemblyTypeName: ConditionCardFrame, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1314802159
 GameObject:
   m_ObjectHideFlags: 0
@@ -9725,6 +10798,7 @@ GameObject:
   - component: {fileID: 1404096402}
   - component: {fileID: 1404096401}
   - component: {fileID: 1404096405}
+  - component: {fileID: 1404096406}
   m_Layer: 0
   m_Name: Eraser
   m_TagString: Untagged
@@ -9847,6 +10921,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &1404096406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404096399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1404096401}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1406205582
 GameObject:
   m_ObjectHideFlags: 0
@@ -10828,6 +11943,7 @@ GameObject:
   - component: {fileID: 1508373156}
   - component: {fileID: 1508373157}
   - component: {fileID: 1508373158}
+  - component: {fileID: 1508373159}
   m_Layer: 0
   m_Name: MapBounds
   m_TagString: Untagged
@@ -10883,6 +11999,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cb45954eccf26439fefe6415386ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1508373159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508373155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1508373158}
+        m_TargetAssemblyTypeName: GenericButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1509313434
 GameObject:
   m_ObjectHideFlags: 0
@@ -11349,6 +12506,7 @@ GameObject:
   - component: {fileID: 1605931426}
   - component: {fileID: 1605931425}
   - component: {fileID: 1605931424}
+  - component: {fileID: 1605931428}
   m_Layer: 0
   m_Name: No_button
   m_TagString: Untagged
@@ -11456,6 +12614,47 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605931422}
   m_Mesh: {fileID: 4300008, guid: e3e2a8a38a91ae34b9e484f1d9bf0f59, type: 3}
+--- !u!114 &1605931428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605931422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1605931424}
+        m_TargetAssemblyTypeName: MessageScreenButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1606736847
 GameObject:
   m_ObjectHideFlags: 0
@@ -11529,6 +12728,7 @@ GameObject:
   - component: {fileID: 1607234890}
   - component: {fileID: 1607234889}
   - component: {fileID: 1607234893}
+  - component: {fileID: 1607234894}
   m_Layer: 12
   m_Name: Solid
   m_TagString: Untagged
@@ -11650,6 +12850,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &1607234894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607234887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1607234889}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1618187059
 GameObject:
   m_ObjectHideFlags: 0
@@ -12398,6 +13639,7 @@ GameObject:
   - component: {fileID: 1718813688}
   - component: {fileID: 1718813687}
   - component: {fileID: 1718813689}
+  - component: {fileID: 1718813690}
   m_Layer: 12
   m_Name: P3
   m_TagString: Untagged
@@ -12470,6 +13712,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &1718813690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718813685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1718813687}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1727380306
 GameObject:
   m_ObjectHideFlags: 0
@@ -13510,7 +14793,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5743841382077459303, guid: a0902b98a380b0249891e5804d310dd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1275730189}
   m_SourcePrefab: {fileID: 100100000, guid: a0902b98a380b0249891e5804d310dd7, type: 3}
 --- !u!4 &1820539831 stripped
 Transform:
@@ -13691,6 +14978,7 @@ GameObject:
   - component: {fileID: 1835007562}
   - component: {fileID: 1835007561}
   - component: {fileID: 1835007560}
+  - component: {fileID: 1835007564}
   m_Layer: 0
   m_Name: Yes_button
   m_TagString: Untagged
@@ -13798,6 +15086,47 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835007558}
   m_Mesh: {fileID: 4300006, guid: e3e2a8a38a91ae34b9e484f1d9bf0f59, type: 3}
+--- !u!114 &1835007564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835007558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1835007560}
+        m_TargetAssemblyTypeName: MessageScreenButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1839278593
 GameObject:
   m_ObjectHideFlags: 0
@@ -13893,6 +15222,7 @@ GameObject:
   - component: {fileID: 1842399654}
   - component: {fileID: 1842399653}
   - component: {fileID: 1842399652}
+  - component: {fileID: 1842399655}
   m_Layer: 0
   m_Name: TurnRight
   m_TagString: Untagged
@@ -13966,6 +15296,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e8574b6ecef2644a41b911f9d99d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1842399655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842399650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1842399652}
+        m_TargetAssemblyTypeName: EditorInstructionButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1843240214
 GameObject:
   m_ObjectHideFlags: 0
@@ -13977,6 +15348,7 @@ GameObject:
   - component: {fileID: 1843240217}
   - component: {fileID: 1843240216}
   - component: {fileID: 1843240215}
+  - component: {fileID: 1843240218}
   m_Layer: 0
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -14033,6 +15405,47 @@ Transform:
   - {fileID: 1314802163}
   m_Father: {fileID: 14435335}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+--- !u!114 &1843240218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843240214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1843240215}
+        m_TargetAssemblyTypeName: GenericButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1847669837
 GameObject:
   m_ObjectHideFlags: 0
@@ -14474,6 +15887,7 @@ GameObject:
   - component: {fileID: 1909988661}
   - component: {fileID: 1909988660}
   - component: {fileID: 1909988665}
+  - component: {fileID: 1909988666}
   m_Layer: 12
   m_Name: Water
   m_TagString: Untagged
@@ -14609,6 +16023,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &1909988666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909988658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1909988660}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1919119912
 GameObject:
   m_ObjectHideFlags: 0
@@ -15021,6 +16476,7 @@ GameObject:
   - component: {fileID: 1957758675}
   - component: {fileID: 1957758674}
   - component: {fileID: 1957758679}
+  - component: {fileID: 1957758680}
   m_Layer: 12
   m_Name: Lava
   m_TagString: Untagged
@@ -15156,6 +16612,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &1957758680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957758672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1957758674}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1973548264
 GameObject:
   m_ObjectHideFlags: 0
@@ -15539,6 +17036,65 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986915868}
   m_Mesh: {fileID: 4300006, guid: 8c1424301deb28a40909ba9b695661a9, type: 3}
+--- !u!1 &1997435809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1184940271748656403, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1997435811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1184940271748656401, guid: dc691144b7a70504f957350653f42708,
+    type: 3}
+  m_PrefabInstance: {fileID: 118754845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997435809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96aeb71b2f33064f9c4aba958236988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1997435815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997435809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1997435811}
+        m_TargetAssemblyTypeName: ConditionCardFrame, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1999545002
 GameObject:
   m_ObjectHideFlags: 0
@@ -15553,6 +17109,7 @@ GameObject:
   - component: {fileID: 1999545005}
   - component: {fileID: 1999545004}
   - component: {fileID: 1999545008}
+  - component: {fileID: 1999545009}
   m_Layer: 12
   m_Name: Spikes
   m_TagString: Untagged
@@ -15675,6 +17232,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &1999545009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999545002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1999545004}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &2014759849
 GameObject:
   m_ObjectHideFlags: 0
@@ -16351,6 +17949,7 @@ GameObject:
   - component: {fileID: 2061794766}
   - component: {fileID: 2061794765}
   - component: {fileID: 2061794767}
+  - component: {fileID: 2061794768}
   m_Layer: 12
   m_Name: P1
   m_TagString: Untagged
@@ -16423,6 +18022,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   scalePercent: 0.7
+--- !u!114 &2061794768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061794763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2061794765}
+        m_TargetAssemblyTypeName: EditorTool, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &2069125625
 GameObject:
   m_ObjectHideFlags: 0
@@ -17222,6 +18862,7 @@ GameObject:
   - component: {fileID: 826147977591807489}
   - component: {fileID: 826147977591767586}
   - component: {fileID: 826147977591767587}
+  - component: {fileID: 826147977591807490}
   m_Layer: 0
   m_Name: ArrowLeft
   m_TagString: Untagged
@@ -17278,6 +18919,47 @@ Transform:
   - {fileID: 985972484}
   m_Father: {fileID: 14435335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &826147977591807490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826147977591767585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 826147977591767586}
+        m_TargetAssemblyTypeName: SelectArrow, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1555116331869392160
 GameObject:
   m_ObjectHideFlags: 0
@@ -17293,6 +18975,7 @@ GameObject:
   - component: {fileID: 1555116331869392161}
   - component: {fileID: 1555116331869392164}
   - component: {fileID: 1555116331869392165}
+  - component: {fileID: 1555116331869392168}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -17427,6 +19110,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1555116332877643325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1555116331869392168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116331869392160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116331869392165}
+        m_TargetAssemblyTypeName: EditorToolFeedback, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!33 &1555116331877247568
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17587,6 +19311,7 @@ GameObject:
   - component: {fileID: 1555116331903198358}
   - component: {fileID: 1555116331903198346}
   - component: {fileID: 1555116331903198345}
+  - component: {fileID: 1555116331903198360}
   m_Layer: 0
   m_Name: TurnRight
   m_TagString: Untagged
@@ -17594,6 +19319,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1555116331903198360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116331903198359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116331903198345}
+        m_TargetAssemblyTypeName: RoadButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!4 &1555116331904588000
 Transform:
   m_ObjectHideFlags: 0
@@ -19093,6 +20859,7 @@ GameObject:
   - component: {fileID: 1555116332333448487}
   - component: {fileID: 1555116332333448486}
   - component: {fileID: 1555116332333448488}
+  - component: {fileID: 1555116332333448544}
   m_Layer: 0
   m_Name: Undo
   m_TagString: Untagged
@@ -19212,6 +20979,47 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555116332333448485}
   m_Mesh: {fileID: 4300006, guid: b5fc645bcc4c7804f8298da8cc100d8a, type: 3}
+--- !u!114 &1555116332333448544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116332333448485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116332333448488}
+        m_TargetAssemblyTypeName: EditorToolFeedback, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!23 &1555116332362383588
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20885,6 +22693,7 @@ GameObject:
   - component: {fileID: 1555116332649106334}
   - component: {fileID: 1555116332649106322}
   - component: {fileID: 1555116332649106321}
+  - component: {fileID: 1555116332649106336}
   m_Layer: 0
   m_Name: Move
   m_TagString: Untagged
@@ -20892,6 +22701,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1555116332649106336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116332649106335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116332649106321}
+        m_TargetAssemblyTypeName: RoadButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1555116332677801828
 GameObject:
   m_ObjectHideFlags: 0
@@ -21396,6 +23246,7 @@ GameObject:
   - component: {fileID: 1555116332779709519}
   - component: {fileID: 1555116332779709507}
   - component: {fileID: 1555116332779709506}
+  - component: {fileID: 1555116332779709520}
   m_Layer: 0
   m_Name: Action
   m_TagString: Untagged
@@ -21432,6 +23283,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e8574b6ecef2644a41b911f9d99d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1555116332779709520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116332779709512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116332779709506}
+        m_TargetAssemblyTypeName: RoadButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!33 &1555116332783371217
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21608,6 +23500,7 @@ GameObject:
   - component: {fileID: 1555116332784628595}
   - component: {fileID: 1555116332784628599}
   - component: {fileID: 1555116332784628598}
+  - component: {fileID: 1555116332784628605}
   m_Layer: 0
   m_Name: Jump
   m_TagString: Untagged
@@ -21615,6 +23508,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1555116332784628605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116332784628604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116332784628598}
+        m_TargetAssemblyTypeName: RoadButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1555116332797385672
 GameObject:
   m_ObjectHideFlags: 0
@@ -24729,6 +26663,7 @@ GameObject:
   - component: {fileID: 1555116333677303234}
   - component: {fileID: 1555116333677303238}
   - component: {fileID: 1555116333677303237}
+  - component: {fileID: 1555116333677303240}
   m_Layer: 0
   m_Name: Condition
   m_TagString: Untagged
@@ -24789,6 +26724,47 @@ Transform:
   - {fileID: 1555116332797385679}
   m_Father: {fileID: 1555116332877643325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1555116333677303240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116333677303235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116333677303237}
+        m_TargetAssemblyTypeName: RoadButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &1555116333679732768
 GameObject:
   m_ObjectHideFlags: 0
@@ -24804,6 +26780,7 @@ GameObject:
   - component: {fileID: 1555116333679732769}
   - component: {fileID: 1555116333679732770}
   - component: {fileID: 1555116333679732771}
+  - component: {fileID: 1555116333679732828}
   m_Layer: 0
   m_Name: Play
   m_TagString: Untagged
@@ -24938,6 +26915,47 @@ MonoBehaviour:
   buttonIndex: 5
   buttonClick: {fileID: 8300000, guid: 95339be4938235f42a6439e8d5cf3f6d, type: 3}
   mesh: {fileID: 0}
+--- !u!114 &1555116333679732828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116333679732768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116333679732771}
+        m_TargetAssemblyTypeName: EditorToolFeedback, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!33 &1555116333703362264
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -25051,6 +27069,7 @@ GameObject:
   - component: {fileID: 1555116333709017393}
   - component: {fileID: 1555116333709017394}
   - component: {fileID: 1555116333709017395}
+  - component: {fileID: 1555116333709017400}
   m_Layer: 0
   m_Name: Restart
   m_TagString: Untagged
@@ -25170,6 +27189,50 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1555116333709017400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116333709017392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 11400000, guid: 5eac1712038236e4b8ffdb3893804fe1, type: 2}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles:
+  - Target: {fileID: 0}
+    Themes:
+    - {fileID: 0}
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116333709017395}
+        m_TargetAssemblyTypeName: EditorToolFeedback, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!4 &1555116333719786689
 Transform:
   m_ObjectHideFlags: 0
@@ -25371,6 +27434,7 @@ GameObject:
   - component: {fileID: 1555116333777177163}
   - component: {fileID: 1555116333777177167}
   - component: {fileID: 1555116333777177166}
+  - component: {fileID: 1555116333777177173}
   m_Layer: 0
   m_Name: TurnLeft
   m_TagString: Untagged
@@ -25378,6 +27442,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1555116333777177173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116333777177172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116333777177166}
+        m_TargetAssemblyTypeName: RoadButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!4 &1555116333813852162
 Transform:
   m_ObjectHideFlags: 0
@@ -25458,6 +27563,7 @@ GameObject:
   - component: {fileID: 1555116333877338928}
   - component: {fileID: 1555116333877338932}
   - component: {fileID: 1555116333877338923}
+  - component: {fileID: 1555116333877338934}
   m_Layer: 0
   m_Name: Loop
   m_TagString: Untagged
@@ -25503,6 +27609,47 @@ Transform:
   - {fileID: 1555116333925320083}
   m_Father: {fileID: 1555116332877643325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1555116333877338934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555116333877338929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555116333877338923}
+        m_TargetAssemblyTypeName: RoadButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!4 &1555116333895292808
 Transform:
   m_ObjectHideFlags: 0
@@ -26561,6 +28708,7 @@ GameObject:
   - component: {fileID: 6484631077656453185}
   - component: {fileID: 6484631077656493154}
   - component: {fileID: 6484631077656493155}
+  - component: {fileID: 6484631077656493156}
   m_Layer: 0
   m_Name: ArrowRight
   m_TagString: Untagged
@@ -26601,6 +28749,47 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6, y: 0.56, z: 0.16}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6484631077656493156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484631077656493153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6484631077656493154}
+        m_TargetAssemblyTypeName: SelectArrow, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!23 &6951955918083245790
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26820,6 +29009,7 @@ GameObject:
   - component: {fileID: 8148890850170273330}
   - component: {fileID: 8148890850172526836}
   - component: {fileID: 8148890850172526835}
+  - component: {fileID: 8148890850172526837}
   m_Layer: 0
   m_Name: Editor_button
   m_TagString: Untagged
@@ -26862,6 +29052,47 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.6892524, y: 0.99999994, z: 0}
   m_Center: {x: 0.21395242, y: 0.02443555, z: 0}
+--- !u!114 &8148890850172526837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148890850172526834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8148890850172526835}
+        m_TargetAssemblyTypeName: MessageScreenButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!1 &8190010317851572997
 GameObject:
   m_ObjectHideFlags: 0
@@ -26877,6 +29108,7 @@ GameObject:
   - component: {fileID: 8190010317851573001}
   - component: {fileID: 8190010317851573000}
   - component: {fileID: 8190010317851572999}
+  - component: {fileID: 8190010317853500892}
   m_Layer: 0
   m_Name: Save
   m_TagString: Untagged
@@ -27212,6 +29444,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8190010317853500892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8190010317851572997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8190010317851573000}
+        m_TargetAssemblyTypeName: EditorSaveButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!23 &8190010317853500893
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27429,6 +29702,7 @@ GameObject:
   - component: {fileID: 8735388112424029827}
   - component: {fileID: 8735388112422096966}
   - component: {fileID: 8735388112422096964}
+  - component: {fileID: 8735388112424029828}
   m_Layer: 0
   m_Name: Exit_button
   m_TagString: Untagged
@@ -27520,6 +29794,7 @@ GameObject:
   - component: {fileID: 8735388112424029835}
   - component: {fileID: 8735388112422096975}
   - component: {fileID: 8735388112422096972}
+  - component: {fileID: 8735388112424029836}
   m_Layer: 0
   m_Name: Play_button
   m_TagString: Untagged
@@ -27554,6 +29829,7 @@ GameObject:
   - component: {fileID: 8735388112424029837}
   - component: {fileID: 8735388112422096978}
   - component: {fileID: 8735388112422096974}
+  - component: {fileID: 8735388112424029838}
   m_Layer: 0
   m_Name: No_button
   m_TagString: Untagged
@@ -27609,6 +29885,7 @@ GameObject:
   - component: {fileID: 8735388112424029843}
   - component: {fileID: 8735388112422096985}
   - component: {fileID: 8735388112422096984}
+  - component: {fileID: 8735388112424029844}
   m_Layer: 0
   m_Name: Yes_button
   m_TagString: Untagged
@@ -27814,6 +30091,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8735388112424029828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735388112422096963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8735388112422096964}
+        m_TargetAssemblyTypeName: MessageScreenButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!23 &8735388112424029829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27940,6 +30258,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8735388112424029836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735388112422096971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8735388112422096972}
+        m_TargetAssemblyTypeName: MessageScreenButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!23 &8735388112424029837
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27982,6 +30341,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8735388112424029838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735388112422096973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8735388112422096974}
+        m_TargetAssemblyTypeName: MessageScreenButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!23 &8735388112424029843
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28024,6 +30424,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8735388112424029844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735388112422096977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 0}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8735388112422096984}
+        m_TargetAssemblyTypeName: MessageScreenButton, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!23 &8735388112424029845
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28934,6 +31375,7 @@ GameObject:
   - component: {fileID: 9002325529148356220}
   - component: {fileID: 9002325529148356211}
   - component: {fileID: 9002325529148356210}
+  - component: {fileID: 9002325529148356223}
   m_Layer: 0
   m_Name: SelectedOutputMarker
   m_TagString: Untagged
@@ -28941,6 +31383,50 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9002325529148356223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002325529148356222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1410eac1ae94b4d4492a09cc368e152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 11400000, guid: 5eac1712038236e4b8ffdb3893804fe1, type: 2}
+  InputActionId: 0
+  isGlobal: 0
+  Dimensions: 1
+  dimensionIndex: 0
+  startDimensionIndex: 0
+  CanSelect: 1
+  CanDeselect: 1
+  voiceCommand: 
+  voiceRequiresFocus: 1
+  profiles:
+  - Target: {fileID: 0}
+    Themes:
+    - {fileID: 0}
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9002325529148356211}
+        m_TargetAssemblyTypeName: SelectedOutputMarker, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Events: []
+  resetOnDestroy: 0
+  enabledOnStart: 1
 --- !u!4 &9002325529722982292
 Transform:
   m_ObjectHideFlags: 0
@@ -29077,6 +31563,7 @@ SceneRoots:
   - {fileID: 9002325527872710009}
   - {fileID: 2080486937}
   - {fileID: 6122043637406794157}
+  - {fileID: 1191570658}
   - {fileID: 1598216994}
   - {fileID: 8990084863012701930}
   - {fileID: 390106881}

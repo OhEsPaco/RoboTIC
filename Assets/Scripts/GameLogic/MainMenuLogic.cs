@@ -61,17 +61,15 @@ public class MainMenuLogic : MonoBehaviour
     private IEnumerator FindSpaceAndLaunchMenu()
     {
         bool success = false;
-        //  do
-        // {
-        // TO DO: PORT
-        // Hay que encontrar los planos y luego colocar el placeable map en el mundo
-        //yield return new WaitUntil(() => SpaceCollectionManager.Instance.IsReady());
-        //success = SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
+        /*do
+        {
+            // Hay que encontrar los planos y luego colocar el placeable map en el mundo
+            yield return new WaitUntil(() => SpaceCollectionManager.Instance.IsReady());
+            success = SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
+        } while (!success);*/
 
-        // BORRAR ESTO
-        //   yield return new WaitForSeconds(1);
-        //  } while (!success);
-        yield return new WaitForSeconds(1);
+        yield return null;
+
         EventAggregator.Instance.Publish<MsgFindingSpace>(new MsgFindingSpace(false));
 
         ShowMainMenu();
