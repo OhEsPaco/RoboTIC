@@ -11,16 +11,6 @@ using UnityEngine;
 public class SelectedOutputMarker : MonoBehaviour
 {
     /// <summary>
-    /// Offset del movimiento.
-    /// </summary>
-    private Vector3 mOffset;
-
-    /// <summary>
-    /// Profundidad del movimiento.
-    /// </summary>
-    private float mZCoord;
-
-    /// <summary>
     /// Objeto que se muestra marcando la carretera seleccionada.
     /// </summary>
     [SerializeField] private GameObject sphere;
@@ -35,58 +25,11 @@ public class SelectedOutputMarker : MonoBehaviour
     /// </summary>
     private bool placing = false;
 
-    /// <summary>
-    /// Start.
-    /// </summary>
-    private void Start()
+    public void OnManipulationStarted()
     {
-        EventAggregator.Instance.Subscribe<MsgSomethingTapped>(SomethingTapped);
-    }
-
-    /// <summary>
-    /// Para mejorar la usabilidad el gesto de tap sirve para parar la colocación del marcador
-    /// aunque no se haya hecho tap directamente sobre el mismo.
-    /// </summary>
-    /// <param name="msg">The msg<see cref="MsgSomethingTapped"/>.</param>
-    private void SomethingTapped(MsgSomethingTapped msg)
-    {
-        if (placing)
-        {
-            placing = false;
-            tappedMsg = true;
-            FindAndSelectClosestIO();
-        }
-    }
-
-    /// <summary>
-    /// True si se ha recibido un mensaje de tap.
-    /// </summary>
-    private bool tappedMsg = false;
-
-    /// <summary>
-    /// OnSelect.
-    /// </summary>
-    public void OnSelect()
-    {
-        if (!placing && !tappedMsg)
-        {
-            Debug.Log(transform.position);
-
-            mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-            mOffset = gameObject.transform.position - GetMouseWorldPos();
-            sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
-            sphere.SetActive(true);
-            placing = true;
-        }
-        else if (!placing && tappedMsg)
-        {
-            tappedMsg = false;
-        }
-        else
-        {
-            placing = false;
-            FindAndSelectClosestIO();
-        }
+        sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
+        sphere.SetActive(true);
+        placing = true;
     }
 
     /// <summary>
@@ -96,35 +39,13 @@ public class SelectedOutputMarker : MonoBehaviour
     {
         if (placing)
         {
-            OnMouseDrag();
+            sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
         }
     }
 
-    /// <summary>
-    /// Se activa cuando se arrastra con el ratón.
-    /// </summary>
-    private void OnMouseDrag()
+    public void OnManipulationEnded()
     {
-        transform.position = GetMouseWorldPos() + mOffset;
-        sphere.transform.position = SearchClosestsIO(RoadPlacementLogic.FirstInput).transform.position;
-    }
-
-    /// <summary>
-    /// Convierte las coordenadas del ratón a coordenadas globales.
-    /// </summary>
-    /// <returns>Las coordenadas globlales.</returns>
-    private Vector3 GetMouseWorldPos()
-    {
-        Vector3 mousePoint = Input.mousePosition;
-        mousePoint.z = mZCoord;
-        return Camera.main.ScreenToWorldPoint(mousePoint);
-    }
-
-    /// <summary>
-    /// OnMouseUp.
-    /// </summary>
-    private void OnMouseUp()
-    {
+        placing = false;
         FindAndSelectClosestIO();
     }
 

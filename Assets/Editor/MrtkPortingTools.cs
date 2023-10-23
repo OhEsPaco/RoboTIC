@@ -14,7 +14,6 @@ public class MrtkPortingTools : MonoBehaviour
         List<Type> typesToFind = new List<Type>() {
             typeof(SelectArrow),
             typeof(ConditionCardFrame),
-            typeof(SelectedOutputMarker),
             typeof(EditorInstructionButton),
             typeof(EditorMenuButton),
             typeof(EditorSaveButton),
@@ -28,12 +27,25 @@ public class MrtkPortingTools : MonoBehaviour
             typeof(GenericButton),
         };
 
+        // 1. Borramos todos los interactables, si es que existen.
         foreach (Type typeToFind in typesToFind)
         {
-            Debug.Log("Searching all instances of " + typeToFind + "...");
             var foundOccurences = GetAllOccurencesInScene(typeToFind);
-            Debug.Log("Found " + foundOccurences.Length + " instances");
+            foreach (dynamic foundInstance in foundOccurences)
+            {
+                Interactable addedInteractable = foundInstance.gameObject.GetComponent<Interactable>();
+                if (addedInteractable != null)
+                {
+                    DestroyImmediate(addedInteractable);
+                }
+            }
+        }
 
+
+        // 2. Ponemos los nuevos interactables.
+        foreach (Type typeToFind in typesToFind)
+        {
+            var foundOccurences = GetAllOccurencesInScene(typeToFind);
             System.Reflection.MethodInfo onSelectMethod = typeToFind.GetMethod("OnSelect");
 
             foreach (dynamic foundInstance in foundOccurences)
@@ -43,8 +55,9 @@ public class MrtkPortingTools : MonoBehaviour
                 if (addedInteractable == null)
                 {
                     addedInteractable = foundInstance.gameObject.AddComponent<Interactable>();
-                    UnityEditor.Events.UnityEventTools.AddPersistentListener(addedInteractable.OnClick, System.Delegate.CreateDelegate(typeof(UnityAction), foundInstance, onSelectMethod));
                 }
+
+                UnityEditor.Events.UnityEventTools.AddPersistentListener(addedInteractable.OnClick, System.Delegate.CreateDelegate(typeof(UnityAction), foundInstance, onSelectMethod));
             }
         }
     }

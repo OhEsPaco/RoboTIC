@@ -2,6 +2,7 @@
 // Francisco Manuel García Sánchez - Belmonte
 // 2020
 
+using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -89,6 +90,7 @@ public class EditorSurface : MonoBehaviour
         points = new EditorSurfacePoint[levelSize[0] * levelSize[2]];
         int index = 0;
         EditorSurfacePoint editorSurfacePoint;
+        Interactable editorSurfacePointInteractable;
         GameObject objToSpawn;
 
         for (int x = 0; x < levelSize[0]; x++)
@@ -104,6 +106,9 @@ public class EditorSurface : MonoBehaviour
                 objToSpawn.transform.RotateAround(transform.position, Vector3.up, transform.eulerAngles.y);
 
                 editorSurfacePoint = objToSpawn.AddComponent<EditorSurfacePoint>();
+                editorSurfacePointInteractable = objToSpawn.AddComponent<Interactable>();
+                editorSurfacePointInteractable.OnClick.AddListener(editorSurfacePoint.OnSelect);
+
                 editorSurfacePoint.EditorSurface = transform;
                 editorSurfacePoint.SetPosition(x, z);
                 editorSurfacePoint.BlockLength = blockLength;
