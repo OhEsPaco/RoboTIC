@@ -2,15 +2,15 @@
 // Francisco Manuel García Sánchez - Belmonte
 // 2020
 
+using SharpConfig;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 /// <summary>
 /// Esta clase <see cref="MapMenuLogic" /> contiene la lógica del menú de mapas del juego.
 /// </summary>
-public class MapMenuLogic : MonoBehaviour
+public class MapMenuLogic : ConfigurableMonoBehaviour
 {
     /// <summary>
     /// Los niveles por defecto que incluye el juego.
@@ -88,6 +88,8 @@ public class MapMenuLogic : MonoBehaviour
     [Range(0f, 5000f)]
     public float speed = 1f;
 
+    private List<string> userLevelsAsJsonList = new List<string>();
+
     /// <summary>
     /// Instancia de la clase a la que pueden acceder otros objetos.
     /// </summary>
@@ -114,6 +116,26 @@ public class MapMenuLogic : MonoBehaviour
         }
     }
 
+    public override void SetupCleanConfiguration(Configuration cfg)
+    {
+        cfg["MapMenuLogic"]["userLevels"].StringValueArray = userLevelsAsJsonList.ToArray();
+    }
+
+    public override void LoadConfiguration(Configuration cfg)
+    {
+        string[] userLevelsAsJsonArray = userLevelsAsJsonList.ToArray();
+        ParseConfigStringArray(cfg["MapMenuLogic"]["userLevels"], ref userLevelsAsJsonArray);
+
+        if (userLevelsAsJsonArray != null)
+        {
+            userLevelsAsJsonList = new List<string>();
+            foreach (string levelString in userLevelsAsJsonArray)
+            {
+                userLevelsAsJsonList.Add(levelString);
+            }
+        }
+    }
+
     /// <summary>
     /// Start.
     /// </summary>
@@ -132,9 +154,14 @@ public class MapMenuLogic : MonoBehaviour
             storyLevelsString[i] = storyLevels[i].ToString();
         }
         List<LevelData> storyLevelsLoaded = LoadStoryLevels(storyLevelsString);
-        foreach (LevelData level in LoadImportedLevels(GetListOfImportedLevels()))
+        var userLevels = LoadImportedLevels(userLevelsAsJsonList);
+
+        if (userLevels != null && userLevels.Count > 0)
         {
-            storyLevelsLoaded.Add(level);
+            foreach (LevelData level in userLevels)
+            {
+                storyLevelsLoaded.Add(level);
+            }
         }
 
         StartCoroutine(RenderAllLevels(storyLevelsLoaded));
@@ -169,9 +196,16 @@ public class MapMenuLogic : MonoBehaviour
     /// <param name="newLevel">The newLevel<see cref="LevelData"/>.</param>
     public void AddNewLevel(LevelData newLevel)
     {
-        levels.Add(newLevel);
-        loadedLevels.Add(newLevel, null);
-        StartCoroutine(RenderALevel(newLevel));
+        string levelString = JsonUtility.ToJson(newLevel);
+
+        if (!string.IsNullOrWhiteSpace(levelString))
+        {
+            userLevelsAsJsonList.Add(levelString);
+            ConfigManager.manager.SaveAllConfig();
+            levels.Add(newLevel);
+            loadedLevels.Add(newLevel, null);
+            StartCoroutine(RenderALevel(newLevel));
+        }
     }
 
     /// <summary>
@@ -442,13 +476,37 @@ public class MapMenuLogic : MonoBehaviour
 
             yield return null;
 
+            List<MeshFilter> meshFilters = new List<MeshFilter>();
+
             if (loadedLevels.ContainsKey(level))
             {
                 foreach (LevelObject lo in loadedLevel)
                 {
                     lo.gameObject.SetActive(true);
+                    var meshFilter = lo.gameObject.GetComponent<MeshFilter>();
+                    if (meshFilter != null)
+                    {
+                        meshFilters.Add(meshFilter);
+                    }
                 }
                 mcont.UpdateMapCenter(level.levelSize, blockLength);
+
+                CombineInstance[] combine = new CombineInstance[meshFilters.Count];
+
+                int i = 0;
+                while (i < meshFilters.Count)
+                {
+                    combine[i].mesh = meshFilters[i].sharedMesh;
+                    combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+                    i++;
+                }
+
+                Mesh mesh = new Mesh();
+                mesh.CombineMeshes(combine);
+
+                var parentFilter = parent.AddComponent<MeshFilter>();
+                parentFilter.sharedMesh = mesh;
+
                 parent.SetActive(false);
                 loadedLevels[level] = loadedLevel;
             }
@@ -456,34 +514,6 @@ public class MapMenuLogic : MonoBehaviour
             {
                 Destroy(parent);
             }
-        }
-    }
-
-    /// <summary>
-    /// Carga una lista con los nombres de archivo de los mapas creados por el usuario.
-    /// </summary>
-    /// <returns>La lista con los nombres de archivo <see cref="string[]"/>.</returns>
-    private string[] GetListOfImportedLevels()
-    {
-        if (Application.isEditor)
-        {
-            if (!Directory.Exists(System.IO.Directory.GetCurrentDirectory() + "/UserLevels"))
-            {
-                Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "/UserLevels");
-                return new string[0];
-            }
-
-            return System.IO.Directory.GetFiles(System.IO.Directory.GetCurrentDirectory() + "/UserLevels", "*.json");
-        }
-        else
-        {
-            if (!Directory.Exists(Application.persistentDataPath + "/UserLevels"))
-            {
-                Directory.CreateDirectory(Application.persistentDataPath + "/UserLevels");
-                return new string[0];
-            }
-
-            return System.IO.Directory.GetFiles(Application.persistentDataPath + "/UserLevels", "*.json");
         }
     }
 
@@ -514,39 +544,29 @@ public class MapMenuLogic : MonoBehaviour
     /// <summary>
     /// Carga los niveles del usuario.
     /// </summary>
-    /// <param name="files">Los nombres de archivo de los niveles<see cref="string[]"/>.</param>
+    /// <param name="files">Los niveles como un list de json strings/>.</param>
     /// <returns>Los niveles cargados como LevelData <see cref="List{LevelData}"/>.</returns>
-    private List<LevelData> LoadImportedLevels(string[] files)
+    private List<LevelData> LoadImportedLevels(List<string> files)
     {
         List<LevelData> loadedLevels = new List<LevelData>();
-        foreach (string path in files)
+
+        if (files != null)
         {
-            try
+            foreach (string levelFile in files)
             {
-                LevelData levelData = new LevelData();
-                string readedString = ReadFileAsString(path);
-                JsonUtility.FromJsonOverwrite(readedString, levelData);
-                loadedLevels.Add(levelData);
-            }
-            catch
-            {
-                Debug.LogError("Unable to load: " + path);
+                try
+                {
+                    LevelData levelData = new LevelData();
+                    JsonUtility.FromJsonOverwrite(levelFile, levelData);
+                    loadedLevels.Add(levelData);
+                }
+                catch
+                {
+                    Debug.LogError("Unable to load: " + levelFile);
+                }
             }
         }
+
         return loadedLevels;
-    }
-
-    /// <summary>
-    /// Lee un archivo y lo retorna como un string.
-    /// </summary>
-    /// <param name="path">La ruta del archivo<see cref="string"/>.</param>
-    /// <returns>El archivo leído <see cref="string"/>.</returns>
-    private string ReadFileAsString(in string path)
-    {
-        StreamReader sr = new StreamReader(new FileStream(path, FileMode.Open));
-
-        string output = sr.ReadToEnd();
-
-        return output;
     }
 }

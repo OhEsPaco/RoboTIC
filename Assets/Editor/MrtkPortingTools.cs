@@ -3,6 +3,7 @@ using Microsoft.MixedReality.Toolkit.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -96,4 +97,31 @@ public class MrtkPortingTools : MonoBehaviour
 
         return foundObjects.ToArray();
     }
+
+    [MenuItem("MRTK Porting Tools/Remove Missing Scripts")]
+    public static void Remove()
+    {
+
+        List<GameObject> foundObjects = new List<GameObject>();
+        GameObject[] rootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+
+        foreach (GameObject rootObject in rootObjects)
+        {
+            var componentsInChildren = rootObject.GetComponentsInChildren<Transform>(true);
+
+            if (componentsInChildren != null && componentsInChildren.Length > 0)
+            {
+                foreach (var componentInChildren in componentsInChildren)
+                {
+                    foundObjects.Add(componentInChildren.gameObject);
+                }
+            }
+        }
+
+
+
+        int count = foundObjects.Sum(GameObjectUtility.RemoveMonoBehavioursWithMissingScript);
+        Debug.Log($"Removed {count} missing scripts");
+    }
+
 }

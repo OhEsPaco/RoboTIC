@@ -4,7 +4,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using static LevelObject;
 
@@ -220,31 +219,7 @@ public class EditorLogic : MonoBehaviour
         LevelData newLevel = GenerateLevel();
         if (newLevel != null)
         {
-            SaveMap(newLevel);
             MapMenuLogic.Instance.AddNewLevel(newLevel);
-        }
-    }
-
-    /// <summary>
-    /// Dado un mapa en formato LevelData lo guarda como un archivo .json.
-    /// </summary>
-    /// <param name="newLevel">El nivel a guardar<see cref="LevelData"/>.</param>
-    private void SaveMap(LevelData newLevel)
-    {
-        string levelString = JsonUtility.ToJson(newLevel);
-
-        if (Application.isEditor)
-        {
-            if (!Directory.Exists(System.IO.Directory.GetCurrentDirectory() + "/UserLevels"))
-            {
-                Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + "/UserLevels");
-            }
-
-            System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "/UserLevels/" + newLevel.levelName + ".json", levelString);
-        }
-        else
-        {
-            System.IO.File.WriteAllText(Application.persistentDataPath + "/UserLevels/" + newLevel.levelName + ".json", levelString);
         }
     }
 
