@@ -22,7 +22,7 @@ public class SelectArrow : MonoBehaviour
     /// <summary>
     /// OnSelect.
     /// </summary>
-    private void OnSelect()
+    public void OnSelect()
     {
         callbackDelegate?.Invoke();
     }
