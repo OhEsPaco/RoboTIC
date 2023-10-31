@@ -51,11 +51,6 @@ public class MapController : MonoBehaviour
     [SerializeField] private GameObject editorSurface;
 
     /// <summary>
-    /// Botón de mover el escenario.
-    /// </summary>
-    [SerializeField] private GameObject mapPlacer;
-
-    /// <summary>
     /// ¿Mostrar el gizmo de las cajas de colisión?
     /// </summary>
     [SerializeField] private bool drawCollidersGizmo;
@@ -96,7 +91,6 @@ public class MapController : MonoBehaviour
         arrowL.gameObject.SetActive(false);
         editorButtons.gameObject.SetActive(false);
         editorSurface.gameObject.SetActive(false);
-        mapPlacer.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -111,7 +105,6 @@ public class MapController : MonoBehaviour
         arrowL.gameObject.SetActive(true);
         editorButtons.gameObject.SetActive(false);
         editorSurface.gameObject.SetActive(false);
-        mapPlacer.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -126,7 +119,6 @@ public class MapController : MonoBehaviour
         arrowL.gameObject.SetActive(false);
         editorButtons.gameObject.SetActive(false);
         editorSurface.gameObject.SetActive(false);
-        mapPlacer.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -141,7 +133,6 @@ public class MapController : MonoBehaviour
         mapBounds.gameObject.SetActive(false);
         arrowR.gameObject.SetActive(false);
         arrowL.gameObject.SetActive(false);
-        mapPlacer.gameObject.SetActive(true);
     }
 
     /// <summary>

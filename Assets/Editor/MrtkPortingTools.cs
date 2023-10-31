@@ -22,7 +22,6 @@ public class MrtkPortingTools : MonoBehaviour
             typeof(EditorSurfacePoint), // Posiblemente haya que ponerlos en runtime
             typeof(EditorTool),
             typeof(EditorToolFeedback),
-            typeof(MoveCursor),
             typeof(MessageScreenButton),
             typeof(LoopCounter),
             typeof(RoadButton),
