@@ -60,15 +60,10 @@ public class MainMenuLogic : MonoBehaviour
     /// <returns>The <see cref="IEnumerator"/>.</returns>
     private IEnumerator FindSpaceAndLaunchMenu()
     {
-        bool success = false;
-        /*do
-        {
-            // Hay que encontrar los planos y luego colocar el placeable map en el mundo
-            yield return new WaitUntil(() => SpaceCollectionManager.Instance.IsReady());
-            success = SpaceCollectionManager.Instance.PlaceItemInWorld(placeableMap);
-        } while (!success);*/
+        yield return new WaitForSecondsRealtime(3f);
 
-        yield return null;
+        placeableMap.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
+        //placeableMap.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, new Vector3(0, 1, 0));
 
         EventAggregator.Instance.Publish<MsgFindingSpace>(new MsgFindingSpace(false));
 

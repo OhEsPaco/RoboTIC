@@ -118,6 +118,18 @@ public class MapMenuLogic : ConfigurableMonoBehaviour
 
     public override void SetupCleanConfiguration(Configuration cfg)
     {
+        if (userLevelsAsJsonList == null || userLevelsAsJsonList.Count <= 0)
+        {
+            userLevelsAsJsonList = new List<string>();
+            if (storyLevels != null)
+            {
+                foreach (var storyLevel in storyLevels)
+                {
+                    userLevelsAsJsonList.Add(storyLevel.ToString().Replace("\n", "").Replace("\r", ""));
+                }
+            }
+        }
+
         cfg["MapMenuLogic"]["userLevels"].StringValueArray = userLevelsAsJsonList.ToArray();
     }
 
@@ -125,7 +137,6 @@ public class MapMenuLogic : ConfigurableMonoBehaviour
     {
         string[] userLevelsAsJsonArray = userLevelsAsJsonList.ToArray();
         ParseConfigStringArray(cfg["MapMenuLogic"]["userLevels"], ref userLevelsAsJsonArray);
-
         if (userLevelsAsJsonArray != null)
         {
             userLevelsAsJsonList = new List<string>();
@@ -147,13 +158,8 @@ public class MapMenuLogic : ConfigurableMonoBehaviour
         mapBounds.ClickCalbacks += UserClickedOnMap;
         leftArrow.InformMeOfClickedArrow(InputLeft);
         rightArrow.InformMeOfClickedArrow(InputRight);
-        string[] storyLevelsString = new string[storyLevels.Length];
 
-        for (int i = 0; i < storyLevels.Length; i++)
-        {
-            storyLevelsString[i] = storyLevels[i].ToString();
-        }
-        List<LevelData> storyLevelsLoaded = LoadStoryLevels(storyLevelsString);
+        List<LevelData> storyLevelsLoaded = new List<LevelData>();
         var userLevels = LoadImportedLevels(userLevelsAsJsonList);
 
         if (userLevels != null && userLevels.Count > 0)
@@ -375,8 +381,6 @@ public class MapMenuLogic : ConfigurableMonoBehaviour
 
         rightParent.SetActive(false);
 
-        placeableMap.SetActive(false);
-
         rightParent.transform.parent = placeableMap.transform;
 
         rightParent.transform.position = new Vector3();
@@ -384,9 +388,6 @@ public class MapMenuLogic : ConfigurableMonoBehaviour
         Vector3 mapCenter = placeableMap.GetComponent<MapController>().MapControllerCenter;
 
         rightParent.GetComponent<MapContainer>().MoveMapTo(mapCenter, placeableMap.transform.position.y, blockLength);
-
-        //Lo activamos
-        placeableMap.SetActive(true);
 
         //Hacemos pequeño el que esta
         Vector3 mapScale = centerParent.transform.localScale;
@@ -491,22 +492,6 @@ public class MapMenuLogic : ConfigurableMonoBehaviour
                 }
                 mcont.UpdateMapCenter(level.levelSize, blockLength);
 
-                CombineInstance[] combine = new CombineInstance[meshFilters.Count];
-
-                int i = 0;
-                while (i < meshFilters.Count)
-                {
-                    combine[i].mesh = meshFilters[i].sharedMesh;
-                    combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
-                    i++;
-                }
-
-                Mesh mesh = new Mesh();
-                mesh.CombineMeshes(combine);
-
-                var parentFilter = parent.AddComponent<MeshFilter>();
-                parentFilter.sharedMesh = mesh;
-
                 parent.SetActive(false);
                 loadedLevels[level] = loadedLevel;
             }
@@ -515,30 +500,6 @@ public class MapMenuLogic : ConfigurableMonoBehaviour
                 Destroy(parent);
             }
         }
-    }
-
-    /// <summary>
-    /// Carga los niveles predefinidos.
-    /// </summary>
-    /// <param name="levels">Los niveles como strings<see cref="string[]"/>.</param>
-    /// <returns>Los niveles como LevelData <see cref="List{LevelData}"/>.</returns>
-    private List<LevelData> LoadStoryLevels(string[] levels)
-    {
-        List<LevelData> loadedLevels = new List<LevelData>();
-        foreach (string level in levels)
-        {
-            try
-            {
-                LevelData levelData = new LevelData();
-                JsonUtility.FromJsonOverwrite(level, levelData);
-                loadedLevels.Add(levelData);
-            }
-            catch
-            {
-                Debug.LogError("Unable to load: " + level);
-            }
-        }
-        return loadedLevels;
     }
 
     /// <summary>

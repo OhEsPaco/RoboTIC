@@ -1,4 +1,5 @@
 using SharpConfig;
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -33,8 +34,9 @@ internal class ConfigManager : MonoBehaviour
             LoadConfiguration();
             SaveConfig();
         }
-        catch
+        catch(Exception e)
         {
+            Debug.LogException(e);
             cfg = new Configuration();
             SetupCleanConfiguration();
         }

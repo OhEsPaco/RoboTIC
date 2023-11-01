@@ -73,6 +73,8 @@ public class EditorLogic : MonoBehaviour
         Eraser
     }
 
+    private string currentLevelName;
+
     /// <summary>
     /// Instancia estática de la clase.
     /// </summary>
@@ -233,7 +235,7 @@ public class EditorLogic : MonoBehaviour
         {
             LevelData newLevel = new LevelData();
 
-            newLevel.levelName = System.Guid.NewGuid().ToString();
+            newLevel.levelName = currentLevelName;
             int[] firstBlockPosition = GetMinXYZ();
             int[] lastBlockPosition = GetMaxXYZ();
 
@@ -408,6 +410,7 @@ public class EditorLogic : MonoBehaviour
     /// </summary>
     private void ResetEditor()
     {
+        currentLevelName = System.Guid.NewGuid().ToString();
         EventAggregator.Instance.Publish<MsgEditorResetAllCounters>(new MsgEditorResetAllCounters());
         EventAggregator.Instance.Publish<MsgResetEditorSurface>(new MsgResetEditorSurface());
         selectedTool = null;
