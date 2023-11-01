@@ -75,6 +75,8 @@ public class SelectedOutputMarker : MonoBehaviour
     /// <returns>La IO más cercana.</returns>
     private RoadIO SearchClosestsIO(RoadIO pivotIO)
     {
+        RoadIO closestSelectableToPivotIO = null ;
+
         if (pivotIO != null)
         {
             RoadIO closestIO = pivotIO;
@@ -85,7 +87,16 @@ public class SelectedOutputMarker : MonoBehaviour
 
             RoadIO[] tmpe;
 
-            ioToProc.Push(pivotIO);
+            tmpe = pivotIO.GetParentRoad().GetAllIO();
+
+            foreach (var io in tmpe)
+            {
+                if (io != null && io.CanBeSelected)
+                {
+                    ioToProc.Push(io);
+                    closestSelectableToPivotIO = io;
+                }
+            }
 
             while (ioToProc.Count > 0)
             {
@@ -115,28 +126,30 @@ public class SelectedOutputMarker : MonoBehaviour
                     }
                 }
 
-                if (Vector3.Distance(closestIO.transform.position, transform.position) > Vector3.Distance(toProc.transform.position, transform.position))
+                if (toProc.CanBeSelected && Vector3.Distance(closestIO.transform.position, transform.position) > Vector3.Distance(toProc.transform.position, transform.position))
                 {
-                    if (toProc.CanBeSelected)
-                    {
-                        closestIO = toProc;
-                    }
+                    closestIO = toProc;
                 }
+
                 if (!processedIO.Contains(toProc))
                 {
                     processedIO.Add(toProc);
                 }
             }
 
-            if (closestIO.ConnectedTo != null)
+            if (closestIO.ConnectedTo != null && closestIO.ConnectedTo is RoadOutput && closestIO.ConnectedTo.CanBeSelected)
             {
-                if (closestIO.ConnectedTo is RoadOutput && closestIO.ConnectedTo.CanBeSelected)
-                {
-                    closestIO = closestIO.ConnectedTo;
-                }
+                closestIO = closestIO.ConnectedTo;
             }
-            return closestIO;
+
+            if (closestIO.CanBeSelected)
+            {
+                return closestIO;
+            }
+ 
         }
-        return null;
+
+        
+        return closestSelectableToPivotIO;
     }
 }
