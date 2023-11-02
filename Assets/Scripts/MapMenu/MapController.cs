@@ -7,7 +7,6 @@ using UnityEngine;
 /// <summary>
 /// Contiene una serie de métodos utiles para activar los controles de las diferentes pantallas del juego.
 /// </summary>
-[RequireComponent(typeof(BoxCollider))]
 public class MapController : MonoBehaviour
 {
     /// <summary>
