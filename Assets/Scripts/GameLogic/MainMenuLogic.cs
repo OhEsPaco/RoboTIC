@@ -17,6 +17,8 @@ public class MainMenuLogic : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject placeableMap;
 
+    [SerializeField] private GameObject moveMap;
+
     /// <summary>
     /// Instancia de la clase a la que los demás objetos pueden acceder.
     /// </summary>
@@ -53,17 +55,13 @@ public class MainMenuLogic : MonoBehaviour
         StartCoroutine(FindSpaceAndLaunchMenu());
     }
 
-    /// <summary>
-    /// Espera a que termine de encontrarse el espacio en el que se encuentra el jugador ¡
-    /// y lanza el menú principal.
-    /// </summary>
-    /// <returns>The <see cref="IEnumerator"/>.</returns>
     private IEnumerator FindSpaceAndLaunchMenu()
     {
         yield return new WaitForSecondsRealtime(3f);
 
         placeableMap.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
-        //placeableMap.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, new Vector3(0, 1, 0));
+
+        moveMap.gameObject.SetActive(true);
 
         EventAggregator.Instance.Publish<MsgFindingSpace>(new MsgFindingSpace(false));
 

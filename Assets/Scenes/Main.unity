@@ -9065,7 +9065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1180141383
 Transform:
   m_ObjectHideFlags: 0
@@ -18742,6 +18742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placeableMap: {fileID: 14435332}
+  moveMap: {fileID: 1180141382}
 --- !u!4 &2080486937
 Transform:
   m_ObjectHideFlags: 0
