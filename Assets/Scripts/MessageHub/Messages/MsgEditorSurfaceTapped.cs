@@ -1,6 +1,6 @@
 ﻿// MsgEditorSurfaceTapped.cs
-// Francisco Manuel García Sánchez - Belmonte
-// 2020
+// Furious Koalas S.L.
+// 2023
 
 /// <summary>
 /// Mensaje para avisar de que se ha tocado en la superficie del editor.

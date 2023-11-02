@@ -1,6 +1,6 @@
 ﻿// MsgGetMainCameraTransform.cs
-// Francisco Manuel García Sánchez - Belmonte
-// 2020
+// Furious Koalas S.L.
+// 2023
 
 /// <summary>
 /// Mensaje para pedir la transformada de la cámara principal.

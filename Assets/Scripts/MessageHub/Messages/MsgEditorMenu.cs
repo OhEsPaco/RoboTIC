@@ -1,6 +1,6 @@
 ﻿// MsgEditorMenu.cs
-// Francisco Manuel García Sánchez - Belmonte
-// 2020
+// Furious Koalas S.L.
+// 2023
 
 /// <summary>
 /// Mensaje para el botón de volver al menú del editor.

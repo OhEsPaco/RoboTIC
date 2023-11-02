@@ -1,6 +1,6 @@
 ﻿// MsgSomethingTapped.cs
-// Francisco Manuel García Sánchez - Belmonte
-// 2020
+// Furious Koalas S.L.
+// 2023
 
 /// <summary>
 /// Indica que el usuario ha hecho tap.
